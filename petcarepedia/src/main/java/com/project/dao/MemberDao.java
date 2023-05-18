@@ -118,4 +118,25 @@ public class MemberDao extends DBConn{
 		
 		return result;
 	}
+	
+	/**
+	 * loginCheck - 로그인 체크
+	 */
+	public int loginCheck(MemberVo memberVo) {
+		int result = 0;
+		
+		String sql = "select count(*) from pcp_member where mid=? and pass=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, memberVo.getMid());
+			pstmt.setString(2, memberVo.getPass());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }
