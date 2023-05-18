@@ -99,4 +99,23 @@ public class MemberDao extends DBConn{
 		
 		return memberVo;
 	}
+	
+	/**
+	 * idCheck - 회원가입 아이디 중복체크
+	 */
+	public int idCheck(String mid) {
+		int result = 0;
+		
+		String sql = "select count(*) from pcp_member where mid=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, mid);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }
