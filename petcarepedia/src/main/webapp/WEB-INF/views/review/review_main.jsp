@@ -11,15 +11,14 @@
 </head>
 <body>
 	<!-- header -->
-	<iframe src="http://localhost:9000/mycgv/header.html" 
-				scrolling="no" width="100%" height="100px" frameborder="0"></iframe>
+	<jsp:include page="../header.jsp"></jsp:include>
 				
-	<form name="reviewForm" action="#" method="get">			
+	<form name="reviewForm" action="#" method="get" id=reviewForm>			
 	<div id="best_review" class="review">
 		<p>사용자 추천 리뷰</p>
 		<ul>
 			<li>
-				<a href="review_content.jsp">
+				<a href="review_content.do">
 					<div class=review_top>
 						<span class="h_name">
 							더조은동물병원
@@ -140,7 +139,7 @@
 								</div>
 							</li>
 								<li id="list_middle" class="list">
-									<a href="review_content.jsp">	
+									<a href="review_content.do">	
 										<p>동물 종류 : 고양이</p>
 										<div>
 											벌써 몇 년간 믿고 다니는 병원입니다. 원장님부터 카운터 선생님들까지 모두 친절하시고 아이들도 좋아해주세요~
@@ -183,7 +182,6 @@
 	</form>
 	
 	<!-- footer -->
-	<iframe src="http://localhost:9000/mycgv/footer.html" 
-				scrolling="no" width="100%" height="400px" frameborder="0"></iframe>
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>
