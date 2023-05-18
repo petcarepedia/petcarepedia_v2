@@ -17,7 +17,7 @@
 				<div>
 					<nav>
 						<ul>
-							<li>병원관리</li>
+							<li>병원관리1</li>
 							<li><a href = "http://localhost:9000/animal/admin/hospital/hospital_list.jsp">병원 관리</a></li>
 							<li><a href = "http://localhost:9000/animal/admin/member/member_list.jsp">회원 관리</a></li>
 							<li><a href = "http://localhost:9000/animal/admin/reserve/reserve_list.jsp">예약 관리</a></li>
