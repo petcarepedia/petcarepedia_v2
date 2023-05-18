@@ -31,4 +31,23 @@ public class BookmarkDao extends DBConn{
 		
 		return list;
 	}
+	
+	public BookmarkVo select(String hid) {
+		BookmarkVo bookmarkVo = new BookmarkVo();
+		String sql = "select bmid, b.mid, b.hid from pcp_bookmark b, pcp_hospital h where b.hid = h.hid and b.hid = ?";
+		getPreparedStatement(sql);
+		
+		try {
+			rs = pstmt.executeQuery();
+			pstmt.setString(1, hid);
+			while(rs.next()) {
+				bookmarkVo.setBmid(rs.getString(1));
+				bookmarkVo.setMid(rs.getString(2));
+				bookmarkVo.setHid(rs.getString(3));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bookmarkVo;
+	}
 }
