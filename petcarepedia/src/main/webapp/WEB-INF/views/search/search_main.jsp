@@ -22,7 +22,7 @@
 	<div class="search_main">
 		<!-- 필터 -->
 		<section class="filter">
-		<h1 class="title">동물병원</h1>
+		<h1 class="title">동물병원1</h1>
 		
 			<form name="search" action="#" method="get">
 				<div class="area">
