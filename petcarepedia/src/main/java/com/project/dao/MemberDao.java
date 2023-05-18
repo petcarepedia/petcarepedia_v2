@@ -39,7 +39,7 @@ public class MemberDao extends DBConn{
 		ArrayList<MemberVo> list = new ArrayList<MemberVo>();
 		
 		String sql = "select rownum,mid,pass,name,nickname,phone,birth,email,addr,mdate\r\n" + 
-				"from(select mid,pass,name,nickname,phone,birth,email,addr,mdate from pcp_member order by mdate);";
+				"from(select mid,pass,name,nickname,phone,birth,email,addr,mdate from pcp_member order by mdate)";
 		getPreparedStatement(sql);
 		
 		try {
@@ -66,5 +66,37 @@ public class MemberDao extends DBConn{
 		}
 		
 		return list;
+	}
+	
+	/**
+	 * select - 회원 개인 정보(마이페이지)
+	 */
+	public MemberVo select(String mid) {
+		MemberVo memberVo = new MemberVo();
+		
+		String sql = "select mid,pass,name,nickname,phone,birth,email,addr,mdate from pcp_member\r\n" + 
+				"where mid=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, mid);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				memberVo.setMid(rs.getString(1));
+				memberVo.setPass(rs.getString(2));
+				memberVo.setName(rs.getString(3));
+				memberVo.setNickname(rs.getString(4));
+				memberVo.setPhone(rs.getString(5));
+				memberVo.setBirth(rs.getString(6));
+				memberVo.setEmail(rs.getString(7));
+				memberVo.setAddr(rs.getString(8));
+				memberVo.setMdate(rs.getString(9));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return memberVo;
 	}
 }
