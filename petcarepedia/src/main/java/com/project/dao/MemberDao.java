@@ -139,4 +139,31 @@ public class MemberDao extends DBConn{
 		
 		return result;
 	}
+	
+	/**
+	 * update - 회원정보 수정(마이페이지)
+	 */
+	public int update(MemberVo memberVo) {
+		int result = 0;
+		
+		String sql = "update pcp_member \r\n" + 
+				"set nickname=?,phone=?,birth=?,email=?,addr=?\r\n" + 
+				"where mid=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, memberVo.getNickname());
+			pstmt.setString(2, memberVo.getPhone());
+			pstmt.setString(3, memberVo.getBirth());
+			pstmt.setString(4, memberVo.getEmail());
+			pstmt.setString(5, memberVo.getAddr());
+			pstmt.setString(6, memberVo.getMid());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }
