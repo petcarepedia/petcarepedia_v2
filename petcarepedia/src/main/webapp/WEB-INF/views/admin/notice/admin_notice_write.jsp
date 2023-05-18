@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_style.css">
 </head>
 <body>
+	<!-- header -->
+	<jsp:include page="../../header.jsp"></jsp:include>
 	<div class="content">
 		<section class="notice">
 			<div id="title_l">
@@ -28,10 +30,12 @@
 				</table>
 					<div class="nw_button_r">
 						<button type="button" class="ad_button">등록</button>
-						<a href="admin_notice.jsp"><button type="button" class="ad_button">취소</button></a>
+						<a href="admin_notice.do"><button type="button" class="ad_button">취소</button></a>
 					</div>
 			</form>
 		</section>
 	</div>
+	<!-- footer -->
+	<jsp:include page="../../footer.jsp"></jsp:include>
 </body>
 </html>

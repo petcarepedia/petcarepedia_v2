@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_admin.css">
 </head>
 <body>
-<!-- header -->
-	<iframe width="100%" height="100px" frameborder=0></iframe>
+	<!-- header -->
+	<jsp:include page="../../header.jsp"></jsp:include>
 	
 	<div class="d1">
 		<section class="hospital">
@@ -17,7 +17,8 @@
 					<div>
 						<nav>
 							<ul>
-								<li>병원관리</li>
+								<li>공지관리</li>
+								<li><a href = "admin_notice.do">공지관리</a></a></li>
 								<li><a href = "http://localhost:9000/animal/admin/hospital/hospital_list.jsp">병원 관리</a></li>
 								<li><a href = "http://localhost:9000/animal/admin/member/member_list.jsp">회원 관리</a></li>
 								<li><a href = "http://localhost:9000/animal/admin/review/review_list.jsp">신고 리뷰 관리</a></li>
@@ -36,7 +37,7 @@
 				<table class="table">
 					<tr>
 						<td colspan="5" >
-							<button type="button" class="button"><a href="admin_notice_write.jsp">등록</a></button>
+							<button type="button" class="button"><a href="admin_notice_write.do">등록</a></button>
 						</td>
 					</tr>
 					<tr>
@@ -47,7 +48,7 @@
 					</tr>
 					<tr>
 					<td>1</td>
-					<td><a href="admin_notice_content.jsp">공지사항 입니다.</a></td>
+					<td><a href="admin_notice_content.do">공지사항 입니다.</a></td>
 					<td>2023/4/26 18:38</td>
 					<td>1000</td>
 					</tr>
@@ -118,6 +119,6 @@
 		</section>
 	</div>
 	<!-- footer -->
-		<iframe  width="100%" height="350px" frameborder=0></iframe>
+	<jsp:include page="../../footer.jsp"></jsp:include>
 </body>
 </html>
