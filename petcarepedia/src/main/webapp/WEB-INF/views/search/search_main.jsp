@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link href="http://localhost:9000/petcarepedia/images/foot_blue.png" rel="shortcut icon" type="images/x-icon">
+	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="images/x-icon">
 	<title>main</title>
 	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_main.css">
 	
@@ -15,14 +18,16 @@
 
 <body>
 	<!-- header -->
-	<iframe width="100%" height="100px"></iframe>
-	
+	<!-- <iframe width="100%" height="100px"></iframe> -->
+	<div class="header-wrapper">
+		<jsp:include page="../header.jsp"></jsp:include>	
+	</div>
 	
 	<!-- content -->
 	<div class="search_main">
 		<!-- 필터 -->
 		<section class="filter">
-		<h1 class="title">동물병원1</h1>
+		<h1 class="title">동물병원</h1>
 		
 			<form name="search" action="#" method="get">
 				<div class="area">
@@ -78,16 +83,16 @@
 					
 					<div class="animal">
 						<div class="text_animal">
-							<span>반려동물 유형</span>
+							<span>특수 동물</span>
 						</div>
 						
 						<div class="check_animal">
 							<ul>
-								<li><input type="checkbox" name="animal" id="animal" value="강아지"><span>강아지</span></li>
-								<li><input type="checkbox" name="animal" id="animal" value="고양이"><span>고양이</span></li>
+								<li><input type="checkbox" name="animal" id="animal" value="O"><span>취급</span></li>
+								<!-- <li><input type="checkbox" name="animal" id="animal" value="고양이"><span>고양이</span></li>
 								<li><input type="checkbox" name="animal" id="animal" value="파충류"><span>파충류</span></li>
 								<li><input type="checkbox" name="animal" id="animal" value="조류"><span>조류</span></li>
-								<li><input type="checkbox" name="animal" id="animal" value="기타"><span>기타</span></li>
+								<li><input type="checkbox" name="animal" id="animal" value="기타"><span>기타</span></li> -->
 							</ul>
 						</div>
 					</div>
@@ -98,16 +103,18 @@
 		<!-- 검색리스트 -->
 			<section class="list">
 				<div class="hlist">
-					<% for(int i =0;i < 2; i++) { %>
+				
+					<c:forEach var="hlist" item="${hlist}">
+					
 						<div class="list1">
 							<div class="hinfo">
-								<a href="http://localhost:9000/petcarepedia/search/search_result.jsp">
-									<span>더좋은동물병원</span>
+								<a href="http://localhost:9000/petcarepedia/search_result.do?=${hlist.hid}">
+									<span>${hlist.hname}</span>
 									<span>⭐ 5.0</span>
-									<span>02-1234-1234</span>
+									<span>${hlist.tel}</span>
 								</a>
 							
-								<span id="harea">강남구 역삼동</span>
+								<span id="harea">${hlist.gloc}</span>
 								<span id="htime">진료 중</span>
 								<button type="button" id="hservation">예약하기
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -115,17 +122,18 @@
 								<div id="hmodal" class="modal">
 								  <div class="modal-content">
 								    <span class="close">&times;</span>
-								    <iframe src="http://localhost:9000/petcarepedia/search/search_reservation.jsp" 
+								    <iframe src="http://localhost:9000/petcarepedia/search_reservation.do" 
 								     width="500px" height="500px" frameborder=0></iframe>
 								  </div>
 								</div>
 							</div>
 							
 							<div class="himg">
-								<img src="http://localhost:9000/petcarepedia/admin/images/search_main.png" width="122px" height="122px">
+								<img src="http://localhost:9000/petcarepedia/images/search_main.png" width="122px" height="122px">
 							</div>
 						</div>
-					<% } %>
+						
+					</c:forEach>
 					
 				</div>
 			</section>
@@ -134,7 +142,7 @@
 			<section class="api">
 			<div class="hapi">
 				<!-- <iframe width="100%" height="100px"></iframe> -->
-				<iframe src="http://localhost:9000/petcarepedia/search/search_map.jsp"
+				<iframe src="http://localhost:9000/petcarepedia/search_map.do"
 					scrolling="no" width="100%" height="1000px" frameborder=0></iframe>
 				<!-- <img src="http://localhost:9000/petcarepedia/images/API.png"> -->
 			</div>
@@ -143,6 +151,7 @@
 	</div> 
 
 	<!-- footer -->
-	<iframe width="100%" height="100px"></iframe>
+	<!-- <iframe width="100%" height="100px"></iframe> -->
+	<jsp:include page="../footer.jsp"></jsp:include>	
 </body>
 </html>
