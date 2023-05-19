@@ -29,4 +29,12 @@ public class MainController {
 	public String footer() {
 		return "footer";
 	}
+	
+	/**
+	 * best_review_list.do
+	 */
+	@RequestMapping(value="/best_review_list.do",method=RequestMethod.GET)
+	public String best_review_list() {
+		return "best_review_list";
+	}
 }
