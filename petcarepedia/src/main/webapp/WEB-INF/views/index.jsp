@@ -17,7 +17,7 @@
 </head>
 <body>
 	<!-- header -->
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="/header.do"></jsp:include>
 	
 	<!-- content -->
 	<div class="content">
@@ -96,7 +96,7 @@
 	</div>
 	
 	<!-- footer -->
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="/footer.do"></jsp:include>
 	
 	<script>
 		/* var mapOptions = {
