@@ -9,6 +9,12 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
+<script>
+	let login_result = "${login_result}";
+	if(login_result=="fail"){
+		alert("로그인에 실패했습니다. 다시 로그인해주세요.");
+	}
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -21,14 +27,14 @@
 				<img src="http://localhost:9000/petcarepedia/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="loginForm" action="loginProc.jsp" method="post">
+			<form name="loginForm" action="login_proc.do" method="post">
 				<ul>
 					<li><input type="text" name="id" id="id" placeholder="아이디"></li>
 					<li><input type="password" name="pass" id="pass" placeholder="비밀번호"></li>
-					<li><button type="button" id="btnLogin" class="btn-submit" disabled>로그인</button></li>
+					<li><button type="submit" id="btnLogin" class="btn-submit" disabled>로그인</button></li>
 					<li>
-						<a href="http://localhost:9000/petcarepedia/join/join.jsp">회원가입</a>
-						<a href="http://localhost:9000/petcarepedia/login/login_idfind.jsp">아이디 / 비밀번호 찾기</a>
+						<a href="http://localhost:9000/petcarepedia/join.do">회원가입</a>
+						<a href="http://localhost:9000/petcarepedia/login_idfind.do">아이디 / 비밀번호 찾기</a>
 					</li>
 				</ul>
 			</form>

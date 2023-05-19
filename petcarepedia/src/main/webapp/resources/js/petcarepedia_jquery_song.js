@@ -238,7 +238,7 @@ $(document).ready(function(){
 			$("#btnLogin").attr("disabled",true);
 		}
 	}
-	//찾기 버튼 abled
+	//로그인 버튼 abled
 	$("form[name='loginForm'] input").blur(function(){
 		$.loginValidationCheck();
 	});
@@ -251,7 +251,6 @@ $(document).ready(function(){
 	$("form[name='loginForm'] input").focus(function(){
 		$.loginValidationCheck();
 	});
-	
 	
 	/**************
 	 * 회원가입 - 다음 주소 찾기 API
@@ -270,27 +269,27 @@ $(document).ready(function(){
 	 * 로그인 - 아이디, 비밀번호 찾기
 	 */
 	$('#btnIdFind').click(function(){
-		location.href = "login_idfind_success.jsp";
+		location.href = "login_idfind_success.do";
 	})
 	$('#btnPwFind').click(function(){
-		location.href = "login_pwupdate.jsp";
+		location.href = "login_pwupdate.do";
 	})
 	$('#btnPwUpdate').click(function(){
-		location.href = "login_pwupdate_success.jsp";
+		location.href = "login_pwupdate_success.do";
 	})
 	
 	$('#btnBackLogin').click(function(){
-		location.href = "login.jsp";
+		location.href = "login.do";
 	})
 	$('#btnBackJoin').click(function(){
-		location.href = "http://localhost:9000/petcarepedia/join/join.jsp";
+		location.href = "http://localhost:9000/petcarepedia/join.do";
 	})
 	
 	$('#btnMenuIdFind').click(function(){
-		location.href = "login_idfind.jsp";
+		location.href = "login_idfind.do";
 	})
 	$('#btnMenuPwFind').click(function(){
-		location.href = "login_pwfind.jsp";
+		location.href = "login_pwfind.do";
 	})
 	
 	
