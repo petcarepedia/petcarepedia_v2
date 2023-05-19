@@ -21,7 +21,7 @@
 				<img src="http://localhost:9000/petcarepedia/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="loginForm" action="loginProc.do" method="post">
+			<form name="loginForm" action="login_proc.do" method="post">
 				<ul>
 					<li><input type="text" name="id" id="id" placeholder="아이디"></li>
 					<li><input type="password" name="pass" id="pass" placeholder="비밀번호"></li>
