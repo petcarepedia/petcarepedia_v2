@@ -30,7 +30,7 @@ $(document).ready(function(){
 		var result = confirm('수정을 완료하시겠습니까?');
 		
 		if(result) {
-			location.href = "http://localhost:9000/petcarepedia/mypage/information.jsp";
+			location.href = "http://localhost:9000/petcarepedia/information.do";
 		}
 	})
 
@@ -41,16 +41,16 @@ $(document).ready(function(){
 		mypage - 예약내역페이지
 ********************************************/
 	$("#btn1").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/mypage/reservation.jsp";
+		location.href = "http://localhost:9000/petcarepedia/reservation.do";
 	});
 	$("#btn2").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/mypage/reservation2.jsp";
+		location.href = "http://localhost:9000/petcarepedia/reservation2.do";
 	});
 	$("#btn3").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/mypage/reservation.jsp";
+		location.href = "http://localhost:9000/petcarepedia/reservation.do";
 	});
 	$("#btn4").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/mypage/reservation2.jsp";
+		location.href = "http://localhost:9000/petcarepedia/reservation2.do";
 	});
 	
 	$("#btn_cancle1").click(function(){
@@ -70,7 +70,7 @@ $(document).ready(function(){
 	});
 	
 	$("#btn_write_review").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/mypage/review_write.jsp";
+		location.href = "http://localhost:9000/petcarepedia/review_write.do";
 	})
 
 
@@ -78,7 +78,7 @@ $(document).ready(function(){
 		예약내역페이지 - 리뷰쓰기
 ******************************************************************************/
 	$("#cancle").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/mypage/reservation2.jsp";
+		location.href = "http://localhost:9000/petcarepedia/reservation2.do";
 	})
 	
 
@@ -86,7 +86,7 @@ $(document).ready(function(){
 	내가쓴리뷰 - 리뷰수정
 ******************************************************************************/
 	$("#btnReview_revise").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/mypage/review_revise.jsp";
+		location.href = "http://localhost:9000/petcarepedia/review_revise.do";
 	})
 
 
