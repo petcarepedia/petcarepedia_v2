@@ -96,9 +96,23 @@ public class LoginController {
 	/**
 	 * login_pwfind_proc.do - 비밀번호 재설정 - 정보 확인 처리
 	 */
-//	@RequestMapping(value="/login_pwfind_proc.do",method=RequestMethod.POST)
-//	public String login_pwfind_proc() {
-//	}
+	@RequestMapping(value="/login_pwfind_proc.do",method=RequestMethod.POST)
+	public ModelAndView login_pwfind_proc(MemberVo memberVo) {
+		ModelAndView model = new ModelAndView();
+		
+		MemberDao memberDao = new MemberDao();
+		String mid = memberDao.findPass(memberVo);
+		System.out.println("mid=>"+mid);
+		
+		if(mid!="") {
+			model.addObject("mid", mid);
+			model.setViewName("/login/login_pwupdate");
+		} else {
+			model.setViewName("/login/login_pwfind_fail");
+		}
+		
+		return model;
+	}
 	
 	/**
 	 * login_pwfind_fail.do - 비밀번호 재설정 - 정보 확인 실패

@@ -203,10 +203,10 @@ public class MemberDao extends DBConn{
 	/**
 	 * findPass - 비밀번호 재설정 - 정보 일치 여부 확인
 	 */
-	public int findPass(MemberVo memberVo) {
-		int result = 0;
+	public String findPass(MemberVo memberVo) {
+		String mid = "";
 		
-		String sql = "select count(*) from pcp_member where mid=? and name=? and phone=?";
+		String sql = "select mid from pcp_member where mid=? and name=? and phone=?";
 		getPreparedStatement(sql);
 		
 		try {
@@ -217,13 +217,13 @@ public class MemberDao extends DBConn{
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				result = rs.getInt(1);
+				mid = rs.getString(1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return result;
+		return mid;
 	}
 	
 	/**
