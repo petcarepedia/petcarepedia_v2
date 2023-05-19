@@ -101,9 +101,9 @@ public class MemberDao extends DBConn{
 	}
 	
 	/**
-	 * idCheck - 회원가입 아이디 중복체크
+	 * checkId - 회원가입 아이디 중복체크
 	 */
-	public int idCheck(String mid) {
+	public int checkId(String mid) {
 		int result = 0;
 		
 		String sql = "select count(*) from pcp_member where mid=?";
@@ -122,7 +122,7 @@ public class MemberDao extends DBConn{
 	/**
 	 * loginCheck - 로그인 체크
 	 */
-	public int loginCheck(MemberVo memberVo) {
+	public int checkLogin(MemberVo memberVo) {
 		int result = 0;
 		
 		String sql = "select count(*) from pcp_member where mid=? and pass=?";
