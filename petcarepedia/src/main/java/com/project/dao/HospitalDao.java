@@ -6,7 +6,6 @@ import com.project.vo.HospitalVo;
 
 public class HospitalDao extends DBConn{
 	
-	
 	/**
 	 *  search - 병원   검색
 	 * */
