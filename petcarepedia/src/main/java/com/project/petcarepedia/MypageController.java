@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.MemberDao;
+import com.project.vo.MemberVo;
+
 @Controller
 public class MypageController {
 	/*
@@ -19,6 +22,36 @@ public class MypageController {
 		model.setViewName("/mypage/information");
 		return model;
 	}
+	
+	/*
+	 * revise.do - 수정하기 폼
+	 */
+	@RequestMapping(value = "/revise.do", method = RequestMethod.GET)
+	public ModelAndView revise(String mid) {
+		ModelAndView model = new ModelAndView();
+		MemberDao memberDao = new MemberDao();
+		MemberVo memberVo = memberDao.select(mid);
+		model.addObject("memberVo", memberVo);
+		model.setViewName("/mypage/revise");
+		return model;
+	}
+	
+	/*
+	 * informatin_update_proc - 정보 수정하기 처리
+	 */
+	@RequestMapping(value = "/informatin_update_proc", method = RequestMethod.POST)
+	public String informatin_update_proc(MemberVo memberVo) {
+		String viewName = "";
+		MemberDao memberDao = new MemberDao();
+		int result = memberDao.update(memberVo);
+		if(result == 1) {
+			viewName = "redirect://information.do";
+		} else {
+			//오류페이지 호출
+		}
+		return viewName;
+	}
+	
 	
 	@RequestMapping(value = "/reservation.do", method = RequestMethod.GET)
 	public String reservation() {
@@ -50,10 +83,7 @@ public class MypageController {
 		return "/mypage/review_write";
 	}
 	
-	@RequestMapping(value = "/revise.do", method = RequestMethod.GET)
-	public String revise() {
-		return "/mypage/revise";
-	}
+
 	
 	@RequestMapping(value = "/signout.do", method = RequestMethod.GET)
 	public String signout() {
