@@ -270,27 +270,27 @@ $(document).ready(function(){
 	 * 로그인 - 아이디, 비밀번호 찾기
 	 */
 	$('#btnIdFind').click(function(){
-		location.href = "login_idfind_success.jsp";
+		location.href = "login_idfind_success.do";
 	})
 	$('#btnPwFind').click(function(){
-		location.href = "login_pwupdate.jsp";
+		location.href = "login_pwupdate.do";
 	})
 	$('#btnPwUpdate').click(function(){
-		location.href = "login_pwupdate_success.jsp";
+		location.href = "login_pwupdate_success.do";
 	})
 	
 	$('#btnBackLogin').click(function(){
-		location.href = "login.jsp";
+		location.href = "login.do";
 	})
 	$('#btnBackJoin').click(function(){
-		location.href = "http://localhost:9000/petcarepedia/join/join.jsp";
+		location.href = "http://localhost:9000/petcarepedia/join.do";
 	})
 	
 	$('#btnMenuIdFind').click(function(){
-		location.href = "login_idfind.jsp";
+		location.href = "login_idfind.do";
 	})
 	$('#btnMenuPwFind').click(function(){
-		location.href = "login_pwfind.jsp";
+		location.href = "login_pwfind.do";
 	})
 	
 	
