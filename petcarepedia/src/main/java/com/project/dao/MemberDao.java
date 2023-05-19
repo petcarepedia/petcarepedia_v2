@@ -166,4 +166,74 @@ public class MemberDao extends DBConn{
 		
 		return result;
 	}
+	
+	/**
+	 * findId - 아이디 찾기
+	 */
+	public String findId(MemberVo memberVo) {
+		String mid = "";
+		
+		String sql = "select mid from pcp_member where name=? and phone=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, memberVo.getName());
+			pstmt.setString(2, memberVo.getPhone());
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				mid = rs.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mid;
+	}
+	
+	/**
+	 * findPass - 비밀번호 재설정 - 정보 일치 여부 확인
+	 */
+	public int findPass(MemberVo memberVo) {
+		int result = 0;
+		
+		String sql = "select count(*) from pcp_member where mid=? and name=? and phone=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, memberVo.getMid());
+			pstmt.setString(2, memberVo.getName());
+			pstmt.setString(3, memberVo.getPhone());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * updatePass - 비밀번호 재설정 - 재설정
+	 */
+	public int updatePass(MemberVo memberVo) {
+		int result = 0;
+		
+		String sql = "update pcp_member \r\n" + 
+				"set pass=?\r\n" + 
+				"where mid=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, memberVo.getPass());
+			pstmt.setString(2, memberVo.getMid());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }
