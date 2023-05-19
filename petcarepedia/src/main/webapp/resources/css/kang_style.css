@@ -383,6 +383,7 @@ div#review ul li.review_list ul li#list_right button {
 	margin-top:10px;
 	margin-left:25px;
 	font-size:14px;
+	width:160px;
 }
 div#review ul li.review_list ul li#list_right button.report {
 	width:60px;

@@ -1,8 +1,28 @@
 package com.project.vo;
 
 public class ReviewVo {
-	String rid, rcontent, rdate, rstar, rstate, hid, mid;
+	String rid, rcontent, rdate, rstar, rstate, hid, mid, hname, animal, gloc;
 	int rlike, rno;
+	
+	public String getHname() {
+		return hname;
+	}
+	public void setHname(String hname) {
+		this.hname = hname;
+	}
+	public String getAnimal() {
+		return animal;
+	}
+	public void setAnimal(String animal) {
+		this.animal = animal;
+	}
+	public String getGloc() {
+		return gloc;
+	}
+	public void setGloc(String gloc) {
+		this.gloc = gloc;
+	}
+	
 	public String getRid() {
 		return rid;
 	}
@@ -57,5 +77,4 @@ public class ReviewVo {
 	public void setRno(int rno) {
 		this.rno = rno;
 	}
-	
 }
