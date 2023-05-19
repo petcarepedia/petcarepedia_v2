@@ -112,4 +112,31 @@ public class NoticeDao extends DBConn {
 		}
 		return result;
 	}
+	
+	
+	/*
+	 * 조회수 증가
+	 */
+	public void updateHits(String nid) {
+		String sql = "update pcp_notice set nhits = nhits+1 where nid = ?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, nid);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

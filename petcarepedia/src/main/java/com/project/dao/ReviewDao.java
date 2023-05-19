@@ -6,6 +6,57 @@ import com.project.vo.ReviewVo;
 
 public class ReviewDao extends DBConn {
 	
+	
+	
+	
+	
+	
+	// 리뷰와 병원 조인
+	public ArrayList<ReviewVo> RH_select() {
+		ArrayList<ReviewVo> RHList = new ArrayList<ReviewVo>();
+		String sql = "select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, "
+				+ " h.gloc, h.loc, h.tel, h.htime, h.ntime, h.holiday, h.intro, h.img, h.hrink "
+				+ " from pcp_review r, pcp_hospital h where r.hid=h.hid and h.hid = 'H_0074' order by r.rdate desc";
+		getPreparedStatement(sql);
+		try {
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ReviewVo list = new ReviewVo();
+				list.setRid(rs.getString(1));
+				list.setRcontent(rs.getString(2));
+				list.setRdate(rs.getString(3));
+				list.setRlike(rs.getInt(4));
+				list.setRstar(rs.getString(5));
+				list.setRstate(rs.getString(6));
+				list.setMid(rs.getString(7));
+				list.setHid(rs.getString(8));
+				list.setHname(rs.getString(9));
+				list.setAnimal(rs.getString(10));
+				list.setGloc(rs.getString(11));
+				list.setLoc(rs.getString(12));
+				list.setTel(rs.getString(13));
+				list.setHtime(rs.getString(14));
+				list.setNtime(rs.getString(15));
+				list.setHoliday(rs.getString(16));
+				list.setIntro(rs.getString(17));
+				list.setImg(rs.getString(18));
+				list.setHrink(rs.getString(19));
+				
+				RHList.add(list);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return RHList;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	// 리뷰 리스트
 	public ArrayList<ReviewVo> select() {
 		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
@@ -127,5 +178,7 @@ public class ReviewDao extends DBConn {
 		}
 		return result;
 	}
+	
+	//
 	
 }

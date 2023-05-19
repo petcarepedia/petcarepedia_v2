@@ -104,17 +104,17 @@
 			<section class="list">
 				<div class="hlist">
 				
-					<c:forEach var="hlist" item="${hlist}">
+					<c:forEach var="list" items="${list}">
 					
 						<div class="list1">
 							<div class="hinfo">
-								<a href="http://localhost:9000/petcarepedia/search_result.do?=${hlist.hid}">
-									<span>${hlist.hname}</span>
+								<a href="http://localhost:9000/petcarepedia/search_result.do?=${list.hid}">
+									<span>${list.hname}</span>
 									<span>⭐ 5.0</span>
-									<span>${hlist.tel}</span>
+									<span>${list.tel}</span>
 								</a>
 							
-								<span id="harea">${hlist.gloc}</span>
+								<span id="harea">${list.gloc}</span>
 								<span id="htime">진료 중</span>
 								<button type="button" id="hservation">예약하기
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

@@ -45,7 +45,7 @@
 							<input type="text" name="phone2" id="phone2" placeholder="1234" class="input-short2">
 							<input type="text" name="phone3" id="phone3" placeholder="5678" class="input-short2">
 						</li>
-						<li><button type="button" id="btnIdFind" class="btn-submit" disabled>아이디 찾기</button></li>
+						<li><button type="submit" id="btnIdFind" class="btn-submit" disabled>아이디 찾기</button></li>
 					</ul>
 				</div>
 			</form>

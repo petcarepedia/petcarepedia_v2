@@ -14,6 +14,34 @@ $(document).ready(function(){
 	        $("div#review ul li.review_list:hidden").slice(0, 3).show(); // 클릭시 more 갯수 지저정
 	    });
 	});	
+	
+	
+	
+	/*******************************************
+		공지사항 - 등록 폼
+	 ********************************************/	
+	$("#btnNTW").click(function() {
+		if($("#title").val() == "") {
+			alert("제목을 입력해주세요.");
+			$("#title").focus();
+			return false;
+		}
+		else {
+			writeForm.submit();
+		}
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }); //ready
 
 

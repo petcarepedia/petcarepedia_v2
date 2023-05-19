@@ -1,8 +1,64 @@
 package com.project.vo;
 
 public class ReviewVo {
+	// 리뷰에서 필요한 Vo
 	String rid, rcontent, rdate, rstar, rstate, hid, mid, hname, animal, gloc;
 	int rlike, rno;
+	//병원과 조인 Vo
+	String loc, tel, htime, ntime, holiday, intro, img, hrink;
+	
+	//병원 조인
+	public String getLoc() {
+		return loc;
+	}
+	public void setLoc(String loc) {
+		this.loc = loc;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getHtime() {
+		return htime;
+	}
+	public void setHtime(String htime) {
+		this.htime = htime;
+	}
+	public String getNtime() {
+		return ntime;
+	}
+	public void setNtime(String ntime) {
+		this.ntime = ntime;
+	}
+	public String getHoliday() {
+		return holiday;
+	}
+	public void setHoliday(String holiday) {
+		this.holiday = holiday;
+	}
+	public String getIntro() {
+		return intro;
+	}
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public String getHrink() {
+		return hrink;
+	}
+	public void setHrink(String hrink) {
+		this.hrink = hrink;
+	}
+	
+	
+	//리뷰사용
 	
 	public String getHname() {
 		return hname;

@@ -268,16 +268,6 @@ $(document).ready(function(){
 	/**************
 	 * 로그인 - 아이디, 비밀번호 찾기
 	 */
-	$('#btnIdFind').click(function(){
-		location.href = "login_idfind_success.do";
-	})
-	$('#btnPwFind').click(function(){
-		location.href = "login_pwupdate.do";
-	})
-	$('#btnPwUpdate').click(function(){
-		location.href = "login_pwupdate_success.do";
-	})
-	
 	$('#btnBackLogin').click(function(){
 		location.href = "login.do";
 	})

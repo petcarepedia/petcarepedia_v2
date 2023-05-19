@@ -171,6 +171,7 @@ section.hospital tr td:nth-child(2) {
 	width:250px;
 	text-align:left;
 	text-indent:10px;
+
 }
 
  section.hospital tr:nth-child(13) td{
@@ -190,6 +191,11 @@ section.hospital tr td:nth-child(2) {
 	width:280px;
 	text-align:left;
 	text-indent:10px;
+
+}
+section.hospital tr td:nth-child(2) a {
+	text-decoration:none;
+	color:#3D3D3D;
 }
 secton.hospital tr:ntf-child(12) td{/* .number */
 	border-color:white;
@@ -274,7 +280,9 @@ section.hospital tr:first-child td {
 	padding-left:700px;
 } 
 
-
+#ad_nt_list {
+	height:500px;
+}
 
 
 

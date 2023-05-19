@@ -36,7 +36,7 @@ var hospital = new naver.maps.LatLng(37.6123503, 126.9317118),
     
   
 
-var contentString = [
+/* var contentString = [
         '<div class="iw_inner">',
         '   <h3>서울특별시청</h3>',
         '   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
@@ -45,7 +45,7 @@ var contentString = [
         '       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
         '   </p>',
         '</div>'
-    ].join('');
+    ].join(''); */
 
 var infowindow = new naver.maps.InfoWindow({
     content: contentString,
