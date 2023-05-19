@@ -3,6 +3,10 @@ package com.project.petcarepedia;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.project.dao.MemberDao;
+import com.project.vo.MemberVo;
 
 @Controller
 public class LoginController {
@@ -17,9 +21,23 @@ public class LoginController {
 	/**
 	 * login_proc.do - 로그인 처리
 	 */
-//	@RequestMapping(value="/login_proc.do",method=RequestMethod.POST)
-//	public String login_proc() {
-//	}
+	@RequestMapping(value="/login_proc.do",method=RequestMethod.POST)
+	public ModelAndView login_proc(MemberVo memberVo) {
+		ModelAndView model = new ModelAndView();
+		
+		MemberDao memberDao = new MemberDao();
+		int result = memberDao.checkLogin(memberVo);
+		
+		if(result==1) {
+			model.addObject("login_result", "success");
+			model.setViewName("index");
+		} else {
+			model.addObject("login_result", "fail");
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
 	
 	/**
 	 * login_idfind.do - 아이디찾기

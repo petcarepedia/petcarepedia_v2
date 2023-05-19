@@ -238,7 +238,7 @@ $(document).ready(function(){
 			$("#btnLogin").attr("disabled",true);
 		}
 	}
-	//찾기 버튼 abled
+	//로그인 버튼 abled
 	$("form[name='loginForm'] input").blur(function(){
 		$.loginValidationCheck();
 	});
@@ -251,7 +251,6 @@ $(document).ready(function(){
 	$("form[name='loginForm'] input").focus(function(){
 		$.loginValidationCheck();
 	});
-	
 	
 	/**************
 	 * 회원가입 - 다음 주소 찾기 API

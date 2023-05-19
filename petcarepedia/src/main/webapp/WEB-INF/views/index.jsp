@@ -14,10 +14,16 @@
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=krftgsruiz"></script>
+<script>
+	let login_result = "${login_result}";
+	if(login_result=="success"){
+		alert("로그인에 성공하셨습니다.");
+	}
+</script>
 </head>
 <body>
 	<!-- header -->
-	<jsp:include page="/header.do"></jsp:include>
+	<jsp:include page="header.jsp"></jsp:include>
 	
 	<!-- content -->
 	<div class="content">
@@ -36,7 +42,7 @@
 			</div>
 		</form>
 		
-		<jsp:include page="/best_review_list.do"></jsp:include>
+		<jsp:include page="best_review_list.jsp"></jsp:include>
 		
 		<div class="main-map">
 			<div class="sub">
@@ -62,7 +68,7 @@
 	</div>
 	
 	<!-- footer -->
-	<jsp:include page="/footer.do"></jsp:include>
+	<jsp:include page="footer.jsp"></jsp:include>
 	
 	<script>
 		/* var mapOptions = {
