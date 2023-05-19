@@ -3,13 +3,21 @@ package com.project.petcarepedia;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MypageController {
-
+	/*
+	 * information.do - 나의 회원정보 폼
+	 */
 	@RequestMapping(value = "/information.do", method = RequestMethod.GET)
-	public String information() {
-		return "/mypage/information";
+	public ModelAndView information(String mid) {
+		ModelAndView model = new ModelAndView();
+		MemberDao memberDao = new MemberDao();
+		MemberVo memberVo = memberDao.select(mid);
+		model.addObject("memberVo", memberVo);
+		model.setViewName("/mypage/information");
+		return model;
 	}
 	
 	@RequestMapping(value = "/reservation.do", method = RequestMethod.GET)
@@ -31,7 +39,7 @@ public class MypageController {
 	public String my_review() {
 		return "/mypage/my_review";
 	}
-	
+ 	
 	@RequestMapping(value = "/review_revise.do", method = RequestMethod.GET)
 	public String review_revise() {
 		return "/mypage/review_revise";
