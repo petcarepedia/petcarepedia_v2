@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.HospitalDao;
+import com.project.vo.HospitalVo;
+
 
 @Controller
 public class SearchController {
@@ -16,10 +19,11 @@ public class SearchController {
 	public ModelAndView search_main() {
 		ModelAndView model = new ModelAndView();
 		HospitalDao hospitalDao = new HospitalDao();
-		ArrayList<HospitalDao> hlist = hospitalDao.select();
+		ArrayList<HospitalVo> list = hospitalDao.select();
 		
-		model.addObject("hlist", hlist);
+		model.addObject("list", list);
 		model.setViewName("/search/search_main");
+		System.out.println(list.size());
 		
 		return model;
 	}
