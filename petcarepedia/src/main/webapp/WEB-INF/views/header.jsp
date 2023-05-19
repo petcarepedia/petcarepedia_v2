@@ -31,10 +31,10 @@
 				<div class="header-nav">
 					<ul>
 						<li>
-							<a href="#">병원검색</a>
+							<a href="http://localhost:9000/petcarepedia/search_main.do">병원검색</a>
 						</li>
 						<li>
-							<a href="#">리뷰사전</a>
+							<a href="http://localhost:9000/petcarepedia/login.do">리뷰사전</a>
 						</li>
 						<li>
 							<a href="http://localhost:9000/petcarepedia/login.do">로그인</a>
@@ -43,7 +43,13 @@
 							<a href="http://localhost:9000/petcarepedia/join.do">회원가입</a>
 						</li>
 						<li>
-							<a href="#">공지사항</a>
+							<a href="http://localhost:9000/petcarepedia/information.do?mid=hong">마이페이지</a>
+						</li>
+						<li>
+							<a href="#">로그아웃</a>
+						</li>
+						<li>
+							<a href="http://localhost:9000/petcarepedia/admin_notice.do">공지사항</a>
 						</li>
 					</ul>
 				</div>

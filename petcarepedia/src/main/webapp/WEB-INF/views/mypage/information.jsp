@@ -37,32 +37,34 @@
 					<ul>
 						<li>
 							<label >아이디</label>
-							<label>hong1234</label>
+							<label>${memberVo.mid}</label>
 						</li>
 						<li>
 							<label>성명</label>
-							<label>홍길동</label>
+							<label>${memberVo.name}</label>
 						</li>
 						<li>
 							<label>생년월일</label>
-							<label>1987년 08월 27일</label>
+							<label>${memberVo.birth}</label>
 						</li>
 						<li>
 							<label>이메일</label>
-							<label>petcarepedia@gmail.com</label>
+							<label>${memberVo.email}</label>
 						</li>
 						<li>
 							<label>휴대폰</label>
-							<label>010-1234-5678</label>
+							<label>${memberVo.phone}</label>
 						</li>
 						<li>
 							<label>주소</label>
-							<label>서울시 강남구 강남대로 78길 8, 한국빌딩 4F</label>
+							<label>${memberVo.addr}</label>
 						</li>
 					</ul>
 				</section>
 				<section id = "section3">
-					<button type = "button" id = "btn_style1">수정하기</button>
+					<a href = "revise.do?mid=${memberVo.mid}">
+						<button type = "button" id = "btn_style1">수정하기</button>
+					</a>
 				</section>
 			</div>
 		</section>
