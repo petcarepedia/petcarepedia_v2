@@ -42,7 +42,7 @@
 							<input type="password" name="cpass" id="cpass" placeholder="비밀번호를 다시 입력해주세요">
 							<span id="cpwcheck_msg"></span>
 						</li>
-						<li><button type="button" id="btnPwUpdate" class="btn-submit" disabled>비밀번호 재설정</button></li>
+						<li><button type="submit" id="btnPwUpdate" class="btn-submit" disabled>비밀번호 재설정</button></li>
 					</ul>
 				</div>
 			</form>

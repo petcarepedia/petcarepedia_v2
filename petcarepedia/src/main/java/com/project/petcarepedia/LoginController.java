@@ -102,7 +102,6 @@ public class LoginController {
 		
 		MemberDao memberDao = new MemberDao();
 		String mid = memberDao.findPass(memberVo);
-		System.out.println("mid=>"+mid);
 		
 		if(mid!="") {
 			model.addObject("mid", mid);
@@ -134,9 +133,21 @@ public class LoginController {
 	/**
 	 * login_pwupdate_proc.do - 비밀번호 재설정 - 재설정 처리
 	 */
-//	@RequestMapping(value="/login_pwupdate_proc.do",method=RequestMethod.POST)
-//	public String login_pwupdate_proc() {
-//	}
+	@RequestMapping(value="/login_pwupdate_proc.do",method=RequestMethod.POST)
+	public String login_pwupdate_proc(MemberVo memberVo) {
+		String viewName = "";
+		
+		MemberDao memberDao = new MemberDao();
+		int result = memberDao.updatePass(memberVo);
+		
+		if(result==1) {
+			viewName = "/login/login_pwupdate_success";
+		} else {
+			//에러페이지
+		}
+		
+		return viewName;
+	}
 	
 	/**
 	 * login_pwupdate_success.do - 비밀번호 재설정 - 재설정 성공
