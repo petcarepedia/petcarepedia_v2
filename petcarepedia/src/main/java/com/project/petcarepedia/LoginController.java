@@ -33,7 +33,7 @@ public class LoginController {
 			model.setViewName("index");
 		} else {
 			model.addObject("login_result", "fail");
-			model.setViewName("login");
+			model.setViewName("/login/login");
 		}
 		
 		return model;
@@ -50,9 +50,22 @@ public class LoginController {
 	/**
 	 * login_idfind_proc.do - 아이디찾기 처리
 	 */
-//	@RequestMapping(value="/login_idfind_proc.do",method=RequestMethod.POST)
-//	public String login_idfind_proc() {
-//	}
+	@RequestMapping(value="/login_idfind_proc.do",method=RequestMethod.POST)
+	public ModelAndView login_idfind_proc(MemberVo memberVo) {
+		ModelAndView model = new ModelAndView();
+		
+		MemberDao memberDao = new MemberDao();
+		String mid = memberDao.findId(memberVo);
+		
+		if(mid!="") {
+			model.addObject("mid", mid);
+			model.setViewName("/login/login_idfind_success");
+		} else {
+			model.setViewName("/login/login_idfind_fail");
+		}
+		
+		return model;
+	}
 	
 	/**
 	 * login_idfind_success.do - 아이디찾기 성공
@@ -83,9 +96,22 @@ public class LoginController {
 	/**
 	 * login_pwfind_proc.do - 비밀번호 재설정 - 정보 확인 처리
 	 */
-//	@RequestMapping(value="/login_pwfind_proc.do",method=RequestMethod.POST)
-//	public String login_pwfind_proc() {
-//	}
+	@RequestMapping(value="/login_pwfind_proc.do",method=RequestMethod.POST)
+	public ModelAndView login_pwfind_proc(MemberVo memberVo) {
+		ModelAndView model = new ModelAndView();
+		
+		MemberDao memberDao = new MemberDao();
+		String mid = memberDao.findPass(memberVo);
+		
+		if(mid!="") {
+			model.addObject("mid", mid);
+			model.setViewName("/login/login_pwupdate");
+		} else {
+			model.setViewName("/login/login_pwfind_fail");
+		}
+		
+		return model;
+	}
 	
 	/**
 	 * login_pwfind_fail.do - 비밀번호 재설정 - 정보 확인 실패
@@ -107,9 +133,21 @@ public class LoginController {
 	/**
 	 * login_pwupdate_proc.do - 비밀번호 재설정 - 재설정 처리
 	 */
-//	@RequestMapping(value="/login_pwupdate_proc.do",method=RequestMethod.POST)
-//	public String login_pwupdate_proc() {
-//	}
+	@RequestMapping(value="/login_pwupdate_proc.do",method=RequestMethod.POST)
+	public String login_pwupdate_proc(MemberVo memberVo) {
+		String viewName = "";
+		
+		MemberDao memberDao = new MemberDao();
+		int result = memberDao.updatePass(memberVo);
+		
+		if(result==1) {
+			viewName = "/login/login_pwupdate_success";
+		} else {
+			//에러페이지
+		}
+		
+		return viewName;
+	}
 	
 	/**
 	 * login_pwupdate_success.do - 비밀번호 재설정 - 재설정 성공

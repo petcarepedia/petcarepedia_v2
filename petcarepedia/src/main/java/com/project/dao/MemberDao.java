@@ -111,7 +111,11 @@ public class MemberDao extends DBConn{
 		
 		try {
 			pstmt.setString(1, mid);
-			result = pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -132,7 +136,11 @@ public class MemberDao extends DBConn{
 			pstmt.setString(1, memberVo.getMid());
 			pstmt.setString(2, memberVo.getPass());
 			
-			result = pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -195,10 +203,10 @@ public class MemberDao extends DBConn{
 	/**
 	 * findPass - 비밀번호 재설정 - 정보 일치 여부 확인
 	 */
-	public int findPass(MemberVo memberVo) {
-		int result = 0;
+	public String findPass(MemberVo memberVo) {
+		String mid = "";
 		
-		String sql = "select count(*) from pcp_member where mid=? and name=? and phone=?";
+		String sql = "select mid from pcp_member where mid=? and name=? and phone=?";
 		getPreparedStatement(sql);
 		
 		try {
@@ -206,12 +214,16 @@ public class MemberDao extends DBConn{
 			pstmt.setString(2, memberVo.getName());
 			pstmt.setString(3, memberVo.getPhone());
 			
-			result = pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				mid = rs.getString(1);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return result;
+		return mid;
 	}
 	
 	/**

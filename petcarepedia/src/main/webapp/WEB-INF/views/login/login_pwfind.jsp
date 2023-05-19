@@ -21,7 +21,7 @@
 				<img src="http://localhost:9000/petcarepedia/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="pwFindForm" action="login_pwfind_proc.jsp" method="post">
+			<form name="pwFindForm" action="login_pwfind_proc.do" method="post">
 				<div class="find-box">
 					<div class="find-pw">
 						<div id="btnMenuIdFind">아이디 찾기</div>
@@ -33,7 +33,7 @@
 					<ul>
 						<li>
 							<label>아이디</label>
-							<input type="text" name="id" id="id" placeholder="아이디 입력">
+							<input type="text" name="mid" id="id" placeholder="아이디 입력">
 						</li>
 						<li>
 							<label>성명</label>
@@ -50,7 +50,7 @@
 							<input type="text" name="phone2" id="phone2" placeholder="1234" class="input-short2">
 							<input type="text" name="phone3" id="phone3" placeholder="5678" class="input-short2">
 						</li>
-						<li><button type="button" id="btnPwFind" class="btn-submit" disabled>계정 정보 확인</button></li>
+						<li><button type="submit" id="btnPwFind" class="btn-submit" disabled>계정 정보 확인</button></li>
 					</ul>
 				</div>
 			</form>
