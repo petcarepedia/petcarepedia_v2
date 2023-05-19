@@ -3,9 +3,11 @@ package com.project.dao;
 import java.util.ArrayList;
 
 import com.project.vo.BookmarkVo;
+import com.project.vo.HospitalVo;
 
 
 public class BookmarkDao extends DBConn{
+	
 	/*
 	 * 북마크 전체 리스트 출력
 	 */
