@@ -103,12 +103,14 @@
 	}
 	.header-nav > ul > li {
 		float:left;
-		padding-left:25px;
+		padding-left:10px;
+		/* padding-left:25px; */
 	}
 	.header-nav > ul > li > a {
 		text-decoration:none;
 		color:white;
-		font-size:14px;
+		font-size:10px;
+		/* font-size:14px; */
 	}
 	.header-nav > ul > li > a:hover {
 		font-weight:bold;
