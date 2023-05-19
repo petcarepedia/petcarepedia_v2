@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.HospitalDao;
+import com.project.vo.HospitalVo;
+
 
 @Controller
 public class SearchController {
@@ -16,21 +19,37 @@ public class SearchController {
 	public ModelAndView search_main() {
 		ModelAndView model = new ModelAndView();
 		HospitalDao hospitalDao = new HospitalDao();
-		ArrayList<HospitalDao> hlist = hospitalDao.select();
+		ArrayList<HospitalVo> list = hospitalDao.select();
 		
-		model.addObject("hlist", hlist);
+		model.addObject("list", list);
 		model.setViewName("/search/search_main");
+		System.out.println(list.size());
 		
 		return model;
 	}
 	
 	/////////////////////
 	
-	/** search_result.do **/
+	/** search_result.do - 병원 상세정보 **/
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
-	public String search_result() {
-		return "/search/search_result";
+	public ModelAndView search_result(String hid) {
+		ModelAndView model = new ModelAndView();
+		HospitalDao hospitalDao = new HospitalDao();
+		ArrayList<HospitalVo> hospital = hospitalDao.search();
+		
+		model.addObject("hospital", hospital);
+		model.setViewName("/search/search_result");
+		
+		return model;
 	}
+	
+		
+		
+		
+	
+
+	
+	/////////////////////	
 	
 	/** search_reservation.do **/
 	@RequestMapping(value="/search_reservation.do", method=RequestMethod.GET)
