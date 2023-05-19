@@ -9,8 +9,7 @@
 </head>
 <body>
 	<!-- header -->
-	<iframe src="http://localhost:9000/mycgv/header.html" 
-				scrolling="no" width="100%" height="100px" frameborder="0"></iframe>
+	<jsp:include page="../header.jsp"></jsp:include>
 	<div class="content">
 		<section class="notice">
 			<div id="title_l">
@@ -24,15 +23,15 @@
 					<tr>
 						<td colspan="2">
 							<button type="button" class="ad_button">삭제</button>
-							<a href="review_content.jsp"><button type="button" class="ad_button">취소</button></a>
-							<a href="review_main.jsp"><button type="button" class="ad_button">목록</button></a>							
+							<a href="review_content.do"><button type="button" class="ad_button">취소</button></a>
+							<a href="review_main.do"><button type="button" class="ad_button">목록</button></a>							
 						</td>				
 					</tr>
 				</table>
 			</form>
 		</section>
 	</div>
-	<iframe src="http://localhost:9000/mycgv/footer.html" 
-				scrolling="no" width="100%" height="400px" frameborder="0"></iframe>
+	<!-- footer -->
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

@@ -8,7 +8,7 @@
 .d1{
 	width:1000px;
 	margin:auto;
-	border:1px solid black;
+	margin-top:100px;
 }
 .table{
 	width:750px;
@@ -133,7 +133,6 @@ section1 style sheet - 카테고리
 	height: 300px;
 	float : left;
 	margin-top : 80px;
-	border:1px soild red;
 }
 
 #section1 div nav ul{
@@ -252,7 +251,6 @@ section.hospital_detail .button5{
 .d1 {
 	width : 1000px;
 	height : 700px;
-	border : 1px solid red;
 }
 section.hospital_detail table.table tr:last-child td{
 	border:1px solid white;

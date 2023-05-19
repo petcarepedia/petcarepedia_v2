@@ -9,8 +9,7 @@
 </head>
 <body>
 	<!-- header -->
-	<iframe src="http://localhost:9000/mycgv/header.html" 
-				scrolling="no" width="100%" height="100px" frameborder="0"></iframe>
+	<jsp:include page="../header.jsp"></jsp:include>
 	<!-- content -->
 	<div class="content">
 		<section class="notice">
@@ -26,7 +25,7 @@
 				</tr>
 				<tr>
 					<td>1</td>
-					<td><a href="notice_content.jsp">공지사항 입니다.</a></td>
+					<td><a href="notice_content.do">공지사항 입니다.</a></td>
 					<td>2023/4/26 18:38</td>
 					<td>1000</td>
 				</tr>
@@ -91,7 +90,6 @@
 		</section>
 	</div>
 	<!-- footer -->
-	<iframe src="http://localhost:9000/mycgv/footer.html" 
-				scrolling="no" width="100%" height="400px" frameborder="0"></iframe>
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

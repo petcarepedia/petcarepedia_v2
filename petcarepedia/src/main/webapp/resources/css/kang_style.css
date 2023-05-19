@@ -10,10 +10,14 @@ section.notice table.notice, section.notice table.notice th, section.notice tabl
 	color:#3D3D3D;
 }
 section.notice {
-	width:70%; margin:auto;
+	 margin:auto;
+	 margin-top:30px;
+	 height:700px;
 }
 section.review_content {
 	width:1000px; margin:auto;
+	margin-top:30px;
+	height:700px;
 }
 section.notice table.notice {
 	width:90%;
@@ -135,10 +139,14 @@ section.notice table.notice_delete tr td {
 /*
 	review_main
 */
+#reviewForm {
+	margin-top:150px;
+}
 .review {
 	/* border:1px solid red; */
 	width:1000px;
 	margin:auto;
+	margin-top:50px;
 }
 div p {
 	margin:1px;
@@ -375,6 +383,7 @@ div#review ul li.review_list ul li#list_right button {
 	margin-top:10px;
 	margin-left:25px;
 	font-size:14px;
+	width:160px;
 }
 div#review ul li.review_list ul li#list_right button.report {
 	width:60px;
@@ -464,6 +473,7 @@ section.review_content table.rv_detail_menu tr:last-child td {
 }
 section.review_content div.review_detail div.table_right {
 	position: relative;
+	z-index: -1;
 	left: 545px;
 	top: -370px;
 	height:400px;
