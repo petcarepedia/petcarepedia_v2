@@ -22,7 +22,7 @@
 				<img src="http://localhost:9000/petcarepedia/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="joinForm" action="joinProc.jsp" method="post">
+			<form name="joinForm" action="join_proc.do" method="post">
 				<ul>
 					<li>
 						<label>아이디 <span class="ess">*</span></label>
@@ -100,7 +100,7 @@
 					</li>
 					<span id="termcheck_msg"></span>
 					<li>
-						<button type="button" id="btnJoin" class="btn-submit" disabled>회원가입</button>
+						<button type="submit" id="btnJoin" class="btn-submit" disabled>회원가입</button>
 					</li>
 				</ul>
 			</form>

@@ -13,6 +13,8 @@
 	let login_result = "${login_result}";
 	if(login_result=="fail"){
 		alert("로그인에 실패했습니다. 다시 로그인해주세요.");
+	} else if(join_result=="success"){
+		alert("회원가입에 성공했습니다. 로그인해주세요.");
 	}
 </script>
 </head>
