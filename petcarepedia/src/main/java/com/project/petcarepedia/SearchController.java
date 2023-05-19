@@ -30,11 +30,26 @@ public class SearchController {
 	
 	/////////////////////
 	
-	/** search_result.do **/
+	/** search_result.do - 병원 상세정보 **/
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
-	public String search_result() {
-		return "/search/search_result";
+	public ModelAndView search_result(String hid) {
+		ModelAndView model = new ModelAndView();
+		HospitalDao hospitalDao = new HospitalDao();
+		ArrayList<HospitalVo> hospital = hospitalDao.search();
+		
+		model.addObject("hospital", hospital);
+		model.setViewName("/search/search_result");
+		
+		return model;
 	}
+	
+		
+		
+		
+	
+
+	
+	/////////////////////	
 	
 	/** search_reservation.do **/
 	@RequestMapping(value="/search_reservation.do", method=RequestMethod.GET)

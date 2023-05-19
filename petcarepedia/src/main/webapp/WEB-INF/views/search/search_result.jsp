@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="http://localhost:9000/petcarepedia/admin/images/foot_blue.png" rel="shortcut icon" type="images/x-icon">
+<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="images/x-icon">
 <title>result</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_result.css">
 
@@ -26,23 +26,19 @@
 		<section class="info">
 			<div class="info_d">
 				<div class="images_d">
-					<img src="http://localhost:9000/petcarepedia/images/API.png">
-					<img src="http://localhost:9000/petcarepedia/images/API.png">
-					<img src="http://localhost:9000/petcarepedia/images/hospital 1.png">
-					<img src="http://localhost:9000/petcarepedia/images/hospital 2.png">
-					<img src="http://localhost:9000/petcarepedia/images/hospital 3.png">
-					<img src="http://localhost:9000/petcarepedia/images/foot_blue.png">
-					<img src="http://localhost:9000/petcarepedia/images/foot_blue.png">
+					<img src="${hospital.img}">
 				</div>
 				
 				<div class="name_d">
 					<div class="area_d">
 						<a href="http://localhost:9000/petcarepedia/search/search_main.do">서울</a>
 						<span>></span>
-						<a href="http://localhost:9000/petcarepedia/search/search_main.do">강남구</a>
+						<a href="http://localhost:9000/petcarepedia/search/search_main.do">${hospital.gloc}</a>
 					</div>
 					
-					<span class="name">더조은동물병원</span>
+					<span class="name">${hospital.hname}</span>
+					<input type="hidden" name="hid" value="${hospital.hid}">
+					<input type="hidden" name="hid" value="${hospital.hname}">
 					<span class="grade">⭐ 5.0 | 리뷰 60</span>
 					
 					<button type="button" id="reservation"><img src="http://localhost:9000/petcarepedia/images/cal.png">간편 예약하기
@@ -69,9 +65,9 @@
 				<hr>
 				
 				<div class="link">
-					<span><img src="http://localhost:9000/petcarepedia/images/loc.png">서울특별시 강남구 강남대로78길 8 한국빌딩 4F, 8F</span>
-					<span><img src="http://localhost:9000/petcarepedia/images/home.png"><a href="http://www.naver.com">병원 홈페이지 가기</a></span>
-					<span><img src="http://localhost:9000/petcarepedia/images/call.png">010-1234-1234</span>
+					<span><img src="http://localhost:9000/petcarepedia/images/loc.png">${hospital.loc}</span>
+					<span><img src="http://localhost:9000/petcarepedia/images/home.png"><a href="${hospital.hrink}">병원 홈페이지 가기</a></span>
+					<span><img src="http://localhost:9000/petcarepedia/images/call.png">${hospital.tel}</span>
 				</div>
 				
 				<hr>
@@ -88,33 +84,27 @@
 						<span>병원정보</span>
 						<span>위치 & 진료시간</span>
 						<!-- <div class="map"> -->
-							<iframe class="map" src="http://localhost:9000/petcarepedia/search/search_map.do"
+							<iframe class="map" src="http://localhost:9000/petcarepedia/search_map.do"
 							scrolling="no" width="350px" height="285px" frameborder=0></iframe>
 						<!-- </div> -->
-						<span>서울특별시 강남구 강남대로78길 8 한국빌딩 4F, 8F</span>
+						<span>${hospital.loc}</span>
 					</div>
 					
 					<div class="time">
 						<ul>
-							<li>월</li>
-							<li>화</li>
-							<li>수</li>
-							<li>목</li>
-							<li>금</li>
-							<li>토</li>
-							<li>일</li>
-							<li>공휴일</li>
+							<li>영업시간</li>
+							<li>야간 휴진 여부</li>
+							<li>휴일 휴진 여부</li>
+							<li>특수동물 취급 여부</li>
+							<li>소개</li>
 						</ul>
 						
 						<ul>
-							<li>10:00 - 21:00 (점심 13:30 - 14:30)</li>
-							<li>10:00 - 21:00 (점심 13:30 - 14:30)</li>
-							<li>10:00 - 21:00 (점심 13:30 - 14:30)</li>
-							<li>10:00 - 21:00 (점심 13:30 - 14:30)</li>
-							<li>10:00 - 21:00 (점심 13:30 - 14:30)</li>
-							<li>10:00 - 14:00</li>
-							<li>휴진</li>
-							<li>휴진</li>
+							<li>${hospital.htime}</li>
+							<li>${hospital.ntime}</li>
+							<li>${hospital.holiday}</li>
+							<li>${hospital.animal}</li>
+							<li>${hospital.intro}</li>
 						</ul>
 					</div>
 				</div>
