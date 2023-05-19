@@ -17,7 +17,7 @@ public class LoginController {
 	/**
 	 * login_proc.do - 로그인 처리
 	 */
-//	@RequestMapping(value="/login_proc.do",method=RequestMethod.GET)
+//	@RequestMapping(value="/login_proc.do",method=RequestMethod.POST)
 //	public String login_proc() {
 //	}
 	
@@ -32,7 +32,7 @@ public class LoginController {
 	/**
 	 * login_idfind_proc.do - 아이디찾기 처리
 	 */
-//	@RequestMapping(value="/login_idfind_proc.do",method=RequestMethod.GET)
+//	@RequestMapping(value="/login_idfind_proc.do",method=RequestMethod.POST)
 //	public String login_idfind_proc() {
 //	}
 	
@@ -65,7 +65,7 @@ public class LoginController {
 	/**
 	 * login_pwfind_proc.do - 비밀번호 재설정 - 정보 확인 처리
 	 */
-//	@RequestMapping(value="/login_pwfind_proc.do",method=RequestMethod.GET)
+//	@RequestMapping(value="/login_pwfind_proc.do",method=RequestMethod.POST)
 //	public String login_pwfind_proc() {
 //	}
 	
@@ -89,7 +89,7 @@ public class LoginController {
 	/**
 	 * login_pwupdate_proc.do - 비밀번호 재설정 - 재설정 처리
 	 */
-//	@RequestMapping(value="/login_pwupdate_proc.do",method=RequestMethod.GET)
+//	@RequestMapping(value="/login_pwupdate_proc.do",method=RequestMethod.POST)
 //	public String login_pwupdate_proc() {
 //	}
 	
