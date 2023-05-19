@@ -15,7 +15,10 @@
 
 <body>
 	<!-- header -->
-	<iframe width="100%" height="100px"></iframe>
+	<!-- <iframe width="100%" height="100px"></iframe> -->
+	<div class="header-wrapper">
+		<jsp:include page="../header.jsp"></jsp:include>	
+	</div>
 	
 	
 	<!-- content -->
@@ -23,26 +26,26 @@
 		<section class="info">
 			<div class="info_d">
 				<div class="images_d">
-					<img src="http://localhost:9000/petcarepedia/admin/images/API.png">
-					<img src="http://localhost:9000/petcarepedia/admin/images/API.png">
-					<img src="http://localhost:9000/petcarepedia/admin/images/hospital 1.png">
-					<img src="http://localhost:9000/petcarepedia/admin/images/hospital 2.png">
-					<img src="http://localhost:9000/petcarepedia/admin/images/hospital 3.png">
-					<img src="http://localhost:9000/petcarepedia/admin/images/foot_blue.png">
-					<img src="http://localhost:9000/petcarepedia/admin/images/foot_blue.png">
+					<img src="http://localhost:9000/petcarepedia/images/API.png">
+					<img src="http://localhost:9000/petcarepedia/images/API.png">
+					<img src="http://localhost:9000/petcarepedia/images/hospital 1.png">
+					<img src="http://localhost:9000/petcarepedia/images/hospital 2.png">
+					<img src="http://localhost:9000/petcarepedia/images/hospital 3.png">
+					<img src="http://localhost:9000/petcarepedia/images/foot_blue.png">
+					<img src="http://localhost:9000/petcarepedia/images/foot_blue.png">
 				</div>
 				
 				<div class="name_d">
 					<div class="area_d">
-						<a href="http://localhost:9000/petcarepedia/search/search_main.jsp">서울</a>
+						<a href="http://localhost:9000/petcarepedia/search/search_main.do">서울</a>
 						<span>></span>
-						<a href="http://localhost:9000/petcarepedia/search/search_main.jsp">강남구</a>
+						<a href="http://localhost:9000/petcarepedia/search/search_main.do">강남구</a>
 					</div>
 					
 					<span class="name">더조은동물병원</span>
 					<span class="grade">⭐ 5.0 | 리뷰 60</span>
 					
-					<button type="button" id="reservation"><img src="http://localhost:9000/petcarepedia/admin/images/cal.png">간편 예약하기
+					<button type="button" id="reservation"><img src="http://localhost:9000/petcarepedia/images/cal.png">간편 예약하기
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -50,25 +53,25 @@
 					<div id="hmodal" class="modal">
 					  <div class="modal-content">
 					    <span class="close">&times;</span>
-					    <iframe src="http://localhost:9000/petcarepedia/search/search_reservation.jsp" 
+					    <iframe src="http://localhost:9000/petcarepedia/search/search_reservation.do" 
 					     width="500px" height="500px" frameborder=0></iframe>
 					  </div>
 				  	</div>
 					
 					
 					<div class="buttons">
-						<button type="button" id="review"><img src="http://localhost:9000/petcarepedia/admin/images/review.png">리뷰하기</button>
+						<button type="button" id="review"><img src="http://localhost:9000/petcarepedia/images/review.png">리뷰하기</button>
 						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
-						<button type="button" id="like"><img src="http://localhost:9000/petcarepedia/admin/images/like.png">찜하기</button>
+						<button type="button" id="like"><img src="http://localhost:9000/petcarepedia/images/like.png">찜하기</button>
 					</div>
 				</div>
 				
 				<hr>
 				
 				<div class="link">
-					<span><img src="http://localhost:9000/petcarepedia/admin/images/loc.png">서울특별시 강남구 강남대로78길 8 한국빌딩 4F, 8F</span>
-					<span><img src="http://localhost:9000/petcarepedia/admin/images/home.png"><a href="http://www.naver.com">병원 홈페이지 가기</a></span>
-					<span><img src="http://localhost:9000/petcarepedia/admin/images/call.png">010-1234-1234</span>
+					<span><img src="http://localhost:9000/petcarepedia/images/loc.png">서울특별시 강남구 강남대로78길 8 한국빌딩 4F, 8F</span>
+					<span><img src="http://localhost:9000/petcarepedia/images/home.png"><a href="http://www.naver.com">병원 홈페이지 가기</a></span>
+					<span><img src="http://localhost:9000/petcarepedia/images/call.png">010-1234-1234</span>
 				</div>
 				
 				<hr>
@@ -85,7 +88,7 @@
 						<span>병원정보</span>
 						<span>위치 & 진료시간</span>
 						<!-- <div class="map"> -->
-							<iframe class="map" src="http://localhost:9000/petcarepedia/search/search_map.jsp"
+							<iframe class="map" src="http://localhost:9000/petcarepedia/search/search_map.do"
 							scrolling="no" width="350px" height="285px" frameborder=0></iframe>
 						<!-- </div> -->
 						<span>서울특별시 강남구 강남대로78길 8 한국빌딩 4F, 8F</span>
@@ -154,7 +157,7 @@
 				<div class="review_card">
 					<div class="member">
 						<div class="name">
-							<img src="http://localhost:9000/petcarepedia/admin/images/cat.png">
+							<img src="http://localhost:9000/petcarepedia/images/cat.png">
 							<span>과테말라 냥이</span>
 						</div>
 						
@@ -185,5 +188,6 @@
 	
 	<!-- footer -->
 	<iframe width="100%" height="100px"></iframe>
+	<jsp:include page="../footer.jsp"></jsp:include>	
 </body>
 </html>
