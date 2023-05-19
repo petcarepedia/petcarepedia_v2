@@ -1,7 +1,7 @@
 package com.project.vo;
 
 public class BookingVo {
-	String bid, bdate, vdate, vitme, bstate, mid;
+	String bid, bdate, vdate, vtime, bstate, mid;
 	int rno;
 	
 	public String getBid() {
@@ -22,11 +22,11 @@ public class BookingVo {
 	public void setVdate(String vdate) {
 		this.vdate = vdate;
 	}
-	public String getVitme() {
-		return vitme;
+	public String getVtime() {
+		return vtime;
 	}
-	public void setVitme(String vitme) {
-		this.vitme = vitme;
+	public void setVtime(String vtime) {
+		this.vtime = vtime;
 	}
 	public String getBstate() {
 		return bstate;
