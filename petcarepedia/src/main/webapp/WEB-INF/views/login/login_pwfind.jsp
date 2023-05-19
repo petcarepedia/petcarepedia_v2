@@ -33,7 +33,7 @@
 					<ul>
 						<li>
 							<label>아이디</label>
-							<input type="text" name="id" id="id" placeholder="아이디 입력">
+							<input type="text" name="mid" id="id" placeholder="아이디 입력">
 						</li>
 						<li>
 							<label>성명</label>

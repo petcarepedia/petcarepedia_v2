@@ -27,7 +27,7 @@
 					<li>
 						<label>아이디 <span class="ess">*</span></label>
 						<p><span class="ess">*</span> 표시는 필수 입력 항목입니다.</p>
-						<input type="text" name="id" id="id" placeholder="4~20자의 영문, 숫자 조합" class="input-short">
+						<input type="text" name="mid" id="id" placeholder="4~20자의 영문, 숫자 조합" class="input-short">
 						<button type="button" id="btnCheckId" class="btn-short" disabled>중복확인</button>
 						<span id="idcheck_msg"></span>
 					</li>

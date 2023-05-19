@@ -26,7 +26,6 @@ public class LoginController {
 		ModelAndView model = new ModelAndView();
 		
 		MemberDao memberDao = new MemberDao();
-		System.out.println(memberVo.getMid()+","+memberVo.getPass());
 		int result = memberDao.checkLogin(memberVo);
 		
 		if(result==1) {
@@ -51,9 +50,22 @@ public class LoginController {
 	/**
 	 * login_idfind_proc.do - 아이디찾기 처리
 	 */
-//	@RequestMapping(value="/login_idfind_proc.do",method=RequestMethod.POST)
-//	public String login_idfind_proc() {
-//	}
+	@RequestMapping(value="/login_idfind_proc.do",method=RequestMethod.POST)
+	public ModelAndView login_idfind_proc(MemberVo memberVo) {
+		ModelAndView model = new ModelAndView();
+		
+		MemberDao memberDao = new MemberDao();
+		String mid = memberDao.findId(memberVo);
+		
+		if(mid!="") {
+			model.addObject("mid", mid);
+			model.setViewName("/login/login_idfind_success");
+		} else {
+			model.setViewName("/login/login_idfind_fail");
+		}
+		
+		return model;
+	}
 	
 	/**
 	 * login_idfind_success.do - 아이디찾기 성공
