@@ -8,8 +8,9 @@
 .d1{
 	width:1000px;
 	margin:auto;
+	margin-top:100px;
 /* 	border:1px solid black; */
-	margin-bottom:70px;
+	margin-bottom:170px;
 }
 .table{
 	width:750px;
@@ -130,7 +131,7 @@ section.review #section1 div nav ul li:nth-child(5) a
 	/* header-style */
 	.header-menu {
 		height:100px; width:100%;
-		background:#7ab2cc;
+		background:7ab2cc;
 		position:fixed; left:0; top:0;
 	}
 	.header-content {
