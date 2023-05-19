@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,16 +103,18 @@
 		<!-- 검색리스트 -->
 			<section class="list">
 				<div class="hlist">
-					<% for(int i =0;i < 2; i++) { %>
+				
+					<c:forEach var="hlist" item="${hlist}">
+					
 						<div class="list1">
 							<div class="hinfo">
-								<a href="http://localhost:9000/petcarepedia/search_result.do">
-									<span>더좋은동물병원</span>
+								<a href="http://localhost:9000/petcarepedia/search_result.do?=${hlist.hid}">
+									<span>${hlist.hname}</span>
 									<span>⭐ 5.0</span>
-									<span>02-1234-1234</span>
+									<span>${hlist.tel}</span>
 								</a>
 							
-								<span id="harea">강남구 역삼동</span>
+								<span id="harea">${hlist.gloc}</span>
 								<span id="htime">진료 중</span>
 								<button type="button" id="hservation">예약하기
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -127,7 +132,8 @@
 								<img src="http://localhost:9000/petcarepedia/images/search_main.png" width="122px" height="122px">
 							</div>
 						</div>
-					<% } %>
+						
+					</c:forEach>
 					
 				</div>
 			</section>

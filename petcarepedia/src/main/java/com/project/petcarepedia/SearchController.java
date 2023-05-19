@@ -16,9 +16,9 @@ public class SearchController {
 	public ModelAndView search_main() {
 		ModelAndView model = new ModelAndView();
 		HospitalDao hospitalDao = new HospitalDao();
-		ArrayList<HospitalDao> list = hospitalDao.select();
+		ArrayList<HospitalDao> hlist = hospitalDao.select();
 		
-		model.addObject("list",	list);
+		model.addObject("hlist", hlist);
 		model.setViewName("/search/search_main");
 		
 		return model;
