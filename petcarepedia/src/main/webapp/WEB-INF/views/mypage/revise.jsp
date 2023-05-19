@@ -19,7 +19,7 @@
 		<section id = "revise">
 			<h1 id = "title">수정하기</h1>
 			<hr>
-			<form name="updateForm" action="#" method="get">
+			<form name="updateForm" action="information_update_proc" method="post">
 				<section id = "section1">
 				<div>
 					<nav>
@@ -39,23 +39,27 @@
 						<ul>
 							<li>
 								<label >아이디</label>
-								<label>hong1234</label>
+								<label>${memberVo.mid}</label>
 							</li>
 							<li>
 								<label>성명</label>
-								<label>홍길동</label>
+								<label>${memberVo.name}</label>
+							</li>
+							<li>
+								<label>별명</label>
+								<input type = "text" name = "nickname" id = "nickname" placeholder = "  변경하실  별명을 입력해주세요" value = "${memberVo.nickname}">
 							</li>
 							<li>
 								<label>생년월일</label>
 								<div>
-									<input type = "text" name = "year" id = "year" placeholder = "  년(4자)">
-									<input type = "text" name = "month" id = "month" placeholder = "  월">
-									<input type = "text" name = "date" id = "date" placeholder = "  일">
+									<input type = "text" name = "birth1" id = "year" placeholder = "  년(4자)" value = "${memberVo.birth1}">
+									<input type = "text" name = "birth2" id = "month" placeholder = "  월" value = "${memberVo.birth2}">
+									<input type = "text" name = "birth3" id = "date" placeholder = "  일" value = "${memberVo.birth3}">
 								</div>
 							</li>
 							<li>
 								<label>이메일</label>
-								<input type = "text" name = "email" id = "email" placeholder = "  변경하실 이메일 주소를 입력해주세요">
+								<input type = "text" name = "email" id = "email" placeholder = "  변경하실 이메일 주소를 입력해주세요" value = "${memberVo.email}">
 							</li>
 							<li>
 								<label>휴대폰</label>
@@ -66,8 +70,8 @@
 										<option value="010">010</option>
 										<option value="017">017</option>
 									</select>
-									-<input type = "text" name = "phone2" id = "phone2">
-									-<input type = "text" name = "phone3" id = "phone3">
+									-<input type = "text" name = "phone2" id = "phone2" value = "${memberVo.phone2}">
+									-<input type = "text" name = "phone3" id = "phone3" value = "${memberVo.phone3}">
 								</div>
 							</li>
 							<li>
@@ -81,7 +85,7 @@
 						<li><a href="#" target="_parent">비밀번호 재설정</a></li>
 					</ul>
 					<section id = "section3">
-						<button type = "submit" id = "btn_style1">수정완료</button>
+						<button type = "button" id = "btn_style1">수정완료</button>
 					</section>
 				</div>
 			</form>

@@ -172,13 +172,21 @@ hr {
 	border : 1px solid #8A8A8A;
 	
 }
-#section2 ul li:nth-child(5) div{
+
+#section2 ul li:nth-child(3) input {
+	display : inline-block;
+	width : 520px;
+	height : 50px;
+	border-radius : 5px;
+	border : 1px solid #8A8A8A;
+}
+#section2 ul li:nth-child(6) div{
 	display : inline-block;
 	border-bottom : 1px solid #8A8A8A;
 	width : 520px;
 	height: 50px;
 }
-#section2 ul li:nth-child(3) div {
+#section2 ul li:nth-child(4) div {
 	display : inline-block;
 	border-bottom : 1px solid #8A8A8A;
 	width : 520px;
@@ -192,7 +200,7 @@ hr {
 	height: 27px;
 	font-size: 12px;
 	list-style-type:none;
-	margin-top : 10px;
+	margin-top : 70px;
 	margin-right : 20px;
 	padding-right : 10px;
 	text-align : right;
