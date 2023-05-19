@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/resources/css/mypage.css">
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/resources/css/petcarepedia_song.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/mypage.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -19,7 +19,7 @@
 		<section id = "revise">
 			<h1 id = "title">수정하기</h1>
 			<hr>
-			<form name="reviseForm" action="#" method="get">
+			<form name="updateForm" action="#" method="get">
 				<section id = "section1">
 				<div>
 					<nav>
@@ -72,7 +72,7 @@
 							</li>
 							<li>
 								<label>주소</label>
-								<input type = "text" name = "address" id = "address" placeholder = "  변경하실 주소를 입력해주세요">
+								<input type = "text" name = "addr" id = "address" placeholder = "  변경하실 주소를 입력해주세요">
 								<button type="button" class="btn_style2" id="btnSearchAddr">주소찾기</button>
 							</li>
 						</ul>

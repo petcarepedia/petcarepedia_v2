@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/resources/css/mypage.css">
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/resources/css/petcarepedia_song.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/mypage.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
 </head>
@@ -38,11 +38,11 @@
 						<span>
 							<span>강남구</span>
 						</span>
-						<img src = "http://localhost:9000/petcarepedia/resources/images/cat.png">
+						<img src = "http://localhost:9000/petcarepedia/images/cat.png">
 						<span>과테말라 냥이</span>
 					</div>
 					<div id = "aside2">
-						<img src = "http://localhost:9000/petcarepedia/resources/images/hos.png">
+						<img src = "http://localhost:9000/petcarepedia/images/hos.png">
 					</div>
 					<div id = "aside3">
 						<span>동물 종류 : 고양이</span>
@@ -63,11 +63,11 @@
 						<span>
 							<span>강남구</span>
 						</span>
-						<img src = "http://localhost:9000/petcarepedia/resources/images/cat.png">
+						<img src = "http://localhost:9000/petcarepedia/images/cat.png">
 						<span>과테말라 냥이</span>
 					</div>
 					<div id = "aside2">
-						<img src = "http://localhost:9000/petcarepedia/resources/images/hos.png">
+						<img src = "http://localhost:9000/petcarepedia/images/hos.png">
 					</div>
 					<div id = "aside3">
 						<span>동물 종류 : 고양이</span>

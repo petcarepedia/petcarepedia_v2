@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/resources/css/mypage.css">
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/resources/css/petcarepedia_song.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/mypage.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
 </head>
@@ -37,25 +37,25 @@
 					<span>더좋은동물병원</span>
 					<span>강남구</span>
 					<a href = "http://localhost:9000/petcarepedia/mypage/information.jsp">병원 상세보기 ></a>
-					<button type = "button"><img src = "http://localhost:9000/petcarepedia/resources/images/bookmark2.png"></button>
+					<button type = "button"><img src = "http://localhost:9000/petcarepedia/images/bookmark2.png"></button>
 				</div>
 				<div id = "aside1">
 					<span>더좋은동물병원</span>
 					<span>강남구</span>
 					<a href = "http://localhost:9000/petcarepedia/mypage/information.jsp">병원 상세보기 ></a>
-					<button type = "button"><img src = "http://localhost:9000/petcarepedia/resources/images/bookmark2.png"></button>
+					<button type = "button"><img src = "http://localhost:9000/petcarepedia/images/bookmark2.png"></button>
 				</div>
 				<div id = "aside1">
 					<span>더좋은동물병원</span>
 					<span>강남구</span>
 					<a href = "http://localhost:9000/petcarepedia/mypage/information.jsp">병원 상세보기 ></a>
-					<button type = "button"><img src = "http://localhost:9000/petcarepedia/resources/images/bookmark2.png"></button>
+					<button type = "button"><img src = "http://localhost:9000/petcarepedia/images/bookmark2.png"></button>
 				</div>
 				<div id = "aside1">
 					<span>더좋은동물병원</span>
 					<span>강남구</span>
 					<a href = "http://localhost:9000/petcarepedia/mypage/information.jsp">병원 상세보기 ></a>
-					<button type = "button"><img src = "http://localhost:9000/petcarepedia/resources/images/bookmark2.png"></button>
+					<button type = "button"><img src = "http://localhost:9000/petcarepedia/images/bookmark2.png"></button>
 				</div>
 			</section>
 		</section>
