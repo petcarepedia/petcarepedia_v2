@@ -1,6 +1,14 @@
 /***************************************
-	공통 사항
+	common
 ***************************************/
+div.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
 * {
 	margin: 0px;
 	padding: 0px;
@@ -11,6 +19,7 @@ div.search_main {
 	/* border: 1px solid gray; */
 	width: 1000px;
 	margin: auto;
+	margin-top: 100px;
 	/* text-align: center; */
 	
 }
@@ -247,7 +256,7 @@ div.check_animal ul li span {
 }
 
 /***************************************
-	하단
+	�븯�떒
 ***************************************/
 div.s2 {
 	/* border: 1px solid green; */
@@ -407,7 +416,7 @@ div.hapi {
 	/* clear: both; */
 	position: sticky;
 	top: 00px;
-
+	z-index: 0;
 }
 
 
@@ -416,13 +425,4 @@ div.hapi iframe {
 	width: 576px;
 	height: 100%;
 }
-
-
-
-
-
-
-
-
-
 
