@@ -19,7 +19,7 @@
 		<section id = "revise">
 			<h1 id = "title">수정하기</h1>
 			<hr>
-			<form name="reviseForm" action="#" method="get">
+			<form name="updateForm" action="#" method="get">
 				<section id = "section1">
 				<div>
 					<nav>
@@ -72,7 +72,7 @@
 							</li>
 							<li>
 								<label>주소</label>
-								<input type = "text" name = "address" id = "address" placeholder = "  변경하실 주소를 입력해주세요">
+								<input type = "text" name = "addr" id = "address" placeholder = "  변경하실 주소를 입력해주세요">
 								<button type="button" class="btn_style2" id="btnSearchAddr">주소찾기</button>
 							</li>
 						</ul>
