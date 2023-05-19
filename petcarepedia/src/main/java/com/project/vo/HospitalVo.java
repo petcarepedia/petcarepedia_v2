@@ -2,7 +2,8 @@ package com.project.vo;
 
 public class HospitalVo {
 	int rno;
-	String hid, hname, gloc, loc, tel, htime, ntime, holiday, animal,intro, img, hrink;
+	String hid, hname, gloc, loc, tel, htime, ntime, holiday, animal,intro, img, hrink, x, y;
+	
 	
 	public int getRno() {
 		return rno;
@@ -81,6 +82,18 @@ public class HospitalVo {
 	}
 	public void setHrink(String hrink) {
 		this.hrink = hrink;
+	}
+	public String getX() {
+		return x;
+	}
+	public void setX(String x) {
+		this.x = x;
+	}
+	public String getY() {
+		return y;
+	}
+	public void setY(String y) {
+		this.y = y;
 	}
 	
 	
