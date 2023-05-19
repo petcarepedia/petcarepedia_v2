@@ -29,7 +29,7 @@
 			
 			<form name="loginForm" action="login_proc.do" method="post">
 				<ul>
-					<li><input type="text" name="id" id="id" placeholder="아이디"></li>
+					<li><input type="text" name="mid" id="id" placeholder="아이디"></li>
 					<li><input type="password" name="pass" id="pass" placeholder="비밀번호"></li>
 					<li><button type="submit" id="btnLogin" class="btn-submit" disabled>로그인</button></li>
 					<li>

@@ -26,6 +26,7 @@ public class LoginController {
 		ModelAndView model = new ModelAndView();
 		
 		MemberDao memberDao = new MemberDao();
+		System.out.println(memberVo.getMid()+","+memberVo.getPass());
 		int result = memberDao.checkLogin(memberVo);
 		
 		if(result==1) {
@@ -33,7 +34,7 @@ public class LoginController {
 			model.setViewName("index");
 		} else {
 			model.addObject("login_result", "fail");
-			model.setViewName("login");
+			model.setViewName("/login/login");
 		}
 		
 		return model;

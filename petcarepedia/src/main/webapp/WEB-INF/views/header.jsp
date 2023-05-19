@@ -12,7 +12,7 @@
 	<header>
 		<div class="header-menu">
 			<div class="header-content">
-				<a href="http://localhost:9000/petcarepedia/index.jsp">
+				<a href="http://localhost:9000/petcarepedia/index.do">
 					<div class="header-logo">
 						<img src="http://localhost:9000/petcarepedia/images/logo_white.png" width="60px" height="60px">
 						<span>PetCare Pedia</span>

@@ -111,7 +111,11 @@ public class MemberDao extends DBConn{
 		
 		try {
 			pstmt.setString(1, mid);
-			result = pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -132,7 +136,11 @@ public class MemberDao extends DBConn{
 			pstmt.setString(1, memberVo.getMid());
 			pstmt.setString(2, memberVo.getPass());
 			
-			result = pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -206,7 +214,11 @@ public class MemberDao extends DBConn{
 			pstmt.setString(2, memberVo.getName());
 			pstmt.setString(3, memberVo.getPhone());
 			
-			result = pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
