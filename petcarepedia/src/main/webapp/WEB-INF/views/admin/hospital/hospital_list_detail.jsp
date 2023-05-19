@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Hospital- List</title>
-<link rel="stylesheet" href="http://localhost:9000/animal/css/admin.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
 </head>
 <body>
 <!-- header -->
-	<iframe width="100%" height="100px" frameborder=0></iframe>
+	<iframe src="http://localhost:9000/petcarepedia/admin/admin_header.jsp" width="100%" height="100px" frameborder=0></iframe>
 	
 	<div class="d1">
 		<section class="hospital_detail">
@@ -18,11 +18,11 @@
 					<nav>
 						<ul>
 							<li>병원관리</li>
-							<li><a href = "http://localhost:9000/animal/admin/hospital/hospital_list.jsp">병원 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/member/member_list.jsp">회원 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/reserve/reserve_list.jsp">예약 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/review/review_list.jsp">신고 리뷰 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/review/review_list.jsp">공지 사항 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/hospital/hospital_list.jsp">병원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/member/member_list.jsp">회원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/reserve/reserve_list.jsp">예약 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/review/review_list.jsp">신고 리뷰 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/admin_notice/admin_notice.jsp">공지 사항 관리</a></li>
 							<li><a href = "#">나가기</a></li>
 						</ul>
 					</nav>
@@ -31,14 +31,14 @@
 			<section class="section2">
 				<div class="d2">
 					<input type="text" class="search_bar" placeholder="병원명 입력">
-					<button class="button1"><img src="http://localhost:9000/animal/css/foot_sky.png"></button>
+					<button class="button1"><img src="http://localhost:9000/petcarepedia/admin/images/foot_sky.png"></button>
 				</div>
 				<div class="d3">
 					<table class="table">
 						<tr>
 							<td colspan="5">
-								<button type="button" class="button"><a href="http://localhost:9000/animal/admin/hospital/hospital_detail.jsp">등록</a></button>
-								<button type="button" class="button"><a href="#">수정</a></button>
+								<button type="button" class="button"><a href="http://localhost:9000/petcarepedia/admin/hospital/hospital_detail.jsp">등록</a></button>
+								<button type="button" class="button"><a href="http://localhost:9000/petcarepedia/admin/hospital/hospital_update.jsp">수정</a></button>
 								<button type="button" class="button">삭제</button>
 							</td>
 						</tr>
@@ -51,7 +51,7 @@
 						</tr>
 						<tr>
 							<td>1</td>
-							<td><a href="">멍멍동물병원</a></td>
+							<td><a href="hospital_list_detail.jsp">멍멍동물병원</a></td>
 							<td>영업중</td>
 							<td>2023-01-01</td>
 							<td>2023-04-23</td>
@@ -63,7 +63,7 @@
 						</tr>
 						<tr>
 							<td colspan="5">
-								<button type="button" class="button4"><a href="http://localhost:9000/animal/admin/hospital/hospital_list.jsp">이전으로</a></button>
+								<button type="button" class="button4"><a href="http://localhost:9000/petcarepedia/admin/hospital/hospital_list.jsp">이전으로</a></button>
 							</td>
 						</tr>
 					</table>
@@ -72,6 +72,6 @@
 		</section>
 	</div>
 <!-- footer -->
-	<iframe  width="100%" height="350px" frameborder=0></iframe>
+	<iframe src="http://localhost:9000/petcarepedia/footer.jsp"  width="100%" height="350px" frameborder=0></iframe>
 </body>
 </html>
