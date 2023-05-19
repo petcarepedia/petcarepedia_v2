@@ -21,14 +21,14 @@
 				<img src="http://localhost:9000/petcarepedia/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="loginForm" action="loginProc.jsp" method="post">
+			<form name="loginForm" action="loginProc.do" method="post">
 				<ul>
 					<li><input type="text" name="id" id="id" placeholder="아이디"></li>
 					<li><input type="password" name="pass" id="pass" placeholder="비밀번호"></li>
 					<li><button type="button" id="btnLogin" class="btn-submit" disabled>로그인</button></li>
 					<li>
-						<a href="http://localhost:9000/petcarepedia/join/join.jsp">회원가입</a>
-						<a href="http://localhost:9000/petcarepedia/login/login_idfind.jsp">아이디 / 비밀번호 찾기</a>
+						<a href="http://localhost:9000/petcarepedia/join.do">회원가입</a>
+						<a href="http://localhost:9000/petcarepedia/login_idfind.do">아이디 / 비밀번호 찾기</a>
 					</li>
 				</ul>
 			</form>

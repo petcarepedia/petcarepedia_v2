@@ -13,4 +13,20 @@ public class LoginController {
 	public String login() {
 		return "/login/login";
 	}
+	
+	/**
+	 * login_idfind.do - 아이디찾기
+	 */
+	@RequestMapping(value="/login_idfind.do",method=RequestMethod.GET)
+	public String login_idfind() {
+		return "/login/login_idfind";
+	}
+	
+	/**
+	 * login_pwfind.do - 비밀번호 재설정 - 정보 확인
+	 */
+	@RequestMapping(value="/login_pwfind.do",method=RequestMethod.GET)
+	public String login_pwfind() {
+		return "/login/login_pwfind";
+	}
 }
