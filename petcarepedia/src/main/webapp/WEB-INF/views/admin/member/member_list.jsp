@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Member_List</title>
-<link rel="stylesheet" href="http://localhost:9000/animal/css/admin.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
 </head>
 <body>
 <!-- header -->
-	<iframe width="100%" height="100px" frameborder=0></iframe>
+	<iframe src="http://localhost:9000/petcarepedia/admin/admin_header.jsp" width="100%" height="100px" frameborder=0></iframe>
 	
 	<div class="d1">
 		<section class="member">
@@ -18,11 +18,11 @@
 					<nav>
 						<ul>
 							<li>회원관리</li>
-							<li><a href = "http://localhost:9000/animal/admin/hospital/hospital_list.jsp">병원 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/member/member_list.jsp">회원 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/reserve/reserve_list.jsp">예약 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/review/review_list.jsp">신고 리뷰 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/review/review_list.jsp">공지 사항 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/hospital/hospital_list.jsp">병원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/member/member_list.jsp">회원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/reserve/reserve_list.jsp">예약 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/review/review_list.jsp">신고 리뷰 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/admin_notice/admin_notice.jsp">공지 사항 관리</a></li>
 							<li><a href = "#">나가기</a></li>
 						</ul>
 					</nav>
@@ -35,7 +35,7 @@
 				</div>
 				<table class="table">
 					<tr>
-						<td colspan="5">
+						<td colspan="6">
 							<button type="button" class="button5"><a href="#">수정</a></button>
 							<button type="button" class="button5">삭제</button>
 						</td>
@@ -46,13 +46,15 @@
 						<th>성명</th>
 						<th>이메일</th>
 						<th>전화번호</th>
+						<th>가입일자</th>
 					</tr>
 					<tr>
 						<td>1</td>
-						<td><a href="http://localhost:9000/animal/admin/member/member_list_detail.jsp">hong1234</a></td>
+						<td><a href="http://localhost:9000/petcarepedia/admin/member/member_list_detail.jsp">hong1234</a></td>
 						<td>홍길동</td>
 						<td>hong@gmail.com</td>
 						<td>010-1234-5678</td>
+						<td>2023-02-25</td>
 					</tr>
 					<tr>
 						<td>2</td>
@@ -60,6 +62,7 @@
 						<td>홍길동</td>
 						<td>hong@gmail.com</td>
 						<td>010-1234-5678</td>
+						<td>2023-02-25</td>
 					</tr>
 					<tr>
 						<td>3</td>
@@ -67,6 +70,7 @@
 						<td>홍길동</td>
 						<td>hong@gmail.com</td>
 						<td>010-1234-5678</td>
+						<td>2023-02-25</td>
 					</tr>
 					<tr>
 						<td>4</td>
@@ -74,6 +78,7 @@
 						<td>홍길동</td>
 						<td>hong@gmail.com</td>
 						<td>010-1234-5678</td>
+						<td>2023-02-25</td>
 					</tr>
 					<tr>
 						<td>5</td>
@@ -81,6 +86,7 @@
 						<td>홍길동</td>
 						<td>hong@gmail.com</td>
 						<td>010-1234-5678</td>
+						<td>2023-02-25</td>
 					</tr>
 					<tr>
 						<td>6</td>
@@ -88,6 +94,7 @@
 						<td>홍길동</td>
 						<td>hong@gmail.com</td>
 						<td>010-1234-5678</td>
+						<td>2023-02-25</td>
 					</tr>
 					<tr>
 						<td>7</td>
@@ -95,6 +102,7 @@
 						<td>홍길동</td>
 						<td>hong@gmail.com</td>
 						<td>010-1234-5678</td>
+						<td>2023-02-25</td>
 					</tr>
 					<tr>
 						<td>8</td>
@@ -102,6 +110,7 @@
 						<td>홍길동</td>
 						<td>hong@gmail.com</td>
 						<td>010-1234-5678</td>
+						<td>2023-02-25</td>
 					</tr>
 					<tr>
 						<td>9</td>
@@ -109,6 +118,7 @@
 						<td>홍길동</td>
 						<td>hong@gmail.com</td>
 						<td>010-1234-5678</td>
+						<td>2023-02-25</td>
 					</tr>
 					<tr>
 						<td>10</td>
@@ -116,17 +126,18 @@
 						<td>홍길동</td>
 						<td>hong@gmail.com</td>
 						<td>010-1234-5678</td>
+						<td>2023-02-25</td>
 					</tr>
 					<tr>
-						<td colspan ="5" class="text">
+						<td colspan ="6" class="text">
 							<br><br>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="5" class="number"><<  1  2  3  4  5  6  7  8  9  10  >></td>
+						<td colspan="6" class="number"><<  1  2  3  4  5  6  7  8  9  10  >></td>
 					</tr>
 					<tr>
-						<td colspan="5">
+						<td colspan="6">
 							<button type="button" class="button4"><a href="http://localhost:9000/animal/admin/hospital/hospital_list.jsp">이전으로</a></button>
 						</td>
 					</tr>

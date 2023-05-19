@@ -8,11 +8,11 @@
 .d1{
 	width:1000px;
 	margin:auto;
-	border:1px solid black;
+/* 	border:1px solid black; */
+	margin-bottom:70px;
 }
 .table{
 	width:750px;
-	/* top:100px; */
 	margin:auto; 
 	height:420px;
 	border-collapse:collapse;
@@ -124,7 +124,57 @@ section.review #section1 div nav ul li:nth-child(5) a
 #section2{
 	margin-right:80px;
 }
-
+/************************
+	header style
+*************************/
+	/* header-style */
+	.header-menu {
+		height:100px; width:100%;
+		background:#7ab2cc;
+		position:fixed; left:0; top:0;
+	}
+	.header-content {
+		width:1000px; height:100px;
+		margin:auto;
+	}
+	
+	.header-logo {
+		float:left;
+		height:70px;
+		padding-top:30px;
+		margin-right:20px;
+	}
+	.header-logo > span {
+		color:white;
+		font-size:24px;
+		font-weight:bold;
+		display:inline-block;
+		margin-bottom:10px;
+		vertical-align:bottom;
+	}
+	
+	.header-nav {
+		float:right;
+		height:70px;
+		padding-top:30px;
+	}
+	.header-nav > ul {
+		list-style-type:none;
+		float:right;
+		padding-top:30px;
+	}
+	.header-nav > ul > li {
+		float:left;
+		padding-left:25px;
+	}
+	.header-nav > ul > li > a {
+		text-decoration:none;
+		color:white;
+		font-size:14px;
+	}
+	.header-nav > ul > li > a:hover {
+		font-weight:bold;
+	}
 /****************************
 section1 style sheet - 카테고리
 *****************************/
@@ -203,7 +253,7 @@ section.member tr:first-child td, section.member_detail tr:first-child td{
 
 
 section.member tr td:nth-child(4), section.member tr td:nth-child(5){
-	width:190px;
+	width:180px;
 }
 
 /****************************
@@ -224,23 +274,17 @@ section.reserve tr td:nth-child(2) {
 /****************************
 review_list style sheet
 *****************************/
-section.review tr td:nth-child(4) {
-	width:320px;
+section.review section#section2 .d2 button{
+	margin-left:510px; 
+	margin-bottom:-50px;
 }
-section.review section#section2 table.table{
-	margin-top:100px;
-	border:1px solid red;
-}
-section.review section#section2 table.table {
-	margin-top:100px;
-	border:1px solid red;
-}
+
 
 /*************************************
 	hospital_list_detail style sheet
 **************************************/
 section.hospital_detail .button4, section.member_detail .button4,
-section#hospital_data .button4{
+section#hospital_data .button4, section.member_detail section#section2 .button4{
 	margin-left:635px;
 	
 }
@@ -300,73 +344,74 @@ section.review_detail div img{
 	width:50px;
 	height:50px;
 }
-section.review_detail section#section3{
-	border:1px solid #7ab2cc;
-	margin-left:150px;
-	width:740px;
-	height:230px;
-	border-radius:5px;
-	/* margin:auto; */
+section.review_dtail section#section2{
+	border:1px solid #3D3D3D;
+}
+
+
+section.review_detail div#d3 {
+	border:1px solid red;
+	margin-left:200px;
+	display:inline-block;
 }
 /*************************************
 	member-detail style sheet
 **************************************/
-
-section#member_write section#section1{
-	display:inline-block;
+section.member_detail section#section1 div#d2 {
 	float:left;
 	
 }
-
-section#member_write section#section2 div.d2{
-	display: inline-block;
-	border:1px solid red;
-	/* align-items: center; */
+section.member_detail section#section2 div#d3 {
 	float:left;
+	margin:150px 0 100px 0;
+	border :1px solid red;
 }
 
-section#member_write section#section2 ul {
-	list-style-type:none;
+section.member_detail section#section2 ul{
+	margin-left:200px;
+	/* margin-top:50px; */
+	
 }
-
-section#member_write section#section2 ul li label {
+section.member_detail section#section2 .button5{
+	padding:5px 15px;
+	margin-left:400px;
+}
+section.member_detail section#section2 ul li{
+	list-style-type:none;	
+	
+}
+section.member_detail section#section2 ul li label{
+	display:inline;
 	width: 77px;
-	height: 55px;
-	color:white;
+	height: 35px;
+	border-radius: 5px;
+	background: #7AB2CC;
+	font-family: 'Inter';
+	font-style: normal;
 	font-weight: 700;
 	font-size: 12px;
 	line-height: 15px;
 	display: inline-block;
 	align-items: center;
 	text-align: center;
-	background: #7AB2CC;
-	border-radius: 5px;
+	color:white;
+	padding-top:20px;
+	margin:30px 0 30px 30px;
 }
-
-section#member_write section#section2 ul li input{
+section.member_detail section#section2 ul li input[type="text"]{
+	box-sizing: border-box;
 	width: 535px;
 	height: 53px;
-	border:none;
-	border-bottom: 1px solid #3D3D3D;
+	border:1px solid white;
+	border-bottom: 1px solid #8A8A8A;
+	margin-top:10px;
+	text-indent:10px;
 }
-
-section#member_write section#section2 .button4{
-	display:block;
+/*************************************
+	hospital-update style sheet
+**************************************/
+section#hospital_data section#section2 div#d3 {
+	float:left;
+	margin:150px 0 100px 0;
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
