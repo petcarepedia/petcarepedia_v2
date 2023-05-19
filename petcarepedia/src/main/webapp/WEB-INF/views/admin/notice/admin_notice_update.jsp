@@ -9,7 +9,7 @@
 </head>
 <body>
 	<!-- header -->
-	<jsp:include page="../../header.jsp"></jsp:include>0px" frameborder="0"></iframe>
+	<jsp:include page="../../header.jsp"></jsp:include>
 	<div class="content">
 		<section class="notice">
 			<div id="title_l">
@@ -19,18 +19,18 @@
 				<table class="notice_content">
 					<tr>
 						<td>
-							<input type="text" name="ntitle" value="CGV 공지사항 입니다.">
+							<input type="text" name="title" id="title" value="${nvo.title }">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<textarea name="ncontent" class="ncontent">2023년 4월 기준 전체 시스템 점검 예정입니다.참고해주세요.</textarea>
+							<textarea name="ncontent" class="ncontent" id="ncontent">${nvo.ncontent }</textarea>
 						</td>
 					</tr>						
 				</table>
 				<div class="nw_button_r">
 					<button type="button" class="ad_button">수정</button>
-					<a href="admin_notice_content.do"><button type="button" class="ad_button">취소</button></a>									
+					<a href="admin_notice_content.do?nid=${nvo.nid }"><button type="button" class="ad_button">취소</button></a>									
 				</div>
 			</form>
 		</section>
