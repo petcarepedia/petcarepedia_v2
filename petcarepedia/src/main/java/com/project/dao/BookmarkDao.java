@@ -32,6 +32,7 @@ public class BookmarkDao extends DBConn{
 		return list;
 	}
 	
+	
 	public BookmarkVo select(String hid) {
 		BookmarkVo bookmarkVo = new BookmarkVo();
 		String sql = "select bmid, b.mid, b.hid from pcp_bookmark b, pcp_hospital h where b.hid = h.hid and b.hid = ?";
@@ -50,4 +51,37 @@ public class BookmarkDao extends DBConn{
 		}
 		return bookmarkVo;
 	}
+	
+	/*
+	 * ºÏ¸¶Å© insert
+	 */
+	public int insert(BookmarkVo bookmarkVo) {
+		int result = 0;
+		String sql = "insert into pcp_bookmark values('BM_'||ltrim(to_char(SEQU_PCP_BOOKMARK_BMID.nextval,'0000')),?,?);";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, bookmarkVo.getHid());
+			pstmt.setString(2, bookmarkVo.getMid());
+			result = pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int delete(String hid) {
+		int result = 0;
+		String sql = "delete from pcp_bookmark where hid = ?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, hid);
+			result = pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+
 }
