@@ -37,10 +37,10 @@
 							<a href="#">리뷰사전</a>
 						</li>
 						<li>
-							<a href="http://localhost:9000/petcarepedia/login/login.jsp">로그인</a>
+							<a href="http://localhost:9000/petcarepedia/login.do">로그인</a>
 						</li>
 						<li>
-							<a href="http://localhost:9000/petcarepedia/join/join.jsp">회원가입</a>
+							<a href="http://localhost:9000/petcarepedia/join.do">회원가입</a>
 						</li>
 						<li>
 							<a href="#">공지사항</a>

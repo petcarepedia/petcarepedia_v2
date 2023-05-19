@@ -21,7 +21,7 @@
 				<img src="http://localhost:9000/petcarepedia/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="pwFindForm" action="login_pwfindProc.jsp" method="post">
+			<form name="pwFindForm" action="login_pwfind_proc.jsp" method="post">
 				<div class="find-box">
 					<div class="find-pw">
 						<div id="btnMenuIdFind">아이디 찾기</div>

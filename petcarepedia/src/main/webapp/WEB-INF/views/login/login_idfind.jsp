@@ -21,7 +21,7 @@
 				<img src="http://localhost:9000/petcarepedia/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="idFindForm" action="login_idfindProc.jsp" method="post">
+			<form name="idFindForm" action="login_idfind_proc.do" method="post">
 				<div class="find-box">
 					<div>
 						<div id="btnMenuIdFind">아이디 찾기</div>
