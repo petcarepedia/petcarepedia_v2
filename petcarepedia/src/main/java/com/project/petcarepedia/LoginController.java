@@ -61,4 +61,43 @@ public class LoginController {
 	public String login_pwfind() {
 		return "/login/login_pwfind";
 	}
+	
+	/**
+	 * login_pwfind_proc.do - 비밀번호 재설정 - 정보 확인 처리
+	 */
+//	@RequestMapping(value="/login_pwfind_proc.do",method=RequestMethod.GET)
+//	public String login_pwfind_proc() {
+//	}
+	
+	/**
+	 * login_pwfind_fail.do - 비밀번호 재설정 - 정보 확인 실패
+	 * POST 방식으로 수정
+	 */
+	@RequestMapping(value="/login_pwfind_fail.do",method=RequestMethod.GET)
+	public String login_pwfind_fail() {
+		return "/login/login_pwfind_fail";
+	}
+	
+	/**
+	 * login_pwupdate.do - 비밀번호 재설정 - 재설정
+	 */
+	@RequestMapping(value="/login_pwupdate.do",method=RequestMethod.GET)
+	public String login_pwupdate() {
+		return "/login/login_pwupdate";
+	}
+	
+	/**
+	 * login_pwupdate_proc.do - 비밀번호 재설정 - 재설정 처리
+	 */
+//	@RequestMapping(value="/login_pwupdate_proc.do",method=RequestMethod.GET)
+//	public String login_pwupdate_proc() {
+//	}
+	
+	/**
+	 * login_pwupdate_success.do - 비밀번호 재설정 - 재설정 성공
+	 */
+	@RequestMapping(value="/login_pwupdate_success.do",method=RequestMethod.GET)
+	public String login_pwupdate_success() {
+		return "/login/login_pwupdate_success";
+	}
 }
