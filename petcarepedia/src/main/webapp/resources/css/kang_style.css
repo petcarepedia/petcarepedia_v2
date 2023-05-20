@@ -9,6 +9,10 @@ section.notice table.notice, section.notice table.notice th, section.notice tabl
 	padding:10px 3px;
 	color:#3D3D3D;
 }
+section.notice table.notice td a {
+	text-decoration:none;
+	color:#3D3D3D;
+}
 section.notice {
 	 margin:auto;
 	 margin-top:30px;

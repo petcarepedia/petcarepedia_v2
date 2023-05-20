@@ -34,9 +34,19 @@ $(document).ready(function(){
 	
 	
 	
-	
-	
-	
+	/*******************************************
+		공지사항 - 수정 폼
+	 ********************************************/	
+	$("#BTN_update").click(function() {
+		if($("#title").val() == "") {
+			alert("제목을 입력해주세요.");
+			$("#title").focus();
+			return false;
+		}
+		else {
+			updateForm.submit();
+		}
+	});
 	
 	
 	

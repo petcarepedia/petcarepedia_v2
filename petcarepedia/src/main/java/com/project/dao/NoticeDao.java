@@ -56,6 +56,26 @@ public class NoticeDao extends DBConn {
 		}
 		return noticeVo;
 	}
+	// 공지사항 html 띄어쓰기 변형
+	public NoticeVo u_select(String nid) {
+		NoticeVo noticeVo = new NoticeVo();
+		String sql = "select nid, title, ndate, nhits, ncontent from pcp_notice where nid = ? ";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, nid);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				noticeVo.setNid(rs.getString(1));
+				noticeVo.setTitle(rs.getString(2));
+				noticeVo.setNdate(rs.getString(3));
+				noticeVo.setNhits(rs.getInt(4));
+				noticeVo.setNcontent(rs.getString(5).replace("\n", "<br>"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return noticeVo;
+	}
 	
 	/*
 	 * 공지사항 등록하기
