@@ -15,15 +15,16 @@
 			<div id="title_l">
 				<h1 class="title">리뷰삭제</h1>
 			</div>
-			<form name="deleteForm" action="#" method="get">
+			<form name="deleteForm" action="review_delete_proc.do" method="post">
+				<input type="hidden" name="rid" value="${rid }">
 				<table class="notice_delete">
 					<tr>					
 						<td>정말로 삭제 하시겠습니까?</td>
 					</tr>				
 					<tr>
 						<td colspan="2">
-							<button type="button" class="ad_button">삭제</button>
-							<a href="review_content.do"><button type="button" class="ad_button">취소</button></a>
+							<button type="submit" class="ad_button">삭제</button>
+							<a href="review_content.do?rid=${rid }"><button type="button" class="ad_button">취소</button></a>
 							<a href="review_main.do"><button type="button" class="ad_button">목록</button></a>							
 						</td>				
 					</tr>
