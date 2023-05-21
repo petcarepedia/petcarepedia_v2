@@ -45,9 +45,9 @@
 						<li>
 							<a href="#">위치기반서비스 이용약관</a>
 						</li>
-						<li>
+						<!-- <li>
 							<a id="btnAdminModal">관리자</a>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				

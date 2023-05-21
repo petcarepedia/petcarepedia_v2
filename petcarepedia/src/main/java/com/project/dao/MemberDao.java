@@ -3,6 +3,7 @@ package com.project.dao;
 import java.util.ArrayList;
 
 import com.project.vo.MemberVo;
+import com.project.vo.ReviewVo;
 
 public class MemberDao extends DBConn{
 	/**
@@ -247,5 +248,46 @@ public class MemberDao extends DBConn{
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * selectBR - º£½ºÆ®¸®ºä
+	 */
+	public ArrayList<ReviewVo> selectBR() {
+		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
+		
+		String sql = "select rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar\r\n" + 
+				"from(select rownum rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar\r\n" + 
+				"from(select rid,r.hid,rcontent,hname,gloc,to_char(to_date(rdate,'MM/DD/YYYY'),'yyyy-mm-dd') rdate,rlike,rstar\r\n" + 
+				"from pcp_review r, pcp_hospital h\r\n" + 
+				"where r.hid=h.hid\r\n" + 
+				"order by rlike desc))\r\n" + 
+				"where rno between 1 and 9";
+		getPreparedStatement(sql);
+		
+		try {
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ReviewVo reviewVo = new ReviewVo();
+				
+				reviewVo.setRno(rs.getInt(1));
+				reviewVo.setRid(rs.getString(2));
+				reviewVo.setHid(rs.getString(3));
+				reviewVo.setRcontent(rs.getString(4));
+				reviewVo.setHname(rs.getString(5));
+				reviewVo.setGloc(rs.getString(6));
+				reviewVo.setRdate(rs.getString(7));
+				reviewVo.setRlike(rs.getInt(8));
+				reviewVo.setRstar(rs.getString(9));
+				
+				
+				list.add(reviewVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 }
