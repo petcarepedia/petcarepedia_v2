@@ -11,19 +11,26 @@ $(document).ready(function(){
 	 * 회원가입 - 아이디 중복 체크
 	 */
 	$("#btnCheckId").click(function(){
-		/*$("#idcheck_msg").text("중복된 아이디입니다.").css("color","red")
-		.css("font-size","12px").css("display","block").css("clear","both")
-		.css("padding-top","5px")
-		.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
-		
-		$("form[name='joinForm'] #id").val("").focus();*/
-		
-		$("#idcheck_msg").text("사용 가능한 아이디입니다.").css("color","#7AB2CC")
-		.css("font-size","12px").css("display","block").css("clear","both")
-		.css("padding-top","5px")
-		.prepend("<img src='http://localhost:9000/petcarepedia/images/check.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
-		
-		$("form[name='joinForm'] #pass").focus();
+		$.ajax({
+				url : "id_check.do?id="+$("#id").val(),
+				success : function(result){
+					if(result == 1){
+						$("#idcheck_msg").text("중복된 아이디입니다.").css("color","red")
+						.css("font-size","12px").css("display","block").css("clear","both")
+						.css("padding-top","5px")
+						.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+						
+						$("form[name='joinForm'] #id").val("").focus();
+					}else if(result == 0){
+						$("#idcheck_msg").text("사용 가능한 아이디입니다.").css("color","#7AB2CC")
+						.css("font-size","12px").css("display","block").css("clear","both")
+						.css("padding-top","5px")
+						.prepend("<img src='http://localhost:9000/petcarepedia/images/check.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+						
+						$("form[name='joinForm'] #pass").focus();
+					}
+				}
+			});
 	});
 	
 	/**************

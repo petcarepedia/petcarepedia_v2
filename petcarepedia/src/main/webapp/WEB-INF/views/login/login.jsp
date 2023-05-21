@@ -11,6 +11,7 @@
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
 <script>
 	let login_result = "${login_result}";
+	let join_result = "${join_result}";
 	if(login_result=="fail"){
 		alert("로그인에 실패했습니다. 다시 로그인해주세요.");
 	} else if(join_result=="success"){
