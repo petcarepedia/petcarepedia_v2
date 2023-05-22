@@ -59,7 +59,7 @@ public class BookingDao extends DBConn {
 		return list;
 	} // ArrayList<BookingVo> select()
 	
-	
+		
 	/** select(mid) - 로그인 후 예약확인하기 **/
 	public BookingVo select(String mid) {
 		BookingVo bookingVo = new BookingVo();
