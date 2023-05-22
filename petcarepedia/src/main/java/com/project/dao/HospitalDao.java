@@ -44,7 +44,7 @@ public class HospitalDao extends DBConn{
 			e.printStackTrace();
 		}
 		return list;
-	}
+	}//1
 	/**
 	 *  search - 병원   검색
 	 * */
