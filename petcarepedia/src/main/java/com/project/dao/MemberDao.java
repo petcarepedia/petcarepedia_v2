@@ -39,7 +39,7 @@ public class MemberDao extends DBConn{
 	public ArrayList<MemberVo> select() {
 		ArrayList<MemberVo> list = new ArrayList<MemberVo>();
 		
-		String sql = "select rownum,mid,pass,name,nickname,phone,birth,email,addr,mdate\r\n" + 
+		String sql = "select rownum,mid,pass,name,nickname,phone,to_char(to_date(birth),'yyyy-mm-dd') birth,email,addr,to_char(mdate,'yyyy-mm-dd') mdate\r\n" + 
 				"from(select mid,pass,name,nickname,phone,birth,email,addr,mdate from pcp_member order by mdate)";
 		getPreparedStatement(sql);
 		
@@ -75,7 +75,7 @@ public class MemberDao extends DBConn{
 	public MemberVo select(String mid) {
 		MemberVo memberVo = new MemberVo();
 		
-		String sql = "select mid,pass,name,nickname,phone,birth,email,addr,mdate from pcp_member\r\n" + 
+		String sql = "select mid,pass,name,nickname,phone,to_char(to_date(birth),'yyyy-mm-dd') birth,email,addr,to_char(mdate,'yyyy-mm-dd') mdate from pcp_member\r\n" + 
 				"where mid=?";
 		getPreparedStatement(sql);
 		
@@ -258,7 +258,7 @@ public class MemberDao extends DBConn{
 		
 		String sql = "select rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar\r\n" + 
 				"from(select rownum rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar\r\n" + 
-				"from(select rid,r.hid,rcontent,hname,gloc,to_char(to_date(rdate,'MM/DD/YYYY'),'yyyy-mm-dd') rdate,rlike,rstar\r\n" + 
+				"from(select rid,r.hid,rcontent,hname,gloc,to_char(rdate,'yyyy-mm-dd') rdate,rlike,rstar\r\n" + 
 				"from pcp_review r, pcp_hospital h\r\n" + 
 				"where r.hid=h.hid\r\n" + 
 				"order by rlike desc))\r\n" + 
