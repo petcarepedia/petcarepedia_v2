@@ -1,7 +1,7 @@
 package com.project.vo;
 
 public class BookingVo {
-	String bid, bdate, vdate, vtime, bstate, mid;
+	String bid, bdate, vdate, vtime, bstate, mid, hid;
 	int rno;
 	
 	public String getBid() {
@@ -45,6 +45,13 @@ public class BookingVo {
 	}
 	public void setRno(int rno) {
 		this.rno = rno;
+	}
+	
+	public String getHid() {
+		return hid;
+	}
+	public void setHid(String hid) {
+		this.hid = hid;
 	}
 	
 	
