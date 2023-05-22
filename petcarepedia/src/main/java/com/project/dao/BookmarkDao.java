@@ -60,8 +60,8 @@ public class BookmarkDao extends DBConn{
 		getPreparedStatement(sql);
 		
 		try {
-			pstmt.setString(1, bookmarkVo.getHid());
-			pstmt.setString(2, bookmarkVo.getMid());
+			pstmt.setString(1, bookmarkVo.getMid());
+			pstmt.setString(2, bookmarkVo.getHid());
 			result = pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
