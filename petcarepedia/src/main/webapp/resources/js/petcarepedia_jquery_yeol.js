@@ -30,23 +30,7 @@ $(document).ready(function(){
 /*******************************************
 		mypage - 예약내역페이지
 ********************************************/
-	$("#btn1").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/reservation.do";
-	});
-	$("#btn2").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/reservation2.do";
-	});
-	$("#btn3").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/reservation.do";
-	});
-	$("#btn4").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/reservation2.do";
-	});
-	
 
-	$("#btn_write_review").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/review_write.do";
-	})
 
 
 /*******************************************************************************

@@ -57,13 +57,13 @@ public class MypageController {
 	}
 	
 	/*
-	 * reservation.do - 예약내역 폼
+	 * reservation.do - 예약내역(예약중) 폼
 	 */
 	@RequestMapping(value = "/reservation.do", method = RequestMethod.GET)
 	public ModelAndView reservation(String mid) {
 		ModelAndView model = new ModelAndView();
 		BookingDao bookingDao = new BookingDao();
-		ArrayList<BookingVo> list = bookingDao.search(mid);
+		ArrayList<BookingVo> list = bookingDao.search2(mid);
 		
 		model.setViewName("/mypage/reservation");
 		model.addObject("list", list);
@@ -71,9 +71,17 @@ public class MypageController {
 		return model;
 	}
 	
+	/*
+	 * reservation2.do - 예약내역(진료완료) 폼
+	 */
 	@RequestMapping(value = "/reservation2.do", method = RequestMethod.GET)
-	public String reservation2() {
-		return "/mypage/reservation2";
+	public ModelAndView reservation2(String mid) {
+		ModelAndView model = new ModelAndView();
+		BookingDao bookingDao = new BookingDao();
+		ArrayList<BookingVo> list = bookingDao.search1(mid);
+		model.setViewName("/mypage/reservation2");
+		model.addObject("list", list);
+		return model;
 	}
 	
 	@RequestMapping(value = "/bookmark.do", method = RequestMethod.GET)
