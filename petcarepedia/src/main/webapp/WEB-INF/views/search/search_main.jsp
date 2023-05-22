@@ -108,7 +108,7 @@
 					
 						<div class="list1">
 							<div class="hinfo">
-								<a href="http://localhost:9000/petcarepedia/search_result.do?=${list.hid}">
+								<a href="http://localhost:9000/petcarepedia/search_result.do?hid=${list.hid}">
 									<span>${list.hname}</span>
 									<span>⭐ 5.0</span>
 									<span>${list.tel}</span>
