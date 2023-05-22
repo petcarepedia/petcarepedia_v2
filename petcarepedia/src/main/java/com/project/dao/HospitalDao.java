@@ -14,7 +14,7 @@ public class HospitalDao extends DBConn{
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
 		HospitalVo hospital = new HospitalVo();
 		String sql = " SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK  "
-				+"  FROM PCP_HOSPITAL WHERE HID=? AND HNAME=? )";
+				+"  FROM PCP_HOSPITAL WHERE HID=? OR HNAME LIKE %?% )";
 		getPreparedStatement(sql);
 		
 		try {
@@ -24,17 +24,18 @@ public class HospitalDao extends DBConn{
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				hospital.setHname(rs.getString(1));
-				hospital.setGloc(rs.getString(2));
-				hospital.setLoc(rs.getString(3));
-				hospital.setTel(rs.getString(4));
-				hospital.setHtime(rs.getString(5));
-				hospital.setNtime(rs.getString(6));
-				hospital.setHoliday(rs.getString(7));
-				hospital.setAnimal(rs.getString(8));
-				hospital.setIntro(rs.getString(9));
-				hospital.setImg(rs.getString(10));
-				hospital.setHrink(rs.getString(11));
+				hospital.setHid(rs.getString(1));
+				hospital.setHname(rs.getString(2));
+				hospital.setGloc(rs.getString(3));
+				hospital.setLoc(rs.getString(4));
+				hospital.setTel(rs.getString(5));
+				hospital.setHtime(rs.getString(6));
+				hospital.setNtime(rs.getString(7));
+				hospital.setHoliday(rs.getString(8));
+				hospital.setAnimal(rs.getString(9));
+				hospital.setIntro(rs.getString(10));
+				hospital.setImg(rs.getString(11));
+				hospital.setHrink(rs.getString(12));
 				
 				list.add(hospital);
 			}
@@ -51,7 +52,7 @@ public class HospitalDao extends DBConn{
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
 		HospitalVo hospital = new HospitalVo();
 		String sql = " SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK  "
-					+"  FROM PCP_HOSPITAL WHERE HID=? AND HNAME=? )";
+					+"  FROM PCP_HOSPITAL WHERE HID=? OR HNAME like %?% )";
 		getPreparedStatement(sql);
 		
 		try {
@@ -61,18 +62,19 @@ public class HospitalDao extends DBConn{
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				hospital.setHname(rs.getString(1));
-				hospital.setGloc(rs.getString(2));
-				hospital.setLoc(rs.getString(3));
-				hospital.setTel(rs.getString(4));
-				hospital.setHtime(rs.getString(5));
-				hospital.setNtime(rs.getString(6));
-				hospital.setHoliday(rs.getString(7));
-				hospital.setAnimal(rs.getString(8));
-				hospital.setIntro(rs.getString(9));
-				hospital.setImg(rs.getString(10));
-				hospital.setHrink(rs.getString(11));
-
+				hospital.setHid(rs.getString(1));
+				hospital.setHname(rs.getString(2));
+				hospital.setGloc(rs.getString(3));
+				hospital.setLoc(rs.getString(4));
+				hospital.setTel(rs.getString(5));
+				hospital.setHtime(rs.getString(6));
+				hospital.setNtime(rs.getString(7));
+				hospital.setHoliday(rs.getString(8));
+				hospital.setAnimal(rs.getString(9));
+				hospital.setIntro(rs.getString(10));
+				hospital.setImg(rs.getString(11));
+				hospital.setHrink(rs.getString(12));
+				
 				list.add(hospital);
 			}
 			
@@ -87,7 +89,7 @@ public class HospitalDao extends DBConn{
 	 * */
 	public int delete(String hid) {
 		int result = 0;
-		String sql = "delete from mycgv_board where nid=?";
+		String sql = "delete from pcp_hospital where hid=?";
 		getPreparedStatement(sql);
 		
 		try {
@@ -144,18 +146,19 @@ public class HospitalDao extends DBConn{
 			
 			while(rs.next()) {
 				HospitalVo hospital = new HospitalVo();
-				hospital.setHname(rs.getString(1));
-				hospital.setGloc(rs.getString(2));
-				hospital.setLoc(rs.getString(3));
-				hospital.setTel(rs.getString(4));
-				hospital.setHtime(rs.getString(5));
-				hospital.setNtime(rs.getString(6));
-				hospital.setHoliday(rs.getString(7));
-				hospital.setAnimal(rs.getString(8));
-				hospital.setIntro(rs.getString(9));
-				hospital.setImg(rs.getString(10));
-				hospital.setHrink(rs.getString(11));
-
+				hospital.setHid(rs.getString(1));
+				hospital.setHname(rs.getString(2));
+				hospital.setGloc(rs.getString(3));
+				hospital.setLoc(rs.getString(4));
+				hospital.setTel(rs.getString(5));
+				hospital.setHtime(rs.getString(6));
+				hospital.setNtime(rs.getString(7));
+				hospital.setHoliday(rs.getString(8));
+				hospital.setAnimal(rs.getString(9));
+				hospital.setIntro(rs.getString(10));
+				hospital.setImg(rs.getString(11));
+				hospital.setHrink(rs.getString(12));
+				
 				list.add(hospital);
 				
 			}
