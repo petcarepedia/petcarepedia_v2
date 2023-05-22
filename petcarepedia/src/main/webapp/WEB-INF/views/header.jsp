@@ -49,7 +49,7 @@
                             <a href="#">로그아웃</a>
                         </li>
                         <li>
-                            <a href="http://localhost:9000/petcarepedia/admin_notice.do">공지사항</a>
+                            <a href="http://localhost:9000/petcarepedia/notice.do">공지사항</a>
                         </li>
                     </ul>
                 </div>
