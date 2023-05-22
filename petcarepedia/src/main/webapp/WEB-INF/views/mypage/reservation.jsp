@@ -31,51 +31,36 @@
 					<nav>
 						<ul>
 							<li>마이페이지</li>
-							<li><a href = "http://localhost:9000/petcarepedia/information.do?mid=${memberVo.mid}">회원 정보</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/reservation.do?mid=${memberVo.mid}">예약 내역</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/my_review.do?mid=${memberVo.mid}">내가 쓴 리뷰</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do?mid=${memberVo.mid}">즐겨찾기</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/signout.do?mid=${memberVo.mid}">회원 탈퇴</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/information.do?mid=${bookingVo.mid}">회원 정보</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/reservation.do?mid=${bookingVo.mid}">예약 내역</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/my_review.do?mid=${bookingVo.mid}">내가 쓴 리뷰</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do?mid=${bookingVo.mid}">즐겨찾기</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/signout.do?mid=${bookingVo.mid}">회원 탈퇴</a></li>
 						</ul>
 					</nav>
 				</div>
 			</section>
 			<div id = "aside">
 				<section id = "section2">
-					<div id = "aside1">
-						<img src = "http://localhost:9000/petcarepedia/images/hos.png">
-						<div>
-							<span>서울 > 강남구</span>
-							<span>더조은 동물병원</span>
-							<span>⭐5.0 | 리뷰 60</span>
-							<img src = "http://localhost:9000/petcarepedia/images/위치.png">
-							<span>서울특별시 강남구 강남대로78길 8, 한국빌딩 4F</span>
-							<img src = "http://localhost:9000/petcarepedia/images/홈.png">
-							<a href = "http://localhost:9000/petcarepedia/mypage/information.jsp">병원 홈페이지 가기</a>
-							<img src = "http://localhost:9000/petcarepedia/images/전화.png">
-							<span>010-1234-1234</span>
-							<span>예약날짜 2023-04-23</span>
-							<span>예약시간 17:50</span>
+					<c:forEach var = "bookingVo" items = "${list}">
+						<div id = "aside1">
+							<img src = "http://localhost:9000/petcarepedia/images/hos.png">
+							<div>
+								<span>${bookingVo.gloc}</span>
+								<span>${bookingVo.hname}</span>
+								<span></span>
+								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
+								<span>${bookingVo.loc}</span>
+								<img src = "http://localhost:9000/petcarepedia/images/홈.png">
+								<a href = "http://localhost:9000/petcarepedia/mypage/information.do">병원 홈페이지 가기</a>
+								<img src = "http://localhost:9000/petcarepedia/images/전화.png">
+								<span>${bookingVo.tel}</span>
+								<span>예약 날짜 : ${bookingVo.vdate}</span>
+								<span>예약 시간 : ${bookingVo.vtime}</span>
+							</div>
 						</div>
-					</div>
-					<button type = "button" id = "btn_cancle1">예약취소</button>
-					<div id = "aside2">
-						<img src = "http://localhost:9000/petcarepedia/images/hos.png">
-						<div>
-							<span>서울 > 강남구</span>
-							<span>더조은 동물병원</span>
-							<span>⭐5.0 | 리뷰 60</span>
-							<img src = "http://localhost:9000/petcarepedia/images/위치.png">
-							<span>서울특별시 강남구 강남대로78길 8, 한국빌딩 4F</span>
-							<img src = "http://localhost:9000/petcarepedia/images/홈.png">
-							<a href = "http://localhost:9000/petcarepedia/mypage/information.jsp">병원 홈페이지 가기</a>
-							<img src = "http://localhost:9000/petcarepedia/images/전화.png">
-							<span>010-1234-1234</span>
-							<span>예약날짜 2023-04-23</span>
-							<span>예약시간 17:50</span>
-						</div>
-					</div>
-					<button type = "button" id = "btn_cancle2">예약취소</button>
+						<button type = "button" id = "btn_cancle1">예약취소</button>
+					</c:forEach>
 				</section>
 			</div>
 		</section>
