@@ -250,46 +250,4 @@ public class MemberDao extends DBConn{
 		return result;
 	}
 	
-	/**
-	 * select - º£½ºÆ®¸®ºä
-	 */
-	public ArrayList<ReviewVo> select(int startCount, int endCount) {
-		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
-		
-		String sql = "select rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar\r\n" + 
-				"from(select rownum rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar\r\n" + 
-				"from(select rid,r.hid,rcontent,hname,gloc,to_char(rdate,'yyyy-mm-dd') rdate,rlike,rstar\r\n" + 
-				"from pcp_review r, pcp_hospital h\r\n" + 
-				"where r.hid=h.hid\r\n" + 
-				"order by rlike desc))\r\n" + 
-				"where rno between ? and ?";
-		getPreparedStatement(sql);
-		
-		try {
-			pstmt.setInt(1, startCount);
-			pstmt.setInt(2, endCount);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				ReviewVo reviewVo = new ReviewVo();
-				
-				reviewVo.setRno(rs.getInt(1));
-				reviewVo.setRid(rs.getString(2));
-				reviewVo.setHid(rs.getString(3));
-				reviewVo.setRcontent(rs.getString(4));
-				reviewVo.setHname(rs.getString(5));
-				reviewVo.setGloc(rs.getString(6));
-				reviewVo.setRdate(rs.getString(7));
-				reviewVo.setRlike(rs.getInt(8));
-				reviewVo.setRstar(rs.getString(9));
-				
-				
-				list.add(reviewVo);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
 }
