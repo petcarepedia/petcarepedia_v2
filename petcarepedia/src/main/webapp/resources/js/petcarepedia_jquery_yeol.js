@@ -1,12 +1,5 @@
 $(document).ready(function(){
 	
-/*******************************************
-		mypage - 회원정보페이지(수정하기)버튼
-********************************************/	
-	$("#revise form #section3 btn_style1").click(function(){
-		updateForm.submit();
-	})
-	
 
 /*******************************************************************************
 		수정하기  - 주소찾기 : daum API
@@ -27,11 +20,8 @@ $(document).ready(function(){
 		mypage - 수정하기페이지 버튼
 ******************************************************************************/
 	$("#revise form #section3 #btn_style1").click(function(){
-		var result = confirm('수정을 완료하시겠습니까?');
-		
-		if(result) {
-			location.href = "http://localhost:9000/petcarepedia/information.do";
-		}
+		alert("test");
+		updateForm.submit();
 	})
 
 

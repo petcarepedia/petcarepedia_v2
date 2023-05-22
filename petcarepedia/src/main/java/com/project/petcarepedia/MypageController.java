@@ -5,7 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.BookingDao;
 import com.project.dao.MemberDao;
+import com.project.vo.BookingVo;
 import com.project.vo.MemberVo;
 
 @Controller
@@ -39,23 +41,32 @@ public class MypageController {
 	/*
 	 * informatin_update_proc - 정보 수정하기 처리
 	 */
-	@RequestMapping(value = "/informatin_update_proc", method = RequestMethod.POST)
-	public String informatin_update_proc(MemberVo memberVo) {
+	@RequestMapping(value = "/member_update_proc.do", method = RequestMethod.POST)
+	public String member_update_proc(MemberVo memberVo) {
 		String viewName = "";
 		MemberDao memberDao = new MemberDao();
 		int result = memberDao.update(memberVo);
 		if(result == 1) {
-			viewName = "redirect://information.do";
+			viewName = "redirect:/information.do?mid=" + memberVo.getMid();
 		} else {
 			//오류페이지 호출
 		}
 		return viewName;
 	}
 	
-	
+	/*
+	 * reservation.do - 예약내역 폼
+	 */
 	@RequestMapping(value = "/reservation.do", method = RequestMethod.GET)
-	public String reservation() {
-		return "/mypage/reservation";
+	public ModelAndView reservation(String mid) {
+		ModelAndView model = new ModelAndView();
+		BookingDao bookingDao = new BookingDao();
+		BookingVo bookingVo = bookingDao.select(mid);
+		
+		model.setViewName("/mypage/reservation");
+		model.addObject("bookingVo", bookingVo);
+		
+		return model;
 	}
 	
 	@RequestMapping(value = "/reservation2.do", method = RequestMethod.GET)

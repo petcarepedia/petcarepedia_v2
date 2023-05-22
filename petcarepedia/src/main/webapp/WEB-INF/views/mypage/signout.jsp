@@ -22,11 +22,11 @@
 					<nav>
 						<ul>
 							<li>마이페이지</li>
-							<li><a href = "http://localhost:9000/petcarepedia/information.do">회원 정보</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/reservation.do">예약 내역</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/my_review.do">내가 쓴 리뷰</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do">즐겨찾기</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/signout.do">회원 탈퇴</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/information.do?mid=${memberVo.mid}">회원 정보</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/reservation.do?mid=${memberVo.mid}">예약 내역</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/my_review.do?mid=${memberVo.mid}">내가 쓴 리뷰</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do?mid=${memberVo.mid}">즐겨찾기</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/signout.do?mid=${memberVo.mid}">회원 탈퇴</a></li>
 						</ul>
 					</nav>
 				</div>

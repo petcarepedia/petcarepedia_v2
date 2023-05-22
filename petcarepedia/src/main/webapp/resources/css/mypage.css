@@ -136,7 +136,7 @@ hr {
 	font-weight: 700;
 	font-size: 15px;
 	line-height: 18px;
-	margin-top : 30px;
+	margin-top : 80px;
 	margin-left : 202px;
 /* 	left: 782px;
 	top: 693px; */
@@ -145,6 +145,27 @@ hr {
 /**************************************
 	mypage - revise
 **************************************/
+#revise form #aisde #section2 ul li label:first-child{
+	display : inline-block;
+	text-align : center;
+	width: 77px;
+	height: 35px;
+	background: #98DFFF;
+	color : white;
+	font-size: 14px;
+	font-weight: 700;
+	padding:20px 0 0 0;
+	border-radius: 5px;
+}
+#revise form #aside #section2 ul li label:nth-child(2){
+	display : inline-block;
+	width : 520px;
+	height: 35px;
+	border-bottom: 1px solid #8A8A8A;
+	padding: 2px 0 0 0;
+	font-weight : 700;
+	font-size: 14px;
+}
 #year, #month, #date{
 	width: 120px;
 	height: 45px;
