@@ -13,7 +13,7 @@ public class HospitalDao extends DBConn{
 	public ArrayList<HospitalVo> search(String hid){
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
 		HospitalVo hospital = new HospitalVo();
-		String sql = " SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK  "
+		String sql = " SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y  "
 					+"  FROM PCP_HOSPITAL WHERE HID=? OR HNAME LIKE %?% )";
 		getPreparedStatement(sql);
 		
@@ -36,6 +36,8 @@ public class HospitalDao extends DBConn{
 				hospital.setIntro(rs.getString(10));
 				hospital.setImg(rs.getString(11));
 				hospital.setHrink(rs.getString(12));
+				hospital.setX(rs.getString(13));
+				hospital.setY(rs.getString(14));
 				
 				list.add(hospital);
 			}
@@ -51,7 +53,7 @@ public class HospitalDao extends DBConn{
 	public ArrayList<HospitalVo> search(){
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
 		HospitalVo hospital = new HospitalVo();
-		String sql = " SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK  "
+		String sql = " SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y  "
 					+"  FROM PCP_HOSPITAL WHERE HID=? OR HNAME like %?% )";
 		getPreparedStatement(sql);
 		
@@ -74,6 +76,8 @@ public class HospitalDao extends DBConn{
 				hospital.setIntro(rs.getString(10));
 				hospital.setImg(rs.getString(11));
 				hospital.setHrink(rs.getString(12));
+				hospital.setX(rs.getString(13));
+				hospital.setY(rs.getString(14));
 				
 				list.add(hospital);
 			}
@@ -110,7 +114,7 @@ public class HospitalDao extends DBConn{
 		int result = 0;
 		
 		String sql = "UPDATE PCP_HOSPITAL SET HNAME = ?, GLOC = ?, LOC=? , TEL =?, "
-					+ "HTIME=?, NTIME=?, HOLIDAY=?, ANIMAL=?, INTRO=?, IMG=?, HRINK=?";
+					+ "HTIME=?, NTIME=?, HOLIDAY=?, ANIMAL=?, INTRO=?, IMG=?, HRINK=?, X =?, Y = ?";
 		getPreparedStatement(sql);
 		
 		try {
@@ -125,6 +129,8 @@ public class HospitalDao extends DBConn{
 			pstmt.setString(9, hospitalVo.getIntro());
 			pstmt.setString(10, hospitalVo.getImg());
 			pstmt.setString(11, hospitalVo.getHrink());
+			pstmt.setString(12, hospitalVo.getX());
+			pstmt.setString(13, hospitalVo.getY());
 			
 			result = pstmt.executeUpdate();
 			
@@ -138,16 +144,32 @@ public class HospitalDao extends DBConn{
 	 * */
 	public HospitalVo select(String hid){
 		HospitalVo hospital = new HospitalVo();
-		String sql = "SELECT ROWNUM RNO, HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK"
-					+" FROM(SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK"
-					+" FROM PCP_HOSPITAL WHERE HID =?  ORDER BY HID DESC)";
+		String sql = "SELECT  HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y"
+					+" FROM PCP_HOSPITAL WHERE HID?";
 		getPreparedStatement(sql);
 		
 		try {
 			pstmt.setString(1, hid);
 			rs = pstmt.executeQuery();
 			
-			
+			while(rs.next()) {
+				hospital.setRno(rs.getInt(1));
+				hospital.setHid(rs.getString(2));
+				hospital.setHname(rs.getString(3));
+				hospital.setGloc(rs.getString(4));
+				hospital.setLoc(rs.getString(5));
+				hospital.setTel(rs.getString(6));
+				hospital.setHtime(rs.getString(7));
+				hospital.setNtime(rs.getString(8));
+				hospital.setHoliday(rs.getString(9));
+				hospital.setAnimal(rs.getString(10));
+				hospital.setIntro(rs.getString(11));
+				hospital.setImg(rs.getString(12));
+				hospital.setHrink(rs.getString(13));
+				hospital.setX(rs.getString(14));
+				hospital.setY(rs.getString(15));
+				
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -159,8 +181,8 @@ public class HospitalDao extends DBConn{
 	 * */
 	public ArrayList<HospitalVo> select(){
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
-		String sql = "SELECT ROWNUM RNO,  HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK" + 
-				"	FROM (SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK"
+		String sql = "SELECT ROWNUM RNO,  HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y" + 
+				"	FROM (SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y"
 				+ " FROM PCP_HOSPITAL ORDER BY HID DESC)";
 		getPreparedStatement(sql);
 		
@@ -182,6 +204,8 @@ public class HospitalDao extends DBConn{
 				hospital.setIntro(rs.getString(11));
 				hospital.setImg(rs.getString(12));
 				hospital.setHrink(rs.getString(13));
+				hospital.setX(rs.getString(14));
+				hospital.setY(rs.getString(15));
 				
 				list.add(hospital);
 			}
@@ -201,7 +225,7 @@ public class HospitalDao extends DBConn{
 		
 		String sql ="INSERT INTO PCP_HOSPITAL VALUES (" + 
 				"  'H_'||LTRIM(TO_CHAR(SEQU_PCP_HOSPITAL_HID.NEXTVAL,'0000')),"
-			  + "	?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			  + "	?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
 		getPreparedStatement(sql);
 		
 		try {
@@ -216,6 +240,8 @@ public class HospitalDao extends DBConn{
 			pstmt.setString(9,hospitalVo.getIntro());
 			pstmt.setString(10,hospitalVo.getImg());
 			pstmt.setString(11,hospitalVo.getHrink());
+			pstmt.setString(12,hospitalVo.getX());
+			pstmt.setString(13,hospitalVo.getY());
 			
 			result = pstmt.executeUpdate(); 
 			

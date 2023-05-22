@@ -131,8 +131,8 @@ section.review #section1 div nav ul li:nth-child(5) a
 	/* header-style */
 	.header-menu {
 		height:100px; width:100%;
-		background:7ab2cc;
 		position:fixed; left:0; top:0;
+		background :#7ab2cc;
 	}
 	.header-content {
 		width:1000px; height:100px;

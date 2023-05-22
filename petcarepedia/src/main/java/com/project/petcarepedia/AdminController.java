@@ -13,11 +13,45 @@ import com.project.vo.HospitalVo;
 @Controller
 public class AdminController {
 	
+	
+	
+	
+	
+	/**
+	 * 병원 - 수정폼
+	 * */
+	@RequestMapping(value="/hospital_update_proc.do", method=RequestMethod.POST)
+	public String hostpital_update_proc(HospitalVo hospitalVo) {
+		String viewName="";
+		HospitalDao hospitalDao = new HospitalDao();
+		int result = hospitalDao.update(hospitalVo);
+		if(result == 1) {
+			viewName = "redirect:/hospital_list.do";
+		}
+		return viewName;
+	}
+	
+	/**
+	 * 병원 - 수정 페이지
+	 * */
+	@RequestMapping(value="/hospital_update.do", method=RequestMethod.GET)
+	public ModelAndView hostpital_update(String hid) {
+		
+		ModelAndView model = new ModelAndView();
+		HospitalDao hospitalDao = new HospitalDao();
+		HospitalVo hospitalVo = hospitalDao.select(hid); 
+		
+		model.addObject("hospitalVo", hospitalVo);
+		model.setViewName("/admin/hospital/hospital_update");
+		
+		return model;
+	}
+	
 	/**
 	 * 병원 - 병원 정보 등록 처리
 	 * */
 	@RequestMapping(value="/hospital_detail_proc.do", method=RequestMethod.POST)
-	public String hostpital_list_detail_proc(HospitalVo hospitalVo) {
+	public String hostpital_detail_proc(HospitalVo hospitalVo) {
 		String viewName="";
 		HospitalDao hospitalDao = new HospitalDao();
 		int result = hospitalDao.insert(hospitalVo);
@@ -65,6 +99,4 @@ public class AdminController {
 	}
 	
 	
-	
-
 }
