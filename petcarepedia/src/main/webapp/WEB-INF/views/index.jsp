@@ -42,12 +42,14 @@
 			</div>
 		</form>
 		
-		<jsp:include page="best_review_list.jsp"></jsp:include>
+		<div id="brbox">
+			<jsp:include page="/best_review_list.do"></jsp:include>
+		</div>
 		
 		<div class="main-map">
 			<div class="sub">
 				<p>가까운 병원 빠르게 찾고 싶다면? <span>지역구별 병원 검색</span></p>
-				<a href="#">검색페이지 전체보기 ></a>
+				<a href="http://localhost:9000/petcarepedia/search_main.do">검색페이지 전체보기 ></a>
 			</div>
 			
 			<div class="map-content">

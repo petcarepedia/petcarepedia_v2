@@ -71,7 +71,7 @@ public class LoginController {
 	 * login_idfind_success.do - 아이디찾기 성공
 	 * POST 방식으로 수정
 	 */
-	@RequestMapping(value="/login_idfind_success.do",method=RequestMethod.GET)
+	@RequestMapping(value="/login_idfind_success.do",method=RequestMethod.POST)
 	public String login_idfind_success() {
 		return "/login/login_idfind_success";
 	}
@@ -80,7 +80,7 @@ public class LoginController {
 	 * login_idfind_fail.do - 아이디찾기 실패
 	 * POST 방식으로 수정
 	 */
-	@RequestMapping(value="/login_idfind_fail.do",method=RequestMethod.GET)
+	@RequestMapping(value="/login_idfind_fail.do",method=RequestMethod.POST)
 	public String login_idfind_fail() {
 		return "/login/login_idfind_fail";
 	}
@@ -117,7 +117,7 @@ public class LoginController {
 	 * login_pwfind_fail.do - 비밀번호 재설정 - 정보 확인 실패
 	 * POST 방식으로 수정
 	 */
-	@RequestMapping(value="/login_pwfind_fail.do",method=RequestMethod.GET)
+	@RequestMapping(value="/login_pwfind_fail.do",method=RequestMethod.POST)
 	public String login_pwfind_fail() {
 		return "/login/login_pwfind_fail";
 	}
