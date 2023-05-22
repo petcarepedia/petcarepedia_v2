@@ -49,13 +49,14 @@ section.notice .button_r {
 	text-align:right;
 	padding-right:50px;
 }
-section.notice .button, section.review_content .button {
+section.notice .button, section.review_content .button, section.notice form table.notice_delete tr td button {
 	background:#98DFFF;
 	color:white;
 	border:1px solid #98DFFF;
 	padding:5px 10px;
 	border-radius:5px;
 }
+
 section.notice .button:hover, section.review_content .button:hover {
 	cursor:pointer;
 }
@@ -161,6 +162,9 @@ div p {
 	line-height: 29px;
 	padding-left:5px;
 }
+div#best_review {
+	margin-top:150px;
+}
 div#best_review ul {
 	list-style-type:none;
 	text-align:center;
@@ -182,6 +186,7 @@ div#best_review ul li{
 div#filter_page table.filter {
 	width:100%;
 	background:#F5F5F5;
+	height:100px;
 	/* border:1px solid blue; */
 }
 div#filter_page table.filter tr th {
@@ -328,6 +333,7 @@ div#best_review ul li a div.review_text {
 	font-size: 12px;
 	line-height: 15px;
 	text-align:left;
+	height:130px;
 }
 div#best_review ul li a div.review_text p.sub_title {
 	font-style: normal;
@@ -459,9 +465,13 @@ section.review_content table.rv_detail_menu tr th {
 }
 section.review_content table.rv_detail_menu tr td {
 	text-align:left;
-	font-size:12px;
+	font-size:14px;
 	font-weight: 10;
 	/* border:1px solid blue; */
+}
+section.review_content table.rv_detail_menu tr td img,div#review ul li.review_list ul li#list_left p img {
+	width:20px;
+	margin-right:10px;
 }
 section.review_content table.rv_detail_menu tr:nth-child(2) td:nth-child(2) {
 	width:200px;

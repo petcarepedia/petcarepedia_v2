@@ -127,7 +127,7 @@ public class NoticeController {
 		ArrayList<NoticeVo> noticeList = noticeDao.select();
 		
 		model.addObject("noticeList", noticeList);
-		model.setViewName("notice/notice");
+		model.setViewName("/notice/notice");
 		
 		return model;
 	}

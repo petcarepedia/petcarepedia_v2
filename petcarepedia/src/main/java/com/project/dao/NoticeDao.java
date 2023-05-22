@@ -56,7 +56,7 @@ public class NoticeDao extends DBConn {
 		}
 		return noticeVo;
 	}
-	// 공지사항 html 띄어쓰기 변형
+	// 공지사항 html 띄어쓰기 출력
 	public NoticeVo u_select(String nid) {
 		NoticeVo noticeVo = new NoticeVo();
 		String sql = "select nid, title, ndate, nhits, ncontent from pcp_notice where nid = ? ";
