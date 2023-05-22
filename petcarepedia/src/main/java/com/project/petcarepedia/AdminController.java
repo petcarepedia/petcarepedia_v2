@@ -14,7 +14,7 @@ import com.project.vo.HospitalVo;
 public class AdminController {
 	
 	/**
-	 * 병원 - 등록 처리
+	 * 병원 - 병원 정보 등록 처리
 	 * */
 	@RequestMapping(value="/hospital_detail_proc.do", method=RequestMethod.POST)
 	public String hostpital_list_detail_proc(HospitalVo hospitalVo) {
@@ -24,7 +24,6 @@ public class AdminController {
 		if(result == 1) {
 			viewName = "redirect:/hospital_list.do";
 		}
-		
 		return viewName;
 	}
 	
@@ -33,8 +32,21 @@ public class AdminController {
 	 * */
 	@RequestMapping(value="/hospital_detail.do", method=RequestMethod.GET)
 	public String hostpital_list_detail() {
-		
-		return "admin/hospital/hospital_detail";
+		return "/admin/hospital/hospital_detail";
+	}
+	
+	/**
+	 * 병원 - 검색페이지
+	 * */
+	@RequestMapping(value="/hospital_list_detail.do", method=RequestMethod.GET)
+	public String hostpital_detail(HospitalVo hospitalVo) {
+		String viewName = "";
+		HospitalDao hospitalDao = new HospitalDao();
+		int result = hospitalDao.insert(hospitalVo);
+		if(result == 1) {
+			viewName = "redirect:/hospital_list.do";
+		}
+		return viewName;
 	}
 	
 	/**
