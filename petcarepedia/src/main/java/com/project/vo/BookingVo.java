@@ -1,9 +1,36 @@
 package com.project.vo;
 
 public class BookingVo {
-	String bid, bdate, vdate, vtime, bstate, mid;
+	String bid, bdate, vdate, vtime, bstate, mid, hid;
 	int rno;
 	
+	/** Ãß°¡ **/
+	String hname, loc, gloc, tel;
+	
+	public String getHname() {
+		return hname;
+	}
+	public void setHname(String hname) {
+		this.hname = hname;
+	}
+	public String getLoc() {
+		return loc;
+	}
+	public void setLoc(String loc) {
+		this.loc = loc;
+	}
+	public String getGloc() {
+		return gloc;
+	}
+	public void setGloc(String gloc) {
+		this.gloc = gloc;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public String getBid() {
 		return bid;
 	}
@@ -45,6 +72,13 @@ public class BookingVo {
 	}
 	public void setRno(int rno) {
 		this.rno = rno;
+	}
+	
+	public String getHid() {
+		return hid;
+	}
+	public void setHid(String hid) {
+		this.hid = hid;
 	}
 	
 	

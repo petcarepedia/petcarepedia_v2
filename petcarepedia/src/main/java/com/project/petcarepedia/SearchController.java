@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.HospitalDao;
+import com.project.dao.ReviewDao;
 import com.project.vo.HospitalVo;
 
 
@@ -35,9 +36,9 @@ public class SearchController {
 	public ModelAndView search_result(String hid) {
 		ModelAndView model = new ModelAndView();
 		HospitalDao hospitalDao = new HospitalDao();
-		ArrayList<HospitalVo> hospital = hospitalDao.search();
+		HospitalVo hospitalVo = ReviewDao.RH_select(hid);
 		
-		model.addObject("hospital", hospital);
+		model.addObject("hospital", hospitalVo);
 		model.setViewName("/search/search_result");
 		
 		return model;

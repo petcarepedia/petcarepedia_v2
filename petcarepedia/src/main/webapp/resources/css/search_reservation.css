@@ -110,6 +110,9 @@ div.time span:hover {
 	color: red;
 }
 
+div.time span:clicked {
+	/* border: 1px solid #D9D9D9; */
+}
 
 
 
