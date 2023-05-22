@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mycgv_jsp.dao.BoardDao;
+import com.mycgv_jsp.vo.BoardVo;
 import com.project.dao.HospitalDao;
 import com.project.dao.ReviewDao;
 import com.project.vo.HospitalVo;
@@ -32,33 +34,31 @@ public class SearchController {
 	
 /////////////////////
 	
-	/** search_result.do - 병원 상세정보 수정예쩡 **/
+	/** search_result.do - 병원 상세정보 **/
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
 	public ModelAndView search_result(String hid) {
 		ModelAndView model = new ModelAndView();
 		
 		HospitalDao hospitalDao = new HospitalDao();
-		HospitalVo hospitalVo = new HospitalVo();
+		HospitalVo hospital = hospitalDao.select(hid);
 		
-		int result = hospitalDao.select(hid);
-		if(result == 1) {
-			model.addObject("hospital", hospitalVo);
-			System.out.println("hospital");
-		}  else {
-			System.out.println("오류");
-		}
-	
+		model.addObject("hospital", hospital);
 		
-		ReviewDao reviewDao = new ReviewDao();
-		ArrayList<ReviewVo> RHList = reviewDao.RH_select(hid);
 		
-		model.addObject("list", RHList);
+		/*
+		 * ReviewDao reviewDao = new ReviewDao(); ArrayList<ReviewVo> RHList =
+		 * reviewDao.RH_select(hid);
+		 * 
+		 * model.addObject("rlist", RHList);
+		 */
 		
 		model.setViewName("/search/search_result");
 		
 		
 		return model;
 	}
+	
+	
 	
 	/////////////////////
 	
