@@ -61,22 +61,23 @@
 			<div class="review-list">
 				<input type="hidden" value="${page}" id="page">
 				<c:forEach var="reviewVo" items="${list}">
-					<div id="brcontent" class="review-card">
-						<div>
-							<a>${reviewVo.hname}</a>
-							<p>⭐ ${reviewVo.rstar}.0</p>
-						</div>
-						<div>
-							<div>${reviewVo.gloc}</div>
-							<!-- <div>강아지</div> -->
-						</div>
-						<div>
-							${reviewVo.rcontent}
-						</div>
-						<div>
-							<p>❤️ ${reviewVo.rlike}</p>
-							<p>${reviewVo.rdate}</p>
-						</div>
+					<div id="brcontent" href="http://localhost:9000/petcarepedia/review_main.do" class="review-card">
+							<div>
+								<a>${reviewVo.hname}</a>
+								<p>⭐ ${reviewVo.rstar}.0</p>
+							</div>
+							<div>
+								<div>${reviewVo.gloc}</div>
+								<!-- <div>강아지</div> -->
+							</div>
+							<div>
+								${reviewVo.rcontent}
+							</div>
+							<div>
+								<p>❤️ ${reviewVo.rlike}</p>
+								<p>${reviewVo.rdate}</p>
+							</div>
+						
 					</div>
 				</c:forEach>
 			</div>
