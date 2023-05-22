@@ -14,7 +14,7 @@ public class HospitalDao extends DBConn{
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
 		HospitalVo hospital = new HospitalVo();
 		String sql = " SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK  "
-				+"  FROM PCP_HOSPITAL WHERE HID=? OR HNAME LIKE %?% )";
+					+"  FROM PCP_HOSPITAL WHERE HID=? OR HNAME LIKE %?% )";
 		getPreparedStatement(sql);
 		
 		try {
@@ -126,9 +126,32 @@ public class HospitalDao extends DBConn{
 			pstmt.setString(10, hospitalVo.getImg());
 			pstmt.setString(11, hospitalVo.getHrink());
 			
+			result = pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
+	}
+	/**
+	 *  select - 병원 하나만 조회
+	 * */
+	public int select(String hid){
+		int result= 0;
+		String sql = "SELECT ROWNUM RNO, HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK"
+					+" FROM(SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK"
+					+" FROM PCP_HOSPITAL WHERE HID =?  ORDER BY HID DESC)";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, hid);
+			rs = pstmt.executeQuery();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 	/**
@@ -146,21 +169,21 @@ public class HospitalDao extends DBConn{
 			
 			while(rs.next()) {
 				HospitalVo hospital = new HospitalVo();
-				hospital.setHid(rs.getString(1));
-				hospital.setHname(rs.getString(2));
-				hospital.setGloc(rs.getString(3));
-				hospital.setLoc(rs.getString(4));
-				hospital.setTel(rs.getString(5));
-				hospital.setHtime(rs.getString(6));
-				hospital.setNtime(rs.getString(7));
-				hospital.setHoliday(rs.getString(8));
-				hospital.setAnimal(rs.getString(9));
-				hospital.setIntro(rs.getString(10));
-				hospital.setImg(rs.getString(11));
-				hospital.setHrink(rs.getString(12));
+				hospital.setRno(rs.getInt(1));
+				hospital.setHid(rs.getString(2));
+				hospital.setHname(rs.getString(3));
+				hospital.setGloc(rs.getString(4));
+				hospital.setLoc(rs.getString(5));
+				hospital.setTel(rs.getString(6));
+				hospital.setHtime(rs.getString(7));
+				hospital.setNtime(rs.getString(8));
+				hospital.setHoliday(rs.getString(9));
+				hospital.setAnimal(rs.getString(10));
+				hospital.setIntro(rs.getString(11));
+				hospital.setImg(rs.getString(12));
+				hospital.setHrink(rs.getString(13));
 				
 				list.add(hospital);
-				
 			}
 			
 		} catch (Exception e) {
@@ -199,7 +222,6 @@ public class HospitalDao extends DBConn{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return result; 
 	}
 }	
