@@ -30,7 +30,7 @@ public class LoginController {
 		
 		if(result==1) {
 			model.addObject("login_result", "success");
-			model.setViewName("index");
+			model.setViewName("redirect:/index.do");
 		} else {
 			model.addObject("login_result", "fail");
 			model.setViewName("/login/login");
