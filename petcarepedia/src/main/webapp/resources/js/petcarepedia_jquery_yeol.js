@@ -43,22 +43,7 @@ $(document).ready(function(){
 		location.href = "http://localhost:9000/petcarepedia/reservation2.do";
 	});
 	
-	$("#btn_cancle1").click(function(){
-		var result = confirm('예약을 취소하시겠습니까?');
-		if(result) {
-			$("#aside1").hide();
-			$("#btn_cancle1").hide();
-		}
-	});
-	
-	$("#btn_cancle2").click(function(){
-		var result = confirm('예약을 취소하시겠습니까?');
-		if(result) {
-			$("#aside2").hide();
-			$("#btn_cancle2").hide();
-		}
-	});
-	
+
 	$("#btn_write_review").click(function(){
 		location.href = "http://localhost:9000/petcarepedia/review_write.do";
 	})

@@ -1,5 +1,7 @@
 package com.project.petcarepedia;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,10 +63,10 @@ public class MypageController {
 	public ModelAndView reservation(String mid) {
 		ModelAndView model = new ModelAndView();
 		BookingDao bookingDao = new BookingDao();
-		BookingVo bookingVo = bookingDao.select(mid);
+		ArrayList<BookingVo> list = bookingDao.search(mid);
 		
 		model.setViewName("/mypage/reservation");
-		model.addObject("bookingVo", bookingVo);
+		model.addObject("list", list);
 		
 		return model;
 	}
