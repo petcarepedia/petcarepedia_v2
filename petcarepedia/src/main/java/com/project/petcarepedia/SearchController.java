@@ -30,17 +30,24 @@ public class SearchController {
 		return model;
 	}
 	
-	/////////////////////
+/////////////////////
 	
-	/** search_result.do - 병원 상세정보 **/
+	/** search_result.do - 병원 상세정보 수정예쩡 **/
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
 	public ModelAndView search_result(String hid) {
 		ModelAndView model = new ModelAndView();
 		
 		HospitalDao hospitalDao = new HospitalDao();
-		HospitalVo hospitalVo = hospitalDao.select(hid);
+		HospitalVo hospitalVo = new HospitalVo();
 		
-		model.addObject("hospital", hospitalVo);
+		int result = hospitalDao.select(hid);
+		if(result == 1) {
+			model.addObject("hospital", hospitalVo);
+			System.out.println("hospital");
+		}  else {
+			System.out.println("오류");
+		}
+	
 		
 		ReviewDao reviewDao = new ReviewDao();
 		ArrayList<ReviewVo> RHList = reviewDao.RH_select(hid);
