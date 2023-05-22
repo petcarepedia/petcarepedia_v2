@@ -141,6 +141,48 @@ public class BookingDao extends DBConn {
 		return list;
 	} // ArrayList<BookingVo> search1(String mid)
 	
+	
+	/** select - 예약중 리스트 날짜(회원 기준/05.22) **/
+	public ArrayList<BookingVo> search2(String mid) {
+		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
+
+		String sql = "SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, H.HRINK" + 
+				" FROM PCP_BOOKING B, PCP_HOSPITAL H" + 
+				" WHERE B.HID = H.HID" + 
+				" AND MID = ?" + 
+				" AND VDATE >= SYSDATE";
+		
+		getPreparedStatement(sql);
+
+		try {
+			pstmt.setString(1, mid);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				BookingVo bookingVo = new BookingVo();
+				bookingVo.setBid(rs.getString(1));
+				bookingVo.setBdate(rs.getString(2));
+				bookingVo.setVdate(rs.getString(3));
+				bookingVo.setVtime(rs.getString(4));
+				bookingVo.setBstate(rs.getString(5));
+				bookingVo.setMid(rs.getString(6));
+				bookingVo.setHid(rs.getString(7));
+				bookingVo.setHname(rs.getString(8));
+				bookingVo.setLoc(rs.getString(9));
+				bookingVo.setGloc(rs.getString(10));
+				bookingVo.setTel(rs.getString(11));
+				bookingVo.setHrink(rs.getString(12));
+
+				list.add(bookingVo);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	} // ArrayList<BookingVo> search2(String mid)
+	
 		
 	/** select(mid) - 로그인 후 예약확인하기 **/
 	public BookingVo select(String mid) {
