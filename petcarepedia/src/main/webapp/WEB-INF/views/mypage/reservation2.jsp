@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,8 +19,12 @@
 			<div id = "btn_box">
 				<h1 id = "title">예약 내역</h1>
 				<div id = "btn_reservation">
-					<button type = "button" id = "btn3">예약중</button>
-					<button type = "button" id = "btn4">진료 완료</button>
+					<a href = "reservation.do?mid=hong"> 
+						<button type = "button" id = "btn3">예약중</button>
+					</a>
+					<a href = "reservation2.do?mid=hong">
+						<button type = "button" id = "btn4">진료 완료</button>
+					 </a> 
 				</div>
 				<hr>
 			</div>
@@ -28,7 +33,7 @@
 					<nav>
 						<ul>
 							<li>마이페이지</li>
-							<li><a href = "http://localhost:9000/petcarepedia/information.do?mid=${memberVo.mid}">회원 정보</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/information.do?mid=hong">회원 정보</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/reservation.do?mid=${memberVo.mid}">예약 내역</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/my_review.do?mid=${memberVo.mid}">내가 쓴 리뷰</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do?mid=${memberVo.mid}">즐겨찾기</a></li>
@@ -39,46 +44,32 @@
 			</section>
 			<div id = "aside">
 				<section id = "section2">
-					<div id = "aside1">
-						<img src = "http://localhost:9000/petcarepedia/images/hos.png">
-						<div>
-							<span>서울 > 강남구</span>
-							<span>더조은 동물병원</span>
-							<span>⭐5.0 | 리뷰 60</span>
-							<img src = "http://localhost:9000/petcarepedia/images/위치.png">
-							<span>서울특별시 강남구 강남대로78길 8, 한국빌딩 4F</span>
-							<img src = "http://localhost:9000/petcarepedia/images/홈.png">
-							<a href = "http://localhost:9000/petcarepedia/mypage/information.jsp">병원 홈페이지 가기</a>
-							<img src = "http://localhost:9000/petcarepedia/images/전화.png">
-							<span>010-1234-1234</span>
-							<span>예약날짜 2023-04-23</span>
-							<span>예약시간 17:50</span>
+					<c:forEach var = "bookingVo" items = "${list}">
+						<div id = "aside1">
+							<img src = "http://localhost:9000/petcarepedia/images/hos.png">
+							<div>
+								<span>서울시 > ${bookingVo.gloc}</span>
+								<span>${bookingVo.hname}</span>
+								<span></span>
+								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
+								<span>${bookingVo.loc}</span>
+								<img src = "http://localhost:9000/petcarepedia/images/홈.png">
+								<a href = "http://localhost:9000/petcarepedia/information.do">병원 홈페이지 가기</a>
+								<img src = "http://localhost:9000/petcarepedia/images/전화.png">
+								<span>${bookingVo.tel}</span>
+								<span>예약 날짜 : ${bookingVo.vdate}</span>
+								<span>예약 시간 : ${bookingVo.vtime}</span>
+							</div>
 						</div>
-					</div>
-					<div id = "btn_review">
-						<button type = "button" id = "btn_write_review">리뷰쓰기</button>
-						<button type = "button" id = "btn_watch_review">리뷰보기</button>
-					</div>
-					<div id = "aside2">
-						<img src = "http://localhost:9000/petcarepedia/images/hos.png">
-						<div>
-							<span>서울 > 강남구</span>
-							<span>더조은 동물병원</span>
-							<span>⭐5.0 | 리뷰 60</span>
-							<img src = "http://localhost:9000/petcarepedia/images/위치.png">
-							<span>서울특별시 강남구 강남대로78길 8, 한국빌딩 4F</span>
-							<img src = "http://localhost:9000/petcarepedia/images/홈.png">
-							<a href = "http://localhost:9000/petcarepedia/mypage/information.jsp">병원 홈페이지 가기</a>
-							<img src = "http://localhost:9000/petcarepedia/images/전화.png">
-							<span>010-1234-1234</span>
-							<span>예약날짜 2023-04-23</span>
-							<span>예약시간 17:50</span>
+						<div id = "btn_review">
+							<a href = "review_write.do?mid=hong">
+								<button type = "button" id = "btn_write_review">리뷰쓰기</button>
+							</a>
+							<a href = "my_review.do?mid=hong">
+							<button type = "button" id = "btn_watch_review">리뷰보기</button>
+							</a>
 						</div>
-					</div>
-					<div id = "btn_review">
-						<button type = "button" id = "btn_write_review">리뷰쓰기</button>
-						<button type = "button" id = "btn_watch_review">리뷰보기</button>
-					</div>
+					</c:forEach>
 				</section>
 			</div>
 		</section>

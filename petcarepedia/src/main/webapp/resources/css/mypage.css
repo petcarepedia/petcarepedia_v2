@@ -285,7 +285,7 @@ hr {
 	height : 45px;
 	padding : 0px;
 }
-#btn_reservation #btn1, #btn_reservation #btn2 {
+#btn_reservation a button {
 	width: 200px; 
 	height : 45px;
 }
@@ -307,6 +307,9 @@ hr {
 	color : #8A8A8A;
 	border : 1px solid #F2F2F2;
 	border-radius: 20px 5px 0px 0px;
+}
+#btn_reservation a {
+	text-decoration : none;
 }
 #btn_box {
 	float : left;
@@ -511,6 +514,9 @@ hr {
 	border: 1px solid #8A8A8A;
 	border-radius: 5px;
 }
+#btn_review a {
+	text-decoration : none;
+}
 #btn_watch_review {
 	margin-top : 10px;
 	margin-left : 5px;
@@ -523,6 +529,8 @@ hr {
 	width: 200px; 
 	height : 45px;
 }
+
+
 #btn_reservation #btn3 {
 	font-weight: 600;
 	font-size: 18px;

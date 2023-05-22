@@ -21,8 +21,12 @@
 			<div id = "btn_box">
 				<h1 id = "title">예약 내역</h1>
 				<div id = "btn_reservation">
-					<button type = "button" id = "btn1">예약중</button>
-					<button type = "button" id = "btn2">진료 완료</button>
+					<a href = "reservation.do?mid=hong">
+						<button type = "button" id = "btn1">예약중</button>
+					</a>
+					<a href = "reservation2.do?mid=hong">
+						<button type = "button" id = "btn2">진료 완료</button>
+					</a>
 				</div>
 				<hr>
 			</div>
@@ -31,7 +35,7 @@
 					<nav>
 						<ul>
 							<li>마이페이지</li>
-							<li><a href = "http://localhost:9000/petcarepedia/information.do?mid=${bookingVo.mid}">회원 정보</a></li>
+							<li><a href = "information.do?mid=hong">회원 정보</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/reservation.do?mid=${bookingVo.mid}">예약 내역</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/my_review.do?mid=${bookingVo.mid}">내가 쓴 리뷰</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do?mid=${bookingVo.mid}">즐겨찾기</a></li>
@@ -46,13 +50,13 @@
 						<div id = "aside1">
 							<img src = "http://localhost:9000/petcarepedia/images/hos.png">
 							<div>
-								<span>${bookingVo.gloc}</span>
+								<span>서울시 > ${bookingVo.gloc}</span>
 								<span>${bookingVo.hname}</span>
 								<span></span>
 								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
 								<span>${bookingVo.loc}</span>
 								<img src = "http://localhost:9000/petcarepedia/images/홈.png">
-								<a href = "http://localhost:9000/petcarepedia/mypage/information.do">병원 홈페이지 가기</a>
+								<a href = "http://localhost:9000/petcarepedia/information.do">병원 홈페이지 가기</a>
 								<img src = "http://localhost:9000/petcarepedia/images/전화.png">
 								<span>${bookingVo.tel}</span>
 								<span>예약 날짜 : ${bookingVo.vdate}</span>
