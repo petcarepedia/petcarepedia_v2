@@ -251,9 +251,9 @@ public class MemberDao extends DBConn{
 	}
 	
 	/**
-	 * selectBR - 海胶飘府轰
+	 * select - 海胶飘府轰
 	 */
-	public ArrayList<ReviewVo> selectBR() {
+	public ArrayList<ReviewVo> select(int startCount, int endCount) {
 		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
 		
 		String sql = "select rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar\r\n" + 
@@ -262,10 +262,12 @@ public class MemberDao extends DBConn{
 				"from pcp_review r, pcp_hospital h\r\n" + 
 				"where r.hid=h.hid\r\n" + 
 				"order by rlike desc))\r\n" + 
-				"where rno between 1 and 9";
+				"where rno between ? and ?";
 		getPreparedStatement(sql);
 		
 		try {
+			pstmt.setInt(1, startCount);
+			pstmt.setInt(2, endCount);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

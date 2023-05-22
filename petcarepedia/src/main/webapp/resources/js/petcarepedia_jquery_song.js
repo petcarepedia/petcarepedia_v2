@@ -300,38 +300,8 @@ $(document).ready(function(){
 		$(".admin-login-modal").hide();
 		$(".back").hide();
 	})*/
+		
 	
-	//베스트리뷰 슬라이드
-	$("#btnPrev").click(function(){
-		$("#btnNext").attr("disabled",false);
-		let start = Number($("#start").val());
-		let end = Number($("#end").val());
-		if(start>0){
-			start -= 3;
-			end -= 3;
-			$.ajax({
-					url : "best_review_list.do?start="+start+"&end="+end,
-					success : function(list){
-							$("#brbox").html(list);
-						}
-				})
-		}
-	});
-	$("#btnNext").click(function(){
-		$("#btnPrev").attr("disabled",false);
-		let start = Number($("#start").val());
-		let end = Number($("#end").val());
-		if(end<8){
-			start += 3;
-			end += 3;
-			$.ajax({
-					url : "best_review_list.do?start="+start+"&end="+end,
-					success : function(list){
-							$("#brbox").html(list);
-						}
-				})
-		}
-	});
 }); //ready
 
 

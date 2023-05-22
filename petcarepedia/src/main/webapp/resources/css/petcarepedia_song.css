@@ -341,7 +341,7 @@
 		width:80%; height: 25px; overflow:hidden;
 	}
 	.main-review > div.slide > div.review-list > div.review-card > div:first-child > p {
-		font-size:14px; font-weight:bold;
+		font-size:14px; font-weight:bold; padding-top:1.5px;
 		float:right;
 	}
 	

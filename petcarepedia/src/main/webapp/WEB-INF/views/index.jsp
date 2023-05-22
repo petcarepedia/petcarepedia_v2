@@ -43,7 +43,7 @@
 		</form>
 		
 		<div id="brbox">
-			<jsp:include page="/best_review_list.do?start=0&end=2"></jsp:include>
+			<jsp:include page="/best_review_list.do"></jsp:include>
 		</div>
 		
 		<div class="main-map">

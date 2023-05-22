@@ -11,6 +11,42 @@
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=krftgsruiz"></script>
+<script>
+	$(document).ready(function(){
+		let page=Number($("#page").val());		// initial page
+		
+		if(page==1) $("#btnPrev").hide();
+		if(page==3) $("#btnNext").hide();
+		
+		jQuery('#btnPrev').on('click',function(e){
+			$("#btnNext").show();
+			if(page>1){
+				page -= 1;
+				$.ajax({
+					url : "best_review_list.do?page="+page,
+					success : function(list){
+							$("#brbox").html(list);
+						}
+				})
+			}
+                    
+	    });
+	    
+	    jQuery('#btnNext').on('click',function(e){
+	    	$("#btnPrev").show();
+			if(page<3){
+				page += 1;
+				$.ajax({
+					url : "best_review_list.do?page="+page,
+					success : function(list){
+							$("#brbox").html(list);
+						}
+				})
+			}
+                    
+	    });
+	});
+</script>
 </head>
 <body>
 	<div class="main-review">
@@ -23,12 +59,11 @@
 				<button type="button" id="btnPrev"><img src="http://localhost:9000/petcarepedia/images/prev.png" width="30" height="30"></button>
 			</div>
 			<div class="review-list">
-				<input type="hidden" value="${start}" id="start">
-				<input type="hidden" value="${end}" id="end">
-				<c:forEach var="reviewVo" items="${list}" begin="${start}" end="${end}">
-					<div id="brcontent" href="http://localhost:9000/petcarepedia/review_content.do" class="review-card">
+				<input type="hidden" value="${page}" id="page">
+				<c:forEach var="reviewVo" items="${list}">
+					<div id="brcontent" class="review-card">
 						<div>
-							<a href="#">${reviewVo.hname}</a>
+							<a>${reviewVo.hname}</a>
 							<p>⭐ ${reviewVo.rstar}.0</p>
 						</div>
 						<div>
@@ -50,6 +85,5 @@
 			</div>
 		</div>
 	</div>
-	
 </body>
 </html>
