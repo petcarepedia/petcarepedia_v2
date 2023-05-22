@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.project.dao.HospitalDao;
 import com.project.dao.ReviewDao;
 import com.project.vo.HospitalVo;
+import com.project.vo.ReviewVo;
 
 
 @Controller
@@ -35,28 +36,31 @@ public class SearchController {
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
 	public ModelAndView search_result(String hid) {
 		ModelAndView model = new ModelAndView();
+		
 		HospitalDao hospitalDao = new HospitalDao();
-		HospitalVo hospitalVo = ReviewDao.RH_select(hid);
+		HospitalVo hospitalVo = hospitalDao.select(hid);
 		
 		model.addObject("hospital", hospitalVo);
+		
+		ReviewDao reviewDao = new ReviewDao();
+		ArrayList<ReviewVo> RHList = reviewDao.RH_select(hid);
+		
+		model.addObject("list", RHList);
+		
 		model.setViewName("/search/search_result");
+		
 		
 		return model;
 	}
 	
-		
-		
-		
-	
-
-	
-	/////////////////////	
+	/////////////////////
 	
 	/** search_reservation.do **/
 	@RequestMapping(value="/search_reservation.do", method=RequestMethod.GET)
 	public String search_reservation() {
 		return "/search/search_reservation";
 	}
+	
 	
 	/** search_map.do **/
 	@RequestMapping(value="/search_map.do", method=RequestMethod.GET)
