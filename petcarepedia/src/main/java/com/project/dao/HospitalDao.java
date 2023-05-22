@@ -136,8 +136,8 @@ public class HospitalDao extends DBConn{
 	/**
 	 *  select - 병원 하나만 조회
 	 * */
-	public int select(String hid){
-		int result= 0;
+	public HospitalVo select(String hid){
+		HospitalVo hospital = new HospitalVo();
 		String sql = "SELECT ROWNUM RNO, HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK"
 					+" FROM(SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK"
 					+" FROM PCP_HOSPITAL WHERE HID =?  ORDER BY HID DESC)";
@@ -152,8 +152,8 @@ public class HospitalDao extends DBConn{
 			e.printStackTrace();
 		}
 		
-		return result;
-	}
+		return hospital;
+	}//123
 	/**
 	 *  select - 병원 조회
 	 * */
@@ -224,4 +224,4 @@ public class HospitalDao extends DBConn{
 		}
 		return result; 
 	}
-}	
+}
