@@ -48,7 +48,8 @@
 		        <span id="stime"><input type="hidden" name="time" value="17:00">17:00</span>
 		    </div>
 		</form>
-		
+		<input type="text" name="date" value="">
+		<input type="text" name="time" value="">
 		<button  type="button" id="check">확인</button>
 	</div>
 </body>
