@@ -21,7 +21,7 @@
 							<ul>
 								<li>공지관리</li>
 								<li><a href = "admin_notice.do">공지관리</a></a></li>
-								<li><a href = "http://localhost:9000/animal/admin/hospital/hospital_list.jsp">병원 관리</a></li>
+								<li><a href = "hospital_list.do">병원 관리</a></li>
 								<li><a href = "http://localhost:9000/animal/admin/member/member_list.jsp">회원 관리</a></li>
 								<li><a href = "http://localhost:9000/animal/admin/review/review_list.jsp">신고 리뷰 관리</a></li>
 								<li><a href = "http://localhost:9000/animal/admin/reserve/reserve_list.jsp">예약 관리</a></li>
@@ -33,7 +33,7 @@
 		<section id="section2">
 			<div class="d2">
 				<input type="text" class="search_bar" placeholder="병원명 입력">
-				<button class="button1"><img src="http://localhost:9000/animal/css/foot_sky.png"></button>
+				<button class="button1"><img src="http://localhost:9000/petcarepedia/images/foot_sky.png"></button>
 			</div>
 			
 				<table class="table" id=ad_nt_list>
@@ -56,12 +56,8 @@
 							<td>${list.nhits }</td>
 						</tr>
 					</c:forEach>
-				<%-- 	<c:if test="${fn:length(list)%10 != 0">
-						
-					</c:if> --%>
 					<tr>
 						<td colspan ="5" class="text">
-							<br><br>
 						</td>
 					</tr>
 					<tr>

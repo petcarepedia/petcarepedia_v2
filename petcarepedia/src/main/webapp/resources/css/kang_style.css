@@ -9,6 +9,10 @@ section.notice table.notice, section.notice table.notice th, section.notice tabl
 	padding:10px 3px;
 	color:#3D3D3D;
 }
+section.notice table.notice td a {
+	text-decoration:none;
+	color:#3D3D3D;
+}
 section.notice {
 	 margin:auto;
 	 margin-top:30px;
@@ -45,13 +49,14 @@ section.notice .button_r {
 	text-align:right;
 	padding-right:50px;
 }
-section.notice .button, section.review_content .button {
+section.notice .button, section.review_content .button, section.notice form table.notice_delete tr td button {
 	background:#98DFFF;
 	color:white;
 	border:1px solid #98DFFF;
 	padding:5px 10px;
 	border-radius:5px;
 }
+
 section.notice .button:hover, section.review_content .button:hover {
 	cursor:pointer;
 }
@@ -157,6 +162,9 @@ div p {
 	line-height: 29px;
 	padding-left:5px;
 }
+div#best_review {
+	margin-top:150px;
+}
 div#best_review ul {
 	list-style-type:none;
 	text-align:center;
@@ -178,6 +186,7 @@ div#best_review ul li{
 div#filter_page table.filter {
 	width:100%;
 	background:#F5F5F5;
+	height:100px;
 	/* border:1px solid blue; */
 }
 div#filter_page table.filter tr th {
@@ -324,6 +333,7 @@ div#best_review ul li a div.review_text {
 	font-size: 12px;
 	line-height: 15px;
 	text-align:left;
+	height:130px;
 }
 div#best_review ul li a div.review_text p.sub_title {
 	font-style: normal;
@@ -455,9 +465,13 @@ section.review_content table.rv_detail_menu tr th {
 }
 section.review_content table.rv_detail_menu tr td {
 	text-align:left;
-	font-size:12px;
+	font-size:14px;
 	font-weight: 10;
 	/* border:1px solid blue; */
+}
+section.review_content table.rv_detail_menu tr td img,div#review ul li.review_list ul li#list_left p img {
+	width:20px;
+	margin-right:10px;
 }
 section.review_content table.rv_detail_menu tr:nth-child(2) td:nth-child(2) {
 	width:200px;
@@ -474,7 +488,7 @@ section.review_content table.rv_detail_menu tr:last-child td {
 section.review_content div.review_detail div.table_right {
 	position: relative;
 	z-index: -1;
-	left: 545px;
+	left: 530px;
 	top: -370px;
 	height:400px;
 	width:250px;
@@ -495,14 +509,19 @@ section.review_content div.review_detail button.report:hover {
 section.review_content div.review_detail div.table_right button {
 	background:white;
 	border:1px solid #98DFFF;
-	padding:5px 20px;
 	margin-right:10px;
 	border-radius:5px;
+	height:30px;
+	width:70px;
+	vertical-align:middle;
 }
 section.review_content div.review_detail div.table_right div#right_top {
 	text-align:right;
 	margin-top:10px;
 	padding-right:5px;
+}
+section.review_content div.review_detail div.table_right div#right_top button img {
+		height:25px;
 }
 section.review_content div.review_detail div.table_right div#star {
 	margin-top:50px;
@@ -511,46 +530,25 @@ section.review_content div.review_detail div.table_right div#star {
 }
 section.review_content div.review_detail div.table_right table {
 	font-size:10px;
-	margin-left:65px;
-	margin-top:180px;
+	margin-left:130px;
+	margin-top:200px;
 }
-section.review_content div.review_detail div.table_right div#star div#avg{
+section.review_content div.review_detail div.table_right div#star div.score{
 	border-top:1px solid black;
 	border-bottom:1px solid black;
-	width:150px;
+	width:170px;
+	height:30px;
 	margin-left:50px;
+	margin-bottom:10px;
+	padding:5px;
+	font-size:14px;
 }
-section.review_content div.review_detail div.table_right div#star div#rating ul {
-	width:150px;
-	margin-left:50px;
-	list-style-type:none;
-	padding:0;
+section.review_content div.review_detail div.table_right div#star div#score_l {
+	border:none;
+	margin-bottom:0;
 }
 div#star {
 	font-size:12px;
-}
-div#star div#rating ul {
-	width:150px;
-	margin-left:10px;
-	list-style-type:none;
-	padding:0;
-}
-div#star div#rating ul li {
-	display:inline-block;
-	border:none;
-	width:100%;
-	height:30px;
-	margin:0px;
-	padding:0px;
-	text-align:center;
-}
-div#avg {
-	border-top:1px solid black;
-	border-bottom:1px solid black;
-	width:100px;
-	margin-left:30px;
-	margin-bottom:10px;
-	padding:5px;
 }
 section.review_content div.review_detail div.table_right table td.td{
 	vertical-align:bottom;

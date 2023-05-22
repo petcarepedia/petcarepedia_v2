@@ -15,15 +15,16 @@
 			<div id="title_l">
 				<h1 class="title">관리자 - 공지사항</h1>
 			</div>
-			<form name="deleteForm" action="#" method="get">
+			<form name="deleteForm" action="admin_notice_delete_proc.do" method="post">
+				<input type="hidden" name="nid" value="${nid }">
 				<table class="notice_delete">
 					<tr>					
 						<td>정말로 삭제 하시겠습니까?</td>
 					</tr>				
 					<tr>
 						<td colspan="2">
-							<button type="button" class="ad_button">삭제</button>
-							<a href="admin_notice_content.do"><button type="button" class="ad_button">취소</button></a>
+							<button type="submit" class="ad_button">삭제</button>
+							<a href="admin_notice_content.do?nid=${nid }"><button type="button" class="ad_button">취소</button></a>
 							<a href="admin_notice.do"><button type="button" class="ad_button">목록</button></a>							
 						</td>				
 					</tr>

@@ -57,7 +57,7 @@ public class ReviewVo {
 		this.hrink = hrink;
 	}
 	
-	
+
 	//¸®ºä»ç¿ë
 	
 	public String getHname() {
