@@ -32,7 +32,7 @@ public class SearchController {
 	
 /////////////////////
 	
-	/** search_result.do - 병원 상세정보 **/
+	/** search_result.do - 병원 상세정보 수정예쩡 **/
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
 	public ModelAndView search_result(String hid) {
 		ModelAndView model = new ModelAndView();

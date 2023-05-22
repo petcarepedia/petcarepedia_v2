@@ -5,8 +5,14 @@ public class BookingVo {
 	int rno;
 	
 	/** Ãß°¡ **/
-	String hname, loc, gloc, tel;
+	String hname, loc, gloc, tel, hrink;
 	
+	public String getHrink() {
+		return hrink;
+	}
+	public void setHrink(String hrink) {
+		this.hrink = hrink;
+	}
 	public String getHname() {
 		return hname;
 	}
