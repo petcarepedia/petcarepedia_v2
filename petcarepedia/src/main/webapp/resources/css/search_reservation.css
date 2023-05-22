@@ -66,7 +66,7 @@ div.date {
 
 div.date span:hover {
 	cursor: pointer;
-	color: red;
+	/* color: red; */
 	
 }
 
@@ -107,7 +107,7 @@ div.time span {
 
 div.time span:hover {
 	cursor: pointer;
-	color: red;
+	/* color: red; */
 }
 
 div.time span:clicked {
