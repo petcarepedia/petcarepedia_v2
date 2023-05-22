@@ -5,6 +5,9 @@ $(document).ready(function() {
 ********************************************/	
 	  $('span').click(function() {
     var date = $(this).find('input[name="date"]').val();
+    $(this).css("border", "1px solid #98DFFF");
+    $(this).css("border-left", "10px solid #98DFFF");
+    $(this).css("color-weight", "bold");
     alert(date); // 클릭한 시간 값을 알림창으로 표시
   });
 

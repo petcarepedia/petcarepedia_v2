@@ -110,8 +110,8 @@ div.time span:hover {
 	color: red;
 }
 
-div.time input [type="hidden"]:checked {
-	border: 1px solid #D9D9D9;
+div.time span:clicked {
+	/* border: 1px solid #D9D9D9; */
 }
 
 
