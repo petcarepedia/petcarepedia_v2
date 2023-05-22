@@ -3,12 +3,11 @@ package com.project.petcarepedia;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.dao.MemberDao;
+import com.project.dao.ReviewDao;
 import com.project.vo.ReviewVo;
 
 @Controller
@@ -43,7 +42,7 @@ public class MainController {
 	@RequestMapping(value="/best_review_list.do",method=RequestMethod.GET)
 	public ModelAndView best_review_list(String page) {
 		ModelAndView model = new ModelAndView();
-		MemberDao memberDao = new MemberDao();
+		ReviewDao reviewDao = new ReviewDao();
 		
 		//其捞隆 贸府 - startCount, endCount 备窍扁
 		int startCount = 0;
@@ -63,7 +62,7 @@ public class MainController {
 			endCount = pageSize;
 		}
 				
-		ArrayList<ReviewVo> list = memberDao.select(startCount, endCount);
+		ArrayList<ReviewVo> list = reviewDao.select(startCount, endCount);
 		
 		model.addObject("list", list);
 		model.addObject("totals", dbCount);
