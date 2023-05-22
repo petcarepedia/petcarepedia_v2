@@ -11,19 +11,23 @@ public class BookmarkDao extends DBConn{
 	/*
 	 * 북마크 전체 리스트 출력
 	 */
-	public ArrayList<BookmarkVo> select() {
+	public ArrayList<BookmarkVo> select(String mid) {
 		ArrayList<BookmarkVo> list = new ArrayList<BookmarkVo>();
-		String sql = "select bmid, b.mid , b.hid\r\n" + 
-				"from pcp_bookmark b, pcp_hospital h where b.hid = h.hid";
+		String sql = "select bmid, b.mid, b.hid, h.hname, h.gloc, h.hrink\r\n" + 
+				"from pcp_bookmark b, pcp_hospital h where b.hid = h.hid and mid = ?";
 		getPreparedStatement(sql);
 		
 		try {
+			pstmt.setString(1, mid);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				BookmarkVo bookmarkVo = new BookmarkVo();
 				bookmarkVo.setBmid(rs.getString(1));
 				bookmarkVo.setMid(rs.getString(2));
 				bookmarkVo.setBmid(rs.getString(3));
+				bookmarkVo.setHname(rs.getString(4));
+				bookmarkVo.setGloc(rs.getString(4));
+				bookmarkVo.setHrink(rs.getString(4));
 				
 				list.add(bookmarkVo);
 			}
@@ -35,24 +39,17 @@ public class BookmarkDao extends DBConn{
 	}
 	
 	
-	public BookmarkVo select(String hid) {
-		BookmarkVo bookmarkVo = new BookmarkVo();
-		String sql = "select bmid, b.mid, b.hid from pcp_bookmark b, pcp_hospital h where b.hid = h.hid and b.hid = ?";
-		getPreparedStatement(sql);
-		
-		try {
-			rs = pstmt.executeQuery();
-			pstmt.setString(1, hid);
-			while(rs.next()) {
-				bookmarkVo.setBmid(rs.getString(1));
-				bookmarkVo.setMid(rs.getString(2));
-				bookmarkVo.setHid(rs.getString(3));
-			}
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return bookmarkVo;
-	}
+	/*
+	 * public BookmarkVo select(String mid) { BookmarkVo bookmarkVo = new
+	 * BookmarkVo(); String sql =
+	 * "select bmid, b.mid, b.hid from pcp_bookmark b, pcp_hospital h where b.hid = h.hid and b.mid = ?"
+	 * ; getPreparedStatement(sql);
+	 * 
+	 * try { rs = pstmt.executeQuery(); pstmt.setString(1, mid); while(rs.next()) {
+	 * bookmarkVo.setBmid(rs.getString(1)); bookmarkVo.setMid(rs.getString(2));
+	 * bookmarkVo.setHid(rs.getString(3)); } }catch (Exception e) {
+	 * e.printStackTrace(); } return bookmarkVo; }
+	 */
 	
 	/*
 	 * 북마크 insert

@@ -40,7 +40,6 @@
 							<li>
 								<label >아이디</label>
 								<label>${memberVo.mid}</label>
-
 							</li>
 							<li>
 								<label>성명</label>
@@ -89,6 +88,7 @@
 						<button type = "button" id = "btn_style1">수정완료</button>
 					</section>
 				</div>
+				<input type = "hidden" name = "mid" id = "mid" value = "${memberVo.mid}">
 			</form>
 		</section>
 	</div>

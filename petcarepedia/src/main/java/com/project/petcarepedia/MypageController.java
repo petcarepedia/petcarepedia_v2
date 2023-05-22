@@ -42,12 +42,12 @@ public class MypageController {
 	 * informatin_update_proc - 정보 수정하기 처리
 	 */
 	@RequestMapping(value = "/member_update_proc.do", method = RequestMethod.POST)
-	public String information_update_proc(MemberVo memberVo) {
+	public String member_update_proc(MemberVo memberVo) {
 		String viewName = "";
 		MemberDao memberDao = new MemberDao();
 		int result = memberDao.update(memberVo);
 		if(result == 1) {
-			viewName = "redirect:/information.do";
+			viewName = "redirect:/information.do?mid=" + memberVo.getMid();
 		} else {
 			//오류페이지 호출
 		}
