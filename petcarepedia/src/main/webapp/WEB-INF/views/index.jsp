@@ -59,7 +59,7 @@
 				</div>
 				<div class="locbox">
 					<% for(int i=0; i<loclist.length; i++){ %>
-						<p><%= loclist[i] %></p>
+						<p class="gloc"><%= loclist[i] %></p>
 					<% } %>
 				</div>
 				<div class="map" id="map">
@@ -72,54 +72,112 @@
 	<!-- footer -->
 	<jsp:include page="footer.jsp"></jsp:include>
 	
-	<script>
-		/* var mapOptions = {
-		    center: new naver.maps.LatLng(37.3595704, 127.105399),
-		    zoom: 10
-		};
+	<script type="text/javascript">
+		var areaArr = new Array();
+		areaArr.push(
+			{location:'강남구', lat:'37.4959854', lng:'127.0664091'},
+			{location:'강동구', lat:'37.5492077', lng:'127.1464824'},
+			{location:'강북구', lat:'37.6469954', lng:'127.0147158'},
+			{location:'강서구', lat:'37.5657617', lng:'127.8226561'},
+			{location:'관악구', lat:'37.4603732', lng:'127.9536086'},
+			{location:'광진구', lat:'37.5574120', lng:'127.0796211'},
+			{location:'구로구', lat:'37.4954856', lng:'127.858121'},
+			{location:'금천구', lat:'37.4600969', lng:'127.9001546'},
+			{location:'노원구', lat:'37.6377533', lng:'127.0754623'},
+			{location:'도봉구', lat:'37.6658609', lng:'127.0317674'},
+			{location:'동대문구', lat:'37.5838012', lng:'127.0507003'},
+			{location:'동작구', lat:'37.4965037', lng:'127.9443073'},
+			{location:'마포구', lat:'37.5676507', lng:'127.8854549'},
+			{location:'서대문구', lat:'37.5820369', lng:'127.9356665'},
+			{location:'서초구', lat:'37.4769528', lng:'127.0378103'},
+			{location:'성동구', lat:'37.5506753', lng:'127.0409622'},
+			{location:'성북구', lat:'37.606991', lng:'127.0232185'},
+			{location:'송파구', lat:'37.5177941', lng:'127.1127078'},
+			{location:'양천구', lat:'37.5270616', lng:'127.8561534'},
+			{location:'영등포구', lat:'37.520641', lng:'127.9139242'},
+			{location:'용산구', lat:'37.5311008', lng:'127.9810742'},
+			{location:'은평구', lat:'37.6176125', lng:'127.9227004'},
+			{location:'종로구', lat:'37.5990998', lng:'127.9861493'},
+			{location:'중구', lat:'37.5579452', lng:'127.9941904'},
+			{location:'중랑구', lat:'37.598031', lng:'127.092931'},
+		);
 		
-		var map = new naver.maps.Map('map', mapOptions); */
-		var HOME_PATH = window.HOME_PATH || '.';
-		var cityhall = new naver.maps.LatLng(37.5666805, 126.9784147),
-		    map = new naver.maps.Map('map', {
-		        center: cityhall,
-		        zoom: 15
-		    }),
-		    marker = new naver.maps.Marker({
-		        map: map,
-		        position: cityhall
-		    });
-
-		var contentString = [
-		        '<div class="iw_inner">',
-		        '   <h3>서울특별시청</h3>',
-		        '   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
-		        '       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
-		        '       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
-		        '       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
-		        '   </p>',
-		        '</div>'
-		    ].join('');
-
-		var infowindow = new naver.maps.InfoWindow({
-		    content: contentString,
-		    maxWidth: 140,
-		    backgroundColor: "#eee",
-		    borderColor: "#2db400",
-		    borderWidth: 5,
-		    anchorSize: new naver.maps.Size(30, 30),
-		    anchorSkew: true,
-		    anchorColor: "#eee",
-		    pixelOffset: new naver.maps.Point(20, -20)
+		$(document).on("click", ".gloc", function() {
+			console.log($(this).text());
+			for(var i=0; i<areaArr.length; i++){
+				if($(this).text()==areaArr[i].location){
+					var map = new naver.maps.Map('map', {
+						center: new naver.maps.LatLng(areaArr[i].lat, areaArr[i].lng),
+						zoom: 12
+					});
+					
+					i=areaArr.length;
+				}
+			}
 		});
-
-		naver.maps.Event.addListener(marker, "click", function(e) {
-		    if (infowindow.getMap()) {
-		        infowindow.close();
-		    } else {
-		        infowindow.open(map, marker);
-		    }
+	
+		$(function() {
+			initMap();
 		});
+		
+		function initMap() {
+				
+			let markers = new Array();
+			let infoWindows = new Array();
+			
+			var map = new naver.maps.Map('map', {
+				center: new naver.maps.LatLng(37.552758094502494, 126.98732600494576),
+				zoom: 12
+			});
+			
+			/*db-병원데이터 연결해서 marker 표시하기*/
+			for(var i=0; i<areaArr.length; i++){
+				var marker = new naver.maps.Marker({
+					map: map,
+					title: areaArr[i].location,
+					position: new naver.maps.LatLng(areaArr[i].lat, areaArr[i].lng)
+				});
+				
+				var contentString = [
+			        '<div class="iw_inner" style="padding:10px;">',
+			        '   <h3 style="font-size:18px;">'+areaArr[i].location+'</h3>',
+			        '   <p style="font-size:12px;">'+areaArr[i].location+'</p>',
+			        '</div>'
+			    ].join('');
+
+				var infowindow = new naver.maps.InfoWindow({
+				    content: contentString,
+				    maxWidth: 250,
+				    backgroundColor: "white",
+				    borderColor: "#98dfff",
+				    borderWidth: 3,
+				    pixelOffset: new naver.maps.Point(0, 10)
+				});
+				
+				markers.push(marker);
+				infoWindows.push(infowindow);
+			}
+			
+
+			function getClickHandler(seq){
+				return function(e) {
+					var marker = markers[seq],
+						infowindow = infoWindows[seq];
+					
+					if (infowindow.getMap()) {
+				        infowindow.close();
+				    } else {
+				        infowindow.open(map, marker);
+				    }
+				}
+			}
+			
+			for (var i=0, ii=markers.length; i<ii; i++) {
+				/* console.log(markers[i], getClickHandler(i)); */
+				naver.maps.Event.addListener(markers[i],'click',getClickHandler(i));
+			}
+		}
+
 	</script>
 </body>
 </html>
