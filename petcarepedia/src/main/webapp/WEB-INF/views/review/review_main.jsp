@@ -15,44 +15,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 <!-- 	<form name="reviewForm" action="#" method="get" id=reviewForm> -->		
 		<div id="best_review" class="review">
-			<p>사용자 추천 리뷰</p>
-			<ul>
-				<c:forEach var="blist" items="${bestList }">
-					<li>
-						<a href="review_content.do?rid=${blist.rid }">
-							<div class=review_top>
-								<span class="h_name">
-									${blist.hname }
-								</span>
-								<span class="star">
-									⭐ ${blist.rstar }
-								</span>
-							</div>
-							<div class="tag">
-								<ul>
-									<li class="location_tag">${blist.gloc }</li>
-									<li class="animal_tag">강아지</li>
-								</ul>
-							</div>
-							<div class="review_text">
-								<p class="sub_title">친절하고 과잉진료 없는 병원!</p>
-								${blist.rcontent }
-							</div>
-							<div class=review_bottom>
-								<span class="review_like">
-									♥️
-								</span>
-								<span class="review_like_count">
-									${blist.rlike }
-								</span>
-								<span class="review_date">
-									${blist.rdate }
-								</span>
-							</div>
-						</a>
-					</li>
-				</c:forEach>
-			</ul>
+			<jsp:include page="../best_review_list.jsp"></jsp:include>	
 		</div>
 		<div id="filter_page" class="review">
 		<p>상세검색</p>
@@ -113,12 +76,6 @@
 								<div id="star">
 									<div id="avg">
 										⭐ ${list.rstar } / 5
-									</div>
-									<div id="rating">
-										<ul>
-											<li>친절  ⭐⭐⭐⭐⭐</li>
-											<li>위생  ⭐⭐⭐⭐⭐</li>
-										</ul>
 									</div>
 								</div>
 							</li>

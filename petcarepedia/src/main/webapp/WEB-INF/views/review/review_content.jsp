@@ -24,8 +24,6 @@
 					<tr>
 						<th>작성자</th>
 						<td><img src="http://localhost:9000/petcarepedia/images/cat.png">${reviewVo.mid }</td>
-						<th>동물 종류</th>
-						<td>고양이</td>
 					</tr>
 					<tr>
 						<th>상세내용</th>
@@ -42,29 +40,22 @@
 							</span>
 							${reviewVo.rlike }
 						</button>
-						<img src="#">
+						<button>
+							<img src = "http://localhost:9000/petcarepedia/images/bookmark2.png">
+						</button>
 					</div>
 					<div id="star">
-						<div id="avg">
-							⭐ ${reviewVo.rstar } / 5
+						<div class="score" id="score_l">
+							평점
 						</div>
-						<div id="rating">
-							<ul>
-								<li>친절  ⭐⭐⭐⭐⭐</li>
-								<li>위생  ⭐⭐⭐⭐⭐</li>
-							</ul>
+						<div id="avg" class="score">
+							⭐ ${reviewVo.rstar } / 5
 						</div>
 					</div>
 					<table>
 						<tr>
-							<td rowspan="2" class="td">조회수</td>
-							<td rowspan="2" class="td" id="tdc">100</td>
 							<td>작성일자</td>
 							<td>${reviewVo.rdate }</td>
-						</tr>
-						<tr>
-							<td>진료일자</td>
-							<td>2023-05-13</td>
 						</tr>
 					</table>
 				</div>

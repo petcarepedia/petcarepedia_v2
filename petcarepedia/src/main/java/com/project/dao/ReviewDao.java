@@ -8,13 +8,14 @@ public class ReviewDao extends DBConn {
 	
 	
 	// 리뷰와 병원 조인
-	public ArrayList<ReviewVo> RH_select() {
+	public ArrayList<ReviewVo> RH_select(String hid) {
 		ArrayList<ReviewVo> RHList = new ArrayList<ReviewVo>();
-		String sql = "select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, "
-				+ " h.gloc, h.loc, h.tel, h.htime, h.ntime, h.holiday, h.intro, h.img, h.hrink "
-				+ " from pcp_review r, pcp_hospital h where r.hid=h.hid and h.hid = 'H_0074' order by r.rdate desc";
+		String sql = "select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, loc, tel, htime, ntime, holiday, intro, img, hrink\r\n" + 
+				"from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, h.loc, h.tel, h.htime, h.ntime, h.holiday, h.intro, h.img, h.hrink \r\n" + 
+				"from pcp_review r, pcp_hospital h where r.hid=h.hid and h.hid = ? order by r.rdate desc)";
 		getPreparedStatement(sql);
 		try {
+			pstmt.setString(1, hid);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ReviewVo list = new ReviewVo();

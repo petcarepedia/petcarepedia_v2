@@ -58,7 +58,6 @@
 					</c:forEach>
 					<tr>
 						<td colspan ="5" class="text">
-							<br><br>
 						</td>
 					</tr>
 					<tr>
