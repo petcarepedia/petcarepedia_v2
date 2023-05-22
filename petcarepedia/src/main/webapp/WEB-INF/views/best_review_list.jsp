@@ -39,12 +39,14 @@
 				$.ajax({
 					url : "best_review_list.do?page="+page,
 					success : function(list){
+							console.log(list);
 							$("#brbox").html(list);
 						}
 				})
 			}
                     
 	    });
+	    
 	});
 </script>
 </head>
@@ -61,7 +63,7 @@
 			<div class="review-list">
 				<input type="hidden" value="${page}" id="page">
 				<c:forEach var="reviewVo" items="${list}">
-					<div id="brcontent" href="http://localhost:9000/petcarepedia/review_main.do" class="review-card">
+					<div id="brcontent" onclick="location.href='http://localhost:9000/petcarepedia/review_content.do?rid=${reviewVo.rid}'" class="review-card">
 							<div>
 								<a>${reviewVo.hname}</a>
 								<p>⭐ ${reviewVo.rstar}.0</p>
