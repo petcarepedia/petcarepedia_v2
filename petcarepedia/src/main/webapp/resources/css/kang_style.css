@@ -258,9 +258,8 @@ div#review ul li:first-child {
 
 div#review ul li {
 	border:1px solid #98DFFF;
-	height:200px;
+	height:70px;
 	margin:10px 25px;
-	display:none;
 }
 div#review ul li:last-child {
 	display:inline-block;
@@ -277,6 +276,7 @@ div#review ul li a, div#best_review ul li a {
 	height:100%;
 	width:100%;
 	color:#3D3D3D;
+	overflow:hidden;
 }
 div#review ul li a:hover, div#best_review ul li a:hover {
 	cursor:default;
@@ -293,7 +293,7 @@ div#best_review ul li a div.review_top span {
 div#best_review ul li a div.review_top span.star, div#best_review ul li a div.review_bottom span.review_date {
 	float:right;
 }
-div#review ul li:last-child a {
+div#review ul li:last-child div {
 	display:inline-block;
 	text-decoration:none;
 	height:30px;
@@ -361,7 +361,7 @@ div#review ul li.review_list ul {
 }
 div#review ul li.review_list ul li.list {
 	display:unset;
-	height:200px;
+	height:70px;
 	border:none;
 	float:left;
 	padding:0;
@@ -385,13 +385,13 @@ div#review ul li.review_list ul li#list_right  {
 div#review ul li.review_list ul li#list_right table  {
 	margin-left:70px;
 	font-size:14px;
+	margin-top:20px;
 }
-div#review ul li.review_list ul li#list_right button {
+div#review ul li.review_list ul li#list_right div {
 	background:white;
 	border:1px solid #98DFFF;
 	border-radius:5px;
-	margin-top:10px;
-	margin-left:25px;
+	margin-left:50px;
 	font-size:14px;
 	width:160px;
 }
@@ -412,12 +412,12 @@ div#review ul li.review_list ul li#list_right table#main_hits  {
 div#review ul li.review_list ul li#list_right button:hover {
 	cursor:pointer;
 }
-div#review ul li.review_list ul li#list_right button span {
+div#review ul li.review_list ul li#list_right div span {
 	color:red;
 	font-size:14px;
 }
 li#list_left p {
-	margin-top:30px;
+	margin-top:10px;
 	margin-bottom:10px;
 	font-style: normal;
 	font-weight: 400;
@@ -571,4 +571,11 @@ div#brbox div.main-review div div:first-child p {
     padding-top: 1.5px;
     float: right;
 }
+
+div#ampaginationsm ul li.active a {
+	background-color:#98DFFF;
+	border-color:#98DFFF;
+}
+
+
 

@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>review content</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_style.css">
+<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 	<!-- header -->
@@ -40,9 +41,6 @@
 							</span>
 							${reviewVo.rlike }
 						</button>
-						<button>
-							<img src = "http://localhost:9000/petcarepedia/images/bookmark2.png">
-						</button>
 					</div>
 					<div id="star">
 						<div class="score" id="score_l">
@@ -59,7 +57,7 @@
 						</tr>
 					</table>
 				</div>
-				<button type="button" class="report">신고하기</button>
+				<a href="review_report.do?rid=${reviewVo.rid }"><button type="button" class="report">신고하기</button></a>
 			</div>
 			<div class="rc_button_r">
 				<a href="review_update.do?rid=${reviewVo.rid }"><button type="button" class="button">수정</button></a>
