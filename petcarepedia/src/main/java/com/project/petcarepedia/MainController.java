@@ -5,8 +5,12 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.project.dao.MemberDao;
 import com.project.dao.ReviewDao;
 import com.project.vo.HospitalVo;
@@ -81,17 +85,43 @@ public class MainController {
 	 * main_map.do
 	 */
 	@RequestMapping(value="/main_map.do",method=RequestMethod.GET)
-	public ModelAndView main_map(String gloc) {
-		ModelAndView model = new ModelAndView();
-		
+	public String main_map() {
+		return "main_map";
+	}
+	
+	/**
+	 * main_map_data.do
+	 */
+	@RequestMapping(value="/main_map_data.do",method=RequestMethod.GET,produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String main_map_data(String gloc) {
 //		HospitalDao hospitalDao = new HospitalDao();
 //		ArrayList<HospitalVo> list = hospitalDao.select();
 		MemberDao hospitalDao = new MemberDao();
 		ArrayList<HospitalVo> list = hospitalDao.searchGloc(gloc);
 		
-		model.addObject("list", list);
-		model.setViewName("main_map");
+		JsonObject jlist = new JsonObject();
+		JsonArray jarray = new JsonArray();
 		
-		return model;
+		for(HospitalVo hospitalVo : list) {
+			JsonObject jobj = new JsonObject(); //{}
+			jobj.addProperty("hid", hospitalVo.getHid());
+			jobj.addProperty("hname", hospitalVo.getHname());
+			jobj.addProperty("gloc", hospitalVo.getGloc());
+			jobj.addProperty("loc", hospitalVo.getLoc());
+			jobj.addProperty("tel", hospitalVo.getTel());
+			jobj.addProperty("htime", hospitalVo.getHtime());
+			jobj.addProperty("ntime", hospitalVo.getNtime());
+			jobj.addProperty("holiday", hospitalVo.getHoliday());
+			jobj.addProperty("animal", hospitalVo.getAnimal());
+			jobj.addProperty("x", hospitalVo.getX());
+			jobj.addProperty("y", hospitalVo.getY());
+			
+			jarray.add(jobj);
+		}
+		
+		jlist.add("jlist", jarray);
+		
+		return new Gson().toJson(jlist);
 	}
 }

@@ -44,7 +44,7 @@
 		</div>
 		
 		
-		<jsp:include page="/main_map.do?gloc=강남구"></jsp:include>
+		<jsp:include page="/main_map.do"></jsp:include>
 		
 	</div>
 	

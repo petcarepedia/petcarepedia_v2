@@ -44,13 +44,13 @@
 		areaArr.push(
 			{location:'강남구', lat:'37.505960656964', lng:'127.0484988055'},
 			{location:'강동구', lat:'37.5492077', lng:'127.1464824'},
-			{location:'강북구', lat:'37.6469954', lng:'127.0147158'},
+			{location:'강북구', lat:'37.634959117129', lng:'127.02502604151'},
 			{location:'강서구', lat:'37.551111918342', lng:'126.84930138784'},
 			{location:'관악구', lat:'37.471077623795', lng:'126.93920205178'},
-			{location:'광진구', lat:'37.5574120', lng:'127.0796211'},
+			{location:'광진구', lat:'37.545472646114', lng:'127.07054709734'},
 			{location:'구로구', lat:'	37.489306326281', lng:'126.88422896601'},
 			{location:'금천구', lat:'37.463871812586', lng:'126.90344531019'},
-			{location:'노원구', lat:'37.6377533', lng:'127.0754623'},
+			{location:'노원구', lat:'37.648541766142', lng:'127.06075433614'},
 			{location:'도봉구', lat:'37.6658609', lng:'127.0317674'},
 			{location:'동대문구', lat:'37.5838012', lng:'127.0507003'},
 			{location:'동작구', lat:'37.516291679743', lng:'126.94443586224'},
@@ -69,138 +69,88 @@
 			{location:'중랑구', lat:'37.598031', lng:'127.092931'}
 		);
 		
-		$(document).on("click", ".gloc", function() {
-			console.log($(this).text());
-			$.ajax({
-				url : "main_map.do?gloc="+$(this).text(),
-				success : function(list){
-						console.log(list);
-						$("#mapbox").html(list);
-					}
-			})
-			
-			let markers = new Array();
-			let infoWindows = new Array();
-			
-			for(var i=0; i<areaArr.length; i++){
-				if($(this).text()==areaArr[i].location){
-					var map = new naver.maps.Map('map', {
-						center: new naver.maps.LatLng(areaArr[i].lat, areaArr[i].lng),
-						zoom: 13
-					});
-					
-					i=areaArr.length;
-				}
-			}
-			
-			/*db-병원데이터 연결해서 marker 표시하기*/
-			<c:forEach var="hospitalVo" items="${list}">
-				console.log('${hospitalVo.hname}');
-				var marker = new naver.maps.Marker({
-					map: map,
-					title: '${hospitalVo.hname}',
-					position: new naver.maps.LatLng('${hospitalVo.x}', '${hospitalVo.y}')
-				});
-				
-				var contentString = [
-			        '<div class="iw_inner" style="padding:10px;">',
-			        '   <h3 style="font-size:18px;">'+'${hospitalVo.hname}'+'</h3>',
-			        '   <p style="font-size:12px;">'+'${hospitalVo.loc}'+'</p>',
-			        '</div>'
-			    ].join('');
-	
-				var infowindow = new naver.maps.InfoWindow({
-				    content: contentString,
-				    maxWidth: 250,
-				    backgroundColor: "white",
-				    borderColor: "#98dfff",
-				    borderWidth: 3,
-				    pixelOffset: new naver.maps.Point(0, 10)
-				});
-				
-				markers.push(marker);
-				infoWindows.push(infowindow);
-			</c:forEach>
-			
-			function getClickHandler(seq){
-				return function(e) {
-					var marker = markers[seq],
-						infowindow = infoWindows[seq];
-					
-					if (infowindow.getMap()) {
-				        infowindow.close();
-				    } else {
-				        infowindow.open(map, marker);
-				    }
-				}
-			}
-			
-			for (var i=0, ii=markers.length; i<ii; i++) {
-				naver.maps.Event.addListener(markers[i],'click',getClickHandler(i));
-			}
-		});
-	
 		$(function() {
 			initMap();
 		});
 		
 		function initMap() {
-				
-			let markers = new Array();
-			let infoWindows = new Array();
-			
 			var map = new naver.maps.Map('map', {
 				center: new naver.maps.LatLng(37.552758094502494, 126.98732600494576),
 				zoom: 12
 			});
-			
-			
-			/* for(var i=0; i<areaArr.length; i++){
-				var marker = new naver.maps.Marker({
-					map: map,
-					title: areaArr[i].location,
-					position: new naver.maps.LatLng(areaArr[i].lat, areaArr[i].lng)
-				});
-				
-				var contentString = [
-			        '<div class="iw_inner" style="padding:10px;">',
-			        '   <h3 style="font-size:18px;">'+areaArr[i].location+'</h3>',
-			        '   <p style="font-size:12px;">'+areaArr[i].location+'</p>',
-			        '</div>'
-			    ].join('');
-
-				var infowindow = new naver.maps.InfoWindow({
-				    content: contentString,
-				    maxWidth: 250,
-				    backgroundColor: "white",
-				    borderColor: "#98dfff",
-				    borderWidth: 3,
-				    pixelOffset: new naver.maps.Point(0, 10)
-				});
-				
-				markers.push(marker);
-				infoWindows.push(infowindow);
-			} */
-			
-
-			/* function getClickHandler(seq){
-				return function(e) {
-					var marker = markers[seq],
-						infowindow = infoWindows[seq];
-					
-					if (infowindow.getMap()) {
-				        infowindow.close();
-				    } else {
-				        infowindow.open(map, marker);
-				    }
-				}
-			}
-			
-			for (var i=0, ii=markers.length; i<ii; i++) {
-				console.log(markers[i], getClickHandler(i));
-				naver.maps.Event.addListener(markers[i],'click',getClickHandler(i));
-			} */
 		}
+		
+		function initGlocMap(gloc) {
+			$.ajax({
+				url : "main_map_data.do?gloc="+gloc,
+				success : function(result){
+						let jdata = JSON.parse(result);
+						
+						let markers = new Array();
+						let infoWindows = new Array();
+						
+						for(var i=0; i<areaArr.length; i++){
+							if(gloc==areaArr[i].location){
+								var map = new naver.maps.Map('map', {
+									center: new naver.maps.LatLng(areaArr[i].lat, areaArr[i].lng),
+									zoom: 12
+								});
+								
+								i=areaArr.length;
+							}
+						}
+						
+						/*db-병원데이터 연결해서 marker 표시하기*/
+						for(obj of jdata.jlist){
+							var marker = new naver.maps.Marker({
+								map: map,
+								title: obj.hname,
+								position: new naver.maps.LatLng(obj.x, obj.y)
+							});
+							
+							var contentString = [
+						        '<div class="iw_inner" style="padding:10px;">',
+						        '   <h3 style="font-size:18px;">'+obj.hname+'</h3>',
+						        '   <p style="font-size:12px;">'+obj.loc+'</p>',
+						        '</div>'
+						    ].join('');
+				
+							var infowindow = new naver.maps.InfoWindow({
+							    content: contentString,
+							    maxWidth: 250,
+							    backgroundColor: "white",
+							    borderColor: "#98dfff",
+							    borderWidth: 3,
+							    pixelOffset: new naver.maps.Point(0, 10)
+							});
+							
+							markers.push(marker);
+							infoWindows.push(infowindow);
+						};
+						
+						function getClickHandler(seq){
+							return function(e) {
+								var marker = markers[seq],
+									infowindow = infoWindows[seq];
+								
+								if (infowindow.getMap()) {
+							        infowindow.close();
+							    } else {
+							        infowindow.open(map, marker);
+							    }
+							}
+						}
+						
+						for (var i=0, ii=markers.length; i<ii; i++) {
+							naver.maps.Event.addListener(markers[i],'click',getClickHandler(i));
+						}
+					}
+			});
+		}
+		
+		$(document).on("click", ".gloc", function() {
+			initGlocMap($(this).text());
+		});
 
 	</script>
 </body>
