@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,6 +147,8 @@
 					</div>
 				</div> -->
 				
+				<c:forEach var="ReviewVo" items="${RHList}"> 
+				
 				<div class="review_card">
 					<div class="member">
 						<div class="name">
@@ -160,17 +165,19 @@
 					</div>
 					
 					<div class="write">
-						<h3>동물 종류 : 고양이</h3>
-						<p>리뷰내용거참우리고양이가리뷰내용거참우리고양이가리뷰내용거참우리고양이가리뷰내용거참우리고양이가리뷰내용거참우리고양이가리뷰내용거참우리고양이가리뷰내용거참우리고양이가리뷰내용거참우리고양이가리뷰내용거참우리고양이가리뷰내용거참우리고양이가리뷰내용거참우리고양이가리뷰내용거참우리고양이가리뷰내용거참우리고양이가</p>
+						<!-- <h3>동물 종류 : 고양이</h3> -->
+						<p>${reviewVo.rcontent}</p>
 					</div>
 					
 					<div class="date">
 						<span>작성 일자 : 2023-04-28</span>
-						<span>진료 일자 : 2023-04-26</span>
+						<span>진료 일자 : ${reviewVo.rdate}</span>
 						<button id="like">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp❤️ 100</button>
 						<span><a href="http://www.naver.com">신고하기</a></span>
 					</div>
 				</div>
+				
+				</c:forEach>
 			</div>
 		</section>	
 	</div>	
