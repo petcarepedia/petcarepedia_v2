@@ -5,11 +5,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>review main</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_style.css">
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/am-pagination.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
-<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jsp_jquery_kang.js"></script>
+<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
+<script>
+	$(document).ready(function(){
+		var pager = jQuery('#ampaginationsm').pagination({
+		
+		    maxSize: '${maxSize}',	    		// max page size
+		    totals: '${totals}',	// total pages	
+		    page: '${page}',		// initial page		
+		    pageSize: '${pageSize}',			// max number items per page
+		
+		    // custom labels		
+		    lastText: '&raquo;&raquo;', 		
+		    firstText: '&laquo;&laquo;',		
+		    prevText: '&laquo;',		
+		    nextText: '&raquo;',
+				     
+		    btnSize:'sm'	// 'sm'  or 'lg'		
+		});
+		
+		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+	           $(location).attr('href', "http://localhost:9000/petcarepedia/review_main.do?page="+e.page);         
+	    });
+		
+ 	});
+</script> 
 </head>
 <body>
 	<!-- header -->
@@ -69,7 +95,7 @@
 				<li id="result_sort">
 					<span>2개의 결과</span>
 				</li>
-				<c:forEach var="list" items="${reviewList }">
+				<c:forEach var="list" items="${list }">
 					<li class="review_list">
 						<ul>
 							<li id="list_left" class="list">
@@ -88,27 +114,24 @@
 									</a>
 								</li>
 							<li id="list_right" class="list">
+								<div>
+									도움이 되었어요
+									<span>
+										♥️
+									</span>
+									${list.rlike }
+								</div>
 								<table>
 									<tr>
 										<td>작성일자</td>
 										<td>${list.rdate }</td>
 									</tr>
 								</table>
-								<button type="button">
-									도움이 되었어요
-									<span>
-										♥️
-									</span>
-									${list.rlike }
-								</button>
-								<button type="button" class="report">신고하기</button>
-								<table id="main_hits">
-								</table>
 							</li>
 						</ul>
 					</li>
 				</c:forEach>
-				<li><a href="#" id="load">더 보기</a></li>
+				<li><div id="ampaginationsm"></div></li>
 			</ul>
 		</div>
 	<!-- </form> -->

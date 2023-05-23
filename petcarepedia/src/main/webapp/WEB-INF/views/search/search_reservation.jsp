@@ -58,7 +58,7 @@
 		        <span id="stime"><input type="hidden" name="time" value="17:00">17:00</span>
 		    </div>
 		    
-		    <input type="text" id="selectedDate" name="selectedDate" value="1">
+		    <input type="text" id="selectedDate" name="selectedDate" value="2">
 			<input type="text" name="date" value="">
 			<input type="text" name="time" value="">
 		</form>

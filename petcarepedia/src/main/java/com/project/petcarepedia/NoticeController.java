@@ -13,6 +13,7 @@ import com.project.vo.NoticeVo;
 @Controller
 public class NoticeController {
 	
+	/*
 	// admin_norice.do 관리자 공지사항 리스트 페이지
 	@RequestMapping(value="/admin_notice.do", method=RequestMethod.GET)
 	public ModelAndView admin_notice() {
@@ -25,8 +26,54 @@ public class NoticeController {
 		
 		return model;
 	}
-	
+	*/
 
+	//notice.do 관리자 공지사항 리스트 페이징
+
+	@RequestMapping(value="/admin_notice.do", method=RequestMethod.GET)
+	public ModelAndView admin_notice(String page) {
+		ModelAndView model = new ModelAndView();		
+		NoticeDao noticeDao = new NoticeDao();
+		
+		//페이징 처리 - startCount, endCount 구하기
+		int startCount = 0;
+		int endCount = 0;
+		int pageSize = 10;	//한페이지당 게시물 수
+		int reqPage = 1;	//요청페이지	
+		int pageCount = 1;	//전체 페이지 수
+		int dbCount = noticeDao.totalRowCount();	//DB에서 가져온 전체 행수
+		
+		//총 페이지 수 계산
+		if(dbCount % pageSize == 0){
+			pageCount = dbCount/pageSize;
+		}else{
+			pageCount = dbCount/pageSize+3;
+		}
+
+		//요청 페이지 계산
+		if(page != null){
+			reqPage = Integer.parseInt(page);
+			startCount = (reqPage-1) * pageSize+1; 
+			endCount = reqPage *pageSize;
+		}else{
+			startCount = 1;
+			endCount = 10;
+		}
+		
+		ArrayList<NoticeVo> list = noticeDao.select(startCount, endCount);
+	
+		model.addObject("list", list);
+		model.addObject("totals", dbCount);
+		model.addObject("pageSize", pageSize);
+		model.addObject("maxSize", pageCount);
+		model.addObject("page", reqPage);
+		
+		model.setViewName("/admin/notice/admin_notice");
+		
+		return model;
+	} 
+	
+	
 	
 	
 	// admin_notice_content.do 관리자 공지사항 상세보기 페이지
@@ -34,7 +81,7 @@ public class NoticeController {
 	public ModelAndView admin_notice_content(String nid) {
 		ModelAndView model = new ModelAndView();
 		NoticeDao noticeDao = new NoticeDao();
-		NoticeVo noticeVo = noticeDao.u_select(nid);
+		NoticeVo noticeVo = noticeDao.enter_select(nid);
 		
 		model.addObject("noticeVo", noticeVo);
 		model.setViewName("/admin/notice/admin_notice_content");
@@ -122,7 +169,7 @@ public class NoticeController {
 	
 	
 	
-	//notice.do 사용자 공지사항 리스트
+	//notice.do 사용자 공지사항 리스트 페이징
 
 	@RequestMapping(value="/notice.do", method=RequestMethod.GET)
 	public ModelAndView notice(String page) {
@@ -187,7 +234,7 @@ public class NoticeController {
 	public ModelAndView notice_content(String nid) {
 		ModelAndView model = new ModelAndView();
 		NoticeDao noticeDao = new NoticeDao();
-		NoticeVo noticeVo = noticeDao.u_select(nid);
+		NoticeVo noticeVo = noticeDao.enter_select(nid);
 		
 		if(noticeVo != null) {
 			// 조회수 업데이트 DB

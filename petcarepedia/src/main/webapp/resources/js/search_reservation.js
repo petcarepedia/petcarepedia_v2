@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-var datesPerPage = 5; // 페이지당 출력되는 날짜 수
+  var datesPerPage = 5; // 페이지당 출력되는 날짜 수
   var currentPage = 1; // 현재 페이지 번호
   var totalDates = 30; // 총 날짜 수
 
@@ -30,9 +30,17 @@ var datesPerPage = 5; // 페이지당 출력되는 날짜 수
     }
 
     generatePagination();
-    attachDateClickEvent(); // 수정된 위치
+    attachDateClickEvent(); 
   }
-
+  
+	function attachDateClickEvent() {
+  $("span.date-list").off("click").on("click", function() {
+    var clickedDate = $(this).attr("data-date");
+    alert(clickedDate); // 선택한 날짜 출력 (확인용)
+    $("#selectedDate").val(clickedDate);
+  });
+}
+  
   function formatDate(date) {
     var month = date.getMonth() + 1;
     var day = date.getDate();
@@ -46,18 +54,6 @@ var datesPerPage = 5; // 페이지당 출력되는 날짜 수
   function getDayOfWeek(date) {
     var daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
     return daysOfWeek[date.getDay()];
-  }
-
-  function attachDateClickEvent() {
-    $("span.date-list").off("click").on("click", function() {
-      var clickedDate = $(this).attr("data-date");
-      handleDateClick(clickedDate);
-    });
-  }
-
-  function handleDateClick(clickedDate) {
-    //alert(clickedDate); // 선택한 날짜 출력 (확인용)
-    $("#selectedDate").val(clickedDate);
   }
 
   // 이전 버튼 클릭 이벤트
@@ -106,12 +102,12 @@ var datesPerPage = 5; // 페이지당 출력되는 날짜 수
 /*******************************************
 	날짜 값 받기
 ********************************************/	
-	$('span#dateContainer').click(function() {
+	/*$('span#dateContainer1').click(function() {
     $('span#dateContainer').css("font-weight", "normal");
     $(this).css("font-weight", "bold");
-    var clickedDate = $(this).attr("data-date");
-    $('input[name="date"]').val(clickedDate);
-});
+    var clickedDate1 = $(this).attr("data-date");
+    $('input[name="date"]').val(clickedDate1);
+});*/
 	  
 
 /*******************************************
@@ -147,6 +143,6 @@ $("#scheck").click(function() {
 });
 });
 
-$('span').click(function() {
+$('span1').click(function() {
     $(this).toggleClass('bold');
   });

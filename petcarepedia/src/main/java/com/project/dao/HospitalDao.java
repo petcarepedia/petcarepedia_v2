@@ -143,9 +143,9 @@ public class HospitalDao extends DBConn{
 	 *  select - 병원 하나만 조회
 	 * */
 	public HospitalVo select(String hid){
-		HospitalVo hospital = new HospitalVo();
+		HospitalVo hospitalVo = new HospitalVo();
 		String sql = "SELECT  HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y"
-					+" FROM PCP_HOSPITAL WHERE HID?";
+					+" FROM PCP_HOSPITAL WHERE HID = ?";
 		getPreparedStatement(sql);
 		
 		try {
@@ -153,29 +153,30 @@ public class HospitalDao extends DBConn{
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				hospital.setRno(rs.getInt(1));
-				hospital.setHid(rs.getString(2));
-				hospital.setHname(rs.getString(3));
-				hospital.setGloc(rs.getString(4));
-				hospital.setLoc(rs.getString(5));
-				hospital.setTel(rs.getString(6));
-				hospital.setHtime(rs.getString(7));
-				hospital.setNtime(rs.getString(8));
-				hospital.setHoliday(rs.getString(9));
-				hospital.setAnimal(rs.getString(10));
-				hospital.setIntro(rs.getString(11));
-				hospital.setImg(rs.getString(12));
-				hospital.setHrink(rs.getString(13));
-				hospital.setX(rs.getString(14));
-				hospital.setY(rs.getString(15));
+				hospitalVo.setHid(rs.getString(1));
+				hospitalVo.setHname(rs.getString(2));
+				hospitalVo.setGloc(rs.getString(3));
+				hospitalVo.setLoc(rs.getString(4));
+				hospitalVo.setTel(rs.getString(5));
+				hospitalVo.setHtime(rs.getString(6));
+				hospitalVo.setNtime(rs.getString(7));
+				hospitalVo.setHoliday(rs.getString(8));
+				hospitalVo.setAnimal(rs.getString(9));
+				hospitalVo.setIntro(rs.getString(10));
+				hospitalVo.setImg(rs.getString(11));
+				hospitalVo.setHrink(rs.getString(12));
+				hospitalVo.setX(rs.getString(13));
+				hospitalVo.setY(rs.getString(14));
 				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return hospital;
+		return hospitalVo;
 	}//123
+	
+	
 	/**
 	 *  select - 병원 조회
 	 * */

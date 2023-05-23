@@ -1,15 +1,26 @@
 package com.project.vo;
 
+/**
+ * @author tj
+ *
+ */
 public class ReviewVo {
 	// 리뷰에서 필요한 Vo
 	String rid, rcontent, rdate, rstar, rstate, hid, mid, hname, animal, gloc;
 	int rlike, rno;
 	//병원과 조인 Vo
 	String loc, tel, htime, ntime, holiday, intro, img, hrink;
-	// bid
-	String bid;
+	// 내가 쓴 리뷰
+	String bid, nickname;
 	
 	
+	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	
 	public String getBid() {
 		return bid;

@@ -62,7 +62,7 @@
 							</div>
 						</div>
 						<div id = "btn_review">
-							<a href = "review_write.do?mid=hong">
+							<a href = "review_write.do?mid=${bookingVo.mid}&hid=${bookingVo.hid}&bid=${bookingVo.bid}">
 								<button type = "button" id = "btn_write_review">리뷰쓰기</button>
 							</a>
 							<a href = "my_review.do?mid=hong">

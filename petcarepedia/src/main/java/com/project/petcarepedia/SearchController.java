@@ -44,20 +44,15 @@ public class SearchController {
 		
 		model.addObject("hospital", hospital);
 		
-		
-		/*
-		 * ReviewDao reviewDao = new ReviewDao(); ArrayList<ReviewVo> RHList =
-		 * reviewDao.RH_select(hid);
-		 * 
-		 * model.addObject("rlist", RHList);
-		 */
+		ReviewDao reviewDao = new ReviewDao();
+		ArrayList<ReviewVo> RHList = reviewDao.RH_select(hid);
+		model.addObject("RHList", RHList);
 		
 		model.setViewName("/search/search_result");
 		
 		
 		return model;
 	}
-	
 	
 	
 	/////////////////////

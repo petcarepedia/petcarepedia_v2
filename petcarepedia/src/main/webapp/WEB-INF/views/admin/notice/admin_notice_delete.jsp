@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>admin notice delete</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_style.css">
+<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 	<!-- header -->

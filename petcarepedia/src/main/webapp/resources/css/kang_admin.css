@@ -14,7 +14,6 @@
 	width:750px;
 	/* top:100px; */
 	margin:auto; 
-	height:420px;
 	border-collapse:collapse;
 	border-radius:5px;
 	margin-top:20px;
@@ -174,7 +173,7 @@ section.hospital tr td:nth-child(2) {
 
 }
 
- section.hospital tr:nth-child(13) td{
+ section.hospital tr:last-child td{
 	border-color:white;
 	background:white;
 	font_size:11pt;
@@ -279,12 +278,10 @@ section.hospital_detail table.table tr:nth-last-child(-n+2) {
 section.hospital tr:first-child td {
 	padding-left:700px;
 } 
-
-#ad_nt_list {
-	height:500px;
+div#ampaginationsm ul li.active a {
+	background-color:#D9D9D9;
+	border-color:#D9D9D9;
 }
-
-
 
 
 
