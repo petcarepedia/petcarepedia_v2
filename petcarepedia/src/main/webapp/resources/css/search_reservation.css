@@ -1,3 +1,26 @@
+.date-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.date-list li {
+  margin-right: 10px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+}
+
+.pagination a {
+  margin-right: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  color: blue;
+}
+
 /***************************************
 	°øÅë
 ***************************************/

@@ -23,7 +23,7 @@
 		<hr>
 		
 		<form name="reservation" action="#" method="get">
-			<div class="date">
+			<!-- <div class="date">
 		        <span><a><</a></span>
 		        <span id="sdate"><input type="hidden" name="date" value="04.27(목)">04.27(목)</span>
 		        <span id="sdate"><input type="hidden" name="date" value="04.28(금)">04.28(금)</span>
@@ -31,7 +31,17 @@
 		        <span id="sdate"><input type="hidden" name="date" value="05.01(월)">05.01(월)</span>
 		        <span id="sdate"><input type="hidden" name="date" value="05.02(화)">05.02(화)</span>
 		        <span><a>></a></span>
-		    </div>
+		    </div> -->
+		    
+		     <div class="date">
+			    <span><a id="previousButton">&lt;</a></span>
+			    <span id="dateContainer" class="date-list"></span>
+			    <span><a id="nextButton">&gt;</a></span>
+			  </div>
+			
+			  <div id="paginationContainer"></div>
+			  
+			
 			
 			<hr>
 			
@@ -47,9 +57,11 @@
 		        <span id="stime"><input type="hidden" name="time" value="16:30">16:30</span>
 		        <span id="stime"><input type="hidden" name="time" value="17:00">17:00</span>
 		    </div>
+		    
+		    <input type="text" id="selectedDate" name="selectedDate" value="1">
+			<input type="text" name="date" value="">
+			<input type="text" name="time" value="">
 		</form>
-		<input type="text" name="date" value="">
-		<input type="text" name="time" value="">
 		<button  type="button" id="check">확인</button>
 	</div>
 </body>
