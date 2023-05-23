@@ -69,7 +69,7 @@
 						<td colspan="5" >
 							<button type="button" class="button"><a href="http://localhost:9000/petcarepedia/hospital_detail.do">등록</a></button>
 							<button type="button" class="button"><a href="http://localhost:9000/petcarepedia/hospital_update.do">수정</a></button>
-							<button type="button" class="button">삭제</button>
+							<button type="delete" class="button">삭제</button>
 						</td>
 					</tr>
 					<tr>
