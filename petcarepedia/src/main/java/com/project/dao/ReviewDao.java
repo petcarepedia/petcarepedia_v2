@@ -231,17 +231,19 @@ public class ReviewDao extends DBConn {
 	 */
 	public int insert(ReviewVo reviewVo) {
 		int result = 0;
-		String sql = "insert into pcp_review(rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc)"
-				+ " values('r_'||ltrim(to_char(sequ_pcp_review_rid.nextval,'0000')),?,sysdate,0,?,'defualt',?,?,?,?,?)";
+		String sql = "insert into pcp_review(rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, bid)"
+				+ " values('r_'||ltrim(to_char(sequ_pcp_review_rid.nextval,'0000')),?,sysdate,0,?,'defualt',?,?,?)";
 		getPreparedStatement(sql);
 		try {
+			pstmt.setString(1, reviewVo.getRid());
 			pstmt.setString(1, reviewVo.getRcontent());
-			pstmt.setString(2, reviewVo.getRstar());
-			pstmt.setString(3, reviewVo.getMid());
-			pstmt.setString(4, reviewVo.getHid());
-			pstmt.setString(5, reviewVo.getHname());
-			pstmt.setString(6, reviewVo.getAnimal());
-			pstmt.setString(7, reviewVo.getGloc());
+			pstmt.setString(2, reviewVo.getRdate());
+			pstmt.setInt(3, reviewVo.getRlike());
+			pstmt.setString(4, reviewVo.getRstar());
+			pstmt.setString(5, reviewVo.getRstate());
+			pstmt.setString(5, reviewVo.getMid());
+			pstmt.setString(5, reviewVo.getHid());
+			pstmt.setString(5, reviewVo.getBid());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

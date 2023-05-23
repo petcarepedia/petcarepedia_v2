@@ -6,6 +6,18 @@ public class ReviewVo {
 	int rlike, rno;
 	//병원과 조인 Vo
 	String loc, tel, htime, ntime, holiday, intro, img, hrink;
+	// bid
+	String bid;
+	
+	
+	
+	public String getBid() {
+		return bid;
+	}
+	public void setBid(String bid) {
+		this.bid = bid;
+	}
+	
 	
 	//병원 조인
 	public String getLoc() {

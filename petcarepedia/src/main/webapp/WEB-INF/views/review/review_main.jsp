@@ -7,16 +7,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_style.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jsp_jquery_kang.js"></script>
 </head>
 <body>
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
-<!-- 	<form name="reviewForm" action="#" method="get" id=reviewForm> -->		
-		<div id="best_review" class="review">
-			<jsp:include page="../best_review_list.jsp"></jsp:include>	
-		</div>
+<!-- 	<form name="reviewForm" action="#" method="get" id=reviewForm> -->	
+		<div id="brbox" class="review">
+			<jsp:include page="/best_review_list.do"></jsp:include>
+		</div>	
 		<div id="filter_page" class="review">
 		<p>상세검색</p>
 			<table id="filter_lo" class="filter">
@@ -81,7 +82,6 @@
 							</li>
 								<li id="list_middle" class="list">
 									<a href="review_content.do?rid=${list.rid }">	
-										<p>동물 종류 : 고양이</p>
 										<div>
 											${list.rcontent }
 										</div>
@@ -93,10 +93,6 @@
 										<td>작성일자</td>
 										<td>${list.rdate }</td>
 									</tr>
-									<tr>
-										<td>진료일자</td>
-										<td>2023/4/28</td>
-									</tr>
 								</table>
 								<button type="button">
 									도움이 되었어요
@@ -107,10 +103,6 @@
 								</button>
 								<button type="button" class="report">신고하기</button>
 								<table id="main_hits">
-									<tr>
-										<td>조회수</td>
-										<td>150</td>
-									</tr>
 								</table>
 							</li>
 						</ul>
