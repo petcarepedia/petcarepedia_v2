@@ -15,6 +15,7 @@ import com.project.vo.ReviewVo;
 @Controller
 public class ReviewController {
 	
+	/*
 	//review_main.do 리뷰 메인 페이지
 	@RequestMapping(value="/review_main.do", method=RequestMethod.GET)
 	public ModelAndView review_main() {
@@ -29,6 +30,58 @@ public class ReviewController {
 		
 		return model;
 	}
+	*/
+	
+	
+	//review_main.do 관리자 공지사항 리스트 페이징
+
+	@RequestMapping(value="/review_main.do", method=RequestMethod.GET)
+	public ModelAndView review_main(String page) {
+		ModelAndView model = new ModelAndView();		
+		ReviewDao reviewDao = new ReviewDao();
+		
+		//페이징 처리 - startCount, endCount 구하기
+		int startCount = 0;
+		int endCount = 0;
+		int pageSize = 7;	//한페이지당 게시물 수
+		int reqPage = 1;	//요청페이지	
+		int pageCount = 1;	//전체 페이지 수
+		int dbCount = reviewDao.totalRowCount();	//DB에서 가져온 전체 행수
+		
+		//총 페이지 수 계산
+		if(dbCount % pageSize == 0){
+			pageCount = dbCount/pageSize;
+		}else{
+			pageCount = dbCount/pageSize+3;
+		}
+
+		//요청 페이지 계산
+		if(page != null){
+			reqPage = Integer.parseInt(page);
+			startCount = (reqPage-1) * pageSize+1; 
+			endCount = reqPage *pageSize;
+		}else{
+			startCount = 1;
+			endCount = 7;
+		}
+		
+		ArrayList<ReviewVo> list = reviewDao.select(startCount, endCount);
+	
+		model.addObject("list", list);
+		model.addObject("totals", dbCount);
+		model.addObject("pageSize", pageSize);
+		model.addObject("maxSize", pageCount);
+		model.addObject("page", reqPage);
+		
+		model.setViewName("/review/review_main");
+		
+		return model;
+	} 
+	
+	
+	
+	
+	
 	
 	//review_content.do 리뷰 상세 페이지
 	@RequestMapping(value="/review_content.do", method=RequestMethod.GET)
@@ -56,7 +109,7 @@ public class ReviewController {
 	}
 	
 	
-	//review_delete_proc.do 관리자 공지사항 삭제 처리
+	//review_delete_proc.do 리뷰 삭제 처리
 	@RequestMapping(value="/review_delete_proc.do", method=RequestMethod.POST)
 	public ModelAndView review_delete_proc(String rid) {
 		ModelAndView model = new ModelAndView();
@@ -71,9 +124,29 @@ public class ReviewController {
 	}
 	
 	
+	//review_report.do 리뷰 신고 페이지
+	@RequestMapping(value="/review_report.do", method=RequestMethod.GET)
+	public ModelAndView review_report(String rid) {
+		ModelAndView model = new ModelAndView();
+		model.addObject("rid", rid);
+		model.setViewName("/review/review_report");
+		
+		return model;
+	}
 	
 	
-	
-	
+	//review_report_proc.do 리뷰 신고 처리
+	@RequestMapping(value="/review_report_proc.do", method=RequestMethod.POST)
+	public ModelAndView review_report_proc(String rid) {
+		ModelAndView model = new ModelAndView();
+		ReviewDao reviewDao = new ReviewDao();
+		int result = reviewDao.update(rid);
+		if(result == 1) {
+			//내가 쓴 리뷰로 돌아감 (임시)
+			model.setViewName("redirect:/review_main.do");
+		}
+		
+		return model;
+	}
 	
 }

@@ -2,6 +2,7 @@ package com.project.dao;
 
 import java.util.ArrayList;
 
+import com.project.vo.NoticeVo;
 import com.project.vo.ReviewVo;
 
 public class ReviewDao extends DBConn {
@@ -232,17 +233,13 @@ public class ReviewDao extends DBConn {
 	public int insert(ReviewVo reviewVo) {
 		int result = 0;
 		String sql = "insert into pcp_review(rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, bid)"
-				+ " values('r_'||ltrim(to_char(sequ_pcp_review_rid.nextval,'0000')),?,sysdate,0,?,'defualt',?,?,?)";
+				+ " values('R_'||ltrim(to_char(sequ_pcp_review_rid.nextval,'0000')),?,sysdate,0,?,'X',?,?,?)";
 		getPreparedStatement(sql);
 		try {
-			pstmt.setString(1, reviewVo.getRid());
 			pstmt.setString(1, reviewVo.getRcontent());
-			pstmt.setString(2, reviewVo.getRdate());
-			pstmt.setInt(3, reviewVo.getRlike());
-			pstmt.setString(4, reviewVo.getRstar());
-			pstmt.setString(5, reviewVo.getRstate());
-			pstmt.setString(5, reviewVo.getMid());
-			pstmt.setString(5, reviewVo.getHid());
+			pstmt.setString(2, reviewVo.getRstar());
+			pstmt.setString(3, reviewVo.getMid());
+			pstmt.setString(4, reviewVo.getHid());
 			pstmt.setString(5, reviewVo.getBid());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -263,6 +260,25 @@ public class ReviewDao extends DBConn {
 			pstmt.setString(1, reviewVo.getRcontent());
 			pstmt.setString(2, reviewVo.getRstar());
 			pstmt.setString(3, reviewVo.getRid());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	/*
+	 * 리뷰 신고
+	 */
+	public int update(String rid) {
+		int result = 0;
+		String sql = "update pcp_review set rstate='O' where rid=?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, rid);
 			
 			result = pstmt.executeUpdate();
 			
@@ -334,5 +350,57 @@ public class ReviewDao extends DBConn {
 		
 		return list;
 	}
+	
+	
+	
+	
+	/* 전체 카운트 가져오기*/
+	public int totalRowCount() {
+			int count = 0;
+			String sql = "select count(*) from pcp_review";
+			getPreparedStatement(sql);
+			
+			try {
+				rs = pstmt.executeQuery();
+				while(rs.next()) {				
+					count = rs.getInt(1);
+				}			
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return count;		
+		}
+
+	
+	//내가 쓴 리뷰 
+	public ArrayList<ReviewVo> my_select(String mid) {
+		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
+		String sql = "select h.hname, m.nickname, h.tel, h.gloc, r.rcontent \r\n" + 
+				"from pcp_review r, pcp_member m, pcp_hospital h where r.mid = m.mid and h.hid = r.hid and r.mid = ?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, mid);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ReviewVo reviewVo = new ReviewVo();
+				reviewVo.setHname(rs.getString(1));
+				reviewVo.setNickname(rs.getString(2));
+				reviewVo.setTel(rs.getString(3));
+				reviewVo.setGloc(rs.getString(4));
+				reviewVo.setRcontent(rs.getString(5));
+				list.add(reviewVo);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+	
+	
 	
 }
