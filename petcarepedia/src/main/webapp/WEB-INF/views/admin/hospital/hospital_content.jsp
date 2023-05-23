@@ -11,7 +11,7 @@
 <!-- header -->
 	<jsp:include page="../admin_header.jsp"></jsp:include>
 	<div class="d1">
-		<section id="hospital_update">
+		<section id="hospital_data">
 			<form name="updateForm" action="hospital_update_proc.do" method="post">
 				<section id = "section1">
 					<div id="d2">
@@ -33,46 +33,53 @@
 						<table class="table">
 							<tr>
 								<th>병원명</th>
-								<td><input type="text" name="name" id="name" value="${hospitalVo.hname} "></td>
+								<td>${hospitalVo.hname}</td>
 							</tr>
 							<tr>
 								<th>위치</th>
-								<td><input type="text" name="address" id="address" value="${hospitalVo.gloc}${hospitalVo.loc}"></td>
+								<td>${hospitalVo.gloc}
+									${hospitalVo.loc}
+								</td>
 							</tr>
 							<tr>
 								<th>전화번호</th>
-								<td><input type="text" name="phone" id="phone" value="${hospitalVo.tel}"></td>
+								<td>${hospitalVo.tel}</td>
 							</tr>
 							<tr>
 								<th>영업시간</th>
-								<td>
-									<input name="time" id="time" placeholder ="O" value="${hospitalVo.htime}"/>
+								<td>${hospitalVo.htime}
 								</td>
 							</tr>
 							<tr>
 								<th>야간 근무 여부</th>
 								<td>
-									<input name="time" id="time" placeholder ="O" value="${hospitalVo.ntime}"/>
+									${hospitalVo.ntime}
 								</td>
 							</tr>
 							<tr>
 								<th>공휴일 진료 여부</th>
-								<td><input type="text" name="close" id="close" placeholder ="O" value="${hospitalVo.holiday}"></td>
+								<td>${hospitalVo.holiday}</td>
 							</tr>
 							<tr>
-								<th>특수 동물 진료 여부</th>
-								<td><input type="text" name="animal" id="animal" value="${hospitalVo.animal}"></td>
+								<th>기타 동물 진료 여부</th>
+								<td>${hospitalVo.animal}</td>
 							</tr>
 							<tr>
 								<th>강조사항(선택)</th>
-								<td><textarea name="check" id="check"></textarea></td>
+								<td>${hospitalVo.intro}</td>
 							</tr>
 							<tr>
 								<th>첨부파일<th>
 								<input type="file" name="file" id="file">
 							</tr>
 							<tr>
-								<td colspan="2"><button type="button" class="button4">저장하기</button></td>
+								<td colspan="3">
+								<a href="hospital_update.do?hid=${hospitalVo.hid}">
+									<button type="button" class="button6">수정하기</button></a>
+									<button type="button" class="button6">삭제하기</button>
+								<a href="hospital_list.do">
+									<button type="button" class="button6">이전으로</button></a>
+								</td>
 							</tr>
 						</table>
 					</div>
