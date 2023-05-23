@@ -96,7 +96,7 @@ public class MainController {
 	@ResponseBody
 	public String main_map_data(String gloc) {
 //		HospitalDao hospitalDao = new HospitalDao();
-//		ArrayList<HospitalVo> list = hospitalDao.select();
+//		ArrayList<HospitalVo> list = hospitalDao.searchGloc(gloc);
 		MemberDao hospitalDao = new MemberDao();
 		ArrayList<HospitalVo> list = hospitalDao.searchGloc(gloc);
 		
