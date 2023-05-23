@@ -17,7 +17,7 @@
 		<section id = "review_write">
 			<h1 id = "title">리뷰쓰기</h1>
 			<hr>
-			<form name="writeForm" action="#" method="get">
+			<form name="writeForm" action="review_write_proc" method="post">
 				<section id = "section1">
 					<div>
 						<nav>

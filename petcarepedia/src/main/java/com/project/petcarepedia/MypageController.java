@@ -9,8 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.BookingDao;
 import com.project.dao.MemberDao;
+import com.project.dao.ReviewDao;
 import com.project.vo.BookingVo;
 import com.project.vo.MemberVo;
+import com.project.vo.ReviewVo;
 
 @Controller
 public class MypageController {
@@ -99,12 +101,29 @@ public class MypageController {
 		return "/mypage/review_revise";
 	}
 	
+	/*
+	 * review_write.do - ¸®ºä ¾²±âÆû
+	 */
 	@RequestMapping(value = "/review_write.do", method = RequestMethod.GET)
-	public String review_write() {
+	public String review_write(String mid, String hid, String bid) {
 		return "/mypage/review_write";
 	}
 	
-
+	/*
+	 *  review_write_proc.do - ¸®ºä ¾²±âÃ³¸®
+	 */
+	@RequestMapping(value = "/review_write_proc.do", method = RequestMethod.POST)
+	public String review_write_proc(String mid, String hid, String bid) {
+		String viewName = "";
+		ReviewDao reviewDao = new ReviewDao();
+		ReviewVo reviewVo = new ReviewVo();
+		reviewVo.setMid(mid);
+		reviewVo.setHid(hid);
+		reviewVo.setBid(bid);
+		int result = reviewDao.insert(reviewVo);
+		return viewName;
+	}
+	
 	
 	@RequestMapping(value = "/signout.do", method = RequestMethod.GET)
 	public String signout() {
