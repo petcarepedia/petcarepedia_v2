@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> Hospital- List </title>
+<title>Hospital- List</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
 	<jsp:include page="../admin_header.jsp"></jsp:include>
 	
 	<div class="d1">
-		<section class="hospital">
+		<section class="hospital_detail">
 			<section id = "section1">
 				<div>
 					<nav>
@@ -28,109 +28,50 @@
 					</nav>
 				</div>
 			</section>
-		<section id="section2">
-			<div class="d2">
-				<input type="text" class="search_bar" placeholder="병원명 입력">
-				<button class="button1"><img src="..admin/images/foot_sky.png"></button>
-			</div>
-				<table class="table">
-					<tr>
-						<td colspan="5" >
-							<button type="button" class="button"><a href="http://localhost:9000/petcarepedia/hospital_detail.do">등록</a></button>
-							<button type="button" class="button"><a href="http://localhost:9000/petcarepedia/admin/hospital/hospital_update.do">수정</a></button>
-							<button type="button" class="button">삭제</button>
-						</td>
-					</tr>
-					<tr>
-						<th>번호</th>
-						<th>병원명</th>
-						<th>상태</th>
-						<th>등록일</th>
-						<th>수정일</th>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td><a href="hospital_list_detail.do">멍멍동물병원</a></td>
-						<td>영업중</td>
-						<td>2023-01-01</td>
-						<td>2023-04-23</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>멍멍동물병원</td>
-						<td>영업중</td>
-						<td>2023-01-01</td>
-						<td>2023-04-23</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>멍멍동물병원</td>
-						<td>영업중</td>
-						<td>2023-01-01</td>
-						<td>2023-04-23</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>멍멍동물병원</td>
-						<td>영업중</td>
-						<td>2023-01-01</td>
-						<td>2023-04-23</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>멍멍동물병원</td>
-						<td>영업중</td>
-						<td>2023-01-01</td>
-						<td>2023-04-23</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>멍멍동물병원</td>
-						<td>영업중</td>
-						<td>2023-01-01</td>
-						<td>2023-04-23</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>멍멍동물병원</td>
-						<td>영업중</td>
-						<td>2023-01-01</td>
-						<td>2023-04-23</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td>멍멍동물병원</td>
-						<td>영업중</td>
-						<td>2023-01-01</td>
-						<td>2023-04-23</td>
-					</tr>
-					<tr>
-						<td>9</td>
-						<td>멍멍동물병원</td>
-						<td>영업중</td>
-						<td>2023-01-01</td>
-						<td>2023-04-23</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>멍멍동물병원</td>
-						<td>영업중</td>
-						<td>2023-01-01</td>
-						<td>2023-04-23</td>
-					</tr>
-					<tr>
-						<td colspan ="5" class="text">
-							<br><br>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="5" class="number"><<  1  2  3  4  5  6  7  8  9  10  >></td>
-					</tr>
-				</table>
+			<section class="section2">
+				<div class="d2">
+					<input type="text" class="search_bar" placeholder="병원명 입력">
+					<button class="button1"><img src="http://localhost:9000/petcarepedia/admin/images/foot_sky.png"></button>
+				</div>
+				<div class="d3">
+					<table class="table">
+						<tr>
+							<td colspan="5">
+								<button type="button" class="button"><a href="http://localhost:9000/petcarepedia/admin/hospital/hospital_detail.do">등록</a></button>
+								<button type="button" class="button"><a href="http://localhost:9000/petcarepedia/admin/hospital/hospital_update.do">수정</a></button>
+								<button type="button" class="button">삭제</button>
+							</td>
+						</tr>
+						<tr>
+							<th>번호</th>
+							<th>병원명</th>
+							<th>상태</th>
+							<th>등록일</th>
+							<th>수정일</th>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td><a href="hospital_list_detail.jsp">멍멍동물병원</a></td>
+							<td>영업중</td>
+							<td>2023-01-01</td>
+							<td>2023-04-23</td>
+						</tr>
+						<tr>
+							<td colspan="5">
+								<br>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="5">
+								<button type="button" class="button4"><a href="http://localhost:9000/petcarepedia/admin/hospital/hospital_list.jsp">이전으로</a></button>
+							</td>
+						</tr>
+					</table>
+				</div>
 			</section>
 		</section>
 	</div>
-	<!-- footer -->
-		<jsp:include page="../../footer.jsp"></jsp:include>
+<!-- footer -->
+	<jsp:include page="../../footer.jsp"></jsp:include>
 </body>
 </html>
