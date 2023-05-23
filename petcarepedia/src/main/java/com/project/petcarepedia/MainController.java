@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.MemberDao;
 import com.project.dao.ReviewDao;
+import com.project.vo.HospitalVo;
 import com.project.vo.ReviewVo;
 
 @Controller
@@ -79,7 +81,17 @@ public class MainController {
 	 * main_map.do
 	 */
 	@RequestMapping(value="/main_map.do",method=RequestMethod.GET)
-	public String main_map() {
-		return "main_map";
+	public ModelAndView main_map(String gloc) {
+		ModelAndView model = new ModelAndView();
+		
+//		HospitalDao hospitalDao = new HospitalDao();
+//		ArrayList<HospitalVo> list = hospitalDao.select();
+		MemberDao hospitalDao = new MemberDao();
+		ArrayList<HospitalVo> list = hospitalDao.searchGloc(gloc);
+		
+		model.addObject("list", list);
+		model.setViewName("main_map");
+		
+		return model;
 	}
 }

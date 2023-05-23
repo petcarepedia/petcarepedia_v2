@@ -43,7 +43,8 @@
 			<jsp:include page="/best_review_list.do"></jsp:include>
 		</div>
 		
-		<jsp:include page="/main_map.do"></jsp:include>
+		
+		<jsp:include page="/main_map.do?gloc=강남구"></jsp:include>
 		
 	</div>
 	

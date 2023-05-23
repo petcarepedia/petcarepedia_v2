@@ -15,10 +15,34 @@
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=krftgsruiz"></script>
-<script type="text/javascript">
+</head>
+<body>
+	<div class="main-map">
+		<div class="sub">
+			<p>가까운 병원 빠르게 찾고 싶다면? <span>지역구별 병원 검색</span></p>
+			<a href="http://localhost:9000/petcarepedia/search_main.do">검색페이지 전체보기 ></a>
+		</div>
+		
+		<div class="map-content">
+			<div class="locsub">
+				<img src="http://localhost:9000/petcarepedia/images/map.png" width="30px">
+				<span>서울</span>
+			</div>
+			<div class="locbox">
+				<% for(int i=0; i<loclist.length; i++){ %>
+					<p class="gloc"><%= loclist[i] %></p>
+				<% } %>
+			</div>
+			<div class="map" id="map">
+				
+			</div>
+		</div>
+	</div>
+		
+	<script type="text/javascript">
 		var areaArr = new Array();
 		areaArr.push(
-			{location:'강남구', lat:'37.4959854', lng:'127.0664091'},
+			{location:'강남구', lat:'37.505960656964', lng:'127.0484988055'},
 			{location:'강동구', lat:'37.5492077', lng:'127.1464824'},
 			{location:'강북구', lat:'37.6469954', lng:'127.0147158'},
 			{location:'강서구', lat:'37.551111918342', lng:'126.84930138784'},
@@ -47,6 +71,17 @@
 		
 		$(document).on("click", ".gloc", function() {
 			console.log($(this).text());
+			$.ajax({
+				url : "main_map.do?gloc="+$(this).text(),
+				success : function(list){
+						console.log(list);
+						$("#mapbox").html(list);
+					}
+			})
+			
+			let markers = new Array();
+			let infoWindows = new Array();
+			
 			for(var i=0; i<areaArr.length; i++){
 				if($(this).text()==areaArr[i].location){
 					var map = new naver.maps.Map('map', {
@@ -56,6 +91,52 @@
 					
 					i=areaArr.length;
 				}
+			}
+			
+			/*db-병원데이터 연결해서 marker 표시하기*/
+			<c:forEach var="hospitalVo" items="${list}">
+				console.log('${hospitalVo.hname}');
+				var marker = new naver.maps.Marker({
+					map: map,
+					title: '${hospitalVo.hname}',
+					position: new naver.maps.LatLng('${hospitalVo.x}', '${hospitalVo.y}')
+				});
+				
+				var contentString = [
+			        '<div class="iw_inner" style="padding:10px;">',
+			        '   <h3 style="font-size:18px;">'+'${hospitalVo.hname}'+'</h3>',
+			        '   <p style="font-size:12px;">'+'${hospitalVo.loc}'+'</p>',
+			        '</div>'
+			    ].join('');
+	
+				var infowindow = new naver.maps.InfoWindow({
+				    content: contentString,
+				    maxWidth: 250,
+				    backgroundColor: "white",
+				    borderColor: "#98dfff",
+				    borderWidth: 3,
+				    pixelOffset: new naver.maps.Point(0, 10)
+				});
+				
+				markers.push(marker);
+				infoWindows.push(infowindow);
+			</c:forEach>
+			
+			function getClickHandler(seq){
+				return function(e) {
+					var marker = markers[seq],
+						infowindow = infoWindows[seq];
+					
+					if (infowindow.getMap()) {
+				        infowindow.close();
+				    } else {
+				        infowindow.open(map, marker);
+				    }
+				}
+			}
+			
+			for (var i=0, ii=markers.length; i<ii; i++) {
+				naver.maps.Event.addListener(markers[i],'click',getClickHandler(i));
 			}
 		});
 	
@@ -73,8 +154,8 @@
 				zoom: 12
 			});
 			
-			/*db-병원데이터 연결해서 marker 표시하기*/
-			for(var i=0; i<areaArr.length; i++){
+			
+			/* for(var i=0; i<areaArr.length; i++){
 				var marker = new naver.maps.Marker({
 					map: map,
 					title: areaArr[i].location,
@@ -99,10 +180,10 @@
 				
 				markers.push(marker);
 				infoWindows.push(infowindow);
-			}
+			} */
 			
 
-			function getClickHandler(seq){
+			/* function getClickHandler(seq){
 				return function(e) {
 					var marker = markers[seq],
 						infowindow = infoWindows[seq];
@@ -116,34 +197,11 @@
 			}
 			
 			for (var i=0, ii=markers.length; i<ii; i++) {
-				/* console.log(markers[i], getClickHandler(i)); */
+				console.log(markers[i], getClickHandler(i));
 				naver.maps.Event.addListener(markers[i],'click',getClickHandler(i));
-			}
+			} */
 		}
 
 	</script>
-</head>
-<body>
-	<div class="main-map">
-			<div class="sub">
-				<p>가까운 병원 빠르게 찾고 싶다면? <span>지역구별 병원 검색</span></p>
-				<a href="http://localhost:9000/petcarepedia/search_main.do">검색페이지 전체보기 ></a>
-			</div>
-			
-			<div class="map-content">
-				<div class="locsub">
-					<img src="http://localhost:9000/petcarepedia/images/map.png" width="30px">
-					<span>서울</span>
-				</div>
-				<div class="locbox">
-					<% for(int i=0; i<loclist.length; i++){ %>
-						<p class="gloc"><%= loclist[i] %></p>
-					<% } %>
-				</div>
-				<div class="map" id="map">
-					
-				</div>
-			</div>
-		</div>
 </body>
 </html>
