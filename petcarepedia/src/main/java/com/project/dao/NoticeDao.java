@@ -150,8 +150,56 @@ public class NoticeDao extends DBConn {
 	
 	
 	
+	/* 전체 카운트 가져오기*/
+	public int totalRowCount() {
+			int count = 0;
+			String sql = "select count(*) from pcp_notice";
+			getPreparedStatement(sql);
+			
+			try {
+				rs = pstmt.executeQuery();
+				while(rs.next()) {				
+					count = rs.getInt(1);
+				}			
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return count;		
+		}
 	
 	
+	
+	/*전체 리스트 출력 페이징*/
+	public ArrayList<NoticeVo> select(int startCount, int endCount) {
+		ArrayList<NoticeVo> noticeList = new ArrayList<NoticeVo>();
+		String sql = "select rno, nid, title, ndate, nhits, ncontent"
+				+ " from(select rownum rno, nid, title, ndate, nhits, ncontent " + 
+				" from(select nid, title, ndate, nhits, ncontent from pcp_notice order by ndate desc))"
+				+ " where rno between ? and ?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setInt(1, startCount);
+			pstmt.setInt(2, endCount);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				NoticeVo list = new NoticeVo();
+				list.setRno(rs.getInt(1));
+				list.setNid(rs.getString(2));
+				list.setTitle(rs.getString(3));
+				list.setNdate(rs.getString(4));
+				list.setNhits(rs.getInt(5));
+				list.setNcontent(rs.getString(6));
+				
+				noticeList.add(list);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return noticeList;
+	}
 	
 	
 	

@@ -556,8 +556,19 @@ section.review_content div.review_detail div.table_right table td.td{
 section.review_content div.review_detail div.table_right table td#tdc {
 	width:40px;
 }
-
-
-
-
+div#brbox {
+	margin-top:130px;
+}
+div#brbox div.main-review div.sub a {
+	display:none;
+}
+div#brbox div.main-review div div:first-child a {
+	width:170px;
+}
+div#brbox div.main-review div div:first-child p {
+	font-size: 14px;
+    font-weight: bold;
+    padding-top: 1.5px;
+    float: right;
+}
 
