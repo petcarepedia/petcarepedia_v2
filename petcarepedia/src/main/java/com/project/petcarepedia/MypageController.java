@@ -9,8 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.BookingDao;
 import com.project.dao.MemberDao;
+import com.project.dao.ReviewDao;
 import com.project.vo.BookingVo;
 import com.project.vo.MemberVo;
+import com.project.vo.ReviewVo;
 
 @Controller
 public class MypageController {
@@ -89,9 +91,20 @@ public class MypageController {
 		return "/mypage/bookmark";
 	}
 	
+	
+	
+	/*
+	 * my_review.do - ³»°¡ ¾´ ¸®ºä Æû
+	 */
 	@RequestMapping(value = "/my_review.do", method = RequestMethod.GET)
-	public String my_review() {
-		return "/mypage/my_review";
+	public ModelAndView my_review(String mid) {
+		ModelAndView model = new ModelAndView();
+		ReviewDao reviewDao = new ReviewDao();
+		ArrayList<ReviewVo> list = reviewDao.my_select(mid);
+		
+		model.addObject("list", list);
+		model.setViewName("/mypage/my_review");
+		return model;
 	}
  	
 	@RequestMapping(value = "/review_revise.do", method = RequestMethod.GET)
@@ -99,12 +112,33 @@ public class MypageController {
 		return "/mypage/review_revise";
 	}
 	
+	/*
+	 * review_write.do - ¸®ºä ¾²±âÆû
+	 */
 	@RequestMapping(value = "/review_write.do", method = RequestMethod.GET)
-	public String review_write() {
-		return "/mypage/review_write";
+	public ModelAndView review_write(String mid, String hid, String bid) {
+		ModelAndView model = new ModelAndView();
+		model.addObject("mid", mid);
+		model.addObject("hid", hid);
+		model.addObject("bid", bid);
+		model.setViewName("/mypage/review_write");
+		return model;
 	}
 	
-
+	/*
+	 *  review_write_proc.do - ¸®ºä ¾²±âÃ³¸®
+	 */
+	@RequestMapping(value = "/review_write_proc.do", method = RequestMethod.POST)
+	public String review_write_proc(ReviewVo reviewVo) {
+		String viewName = "";
+		ReviewDao reviewDao = new ReviewDao();
+		int result = reviewDao.insert(reviewVo);
+		if(result == 1) {
+			viewName = "redirect:/my_review?mid=" + reviewVo.getMid();
+		}
+		return viewName;
+	}
+	
 	
 	@RequestMapping(value = "/signout.do", method = RequestMethod.GET)
 	public String signout() {

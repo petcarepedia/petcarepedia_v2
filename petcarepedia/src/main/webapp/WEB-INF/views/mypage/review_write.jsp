@@ -17,7 +17,10 @@
 		<section id = "review_write">
 			<h1 id = "title">리뷰쓰기</h1>
 			<hr>
-			<form name="writeForm" action="#" method="get">
+			<form name="writeForm" action="review_write_proc.do" method="post">
+			<input type = "hidden" name = "mid" value = "${mid}">
+			<input type = "hidden" name = "hid" value = "${hid}">
+			<input type = "hidden" name = "bid" value = "${bid}">
 				<section id = "section1">
 					<div>
 						<nav>
@@ -45,15 +48,15 @@
 						<img src = "http://localhost:9000/petcarepedia//images/star.png"> -->
 						<div id = "star">
 							<fieldset>
-								<input type="radio" name="reviewStar" value="5" id="rate1"><label
+								<input type="radio" name="rstar" value="5" id="rate1"><label
 									for="rate1">★</label>
-								<input type="radio" name="reviewStar" value="4" id="rate2"><label
+								<input type="radio" name="rstar" value="4" id="rate2"><label
 									for="rate2">★</label>
-								<input type="radio" name="reviewStar" value="3" id="rate3"><label
+								<input type="radio" name="rstar" value="3" id="rate3"><label
 									for="rate3">★</label>
-								<input type="radio" name="reviewStar" value="2" id="rate4"><label
+								<input type="radio" name="rstar" value="2" id="rate4"><label
 									for="rate4">★</label>
-								<input type="radio" name="reviewStar" value="1" id="rate5"><label
+								<input type="radio" name="rstar" value="1" id="rate5"><label
 									for="rate5">★</label>
 							</fieldset>
 						</div>
@@ -64,7 +67,7 @@
 						<img src = "http://localhost:9000/petcarepedia//images/star.png">
 						<img src = "http://localhost:9000/petcarepedia//images/star.png"> -->
 					</section>
-					<textarea name="review" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)" maxlength="100"></textarea>
+					<textarea name="rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)" maxlength="100"></textarea>
 					<button type = "button" id = "cancle">취소</button>
 					<button type = "submit" id = "write_finish">작성완료</button>
 				</div>
