@@ -30,7 +30,7 @@
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/mycgv_jsp/notice/notice.do?page="+e.page);         
+	           $(location).attr('href', "http://localhost:9000/petcarepedia/notice.do?page="+e.page);         
 	    });
 		
  	});
