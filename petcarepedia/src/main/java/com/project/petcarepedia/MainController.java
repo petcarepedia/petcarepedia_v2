@@ -74,4 +74,12 @@ public class MainController {
 		
 		return model;
 	}
+	
+	/**
+	 * main_map.do
+	 */
+	@RequestMapping(value="/main_map.do",method=RequestMethod.GET)
+	public String main_map() {
+		return "main_map";
+	}
 }
