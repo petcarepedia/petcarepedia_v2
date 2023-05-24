@@ -47,8 +47,8 @@
 							<img src = "http://localhost:9000/petcarepedia/images/hos.png">
 						</div>
 						<div id = "aside3">
-							<span></span>
-							<span>내용 : ${reviewVo.rcontent}</span>
+							<span>리뷰 내용</span>
+							<span> ${reviewVo.rcontent}</span>
 							<span><!-- 진료 일자 : 2023-04-26 --></span>
 						</div>
 						<div id = "aside4">
@@ -57,32 +57,6 @@
 						</div>
 					</section>
 				</c:forEach>
-				<!-- <section id = "section2">
-					<div id = "aside1">
-						<span>더조은 동물병원</span>
-						<span>02-1234-1234</span>
-						<span>
-							<span>강남구</span>
-						</span>
-						<img src = "http://localhost:9000/petcarepedia/images/cat.png">
-						<span>과테말라 냥이</span>
-					</div>
-					<div id = "aside2">
-						<img src = "http://localhost:9000/petcarepedia/images/hos.png">
-					</div>
-					<div id = "aside3">
-						<span>동물 종류 : 고양이</span>
-						<span>교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.
-								교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.교정상담 받았습니다.
-						</span>
-						<span>진료 일자 : 2023-04-26</span>
-					</div>
-					<div id = "aside4">
-						<button type = "button" id = "btnReview_revise">리뷰수정</button>
-						<button type = "button" id = "btnReview_delete">리뷰삭제</button>
-					</div>
-				</section> -->
-				
 			</div>
 		</section>
 	</div>	

@@ -67,7 +67,7 @@
 						<img src = "http://localhost:9000/petcarepedia//images/star.png">
 						<img src = "http://localhost:9000/petcarepedia//images/star.png"> -->
 					</section>
-					<textarea name="rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)" maxlength="100"></textarea>
+					<textarea name="rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)" minlength = "30" maxlength="50"></textarea>
 					<button type = "button" id = "cancle">취소</button>
 					<button type = "submit" id = "write_finish">작성완료</button>
 				</div>
