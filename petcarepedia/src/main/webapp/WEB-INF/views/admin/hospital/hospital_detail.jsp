@@ -4,8 +4,9 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Hospital - List</title>
 	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
+	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<title>펫캐어피디아 | 관리자</title>
 </head>
 <body>
 <!-- header -->
@@ -71,13 +72,11 @@
 								<th>첨부파일<th>
 								<input type="file" name="file" id="file">
 							</tr>
-							<tr>
-								<td colspan="2"><button type="button" class="button4">저장하기</button></td>
-							</tr>
-							<tr>
-								<td colspan="2"><button type="button" class="button4">이전으로</button></td>
-							</tr>
 						</table>
+					</div>
+					<div id="d4">
+						<button type="submit" class="button4">저장하기</button>
+						<button type="button" class="button5"><a href="http://localhost:9000/petcarepedia/hospital_list.do"> 이전으로</a></button>
 					</div>
 				</section>
 			</form>

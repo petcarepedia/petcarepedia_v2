@@ -70,13 +70,27 @@ public class AdminController {
 	}
 	
 	/**
+	 * 병원 - 병원 검색 처리
+	 * */
+	@RequestMapping(value="/hospital_list_detail_proc.do", method=RequestMethod.POST)
+	public String hostpital_list_detail_proc() {
+		String viewName="";
+		HospitalDao hospitalDao = new HospitalDao();
+		int result = hospitalDao.search();
+		if(result == 1) {
+			viewName = "redirect:/hospital_list.do";
+		}
+		return viewName;
+	}
+	
+	/**
 	 * 병원 - 검색페이지
 	 * */
 	@RequestMapping(value="/hospital_list_detail.do", method=RequestMethod.GET)
-	public ModelAndView hostpital_detail(String hid) {
+	public ModelAndView hostpital_detail() {
 		ModelAndView model = new ModelAndView(); 
 		HospitalDao hospitalDao = new HospitalDao();
-		ArrayList<HospitalVo> list = hospitalDao.search(hid);
+		ArrayList<HospitalVo> list = hospitalDao.search();
 		
 		model.addObject("list", list);
 		model.setViewName("/admin/hospital/hospital_list_detail");
@@ -84,20 +98,8 @@ public class AdminController {
 		return model;
 	}
 	
-	/**
-	 * 병원 - 병원 상세 페이지
-	 * */
-	@RequestMapping(value="/hospital_content.do", method=RequestMethod.GET)
-	public ModelAndView hospital_content(String hid) {
-		ModelAndView model = new ModelAndView();
-		HospitalDao hospitalDao = new HospitalDao();
-		HospitalVo hospitalVo = hospitalDao.select(hid);
 
-		model.addObject("hospitalVo", hospitalVo);
-		model.setViewName("/admin/hospital/hospital_content");
-		
-		return model;
-	}
+	
 	/**
 	 * 메인 - 병원 페이지
 	 * */

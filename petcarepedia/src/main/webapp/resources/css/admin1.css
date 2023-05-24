@@ -23,7 +23,7 @@
 	border-radius:5px;
 	margin-top:20px;
 }
-div.d2> .search_bar{
+div.d2 form .search_bar{
 	width: 400px;
 	height: 40px;
 	margin-top:0px;
@@ -43,7 +43,7 @@ div.d2> .search_bar{
 	display:inline-flex;
 	flex-direction: row;
 }
-.d2>.button1{
+.d2 form .button1{
 	margin-left:-41px;
 	margin-bottom:30px;
 	width:38px;
@@ -51,7 +51,7 @@ div.d2> .search_bar{
 	border:none;
 	background:white;
 }
-.d2>.button1>img{
+.d2 form .button1>img{
 	width:35px;
 	height:35px;
 	margin-top:1px;
@@ -91,17 +91,13 @@ tr td:nth-child(1) {
 	width:50px;
 }
 #d4{
-	display:inline-block;
-	border:1px solid red;
+	display: block;
+	float:right;
 }
-#d4 button{
-	display: flex;
-    align-items:center;
-    flex-direction: column;
-	border:1px solid red;
-}
-.button4{
+
+button.button4, button.button5{
 	padding:5px 15px;
+	margin-right:20px;
 }
 /* section.reserve tr:last-child td,section.review tr:last-child td,
 section.member tr:last-child td
@@ -301,18 +297,6 @@ section.review section#section2 .d2 button{
 /*************************************
 	hospital_list_detail style sheet
 **************************************/
-section.hospital_detail .button4, section.member_detail .button4,
-section#hospital_update .button4, section.member_detail section#section2 .button4{
-	margin-left:635px;
-	
-}
-
-section.hospital_detail table.table tr:last-child td,
-section.member_detail table.table tr:last-child td,
-section#hospital_update table.table tr:last-child td{
-	border:1px solid white;
-	/* margin-right:700px; */
-}
 
 section.hospital_detail section.section2 div.d3 .table tr th,
 section.hospital_detail section.section2 div.d3 .table tr td,
@@ -331,17 +315,21 @@ section.member_detail section#section2 div.d3 .table tr:nth-child(4) td{
 	background:#D9D9D9;
 } 
 /*************************************
-	hospital_data style sheet
+	hospital_update style sheet
 **************************************/
-section#hospital_update #section2 #d3{
+section#hospital_update #section2 #d3,
+section#hospital_data #section2 #d3{
 	float:left;
 	margin-top : 100px;
 }
-section#hospital_update table.table tr th{
+section#hospital_update table.table tr th,
+section#hospital_data table.table tr th{
 	width:180px;
 }
 section#hospital_update table.table tr td input,
-section#hospital_update table.table tr td textarea{
+section#hospital_update table.table tr td textarea,
+section#hospital_data table.table tr td input,
+section#hospital_data table.table tr td textarea{
 	width:520px;
 	height:50px;
 	border:1px solid #D9D9D9;
@@ -350,12 +338,14 @@ section#hospital_update table.table tr td textarea{
 	text-indent:20px;
 }
 
-section#hospital_update table.table tr{
+section#hospital_update table.table tr,
+section#hospital_data table.table tr{
 	height:55px;	
 }
 
 
-section#hospital_update table.table tr #check{
+section#hospital_update table.table tr #intro,
+section#hospital_data table.table tr #intro{
 	height:110px;
 }
 
