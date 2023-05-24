@@ -2,7 +2,7 @@ package com.project.dao;
 
 import java.util.ArrayList;
 
-import com.project.vo.NoticeVo;
+import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
 
 public class ReviewDao extends DBConn {
@@ -401,7 +401,54 @@ public class ReviewDao extends DBConn {
 		return list;
 	}
 
+
+	/*
+	 * 좋아요 증가
+	 */
 	
+	public void LikesDown(String rid) {
+		String sql = "update pcp_review set rlike = rlike+1 where rid = ?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, rid);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/*
+	 * 좋아요 감소
+	 */
+	
+	public void LikesUp(String rid) {
+		String sql = "update pcp_review set rlike = rlike-1 where rid = ?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, rid);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	// 종아요 누른 아이디 체크 (종아요 누름 = 1/ 안누름 = 0)
+	public int idCheck(ReviewLikeVo reviewLikeVo) {
+		int result=0;
+		String sql = "select count(*) from pcp_review_like where mid=? and rid=?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, reviewLikeVo.getMid());
+			pstmt.setString(2, reviewLikeVo.getRid());
+			rs = pstmt.executeQuery();
+			while(rs.next()) result=rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 	
 	
 }

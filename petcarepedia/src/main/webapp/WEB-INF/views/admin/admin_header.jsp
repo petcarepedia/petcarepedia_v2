@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin_header.css">
 </head>
 <body>
 	<header>
