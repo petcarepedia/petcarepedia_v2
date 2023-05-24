@@ -34,14 +34,14 @@
 				
 				<div class="name_d">
 					<div class="area_d">
-						<a href="http://localhost:9000/petcarepedia/search/search_main.do">서울</a>
+						<a href="http://localhost:9000/petcarepedia/search_main.do">서울</a>
 						<span>></span>
-						<a href="http://localhost:9000/petcarepedia/search/search_main.do">${hospital.gloc}</a>
+						<a href="http://localhost:9000/petcarepedia/search_main.do">${hospital.gloc}</a>
 					</div>
 					
 					<span class="name">${hospital.hname}</span>
-					<input type="hidden" name="hid" value="${hospital.hid}">
-					<input type="hidden" name="hid" value="${hospital.hname}">
+					<input type="text" name="hid" value="${hospital.hid}">
+					<input type="text" name="hname" value="${hospital.hname}">
 					<span class="grade">⭐ 5.0 | 리뷰 60</span>
 					
 					<button type="button" id="reservation"><img src="http://localhost:9000/petcarepedia/images/cal.png">간편 예약하기
@@ -52,8 +52,8 @@
 					<div id="hmodal" class="modal">
 					  <div class="modal-content">
 					    <span class="close">&times;</span>
-					    <iframe src="http://localhost:9000/petcarepedia/search/search_reservation.do" 
-					     width="500px" height="500px" frameborder=0></iframe>
+					   <iframe src="search_reservation.do?hid=${hospital.hid}" 
+						width="500px" height="500px" frameborder=0></iframe>
 					  </div>
 				  	</div>
 					

@@ -18,7 +18,7 @@
 <body>
 	<div class="reservation">
 		<div class="title">
-			<span>더조은 동물병원</span>
+			<span>${hospital.hname}</span>
 			<span>원하는 날짜/시간 선택</span>
 		</div>
 		
@@ -37,7 +37,7 @@
 
 			<hr>
 			
-			 <div class="time">
+			 <!-- <div class="time">
 		        <span id="stime"><input type="hidden" name="time" value="11:00">11:00</span>
 		        <span id="stime"><input type="hidden" name="time" value="11:30">11:30</span>
 		        <span id="stime"><input type="hidden" name="time" value="12:00">12:00</span>
@@ -48,11 +48,12 @@
 		        <span id="stime"><input type="hidden" name="time" value="16:00">16:00</span>
 		        <span id="stime"><input type="hidden" name="time" value="16:30">16:30</span>
 		        <span id="stime"><input type="hidden" name="time" value="17:00">17:00</span>
-		    </div>
+		    </div> -->
+		    <div id="timeContainer"></div>
 		    
-			<input type="text" name="hid" value="">
-		    <input type="text" id="selectedDate" name="selectedDate" value="">
-			<input type="text" id="selectedTime" name="selectedTime" value="1">
+			<input type="text" name="hid" value="${hospital.hid}">
+		    <input type="text" id="selectedDate" name="selectedDate" value="date">
+			<input type="text" id="selectedTime" name="selectedTime" value="time">
 		</form>
 		<button  type="submit" id="check">확인</button>
 	</div>

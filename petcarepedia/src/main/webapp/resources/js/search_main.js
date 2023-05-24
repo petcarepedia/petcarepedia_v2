@@ -88,10 +88,7 @@ $(document).ready(function(){
 /*******************************************
 	예약 버튼
 ********************************************/
-	/*$("#hservation").click(function() {
-		var url = 'http://localhost:9000/WebCarePedia/search/search_reservation.jsp';
-	    window.open(url, 'popup', 'width=500,height=500,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,resizable=no');
-	});*/
+
 
 	 $("#hservation").click(function() {
 		 $("#hmodal").css("display", "block");
