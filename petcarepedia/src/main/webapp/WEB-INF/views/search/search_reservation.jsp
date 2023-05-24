@@ -52,7 +52,7 @@
 		    
 			<input type="text" name="hid" value="">
 		    <input type="text" id="selectedDate" name="selectedDate" value="">
-			<input type="text" name="time" value="">
+			<input type="text" id="selectedTime" name="selectedTime" value="1">
 		</form>
 		<button  type="submit" id="check">확인</button>
 	</div>
