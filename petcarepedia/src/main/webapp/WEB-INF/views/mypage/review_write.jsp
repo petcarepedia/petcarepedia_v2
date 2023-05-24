@@ -20,7 +20,6 @@
 			<form name="writeForm" action="review_write_proc.do" method="post">
 			<input type = "hidden" name = "mid" value = "${mid}">
 			<input type = "hidden" name = "hid" value = "${hid}">
-			<input type = "hidden" name = "bid" value = "${bid}">
 				<section id = "section1">
 					<div>
 						<nav>
@@ -69,7 +68,7 @@
 					</section>
 					<textarea name="rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)" minlength = "30" maxlength="50"></textarea>
 					<button type = "button" id = "cancle">취소</button>
-					<button type = "submit" id = "write_finish">작성완료</button>
+					<button type = "button" id = "btnReviewWrite">작성완료</button>
 				</div>
 			</form>
 		</section>

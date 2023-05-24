@@ -34,8 +34,8 @@
 						<ul>
 							<li>마이페이지</li>
 							<li><a href = "http://localhost:9000/petcarepedia/information.do?mid=hong">회원 정보</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/reservation.do?mid=${memberVo.mid}">예약 내역</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/my_review.do?mid=${memberVo.mid}">내가 쓴 리뷰</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/reservation.do?mid=hong">예약 내역</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/my_review.do?mid=hong">내가 쓴 리뷰</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do?mid=${memberVo.mid}">즐겨찾기</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/signout.do?mid=${memberVo.mid}">회원 탈퇴</a></li>
 						</ul>
@@ -54,7 +54,7 @@
 								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
 								<span>${bookingVo.loc}</span>
 								<img src = "http://localhost:9000/petcarepedia/images/홈.png">
-								<a href = "http://localhost:9000/petcarepedia/information.do">병원 홈페이지 가기</a>
+								<a href = "${bookingVo.hrink}">병원 홈페이지 가기</a>
 								<img src = "http://localhost:9000/petcarepedia/images/전화.png">
 								<span>${bookingVo.tel}</span>
 								<span>예약 날짜 : ${bookingVo.vdate}</span>
