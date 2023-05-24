@@ -63,7 +63,13 @@ div.date {
   	
 }
 
+span.sdate {
+	/* border: 2px solid red; */
+	
+}
+
 input[name="date"] {
+	width: 60px;
 	border: none;
 	text-align: center;
 }
