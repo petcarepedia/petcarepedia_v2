@@ -56,7 +56,7 @@ $(".hservation").click(function() {
 	        <span id="stime"><input type="hidden" name="time" value="16:30">16:30</span>
 	        <span id="stime"><input type="hidden" name="time" value="17:00">17:00</span>
 	    </div> -->
-	    <div id="timeContainer"></div>
+	    <div class="time"></div>
 		   
 	    <form name="reservation" action="#" method="get">
 			<input type="text" name="hid" value="${hospital.hid}">

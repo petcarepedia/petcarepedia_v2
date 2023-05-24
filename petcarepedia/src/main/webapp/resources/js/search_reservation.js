@@ -89,7 +89,7 @@ $(document).ready(function() {
   generateDates();
   
 /*******************************************
-	time -> 수정 중
+	time -> 수정 중 // 무한 루프에 빠졌다!!
 ********************************************/
 //SELECT HID, HNAME, SUBSTR(HTIME, 0,5 ) "START",  SUBSTR(HTIME, 7,6 ) "END"
 //FROM PCP_HOSPITAL WHERE HID='H_0125'
@@ -97,31 +97,40 @@ $(document).ready(function() {
 
 
 
-  var startTime = "10:00";  // 시작 시간
-  var endTime = "18:00";    // 종료 시간
-  var interval = 30;        // 간격 (분 단위)
+  function generateTimeSlots() {
+    const timeContainer = $('.time');
+    const selectedTimeInput = $('#selectedTime');
+    const startTime = '11:00'; // 첫 시간 (예: '11:00')
+    const endTime = '17:00'; // 마지막 시간 (예: '17:00')
 
-  var currentTime = startTime;
-  var timeContainer = $("#timeContainer");
+    // 시작 시간과 종료 시간을 Date 객체로 변환
+    const startDate = new Date(`2000-01-01 ${startTime}`);
+    const endDate = new Date(`2000-01-01 ${endTime}`);
 
-  while (currentTime <= endTime) {
-    var timeSlot = $('<span class="stime">' + currentTime + '</span>');
-    timeSlot.append('<input type="hidden" name="time" value="' + currentTime + '">');
-    timeContainer.append(timeSlot);
-    
-    var timeParts = currentTime.split(":");
-    var hours = parseInt(timeParts[0]);
-    var minutes = parseInt(timeParts[1]);
-
-    // Add the interval to the current time
-    minutes += interval;
-    if (minutes >= 60) {
-      minutes = 0;
-      hours += 1;
+    // 30분 간격으로 시간을 생성하여 출력
+    let currentTime = startDate;
+    while (currentTime <= endDate) {
+      const timeSpan = $('<span>').addClass('stime');
+      const timeValue = currentTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+      timeSpan.html(`<input type="hidden" name="time" value="${timeValue}">${timeValue}`);
+      timeContainer.append(timeSpan);
+      currentTime.setMinutes(currentTime.getMinutes() + 30);
     }
-    currentTime = ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2);
+
+    // 시간 선택 시 해당 시간을 입력란에 출력
+    $('.stime').click(function() {
+      const selectedTime = $(this).find('input[name="time"]').val();
+      selectedTimeInput.val(selectedTime);
+    });
+
+    // 날짜 입력란에 오늘 날짜를 기본값으로 설정
+    const today = new Date();
+    const dateString = today.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    selectedTimeInput.val(dateString);
   }
-  
+
+  // 페이지 로드 시 시간 슬롯 생성
+  generateTimeSlots();
   
   
 
