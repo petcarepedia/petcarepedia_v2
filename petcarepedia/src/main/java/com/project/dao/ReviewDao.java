@@ -314,9 +314,9 @@ public class ReviewDao extends DBConn {
 	public ArrayList<ReviewVo> select(int startCount, int endCount) {
 		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
 		
-		String sql = "select rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar\r\n" + 
-				"from(select rownum rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar\r\n" + 
-				"from(select rid,r.hid,rcontent,hname,gloc,to_char(rdate,'yyyy-mm-dd') rdate,rlike,rstar\r\n" + 
+		String sql = "select rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar,mid\r\n" + 
+				"from(select rownum rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar,mid\r\n" + 
+				"from(select rid,r.hid,rcontent,hname,gloc,to_char(rdate,'yyyy-mm-dd') rdate,rlike,rstar,mid\r\n" + 
 				"from pcp_review r, pcp_hospital h\r\n" + 
 				"where r.hid=h.hid\r\n" + 
 				"order by rlike desc))\r\n" + 
@@ -340,6 +340,7 @@ public class ReviewDao extends DBConn {
 				reviewVo.setRdate(rs.getString(7));
 				reviewVo.setRlike(rs.getInt(8));
 				reviewVo.setRstar(rs.getString(9));
+				reviewVo.setMid(rs.getString(10));
 				
 				
 				list.add(reviewVo);

@@ -43,7 +43,8 @@
 <!-- 	<form name="reviewForm" action="#" method="get" id=reviewForm> -->	
 		<div id="brbox" class="review">
 			<jsp:include page="/best_review_list.do"></jsp:include>
-		</div>	
+		</div>
+		<section id="filter">	
 		<div id="filter_page" class="review">
 		<p>상세검색</p>
 			<table id="filter_lo" class="filter">
@@ -86,15 +87,14 @@
 				</tr>
 			</table>
 		</div>
+		</section>
+		<section id="review">
 		<div id="review" class="review">
 			<div id="title">
 				<span>리뷰</span>
 				<span><a href="review_write.do">리뷰쓰기 ></a></span>
 			</div>
 			<ul>
-				<li id="result_sort">
-					<span>2개의 결과</span>
-				</li>
 				<c:forEach var="list" items="${list }">
 					<li class="review_list">
 						<ul>
@@ -134,6 +134,7 @@
 				<li><div id="ampaginationsm"></div></li>
 			</ul>
 		</div>
+		</section>
 	<!-- </form> -->
 	
 	<!-- footer -->
