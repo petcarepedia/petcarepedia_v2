@@ -50,11 +50,11 @@
 		        <span id="stime"><input type="hidden" name="time" value="17:00">17:00</span>
 		    </div>
 		    
-		    <input type="text" id="selectedDate" name="selectedDate" value="5">
-			<input type="text" name="date" value="">
+			<input type="text" name="hid" value="">
+		    <input type="text" id="selectedDate" name="selectedDate" value="">
 			<input type="text" name="time" value="">
 		</form>
-		<button  type="button" id="check">확인</button>
+		<button  type="submit" id="check">확인</button>
 	</div>
 </body>
 </html>
