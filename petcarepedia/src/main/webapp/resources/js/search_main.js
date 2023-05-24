@@ -90,14 +90,15 @@ $(document).ready(function(){
 ********************************************/
 
 
-	 $("#hservation").click(function() {
+	/* $("#hservation").click(function() {
 		 $("#hmodal").css("display", "block");
-		  });
-		  
-		  // 모달 닫기
-		  $(".close").click(function() {
-		    $("#hmodal").css("display", "none");
-		  });
+		 
+	  });*/
+	  
+	  // 모달 닫기
+	  $(".close").click(function() {
+	    $("#hmodal").css("display", "none");
+	  });
 	
 	
 	

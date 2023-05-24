@@ -12,13 +12,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ko.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/search_reservation.js"></script>
+<script>
+$(".hservation").click(function() {
+	 $("#hmodal").css("display", "block");
+	 $('input[name="hid"]').val($(this).val());
+	 $('span#hname').text($(this).attr("id"));
+	 
+	  
+ });
+</script>
 
 
 </head>
 <body>
 	<div class="reservation">
 		<div class="title">
-			<span>병원명: ${hospital.hid}</span>
+			<span id="hname"></span>
 			<span>원하는 날짜/시간 선택</span>
 		</div>
 		
