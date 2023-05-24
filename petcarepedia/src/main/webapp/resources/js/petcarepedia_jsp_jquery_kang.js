@@ -50,21 +50,6 @@ $(document).ready(function(){
 	});
 	
 	
-	/*******************************************
-		리뷰 - 신고 체크
-	 ********************************************/	
-	$("#BTN_update").click(function() {
-		if($("#title").val() == "") {
-			alert("제목을 입력해주세요.");
-			$("#title").focus();
-			return false;
-		}
-		else {
-			updateForm.submit();
-		}
-	});
-	
-	
 }); //ready
 
 

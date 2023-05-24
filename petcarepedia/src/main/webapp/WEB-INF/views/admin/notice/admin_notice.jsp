@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> admin notice </title>
+<title>펫캐어피디아 | 관리자 공지 관리</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_admin.css">
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/am-pagination.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
@@ -39,20 +39,20 @@
 </head>
 <body>
 	<!-- header -->
-	<jsp:include page="../../header.jsp"></jsp:include>
+	<jsp:include page="../admin_header.jsp"></jsp:include>
 	
 	<div class="d1">
-		<section class="hospital">
+		<section class="notice">
 			<section id = "section1">
 					<div>
 						<nav>
 							<ul>
-								<li>공지관리</li>
-								<li><a href = "admin_notice.do">공지관리</a></a></li>
+								<li>공지사항 관리</li>
 								<li><a href = "hospital_list.do">병원 관리</a></li>
 								<li><a href = "member_list.do">회원 관리</a></li>
-								<li><a href = "review_list.do">신고 리뷰 관리</a></li>
 								<li><a href = "reserve_list.do">예약 관리</a></li>
+								<li><a href = "review_list.do">신고 리뷰 관리</a></li>
+								<li><a href = "admin_notice.do">공지사항 관리</a></li>
 								<li><a href = "#">나가기</a></li>
 							</ul>
 						</nav>
@@ -60,8 +60,8 @@
 				</section>
 		<section id="section2">
 			<div class="d2">
-				<input type="text" class="search_bar" placeholder="병원명 입력">
-				<button class="button1"><img src="http://localhost:9000/petcarepedia/images/foot_sky.png"></button>
+				<input type="text" class="search_bar" placeholder="병원명 입력" hidden>
+				<button class="button1"><img src="http://localhost:9000/petcarepedia/images/foot_sky.png" hidden></button>
 			</div>
 			
 				<table class="table" id=ad_nt_list>

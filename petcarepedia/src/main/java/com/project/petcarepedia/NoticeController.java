@@ -217,18 +217,6 @@ public class NoticeController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	// notice_content.do 사용자 공지사항 상세보기
 	@RequestMapping(value="/notice_content.do", method=RequestMethod.GET)
 	public ModelAndView notice_content(String nid) {
