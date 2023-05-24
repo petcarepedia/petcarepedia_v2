@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.project.dao.MemberDao;
+import com.project.dao.HospitalDao;
 import com.project.dao.ReviewDao;
 import com.project.vo.HospitalVo;
 import com.project.vo.ReviewVo;
@@ -95,9 +95,7 @@ public class MainController {
 	@RequestMapping(value="/main_map_data.do",method=RequestMethod.GET,produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String main_map_data(String gloc) {
-//		HospitalDao hospitalDao = new HospitalDao();
-//		ArrayList<HospitalVo> list = hospitalDao.searchGloc(gloc);
-		MemberDao hospitalDao = new MemberDao();
+		HospitalDao hospitalDao = new HospitalDao();
 		ArrayList<HospitalVo> list = hospitalDao.searchGloc(gloc);
 		
 		JsonObject jlist = new JsonObject();
