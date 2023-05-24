@@ -38,11 +38,7 @@
 						<span>과테말라 냥이</span>
 						<span>의사의 진료는 어떠셨나요?</span>
 						<span>별점을 선택해주세요</span>
-						<!-- <img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png"> -->
+
 						<div id = "star">
 							<fieldset>
 								<input type="radio" name="reviewStar" value="5" id="rate1"><label
@@ -57,12 +53,6 @@
 									for="rate5">★</label>
 							</fieldset>
 						</div>
-						<!-- <span>치료에 대한 자세한 설명</span> -->
-						<!-- <img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png">
-						<img src = "http://localhost:9000/petcarepedia//images/star.png"> -->
 					</section>
 					<textarea name="review" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)"></textarea>
 					<button type = "button" id = "cancle">취소</button>

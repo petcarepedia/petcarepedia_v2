@@ -120,7 +120,7 @@ hr {
 	left: 580px;
 	top: 284px; */
 	width: 614px;
-	height: 375.36px;	
+/* 	height: 375.36px;	 */
 	padding-top : 47px;
 }
 
@@ -267,7 +267,7 @@ hr {
 **************************************/
 #content2 {
 	width : 1000px;
-	height : 750px;
+/* 	height : 750px; */
 	margin:auto; 
 	margin-top : 100px;
 	padding-top : 20px;
@@ -682,7 +682,10 @@ textarea[name='rcontent'] {
 #my_review hr {
 	width : 736px;
 }
+#my_review #aside {
+	padding-bottom : 30px;
 
+	}
 #my_review #section1 div nav ul li:nth-child(2) a {
 	font-weight : 500;
 }
@@ -734,7 +737,8 @@ textarea[name='rcontent'] {
 	width : 200px;
 }
 #my_review #aside #section2 #aside1 span:nth-child(3) span {
-	width: 102.26px;
+	display : inline-block;
+	width: 110px;
 	height: 28px;
 	margin-top : 10px;
 	background: #7AB2CC;
@@ -742,6 +746,7 @@ textarea[name='rcontent'] {
 	font-weight: 500;
 	font-size: 15px;
 	color: #FFFFFF;
+	margin-left : -4px;
 	padding-top : 5px;
 	padding-left : 4px;
 	text-align : center;
@@ -943,7 +948,7 @@ textarea[name='review'] {
 #bookmark #section2 {
 	float : left;
 	width : 650px;
-	height : 200px;
+/* 	height : 200px; */
 	margin-left : 50px;
 }
 #bookmark #section2 #aside1, #bookmark #section2 #aside2 {
@@ -1033,7 +1038,7 @@ textarea[name='review'] {
 #signout #section2 {
 	float : left;
 	width : 700px;
-	height : 250px;
+/* 	height : 250px; */
 }
 #signout #section2 div {
 	margin-left : 50px;
@@ -1069,7 +1074,7 @@ textarea[name='review'] {
 #signout #section3 {
 	float : left;
 	width : 400px;
-	height : 100px;
+/* 	height : 100px; */
 	margin-left : 50px;
 	float : left;
 	margin-top : 30px;

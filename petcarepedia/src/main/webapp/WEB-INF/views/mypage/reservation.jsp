@@ -18,6 +18,7 @@
 	 <jsp:include page="../header.jsp"></jsp:include>
 	<div id = "content2">
 		<section id = "reservation">
+			<form name="deleteForm" action="reservation_delete_proc.do" method="post">
 			<div id = "btn_box">
 				<h1 id = "title">예약 내역</h1>
 				<div id = "btn_reservation">
@@ -67,6 +68,7 @@
 					</c:forEach>
 				</section>
 			</div>
+			</form>
 		</section>
 	</div>
 	<jsp:include page="../footer.jsp"></jsp:include>

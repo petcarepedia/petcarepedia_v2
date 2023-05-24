@@ -74,6 +74,23 @@ public class MypageController {
 	}
 	
 	/*
+	 * reservation_delete_proc.do - 예약내역(예약중)폼에서 삭제하기 처리
+	 */
+	@RequestMapping(value = "/reservation_delete_proc.do", method = RequestMethod.POST)
+	public String reservation_delete_proc(String bid) {
+		String viewName = "";
+		BookingDao bookingDao = new BookingDao();
+		int result = bookingDao.delete(bid);
+		if(result == 1) {
+			viewName = "redirect:/reservation.do";
+		}
+		return viewName;
+	}
+	
+	
+	
+	
+	/*
 	 * reservation2.do - 예약내역(진료완료) 폼
 	 */
 	@RequestMapping(value = "/reservation2.do", method = RequestMethod.GET)
