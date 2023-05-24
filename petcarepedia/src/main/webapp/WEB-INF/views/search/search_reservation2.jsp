@@ -9,8 +9,6 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_reservation.css">
 
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ko.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/search_reservation.js"></script>
 
 
@@ -18,26 +16,36 @@
 <body>
 	<div class="reservation">
 		<div class="title">
-			<span>${hospital.hname}</span>
+			<span>더조은 동물병원</span>
 			<span>원하는 날짜/시간 선택</span>
 		</div>
 		
 		<hr>
 		
 		<form name="reservation" action="#" method="get">
-			<div class="date">
-			  <span><a id="prev">&lt;</a></span>
-			  <span class="sdate"><input type="text" name="date" value="" readonly></span>
-			  <span class="sdate"><input type="text" name="date" value="" readonly></span>
-			  <span class="sdate"><input type="text" name="date" value="" readonly></span>
-			  <span class="sdate"><input type="text" name="date" value="" readonly></span>
-			  <span class="sdate"><input type="text" name="date" value="" readonly></span>
-			  <span><a id="next">&gt;</a></span>
-			</div>
-
+			<!-- <div class="date">
+		        <span><a><</a></span>
+		        <span id="sdate"><input type="hidden" name="date" value="04.27(목)">04.27(목)</span>
+		        <span id="sdate"><input type="hidden" name="date" value="04.28(금)">04.28(금)</span>
+		        <span id="sdate"><input type="hidden" name="date" value="04.29(토)">04.29(토)</span>
+		        <span id="sdate"><input type="hidden" name="date" value="05.01(월)">05.01(월)</span>
+		        <span id="sdate"><input type="hidden" name="date" value="05.02(화)">05.02(화)</span>
+		        <span><a>></a></span>
+		    </div> -->
+		    
+		     <div class="date">
+			    <span><a id="previousButton">&lt;</a></span>
+			    <span id="dateContainer" class="date-list"></span>
+			    <span><a id="nextButton">&gt;</a></span>
+			  </div>
+			
+			  <div id="paginationContainer"></div>
+			  
+			
+			
 			<hr>
 			
-			 <!-- <div class="time">
+			 <div class="time">
 		        <span id="stime"><input type="hidden" name="time" value="11:00">11:00</span>
 		        <span id="stime"><input type="hidden" name="time" value="11:30">11:30</span>
 		        <span id="stime"><input type="hidden" name="time" value="12:00">12:00</span>
@@ -48,14 +56,13 @@
 		        <span id="stime"><input type="hidden" name="time" value="16:00">16:00</span>
 		        <span id="stime"><input type="hidden" name="time" value="16:30">16:30</span>
 		        <span id="stime"><input type="hidden" name="time" value="17:00">17:00</span>
-		    </div> -->
-		    <div id="timeContainer"></div>
+		    </div>
 		    
-			<input type="text" name="hid" value="${hospital.hid}">
-		    <input type="text" id="selectedDate" name="selectedDate" value="date">
-			<input type="text" id="selectedTime" name="selectedTime" value="time">
+		    <input type="text" id="selectedDate" name="selectedDate" value="2">
+			<input type="text" name="date" value="">
+			<input type="text" name="time" value="">
 		</form>
-		<button  type="submit" id="check">확인</button>
+		<button  type="button" id="check">확인</button>
 	</div>
 </body>
 </html>

@@ -1,103 +1,92 @@
 $(document).ready(function() {
+/*******************************************
+	date
+********************************************/
+  moment.locale("ko"); // 한글 로케일 설정
+
+  var currentDate = moment(); // moment.js를 사용하여 현재 날짜 생성
+  var startDate = moment(currentDate); // 시작 날짜 설정
+
+  var dateElements = $(".sdate");
+  var prevButton = $("#prev");
+  var nextButton = $("#next");
 
   var datesPerPage = 5; // 페이지당 출력되는 날짜 수
   var currentPage = 1; // 현재 페이지 번호
   var totalDates = 30; // 총 날짜 수
 
-  generateDates();
+  var currentDateIndex = 0; // 현재 표시 중인 날짜 인덱스
+  var selectedDate = ""; // 선택된 날짜 저장 변수
 
+  // 초기 날짜 표시
   function generateDates() {
-    var currentDate = new Date();
-    var dateContainer = $("#dateContainer");
-    var startIndex = (currentPage - 1) * datesPerPage; // 시작 인덱스
-    var endIndex = startIndex + datesPerPage; // 종료 인덱스
+    for (var i = 0; i < dateElements.length; i++) {
+      var formattedDate = startDate.format("MM.DD(ddd)");
+      var inputElement = dateElements.eq(i).find("input");
+      inputElement.val(formattedDate);
 
-    // 종료 인덱스를 총 날짜 수를 넘지 않도록 처리
-    if (endIndex > totalDates) {
-      endIndex = totalDates;
+      // 날짜 클릭 이벤트 추가
+      inputElement.on("click", function() {
+        var clickedDate = $(this).val();
+        $("#selectedDate").val(clickedDate);
+
+        // 선택된 날짜 스타일 변경
+        dateElements.find("input").removeClass("selected-date");
+        $(this).addClass("selected-date");
+        
+        // 선택된 날짜 저장
+        selectedDate = clickedDate;
+      });
+
+      startDate.add(1, "days");
     }
-
-    dateContainer.empty(); // 기존 날짜 초기화
-
-    for (var i = startIndex; i < endIndex; i++) {
-      var nextDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + i);
-      var formattedDate = formatDate(nextDate);
-      var spanElement = $("<span></span>")
-        .addClass("date-list")
-        .attr("data-date", formattedDate)
-        .text(formattedDate);
-      dateContainer.append(spanElement);
-    }
-
-    generatePagination();
-    attachDateClickEvent(); 
-  }
-  
-	function attachDateClickEvent() {
-  $("span.date-list").off("click").on("click", function() {
-    var clickedDate = $(this).attr("data-date");
-    alert(clickedDate); // 선택한 날짜 출력 (확인용)
-    $("#selectedDate").val(clickedDate);
-  });
-}
-  
-  function formatDate(date) {
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
-    return padZero(month) + "." + padZero(day) + "(" + getDayOfWeek(date) + ")";
-  }
-
-  function padZero(number) {
-    return number < 10 ? "0" + number : number;
-  }
-
-  function getDayOfWeek(date) {
-    var daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
-    return daysOfWeek[date.getDay()];
   }
 
   // 이전 버튼 클릭 이벤트
-  $("#previousButton").on("click", function() {
+  prevButton.on("click", function() {
     if (currentPage > 1) {
       currentPage--;
-      generateDates();
+      dateElements.find("input").removeClass("selected-date");
+      updateDisplayedDates();
     }
   });
 
   // 다음 버튼 클릭 이벤트
-  $("#nextButton").on("click", function() {
+  nextButton.on("click", function() {
     var totalPages = Math.ceil(totalDates / datesPerPage);
-    if (currentPage < totalPages) {
+    var lastPageIndex = totalPages * datesPerPage - datesPerPage; // 마지막 페이지의 첫 번째 인덱스
+
+    if (currentDateIndex < lastPageIndex) {
       currentPage++;
-      generateDates();
+      dateElements.find("input").removeClass("selected-date");
+      updateDisplayedDates();
     }
   });
 
-  function generatePagination() {
-    var totalPages = Math.ceil(totalDates / datesPerPage);
-    var paginationContainer = $("#paginationContainer");
-    paginationContainer.empty();
+  // 현재 표시되는 날짜 업데이트
+  function updateDisplayedDates() {
+    currentDateIndex = (currentPage - 1) * datesPerPage; // 현재 표시 중인 날짜의 인덱스 계산
+    dateElements.find("input").val(""); // 모든 input 요소 초기화
 
-    if (totalPages > 1) {
-      var previousButton = $("<a href='javascript:void(0);'>&lt;</a>");
-      previousButton.on("click", function() {
-        if (currentPage > 1) {
-          currentPage--;
-          generateDates();
-        }
-      });
-      // paginationContainer.append(previousButton);
+    var currentDate = moment(); // 현재 날짜
 
-      var nextButton = $("<a href='javascript:void(0);'>&gt;</a>");
-      nextButton.on("click", function() {
-        if (currentPage < totalPages) {
-          currentPage++;
-          generateDates();
+    for (var i = 0; i < datesPerPage; i++) {
+      var index = currentDateIndex + i;
+      if (index >= 0 && index < totalDates) {
+        var formattedDate = moment(currentDate).add(index, "days").format("MM.DD(ddd)");
+        var inputElement = dateElements.eq(i).find("input");
+        inputElement.val(formattedDate);
+        
+      // 선택된 날짜인 경우 스타일 변경
+        if (formattedDate === selectedDate) {
+          inputElement.addClass("selected-date");
         }
-      });
-      // paginationContainer.append(nextButton);
+      }
     }
   }
+
+  // 초기 날짜 표시
+  generateDates();
 
 /*******************************************
 	날짜 값 받기
@@ -134,15 +123,9 @@ $(document).ready(function() {
 
 
 /*******************************************
-	시간 넘기기
+	time
 ********************************************/
-$("#scheck").click(function() {
-    $.get($("#reservation-form").attr("action"), $("#reservation-form").serialize(), function(data) {
-        // 서버에서 반환한 응답 처리
-    });
-});
-});
 
-$('span1').click(function() {
-    $(this).toggleClass('bold');
-  });
+
+
+});

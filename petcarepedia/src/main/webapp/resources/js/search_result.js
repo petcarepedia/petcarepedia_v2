@@ -2,10 +2,6 @@ $(document).ready(function(){
 /*******************************************
 	예약 버튼
 ********************************************/
-	/*$("#reservation").click(function() {
-		var url = 'http://localhost:9000/WebCarePedia/search/search_reservation.jsp';
-	    window.open(url, 'popup', 'width=500,height=500,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,resizable=no');
-	});*/
 	
 	$("#reservation").click(function() {
 		 $("#hmodal").css("display", "block");
@@ -20,7 +16,7 @@ $(document).ready(function(){
 	리뷰작성
 ********************************************/
 	$("#review").click(function() {
-		 window.location.href = 'http://localhost:9000/WebCarePedia/search/search_main.jsp';
+		 window.location.href = 'http://localhost:9000/petcarepedia/search_main.do';
 	});
 	
 	
@@ -28,7 +24,7 @@ $(document).ready(function(){
 	찜하기
 ********************************************/
 	$("#like").click(function() {
-		 window.location.href = 'http://localhost:9000/WebCarePedia/search/search_main.jsp';
+		 window.location.href = 'http://localhost:9000/petcarepedia/search_main.do';
 	});
 	
 	

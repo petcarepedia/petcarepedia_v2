@@ -1,26 +1,3 @@
-.date-list {
-  list-style: none;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-}
-
-.date-list li {
-  margin-right: 10px;
-}
-
-.pagination {
-  display: flex;
-  align-items: center;
-}
-
-.pagination a {
-  margin-right: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  color: blue;
-}
-
 /***************************************
 	공통
 ***************************************/
@@ -51,7 +28,6 @@ a:active {
 }
 
 
-
 /***************************************
 	title
 ***************************************/
@@ -72,7 +48,7 @@ div.title span:nth-child(2) {
 
 
 /***************************************
-	date
+	date - 날짜 선택
 ***************************************/
 div.date {
 	/* border: 1px solid red; */
@@ -87,14 +63,29 @@ div.date {
   	
 }
 
-div.date span:hover {
-	cursor: pointer;
-	/* color: red; */
+span.sdate {
+	/* border: 2px solid red; */
 	
 }
 
-div.date input[type="hidden"]:checked + label {
+input[name="date"] {
+	width: 60px;
+	border: none;
+	text-align: center;
+}
+
+input[name="date"]:hover {
+	cursor: pointer;
+}
+
+.selected-date {
   font-weight: bold;
+  border: none;
+  /* color: red; */
+}
+
+input[name="date"]:focus {
+  outline: none;
 }
 
 

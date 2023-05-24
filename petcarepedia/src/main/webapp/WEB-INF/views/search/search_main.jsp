@@ -122,7 +122,7 @@
 								<div id="hmodal" class="modal">
 								  <div class="modal-content">
 								    <span class="close">&times;</span>
-								    <iframe src="http://localhost:9000/petcarepedia/search_reservation.do" 
+								    <iframe src="http://localhost:9000/petcarepedia/search_reservation.do?hid=${list.hid}" 
 								     width="500px" height="500px" frameborder=0></iframe>
 								  </div>
 								</div>
