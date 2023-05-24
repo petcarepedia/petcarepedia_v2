@@ -110,8 +110,9 @@
 							
 							var contentString = [
 						        '<div class="iw_inner" style="padding:10px;">',
-						        '   <h3 style="font-size:18px;">'+obj.hname+'</h3>',
-						        '   <p style="font-size:12px;">'+obj.loc+'</p>',
+						        '   <div style="clear:both;margin-bottom:5px;"><img src="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" width="20px" height="20px" style="float:left; margin-right:10px;"><h3 style="font-size:18px;">'+obj.hname+'</h3></div>',
+						        '   <h3 style="font-size:12px;color:lightgray">'+obj.tel+' | '+obj.htime+'</h3>',
+						        '   <p style="font-size:12px;color:gray">'+obj.loc+'</p>',
 						        '</div>'
 						    ].join('');
 				
