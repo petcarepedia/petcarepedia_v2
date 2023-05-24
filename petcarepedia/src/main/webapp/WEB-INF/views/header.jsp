@@ -19,7 +19,7 @@
                     </div>
                 </a>
                 
-                <form name="headerSearchForm" action="searchProc.jsp" method="post">
+                <form name="headerSearchForm" action="main_search_proc.do" method="get">
                     <div class="header-search">
                         <div>
                             <input type="text" placeholder="키워드를 검색해보세요!">

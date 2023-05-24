@@ -32,7 +32,7 @@
 			</div>
 		</div>
 		
-		<form name="indexSearchForm" action="searchProc.jsp" method="post">
+		<form name="indexSearchForm" action="main_search_proc.do" method="get">
 			<div class="main-search">
 				<input type="text" placeholder="찾고싶은 동물병원과 관련된 키워드를 검색해보세요!">
 				<button type="button"><img src="http://localhost:9000/petcarepedia/images/foot_white.png" width="30px" height="30px"></button>
