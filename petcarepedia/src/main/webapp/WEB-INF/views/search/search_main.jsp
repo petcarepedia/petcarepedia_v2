@@ -122,7 +122,7 @@
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp></button>
 								<div id="hmodal" class="modal">
 								  <div class="modal-content">
-								    <span class="close">&times;${list.hid}</span>
+								    <span class="close">&times;</span>
 								    <%-- <iframe src="http://localhost:9000/petcarepedia/search_reservation.do?hid=${list.hid}" 
 								     width="500px" height="500px" frameborder=0></iframe> --%>
 								      <jsp:include page="search_reservation.jsp"></jsp:include>	
