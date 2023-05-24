@@ -7,13 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="images/x-icon">
-<title>result</title>
+	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<title>펫캐어피디아 | 검색 결과</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_result.css">
 
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/search_result.js"></script>
-	
 </head>
 
 <body>
@@ -40,20 +39,21 @@
 					</div>
 					
 					<span class="name">${hospital.hname}</span>
-					<input type="text" name="hid" value="${hospital.hid}">
+					<input type="hidden" name="hid" value="${hospital.hid}">
 					<input type="text" name="hname" value="${hospital.hname}">
 					<span class="grade">⭐ 5.0 | 리뷰 60</span>
 					
-					<button type="button" id="reservation"><img src="http://localhost:9000/petcarepedia/images/cal.png">간편 예약하기
+					<button type="button" id="reservation" value="${hospital.hid}"><img src="http://localhost:9000/petcarepedia/images/cal.png">간편 예약하기
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp></button>
 					<div id="hmodal" class="modal">
-					  <div class="modal-content">
+					<div class="modal-content">
 					    <span class="close">&times;</span>
-					   <iframe src="search_reservation.do?hid=${hospital.hid}" 
-						width="500px" height="500px" frameborder=0></iframe>
+					   <!-- <iframe id="reservation-iframe" src="" 
+						width="500px" height="500px" frameborder=0 ></iframe> -->
+					  <jsp:include page="search_reservation.jsp"></jsp:include>	
 					  </div>
 				  	</div>
 					

@@ -18,7 +18,7 @@
 <body>
 	<div class="reservation">
 		<div class="title">
-			<span>${hospital.hname}</span>
+			<span>병원명: ${hospital.hid}</span>
 			<span>원하는 날짜/시간 선택</span>
 		</div>
 		

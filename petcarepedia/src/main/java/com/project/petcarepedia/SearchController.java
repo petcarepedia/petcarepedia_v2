@@ -56,21 +56,27 @@ public class SearchController {
 	/////////////////////
 	
 	/** search_reservation.do **/
-	/*
-	 * @RequestMapping(value="/search_reservation.do", method=RequestMethod.GET)
-	 * public String search_reservation() { return "/search/search_reservation"; }
-	 */
+	
+	 @RequestMapping(value="/search_reservation.do", method=RequestMethod.GET)
+	 public String search_reservation() { 
+		 return "/search/search_reservation"; 
+		 }
+	 
 	
 	/** search_reservation.do?hid=? **/
 	@RequestMapping(value="/search_reservation.do", method=RequestMethod.GET)
 	public ModelAndView search_reservation(String hid) {
 		ModelAndView model = new ModelAndView();
-		HospitalVo hospital = hospitalDao.select(hid);
+		HospitalVo hospitalVo = hospitalDao.select(hid);
+		System.out.println(hospitalVo.getHid());
 		
-		model.addObject("hospital", hospital);
+		model.addObject("hospital", hospitalVo);
 		model.setViewName("/search/search_reservation");
 		return model;
 	}
+	
+	
+		
 	
 	
 	
