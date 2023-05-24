@@ -46,22 +46,26 @@
 							<tr>
 								<th>영업시간</th>
 								<td>
-									<textarea name="time" id="time" placeholder="영업시간 : 00:00 ~ 00:00 
+									<textarea name="htime" id="htime" placeholder="영업시간 : 00:00 ~ 00:00 
 																				    야간근무시간 : 00:00 ~ 00:00"
 																				></textarea>
 								</td>
+							</tr>
+							<tr>
+								<th>야간 근무 여부</th>
+								<td><input type="text" name="ntime" id="ntime"> </td>
 							</tr>
 							<tr>
 								<th>휴무일</th>
 								<td><input type="text" name="close" id="close" placeholder ="매주  요일"> </td>
 							</tr>
 							<tr>
-								<th>취급 동물</th>
-								<td><input type="text" name="animal" id="animal"> </td>
+								<th>공휴일 진료 여부</th>
+								<td><input type="text" name="holiday" id="holiday"> </td>
 							</tr>
 							<tr>
 								<th>강조사항(선택)</th>
-								<td><textarea name="check" id="check"></textarea></td>
+								<td><textarea name="intro" id="intro"></textarea></td>
 							</tr>
 							<tr>
 								<th>첨부파일<th>
@@ -70,6 +74,9 @@
 							<tr>
 								<td colspan="2"><button type="button" class="button4">저장하기</button></td>
 							</tr>
+							<tr>
+								<td colspan="2"><button type="button" class="button4">이전으로</button></td>
+							</tr>
 						</table>
 					</div>
 				</section>
@@ -77,6 +84,6 @@
 		</section>
 	</div>
 	<!-- footer -->
-	<jsp:include page="../../footer.jsp"></jsp:include>
+		<jsp:include page="../../footer.jsp"></jsp:include>
 </body>
 </html>

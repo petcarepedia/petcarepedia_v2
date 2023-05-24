@@ -46,24 +46,28 @@
 							<tr>
 								<th>영업시간</th>
 								<td>
-									<input name="time" id="time" placeholder ="O" value="${hospitalVo.htime}"/>
+									<input name="htime" id="htime" placeholder ="O" value="${hospitalVo.htime}"/>
 								</td>
 							</tr>
 							<tr>
 								<th>야간 근무 여부</th>
 								<td>
-									<input name="time" id="time" placeholder ="O" value="${hospitalVo.ntime}"/>
+									<input name="ntime" id="ntime" placeholder ="O" value="${hospitalVo.ntime}"/>
 								</td>
 							</tr>
 							<tr>
 								<th>공휴일 진료 여부</th>
-								<td><input type="text" name="close" id="close" placeholder ="O" value="${hospitalVo.holiday}"></td>
+								<td><input type="text" name="holiday" id="holiday" placeholder ="O" value="${hospitalVo.holiday}"></td>
 							</tr>
 							<tr>
 								<th>특수 동물 진료 여부</th>
 								<td><input type="text" name="animal" id="animal" value="${hospitalVo.animal}"></td>
 							</tr>
 							<tr>
+								<th>홈페이지 링크</th>
+								<td><input type="text" name="animal" id="animal" value="${hospitalVo.hrink}"></td>
+							</tr>
+							<tr id="check">
 								<th>강조사항(선택)</th>
 								<td><textarea name="check" id="check"></textarea></td>
 							</tr>
@@ -71,10 +75,11 @@
 								<th>첨부파일<th>
 								<input type="file" name="file" id="file">
 							</tr>
-							<tr>
-								<td colspan="2"><button type="button" class="button4">저장하기</button></td>
-							</tr>
 						</table>
+					</div>
+					<div id="d4">
+						<button type="button" class="button4">저장하기</button>
+						<button type="button" class="button4"><a href="http://localhost:9000/petcarepedia/hospital_list.do"> 이전으로</a></button>
 					</div>
 				</section>
 			</form>

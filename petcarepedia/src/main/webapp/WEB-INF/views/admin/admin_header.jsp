@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
 </head>
 <body>
 	<header>
-		<div class="header-menu">
+		<div class="header-menu1">
 			<div class="header-content">
 				<a href="http://localhost:9000/petcarepedia/index.do">
 					<div class="header-logo">

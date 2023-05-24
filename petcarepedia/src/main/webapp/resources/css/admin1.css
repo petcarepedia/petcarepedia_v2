@@ -9,8 +9,11 @@
 	width:1000px;
 	margin:auto;
 	margin-top:100px;
-	border:1px solid black;
+	/* border:1px solid black;  */
 	margin-bottom:170px;
+	display: flex;
+    /* align-items:center; */
+    flex-direction: column;
 }
 .table{
 	width:750px;
@@ -31,11 +34,14 @@ div.d2> .search_bar{
 	margin:auto;
 }
 .d2 {
-    display: flex;
-    align-items:center;
-    float:left;
+	display:inline-flex;
+	flex-direction: row;
     margin-left:185px;
-    margin-top:30px;;
+    margin-top:30px;
+}
+.d3 {
+	display:inline-flex;
+	flex-direction: row;
 }
 .d2>.button1{
 	margin-left:-41px;
@@ -84,15 +90,25 @@ th{
 tr td:nth-child(1) {
 	width:50px;
 }
+#d4{
+	display:inline-block;
+	border:1px solid red;
+}
+#d4 button{
+	display: flex;
+    align-items:center;
+    flex-direction: column;
+	border:1px solid red;
+}
 .button4{
 	padding:5px 15px;
 }
-section.reserve tr:last-child td,section.review tr:last-child td,
+/* section.reserve tr:last-child td,section.review tr:last-child td,
 section.member tr:last-child td
-{/* 이전으로 */
+{이전으로
 	border-color:white;
 	padding:0 0 0 650px;
-}
+} */
 
 .table tr td.number, section.hospital tr:last-child td.number{
 	border-color:white;
@@ -128,11 +144,12 @@ section.review #section1 div nav ul li:nth-child(5) a
 /************************
 	header style
 *************************/
-	/* header-style */
-	.header-menu {
+	
+	.header-menu1 {
 		height:100px; width:100%;
-		background:7ab2cc;
+		background:#7AB2CC;
 		position:fixed; left:0; top:0;
+		z-index:1;
 	}
 	.header-content {
 		width:1000px; height:100px;
@@ -325,22 +342,23 @@ section#hospital_update table.table tr th{
 }
 section#hospital_update table.table tr td input,
 section#hospital_update table.table tr td textarea{
-	width:500px;
-	height:35px;
+	width:520px;
+	height:50px;
 	border:1px solid #D9D9D9;
 	border-radius:5px;
 	text-size:15pt;
-	text-indent:15px;
+	text-indent:20px;
 }
 
-section#hospital_update table.table tr:nth-child(2) td input,
-section#hospital_update table.table tr:nth-child(4) td textarea
-{
+section#hospital_update table.table tr{
+	height:55px;	
+}
+
+
+section#hospital_update table.table tr #check{
 	height:110px;
 }
-section#hospital_update table.table tr:nth-child(7) td textarea{
-	height:200px;
-}
+
 
 /*************************************
 	review-detail style sheet
@@ -412,3 +430,4 @@ section.member_detail section#section2 ul li input[type="text"]{
 	margin-top:10px;
 	text-indent:10px;
 }
+
