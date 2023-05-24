@@ -4,13 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Member_List</title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
+	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
+	<link rel="stylesheet" href="http://localhost:9000/mycgv_jsp/css/am-pagination.css">
+	<script src="http://localhost:9000/pecarepedia/js/jquery-3.6.4.min.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/mycgv_jsp_jquery.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
+	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<title>펫캐어피디아 | 관리자</title>
 </head>
 <body>
+
 <!-- header -->
-	<iframe src="http://localhost:9000/petcarepedia/admin/admin_header.jsp" width="100%" height="100px" frameborder=0></iframe>
-	
+	<jsp:include page="../admin_header.jsp"></jsp:include>	
 	<div class="d1">
 		<section class="member">
 			<section id = "section1">
@@ -18,12 +23,12 @@
 					<nav>
 						<ul>
 							<li>회원관리</li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/hospital/hospital_list.jsp">병원 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/member/member_list.jsp">회원 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/reserve/reserve_list.jsp">예약 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/review/review_list.jsp">신고 리뷰 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/admin_notice/admin_notice.jsp">공지 사항 관리</a></li>
-							<li><a href = "#">나가기</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/hospital_list.do">병원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/member/member_list.do">회원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/reserve/reserve_list.do">예약 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/review/review_list.do">신고 리뷰 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/admin_notice/admin_notice.do">공지 사항 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/login.do">나가기</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -36,7 +41,7 @@
 				<table class="table">
 					<tr>
 						<td colspan="6">
-							<button type="button" class="button5"><a href="#">수정</a></button>
+							<button type="button" class="button5"><a href="http://localhost:9000/petcarepedia/member_detail">수정</a></button>
 							<button type="button" class="button5">삭제</button>
 						</td>
 					</tr>
@@ -146,7 +151,7 @@
 		</section>
 	</div>
 	<!-- footer -->
-		<iframe  width="100%" height="350px" frameborder=0></iframe>
+		<jsp:include page="../../footer.jsp"></jsp:include>
 	
 </body>
 </html>

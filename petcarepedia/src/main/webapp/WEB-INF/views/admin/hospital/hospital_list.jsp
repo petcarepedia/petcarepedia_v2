@@ -5,13 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title> Hospital- List </title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
-<link rel="stylesheet" href="http://localhost:9000/mycgv_jsp/css/am-pagination.css">
-<script src="http://localhost:9000/pecarepedia/js/jquery-3.6.4.min.js"></script>
-<script src="http://localhost:9000/petcarepedia/js/mycgv_jsp_jquery.js"></script>
-<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
+	<link rel="stylesheet" href="http://localhost:9000/mycgv_jsp/css/am-pagination.css">
+	<script src="http://localhost:9000/pecarepedia/js/jquery-3.6.4.min.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/mycgv_jsp_jquery.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
+	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<title>펫캐어피디아 | 관리자</title>
 <script>
 	$(document).ready(function(){
 		var pager = jQuery('#ampaginationsm').pagination({
@@ -61,8 +62,14 @@
 			</section>
 		<section id="section2">
 			<div class="d2">
-				<input type="text" class="search_bar" placeholder="병원명 입력">
-				<button class="button1"><img src="http://localhost:9000/petcarepedia/images/foot_sky.png"></button>
+				<form action="hospital_list_detail.do" method="GET">
+					<input type="text"  class="search_bar" placeholder="병원명 입력">
+					<button type="submit" class="button1">
+						<a href="http://localhost:9000/petcarepedia/hospital_list_detail.do?hname=${hospitalVo.hname }">
+							<img src="http://localhost:9000/petcarepedia/images/foot_sky.png">
+						</a>
+					</button>
+				</form>
 			</div>
 				<table class="table">
 					<tr>
