@@ -54,7 +54,13 @@
 	
 	<script>
 		let id = "${mid}";
-		let id_sec = id.substring(0,id.length/2) + '*'.repeat(id.length/2);
+		let id_sec = "";
+		if(id.length/2==0){
+			id_sec = id.substring(0,id.length/2) + '*'.repeat(id.length/2);
+		} else {
+			id_sec = id.substring(0,id.length/2+1) + '*'.repeat(id.length/2);
+		}
+		
 		document.getElementById("id_sec").innerHTML=id_sec;
 	</script>
 </body>

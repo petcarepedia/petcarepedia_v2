@@ -32,7 +32,7 @@
 				<div class="footer-nav">
 					<ul>
 						<li>
-							<a href="#">펫캐어피디아 소개</a>
+							<a href="https://forest-share-eb9.notion.site/PetCarePedia-1-0-b2139ee71cd042acbfe9b19e878a22fa" target="_blank">펫캐어피디아 소개</a>
 						</li>
 						<li>
 							<a href="#">이용약관</a>
@@ -62,7 +62,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="https://github.com/petcarepedia/petcarepedia_v2.git" target="_blank">
 								<img src="http://localhost:9000/petcarepedia/images/footer_github.png" width="27px" height="25px">
 							</a>
 						</li>
