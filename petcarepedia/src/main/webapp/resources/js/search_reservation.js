@@ -87,45 +87,42 @@ $(document).ready(function() {
 
   // 초기 날짜 표시
   generateDates();
-
+  
 /*******************************************
-	날짜 값 받기
-********************************************/	
-	/*$('span#dateContainer1').click(function() {
-    $('span#dateContainer').css("font-weight", "normal");
-    $(this).css("font-weight", "bold");
-    var clickedDate1 = $(this).attr("data-date");
-    $('input[name="date"]').val(clickedDate1);
-});*/
-	  
-
-/*******************************************
-	시간 값 받기
-********************************************/	
- $('span#stime').click(function() {
-    if ($(this).hasClass('selected')) {
-        $(this).removeClass('selected');
-        $('input[name="time"]').val("");
-    } else {
-        $('span#stime').removeClass('selected');
-        $('span#stime').css("border", "1px solid #D9D9D9");
-        $('span#stime').css("border-left", "10px solid #D9D9D9");
-        $('span#stime').css("font-weight", "normal");
-        $(this).addClass('selected');
-        $(this).css("border", "1px solid #98DFFF");
-        $(this).css("border-left", "10px solid #98DFFF");
-        $(this).css("font-weight", "bold");
-
-        var time = $(this).find('input[name="time"]').val();
-        $('input[name="time"]').val(time);
-    }
-});
-
-
-/*******************************************
-	time
+	time -> 수정 중
 ********************************************/
+//SELECT HID, HNAME, SUBSTR(HTIME, 0,5 ) "START",  SUBSTR(HTIME, 7,6 ) "END"
+//FROM PCP_HOSPITAL WHERE HID='H_0125'
+//ORDER BY HID;
 
 
+
+  var startTime = "10:00";  // 시작 시간
+  var endTime = "18:00";    // 종료 시간
+  var interval = 30;        // 간격 (분 단위)
+
+  var currentTime = startTime;
+  var timeContainer = $("#timeContainer");
+
+  while (currentTime <= endTime) {
+    var timeSlot = $('<span class="stime">' + currentTime + '</span>');
+    timeSlot.append('<input type="hidden" name="time" value="' + currentTime + '">');
+    timeContainer.append(timeSlot);
+    
+    var timeParts = currentTime.split(":");
+    var hours = parseInt(timeParts[0]);
+    var minutes = parseInt(timeParts[1]);
+
+    // Add the interval to the current time
+    minutes += interval;
+    if (minutes >= 60) {
+      minutes = 0;
+      hours += 1;
+    }
+    currentTime = ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2);
+  }
+  
+  
+  
 
 });
