@@ -6,7 +6,47 @@ import com.project.vo.HospitalVo;
 
 public class HospitalDao extends DBConn{
 	
-	 
+	/**
+	 *  searchGloc - 구별 병원   검색
+	 * */
+	public ArrayList<HospitalVo> searchGloc(String gloc){
+		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
+		String sql = "SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y\r\n" + 
+				"FROM PCP_HOSPITAL\r\n" + 
+				"where gloc=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1,gloc);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				HospitalVo hospital = new HospitalVo();
+				
+				hospital.setHid(rs.getString(1));
+				hospital.setHname(rs.getString(2));
+				hospital.setGloc(rs.getString(3));
+				hospital.setLoc(rs.getString(4));
+				hospital.setTel(rs.getString(5));
+				hospital.setHtime(rs.getString(6));
+				hospital.setNtime(rs.getString(7));
+				hospital.setHoliday(rs.getString(8));
+				hospital.setAnimal(rs.getString(9));
+				hospital.setIntro(rs.getString(10));
+				hospital.setImg(rs.getString(11));
+				hospital.setHrink(rs.getString(12));
+				hospital.setX(rs.getString(13));
+				hospital.setY(rs.getString(14));
+				
+				list.add(hospital);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	/**
 	 *  search - 병원  상세  검색
 	 * */
