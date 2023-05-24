@@ -82,7 +82,7 @@
 					<c:forEach var="hospitalVo" items="${list}">
 					<tr>
 						<td>${hospitalVo.rno}</td>
-						<td><a href="hospital_content.do?hid=${hospitalVo.hid}">${hospitalVo.hname}</a></td>
+						<td><a href="hospital_update.do?hid=${hospitalVo.hid}">${hospitalVo.hname}</a></td>
 						<td>${hospitalVo.animal}</td>
 						<td>${hospitalVo.ntime}</td>
 						<td>${hospitalVo.hid}</td>

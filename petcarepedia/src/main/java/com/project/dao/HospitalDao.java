@@ -50,20 +50,20 @@ public class HospitalDao extends DBConn{
 	/**
 	 *  search - 병원  상세  검색
 	 * */
-	public ArrayList<HospitalVo> search(String hid){
+	public ArrayList<HospitalVo> search(String hid, String hname){
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
-		HospitalVo hospital = new HospitalVo();
 		String sql = " SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y  "
 					+"  FROM PCP_HOSPITAL WHERE HID=? OR HNAME LIKE %?% )";
 		getPreparedStatement(sql);
 		
 		try {
-			pstmt.setString(1,hospital.getHid());
-			pstmt.setString(2,hospital.getHname());
+			pstmt.setString(1,hid);
+			pstmt.setString(2,hname);
 			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				HospitalVo hospital = new HospitalVo();
 				hospital.setHid(rs.getString(1));
 				hospital.setHname(rs.getString(2));
 				hospital.setGloc(rs.getString(3));
