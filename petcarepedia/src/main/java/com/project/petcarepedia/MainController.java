@@ -35,6 +35,14 @@ public class MainController {
 	}
 	
 	/**
+	 * main_search_proc.do
+	 */
+	@RequestMapping(value="/main_search_proc.do",method=RequestMethod.GET)
+	public String main_search_proc() {
+		return "redirect:/search_main.do";
+	}
+	
+	/**
 	 * footer.do
 	 */
 	@RequestMapping(value="/footer.do",method=RequestMethod.GET)
