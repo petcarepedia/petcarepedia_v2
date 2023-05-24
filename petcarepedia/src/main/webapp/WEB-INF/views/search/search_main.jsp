@@ -7,8 +7,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="images/x-icon">
-	<title>main</title>
+	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<title>펫캐어피디아 | 검색 결과</title>
 	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_main.css">
 	
 	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
@@ -116,14 +116,16 @@
 							
 								<span id="harea">${list.gloc}</span>
 								<span id="htime">진료 중</span>
-								<button type="button" id="hservation">예약하기
+								<%-- <button type="button" id="hservation" value="${list.hid}"> --%>
+								<button type="button" class="hservation" id="${list.hname}" value="${list.hid}">예약하기
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp></button>
 								<div id="hmodal" class="modal">
 								  <div class="modal-content">
 								    <span class="close">&times;</span>
-								    <iframe src="http://localhost:9000/petcarepedia/search_reservation.do?hid=${list.hid}" 
-								     width="500px" height="500px" frameborder=0></iframe>
+								    <%-- <iframe src="http://localhost:9000/petcarepedia/search_reservation.do?hid=${list.hid}" 
+								     width="500px" height="500px" frameborder=0></iframe> --%>
+								      <jsp:include page="search_reservation.jsp"></jsp:include>	
 								  </div>
 								</div>
 							</div>

@@ -342,7 +342,7 @@ div.hinfo span#htime {
 	font-size: 15px;
 }
 
-div.hinfo button#hservation {
+div.hinfo button.hservation {
 	border: none;
 	border-radius: 5px;
 	width: 210px;
@@ -356,7 +356,7 @@ div.hinfo button#hservation {
 	text-align:left;
 }
 
-div.hinfo button#hservation:hover {
+div.hinfo button.hservation:hover {
 	cursor: pointer;
 }
 

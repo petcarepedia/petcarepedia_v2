@@ -2,10 +2,21 @@ $(document).ready(function(){
 /*******************************************
 	예약 버튼
 ********************************************/
+
 	
-	$("#reservation").click(function() {
-		 $("#hmodal").css("display", "block");
-		  });
+$("#reservation").click(function() {
+  var hid = $(this).val();
+  var iframeSrc = "search_reservation.do?hid=" + hid;
+  
+ 
+
+  var modal = $("#hmodal");
+  var iframe = $("#reservation-iframe");
+
+  iframe.attr("src", iframeSrc);
+  modal.css("display", "block");
+  
+});
 		  
 		  // 모달 닫기
 		  $(".close").click(function() {

@@ -20,7 +20,7 @@ div.result_main {
 /***************************************
 	section_info_info
 ***************************************/
-div.images_d {
+div.result_main div.images_d {
 	/* border: 1px solid gray; */
 	height: 220px;
 	white-space: nowrap;
@@ -29,7 +29,7 @@ div.images_d {
 	
 }
 
-div.images_d img {
+div.result_main div.images_d img {
 	/* border: 1px solid red; */
 	width: auto;
 	height: 100%;
@@ -37,20 +37,20 @@ div.images_d img {
 	margin: 0px -3px;
 }
 
-div.name_d {
+div.result_main div.name_d {
 	/* border: 1px solid red; */
 	margin-left: 5px;
 	padding-bottom: 20px;
 	
 }
 
-div.area_d {
+div.result_main div.area_d {
 	/* border: 1px solid red; */
 	padding-top: 20px;
 	font-size: 14px;
 }
 
-span.name {
+div.result_main span.name {
 	/* border: 1px solid red; */
 	font-size: 28px;
 	font-weight: bold;
@@ -58,14 +58,14 @@ span.name {
 	display: block;
 }
 
-span.grade {
+div.result_main span.grade {
 	/* border: 1px solid red; */
 	font-size: 14px;
 	margin-top: 10px;
 	display: block;
 }
 
-div.name_d button#reservation {
+div.result_main div.name_d button#reservation {
 	background: #98DFFF;
 	color: white;
 	border-style: none;
@@ -82,24 +82,24 @@ div.name_d button#reservation {
 		
 }
 
-div.name_d button#reservation: hover {
+div.result_main div.name_d button#reservation: hover {
 	cursor: pointer;
 }
 
-div.name_d button#reservation img {
+div.result_main div.name_d button#reservation img {
 	/* border: 1px solid red; */
 	width: 30px;
 	margin: 0px 10px;
 }
 
-div.buttons {
+div.result_main div.buttons {
 	/* border: 1px solid red; */
 	display: flex;
 	align-items: center;
 	
 }
 
-div.name_d button#review {
+div.result_main div.name_d button#review {
 	background: #FFB3BD;
 	border-style: none;
 	border-radius: 5px;
@@ -113,7 +113,7 @@ div.name_d button#review {
 	margin-right: 45px;
 }
 
-div.name_d button#share, div.name_d button#like  {
+div.result_main div.name_d button#share, div.name_d button#like  {
 	background: #FFFFFF;
 	border: 1px solid #8A8A8A;
 	border-radius: 5px;
@@ -128,17 +128,17 @@ div.name_d button#share, div.name_d button#like  {
 }
 
 
-div.buttons img {
+div.result_main div.buttons img {
 	/* border: 1px solid red; */
 	width: 30px;
 	margin: 0px 10px;
 }
 
-div.name_d button:hover {
+div.result_main div.name_d button:hover {
 	cursor: pointer;
 }
 
-hr {
+div.result_main hr {
 	border: 1px solid #828282;
 }
 
