@@ -682,7 +682,10 @@ textarea[name='rcontent'] {
 #my_review hr {
 	width : 736px;
 }
+#my_review #aside {
+	padding-bottom : 30px;
 
+	}
 #my_review #section1 div nav ul li:nth-child(2) a {
 	font-weight : 500;
 }
