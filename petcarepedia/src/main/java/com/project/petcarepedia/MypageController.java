@@ -140,7 +140,7 @@ public class MypageController {
 	}
  	
 	@RequestMapping(value = "/review_revise.do", method = RequestMethod.GET)
-	public String review_revise() {
+	public String review_revise(ReviewVo reviewVo) {
 		return "/mypage/review_revise";
 	}
 	
