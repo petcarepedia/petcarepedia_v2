@@ -50,15 +50,14 @@ public class HospitalDao extends DBConn {
 	/**
 	 * search - 병원 상세 검색
 	 */
-	public ArrayList<HospitalVo> search(String hid, String hname) {
+	public ArrayList<HospitalVo> search(String hname) {
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
-		String sql = "SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y " + 
-					 "  FROM PCP_HOSPITAL WHERE HID= ? OR HNAME LIKE HNAME = ?";
+		String sql = "SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y  " +
+					 "	FROM PCP_HOSPITAL WHERE HNAME LIKE ?";
 		getPreparedStatement(sql);
 
 		try {
-			pstmt.setString(1, hid);
-			pstmt.setString(2, "%"+ hname + "%");
+			pstmt.setString(1, "%"+ hname + "%");
 
 			rs = pstmt.executeQuery();
 
@@ -114,7 +113,7 @@ public class HospitalDao extends DBConn {
 		int result = 0;
 
 		String sql = "UPDATE PCP_HOSPITAL SET HNAME = ?, GLOC = ?, LOC=? , TEL =?, "
-				+ "HTIME=?, NTIME=?, HOLIDAY=?, ANIMAL=?, INTRO=?, IMG=?, HRINK=?, X =?, Y = ?";
+					+ " HTIME=?, NTIME=?, HOLIDAY=?, ANIMAL=?, INTRO=?, IMG=?, HRINK=?, X =?, Y = ?";
 		getPreparedStatement(sql);
 
 		try {
@@ -146,7 +145,7 @@ public class HospitalDao extends DBConn {
 	public HospitalVo select(String hid) {
 		HospitalVo hospitalVo = new HospitalVo();
 		String sql = "SELECT  HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y"
-				+ " FROM PCP_HOSPITAL WHERE HID = ?";
+					+ " FROM PCP_HOSPITAL WHERE HID = ?";
 		getPreparedStatement(sql);
 
 		try {
@@ -183,8 +182,8 @@ public class HospitalDao extends DBConn {
 	public ArrayList<HospitalVo> select() {
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
 		String sql = "SELECT ROWNUM RNO,  HID, HNAME, GLOC, LOC, TEL, HTIME, STARTTIME, ENDTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y \r\n" + 
-				"FROM (SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, SUBSTR(HTIME, 0,5 ) STARTTIME,  SUBSTR(HTIME, 7,6 ) ENDTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y\r\n" + 
-				"FROM PCP_HOSPITAL ORDER BY HID DESC)";
+					" FROM (SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, SUBSTR(HTIME, 0,5 ) STARTTIME,  SUBSTR(HTIME, 7,6 ) ENDTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y" + 
+					" FROM PCP_HOSPITAL ORDER BY HID DESC)";
 		getPreparedStatement(sql);
 
 		try {

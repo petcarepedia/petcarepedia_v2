@@ -8,36 +8,10 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
 	<link rel="stylesheet" href="http://localhost:9000/mycgv_jsp/css/am-pagination.css">
-	<script src="http://localhost:9000/pecarepedia/js/jquery-3.6.4.min.js"></script>
-	<script src="http://localhost:9000/petcarepedia/js/mycgv_jsp_jquery.js"></script>
-	<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_serin.js"></script>
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
-<script>
-	$(document).ready(function(){
-		var pager = jQuery('#ampaginationsm').pagination({
-		
-		    maxSize: '${maxSize}',	// max page size
-		    totals:  '${totals}',	// total pages	
-		    page: 	 '${page}',		// initial page		
-		    pageSize:'${pageSize}',	// max number items per page
-		
-		    // custom labels		
-		    lastText: '&raquo;&raquo;', 		
-		    firstText:'&laquo;&laquo;',		
-		    prevText: '&laquo;',		
-		    nextText: '&raquo;',
-				     
-		    btnSize:'sm'	// 'sm'  or 'lg'		
-		});
-		
-		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
-			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/mycgv_jsp/board_list.do?page="+e.page);         
-	    });
-		
- 	});
-</script> 
 </head>
 <body>
 <!-- header -->
@@ -62,14 +36,10 @@
 			</section>
 		<section id="section2">
 			<div class="d2">
-				<form action="hospital_list_detail.do" method="GET">
-					<input type="text"  class="search_bar" placeholder="병원명 입력">
-					<button type="submit" class="button1">
-						<a href="http://localhost:9000/petcarepedia/hospital_list_detail.do?hname=${hospitalVo.hname }">
-							<img src="http://localhost:9000/petcarepedia/images/foot_sky.png">
-						</a>
-					</button>
-				</form>
+				<input type="text"  class="search_bar" id ="search_bar"placeholder="병원명 입력">
+				<button type="submit" class="button1" id="search_btn">
+					<img src="http://localhost:9000/petcarepedia/images/foot_sky.png">
+				</button>
 			</div>
 				<table class="table">
 					<tr>
@@ -111,5 +81,25 @@
 	</div>
 	<!-- footer -->
 		<jsp:include page="../../footer.jsp"></jsp:include>
+
+<script>
+	$(document).ready(function(){
+	  $("#search_btn").click(function(){
+	  	//alert("병원");
+	  	if($("#search_bar").val() ==""){
+				alert("병원명을 입력해주세요"); 
+				$("#search_bar").focus();
+				return false;
+			}else{
+				$.ajax({
+					url:"hospital_list_data.do?hname="+$("#search_bar").val(), 
+					success:function(){
+							console.log("${list}");
+						}
+				});
+			}
+	  	});
+	});//ready
+</script>
 </body>
 </html>

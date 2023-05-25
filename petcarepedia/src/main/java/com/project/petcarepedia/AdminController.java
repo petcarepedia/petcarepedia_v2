@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.HospitalDao;
@@ -73,10 +74,10 @@ public class AdminController {
 	 * 병원 - 병원 검색 처리
 	 * */
 	@RequestMapping(value="/hospital_list_detail_proc.do", method=RequestMethod.POST)
-	public String hostpital_list_detail_proc() {
+	public String hostpital_list_detail_proc(String hname) {
 		String viewName="";
 		HospitalDao hospitalDao = new HospitalDao();
-		int result = hospitalDao.search();
+		int result = hospitalDao.search(hname);
 		if(result == 1) {
 			viewName = "redirect:/hospital_list.do";
 		}
@@ -87,10 +88,10 @@ public class AdminController {
 	 * 병원 - 검색페이지
 	 * */
 	@RequestMapping(value="/hospital_list_detail.do", method=RequestMethod.GET)
-	public ModelAndView hostpital_detail() {
+	public ModelAndView hostpital_detail(String hname) {
 		ModelAndView model = new ModelAndView(); 
 		HospitalDao hospitalDao = new HospitalDao();
-		ArrayList<HospitalVo> list = hospitalDao.search();
+		ArrayList<HospitalVo> list = hospitalDao.search(hname);
 		
 		model.addObject("list", list);
 		model.setViewName("/admin/hospital/hospital_list_detail");
@@ -107,12 +108,26 @@ public class AdminController {
 	public ModelAndView hospital_list() {
 		ModelAndView model = new ModelAndView();
 		HospitalDao hospitalDao = new HospitalDao();
-		ArrayList<HospitalVo> list = hospitalDao.select();
+		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
+		
+		list = hospitalDao.select();
 		
 		model.addObject("list", list);
 		model.setViewName("/admin/hospital/hospital_list");
 		
 		return model;
+	}
+	
+	/**
+	 * 메인 - 병원 페이지 검색
+	 * */
+	@RequestMapping(value="/hospital_list_data.do", method=RequestMethod.GET)
+	@ResponseBody
+	public ArrayList<HospitalVo> hospital_list_data(String hname) {
+		HospitalDao hospitalDao = new HospitalDao();
+		ArrayList<HospitalVo> list = hospitalDao.search(hname);
+		
+		return list;
 	}
 	
 	
