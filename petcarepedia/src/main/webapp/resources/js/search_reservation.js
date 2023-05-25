@@ -1,4 +1,55 @@
 $(document).ready(function() {
+
+/*******************************************
+	time 
+********************************************/
+ // 시작 시간과 끝 시간 가져오기
+  var startTime = $("#startTime").val();
+  var endTime = $("#endTime").val();
+
+  // 시작 시간과 끝 시간을 Date 객체로 변환
+  var startDate = new Date("1970/01/01 " + startTime);
+  var endDate = new Date("1970/01/01 " + endTime);
+
+  // 30분 간격으로 시간 슬롯 생성
+  var currentTime = startDate;
+  var timeSlots = [];
+
+  while (currentTime <= endDate) {
+    var formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    timeSlots.push(formattedTime);
+    currentTime.setMinutes(currentTime.getMinutes() + 30);
+  }
+
+  // 시간 슬롯을 화면에 표시
+  var timeContainer = $(".rtime");
+
+  for (var i = 0; i < timeSlots.length; i++) {
+    var timeSlot = timeSlots[i];
+
+    var timeElement = $("<span>", { class: "stime" }).append(
+      $("<input>", { type: "hidden", name: "stime", value: timeSlot }),
+      timeSlot
+    );
+
+    timeContainer.append(timeElement);
+  }
+  
+  // 클릭이벤트
+$(".rtime").on("click", ".stime", function() {
+    // 선택된 시간 슬롯 요소에 스타일을 적용
+    $(".stime").removeClass("selected");
+    $(this).addClass("selected");
+    
+    // 선택된 시간 출력
+    var selectedTime = $(this).text();
+    $("#vtime").val(selectedTime);
+  });
+  
+  
+  
+  
 /*******************************************
 	date
 ********************************************/
@@ -28,7 +79,7 @@ $(document).ready(function() {
       // 날짜 클릭 이벤트 추가
       inputElement.on("click", function() {
         var clickedDate = $(this).val();
-        $("#selectedDate").val(clickedDate);
+        $("#vdate").val(clickedDate);
 
         // 선택된 날짜 스타일 변경
         dateElements.find("input").removeClass("selected-date");
@@ -88,41 +139,6 @@ $(document).ready(function() {
   // 초기 날짜 표시
   generateDates();
   
-/*******************************************
-	time -> 수정 중
-********************************************/
-//SELECT HID, HNAME, SUBSTR(HTIME, 0,5 ) "START",  SUBSTR(HTIME, 7,6 ) "END"
-//FROM PCP_HOSPITAL WHERE HID='H_0125'
-//ORDER BY HID;
 
-
-
-  var startTime = "10:00";  // 시작 시간
-  var endTime = "18:00";    // 종료 시간
-  var interval = 30;        // 간격 (분 단위)
-
-  var currentTime = startTime;
-  var timeContainer = $("#timeContainer");
-
-  while (currentTime <= endTime) {
-    var timeSlot = $('<span class="stime">' + currentTime + '</span>');
-    timeSlot.append('<input type="hidden" name="time" value="' + currentTime + '">');
-    timeContainer.append(timeSlot);
-    
-    var timeParts = currentTime.split(":");
-    var hours = parseInt(timeParts[0]);
-    var minutes = parseInt(timeParts[1]);
-
-    // Add the interval to the current time
-    minutes += interval;
-    if (minutes >= 60) {
-      minutes = 0;
-      hours += 1;
-    }
-    currentTime = ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2);
-  }
-  
-  
-  
 
 });

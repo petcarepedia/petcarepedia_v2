@@ -26,18 +26,16 @@ $("#reservation").click(function() {
 /*******************************************
 	리뷰작성
 ********************************************/
-	$("#review").click(function() {
-		 window.location.href = 'http://localhost:9000/petcarepedia/search_main.do';
-	});
+ $("#like").click(function() {
+ 	likeForm.submit();
+ 
+ });
 	
 	
 /*******************************************
 	찜하기
 ********************************************/
-	$("#like").click(function() {
-		 window.location.href = 'http://localhost:9000/petcarepedia/search_main.do';
-	});
-	
+
 	
 /*******************************************
 	네비게이션

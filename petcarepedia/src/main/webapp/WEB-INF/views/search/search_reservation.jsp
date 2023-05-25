@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="http://localhost:9000/petcarepedia/admin/images/foot_blue.png" rel="shortcut icon" type="images/x-icon">
-<title>reservation</title>
+	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<title>펫캐어피디아 | 예약</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_reservation.css">
 
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
@@ -16,6 +16,8 @@
 $(".hservation").click(function() {
 	 $("#hmodal").css("display", "block");
 	 $('input[name="hid"]').val($(this).val());
+	 $('input[name="startTime"]').val($("#startTime").val());
+	 $('input[name="endTime"]').val($("#endTime").val());
 	$('span#rhname').text($(this).attr("id"));
  });
 </script>
@@ -43,25 +45,21 @@ $(".hservation").click(function() {
 		</div>
 
 		<hr>
-		
-		 <!-- <div class="time">
-	        <span id="stime"><input type="hidden" name="time" value="11:00">11:00</span>
-	        <span id="stime"><input type="hidden" name="time" value="11:30">11:30</span>
-	        <span id="stime"><input type="hidden" name="time" value="12:00">12:00</span>
-	        <span id="stime"><input type="hidden" name="time" value="14:00">14:00</span>
-	        <span id="stime"><input type="hidden" name="time" value="14:30">14:30</span>
-	        <span id="stime"><input type="hidden" name="time" value="15:00">15:00</span>
-	        <span id="stime"><input type="hidden" name="time" value="15:30">15:30</span>
-	        <span id="stime"><input type="hidden" name="time" value="16:00">16:00</span>
-	        <span id="stime"><input type="hidden" name="time" value="16:30">16:30</span>
-	        <span id="stime"><input type="hidden" name="time" value="17:00">17:00</span>
-	    </div> -->
-	    <div id="timeContainer"></div>
-		   
-	    <form name="reservation" action="#" method="get">
+	    
+	    	<div class="rtime">
+		</div>	
+	    
+	    
+	    
+	    <!-- 영업시간 db연동 -->
+	    <input type="text" id="startTime" name="startTime" value="${time.start}">
+	    <input type="text" id="endTime" name="endTime" value="${time.end}">
+
+	    <form name="reservationForm" action="reservationProc.do" method="post">
 			<input type="text" name="hid" value="${hospital.hid}">
-		    <input type="text" id="selectedDate" name="selectedDate" value="date">
-			<input type="text" id="selectedTime" name="selectedTime" value="time">
+			<input type="text" name="mid" value="hong">
+		    <input type="text" id="vdate" name="vdate" value="vdate">
+			<input type="text" id="vtime" name="vtime" value="vtime">
 			<button id="check">확인</button>
 		</form>
 	</div>

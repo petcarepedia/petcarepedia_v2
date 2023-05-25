@@ -278,7 +278,7 @@ div.list1{
 	border: 1px solid #98DFFF;
 	border-radius: 5px;
 	width: 400px;
-	height: 152px;
+	height: 170px;
 	display: flex;
 	margin-bottom: 10px;
 }
@@ -296,27 +296,32 @@ div.hinfo a {
 	padding:2.5px 0px;
 }
 
-div.hinfo a span:first-child {
+div.hinfo span:first-child {
 	/* border: 1px solid #ff80c0; */
 	font-size: 18px;
 	font-weight: bold;
+	display: block;
 	
 }
 
-div.hinfo a span:nth-child(2) {
+div.hinfo span:nth-child(2) {
 	/* border: 1px solid #ff80c0; */
 	font-size: 14px;
-	padding-right: 36px;
+	/* padding-right: 36px; */
+	display: inline-block;
+	width: 150px;
+	margin-bottom: 15px;
 	
 }
 
-div.hinfo a span:last-child {
+div.hinfo span:nth-child(3) {
 	/* border: 2px solid red; */
-	font-size: 12px;
+	font-size: 14px;
 	display: inline-block;
-	width: 210px;
+	width: 60px;
 	height: 15px;
-	margin: 10px 0px 15px 0px;
+	/* margin: 10px 0px 15px 0px; */
+	margin-bottom: 15px;
 	
 	
 }

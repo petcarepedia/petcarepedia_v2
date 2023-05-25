@@ -6,7 +6,20 @@ public class BookingVo {
 	
 	/** Ãß°¡ **/
 	String hname, loc, gloc, tel, hrink;
+	String start, end;
 	
+	public String getStart() {
+		return start;
+	}
+	public void setStart(String start) {
+		this.start = start;
+	}
+	public String getEnd() {
+		return end;
+	}
+	public void setEnd(String end) {
+		this.end = end;
+	}
 	public String getHrink() {
 		return hrink;
 	}
