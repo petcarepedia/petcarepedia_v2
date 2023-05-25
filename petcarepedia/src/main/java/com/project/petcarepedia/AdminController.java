@@ -24,21 +24,7 @@ public class AdminController {
 	
 	
 	
-	/**
-	 * 회원 - 상세페이지
-	 * */
-	@RequestMapping(value="/member_detail.do", method=RequestMethod.GET)
-	public String member_detail(String mid) {
-		String viewName = "";
-		MemberDao memberDao = new MemberDao();
-		int result = memberDao.select(mid);
-		if(result == 1) {
-			viewName=("admin/ ")
-		}
-		
-		
-		return viewName;
-	}
+	
 	
 	/**
 	 * 회원 - 조회페이지
@@ -171,17 +157,24 @@ public class AdminController {
 		
 		for(HospitalVo hospitalVo :list) {
 			JsonObject jobj = new JsonObject(); //{}
-			jobj.addProperty("hid", hospitalVo.getHid());
+			jobj.addProperty("rno", hospitalVo.getRno());
 			jobj.addProperty("hname", hospitalVo.getHname());
-			jobj.addProperty("gloc", hospitalVo.getGloc());
-			jobj.addProperty("loc", hospitalVo.getLoc());
-			jobj.addProperty("tel", hospitalVo.getTel());
-			jobj.addProperty("htime", hospitalVo.getHtime());
 			jobj.addProperty("ntime", hospitalVo.getNtime());
-			jobj.addProperty("holiday", hospitalVo.getHoliday());
 			jobj.addProperty("animal", hospitalVo.getAnimal());
-			jobj.addProperty("x", hospitalVo.getX());
-			jobj.addProperty("y", hospitalVo.getY());
+			jobj.addProperty("hid", hospitalVo.getHid());
+			
+//			JsonObject jobj = new JsonObject(); //{}
+//			jobj.addProperty("hid", hospitalVo.getHid());
+//			jobj.addProperty("hname", hospitalVo.getHname());
+//			jobj.addProperty("gloc", hospitalVo.getGloc());
+//			jobj.addProperty("loc", hospitalVo.getLoc());
+//			jobj.addProperty("tel", hospitalVo.getTel());
+//			jobj.addProperty("htime", hospitalVo.getHtime());
+//			jobj.addProperty("ntime", hospitalVo.getNtime());
+//			jobj.addProperty("holiday", hospitalVo.getHoliday());
+//			jobj.addProperty("animal", hospitalVo.getAnimal());
+//			jobj.addProperty("x", hospitalVo.getX());
+//			jobj.addProperty("y", hospitalVo.getY());
 			
 			jarray.add(jobj);
 		}

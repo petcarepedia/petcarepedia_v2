@@ -4,7 +4,8 @@
 *{
 	padding:0px; margin:0px;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+* {font-family: 'Nanum Gothic', sans-serif;}
 .d1{
 	width:1000px;
 	margin:auto;
