@@ -16,7 +16,8 @@
 $(".hservation").click(function() {
 	 $("#hmodal").css("display", "block");
 	 $('input[name="hid"]').val($(this).val());
-	 $('input[name="end"]').val($(this).val());
+	 $('input[name="startTime"]').val($("#startTime").val());
+	 $('input[name="endTime"]').val($("#endTime").val());
 	$('span#rhname').text($(this).attr("id"));
  });
 </script>
