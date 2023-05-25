@@ -45,25 +45,16 @@ $(".hservation").click(function() {
 		</div>
 
 		<hr>
-		
-		 <!-- <div class="time">
-	        <span id="stime"><input type="hidden" name="time" value="11:00">11:00</span>
-	        <span id="stime"><input type="hidden" name="time" value="11:30">11:30</span>
-	        <span id="stime"><input type="hidden" name="time" value="12:00">12:00</span>
-	        <span id="stime"><input type="hidden" name="time" value="14:00">14:00</span>
-	        <span id="stime"><input type="hidden" name="time" value="14:30">14:30</span>
-	        <span id="stime"><input type="hidden" name="time" value="15:00">15:00</span>
-	        <span id="stime"><input type="hidden" name="time" value="15:30">15:30</span>
-	        <span id="stime"><input type="hidden" name="time" value="16:00">16:00</span>
-	        <span id="stime"><input type="hidden" name="time" value="16:30">16:30</span>
-	        <span id="stime"><input type="hidden" name="time" value="17:00">17:00</span>
-	    </div> -->
-	    <div class="time"></div>
+	    
+	    	<div class="rtime">
+		</div>	
+	    
+	    
 	    
 	    <!-- 영업시간 db연동 -->
-	    <input type="text" id="startTime" name="startTime" value="${time.start}" disabled>
-	    <input type="text" id="endTime" name="endTime" value="${time.end}" disabled>
-		   
+	    <input type="text" id="startTime" name="startTime" value="${time.start}">
+	    <input type="text" id="endTime" name="endTime" value="${time.end}">
+
 	    <form name="reservation" action="#" method="get">
 			<input type="text" name="hid" value="${hospital.hid}">
 		    <input type="text" id="selectedDate" name="selectedDate" value="date">

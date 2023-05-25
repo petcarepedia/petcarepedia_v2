@@ -1,4 +1,55 @@
 $(document).ready(function() {
+
+/*******************************************
+	time -> 수정 중 // 
+********************************************/
+ // 시작 시간과 끝 시간 가져오기
+  var startTime = $("#startTime").val();
+  var endTime = $("#endTime").val();
+
+  // 시작 시간과 끝 시간을 Date 객체로 변환
+  var startDate = new Date("1970/01/01 " + startTime);
+  var endDate = new Date("1970/01/01 " + endTime);
+
+  // 30분 간격으로 시간 슬롯 생성
+  var currentTime = startDate;
+  var timeSlots = [];
+
+  while (currentTime <= endDate) {
+    var formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    timeSlots.push(formattedTime);
+    currentTime.setMinutes(currentTime.getMinutes() + 30);
+  }
+
+  // 시간 슬롯을 화면에 표시
+  var timeContainer = $(".rtime");
+
+  for (var i = 0; i < timeSlots.length; i++) {
+    var timeSlot = timeSlots[i];
+
+    var timeElement = $("<span>", { class: "stime" }).append(
+      $("<input>", { type: "hidden", name: "stime", value: timeSlot }),
+      timeSlot
+    );
+
+    timeContainer.append(timeElement);
+  }
+  
+  // 클릭이벤트
+$(".rtime").on("click", ".stime", function() {
+    // 선택된 시간 슬롯 요소에 스타일을 적용
+    $(".stime").removeClass("selected");
+    $(this).addClass("selected");
+    
+    // 선택된 시간 출력
+    var selectedTime = $(this).text();
+    $("#selectedTime").val(selectedTime);
+  });
+  
+  
+  
+  
 /*******************************************
 	date
 ********************************************/
