@@ -11,6 +11,8 @@ import com.project.vo.MemberVo;
 
 @Controller
 public class JoinController {
+	MemberDao memberDao = new MemberDao();
+	
 	/**
 	 * join.do - 회원가입
 	 */
@@ -26,7 +28,6 @@ public class JoinController {
 	public ModelAndView join_proc(MemberVo memberVo) {
 		ModelAndView model = new ModelAndView();
 		
-		MemberDao memberDao = new MemberDao();
 		int result = memberDao.insert(memberVo);
 		
 		if(result==1) {
@@ -45,7 +46,6 @@ public class JoinController {
 	@RequestMapping(value="/id_check.do",method=RequestMethod.GET) //쿼리스트링방식이므로 -> GET
 	@ResponseBody
 	public String id_check(String id) {
-		MemberDao memberDao = new MemberDao();
 		int result = memberDao.checkId(id);
 		
 		return String.valueOf(result);

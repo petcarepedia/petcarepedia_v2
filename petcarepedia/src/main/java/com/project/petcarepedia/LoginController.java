@@ -10,6 +10,8 @@ import com.project.vo.MemberVo;
 
 @Controller
 public class LoginController {
+	MemberDao memberDao = new MemberDao();
+	
 	/**
 	 * login.do - ·Î±×ÀÎ
 	 */
@@ -25,7 +27,6 @@ public class LoginController {
 	public ModelAndView login_proc(MemberVo memberVo) {
 		ModelAndView model = new ModelAndView();
 		
-		MemberDao memberDao = new MemberDao();
 		int result = memberDao.checkLogin(memberVo);
 		
 		if(result==1) {
@@ -54,7 +55,6 @@ public class LoginController {
 	public ModelAndView login_idfind_proc(MemberVo memberVo) {
 		ModelAndView model = new ModelAndView();
 		
-		MemberDao memberDao = new MemberDao();
 		String mid = memberDao.findId(memberVo);
 		
 		if(mid!="") {
@@ -100,7 +100,6 @@ public class LoginController {
 	public ModelAndView login_pwfind_proc(MemberVo memberVo) {
 		ModelAndView model = new ModelAndView();
 		
-		MemberDao memberDao = new MemberDao();
 		String mid = memberDao.findPass(memberVo);
 		
 		if(mid!="") {
@@ -137,7 +136,6 @@ public class LoginController {
 	public String login_pwupdate_proc(MemberVo memberVo) {
 		String viewName = "";
 		
-		MemberDao memberDao = new MemberDao();
 		int result = memberDao.updatePass(memberVo);
 		
 		if(result==1) {
