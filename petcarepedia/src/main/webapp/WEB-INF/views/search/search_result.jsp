@@ -63,10 +63,11 @@
 						</a>	
 						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
 						<form name="likeForm" action="likeProc.do" method="get">
-							<input type="text" name="hid" value="${hospital.hid}">
-							<input type="text" name="mid" value="hong">
-							<button type="button" id="like"><img src="http://localhost:9000/petcarepedia/images/like.png">찜하기</button>
-						</a>
+							<a href="#" onclick = "alert('즐겨찾기에 추가되었습니다.')">
+								<input type="hidden" name="hid" value="${hospital.hid}">
+								<input type="hidden" name="mid" value="hong">
+								<button type="button" id="like"><img src="http://localhost:9000/petcarepedia/images/like.png">찜하기</button>
+							</a>
 						</form>
 					</div>
 				</div>

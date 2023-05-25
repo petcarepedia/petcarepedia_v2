@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.BookingDao;
@@ -106,21 +107,17 @@ public class SearchController {
 	
 	/** reservationProc.do - 찜하기 처리 **/
 	@RequestMapping(value="likeProc.do", method=RequestMethod.GET)
-	public String likeProc(BookmarkVo bookmarkVo) {
-		String viewName = "";
-		BookmarkDao bookmarkDao = new BookmarkDao();
-		int result = bookmarkDao.insert(bookmarkVo);
-		
-		if(result == 1) {
-			viewName = "redirect:/search_result.do";
-		} else {
-			// 실패 - 에러페이지 호출
-			System.out.println("error");
-		}
-		
-		return viewName;
-		
-	}	
+	public String likeProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
+	    BookmarkDao bookmarkDao = new BookmarkDao();
+	    int result = bookmarkDao.insert(bookmarkVo);
+	    
+	    if(result == 1) {
+	        return "redirect:/search_result.do?hid=" + hid;
+	    } else {
+	        // 실패 - 실패를 나타내는 문자열 반환
+	        return "failure";
+	    }
+	}
 	
 	
 		

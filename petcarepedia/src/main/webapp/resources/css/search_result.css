@@ -99,6 +99,10 @@ div.result_main div.buttons {
 	
 }
 
+div.result_main div.buttons a {
+	text-decoration: none;
+	}
+
 div.result_main div.name_d button#review {
 	background: #FFB3BD;
 	border-style: none;
