@@ -70,15 +70,9 @@
 		);
 		
 		$(function() {
-			initMap();
+			initGlocMap('강남구');
+			$('.gloc:first-child').addClass('gclick');
 		});
-		
-		function initMap() {
-			var map = new naver.maps.Map('map', {
-				center: new naver.maps.LatLng(37.552758094502494, 126.98732600494576),
-				zoom: 12
-			});
-		}
 		
 		function initGlocMap(gloc) {
 			$.ajax({
