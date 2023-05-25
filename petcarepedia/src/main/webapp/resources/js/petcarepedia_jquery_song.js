@@ -300,6 +300,16 @@ $(document).ready(function(){
 		$(".admin-login-modal").hide();
 		$(".back").hide();
 	})*/
+	//이용약관 모달
+	$(".btnModalOpen").click(function(){
+		$(".term-box").show();
+		$(".back").show();
+	})
+	
+	$("#btnModalClose").click(function(){
+		$(".term-box").hide();
+		$(".back").hide();
+	})
 		
 	
 }); //ready

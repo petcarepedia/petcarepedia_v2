@@ -1,4 +1,5 @@
-* {margin:0; padding:0}
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+* {margin:0; padding:0; font-family: 'Nanum Gothic', sans-serif;}
 .content {
 		width:1000px;
 		padding-top:100px;
@@ -197,11 +198,12 @@
 		width:1000px; height:160px;
 		border:3px solid #98DFFF;
 		border-radius:10px;
+		font-family: 'Nanum Gothic', sans-serif;
 	}
 	.main-door > p {
 		font-size:25px;
 		color:#636363;
-		margin: 35px 0 0 50px;
+		margin: 40px 0 0 50px;
 	}
 	.main-door > p > span {
 		color:#7AB2CC;
@@ -211,7 +213,7 @@
 		width:100%;
 		display:flex;
 		justify-content:center;
-		margin-top:-10px;
+		/* margin-top:-10px; */
 	}
 	.main-door > div > p {
 		font-size:35px; font-weight:bold;
@@ -325,6 +327,9 @@
 		float:left;
 		color:#3D3D3D;
 	}
+	.main-review > div.slide > div.review-list > .review-card:last-child {
+		margin-right:0px;
+	}
 	.main-review > div.slide > div.review-list > .review-card:hover {
 		opacity:0.7; cursor:pointer;	
 	}
@@ -337,7 +342,7 @@
 		font-size:18px; font-weight:bold;
 		float:left;
 		color:#3D3D3D; display:block;
-		width:80%; height: 25px; overflow:hidden;
+		width:80%; height: 21px; overflow:hidden;
 	}
 	.main-review > div.slide > div.review-list > .review-card > div:first-child > p {
 		font-size:14px; font-weight:bold; padding-top:1.5px;
@@ -407,12 +412,17 @@
 		text-align:center;
 		padding:10px;
 	}
-	.main-map > div.map-content > div.locbox > p {
+	.main-map > div.map-content > div.locbox > .gloc {
 		display:flex; align-items:center; justify-content:center;
-		color:#3D3D3D;
+		color:#3D3D3D; background:white; color:#3d3d3d; font-weight:normal;
+		border-radius:5px;
 	}
-	.main-map > div.map-content > div.locbox > p:hover {
+	.main-map > div.map-content > div.locbox > .gloc:hover {
 		cursor:pointer;
+		background:#98dfff; color:white; font-weight:bold;
+		border-radius:5px;
+	}
+	.main-map > div.map-content > div.locbox > .gclick {
 		background:#98dfff; color:white; font-weight:bold;
 		border-radius:5px;
 	}
@@ -650,7 +660,7 @@
 	}
 	.find-box > div > div {
 		float:left; width:299px;
-		text-align:center; padding:18px 0;
+		text-align:center; padding:19.5px 0;/*³ª´®°íµñ¾Æ´Ñ°æ¿ì:18*/
 		border-radius:10px 10px 0 0;
 		font-size:18px; font-weight:bold;
 	}
@@ -724,4 +734,45 @@
 	.find-box > ul > li.find-fail+li > button {
 		width:200px; float:left;
 		margin:0 10px;
+	}
+	
+	
+	/* term-modal */
+	.term-box {
+		display:none;
+	}
+	.term-modal {
+		position:fixed;
+		top: 50%; left: 50%;
+	    transform: translate(-50%, -50%); 
+	    width:460px; height:500px;
+	    background:white;
+	    border-radius:5px;
+	    z-index: 1;
+	    padding:20px;
+	    overflow:auto;
+	}
+	.term-modal > .term-modal-close {
+		float:right; cursor:pointer;
+		color:#8A8A8A;
+	}
+	.term-modal > .title {
+		clear:both; width:100%; padding-bottom:20px;
+		text-align:center; color:#7AB2CC;
+		font-size:20px; font-weight:bold;
+		border-bottom:1px solid #7AB2CC;
+	}
+	.term-modal > .termcont {
+		width:100%; margin-top:20px;
+		display:flex; justify-content:center;
+	}
+	.back {
+	  content: "";
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  background-color: rgba(0, 0, 0, 0.5);
+	  display:none;
 	}
