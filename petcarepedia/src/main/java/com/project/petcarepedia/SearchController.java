@@ -27,12 +27,9 @@ public class SearchController {
 		ModelAndView model = new ModelAndView();
 		
 		ArrayList<HospitalVo> list = hospitalDao.select();
-		ArrayList<BookingVo> time = bookingDao.selectTime();
 		
 		model.addObject("list", list);
-		model.addObject("time", time);
 		model.setViewName("/search/search_main");
-		System.out.println(time.size());
 		
 		return model;
 	}

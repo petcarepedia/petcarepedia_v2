@@ -104,7 +104,7 @@
 			<section class="list">
 				<div class="hlist">
 				
-					<c:forEach var="list" items="${list}" varStatus="status">
+					<c:forEach var="list" items="${list}">
 					
 						<div class="list1">
 							<div class="hinfo">
@@ -112,8 +112,8 @@
 									<span>${list.hname}</span>
 									<span>⭐ 5.0</span>
 									<span>${list.tel}</span>
-									<input type="text" id="startTime" name="startTime" value="${time[status.index]}" disabled>
-	    							<input type="text" id="endTime" name="endTime" value="${time[status.index]}" disabled>
+									<input type="text" id="startTime" name="startTime" value="${list.starttime}" disabled>
+	    							<input type="text" id="endTime" name="endTime" value="${list.endtime}" disabled>
 								</a>
 							
 								<span id="harea">${list.gloc}</span>
