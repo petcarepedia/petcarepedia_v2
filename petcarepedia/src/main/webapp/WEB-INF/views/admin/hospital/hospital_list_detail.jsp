@@ -13,7 +13,31 @@
 	<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
 		<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
-
+<script>
+	$(document).ready(function(){
+		var pager = jQuery('#ampaginationsm').pagination({
+		
+		    maxSize: '${maxSize}',	// max page size
+		    totals:  '${totals}',	// total pages	
+		    page: 	 '${page}',		// initial page		
+		    pageSize:'${pageSize}',	// max number items per page
+		
+		    // custom labels		
+		    lastText: '&raquo;&raquo;', 		
+		    firstText:'&laquo;&laquo;',		
+		    prevText: '&laquo;',		
+		    nextText: '&raquo;',
+				     
+		    btnSize:'sm'	// 'sm'  or 'lg'		
+		});
+		
+		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+	           $(location).attr('href', "http://localhost:9000/mycgv_jsp/board_list_json.do?page="+e.page);         
+	    });
+		
+ 	});
+</script>
 </head>
 <body>
 <!-- header -->
@@ -46,7 +70,7 @@
 					</a>
 				</button>
 			</div>
-				<table class="table">
+			<%-- 	<table class="table">
 					<tr>
 						<td colspan="5" >
 							<button type="button" class="button"><a href="http://localhost:9000/petcarepedia/hospital_detail.do">등록</a></button>
@@ -80,7 +104,7 @@
 						<!-- <td colspan="5" class="number"><<  1  2  3  4  5  6  7  8  9  10  >></td> -->
 						<td colspan="5" class="number"><div id="ampaginationsm"></div></td> 
 					</tr>
-				</table>
+				</table> --%>
 			</section>
 		</form>
 		</section>
