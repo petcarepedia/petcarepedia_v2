@@ -49,7 +49,7 @@ section.notice .button_r {
 	text-align:right;
 	padding-right:50px;
 }
-section.notice .button, section.review_content .button, section.notice form table.notice_delete tr td button {
+section.notice .button, section.review_content .button {
 	background:#98DFFF;
 	color:white;
 	border:1px solid #98DFFF;
@@ -475,7 +475,6 @@ section.review_content table.rv_detail_menu tr:last-child td {
 }
 section.review_content div.review_detail div.table_right {
 	position: relative;
-	z-index: -1;
 	left: 530px;
 	top: -370px;
 	height:400px;
@@ -502,6 +501,12 @@ section.review_content div.review_detail div.table_right button {
 	height:30px;
 	width:70px;
 	vertical-align:middle;
+}
+section.review_content div.review_detail div.table_right button:disabled {
+	background:#D9D9D9;
+}
+section.review_content div.review_detail div.table_right button:disabled:hover {
+	cursor:default;
 }
 section.review_content div.review_detail div.table_right button:hover {
 	cursor:pointer;

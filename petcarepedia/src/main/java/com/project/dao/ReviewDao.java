@@ -2,7 +2,7 @@ package com.project.dao;
 
 import java.util.ArrayList;
 
-import com.project.vo.NoticeVo;
+import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
 
 public class ReviewDao extends DBConn {
@@ -232,15 +232,14 @@ public class ReviewDao extends DBConn {
 	 */
 	public int insert(ReviewVo reviewVo) {
 		int result = 0;
-		String sql = "insert into pcp_review(rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, bid)"
-				+ " values('R_'||ltrim(to_char(sequ_pcp_review_rid.nextval,'0000')),?,sysdate,0,?,'X',?,?,?)";
+		String sql = "insert into pcp_review(rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, )"
+				+ " values('R_'||ltrim(to_char(sequ_pcp_review_rid.nextval,'0000')),?,sysdate,0,?,'X',?,?)";
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, reviewVo.getRcontent());
 			pstmt.setString(2, reviewVo.getRstar());
 			pstmt.setString(3, reviewVo.getMid());
 			pstmt.setString(4, reviewVo.getHid());
-			pstmt.setString(5, reviewVo.getBid());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -378,7 +377,7 @@ public class ReviewDao extends DBConn {
 	//내가 쓴 리뷰 
 	public ArrayList<ReviewVo> my_select(String mid) {
 		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
-		String sql = "select h.hname, m.nickname, h.tel, h.gloc, r.rcontent \r\n" + 
+		String sql = "select h.hname, m.nickname, h.tel, h.gloc, r.rcontent rid\r\n" + 
 				"from pcp_review r, pcp_member m, pcp_hospital h where r.mid = m.mid and h.hid = r.hid and r.mid = ?";
 		getPreparedStatement(sql);
 		
@@ -392,6 +391,7 @@ public class ReviewDao extends DBConn {
 				reviewVo.setTel(rs.getString(3));
 				reviewVo.setGloc(rs.getString(4));
 				reviewVo.setRcontent(rs.getString(5));
+				reviewVo.setRid(rs.getString(6));
 				list.add(reviewVo);
 			}
 		}catch (Exception e) {
@@ -401,7 +401,54 @@ public class ReviewDao extends DBConn {
 		return list;
 	}
 
+
+	/*
+	 * 좋아요 증가
+	 */
 	
+	public void LikesDown(String rid) {
+		String sql = "update pcp_review set rlike = rlike+1 where rid = ?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, rid);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/*
+	 * 좋아요 감소
+	 */
+	
+	public void LikesUp(String rid) {
+		String sql = "update pcp_review set rlike = rlike-1 where rid = ?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, rid);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	// 종아요 누른 아이디 체크 (종아요 누름 = 1/ 안누름 = 0)
+	public int idCheck(ReviewLikeVo reviewLikeVo) {
+		int result=0;
+		String sql = "select count(*) from pcp_review_like where mid=? and rid=?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, reviewLikeVo.getMid());
+			pstmt.setString(2, reviewLikeVo.getRid());
+			rs = pstmt.executeQuery();
+			while(rs.next()) result=rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 	
 	
 }

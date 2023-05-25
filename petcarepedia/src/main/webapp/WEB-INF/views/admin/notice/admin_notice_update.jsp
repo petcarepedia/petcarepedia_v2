@@ -4,18 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>admin notice update</title>
+<title>펫캐어피디아 | 관리자 공지사항</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_style.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jsp_jquery_kang.js"></script>
 </head>
 <body>
 	<!-- header -->
-	<jsp:include page="../../header.jsp"></jsp:include>
+	<jsp:include page="../admin_header.jsp"></jsp:include>
 	<div class="content">
 		<section class="notice">
 			<div id="title_l">
-				<h1 class="title">관리자 - 공지사항</h1>
+				<h1 class="title">공지사항 수정</h1>
 			</div>
 			<form name="updateForm" action="admin_notice_update_proc.do" method="post">
 				<input type="hidden" name="nid" value="${noticeVo.nid }">

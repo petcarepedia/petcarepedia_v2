@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>review content</title>
+<title>펫캐어피디아 | 리뷰 상세보기</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_style.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
+<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jsp_jquery_kang.js"></script>
 </head>
 <body>
 	<!-- header -->
@@ -36,12 +37,36 @@
 				</table>
 				<div class="table_right">
 					<div id="right_top">
-						<button type="button">
-							<span class="review_like">
-								♥️
-							</span>
-							${reviewVo.rlike }
-						</button>
+						<c:choose>
+							<c:when test="${reviewVo.mid eq member.mid }">
+								<button type="button" id="btnLike" disabled>
+									<span class="review_like">
+										♥️
+									</span>
+									${reviewVo.rlike }
+								</button>
+							</c:when>
+							<c:otherwise>
+								<c:choose>
+									<c:when test="${like eq 1 }">
+										<button type="button" id="btnLikeDown">
+											<span class="review_like">
+												♥️
+											</span>
+											${reviewVo.rlike }
+										</button>
+									</c:when>
+									<c:when test="${like eq 0 }">
+										<button type="button" id="btnLikeUp">
+											<span class="review_like">
+												♥️
+											</span>
+											${reviewVo.rlike }
+										</button>
+									</c:when>									
+								</c:choose>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div id="star">
 						<div class="score" id="score_l">
@@ -60,11 +85,22 @@
 				</div>
 				<a href="review_report.do?rid=${reviewVo.rid }"><button type="button" class="report">신고하기</button></a>
 			</div>
-			<div class="rc_button_r">
-				<a href="review_update.do?rid=${reviewVo.rid }"><button type="button" class="button">수정</button></a>
-				<a href="review_delete.do?rid=${reviewVo.rid }"><button type="button" class="button">삭제</button></a>
-				<a href="review_main.do"><button type="button" class="button">목록</button></a>
-			</div>
+			<c:choose>
+				<c:when test="${reviewVo.mid eq member.mid }">
+					<div class="rc_button_r">
+						<a href="review_update.do?rid=${reviewVo.rid }"><button type="button" class="button">수정</button></a>
+						<a href="review_delete.do?rid=${reviewVo.rid }"><button type="button" class="button">삭제</button></a>
+						<a href="review_main.do"><button type="button" class="button">목록</button></a>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="rc_button_r">
+						<%-- <a href="review_update.do?rid=${reviewVo.rid }"><button type="button" class="button">수정</button></a>
+						<a href="review_delete.do?rid=${reviewVo.rid }"><button type="button" class="button">삭제</button></a> --%>
+						<a href="review_main.do"><button type="button" class="button">목록</button></a>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</section>
 	</div>
 	<!-- footer -->
