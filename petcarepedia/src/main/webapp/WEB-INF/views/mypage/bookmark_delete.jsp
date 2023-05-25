@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
-<title>펫캐어피디아 | 예약내역</title>
+<title>펫캐어피디아 | 즐겨찾기</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/mypage.css">
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
@@ -23,21 +23,21 @@
 	<!-- content -->
 	<div id = "content2">
 		<section id = "reservation">
-			<h1 id = "title">예약 내역</h1>
+			<h1 id = "title">즐겨찾기</h1>
 			<hr>
-			<form name="deleteForm" action="reservation_delete_proc.do" method="post">
-				<input type = "hidden" name = "bid" value = "${bid}">
+			<form name="deleteForm" action="bookmark_delete_proc.do" method="post">
+				<input type = "hidden" name = "bmid" value = "${bmid}">
 				<table id = "table">
 					<tr>
 						<td><img id = "trash" src="http://localhost:9000/petcarepedia/images/trash.jpg"></td>
 					</tr>
 					<tr>					
-						<td>예약을 취소하시겠습니까?</td>
+						<td>정말로 삭제하시겠습니까?</td>
 					</tr>				
 					<tr>
 						<td colspan="2">
-							<button type="button" class="btn_style" id = "btnReservationDelete">삭제완료</button>
-							<a href="reservation.do?mid=${mid}">
+							<button type="button" class="btn_style" id = "btnBookmarkDelete">삭제완료</button>
+							<a href="bookmark.do?mid=hong">
 							<button type="button" class="btn_style">이전페이지</button></a>
 						</td>				
 					</tr>

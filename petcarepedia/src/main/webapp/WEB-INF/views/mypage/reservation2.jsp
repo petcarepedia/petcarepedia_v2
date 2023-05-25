@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+<title>펫캐어피디아 | 예약내역</title>
 </head>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/mypage.css">
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
@@ -36,8 +37,8 @@
 							<li><a href = "http://localhost:9000/petcarepedia/information.do?mid=hong">회원 정보</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/reservation.do?mid=hong">예약 내역</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/my_review.do?mid=hong">내가 쓴 리뷰</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do?mid=${memberVo.mid}">즐겨찾기</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/signout.do?mid=${memberVo.mid}">회원 탈퇴</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do?mid=hong">즐겨찾기</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/signout.do?mid=hong">회원 탈퇴</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -54,7 +55,14 @@
 								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
 								<span>${bookingVo.loc}</span>
 								<img src = "http://localhost:9000/petcarepedia/images/홈.png">
-								<a href = "${bookingVo.hrink}">병원 홈페이지 가기</a>
+								<c:choose>
+								<c:when test = "${bookingVo.hrink eq 'X'}">
+									<a href = "#" onclick = "alert('홈페이지가 존재하지 않습니다.')">병원 홈페이지 가기</a>
+								</c:when>
+								<c:otherwise>
+									<a href = "${bookingVo.hrink}">병원 홈페이지 가기</a>
+								</c:otherwise>
+								</c:choose>
 								<img src = "http://localhost:9000/petcarepedia/images/전화.png">
 								<span>${bookingVo.tel}</span>
 								<span>예약 날짜 : ${bookingVo.vdate}</span>
@@ -62,7 +70,7 @@
 							</div>
 						</div>
 						<div id = "btn_review">
-							<a href = "review_write.do?mid=${bookingVo.mid}&hid=${bookingVo.hid}&bid=${bookingVo.bid}">
+							<a href = "review_write.do?mid=${bookingVo.mid}&hid=${bookingVo.hid}">
 								<button type = "button" id = "btn_write_review">리뷰쓰기</button>
 							</a>
 							<a href = "my_review.do?mid=hong">
