@@ -1,7 +1,17 @@
 package com.project.vo;
 
 public class ReviewLikeVo {
-	String mid, rid;
+
+
+	String mid, rid, like_state;
+
+	public String getLike_state() {
+		return like_state;
+	}
+
+	public void setLike_state(String like_state) {
+		this.like_state = like_state;
+	}
 
 	public String getMid() {
 		return mid;

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.MemberDao;
@@ -89,18 +90,18 @@ public class ReviewController {
 	public ModelAndView review_content(String rid) {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
-		ReviewLikeVo like = new ReviewLikeVo();
+		ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
 		ReviewVo reviewVo = reviewDao.enter_select(rid);
-		
+		reviewVo.setRlike(reviewDao.LikeNum(rid));
 		
 		MemberDao memberDao = new MemberDao();
 		MemberVo member = memberDao.select("hong");
 		
 		
-		like.setMid(reviewVo.getRid());
-		like.setMid(member.getMid());
+		reviewLikeVo.setRid(reviewVo.getRid());
+		reviewLikeVo.setMid(member.getMid());
 		
-		model.addObject("like", reviewDao.idCheck(like));
+		model.addObject("reviewLikeVo", reviewLikeVo);
 		model.addObject("member", member);
 		model.addObject("reviewVo", reviewVo);
 		model.setViewName("/review/review_content");
@@ -160,6 +161,24 @@ public class ReviewController {
 		
 		return model;
 	}
+	
+	//리뷰 좋아요 처리
+	@RequestMapping(value="/review_like_Proc.do", method=RequestMethod.POST)
+	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo) {
+		ModelAndView model = new ModelAndView();
+		ReviewDao reviewDao = new ReviewDao();
+		if(reviewDao.idCheck(reviewLikeVo) == 1) {
+			reviewDao.LikesDown(reviewLikeVo);
+			reviewDao.LikeNum(reviewLikeVo.getRid());
+		}
+		else {
+			reviewDao.LikesUp(reviewLikeVo);
+		}
+		model.setViewName("redirect:/review_content.do?rid="+reviewLikeVo.getRid());
+		
+		return model;
+	}	
+
 	
 	
 
