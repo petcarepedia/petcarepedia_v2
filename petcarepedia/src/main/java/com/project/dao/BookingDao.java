@@ -213,6 +213,35 @@ public class BookingDao extends DBConn {
 		
 		return bookingVo;
 	} // select(String mid)
+	
+	
+	/** selectTime - 영업시간 **/
+	public BookingVo selectTime(String hid) {
+		BookingVo bookingVo = new BookingVo();
+		
+		String sql= "SELECT HID, HNAME, SUBSTR(HTIME, 0,5 ) \"START\",  SUBSTR(HTIME, 7,6 ) \"END\"" + 
+				" FROM PCP_HOSPITAL WHERE HID=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, hid);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				bookingVo.setHid(rs.getString(1));
+				bookingVo.setHname(rs.getString(2));
+				bookingVo.setStart(rs.getString(3));
+				bookingVo.setEnd(rs.getString(4));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return bookingVo;
+		
+	} // selectTime - 영업시간
+	
 
 	
 	/** update - 예약 수정하기 **/
