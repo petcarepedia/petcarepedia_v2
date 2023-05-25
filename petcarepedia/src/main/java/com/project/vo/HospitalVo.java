@@ -2,9 +2,21 @@ package com.project.vo;
 
 public class HospitalVo {
 	int rno;
-	String hid, hname, gloc, loc, tel, htime, ntime, holiday, animal,intro, img, hrink, x, y;
+	String hid, hname, gloc, loc, tel, htime, ntime, holiday, animal,intro, img, hrink, x, y, starttime, endtime;
 	
 	
+	public String getStarttime() {
+		return starttime;
+	}
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
+	}
+	public String getEndtime() {
+		return endtime;
+	}
+	public void setEndtime(String endtime) {
+		this.endtime = endtime;
+	}
 	public int getRno() {
 		return rno;
 	}
