@@ -325,6 +325,9 @@
 		float:left;
 		color:#3D3D3D;
 	}
+	.main-review > div.slide > div.review-list > .review-card:last-child {
+		margin-right:0px;
+	}
 	.main-review > div.slide > div.review-list > .review-card:hover {
 		opacity:0.7; cursor:pointer;	
 	}
