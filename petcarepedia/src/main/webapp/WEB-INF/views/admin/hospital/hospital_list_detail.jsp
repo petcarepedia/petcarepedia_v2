@@ -36,6 +36,7 @@
 					</nav>
 				</div>
 			</section>
+		<form name="hopitalForm" action="hospital_list_data.do" method="post">
 		<section id="section2">
 			<div class="d2">
 				<input type="text" class="search_bar" placeholder="병원명 입력">
@@ -80,8 +81,8 @@
 						<td colspan="5" class="number"><div id="ampaginationsm"></div></td> 
 					</tr>
 				</table>
-				
 			</section>
+		</form>
 		</section>
 	</div>
 	<!-- footer -->
