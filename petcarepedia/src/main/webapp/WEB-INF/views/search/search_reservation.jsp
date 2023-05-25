@@ -57,6 +57,10 @@ $(".hservation").click(function() {
 	        <span id="stime"><input type="hidden" name="time" value="17:00">17:00</span>
 	    </div> -->
 	    <div class="time"></div>
+	    
+	    <!-- 영업시간 db연동 -->
+	    <input type="text" id="startTime" name="startTime" value="${time.start}">
+	    <input type="text" id="startTime" name="startTime" value="${time.end}">
 		   
 	    <form name="reservation" action="#" method="get">
 			<input type="text" name="hid" value="${hospital.hid}">

@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.BookingDao;
 import com.project.dao.HospitalDao;
 import com.project.dao.ReviewDao;
+import com.project.vo.BookingVo;
 import com.project.vo.HospitalVo;
 import com.project.vo.ReviewVo;
 
@@ -67,11 +69,12 @@ public class SearchController {
 	@RequestMapping(value="/search_reservation.do", method=RequestMethod.GET)
 	public ModelAndView search_reservation(String hid) {
 		ModelAndView model = new ModelAndView();
+		BookingDao bookingDao = new BookingDao();
 		HospitalVo hospitalVo = hospitalDao.select(hid);
-		System.out.println(hospitalVo.getHid());
-		System.out.println(hospitalVo.getHname());
+		BookingVo bookingVo = bookingDao.selectTime(hid);
 
 		model.addObject("hospital", hospitalVo);
+		model.addObject("time", bookingVo);
 		
 		model.setViewName("/search/search_reservation");
 		return model;
