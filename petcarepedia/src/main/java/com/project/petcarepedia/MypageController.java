@@ -74,6 +74,21 @@ public class MypageController {
 	}
 	
 	/*
+	 * reservation.do - 예약내역 삭제하기 폼
+	 */
+	@RequestMapping(value = "/reservation_delete.do", method = RequestMethod.GET)
+	public ModelAndView reservation_delete(String bid, String mid) {
+		ModelAndView model = new ModelAndView();
+		model.addObject("bid", bid);
+		model.addObject("mid", mid);
+		model.setViewName("/mypage/reservation_delete");
+		return model;
+	}
+	
+	
+	
+	
+	/*
 	 * reservation_delete_proc.do - 예약내역(예약중)폼에서 삭제하기 처리
 	 */
 	@RequestMapping(value = "/reservation_delete_proc.do", method = RequestMethod.POST)
@@ -82,7 +97,7 @@ public class MypageController {
 		BookingDao bookingDao = new BookingDao();
 		int result = bookingDao.delete(bid);
 		if(result == 1) {
-			viewName = "redirect:/reservation.do";
+			viewName = "redirect:/reservation.do?mid=hong";
 		}
 		return viewName;
 	}
@@ -133,11 +148,10 @@ public class MypageController {
 	 * review_write.do - 리뷰 쓰기폼
 	 */
 	@RequestMapping(value = "/review_write.do", method = RequestMethod.GET)
-	public ModelAndView review_write(String mid, String hid, String bid) {
+	public ModelAndView review_write(String mid, String hid) {
 		ModelAndView model = new ModelAndView();
 		model.addObject("mid", mid);
 		model.addObject("hid", hid);
-		model.addObject("bid", bid);
 		model.setViewName("/mypage/review_write");
 		return model;
 	}

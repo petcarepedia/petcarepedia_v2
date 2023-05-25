@@ -18,7 +18,6 @@
 	 <jsp:include page="../header.jsp"></jsp:include>
 	<div id = "content2">
 		<section id = "reservation">
-			<form name="deleteForm" action="reservation_delete_proc.do" method="post">
 			<div id = "btn_box">
 				<h1 id = "title">예약 내역</h1>
 				<div id = "btn_reservation">
@@ -57,18 +56,18 @@
 								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
 								<span>${bookingVo.loc}</span>
 								<img src = "http://localhost:9000/petcarepedia/images/홈.png">
-								<a href = "http://localhost:9000/petcarepedia/information.do">병원 홈페이지 가기</a>
+								<a href = "${bookingVo.hrink}">병원 홈페이지 가기</a>
 								<img src = "http://localhost:9000/petcarepedia/images/전화.png">
 								<span>${bookingVo.tel}</span>
 								<span>예약 날짜 : ${bookingVo.vdate}</span>
 								<span>예약 시간 : ${bookingVo.vtime}</span>
 							</div>
 						</div>
-						<button type = "button" id = "btn_cancle1">예약취소</button>
+						<a href = "reservation_delete.do?bid=${bookingVo.bid}&mid=${bookingVo.mid}">
+						<button type = "button" id = "btn_cancle1">예약취소</button></a>
 					</c:forEach>
 				</section>
 			</div>
-			</form>
 		</section>
 	</div>
 	<jsp:include page="../footer.jsp"></jsp:include>
