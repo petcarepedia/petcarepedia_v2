@@ -18,17 +18,21 @@ import com.project.vo.ReviewVo;
 @Controller
 public class SearchController {
 	HospitalDao hospitalDao = new HospitalDao();
+	BookingDao bookingDao = new BookingDao();
 	
 	
 	/** search_main.do - 병원 리스트 출력하기 **/
 	@RequestMapping(value="/search_main.do", method=RequestMethod.GET)
 	public ModelAndView search_main() {
 		ModelAndView model = new ModelAndView();
+		
 		ArrayList<HospitalVo> list = hospitalDao.select();
+		ArrayList<BookingVo> time = bookingDao.selectTime();
 		
 		model.addObject("list", list);
+		model.addObject("time", time);
 		model.setViewName("/search/search_main");
-		// System.out.println(list.size());
+		System.out.println(time.size());
 		
 		return model;
 	}
@@ -39,13 +43,15 @@ public class SearchController {
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
 	public ModelAndView search_result(String hid) {
 		ModelAndView model = new ModelAndView();
+		ReviewDao reviewDao = new ReviewDao();
 		HospitalVo hospital = hospitalDao.select(hid);
+		BookingVo bookingVo = bookingDao.selectTime(hid);
+		ArrayList<ReviewVo> RHList = reviewDao.RH_select(hid);
+		
 		
 		model.addObject("hospital", hospital);
-		
-		ReviewDao reviewDao = new ReviewDao();
-		ArrayList<ReviewVo> RHList = reviewDao.RH_select(hid);
 		model.addObject("RHList", RHList);
+		model.addObject("time", bookingVo);
 		
 		model.setViewName("/search/search_result");
 		
@@ -69,7 +75,7 @@ public class SearchController {
 	@RequestMapping(value="/search_reservation.do", method=RequestMethod.GET)
 	public ModelAndView search_reservation(String hid) {
 		ModelAndView model = new ModelAndView();
-		BookingDao bookingDao = new BookingDao();
+		
 		HospitalVo hospitalVo = hospitalDao.select(hid);
 		BookingVo bookingVo = bookingDao.selectTime(hid);
 

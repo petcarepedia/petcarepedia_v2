@@ -40,7 +40,8 @@
 					
 					<span class="name">${hospital.hname}</span>
 					<input type="hidden" name="hid" value="${hospital.hid}">
-					<input type="text" name="hname" value="${hospital.hname}">
+					<input type="hidden" name="hname" value="${hospital.hname}">
+					
 					<span class="grade">⭐ 5.0 | 리뷰 60</span>
 					
 					<button type="button" id="reservation" value="${hospital.hid}"><img src="http://localhost:9000/petcarepedia/images/cal.png">간편 예약하기

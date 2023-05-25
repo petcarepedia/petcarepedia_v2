@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="http://localhost:9000/petcarepedia/admin/images/foot_blue.png" rel="shortcut icon" type="images/x-icon">
-<title>reservation</title>
+	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<title>펫캐어피디아 | 예약</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_reservation.css">
 
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
@@ -16,6 +16,7 @@
 $(".hservation").click(function() {
 	 $("#hmodal").css("display", "block");
 	 $('input[name="hid"]').val($(this).val());
+	 $('input[name="end"]').val($(this).val());
 	$('span#rhname').text($(this).attr("id"));
  });
 </script>
@@ -59,8 +60,8 @@ $(".hservation").click(function() {
 	    <div class="time"></div>
 	    
 	    <!-- 영업시간 db연동 -->
-	    <input type="text" id="startTime" name="startTime" value="${time.start}">
-	    <input type="text" id="startTime" name="startTime" value="${time.end}">
+	    <input type="text" id="startTime" name="startTime" value="${time.start}" disabled>
+	    <input type="text" id="endTime" name="endTime" value="${time.end}" disabled>
 		   
 	    <form name="reservation" action="#" method="get">
 			<input type="text" name="hid" value="${hospital.hid}">
