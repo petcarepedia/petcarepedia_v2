@@ -51,26 +51,25 @@ $("#btnReservationDelete").click(function(){
 /*******************************************************************************
 	내가쓴리뷰 - 리뷰수정
 ******************************************************************************/
-	$("#btnReview_revise").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/review_revise.do";
+	$("#btnReviewUpdate").click(function(){
+		updateForm.submit();
 	})
+
+/*******************************************************************************
+	내가쓴리뷰 - 리뷰삭제
+******************************************************************************/
+	$("#btnReviewDelete").click(function(){
+		deleteForm.submit();
+	})
+
 
 
 /*******************************************
 		mypage - 북마크해제
 ********************************************/
-	$("#bookmark1").click(function(){
-		var result = confirm('즐겨찾기를 해제하시겠습니까?');
-		if(result) {
-			$("#bookmark #section2").hide();
-		}
-	});
-	$("#bookmark2").click(function(){
-		var result = confirm('즐겨찾기를 해제하시겠습니까?');
-		if(result) {
-			$("#bookmark #section2").hide();
-		}
-	});
+	$("#btnBookmarkDelete").click(function(){
+		deleteForm.submit();
+	})
 
 
 

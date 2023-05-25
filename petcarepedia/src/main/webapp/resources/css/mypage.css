@@ -1,10 +1,12 @@
 /*****************************
 	commons style sheet
 ******************************/
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+* {font-family: 'Nanum Gothic', sans-serif;}
 *{
 	padding : 0px;
 	margin : 0px;
-	font-family: 'Inter';
+/* 	font-family: 'Inter'; */
 	font-style: normal;
 }
 
@@ -136,7 +138,7 @@ hr {
 	font-weight: 700;
 	font-size: 15px;
 	line-height: 18px;
-	margin-top : 80px;
+	margin-top : 35px;
 	margin-left : 202px;
 /* 	left: 782px;
 	top: 693px; */
@@ -221,7 +223,6 @@ hr {
 	height: 27px;
 	font-size: 12px;
 	list-style-type:none;
-	margin-top : 70px;
 	margin-right : 20px;
 	padding-right : 10px;
 	text-align : right;
@@ -706,6 +707,9 @@ textarea[name='rcontent'] {
 	padding-bottom : 30px;
 
 	}
+#my_review #aside #aside4 a {
+	text-decoration : none;
+}
 #my_review #section1 div nav ul li:nth-child(2) a {
 	font-weight : 500;
 }
@@ -1005,7 +1009,7 @@ textarea[name='review'] {
 	background: #7AB2CC;
 	border-radius: 5px;
 }
-#bookmark #section2 #aside1 a{
+#bookmark #section2 #aside1 a:nth-child(3){
 	float : left;
 	font-weight: 700;
 	font-size: 15px;
@@ -1024,7 +1028,7 @@ textarea[name='review'] {
 	position : relative;
 }
 
-#bookmark #section2 #aside1 button img {
+#bookmark #section2 #aside1 a img {
 	position : absolute;
 	left : 200px;
 	top : -15px;

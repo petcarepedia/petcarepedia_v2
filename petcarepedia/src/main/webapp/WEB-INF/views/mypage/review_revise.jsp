@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+<title>펫캐어피디아 | 리뷰수정</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/mypage.css">
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
@@ -17,17 +18,18 @@
 		<section id = "review_revise">
 			<h1 id = "title">리뷰수정</h1>
 			<hr>
-			<form name="review_writeForm" action="#" method="get">
+			<form name="updateForm" action="review_update_proc.do" method="post">
+			<input type = "hidden" name = "rid" value = "${reviewVo.rid}">
 				<section id = "section1">
 					<div>
 						<nav>
 							<ul>
 								<li>마이페이지</li>
-								<li><a href = "http://localhost:9000/petcarepedia/information.do?mid=${memberVo.mid}">회원 정보</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/reservation.do?mid=${memberVo.mid}">예약 내역</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/my_review.do?mid=${memberVo.mid}">내가 쓴 리뷰</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do?mid=${memberVo.mid}">즐겨찾기</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/signout.do?mid=${memberVo.mid}">회원 탈퇴</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/information.do?mid=hong">회원 정보</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/reservation.do?mid=hong">예약 내역</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/my_review.do?mid=hong">내가 쓴 리뷰</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do?mid=hong">즐겨찾기</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/signout.do?mid=hong">회원 탈퇴</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -54,9 +56,11 @@
 							</fieldset>
 						</div>
 					</section>
-					<textarea name="review" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)"></textarea>
-					<button type = "button" id = "cancle">취소</button>
-					<button type = "submit" id = "write_finish">작성완료</button>
+					<textarea name="rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)">${reviewVo.rcontent}</textarea>
+					<a href = "my_review.do?mid=hong">
+						<button type = "button" id = "cancle">취소</button>
+					</a>
+					<button type = "button" id = "btnReviewUpdate">작성완료</button>
 				</div>
 			</form>
 		</section>
