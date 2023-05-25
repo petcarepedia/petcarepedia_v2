@@ -154,6 +154,8 @@
 		
 		$(document).on("click", ".gloc", function() {
 			initGlocMap($(this).text());
+			$('.gloc').removeClass('gclick');
+			$(this).addClass('gclick');
 		});
 
 	</script>
