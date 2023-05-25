@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.BookingDao;
+import com.project.dao.BookmarkDao;
 import com.project.dao.HospitalDao;
 import com.project.dao.ReviewDao;
 import com.project.vo.BookingVo;
+import com.project.vo.BookmarkVo;
 import com.project.vo.HospitalVo;
 import com.project.vo.ReviewVo;
 
@@ -89,10 +91,28 @@ public class SearchController {
 	public String reservationProc(BookingVo bookingVo) {
 		String viewName = "";
 		int result = bookingDao.insert(bookingVo);
-		System.out.println(result);
 		
 		if(result == 1) {
 			viewName = "redirect:/reservation.do";
+		} else {
+			// 실패 - 에러페이지 호출
+			System.out.println("error");
+		}
+		
+		return viewName;
+		
+	}	
+	
+	
+	/** reservationProc.do - 찜하기 처리 **/
+	@RequestMapping(value="likeProc.do", method=RequestMethod.GET)
+	public String likeProc(BookmarkVo bookmarkVo) {
+		String viewName = "";
+		BookmarkDao bookmarkDao = new BookmarkDao();
+		int result = bookmarkDao.insert(bookmarkVo);
+		
+		if(result == 1) {
+			viewName = "redirect:/search_result.do";
 		} else {
 			// 실패 - 에러페이지 호출
 			System.out.println("error");

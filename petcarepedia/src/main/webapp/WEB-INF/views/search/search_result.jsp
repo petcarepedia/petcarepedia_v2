@@ -39,8 +39,6 @@
 					</div>
 					
 					<span class="name">${hospital.hname}</span>
-					<input type="hidden" name="hid" value="${hospital.hid}">
-					<input type="hidden" name="hname" value="${hospital.hname}">
 					
 					<span class="grade">⭐ 5.0 | 리뷰 60</span>
 					
@@ -60,9 +58,16 @@
 					
 					
 					<div class="buttons">
-						<button type="button" id="review"><img src="http://localhost:9000/petcarepedia/images/review.png">리뷰하기</button>
+						<a href="review_write.do?mid=${mid}">
+							<button type="button" id="review"><img src="http://localhost:9000/petcarepedia/images/review.png">리뷰하기</button>
+						</a>	
 						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
-						<button type="button" id="like"><img src="http://localhost:9000/petcarepedia/images/like.png">찜하기</button>
+						<form name="likeForm" action="likeProc.do" method="get">
+							<input type="text" name="hid" value="${hospital.hid}">
+							<input type="text" name="mid" value="hong">
+							<button type="button" id="like"><img src="http://localhost:9000/petcarepedia/images/like.png">찜하기</button>
+						</a>
+						</form>
 					</div>
 				</div>
 				
