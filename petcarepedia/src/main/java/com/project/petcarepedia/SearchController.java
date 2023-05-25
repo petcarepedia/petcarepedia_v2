@@ -84,6 +84,31 @@ public class SearchController {
 	}
 	
 	
+	/** reservationProc.do - 예약 처리 **/
+	@RequestMapping(value="reservationProc.do", method=RequestMethod.POST)
+	public String reservationProc(BookingVo bookingVo) {
+		String viewName = "";
+		int result = bookingDao.insert(bookingVo);
+		System.out.println(result);
+		
+		if(result == 1) {
+			viewName = "redirect:/reservation.do";
+		} else {
+			// 실패 - 에러페이지 호출
+			System.out.println("error");
+		}
+		
+		return viewName;
+		
+	}	
+	
+	
+		
+		
+	
+	
+	
+	
 		
 	
 	

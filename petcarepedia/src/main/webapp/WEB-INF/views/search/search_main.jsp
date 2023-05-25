@@ -108,25 +108,28 @@
 					
 						<div class="list1">
 							<div class="hinfo">
-								<a href="http://localhost:9000/petcarepedia/search_result.do?hid=${list.hid}">
+								
 									<span>${list.hname}</span>
-									<span>⭐ 5.0</span>
 									<span>${list.tel}</span>
-									<input type="text" id="startTime" name="startTime" value="${list.starttime}">
-	    							<input type="text" id="endTime" name="endTime" value="${list.endtime}">
-								</a>
+									<span>⭐ 5.0</span>
+									<input type="hidden" id="startTime" name="startTime" value="${list.starttime}">
+	    							<input type="hidden" id="endTime" name="endTime" value="${list.endtime}">
+							
 							
 								<span id="harea">${list.gloc}</span>
 								<span id="htime">진료 중</span>
-								<button type="button" class="hservation" id="${list.hname}" value="${list.hid}">예약하기
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp></button>
-								 <div id="hmodal" class="modal">
+								<a href="http://localhost:9000/petcarepedia/search_result.do?hid=${list.hid}">
+									<button type="button" class="hservation" id="${list.hid}">병원 상세보기
+									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp></button>
+								</a>
+									
+								<%--  <div id="hmodal" class="modal">
 								  <div class="modal-content">
 								    <span class="close">&times;</span>
 								      <jsp:include page="search_reservation.jsp"></jsp:include>	
 								  </div>
-								</div>
+								</div> --%>
 							</div>
 							
 							<div class="himg">

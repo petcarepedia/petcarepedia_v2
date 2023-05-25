@@ -55,10 +55,11 @@ $(".hservation").click(function() {
 	    <input type="text" id="startTime" name="startTime" value="${time.start}">
 	    <input type="text" id="endTime" name="endTime" value="${time.end}">
 
-	    <form name="reservation" action="#" method="get">
+	    <form name="reservationForm" action="reservationProc.do" method="post">
 			<input type="text" name="hid" value="${hospital.hid}">
-		    <input type="text" id="selectedDate" name="selectedDate" value="date">
-			<input type="text" id="selectedTime" name="selectedTime" value="time">
+			<input type="text" name="mid" value="hong">
+		    <input type="text" id="vdate" name="vdate" value="vdate">
+			<input type="text" id="vtime" name="vtime" value="vtime">
 			<button id="check">확인</button>
 		</form>
 	</div>

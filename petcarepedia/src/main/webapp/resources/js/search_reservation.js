@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 /*******************************************
-	time -> 수정 중 // 
+	time 
 ********************************************/
  // 시작 시간과 끝 시간 가져오기
   var startTime = $("#startTime").val();
@@ -44,7 +44,7 @@ $(".rtime").on("click", ".stime", function() {
     
     // 선택된 시간 출력
     var selectedTime = $(this).text();
-    $("#selectedTime").val(selectedTime);
+    $("#vtime").val(selectedTime);
   });
   
   
@@ -79,7 +79,7 @@ $(".rtime").on("click", ".stime", function() {
       // 날짜 클릭 이벤트 추가
       inputElement.on("click", function() {
         var clickedDate = $(this).val();
-        $("#selectedDate").val(clickedDate);
+        $("#vdate").val(clickedDate);
 
         // 선택된 날짜 스타일 변경
         dateElements.find("input").removeClass("selected-date");
