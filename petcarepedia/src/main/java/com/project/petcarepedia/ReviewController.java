@@ -89,10 +89,13 @@ public class ReviewController {
 	public ModelAndView review_content(String rid) {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
-		MemberDao memberDao = new MemberDao();
 		ReviewLikeVo like = new ReviewLikeVo();
 		ReviewVo reviewVo = reviewDao.enter_select(rid);
+		
+		
+		MemberDao memberDao = new MemberDao();
 		MemberVo member = memberDao.select("hong");
+		
 		
 		like.setMid(reviewVo.getRid());
 		like.setMid(member.getMid());
