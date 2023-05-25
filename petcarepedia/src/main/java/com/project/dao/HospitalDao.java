@@ -53,12 +53,12 @@ public class HospitalDao extends DBConn {
 	public ArrayList<HospitalVo> search(String hid, String hname) {
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
 		String sql = "SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y " + 
-					 "  FROM PCP_HOSPITAL WHERE HID= ? OR HNAME LIKE '%"+ hname +"%';";
+					 "  FROM PCP_HOSPITAL WHERE HID= ? OR HNAME LIKE HNAME = ?";
 		getPreparedStatement(sql);
 
 		try {
 			pstmt.setString(1, hid);
-			/* pstmt.setString(2, hname); */
+			pstmt.setString(2, "%"+ hname + "%");
 
 			rs = pstmt.executeQuery();
 
@@ -86,47 +86,7 @@ public class HospitalDao extends DBConn {
 			e.printStackTrace();
 		}
 		return list;
-	}// 1
-	/**
-	 * search - 병원 상세 검색
-	 */
-	public ArrayList<HospitalVo> search() {
-		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
-		String sql = " SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y  "
-				+ "  FROM PCP_HOSPITAL WHERE HID=? OR HNAME LIKE %?% )";
-		getPreparedStatement(sql);
-		
-		try {
-			
-			rs = pstmt.executeQuery();
-			
-			while (rs.next()) {
-				HospitalVo hospital = new HospitalVo();
-				hospital.setHid(rs.getString(1));
-				hospital.setHname(rs.getString(2));
-				hospital.setGloc(rs.getString(3));
-				hospital.setLoc(rs.getString(4));
-				hospital.setTel(rs.getString(5));
-				hospital.setHtime(rs.getString(6));
-				hospital.setNtime(rs.getString(7));
-				hospital.setHoliday(rs.getString(8));
-				hospital.setAnimal(rs.getString(9));
-				hospital.setIntro(rs.getString(10));
-				hospital.setImg(rs.getString(11));
-				hospital.setHrink(rs.getString(12));
-				hospital.setX(rs.getString(13));
-				hospital.setY(rs.getString(14));
-				
-				list.add(hospital);
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}// 1
-	
-				 
+	}		 
 
 	/**
 	 * delete - 병원 삭제
@@ -222,9 +182,9 @@ public class HospitalDao extends DBConn {
 	 */
 	public ArrayList<HospitalVo> select() {
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
-		String sql = "SELECT ROWNUM RNO,  HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y"
-				+ "	FROM (SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y"
-				+ " FROM PCP_HOSPITAL ORDER BY HID DESC)";
+		String sql = "SELECT ROWNUM RNO,  HID, HNAME, GLOC, LOC, TEL, HTIME, STARTTIME, ENDTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y \r\n" + 
+				"FROM (SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, SUBSTR(HTIME, 0,5 ) STARTTIME,  SUBSTR(HTIME, 7,6 ) ENDTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y\r\n" + 
+				"FROM PCP_HOSPITAL ORDER BY HID DESC)";
 		getPreparedStatement(sql);
 
 		try {
@@ -239,14 +199,16 @@ public class HospitalDao extends DBConn {
 				hospital.setLoc(rs.getString(5));
 				hospital.setTel(rs.getString(6));
 				hospital.setHtime(rs.getString(7));
-				hospital.setNtime(rs.getString(8));
-				hospital.setHoliday(rs.getString(9));
-				hospital.setAnimal(rs.getString(10));
-				hospital.setIntro(rs.getString(11));
-				hospital.setImg(rs.getString(12));
-				hospital.setHrink(rs.getString(13));
-				hospital.setX(rs.getString(14));
-				hospital.setY(rs.getString(15));
+				hospital.setStarttime(rs.getString(8));
+				hospital.setEndtime(rs.getString(9));
+				hospital.setNtime(rs.getString(10));
+				hospital.setHoliday(rs.getString(11));
+				hospital.setAnimal(rs.getString(12));
+				hospital.setIntro(rs.getString(13));
+				hospital.setImg(rs.getString(14));
+				hospital.setHrink(rs.getString(15));
+				hospital.setX(rs.getString(16));
+				hospital.setY(rs.getString(17));
 
 				list.add(hospital);
 			}
@@ -257,6 +219,33 @@ public class HospitalDao extends DBConn {
 
 		return list;
 	}
+	public HospitalVo selectTime(String hid) {
+		HospitalVo hospitalVo = new HospitalVo();
+		
+		String sql= "SELECT HID, HNAME, SUBSTR(HTIME, 0,5 ) STARTTIME,  SUBSTR(HTIME, 7,6 ) ENDTIME" + 
+				" FROM PCP_HOSPITAL WHERE HID=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, hid);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				hospitalVo.setHid(rs.getString(1));
+				hospitalVo.setHname(rs.getString(2));
+				hospitalVo.setStarttime(rs.getString(3));
+				hospitalVo.setEndtime(rs.getString(4));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return hospitalVo;
+		
+	} // selectTime - 영업시간
+
+
 
 	/**
 	 * insert - 병원 등록
