@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.Gson;
 import com.project.dao.MemberDao;
 import com.project.vo.MemberVo;
 
@@ -61,28 +62,13 @@ public class JoinController {
 	/**
 	 * join_term.do - 회원가입 약관 상세보기
 	 */
-	@SuppressWarnings("deprecation")
-	@RequestMapping(value="/join_term.do",method=RequestMethod.GET, produces = "application/text; charset=utf8")
-	public String join_term(String term) {
-        // JSON 파일 읽기
-		JsonParser parser = new JsonParser();
-		try {
-			Reader reader = new FileReader("C:\\dev\\git_team_project\\petcarepedia_v2\\petcarepedia\\src\\main\\webapp\\WEB-INF\\views\\join\\terms.json");
-			Object obj = parser.parse(reader);
-			
-			JsonArray jsonArr = (JsonArray)obj;
-			if(jsonArr.size() > 0) {
-				for(int i=0; i<jsonArr.size(); i++) {
-					JsonObject jsonObj = (JsonObject)jsonArr.get(i);
-					
-					System.out.println(jsonObj.get("id"));
-				}
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-		return "/join/join_term";
+	@RequestMapping(value="/join_term.do",method=RequestMethod.GET)
+	public String join_term() {
+		return "join/join_term";
 	}
+	
+	/**
+	 * join_term_data.do - 회원가입 약관 상세보기
+	 */
+
 }

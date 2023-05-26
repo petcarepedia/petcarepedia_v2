@@ -303,12 +303,19 @@ $(document).ready(function(){
 	})*/
 	//이용약관 모달
 	$(".btnModalOpen").click(function(){
+		$(".back").after("<div class='term-box'></div>");
+		$.ajax({
+					url : "join_term.do?term="+$(this).attr("id"),
+					success : function(list){
+							$(".term-box").html(list);
+						}
+				})
 		$(".term-box").show();
 		$(".back").show();
 	})
 	
 	$("#btnModalClose").click(function(){
-		$(".term-box").hide();
+		$(".term-box").remove();
 		$(".back").hide();
 	})
 		
