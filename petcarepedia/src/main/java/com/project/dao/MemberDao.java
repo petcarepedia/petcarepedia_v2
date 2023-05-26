@@ -62,14 +62,15 @@ public class MemberDao extends DBConn{
 	/**
 	 * delete - È¸¿øÅ»Åð
 	 */
-	public int delete(String mid) {
+	public int delete(String mid, String pass) {
 		int result = 0;
 		
-		String sql = "delete from pcp_member where mid=?";
+		String sql = "delete from pcp_member where mid=?, pass=?";
 		getPreparedStatement(sql);
 		
 		try {
 			pstmt.setString(1, mid);
+			pstmt.setString(1, pass);
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {

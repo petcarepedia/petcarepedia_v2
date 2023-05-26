@@ -257,11 +257,31 @@ public class MypageController {
 		return viewName;
 	}
 	
-	
+	/*
+	 * signout.do - È¸¿øÅ»ÅðÆû
+	 */
 	@RequestMapping(value = "/signout.do", method = RequestMethod.GET)
-	public String signout() {
-		return "/mypage/signout";
+	public ModelAndView signout(String mid) {
+		ModelAndView model = new ModelAndView();
+		model.addObject("mid", mid);
+		model.setViewName("/mypage/signout");
+		return model;
 	}
 	
+	/*
+	 * member_delete_proc - È¸¿øÅ»Åð Ã³¸®
+	 */
+	@RequestMapping(value = "/member_delete_proc.do", method = RequestMethod.POST)
+	public String member_delete_proc(String mid, String pass) {
+		String viewName = "";
+		MemberDao memberDao = new MemberDao();
+		int result = memberDao.delete(mid, pass);
+		if(result == 1) {
+			viewName = "redirect:/signout.do?mid=" + mid;
+		} else {
+			
+		}
+		return viewName;
+	}
 
 }
