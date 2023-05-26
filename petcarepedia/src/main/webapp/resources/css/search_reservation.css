@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 /***************************************
 	°øÅë
 ***************************************/
@@ -6,6 +7,7 @@
 	padding: 0px;
 	color: #3d3d3d;
 	/* text-align: center; */
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 div.reservation {
