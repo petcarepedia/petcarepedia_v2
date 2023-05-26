@@ -111,9 +111,8 @@
 								
 									<span>${list.hname}</span>
 									<span>${list.tel}</span>
-									<span>⭐ 5.0</span>
-									<input type="hidden" id="startTime" name="startTime" value="${list.starttime}">
-	    							<input type="hidden" id="endTime" name="endTime" value="${list.endtime}">
+									<span id="rstar" name="rstar" class="rstar">⭐ ${list.rstar}</span>
+									<input type="hidden" id="startTime" name="startTime" value="${list.hid}">
 							
 							
 								<span id="harea">${list.gloc}</span>
