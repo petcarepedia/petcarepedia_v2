@@ -1,6 +1,7 @@
 package com.project.petcarepedia;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,13 +46,16 @@ public class SearchController {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
 		HospitalVo hospital = hospitalDao.select(hid);
+		HospitalVo star = hospitalDao.selectStar(hid);
 		BookingVo bookingVo = bookingDao.selectTime(hid);
-		ArrayList<ReviewVo> RHList = reviewDao.RH_select(hid);
+		// ArrayList<ReviewVo> RHList = reviewDao.RH_select(hid);
 		
 		
 		model.addObject("hospital", hospital);
-		model.addObject("RHList", RHList);
+		model.addObject("star", star);
 		model.addObject("time", bookingVo);
+//		model.addObject("RHList", RHList);
+//		System.out.println(RHList.size());
 		
 		model.setViewName("/search/search_result");
 		
@@ -60,6 +64,7 @@ public class SearchController {
 		
 	}
 	
+		
 	
 	/////////////////////
 	

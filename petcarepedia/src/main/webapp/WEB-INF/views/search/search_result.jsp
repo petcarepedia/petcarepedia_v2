@@ -40,7 +40,7 @@
 					
 					<span class="name">${hospital.hname}</span>
 					
-					<span class="grade">⭐ 5.0 | 리뷰 60</span>
+					<span class="grade">⭐  ${star.rstar} | 리뷰 60</span>
 					
 					<button type="button" id="reservation" value="${hospital.hid}"><img src="http://localhost:9000/petcarepedia/images/cal.png">간편 예약하기
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -76,7 +76,9 @@
 				
 				<div class="link">
 					<span><img src="http://localhost:9000/petcarepedia/images/loc.png">${hospital.loc}</span>
-					<span><img src="http://localhost:9000/petcarepedia/images/home.png"><a href="${hospital.hrink}">병원 홈페이지 가기</a></span>
+					<c:if test="${hospital.hrink != null}">
+						<span><img src="http://localhost:9000/petcarepedia/images/home.png"><a href="${hospital.hrink}">병원 홈페이지 가기</a></span>
+					</c:if>
 					<span><img src="http://localhost:9000/petcarepedia/images/call.png">${hospital.tel}</span>
 				</div>
 				
@@ -130,7 +132,7 @@
 					<span>리뷰 60</span>
 					
 					<div class="total">
-						<span>5.0 / 5</span>
+						<span>${star.rstar} / 5</span>
 						<span> ⭐ ⭐ ⭐ ⭐ ⭐</span>
 					</div>
 				</div>
@@ -154,17 +156,17 @@
 					</div>
 				</div> -->
 				
-				<c:forEach var="ReviewVo" items="${RHList}"> 
+				<c:forEach var="RHList" items="${RHList}"> 
 				
 				<div class="review_card">
 					<div class="member">
 						<div class="name">
 							<img src="http://localhost:9000/petcarepedia/images/cat.png">
-							<span>과테말라 냥이</span>
+							<span>${RHList.nickname}</span>
 						</div>
 						
 						<hr class="member_hr">
-						<span class="stext">⭐ 5 / 5</span>
+						<span class="stext">⭐${RHList.rstar}/ 5</span>
 						<hr class="member_hr">
 						<!-- <span>친절  ⭐⭐⭐⭐⭐</span>
 						<span>위생  ⭐⭐⭐⭐⭐</span> -->
@@ -173,13 +175,13 @@
 					
 					<div class="write">
 						<!-- <h3>동물 종류 : 고양이</h3> -->
-						<p>${reviewVo.rcontent}</p>
+						<p>${RHList.rcontent}</p>
 					</div>
 					
 					<div class="date">
-						<span>작성 일자 : 2023-04-28</span>
-						<span>진료 일자 : ${reviewVo.rdate}</span>
-						<button id="like">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp❤️ 100</button>
+						<span>작성 일자 : ${RHList.rdate}</span>
+						<span> </span>
+						<button id="like">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp❤️ ${RHList.rlike}</button>
 						<span><a href="http://www.naver.com">신고하기</a></span>
 					</div>
 				</div>
@@ -191,7 +193,7 @@
 
 	
 	<!-- footer -->
-	<iframe width="100%" height="100px"></iframe>
+	<!-- <iframe width="100%" height="100px"></iframe> -->
 	<jsp:include page="../footer.jsp"></jsp:include>	
 </body>
 </html>

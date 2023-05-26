@@ -42,7 +42,7 @@ $("#reservation").click(function() {
 ********************************************/
 	 $("#info_s").click(function() {
 		    $('html, body').animate({
-		      scrollTop: $(".api_info").offset().top
+		      scrollTop: $(".link").offset().top
 		    }, 500);
 		  });
 		  $("#review_s").click(function() {
