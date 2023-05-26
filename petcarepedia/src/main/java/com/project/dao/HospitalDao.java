@@ -5,6 +5,29 @@ import java.util.ArrayList;
 import com.project.vo.HospitalVo;
 
 public class HospitalDao extends DBConn {
+	/**
+	 * selectStat - 병원 별점
+	 */
+	public HospitalVo selectStar(String hid) {
+		HospitalVo list = new HospitalVo();
+		String sql = "SELECT ROUND(AVG(RSTAR),1) RSTAR FROM" + 
+				" (SELECT * FROM PCP_HOSPITAL h, PCP_REVIEW R WHERE H.HID=R.HID AND H.HID=?)";
+		getPreparedStatement(sql);
+
+		try {
+			pstmt.setString(1, hid);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				list.setRstar(rs.getFloat(1));
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 
 	/**
 	 * searchGloc - 구별 병원 검색
@@ -112,8 +135,8 @@ public class HospitalDao extends DBConn {
 	public int update(HospitalVo hospitalVo) {
 		int result = 0;
 
-		String sql = "UPDATE PCP_HOSPITAL SET HNAME = ?, GLOC = ?, LOC=? , TEL =?, "
-					+ " HTIME=?, NTIME=?, HOLIDAY=?, ANIMAL=?, INTRO=?, IMG=?, HRINK=?, X =?, Y = ?";
+		String sql = "UPDATE PCP_HOSPITAL SET HNAME=? , GLOC=?, LOC =? , TEL=?, "+
+					 " HTIME=? , NTIME=? , HOLIDAY=?, ANIMAL=?, INTRO=? ,HRINK=? WHERE HID = ? ;";
 		getPreparedStatement(sql);
 
 		try {
@@ -126,10 +149,8 @@ public class HospitalDao extends DBConn {
 			pstmt.setString(7, hospitalVo.getHoliday());
 			pstmt.setString(8, hospitalVo.getAnimal());
 			pstmt.setString(9, hospitalVo.getIntro());
-			pstmt.setString(10, hospitalVo.getImg());
 			pstmt.setString(11, hospitalVo.getHrink());
-			pstmt.setString(12, hospitalVo.getX());
-			pstmt.setString(13, hospitalVo.getY());
+			pstmt.setString(12, hospitalVo.getHid());
 
 			result = pstmt.executeUpdate();
 
@@ -181,9 +202,13 @@ public class HospitalDao extends DBConn {
 	 */
 	public ArrayList<HospitalVo> select() {
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
-		String sql = "SELECT ROWNUM RNO,  HID, HNAME, GLOC, LOC, TEL, HTIME, STARTTIME, ENDTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y \r\n" + 
-					" FROM (SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, SUBSTR(HTIME, 0,5 ) STARTTIME,  SUBSTR(HTIME, 7,6 ) ENDTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y" + 
-					" FROM PCP_HOSPITAL ORDER BY HID DESC)";
+		String sql = "SELECT H.RNO, H.HID, H.HNAME, H.GLOC, H.LOC, H.TEL, H.HTIME, SUBSTR(H.HTIME, 0, 5) AS STARTTIME, SUBSTR(H.HTIME, 7, 6) AS ENDTIME, H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y, ROUND(AVG(RSTAR),1) AS RSTAR\r\n" + 
+				" FROM (SELECT ROWNUM RNO, HID, HNAME, GLOC, LOC, TEL, HTIME, SUBSTR(HTIME, 0, 5) STARTTIME, SUBSTR(HTIME, 7, 6) ENDTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK, X, Y\r\n" + 
+				"      FROM PCP_HOSPITAL\r\n" + 
+				"      ORDER BY HID DESC) H\r\n" + 
+				" LEFT JOIN PCP_REVIEW R ON H.HID = R.HID\r\n" + 
+				" GROUP BY H.RNO, H.HID, H.HNAME, H.GLOC, H.LOC, H.TEL, H.HTIME, SUBSTR(H.HTIME, 0, 5), SUBSTR(H.HTIME, 7, 6), H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y\r\n" + 
+				" ORDER BY H.HID DESC";
 		getPreparedStatement(sql);
 
 		try {
@@ -208,6 +233,7 @@ public class HospitalDao extends DBConn {
 				hospital.setHrink(rs.getString(15));
 				hospital.setX(rs.getString(16));
 				hospital.setY(rs.getString(17));
+				hospital.setRstar(rs.getFloat(18));
 
 				list.add(hospital);
 			}
@@ -218,6 +244,9 @@ public class HospitalDao extends DBConn {
 
 		return list;
 	}
+
+	
+	
 	public HospitalVo selectTime(String hid) {
 		HospitalVo hospitalVo = new HospitalVo();
 		
@@ -252,9 +281,8 @@ public class HospitalDao extends DBConn {
 	public int insert(HospitalVo hospitalVo) {
 		int result = 0;
 
-		String sql = "INSERT INTO PCP_HOSPITAL VALUES ("
-				+ "  'H_'||LTRIM(TO_CHAR(SEQU_PCP_HOSPITAL_HID.NEXTVAL,'0000')),"
-				+ "	?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
+		String sql = "INSERT INTO PCP_HOSPITAL (HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, HRINK) VALUES" + 
+				" ('H_'||LTRIM(TO_CHAR(SEQU_PCP_HOSPITAL_HID.NEXTVAL,'0000')),?,?,?,?,?,?,?,?,?,?)";
 		getPreparedStatement(sql);
 
 		try {
@@ -267,13 +295,10 @@ public class HospitalDao extends DBConn {
 			pstmt.setString(7, hospitalVo.getHoliday());
 			pstmt.setString(8, hospitalVo.getAnimal());
 			pstmt.setString(9, hospitalVo.getIntro());
-			pstmt.setString(10, hospitalVo.getImg());
-			pstmt.setString(11, hospitalVo.getHrink());
-			pstmt.setString(12, hospitalVo.getX());
-			pstmt.setString(13, hospitalVo.getY());
+			pstmt.setString(10, hospitalVo.getHrink());
 
 			result = pstmt.executeUpdate();
-
+			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

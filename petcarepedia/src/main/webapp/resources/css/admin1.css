@@ -24,7 +24,7 @@
 	border-radius:5px;
 	margin-top:20px;
 }
-div.d2 form .search_bar{
+div.d2 .search_bar{
 	width: 400px;
 	height: 40px;
 	margin-top:0px;
@@ -44,7 +44,7 @@ div.d2 form .search_bar{
 	display:inline-flex;
 	flex-direction: row;
 }
-.d2 form .button1{
+.d2 .button1{
 	margin-left:-41px;
 	margin-bottom:30px;
 	width:38px;
@@ -52,7 +52,7 @@ div.d2 form .search_bar{
 	border:none;
 	background:white;
 }
-.d2 form .button1>img{
+.d2 .button1 >img{
 	width:35px;
 	height:35px;
 	margin-top:1px;

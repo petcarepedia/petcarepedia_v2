@@ -1,6 +1,10 @@
 package com.project.petcarepedia;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +25,6 @@ public class AdminController {
 	
 	
 	
-	
-	
-	
-	
-	
 	/**
 	 * 회원 - 조회페이지
 	 * */
@@ -43,17 +42,38 @@ public class AdminController {
 		return model;
 	}
 	
+	
+	
+	
+	
 	/**
 	 * 병원 - 수정폼
 	 * */
-	@RequestMapping(value="/hospital_update_proc.do", method=RequestMethod.POST)
-	public String hostpital_update_proc(HospitalVo hospitalVo) {
-		String viewName="";
+//	@RequestMapping(value="/hospital_update_proc.do", method=RequestMethod.POST)
+//	public String hostpital_update_proc(HospitalVo hospitalVo) {
+//		String viewName="";
+//		HospitalDao hospitalDao = new HospitalDao();
+//		int result = hospitalDao.update(hospitalVo);
+//		if(result == 1) {
+//			viewName = "redirect:/hospital_list.do";
+//		}else {
+//			
+//		}
+//		
+//		return viewName;
+//	}
+	
+	@RequestMapping(value = "/hospital_update_proc.do", method = RequestMethod.POST)
+	public String hospital_update_proc(HospitalVo hospitalVo) {
+		String viewName = "";
 		HospitalDao hospitalDao = new HospitalDao();
 		int result = hospitalDao.update(hospitalVo);
-		if(result == 1) {
+		if (result == 1) {
 			viewName = "redirect:/hospital_list.do";
+		} else {
+			// 에러 페이지 호출
 		}
+
 		return viewName;
 	}
 	
@@ -77,12 +97,15 @@ public class AdminController {
 	 * 병원 - 병원 정보 등록 처리
 	 * */
 	@RequestMapping(value="/hospital_detail_proc.do", method=RequestMethod.POST)
-	public String hostpital_detail_proc(HospitalVo hospitalVo) {
+	public String hostpital_detail_proc(HospitalVo hospitalVo){
 		String viewName="";
 		HospitalDao hospitalDao = new HospitalDao();
 		int result = hospitalDao.insert(hospitalVo);
 		if(result == 1) {
+			
 			viewName = "redirect:/hospital_list.do";
+		}else {
+			
 		}
 		return viewName;
 	}
@@ -95,19 +118,6 @@ public class AdminController {
 		return "/admin/hospital/hospital_detail";
 	}
 	
-	/**
-	 * 병원 - 병원 검색 처리
-	 * */
-//	@RequestMapping(value="/hospital_list_detail_proc.do", method=RequestMethod.POST)
-//	public String hostpital_list_detail_proc(String hname) {
-//		String viewName="";
-//		HospitalDao hospitalDao = new HospitalDao();
-//		int result = hospitalDao.search(hname);
-//		if(result == 1) {
-//			viewName = "redirect:/hospital_list.do";
-//		}
-//		return viewName;
-//	}
 	
 	/**
 	 * 병원 - 검색페이지
@@ -161,20 +171,7 @@ public class AdminController {
 			jobj.addProperty("hname", hospitalVo.getHname());
 			jobj.addProperty("ntime", hospitalVo.getNtime());
 			jobj.addProperty("animal", hospitalVo.getAnimal());
-			jobj.addProperty("hid", hospitalVo.getHid());
-			
-//			JsonObject jobj = new JsonObject(); //{}
-//			jobj.addProperty("hid", hospitalVo.getHid());
-//			jobj.addProperty("hname", hospitalVo.getHname());
-//			jobj.addProperty("gloc", hospitalVo.getGloc());
-//			jobj.addProperty("loc", hospitalVo.getLoc());
-//			jobj.addProperty("tel", hospitalVo.getTel());
-//			jobj.addProperty("htime", hospitalVo.getHtime());
-//			jobj.addProperty("ntime", hospitalVo.getNtime());
-//			jobj.addProperty("holiday", hospitalVo.getHoliday());
-//			jobj.addProperty("animal", hospitalVo.getAnimal());
-//			jobj.addProperty("x", hospitalVo.getX());
-//			jobj.addProperty("y", hospitalVo.getY());
+			jobj.addProperty("hid", hospitalVo.getHid());		
 			
 			jarray.add(jobj);
 		}
