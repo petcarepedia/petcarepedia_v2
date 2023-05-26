@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+* {font-family: 'Nanum Gothic', sans-serif;}
+
 /*
 	notice
 */
@@ -372,7 +375,7 @@ div#review ul li.review_list ul li#list_right  {
 }
 div#review ul li.review_list ul li#list_right table  {
 	margin-left:70px;
-	font-size:14px;
+	font-size:13px;
 	margin-top:20px;
 }
 div#review ul li.review_list ul li#list_right div {

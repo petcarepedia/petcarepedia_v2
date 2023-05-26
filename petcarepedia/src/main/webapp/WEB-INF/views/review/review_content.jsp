@@ -51,9 +51,18 @@
 									<input type="hidden" id="rid" name="rid" value="${reviewLikeVo.rid }">
 									<input type="hidden" id="mid" name="mid" value="${reviewLikeVo.mid }">
 									<button type="submit" id="btnLikeProc">
-										<span class="review_like">
-											♥️
-										</span>
+										<c:choose>
+											<c:when test="${likeCheck eq 1 }">
+												<span class="review_like">
+													♥️
+												</span>
+											</c:when>
+											<c:otherwise>
+												<span class="review_like">
+													♡
+												</span>
+											</c:otherwise>
+										</c:choose>
 										${reviewVo.rlike }
 									</button>
 								</form>							

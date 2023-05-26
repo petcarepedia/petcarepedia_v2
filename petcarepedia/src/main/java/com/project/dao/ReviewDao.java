@@ -423,11 +423,45 @@ public class ReviewDao extends DBConn {
 
 	
 	/*
+	 * 좋아요 감소  //좋아요 누른 아이디 삭제
+	 */
+	
+	public ReviewLikeVo LikesDownID(ReviewLikeVo reviewLikeVo) {
+		String sql = "delete pcp_review_like where rid = ? and mid = ?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, reviewLikeVo.getRid());
+			pstmt.setString(2, reviewLikeVo.getMid());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return reviewLikeVo;
+	}
+	
+	/*
 	 * 좋아요 감소
 	 */
 	
-	public ReviewLikeVo LikesDown(ReviewLikeVo reviewLikeVo) {
-		String sql = "delete pcp_review_like where rid = ? and mid = ?";
+	public void LikesDown(ReviewLikeVo reviewLikeVo) {
+		String sql = "update pcp_review set rlike = rlike-1 where rid = ?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, reviewLikeVo.getRid());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/*
+	 * 좋아요 증가  //종아요 누른 아이디 생성
+	 */
+	
+	public ReviewLikeVo LikesUpID(ReviewLikeVo reviewLikeVo) {
+		String sql = "insert into pcp_review_like(rid, mid, like_state) values(?,?,'O')";
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, reviewLikeVo.getRid());
@@ -445,18 +479,15 @@ public class ReviewDao extends DBConn {
 	 * 좋아요 증가
 	 */
 	
-	public ReviewLikeVo LikesUp(ReviewLikeVo reviewLikeVo) {
-		String sql = "insert into pcp_review_like(rid, mid, like_state) values(?,?,'O')";
+	public void LikesUp(ReviewLikeVo reviewLikeVo) {
+		String sql = "update pcp_review set rlike = rlike+1 where rid = ?";
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, reviewLikeVo.getRid());
-			pstmt.setString(2, reviewLikeVo.getMid());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return reviewLikeVo;
 	}
 	
 	

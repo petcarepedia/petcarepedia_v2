@@ -92,15 +92,15 @@ public class ReviewController {
 		ReviewDao reviewDao = new ReviewDao();
 		ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
 		ReviewVo reviewVo = reviewDao.enter_select(rid);
-		reviewVo.setRlike(reviewDao.LikeNum(rid));
 		
 		MemberDao memberDao = new MemberDao();
 		MemberVo member = memberDao.select("hong");
 		
-		
 		reviewLikeVo.setRid(reviewVo.getRid());
 		reviewLikeVo.setMid(member.getMid());
+		int likeCheck = reviewDao.idCheck(reviewLikeVo);
 		
+		model.addObject("likeCheck", likeCheck);
 		model.addObject("reviewLikeVo", reviewLikeVo);
 		model.addObject("member", member);
 		model.addObject("reviewVo", reviewVo);
@@ -167,11 +167,13 @@ public class ReviewController {
 	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo) {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
+		
 		if(reviewDao.idCheck(reviewLikeVo) == 1) {
+			reviewDao.LikesDownID(reviewLikeVo);
 			reviewDao.LikesDown(reviewLikeVo);
-			reviewDao.LikeNum(reviewLikeVo.getRid());
 		}
 		else {
+			reviewDao.LikesUpID(reviewLikeVo);
 			reviewDao.LikesUp(reviewLikeVo);
 		}
 		model.setViewName("redirect:/review_content.do?rid="+reviewLikeVo.getRid());
