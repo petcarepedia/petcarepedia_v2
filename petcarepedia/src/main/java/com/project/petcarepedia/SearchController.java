@@ -44,7 +44,7 @@ public class SearchController {
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
 	public ModelAndView search_result(String hid) {
 		ModelAndView model = new ModelAndView();
-		ReviewDao reviewDao = new ReviewDao();
+//		ReviewDao reviewDao = new ReviewDao();
 		HospitalVo hospital = hospitalDao.select(hid);
 		HospitalVo star = hospitalDao.selectStar(hid);
 		BookingVo bookingVo = bookingDao.selectTime(hid);
