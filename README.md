@@ -27,7 +27,7 @@
 <br/>
 
 ### 2. 추진 배경 및 필요성
-![image](https://github.com/heynokimush/mycgv_spring/assets/123930859/261e94b7-e1b5-4cc8-86f5-006e8a9deb30)
+![image](https://github.com/petcarepedia/petcarepedia_v2/assets/123930859/15b482c3-3d56-4fb1-b0e6-fbc73a7b2164)
 
 <br/>
 
