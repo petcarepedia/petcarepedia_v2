@@ -25,10 +25,11 @@
 								
 								$("#tname").html(name);
 								$("#tcontent").html(content);
+								
+								$(".term-box").show();
+								$(".back").show();
 							}
 					})
-			$(".term-box").show();
-			$(".back").show();
 		})
 		
 		$("#btnModalClose").click(function(){
