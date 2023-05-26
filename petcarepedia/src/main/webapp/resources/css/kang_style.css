@@ -590,3 +590,10 @@ div#review ul li:last-child {
 	height:100%;
 	border:1px solid white;
 }
+div#review_hname {
+	font-weight:700;
+}
+button#review_test {
+	width:100px;
+	height:100px;
+}

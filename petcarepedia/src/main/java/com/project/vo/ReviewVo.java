@@ -6,14 +6,22 @@ package com.project.vo;
  */
 public class ReviewVo {
 	// 리뷰에서 필요한 Vo
-	String rid, rcontent, rdate, rstar, rstate, hid, mid, hname, animal, gloc;
+	String rid, rcontent, rdate, rstate, hid, mid, hname, animal, gloc;
 	int rlike, rno;
+	float rstar;
 	//병원과 조인 Vo
 	String loc, tel, htime, ntime, holiday, intro, img, hrink;
 	// 내가 쓴 리뷰
 	String bid, nickname;
 	
 	
+	
+	public float getRstar() {
+		return rstar;
+	}
+	public void setRstar(float rstar) {
+		this.rstar = rstar;
+	}
 	
 	public String getNickname() {
 		return nickname;
@@ -119,12 +127,6 @@ public class ReviewVo {
 	}
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
-	}
-	public String getRstar() {
-		return rstar;
-	}
-	public void setRstar(String rstar) {
-		this.rstar = rstar;
 	}
 	public String getRstate() {
 		return rstate;

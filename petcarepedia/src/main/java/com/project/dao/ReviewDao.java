@@ -20,25 +20,26 @@ public class ReviewDao extends DBConn {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ReviewVo list = new ReviewVo();
-				list.setRid(rs.getString(1));
-				list.setRcontent(rs.getString(2));
-				list.setRdate(rs.getString(3));
-				list.setRlike(rs.getInt(4));
-				list.setRstar(rs.getString(5));
-				list.setRstate(rs.getString(6));
-				list.setMid(rs.getString(7));
-				list.setHid(rs.getString(8));
-				list.setHname(rs.getString(9));
-				list.setAnimal(rs.getString(10));
-				list.setGloc(rs.getString(11));
-				list.setLoc(rs.getString(12));
-				list.setTel(rs.getString(13));
-				list.setHtime(rs.getString(14));
-				list.setNtime(rs.getString(15));
-				list.setHoliday(rs.getString(16));
-				list.setIntro(rs.getString(17));
-				list.setImg(rs.getString(18));
-				list.setHrink(rs.getString(19));
+				list.setRno(rs.getInt(1));
+				list.setRid(rs.getString(2));
+				list.setRcontent(rs.getString(3));
+				list.setRdate(rs.getString(4));
+				list.setRlike(rs.getInt(5));
+				list.setRstar(rs.getFloat(6));
+				list.setRstate(rs.getString(7));
+				list.setMid(rs.getString(8));
+				list.setHid(rs.getString(9));
+				list.setHname(rs.getString(10));
+				list.setAnimal(rs.getString(11));
+				list.setGloc(rs.getString(12));
+				list.setLoc(rs.getString(13));
+				list.setTel(rs.getString(14));
+				list.setHtime(rs.getString(15));
+				list.setNtime(rs.getString(16));
+				list.setHoliday(rs.getString(17));
+				list.setIntro(rs.getString(18));
+				list.setImg(rs.getString(19));
+				list.setHrink(rs.getString(20));
 				
 				RHList.add(list);
 			}
@@ -67,7 +68,7 @@ public class ReviewDao extends DBConn {
 				list.setRcontent(rs.getString(3));
 				list.setRdate(rs.getString(4));
 				list.setRlike(rs.getInt(5));
-				list.setRstar(rs.getString(6));
+				list.setRstar(rs.getFloat(6));
 				list.setRstate(rs.getString(7));
 				list.setMid(rs.getString(8));
 				list.setHid(rs.getString(9));
@@ -84,7 +85,106 @@ public class ReviewDao extends DBConn {
 	}
 	
 
+	// 리뷰 리스트 페이징 처리
+	public ArrayList<ReviewVo> selectList(int startCount, int endCount) {
+		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
+		String sql = "select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc"
+				+ " from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc " + 
+				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc from pcp_review r, pcp_hospital h " + 
+				" where r.hid=h.hid order by r.rdate desc))"
+				+ " where rno between ? and ? ";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setInt(1, startCount);
+			pstmt.setInt(2, endCount);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ReviewVo list = new ReviewVo();
+				
+				list.setRno(rs.getInt(1));
+				list.setRid(rs.getString(2));
+				list.setRcontent(rs.getString(3));
+				list.setRdate(rs.getString(4));
+				list.setRlike(rs.getInt(5));
+				list.setRstar(rs.getFloat(6));
+				list.setRstate(rs.getString(7));
+				list.setMid(rs.getString(8));
+				list.setHid(rs.getString(9));
+				list.setHname(rs.getString(10));
+				list.setAnimal(rs.getString(11));
+				list.setGloc(rs.getString(12));
+				
+				reviewList.add(list);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return reviewList;
+	}
 	
+	
+	
+	// 검색 리뷰 리스트 페이징 처리
+	public ArrayList<ReviewVo> selectSearchList(int startCount, int endCount, String filter_location) {
+		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
+		String sql = "select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc " + 
+				"from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc " + 
+				"from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc from pcp_review r, pcp_hospital h " + 
+				"where r.hid=h.hid order by r.rdate desc) where gloc = ?) " + 
+				"where rno between ? and ?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, filter_location);
+			pstmt.setInt(2, startCount);
+			pstmt.setInt(3, endCount);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ReviewVo list = new ReviewVo();
+				
+				list.setRno(rs.getInt(1));
+				list.setRid(rs.getString(2));
+				list.setRcontent(rs.getString(3));
+				list.setRdate(rs.getString(4));
+				list.setRlike(rs.getInt(5));
+				list.setRstar(rs.getFloat(6));
+				list.setRstate(rs.getString(7));
+				list.setMid(rs.getString(8));
+				list.setHid(rs.getString(9));
+				list.setHname(rs.getString(10));
+				list.setAnimal(rs.getString(11));
+				list.setGloc(rs.getString(12));
+				
+				reviewList.add(list);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return reviewList;
+	}
+	
+	
+	/* 리뷰 검색 카운트 가져오기*/
+	public int SearchRowCount(String filter_location) {
+			int count = 0;
+			String sql = "select count(*)\r\n" + 
+					"from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc\r\n" + 
+					"from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc from pcp_review r, pcp_hospital h\r\n" + 
+					"where r.hid=h.hid order by r.rdate desc) where gloc = ?)";
+			getPreparedStatement(sql);
+
+			try {
+				pstmt.setString(1, filter_location);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {				
+					count = rs.getInt(1);
+				}			
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return count;		
+		}
 	
 	// 베스트 리뷰 리스트 3개 출력
 	public ArrayList<ReviewVo> best_select3() {
@@ -104,7 +204,7 @@ public class ReviewDao extends DBConn {
 				list.setRcontent(rs.getString(3));
 				list.setRdate(rs.getString(4));
 				list.setRlike(rs.getInt(5));
-				list.setRstar(rs.getString(6));
+				list.setRstar(rs.getFloat(6));
 				list.setRstate(rs.getString(7));
 				list.setMid(rs.getString(8));
 				list.setHid(rs.getString(9));
@@ -140,7 +240,7 @@ public class ReviewDao extends DBConn {
 				list.setRcontent(rs.getString(3));
 				list.setRdate(rs.getString(4));
 				list.setRlike(rs.getInt(5));
-				list.setRstar(rs.getString(6));
+				list.setRstar(rs.getFloat(6));
 				list.setRstate(rs.getString(7));
 				list.setMid(rs.getString(8));
 				list.setHid(rs.getString(9));
@@ -177,7 +277,7 @@ public class ReviewDao extends DBConn {
 				reviewVo.setRcontent(rs.getString(3));
 				reviewVo.setRdate(rs.getString(4));
 				reviewVo.setRlike(rs.getInt(5));
-				reviewVo.setRstar(rs.getString(6));
+				reviewVo.setRstar(rs.getFloat(6));
 				reviewVo.setRstate(rs.getString(7));
 				reviewVo.setMid(rs.getString(8));
 				reviewVo.setHid(rs.getString(9));
@@ -210,7 +310,7 @@ public class ReviewDao extends DBConn {
 				reviewVo.setRcontent(rs.getString(3));
 				reviewVo.setRdate(rs.getString(4));
 				reviewVo.setRlike(rs.getInt(5));
-				reviewVo.setRstar(rs.getString(6));
+				reviewVo.setRstar(rs.getFloat(6));
 				reviewVo.setRstate(rs.getString(7));
 				reviewVo.setMid(rs.getString(8));
 				reviewVo.setHid(rs.getString(9));
@@ -237,7 +337,7 @@ public class ReviewDao extends DBConn {
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, reviewVo.getRcontent());
-			pstmt.setString(2, reviewVo.getRstar());
+			pstmt.setFloat(2, reviewVo.getRstar());
 			pstmt.setString(3, reviewVo.getMid());
 			pstmt.setString(4, reviewVo.getHid());
 			result = pstmt.executeUpdate();
@@ -257,7 +357,7 @@ public class ReviewDao extends DBConn {
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, reviewVo.getRcontent());
-			pstmt.setString(2, reviewVo.getRstar());
+			pstmt.setFloat(2, reviewVo.getRstar());
 			pstmt.setString(3, reviewVo.getRid());
 			
 			result = pstmt.executeUpdate();
@@ -338,7 +438,7 @@ public class ReviewDao extends DBConn {
 				reviewVo.setGloc(rs.getString(6));
 				reviewVo.setRdate(rs.getString(7));
 				reviewVo.setRlike(rs.getInt(8));
-				reviewVo.setRstar(rs.getString(9));
+				reviewVo.setRstar(rs.getFloat(9));
 				reviewVo.setMid(rs.getString(10));
 				
 				
