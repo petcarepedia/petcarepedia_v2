@@ -10,8 +10,8 @@ public class BookingDao extends DBConn {
 	public int insert(BookingVo bookingVo) {
 		int result = 0;
 
-		String sql = "INSERT INTO PCP_BOOKING(bid, bdate, vdate, vtime, bstate, mid)"
-				+ "  values ('B_'||LTRIM(to_char(SEQU_PCP_BOOKING_BID.nextVal, '0000')), sysdate, ?,?,'예약중',?)";
+		String sql = "INSERT INTO PCP_BOOKING(bid, bdate, vdate, vtime, bstate, mid, hid)"
+				+ "  values ('B_'||LTRIM(to_char(SEQU_PCP_BOOKING_BID.nextVal, '0000')), sysdate, ?,?,'예약중',?,?)";
 
 		getPreparedStatement(sql);
 
@@ -19,6 +19,7 @@ public class BookingDao extends DBConn {
 			pstmt.setString(1, bookingVo.getVdate());
 			pstmt.setString(2, bookingVo.getVtime());
 			pstmt.setString(3, bookingVo.getMid());
+			pstmt.setString(4, bookingVo.getHid());
 
 			result = pstmt.executeUpdate();
 

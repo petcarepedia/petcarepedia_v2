@@ -41,13 +41,16 @@ $("#reservation").click(function() {
 	네비게이션
 ********************************************/
 	 $("#info_s").click(function() {
+	 	var offsetTop = $(".api_info").offset().top - 100;
 		    $('html, body').animate({
-		      scrollTop: $(".api_info").offset().top
+		      scrollTop: offsetTop
 		    }, 500);
 		  });
+		  
 		  $("#review_s").click(function() {
+		  var offsetTop2 = $(".review").offset().top - 100;
 		    $('html, body').animate({
-		      scrollTop: $(".review").offset().top
+		      scrollTop: offsetTop2
 		    }, 500);
 		  });
 

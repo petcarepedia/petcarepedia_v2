@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 /***************************************
 	common
 ***************************************/
@@ -13,6 +14,7 @@ div.header-wrapper {
 	margin: 0px;
 	padding: 0px;
 	color: #3d3d3d;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 div.search_main {
@@ -268,6 +270,7 @@ div.s2 {
 	section_list
 ***************************************/
 div.hlist {
+	
 	width: 400px;
 	float: left;
 	margin-right: 20px;
@@ -278,7 +281,8 @@ div.list1{
 	border: 1px solid #98DFFF;
 	border-radius: 5px;
 	width: 400px;
-	height: 170px;
+	/* height: 170px; */
+	height: auto;
 	display: flex;
 	margin-bottom: 10px;
 }
@@ -288,6 +292,7 @@ div.hinfo {
 	width: 220px;
 	text-align: left;
 	margin: 15px 10px 10px 20px;
+	
 }
 
 div.hinfo a {
@@ -310,7 +315,7 @@ div.hinfo span:nth-child(2) {
 	/* padding-right: 36px; */
 	display: inline-block;
 	width: 150px;
-	margin-bottom: 15px;
+	margin: 5px 0 15px 0;
 	
 }
 
@@ -321,7 +326,7 @@ div.hinfo span:nth-child(3) {
 	width: 60px;
 	height: 15px;
 	/* margin: 10px 0px 15px 0px; */
-	margin-bottom: 15px;
+	margin: 5px 0 15px 0;
 	
 	
 }
@@ -403,10 +408,20 @@ div.hinfo div.modal-content span.close:hover
 
 
 div.himg {
-	/* border: 1px solid red; */
+	
+	border: 1px solid #999;
 	width: 122px;
-	height: 122px;
-	margin: 15px 0px 0px 15px;
+	/* height: 122px; */
+	height: auto;
+	/* margin: 15px 0px 0px 15px; */
+	margin: 0px 0px 0px 15px;
+	
+}
+
+
+div.himg img {
+	/* wigth:100%; */
+	vertical-align:middle;
 }
 
 
