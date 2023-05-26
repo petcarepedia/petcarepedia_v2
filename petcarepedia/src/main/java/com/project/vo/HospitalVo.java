@@ -1,10 +1,36 @@
 package com.project.vo;
 
+
 public class HospitalVo {
 	int rno;
-	String hid, hname, gloc, loc, tel, htime, ntime, holiday, animal,intro, img, hrink, x, y, starttime, endtime;
+	String hid, hname, gloc, loc, tel, htime, ntime, holiday, animal,intro, img, hrink, x, y, starttime, endtime, hfile, hsfile;
+	float rstar;
+//	CommonsMultipartFile file1;
 	
-	
+	public float getRstar() {
+		return rstar;
+	}
+	public void setRstar(float rstar) {
+		this.rstar = rstar;
+	}
+	public String getHfile() {
+		return hfile;
+	}
+	public void setHfile(String hfile) {
+		this.hfile = hfile;
+	}
+	public String getHsfile() {
+		return hsfile;
+	}
+	public void setHsfile(String hsfile) {
+		this.hsfile = hsfile;
+	}
+//	public CommonsMultipartFile getFile1() {
+//		return file1;
+//	}
+//	public void setFile1(CommonsMultipartFile file1) {
+//		this.file1 = file1;
+//	}
 	public String getStarttime() {
 		return starttime;
 	}
