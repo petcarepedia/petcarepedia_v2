@@ -71,8 +71,12 @@ $("#btnReservationDelete").click(function(){
 		deleteForm.submit();
 	})
 
-
-
+/*******************************************
+		mypage - 회원탈퇴
+********************************************/
+	$("#btnMemberDelete").click(function(){
+		deleteForm.submit();
+	});
 
 
 
