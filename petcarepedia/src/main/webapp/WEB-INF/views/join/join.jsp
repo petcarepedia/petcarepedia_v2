@@ -10,9 +10,46 @@
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	$(document).ready(function(){
+		let name = "";
+		let content = "";
+		
+		//이용약관 모달
+		$(".btnModalOpen").click(function(){
+			$.ajax({
+						url : "join_term_data.do?term="+$(this).attr("id"),
+						success : function(result){
+								name = JSON.parse(result).name;
+								content = JSON.parse(result).content;
+								
+								$("#tname").html(name);
+								$("#tcontent").html(content);
+							}
+					})
+			$(".term-box").show();
+			$(".back").show();
+		})
+		
+		$("#btnModalClose").click(function(){
+			$(".term-box").hide();
+			$(".back").hide();
+		})
+			
+	});
+</script>
 </head>
 <body>
 	<div class="back"></div>
+	<div class="term-box">
+		<div class="term-modal">
+			<div class="term-modal-close" id="btnModalClose">X</div>
+			<div class="title">
+				<p id="tname"></p>
+			</div>
+			<div class="termcont" id="tcontent"></div>
+		</div>
+	</div>
 	
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
