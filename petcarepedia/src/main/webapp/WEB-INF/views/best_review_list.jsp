@@ -65,7 +65,7 @@
 					<div id="brcontent" onclick="location.href='http://localhost:9000/petcarepedia/review_content.do?rid=${reviewVo.rid}'" class="review-card">
 							<div>
 								<a>${reviewVo.hname}</a>
-								<p>⭐ ${reviewVo.rstar}.0</p>
+								<p>⭐ ${reviewVo.rstar}</p>
 							</div>
 							<div>
 								<div>${reviewVo.gloc}</div>
