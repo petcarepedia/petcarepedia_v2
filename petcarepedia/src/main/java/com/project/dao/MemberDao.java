@@ -35,6 +35,51 @@ public class MemberDao extends DBConn{
 	}
 	
 	/**
+	 * checkLogin - 로그인 체크 / 회원탈퇴 비밀번호 확인
+	 */
+	public int checkLogin(MemberVo memberVo) {
+		int result = 0;
+		
+		String sql = "select count(*) from pcp_member where mid=? and pass=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, memberVo.getMid());
+			pstmt.setString(2, memberVo.getPass());
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * delete - 회원탈퇴
+	 */
+	public int delete(String mid) {
+		int result = 0;
+		
+		String sql = "delete from pcp_member where mid=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, mid);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	/**
 	 * select - 회원 전체 리스트(관리자)
 	 */
 	public ArrayList<MemberVo> select() {
@@ -113,31 +158,6 @@ public class MemberDao extends DBConn{
 		
 		try {
 			pstmt.setString(1, mid);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				result = rs.getInt(1);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
-	}
-	
-	/**
-	 * loginCheck - 로그인 체크
-	 */
-	public int checkLogin(MemberVo memberVo) {
-		int result = 0;
-		
-		String sql = "select count(*) from pcp_member where mid=? and pass=?";
-		getPreparedStatement(sql);
-		
-		try {
-			pstmt.setString(1, memberVo.getMid());
-			pstmt.setString(2, memberVo.getPass());
-			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
