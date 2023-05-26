@@ -47,24 +47,25 @@
 								</button>
 							</c:when>
 							<c:otherwise>
-								<c:choose>
-									<c:when test="${like eq 1 }">
-										<button type="button" id="btnLikeDown">
-											<span class="review_like">
-												♥️
-											</span>
-											${reviewVo.rlike }
-										</button>
-									</c:when>
-									<c:when test="${like eq 0 }">
-										<button type="button" id="btnLikeUp">
-											<span class="review_like">
-												♥️
-											</span>
-											${reviewVo.rlike }
-										</button>
-									</c:when>									
-								</c:choose>
+								<form name="LikeDownForm" action="review_like_Proc.do" method="post">
+									<input type="hidden" id="rid" name="rid" value="${reviewLikeVo.rid }">
+									<input type="hidden" id="mid" name="mid" value="${reviewLikeVo.mid }">
+									<button type="submit" id="btnLikeProc">
+										<c:choose>
+											<c:when test="${likeCheck eq 1 }">
+												<span class="review_like">
+													♥️
+												</span>
+											</c:when>
+											<c:otherwise>
+												<span class="review_like">
+													♡
+												</span>
+											</c:otherwise>
+										</c:choose>
+										${reviewVo.rlike }
+									</button>
+								</form>							
 							</c:otherwise>
 						</c:choose>
 					</div>

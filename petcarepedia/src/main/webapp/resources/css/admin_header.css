@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+* {font-family: 'Nanum Gothic', sans-serif;}
+
 	.header-menu1 {
 		height:100px; width:100%;
 		background:#7AB2CC;

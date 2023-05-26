@@ -49,7 +49,32 @@ $(document).ready(function(){
 		}
 	});
 	
-	
+
+
+	/*******************************************
+		리뷰 필터 클릭
+	 ********************************************/	
+	 /*var location_arr = [];*/
+	 $('input[type="checkbox"][name="filter_location"]').on('change', function() {
+		  if ($(this).is(':checked')) { 
+		    /*
+		    var area = $(this).val();
+		    location_arr.push(area);
+		    */
+		    
+		    if($(this).val() == "서울전체") {
+		    	location.href='http://localhost:9000/petcarepedia/review_main.do'
+		    }
+		    else {
+			    ReviewSearchForm.submit();
+		    }
+		  }
+		});
+
+
+
+
+
 }); //ready
 
 
