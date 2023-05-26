@@ -28,7 +28,8 @@
 		<section class="info">
 			<div class="info_d">
 				<div class="images_d">
-					<img src="${hospital.img}">
+					<%-- <img src="${hospital.img}"> --%>
+					<img src="http://localhost:9000/petcarepedia/images/hospital 1.png">
 				</div>
 				
 				<div class="name_d">

@@ -44,18 +44,18 @@ public class SearchController {
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
 	public ModelAndView search_result(String hid) {
 		ModelAndView model = new ModelAndView();
-//		ReviewDao reviewDao = new ReviewDao();
+		ReviewDao reviewDao = new ReviewDao();
 		HospitalVo hospital = hospitalDao.select(hid);
 		HospitalVo star = hospitalDao.selectStar(hid);
 		BookingVo bookingVo = bookingDao.selectTime(hid);
-		// ArrayList<ReviewVo> RHList = reviewDao.RH_select(hid);
+		ArrayList<ReviewVo> RHList = reviewDao.RH_select(hid);
 		
 		
 		model.addObject("hospital", hospital);
 		model.addObject("star", star);
 		model.addObject("time", bookingVo);
-//		model.addObject("RHList", RHList);
-//		System.out.println(RHList.size());
+		model.addObject("RHList", RHList);
+		System.out.println(RHList.size());
 		
 		model.setViewName("/search/search_result");
 		
