@@ -29,14 +29,14 @@
 				<input type = "hidden" name = "bid" value = "${bid}">
 				<table id = "table">
 					<tr>
-						<td><img id = "trash" src="http://localhost:9000/petcarepedia/images/trash.jpg"></td>
+						<td><img class = "trash" src="https://cdn.pixabay.com/photo/2012/12/03/08/52/no-68481_1280.jpg"></td>
 					</tr>
 					<tr>					
-						<td>예약을 취소하시겠습니까?</td>
+						<td class = "re_cancle">예약을 취소하시겠습니까?</td>
 					</tr>				
 					<tr>
-						<td colspan="2">
-							<button type="button" class="btn_style" id = "btnReservationDelete">삭제완료</button>
+						<td class = "btnCancle" colspan="2">
+							<button type="button" class="btn_style" id = "btnReservationDelete">취소완료</button>
 							<a href="reservation.do?mid=${mid}">
 							<button type="button" class="btn_style">이전페이지</button></a>
 						</td>				

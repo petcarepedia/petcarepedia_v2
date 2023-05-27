@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.BookingDao;
@@ -246,6 +247,7 @@ public class MypageController {
 	/*
 	 *  review_write_proc.do - 리뷰 쓰기처리
 	 */
+	@ResponseBody
 	@RequestMapping(value = "/review_write_proc.do", method = RequestMethod.POST)
 	public String review_write_proc(ReviewVo reviewVo) {
 		String viewName = "";
@@ -253,6 +255,8 @@ public class MypageController {
 		int result = reviewDao.insert(reviewVo);
 		if(result == 1) {
 			viewName = "redirect:/my_review?mid=" + reviewVo.getMid();
+		} else {
+			viewName = "<script>alert('리뷰작성실패');location.href = 'my_review.do?mid=hong';</script>";
 		}
 		return viewName;
 	}
