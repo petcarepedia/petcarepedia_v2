@@ -55,7 +55,7 @@ public class SearchController {
 		model.addObject("star", star);
 		model.addObject("time", bookingVo);
 		model.addObject("RM_select", RM_select);
-		System.out.println(RM_select.size());
+		/* System.out.println(RM_select.size()); */
 		
 		model.setViewName("/search/search_result");
 		

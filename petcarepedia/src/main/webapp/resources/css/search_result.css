@@ -297,7 +297,7 @@ div.grade {
 	margin-bottom: 15px;
 }
 
-div.grade > span{
+div.grade > span {
 	font-size: 20px;
 	font-weight: bold;
 	padding: 20px 0px;
@@ -336,6 +336,7 @@ div.review_card {
 	display: flex;
 	flex-direction: row;
 	padding-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 div.review_card div.member {
@@ -383,6 +384,7 @@ div.review_card div.write {
 	/* border: 1px solid red; */
 	width: 290px;
 	margin-left: 20px;
+	margin-top: 40px;
 	flex: 1;
 }
 
@@ -392,6 +394,7 @@ div.review_card div.write > h3 {
 }
 
 div.review_card div.write >p {
+	/* border: 1px solid red; */
 	font-size: 12px;
 }
 
