@@ -83,7 +83,7 @@
 						</ul>
 					</section>
 					<ul id = "pass_revise">
-						<li><a href="#" target="_parent">비밀번호 재설정</a></li>
+						<li><a href="login_pwfind.do" target="_parent">비밀번호 재설정</a></li>
 					</ul>
 					<section id = "section3">
 						<button type = "button" id = "btn_style1">수정완료</button>
