@@ -28,15 +28,19 @@ div.result_main div.images_d {
 	white-space: nowrap;
 	overflow-x: auto;
 	overflow-y: hidden;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 	
 }
 
 div.result_main div.images_d img {
 	/* border: 1px solid red; */
-	width: auto;
-	height: 100%;
+	width: 100%;
+	height: auto;
 	display: inline-block;
-	margin: 0px -3px;
+	/* margin: 0px -3px; */
+	object-fit: contain;
 }
 
 div.result_main div.name_d {
