@@ -407,6 +407,7 @@ div.review_card div.date {
 }
 
 div.review_card div.date span {
+	/* border: 1px solid #98DFFF; */
 	font-size: 12px;
 	display:inline-block;
 }
@@ -420,6 +421,10 @@ div.review_card div.date button#like {
 	height: 35px;
 	margin-top: 15px; 
 	
+}
+
+div.review_card div.date button#like span.like-count {
+	font-size: 14px;
 }
 
 div.review_card div.date span:last-child {
