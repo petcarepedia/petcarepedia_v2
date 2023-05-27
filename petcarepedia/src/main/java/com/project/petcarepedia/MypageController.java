@@ -271,13 +271,13 @@ public class MypageController {
 	/*
 	 * member_delete_proc - È¸¿øÅ»Åð Ã³¸®
 	 */
-	@RequestMapping(value = "/member_delete_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/member_delete_proc.do", method = RequestMethod.GET)
 	public String member_delete_proc(String mid, String pass) {
 		String viewName = "";
 		MemberDao memberDao = new MemberDao();
 		int result = memberDao.delete(mid, pass);
 		if(result == 1) {
-			viewName = "redirect:/signout.do?mid=" + mid;
+			viewName = "redirect:/login.do";
 		} else {
 			
 		}
