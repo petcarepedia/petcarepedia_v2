@@ -38,7 +38,6 @@ public class SearchController {
 		return model;
 	}
 	
-/////////////////////
 	
 	/** search_result.do - 병원 상세정보 **/
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
@@ -64,12 +63,8 @@ public class SearchController {
 		
 	}
 	
-		
-	
-	/////////////////////
 	
 	/** search_reservation.do **/
-	
 	/*
 	 * @RequestMapping(value="/search_reservation.do", method=RequestMethod.GET)
 	 * public String search_reservation() { return "/search/search_reservation"; }
@@ -110,7 +105,22 @@ public class SearchController {
 	}	
 	
 	
-	/** reservationProc.do - 찜하기 처리 **/
+	/** bookProc.do.do - 찜하기 처리 **/
+	@RequestMapping(value="bookmarkProc.do", method=RequestMethod.GET)
+	public String bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
+	    BookmarkDao bookmarkDao = new BookmarkDao();
+	    int result = bookmarkDao.insert(bookmarkVo);
+	    
+	    if(result == 1) {
+	        return "redirect:/search_result.do?hid=" + hid;
+	    } else {
+	        // 실패 - 실패를 나타내는 문자열 반환
+	        return "failure";
+	    }
+	}
+	
+	
+	/** reservationProc.do - 좋아요 처리 **/
 	@RequestMapping(value="likeProc.do", method=RequestMethod.GET)
 	public String likeProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
 	    BookmarkDao bookmarkDao = new BookmarkDao();
@@ -122,7 +132,7 @@ public class SearchController {
 	        // 실패 - 실패를 나타내는 문자열 반환
 	        return "failure";
 	    }
-	}
+	}	
 	
 	
 		

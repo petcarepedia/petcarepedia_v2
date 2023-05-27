@@ -65,7 +65,7 @@
 							<button type="button" id="review"><img src="http://localhost:9000/petcarepedia/images/review.png">리뷰하기</button>
 						</a>	
 						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
-						<form name="likeForm" action="likeProc.do" method="get">
+						<form name="likeForm" action="bookmarkProc.do" method="get">
 							<a href="#" onclick = "alert('즐겨찾기에 추가되었습니다.')">
 								<input type="hidden" name="hid" value="${hospital.hid}">
 								<input type="hidden" name="mid" value="hong">
