@@ -408,19 +408,19 @@ div.hinfo div.modal-content span.close:hover
 
 
 div.himg {
-	
-	border: 1px solid #999;
+	/* border: 3px solid #999; */
 	width: 122px;
 	/* height: 122px; */
 	height: auto;
 	/* margin: 15px 0px 0px 15px; */
 	margin: 0px 0px 0px 15px;
+	display: flex;
+	align-items: center;
 	
 }
 
 
 div.himg img {
-	/* wigth:100%; */
 	vertical-align:middle;
 }
 
