@@ -29,7 +29,7 @@
 				<input type = "hidden" name = "rid" value = "${rid}">
 				<table id = "table">
 					<tr>
-						<td><img class = "trash" src="https://076923.github.io/assets/posts/Etc/MySQL/lecture-7/1.webp"></td>
+						<td><img class = "trash" src="https://www.the-pr.co.kr/news/photo/201803/32219_58601_5438.png"></td>
 					</tr>
 					<tr>					
 						<td class = "re_cancle">정말로 삭제하시겠습니까?</td>

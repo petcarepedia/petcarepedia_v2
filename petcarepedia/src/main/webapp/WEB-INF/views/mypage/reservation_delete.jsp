@@ -29,7 +29,7 @@
 				<input type = "hidden" name = "bid" value = "${bid}">
 				<table id = "table">
 					<tr>
-						<td><img class = "trash" src="https://cdn.pixabay.com/photo/2012/12/03/08/52/no-68481_1280.jpg"></td>
+						<td><img class = "trash" src="https://m.wooribank.com/img/mw/else/img_mob_reserva01.png"></td>
 					</tr>
 					<tr>					
 						<td class = "re_cancle">예약을 취소하시겠습니까?</td>
