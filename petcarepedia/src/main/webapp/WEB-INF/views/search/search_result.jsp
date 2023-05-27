@@ -65,11 +65,11 @@
 							<button type="button" id="review"><img src="http://localhost:9000/petcarepedia/images/review.png">리뷰하기</button>
 						</a>	
 						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
-						<form name="likeForm" action="bookmarkProc.do" method="get">
+						<form name="bookmarkForm" action="bookmarkProc.do" method="get">
 							<a href="#" onclick = "alert('즐겨찾기에 추가되었습니다.')">
 								<input type="hidden" name="hid" value="${hospital.hid}">
 								<input type="hidden" name="mid" value="hong">
-								<button type="button" id="like"><img src="http://localhost:9000/petcarepedia/images/like.png">찜하기</button>
+								<button type="button" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/like.png">찜하기</button>
 							</a>
 						</form>
 					</div>
@@ -186,7 +186,11 @@
 					<div class="date">
 						<span>작성 일자 : ${RM_select.rdate}</span>
 						<span> </span>
-						<button id="like">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp❤️ ${RM_select.rlike}</button>
+						<form name="likeForm" action="likeProc.do" method="get">
+							<input type="text" name="hid" value="${hospital.hid}">
+							<input type="text" name="rid" value="${RM_select.rid}">
+							<button id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp❤️ <span class="like-count">${RM_select.rlike}</span></button>
+						</form>
 						<span><a href="http://www.naver.com">신고하기</a></span>
 					</div>
 				</div>

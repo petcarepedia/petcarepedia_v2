@@ -115,21 +115,21 @@ div.result_main div.name_d button#review {
 	border-radius: 5px;
 	font-size: 15px;
 	margin-top: 10px;
-	width: 120px;
+	width: 175px;
 	height: 40px;
 	text-align: left;
 	display: flex;
 	align-items: center;
-	margin-right: 45px;
+	margin-right: 50px;
 }
 
-div.result_main div.name_d button#share, div.name_d button#like  {
+div.result_main div.name_d button#share, div.name_d button#bookmark  {
 	background: #FFFFFF;
 	border: 1px solid #8A8A8A;
 	border-radius: 5px;
 	font-size: 15px;
 	margin-top: 10px;
-	width: 120px;
+	width: 175px;
 	height: 40px;
 	text-align: left;
 	display: flex;

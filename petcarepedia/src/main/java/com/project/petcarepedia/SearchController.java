@@ -1,7 +1,6 @@
 package com.project.petcarepedia;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +15,7 @@ import com.project.dao.ReviewDao;
 import com.project.vo.BookingVo;
 import com.project.vo.BookmarkVo;
 import com.project.vo.HospitalVo;
+import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
 
 
@@ -120,19 +120,23 @@ public class SearchController {
 	}
 	
 	
-	/** reservationProc.do - 좋아요 처리 **/
+	/** likeProc.do - 좋아요 처리 **/
 	@RequestMapping(value="likeProc.do", method=RequestMethod.GET)
-	public String likeProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
-	    BookmarkDao bookmarkDao = new BookmarkDao();
-	    int result = bookmarkDao.insert(bookmarkVo);
-	    
-	    if(result == 1) {
+	public String likeProc(ReviewLikeVo reviewLikeVo, @RequestParam("hid") String hid) {
+	    ReviewDao reviewDao = new ReviewDao();
+	    int result = reviewDao.LikesUp2(reviewLikeVo);
+	    System.out.println(result);
+
+	    if (result == 1) {
 	        return "redirect:/search_result.do?hid=" + hid;
 	    } else {
 	        // 실패 - 실패를 나타내는 문자열 반환
 	        return "failure";
 	    }
-	}	
+	}
+		
+	    
+	
 	
 	
 		
