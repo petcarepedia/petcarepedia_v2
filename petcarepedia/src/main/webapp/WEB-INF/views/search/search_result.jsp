@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
     
 <!DOCTYPE html>
 <html>
@@ -41,7 +42,7 @@
 					
 					<span class="name">${hospital.hname}</span>
 					
-					<span class="grade">⭐  ${star.rstar} | 리뷰 60</span>
+					<span class="grade">⭐  ${star.rstar} | 리뷰 ${fn:length(RM_select)}</span>
 					
 					<button type="button" id="reservation" value="${hospital.hid}"><img src="http://localhost:9000/petcarepedia/images/cal.png">간편 예약하기
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -96,10 +97,10 @@
 					<div class="api">
 						<span>병원정보</span>
 						<span>위치 & 진료시간</span>
-						<!-- <div class="map"> -->
+						<div class="map">
 							<iframe class="map" src="http://localhost:9000/petcarepedia/search_map.do"
 							scrolling="no" width="350px" height="285px" frameborder=0></iframe>
-						<!-- </div> -->
+						</div>
 						<span>${hospital.loc}</span>
 					</div>
 					
@@ -117,7 +118,9 @@
 							<li>${hospital.ntime}</li>
 							<li>${hospital.holiday}</li>
 							<li>${hospital.animal}</li>
-							<li>${hospital.intro}</li>
+							<c:if test="${! hospital.intro.equals('X')}">
+								<li>${hospital.intro}</li>
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -130,7 +133,7 @@
 		<section class="review">
 			<div class="list">
 				<div class="grade">
-					<span>리뷰 60</span>
+					<span>리뷰 ${fn:length(RM_select)}</span>
 					
 					<div class="total">
 						<span>${star.rstar} / 5</span>
@@ -157,17 +160,17 @@
 					</div>
 				</div> -->
 				
-				<c:forEach var="RHList" items="${RHList}"> 
+				<c:forEach var="RM_select" items="${RM_select}"> 
 				
 				<div class="review_card">
 					<div class="member">
 						<div class="name">
 							<img src="http://localhost:9000/petcarepedia/images/cat.png">
-							<span>${RHList.nickname}</span>
+							<span>${RM_select.nickname}</span>
 						</div>
 						
 						<hr class="member_hr">
-						<span class="stext">⭐${RHList.rstar}/ 5</span>
+						<span class="stext">⭐${RM_select.rstar}/ 5</span>
 						<hr class="member_hr">
 						<!-- <span>친절  ⭐⭐⭐⭐⭐</span>
 						<span>위생  ⭐⭐⭐⭐⭐</span> -->
@@ -176,13 +179,13 @@
 					
 					<div class="write">
 						<!-- <h3>동물 종류 : 고양이</h3> -->
-						<p>${RHList.rcontent}</p>
+						<p>${RM_select.rcontent}</p>
 					</div>
 					
 					<div class="date">
-						<span>작성 일자 : ${RHList.rdate}</span>
+						<span>작성 일자 : ${RM_select.rdate}</span>
 						<span> </span>
-						<button id="like">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp❤️ ${RHList.rlike}</button>
+						<button id="like">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp❤️ ${RM_select.rlike}</button>
 						<span><a href="http://www.naver.com">신고하기</a></span>
 					</div>
 				</div>

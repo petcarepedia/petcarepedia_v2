@@ -48,14 +48,14 @@ public class SearchController {
 		HospitalVo hospital = hospitalDao.select(hid);
 		HospitalVo star = hospitalDao.selectStar(hid);
 		BookingVo bookingVo = bookingDao.selectTime(hid);
-		ArrayList<ReviewVo> RHList = reviewDao.RH_select(hid);
+		ArrayList<ReviewVo> RM_select = reviewDao.RM_select(hid);
 		
 		
 		model.addObject("hospital", hospital);
 		model.addObject("star", star);
 		model.addObject("time", bookingVo);
-		model.addObject("RHList", RHList);
-		System.out.println(RHList.size());
+		model.addObject("RM_select", RM_select);
+		System.out.println(RM_select.size());
 		
 		model.setViewName("/search/search_result");
 		
