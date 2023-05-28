@@ -191,7 +191,16 @@
 							<input type="hidden" name="rid" value="${RM_select.rid}">
 							<button id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp❤️ <span class="like-count">${RM_select.rlike}</span></button>
 						</form>
-						<span><a href="http://www.naver.com">신고하기</a></span>
+						
+						<form name="rstateForm" action="rstateProc.do" method="post">
+							<input type="text" name="rid" value="${RM_select.rid}">
+							<input type="text" name="hid" value="${hospital.hid}">
+							<a href="#" onclick="return confirm('정말로 신고하시겠습니까?')" id="rstateBtn">
+							<button class="rstate" name="rstate">신고하기</button></a>
+							<!-- <a href="#" onclick = "alert('정말로 신고하시겠습니까?')" name="rstate" class="rstate">
+								<span>신고하기</span>
+							</a> -->
+						</form>
 					</div>
 				</div>
 				

@@ -125,7 +125,7 @@ public class SearchController {
 	public String likeProc(ReviewLikeVo reviewLikeVo, @RequestParam("hid") String hid) {
 	    ReviewDao reviewDao = new ReviewDao();
 	    int result = reviewDao.LikesUp2(reviewLikeVo);
-	    System.out.println(result);
+		/* System.out.println(result); */
 
 	    if (result == 1) {
 	        return "redirect:/search_result.do?hid=" + hid;
@@ -134,10 +134,23 @@ public class SearchController {
 	        return "failure";
 	    }
 	}
+	
+	
+	/** stateProc.do - 신고하기 처리 **/
+	@RequestMapping(value="rstateProc.do", method=RequestMethod.POST)
+	public String rstateProc(String rid, @RequestParam("hid") String hid) {
+		ReviewDao reviewDao = new ReviewDao();
+	    int result = reviewDao.update(rid);
+		/* System.out.println(result); */
+
+	    if (result == 1) {
+			return "redirect:/search_result.do?hid=" + hid;
+		} else {
+			return "failure";
+		}
+	}
 		
 	    
-	
-	
 	
 		
 		
