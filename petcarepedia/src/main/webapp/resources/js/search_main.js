@@ -46,7 +46,7 @@ $(document).ready(function(){
 			    });
 		  });*/
 	 
-	 $('input[type="checkbox"][name="area"]').on('change', function() {
+	 /* $('input[type="checkbox"][name="area"]').on('change', function() {
 		  if ($(this).is(':checked')) { // 체크박스가 체크되었을 때
 		    var area = $(this).val(); // 체크된 체크박스의 값을 가져옴
 		    $.ajax({
@@ -61,7 +61,7 @@ $(document).ready(function(){
 		      }
 		    });
 		  }
-		});
+		}); */
 	 
 	 
 	 $('input[type="checkbox"][name="time"]').click(function() {
@@ -81,7 +81,9 @@ $(document).ready(function(){
 		  });
 	
 	
-	
+ $('input[type="checkbox"]').click(function() {
+    $('form[name="search_area"]').submit();
+  });	
 	
 	
 	
