@@ -23,8 +23,48 @@ import com.project.vo.MemberVo;
 @Controller
 public class AdminController {
 	
+	/**
+	 * 회원 - 회원 아이디 검색
+	 * */
+	@RequestMapping(value="/member_list_data.do", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String hospital_member_data(String mid) {
+		MemberDao memberDao = new MemberDao();
+		ArrayList<MemberVo> list = memberDao.search(mid);
+		
+		JsonObject jlist = new JsonObject();
+		JsonArray jarray = new JsonArray();
+		
+		for(MemberVo memberVo :list) {
+			JsonObject jobj = new JsonObject(); //{}
+			jobj.addProperty("rno", memberVo.getRno());
+			jobj.addProperty("mid", memberVo.getMid());
+			jobj.addProperty("name", memberVo.getName());
+			jobj.addProperty("email", memberVo.getEmail());
+			jobj.addProperty("phone", memberVo.getPhone());		
+			jobj.addProperty("mdate", memberVo.getMdate());		
+			
+			jarray.add(jobj);
+		}
+		jlist.add("jlist", jarray);
+		
+		return new Gson().toJson(jlist);
+	}
 	
-	
+	/**
+	 * 회원 - 상세 페이지
+	 * */
+	@RequestMapping(value="/member_detail.do", method=RequestMethod.GET)
+	public ModelAndView member_detail(String mid) {
+		ModelAndView model = new ModelAndView();
+		MemberDao memberDao = new MemberDao();
+		MemberVo memberVo = memberDao.select(mid);
+		
+		model.addObject("memberVo", memberVo);
+		model.setViewName("/admin/member/member_list");
+		
+		return model;
+	}
 	/**
 	 * 회원 - 조회페이지
 	 * */
@@ -43,27 +83,11 @@ public class AdminController {
 	}
 	
 	
-	
-	
-	
+
 	/**
-	 * 병원 - 수정폼
+	 * 병원 - 수정 처리 페이지
 	 * */
-//	@RequestMapping(value="/hospital_update_proc.do", method=RequestMethod.POST)
-//	public String hostpital_update_proc(HospitalVo hospitalVo) {
-//		String viewName="";
-//		HospitalDao hospitalDao = new HospitalDao();
-//		int result = hospitalDao.update(hospitalVo);
-//		if(result == 1) {
-//			viewName = "redirect:/hospital_list.do";
-//		}else {
-//			
-//		}
-//		
-//		return viewName;
-//	}
-	
-	@RequestMapping(value = "/hospital_update_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/hospital_update_proc.do", method = RequestMethod.GET)
 	public String hospital_update_proc(HospitalVo hospitalVo) {
 		String viewName = "";
 		HospitalDao hospitalDao = new HospitalDao();
@@ -76,6 +100,7 @@ public class AdminController {
 
 		return viewName;
 	}
+
 	
 	/**
 	 * 병원 - 수정 페이지
@@ -96,7 +121,7 @@ public class AdminController {
 	/**
 	 * 병원 - 병원 정보 등록 처리
 	 * */
-	@RequestMapping(value="/hospital_detail_proc.do", method=RequestMethod.POST)
+	@RequestMapping(value="/hospital_detail_proc.do", method=RequestMethod.GET)
 	public String hostpital_detail_proc(HospitalVo hospitalVo){
 		String viewName="";
 		HospitalDao hospitalDao = new HospitalDao();
