@@ -196,10 +196,8 @@
 							<input type="hidden" name="rid" value="${RM_select.rid}">
 							<input type="hidden" name="hid" value="${hospital.hid}">
 							<a href="#" onclick="return confirm('정말로 신고하시겠습니까?')" id="rstateBtn">
-							<button class="rstate" name="rstate">신고하기</button></a>
-							<!-- <a href="#" onclick = "alert('정말로 신고하시겠습니까?')" name="rstate" class="rstate">
-								<span>신고하기</span>
-							</a> -->
+								<button class="rstate" name="rstate">신고하기</button></a>
+							<!-- <span>신고하기</span> -->
 						</form>
 					</div>
 				</div>

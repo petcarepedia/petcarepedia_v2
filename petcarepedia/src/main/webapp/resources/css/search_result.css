@@ -420,7 +420,7 @@ div.review_card div.date button#like {
 	width: 165px;
 	height: 35px;
 	margin-top: 15px; 
-	
+	padding-bottom: 7px;
 }
 
 div.review_card div.date button#like span.like-count {
@@ -438,6 +438,22 @@ div.review_card div.date a {
 }
 
 div.review_card div.date button#like:hover {
+	cursor: pointer;
+}
+
+div.review_card div.date a#rstateBtn {
+	/* border: 1px solid #98DFFF; */
+}
+
+div.review_card div.date button.rstate {
+	border: none;
+	background-color: transparent;
+	color: red;
+	text-decoration: underline;
+	font-size: 12px;
+}
+
+div.review_card div.date button.rstate:hover {
 	cursor: pointer;
 }
 
