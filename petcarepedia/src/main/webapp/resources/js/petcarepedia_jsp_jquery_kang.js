@@ -56,12 +56,8 @@ $(document).ready(function(){
 	 ********************************************/	
 	 $('input[type="checkbox"][name="filter_location"]').on('change', function() {
 		  if ($(this).is(':checked')) { 
-		    /*
-		    var area = $(this).val();
-		    location_arr.push(area);
-		    */
 		    
-		    if($(this).val() == "서울전체") {
+		    if($(this).val() == null) {
 		    	location.href='http://localhost:9000/petcarepedia/review_main.do'
 		    }
 		    else {
