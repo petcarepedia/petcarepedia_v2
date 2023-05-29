@@ -7,8 +7,40 @@ import com.project.vo.MemberVo;
 import com.project.vo.ReviewVo;
 
 public class MemberDao extends DBConn{
+	
 	/**
-	 * insert - 회원가입
+	 * search - 병원 상세 검색
+	 */
+	public ArrayList<MemberVo> search(String mid) {
+		ArrayList<MemberVo> list = new ArrayList<MemberVo>();
+		String sql = "SELECT MID, NAME, PHONE, EMAIL, MDATE FROM PCP_MEMBER WHERE MID LIKE ?";
+		getPreparedStatement(sql);
+
+		try {
+			pstmt.setString(1, "%"+ mid + "%");
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				MemberVo member = new MemberVo();
+				member.setMid(rs.getString(1));
+				member.setName(rs.getString(2));
+				member.setEmail(rs.getString(3));
+				member.setPhone(rs.getString(4));
+				member.setMdate(rs.getString(5));
+
+				list.add(member);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+		}
+	
+	
+	/**
+	 * insert - 회원가입123
 	 */
 	public int insert(MemberVo memberVo) {
 		int result = 0;
@@ -65,13 +97,12 @@ public class MemberDao extends DBConn{
 	public int delete(String mid, String pass) {
 		int result = 0;
 		
-		String sql = "delete from pcp_member where mid=?, pass=?";
+		String sql = "delete from pcp_member where mid=? and pass=?";
 		getPreparedStatement(sql);
 		
 		try {
 			pstmt.setString(1, mid);
-			pstmt.setString(1, pass);
-			
+			pstmt.setString(2, pass);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
