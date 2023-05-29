@@ -51,6 +51,44 @@ public class ReviewDao extends DBConn {
 
 	
 	
+	public ArrayList<ReviewVo> RM_select(String hid) {
+		ArrayList<ReviewVo> RM_select = new ArrayList<ReviewVo>();
+		String sql = "SELECT ROWNUM RNO, RID, M.NICKNAME, RCONTENT, TO_CHAR(RDATE, 'YYYY-MM-DD') RDATE, RLIKE, ROUND(RSTAR, 0) RSTAR" + 
+				" FROM (SELECT * FROM PCP_REVIEW R, PCP_HOSPITAL H" + 
+				"        WHERE R.HID = H.HID AND H.HID=?" + 
+				"        ORDER BY R.RDATE) T, PCP_MEMBER M " + 
+				"        WHERE T.MID = M.MID";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, hid);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ReviewVo list = new ReviewVo();
+				list.setRno(rs.getInt(1));
+				list.setRid(rs.getString(2));
+				list.setNickname(rs.getString(3));
+				list.setRcontent(rs.getString(4));
+				list.setRdate(rs.getString(5));
+				list.setRlike(rs.getInt(6));
+				list.setRstar(rs.getFloat(7));
+				
+				RM_select.add(list);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return RM_select;
+	}
+
+	
+	
+	
+	
+	
+	
 	// 리뷰 리스트
 	public ArrayList<ReviewVo> select() {
 		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
@@ -544,15 +582,17 @@ public class ReviewDao extends DBConn {
 	 * 좋아요 감소
 	 */
 	
-	public void LikesDown(ReviewLikeVo reviewLikeVo) {
+	public int LikesDown(ReviewLikeVo reviewLikeVo) {
+		int result = 0;
 		String sql = "update pcp_review set rlike = rlike-1 where rid = ?";
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, reviewLikeVo.getRid());
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 	
 	
@@ -579,15 +619,17 @@ public class ReviewDao extends DBConn {
 	 * 좋아요 증가
 	 */
 	
-	public void LikesUp(ReviewLikeVo reviewLikeVo) {
+	public int LikesUp(ReviewLikeVo reviewLikeVo) {
+		int result = 0;
 		String sql = "update pcp_review set rlike = rlike+1 where rid = ?";
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, reviewLikeVo.getRid());
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 	
 	
@@ -608,6 +650,5 @@ public class ReviewDao extends DBConn {
 		
 		return result;
 	}
-	
 	
 }

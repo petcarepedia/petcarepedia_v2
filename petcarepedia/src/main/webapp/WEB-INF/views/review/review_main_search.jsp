@@ -32,7 +32,7 @@
 		});
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 		   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-           $(location).attr('href', "http://localhost:9000/petcarepedia/review_main.do?page="+e.page);         
+           $(location).attr('href', "http://localhost:9000/petcarepedia/review_main_search.do?page="+e.page);         
    		 });
  	});
 </script> 
@@ -46,7 +46,7 @@
 		<section id="filter">	
 		<div id="filter_page" class="review">
 			<p>상세검색</p>
-			<form name="ReviewSearchForm" action="review_main_search.do" method="get">
+			<form name="ReviewSearchForm" action="review_main_search.do" method="post">
 				<table id="filter_lo" class="filter">
 					<tr>
 						<th rowspan='3'>지역구분</th>
