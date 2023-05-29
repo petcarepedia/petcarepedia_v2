@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     
 <!DOCTYPE html>
 <html>
@@ -41,7 +43,7 @@
 					
 					<span class="name">${hospital.hname}</span>
 					
-					<span class="grade">⭐  ${star.rstar} | 리뷰 60</span>
+					<span class="grade">⭐  ${star.rstar} | 리뷰 ${fn:length(RM_select)}</span>
 					
 					<button type="button" id="reservation" value="${hospital.hid}"><img src="http://localhost:9000/petcarepedia/images/cal.png">간편 예약하기
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -63,11 +65,11 @@
 							<button type="button" id="review"><img src="http://localhost:9000/petcarepedia/images/review.png">리뷰하기</button>
 						</a>	
 						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
-						<form name="likeForm" action="likeProc.do" method="get">
+						<form name="bookmarkForm" action="bookmarkProc.do" method="get">
 							<a href="#" onclick = "alert('즐겨찾기에 추가되었습니다.')">
 								<input type="hidden" name="hid" value="${hospital.hid}">
 								<input type="hidden" name="mid" value="hong">
-								<button type="button" id="like"><img src="http://localhost:9000/petcarepedia/images/like.png">찜하기</button>
+								<button type="button" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/like.png">찜하기</button>
 							</a>
 						</form>
 					</div>
@@ -96,10 +98,10 @@
 					<div class="api">
 						<span>병원정보</span>
 						<span>위치 & 진료시간</span>
-						<!-- <div class="map"> -->
+						<div class="map">
 							<iframe class="map" src="http://localhost:9000/petcarepedia/search_map.do"
 							scrolling="no" width="350px" height="285px" frameborder=0></iframe>
-						<!-- </div> -->
+						</div>
 						<span>${hospital.loc}</span>
 					</div>
 					
@@ -117,7 +119,9 @@
 							<li>${hospital.ntime}</li>
 							<li>${hospital.holiday}</li>
 							<li>${hospital.animal}</li>
-							<li>${hospital.intro}</li>
+							<c:if test="${! hospital.intro.equals('X')}">
+								<li>${hospital.intro}</li>
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -130,7 +134,7 @@
 		<section class="review">
 			<div class="list">
 				<div class="grade">
-					<span>리뷰 60</span>
+					<span>리뷰 ${fn:length(RM_select)}</span>
 					
 					<div class="total">
 						<span>${star.rstar} / 5</span>
@@ -157,17 +161,17 @@
 					</div>
 				</div> -->
 				
-				<c:forEach var="RHList" items="${RHList}"> 
+				<c:forEach var="RM_select" items="${RM_select}"> 
 				
 				<div class="review_card">
 					<div class="member">
 						<div class="name">
 							<img src="http://localhost:9000/petcarepedia/images/cat.png">
-							<span>${RHList.nickname}</span>
+							<span>${RM_select.nickname}</span>
 						</div>
 						
 						<hr class="member_hr">
-						<span class="stext">⭐${RHList.rstar}/ 5</span>
+						<span class="stext">⭐ <fmt:formatNumber type="number"  pattern="0" value="${RM_select.rstar}" /> / 5</span>
 						<hr class="member_hr">
 						<!-- <span>친절  ⭐⭐⭐⭐⭐</span>
 						<span>위생  ⭐⭐⭐⭐⭐</span> -->
@@ -176,14 +180,25 @@
 					
 					<div class="write">
 						<!-- <h3>동물 종류 : 고양이</h3> -->
-						<p>${RHList.rcontent}</p>
+						<p>${RM_select.rcontent}</p>
 					</div>
 					
 					<div class="date">
-						<span>작성 일자 : ${RHList.rdate}</span>
+						<span>작성 일자 : ${RM_select.rdate}</span>
 						<span> </span>
-						<button id="like">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp❤️ ${RHList.rlike}</button>
-						<span><a href="http://www.naver.com">신고하기</a></span>
+						<form name="likeForm" action="likeProc.do" method="get">
+							<input type="hidden" name="hid" value="${hospital.hid}">
+							<input type="hidden" name="rid" value="${RM_select.rid}">
+							<button id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp❤️ <span class="like-count">${RM_select.rlike}</span></button>
+						</form>
+						
+						<form name="rstateForm" action="rstateProc.do" method="post">
+							<input type="hidden" name="rid" value="${RM_select.rid}">
+							<input type="hidden" name="hid" value="${hospital.hid}">
+							<a href="#" onclick="return confirm('정말로 신고하시겠습니까?')" id="rstateBtn">
+								<button class="rstate" name="rstate">신고하기</button></a>
+							<!-- <span>신고하기</span> -->
+						</form>
 					</div>
 				</div>
 				
