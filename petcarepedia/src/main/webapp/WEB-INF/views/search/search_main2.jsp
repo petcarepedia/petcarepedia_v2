@@ -12,8 +12,7 @@
 	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_main.css">
 	
 	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
-	<!-- <script src="http://localhost:9000/petcarepedia/js/search_main.js"></script> -->
-	<script src="http://localhost:9000/petcarepedia/js/search_filter.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/search_main.js"></script>
 	
 </head>
 
@@ -30,6 +29,7 @@
 		<section class="filter">
 		<h1 class="title">동물병원</h1>
 		
+			<!-- <form name="search_area" action="searchAreaProc.do" method="get"> -->
 			<form name="search_area" action="searchAreaProc.do" method="get">
 				<div class="area">
 					<div class="text_area">
@@ -39,32 +39,32 @@
 					<div class="check_area">
 						<ul>
 							<!-- <li><input type="checkbox" name="gloc" value="서울전체" checked="checked"><span>서울 전체</span></li> -->
-							<li><input type="checkbox" class="gloc" name="gloc" data-filter=""><span>서울 전체</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="강남구" data-filter="강남구"><span>강남구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="강동구" data-filter="강동구"><span>강동구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="강북구" data-filter="강북구"><span>강북구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="강서구" data-filter="강서구"><span>강서구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="관악구" data-filter="관악구"><span>관악구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="광진구" data-filter="광진구"><span>광진구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="구로구" data-filter="구로구"><span>구로구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="금천구" data-filter="금천구"><span>금천구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="노원구" data-filter="노원구"><span>노원구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="도봉구" data-filter="도봉구"><span>도봉구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="동대문구" data-filter="동대문구"><span>동대문구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="동작구" data-filter="동작구"><span>동작구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="마포구" data-filter="마포구"><span>마포구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="서대문구" data-filter="서대문구"><span>서대문구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="서초구" data-filter="서초구"><span>서초구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="성동구" data-filter="성동구"><span>성동구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="성북구" data-filter="성북구"><span>성북구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="송파구" data-filter="송파구"><span>송파구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="양천구" data-filter="양천구"><span>양천구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="영등포구" data-filter="영등포구"><span>영등포구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="용산구" data-filter="용산구"><span>용산구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="은평구" data-filter="은평구"><span>은평구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="종로구" data-filter="종로구"><span>종로구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="중구" data-filter="중구"><span>중구</span></li>
-							<li><input type="checkbox" class="gloc" name="gloc" value="중랑구" data-filter="중랑구"><span>중랑구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc"><span>서울 전체</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="강남구"><span>강남구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="강동구"><span>강동구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="강북구"><span>강북구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="강서구"><span>강서구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="관악구"><span>관악구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="광진구"><span>광진구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="구로구"><span>구로구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="금천구"><span>금천구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="노원구"><span>노원구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="도봉구"><span>도봉구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="동대문구"><span>동대문구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="동작구"><span>동작구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="마포구"><span>마포구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="서대문구"><span>서대문구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="서초구"><span>서초구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="성동구"><span>성동구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="성북구"><span>성북구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="송파구"><span>송파구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="양천구"><span>양천구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="영등포구"><span>영등포구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="용산구"><span>용산구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="은평구"><span>은평구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="종로구"><span>종로구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="중구"><span>중구</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="중랑구"><span>중랑구</span></li>
 							<input type="text" id="showFilter" value=""/>
 						</ul>
 					</div>
@@ -80,8 +80,8 @@
 					<div class="check_time">
 						<ul>
 							<li><input type="checkbox" name="time" id="time" value="O"><span>진료중</span></li>
-							<li><input type="checkbox" name="holiday" id="time" value="O"><span>휴일진료</span></li>
-							<li><input type="checkbox" name="ntime" id="time" value="O"><span>야간진료</span></li>
+							<li><input type="checkbox" name="time" id="time" value="O"><span>휴일진료</span></li>
+							<li><input type="checkbox" name="time" id="time" value="O"><span>야간진료</span></li>
 						</ul>
 					</div>
 				</div>
@@ -111,7 +111,7 @@
 				
 					<c:forEach var="list" items="${list}">
 					
-						<div class="list1"  id="dataList" data-filter="${list.gloc}">
+						<div class="list1">
 							<div class="hinfo">
 								
 									<span>${list.hname}</span>
@@ -120,7 +120,7 @@
 									<input type="hidden" id="startTime" name="startTime" value="${list.hid}">
 							
 							
-								<span id="harea" value="${list.gloc}">${list.gloc}</span>
+								<span id="harea">${list.gloc}</span>
 								<span id="htime">진료 중</span>
 								<a href="http://localhost:9000/petcarepedia/search_result.do?hid=${list.hid}">
 									<button type="button" class="hservation" id="${list.hid}">병원 상세보기
