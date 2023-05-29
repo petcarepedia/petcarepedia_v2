@@ -50,16 +50,15 @@ $(".hservation").click(function() {
 		</div>	
 	    
 	    
-	    
 	    <!-- 영업시간 db연동 -->
-	    <input type="text" id="startTime" name="startTime" value="${time.start}">
-	    <input type="text" id="endTime" name="endTime" value="${time.end}">
+	    <input type="hidden" id="startTime" name="startTime" value="${time.start}">
+	    <input type="hidden" id="endTime" name="endTime" value="${time.end}">
 
 	    <form name="reservationForm" action="reservationProc.do" method="post">
-			<input type="text" name="hid" value="${hospital.hid}">
-			<input type="text" name="mid" value="hong">
-		    <input type="text" id="vdate" name="vdate" value="vdate">
-			<input type="text" id="vtime" name="vtime" value="vtime">
+			<input type="hidden" name="hid" value="${hospital.hid}">
+			<input type="hidden" name="mid" value="hong">
+		    <input type="hidden" id="vdate" name="vdate" value="vdate">
+			<input type="hidden" id="vtime" name="vtime" value="vtime">
 			<button id="check">확인</button>
 		</form>
 	</div>

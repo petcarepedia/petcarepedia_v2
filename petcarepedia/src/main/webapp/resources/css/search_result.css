@@ -28,15 +28,19 @@ div.result_main div.images_d {
 	white-space: nowrap;
 	overflow-x: auto;
 	overflow-y: hidden;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 	
 }
 
 div.result_main div.images_d img {
 	/* border: 1px solid red; */
-	width: auto;
-	height: 100%;
+	width: 100%;
+	height: auto;
 	display: inline-block;
-	margin: 0px -3px;
+	/* margin: 0px -3px; */
+	object-fit: contain;
 }
 
 div.result_main div.name_d {
@@ -111,21 +115,21 @@ div.result_main div.name_d button#review {
 	border-radius: 5px;
 	font-size: 15px;
 	margin-top: 10px;
-	width: 120px;
+	width: 175px;
 	height: 40px;
 	text-align: left;
 	display: flex;
 	align-items: center;
-	margin-right: 45px;
+	margin-right: 50px;
 }
 
-div.result_main div.name_d button#share, div.name_d button#like  {
+div.result_main div.name_d button#share, div.name_d button#bookmark  {
 	background: #FFFFFF;
 	border: 1px solid #8A8A8A;
 	border-radius: 5px;
 	font-size: 15px;
 	margin-top: 10px;
-	width: 120px;
+	width: 175px;
 	height: 40px;
 	text-align: left;
 	display: flex;
@@ -293,7 +297,7 @@ div.grade {
 	margin-bottom: 15px;
 }
 
-div.grade > span{
+div.grade > span {
 	font-size: 20px;
 	font-weight: bold;
 	padding: 20px 0px;
@@ -332,6 +336,7 @@ div.review_card {
 	display: flex;
 	flex-direction: row;
 	padding-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 div.review_card div.member {
@@ -379,6 +384,7 @@ div.review_card div.write {
 	/* border: 1px solid red; */
 	width: 290px;
 	margin-left: 20px;
+	margin-top: 40px;
 	flex: 1;
 }
 
@@ -388,6 +394,7 @@ div.review_card div.write > h3 {
 }
 
 div.review_card div.write >p {
+	/* border: 1px solid red; */
 	font-size: 12px;
 }
 
@@ -400,6 +407,7 @@ div.review_card div.date {
 }
 
 div.review_card div.date span {
+	/* border: 1px solid #98DFFF; */
 	font-size: 12px;
 	display:inline-block;
 }
@@ -412,7 +420,11 @@ div.review_card div.date button#like {
 	width: 165px;
 	height: 35px;
 	margin-top: 15px; 
-	
+	padding-bottom: 7px;
+}
+
+div.review_card div.date button#like span.like-count {
+	font-size: 14px;
 }
 
 div.review_card div.date span:last-child {
@@ -426,6 +438,22 @@ div.review_card div.date a {
 }
 
 div.review_card div.date button#like:hover {
+	cursor: pointer;
+}
+
+div.review_card div.date a#rstateBtn {
+	/* border: 1px solid #98DFFF; */
+}
+
+div.review_card div.date button.rstate {
+	border: none;
+	background-color: transparent;
+	color: red;
+	text-decoration: underline;
+	font-size: 12px;
+}
+
+div.review_card div.date button.rstate:hover {
 	cursor: pointer;
 }
 
