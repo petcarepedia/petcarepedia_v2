@@ -50,23 +50,27 @@ $(document).ready(function(){
 	});
 	
 
-
 	/*******************************************
 		리뷰 필터 클릭
-	 ********************************************/	
-	 $('input[type="checkbox"][name="filter_location"]').on('change', function() {
-		  if ($(this).is(':checked')) { 
-		    
-		    if($(this).val() == "서울전체") {
-		    	location.href='review_main.do'
-		    }
-		    else {
-			    ReviewSearchForm.submit();
-		    }
-		    
-		    $("input:checkbox[id='id값']").prop("checked", true);
-		  }
-		});
+	********************************************/	
+	$('input[name="filter_location"]').click(function(){
+		if($(this).prop('checked')){
+			$('input[name="filter_location"]').prop('checked',false);
+			$(this).prop('checked',true);
+		}
+	});
+	 
+
+	$('input[name="filter_location"]').on('change', function() {
+		if ($(this).is(':checked')) { 
+			if($(this).val() == "on") {
+				location.href='review_main.do'
+			}
+			else {
+				ReviewSearchForm.submit();
+			}  
+		}
+	});
 
 
 
