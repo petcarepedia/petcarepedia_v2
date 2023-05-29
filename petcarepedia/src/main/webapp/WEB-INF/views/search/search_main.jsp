@@ -110,8 +110,10 @@
 				<div class="hlist">
 				
 					<c:forEach var="list" items="${list}">
+					<ul id="dataList">
+						<li data-filter="${list.gloc}">
 					
-						<div class="list1"  id="dataList" data-filter="${list.gloc}">
+						<div class="list1">
 							<div class="hinfo">
 								
 									<span>${list.hname}</span>
@@ -140,6 +142,8 @@
 								<img src="http://localhost:9000/petcarepedia/images/search_main.png" width="122px" height="122px">
 							</div>
 						</div>
+						</li>
+						</ul>
 						
 					</c:forEach>
 					
