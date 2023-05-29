@@ -65,7 +65,7 @@ public class MemberDao extends DBConn{
 	public int delete(String mid, String pass) {
 		int result = 0;
 		
-		String sql = "delete from pcp_member where mid=?, pass=?";
+		String sql = "delete from pcp_member where mid=? and pass=?";
 		getPreparedStatement(sql);
 		
 		try {
