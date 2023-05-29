@@ -18,6 +18,9 @@ import com.project.vo.ReviewVo;
 
 @Controller
 public class MainController {
+	HospitalDao hospitalDao = new HospitalDao();
+	ReviewDao reviewDao = new ReviewDao();
+	
 	/**
 	 * index.do
 	 */
@@ -38,8 +41,15 @@ public class MainController {
 	 * main_search_proc.do
 	 */
 	@RequestMapping(value="/main_search_proc.do",method=RequestMethod.GET)
-	public String main_search_proc() {
-		return "redirect:/search_main.do";
+	public ModelAndView main_search_proc(String hname) {
+		ModelAndView model = new ModelAndView();
+		
+		ArrayList<HospitalVo> list = hospitalDao.search(hname);
+		
+		model.addObject("list", list);
+		model.setViewName("/search/search_main");
+		
+		return model;
 	}
 	
 	/**
@@ -56,7 +66,6 @@ public class MainController {
 	@RequestMapping(value="/best_review_list.do",method=RequestMethod.GET)
 	public ModelAndView best_review_list(String page) {
 		ModelAndView model = new ModelAndView();
-		ReviewDao reviewDao = new ReviewDao();
 		
 		//其捞隆 贸府 - startCount, endCount 备窍扁
 		int startCount = 0;
@@ -103,7 +112,6 @@ public class MainController {
 	@RequestMapping(value="/main_map_data.do",method=RequestMethod.GET,produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String main_map_data(String gloc) {
-		HospitalDao hospitalDao = new HospitalDao();
 		ArrayList<HospitalVo> list = hospitalDao.searchGloc(gloc);
 		
 		JsonObject jlist = new JsonObject();
@@ -130,4 +138,5 @@ public class MainController {
 		
 		return new Gson().toJson(jlist);
 	}
+	
 }

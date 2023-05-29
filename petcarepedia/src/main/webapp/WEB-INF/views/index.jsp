@@ -11,11 +11,18 @@
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=krftgsruiz"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-	let login_result = "${login_result}";
-	if(login_result=="success"){
-		alert("로그인에 성공하셨습니다.");
-	}
+	$().ready(function (){
+		let login_result = "${login_result}";
+		if(login_result=="success"){
+			Swal.fire({
+	            icon: 'success',                         
+	            title: '로그인 성공',         
+	            text: '환영합니다!',  
+	        });
+		}
+	});
 </script>
 </head>
 <body>
@@ -42,8 +49,8 @@
 		
 		<form name="indexSearchForm" action="main_search_proc.do" method="get">
 			<div class="main-search">
-				<input type="text" placeholder="찾고싶은 동물병원과 관련된 키워드를 검색해보세요!">
-				<button type="button"><img src="http://localhost:9000/petcarepedia/images/foot_white.png" width="30px" height="30px"></button>
+				<input type="text" placeholder="찾고싶은 동물병원과 관련된 키워드를 검색해보세요!" name="hname" id="hname">
+				<button type="button" id="btnMainSearch"><img src="http://localhost:9000/petcarepedia/images/foot_white.png" width="30px" height="30px"></button>
 			</div>
 		</form>
 		

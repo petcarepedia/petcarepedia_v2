@@ -22,8 +22,8 @@
                 <form name="headerSearchForm" action="main_search_proc.do" method="get">
                     <div class="header-search">
                         <div>
-                            <input type="text" placeholder="키워드를 검색해보세요!">
-                            <button type="button"><img src="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" width="30px" height="30px"></button>
+                            <input type="text" placeholder="키워드를 검색해보세요!" name="hname" id="hname">
+                            <button type="button" id="btnMainSearch"><img src="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" width="30px" height="30px"></button>
                         </div>
                     </div>
                 </form>
