@@ -212,7 +212,7 @@ public class ReviewController {
 	 * return model; }
 	 */
 	
-	@RequestMapping(value="/review_main.do", method=RequestMethod.POST)
+	@RequestMapping(value="/review_main_search.do", method=RequestMethod.GET)
 	public ModelAndView review_search_Proc(String page, String filter_location) {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
@@ -251,9 +251,17 @@ public class ReviewController {
 		model.addObject("maxSize", pageCount);
 		model.addObject("page", reqPage);
 		
-		model.setViewName("/review/review_main");
+		model.setViewName("/review/review_main_search");
 		
 		
 		return model;
 	}	
+	
+	
+	
+
+
+	
+	
+	
 }

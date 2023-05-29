@@ -57,12 +57,14 @@ $(document).ready(function(){
 	 $('input[type="checkbox"][name="filter_location"]').on('change', function() {
 		  if ($(this).is(':checked')) { 
 		    
-		    if($(this).val() == null) {
-		    	location.href='http://localhost:9000/petcarepedia/review_main.do'
+		    if($(this).val() == "서울전체") {
+		    	location.href='review_main.do'
 		    }
 		    else {
 			    ReviewSearchForm.submit();
 		    }
+		    
+		    $("input:checkbox[id='id값']").prop("checked", true);
 		  }
 		});
 
