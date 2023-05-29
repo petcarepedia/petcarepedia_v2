@@ -52,15 +52,14 @@ section.notice .button_r {
 	text-align:right;
 	padding-right:50px;
 }
-section.notice .button, section.review_content .button {
+section.notice .button, section.review_content .button, section.notice form table tr td .rp_button {
 	background:#98DFFF;
 	color:white;
 	border:1px solid #98DFFF;
 	padding:5px 10px;
 	border-radius:5px;
 }
-
-section.notice .button:hover, section.review_content .button:hover {
+section.notice .button:hover, section.review_content .button:hover, section.notice form table tr td .rp_button:hover {
 	cursor:pointer;
 }
 .ad_button{
@@ -596,4 +595,8 @@ div#review_hname {
 button#review_test {
 	width:100px;
 	height:100px;
+}
+section#review div#review ul li .am-pagination-default-sm li span {
+	height:20px;
+	font-size:12px;
 }
