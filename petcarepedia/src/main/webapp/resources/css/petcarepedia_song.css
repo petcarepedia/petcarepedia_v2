@@ -353,7 +353,7 @@
 		width:80%; height: 21px; overflow:hidden;
 	}
 	.main-review > div.slide > div.review-list > .review-card > div:first-child > p {
-		font-size:14px; font-weight:bold; padding-top:1.5px;
+		font-size:14px; font-weight:bold; 
 		float:right;
 	}
 	
@@ -367,7 +367,7 @@
 		float:left;
 		background:#7AB2CC; color:white;
 		font-size:12px; text-align:center;
-		border-radius:10px;
+		border-radius:5px;
 		margin-right:8px;
 	}	
 	.main-review > div.slide > div.review-list > .review-card > div:nth-child(3) {
