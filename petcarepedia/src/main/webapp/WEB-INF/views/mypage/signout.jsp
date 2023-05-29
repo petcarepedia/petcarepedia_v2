@@ -18,7 +18,7 @@
 		<section id = "signout">
 			<h1 id = "title">회원 탈퇴하기</h1>
 			<hr>
-			<form name="deleteForm" action="member_delete_proc.do" method="post">
+			<form name="deleteForm" action="member_delete_proc.do" method="get">
 				<section id = "section1">
 					<div>
 						<nav>
@@ -41,8 +41,8 @@
 				</section>
 				<section id = "section3">
 					<span>비밀번호를 입력해주세요</span>
-					<input type = "text" name = "pass" placeholder = "비밀번호 입력">
 					<input type = "hidden" name = "mid" value = "${mid}">
+					<input type = "text" name = "pass" placeholder = "  비밀번호 입력">
 					<button type = "button" id = "btnMemberDelete">회원탈퇴</button>
 				</section>
 			</form>

@@ -502,14 +502,32 @@ hr {
 	font-weight: bold;
 }
 
-#trash {
-	width : 700px;
-	height : 500px;
+#reservation form[name='deleteForm'] img {
+	width : 300px;
+	height : 250px;
+	margin-bottom : 20px;
 }
 #table {
-	margin-left : 200px;
+	margin-left : 400px;
 	margin-top : 50px;
+	margin-bottom : 100px;
 }
+#reservation form[name='deleteForm'] table td.re_cancle {
+	display : inline-block;
+	margin-left : 40px;
+}
+#reservation form[name='deleteForm'] table td.btnCancle {
+	display : inline-block;
+	margin-left : 10px;
+}
+#reservation form[name='deleteForm'] table td {
+	border:1px solid white;
+	background:white;
+	font-size:13pt;
+	font-weight:700;
+}
+
+
 #table tr td button {
 	background: #FFB3BD;
 	border: 1px solid #8A8A8A;

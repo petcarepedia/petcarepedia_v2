@@ -39,7 +39,7 @@
 					<div id = "aside1">
 						<span>${bookmarkVo.hname}</span>
 						<span>${bookmarkVo.gloc}</span>
-						<a href = "http://localhost:9000/petcarepedia/mypage/information.jsp">병원 상세보기 ></a>
+						<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookmarkVo.hid}">병원 상세보기 ></a>
 						<a href = "bookmark_delete.do?bmid=${bookmarkVo.bmid}">
 							<img src = "http://localhost:9000/petcarepedia/images/bookmark2.png">
 						</a>

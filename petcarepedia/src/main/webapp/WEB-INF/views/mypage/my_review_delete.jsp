@@ -29,13 +29,13 @@
 				<input type = "hidden" name = "rid" value = "${rid}">
 				<table id = "table">
 					<tr>
-						<td><img id = "trash" src="http://localhost:9000/petcarepedia/images/trash.jpg"></td>
+						<td><img class = "trash" src="https://www.the-pr.co.kr/news/photo/201803/32219_58601_5438.png"></td>
 					</tr>
 					<tr>					
-						<td>정말로 삭제하시겠습니까?</td>
+						<td class = "re_cancle">정말로 삭제하시겠습니까?</td>
 					</tr>				
 					<tr>
-						<td colspan="2">
+						<td class = "btnCancle" colspan="2">
 							<button type="button" class="btn_style" id = "btnReviewDelete">삭제완료</button>
 							<a href="my_review.do?mid=hong">
 							<button type="button" class="btn_style">이전페이지</button></a>

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.BookingDao;
@@ -246,6 +247,7 @@ public class MypageController {
 	/*
 	 *  review_write_proc.do - 府轰 静扁贸府
 	 */
+	@ResponseBody
 	@RequestMapping(value = "/review_write_proc.do", method = RequestMethod.POST)
 	public String review_write_proc(ReviewVo reviewVo) {
 		String viewName = "";
@@ -253,6 +255,8 @@ public class MypageController {
 		int result = reviewDao.insert(reviewVo);
 		if(result == 1) {
 			viewName = "redirect:/my_review?mid=" + reviewVo.getMid();
+		} else {
+			viewName = "<script>alert('府轰累己角菩');location.href = 'my_review.do?mid=hong';</script>";
 		}
 		return viewName;
 	}
@@ -271,13 +275,13 @@ public class MypageController {
 	/*
 	 * member_delete_proc - 雀盔呕硼 贸府
 	 */
-	@RequestMapping(value = "/member_delete_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/member_delete_proc.do", method = RequestMethod.GET)
 	public String member_delete_proc(String mid, String pass) {
 		String viewName = "";
 		MemberDao memberDao = new MemberDao();
 		int result = memberDao.delete(mid, pass);
 		if(result == 1) {
-			viewName = "redirect:/signout.do?mid=" + mid;
+			viewName = "redirect:/login.do";
 		} else {
 			
 		}
