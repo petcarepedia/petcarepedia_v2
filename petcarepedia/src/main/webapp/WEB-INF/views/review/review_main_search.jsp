@@ -94,7 +94,14 @@
 		<div id="review" class="review">
 			<div id="title">
 				<span>리뷰</span>
-				<span><a href="review_write.do">리뷰쓰기 ></a></span>
+				<c:choose>
+					<c:when test="${mid == null }">
+						<span><a href="login.do">리뷰쓰기 ></a></span>
+					</c:when>
+					<c:otherwise>
+						<span><a href="reservation2.do?mid=${mid }">리뷰쓰기 ></a></span>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<ul>
 				<c:forEach var="list" items="${list }">
@@ -109,7 +116,7 @@
 								</div>
 							</li>
 								<li id="list_middle" class="list">
-									<a href="review_content.do?rid=${list.rid }">
+									<a href="review_content.do?rid=${list.rid }&&page=${page}&&filter_location=${filter_location}">
 										<div id="review_hname">${list.hname }</div>
 										<div>
 											${list.rcontent }

@@ -47,16 +47,17 @@ public class ReviewController {
 		int endCount = 0;
 		int pageSize = 7;	//한페이지당 게시물 수
 		int reqPage = 1;	//요청페이지	
-		int pageCount = 1;	//전체 페이지 수
+		int pageCount = 10;	//전체 페이지 수
 		int dbCount = reviewDao.totalRowCount();	//DB에서 가져온 전체 행수
 		
 		//총 페이지 수 계산
+		/*
 		if(dbCount % pageSize == 0){
 			pageCount = dbCount/pageSize;
 		}else{
-			pageCount = dbCount/pageSize+3;
+			pageCount = dbCount/pageSize;
 		}
-
+		*/
 		//요청 페이지 계산
 		if(page != null){
 			reqPage = Integer.parseInt(page);
@@ -87,7 +88,7 @@ public class ReviewController {
 	
 	//review_content.do 리뷰 상세 페이지
 	@RequestMapping(value="/review_content.do", method=RequestMethod.GET)
-	public ModelAndView review_content(String rid) {
+	public ModelAndView review_content(String rid, String page, String filter_location) {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
 		ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
@@ -100,6 +101,8 @@ public class ReviewController {
 		reviewLikeVo.setMid(member.getMid());
 		int likeCheck = reviewDao.idCheck(reviewLikeVo);
 		
+		model.addObject("page", page);
+		model.addObject("filter_location", filter_location);
 		model.addObject("likeCheck", likeCheck);
 		model.addObject("reviewLikeVo", reviewLikeVo);
 		model.addObject("member", member);
@@ -222,16 +225,17 @@ public class ReviewController {
 		int endCount = 0;
 		int pageSize = 7;	//한페이지당 게시물 수
 		int reqPage = 1;	//요청페이지	
-		int pageCount = 1;	//전체 페이지 수
+		int pageCount = 10;	//전체 페이지 수
 		int dbCount = reviewDao.SearchRowCount(filter_location);	//DB에서 가져온 전체 행수
 		
 		//총 페이지 수 계산
+		/*
 		if(dbCount % pageSize == 0){
 			pageCount = dbCount/pageSize;
 		}else{
-			pageCount = dbCount/pageSize+3;
+			pageCount = dbCount/pageSize;
 		}
-
+		*/
 		//요청 페이지 계산
 		if(page != null){
 			reqPage = Integer.parseInt(page);

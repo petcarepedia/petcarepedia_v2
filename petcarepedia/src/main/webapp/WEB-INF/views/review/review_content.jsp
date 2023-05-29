@@ -74,7 +74,7 @@
 							평점
 						</div>
 						<div id="avg" class="score">
-							⭐ ${reviewVo.rstar } / 5
+							⭐ ${reviewVo.rstar } / 5.0
 						</div>
 					</div>
 					<table>
@@ -89,16 +89,28 @@
 			<c:choose>
 				<c:when test="${reviewVo.mid eq member.mid }">
 					<div class="rc_button_r">
-						<a href="review_update.do?rid=${reviewVo.rid }"><button type="button" class="button">수정</button></a>
+						<a href="review_revise.do?rid=${reviewVo.rid }"><button type="button" class="button">수정</button></a>
 						<a href="review_delete.do?rid=${reviewVo.rid }"><button type="button" class="button">삭제</button></a>
-						<a href="review_main.do"><button type="button" class="button">목록</button></a>
+						<c:choose>
+							<c:when test="${filter_location eq null }">
+								<a href="review_main.do?page=${page }"><button type="button" class="button">목록</button></a>
+							</c:when>
+							<c:otherwise>
+								<a href="review_main_search.do?page=${page }&&filter_location=${filter_location}"><button type="button" class="button">목록</button></a>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="rc_button_r">
-						<%-- <a href="review_update.do?rid=${reviewVo.rid }"><button type="button" class="button">수정</button></a>
-						<a href="review_delete.do?rid=${reviewVo.rid }"><button type="button" class="button">삭제</button></a> --%>
-						<a href="review_main.do"><button type="button" class="button">목록</button></a>
+						<c:choose>
+							<c:when test="${filter_location eq null }">
+								<a href="review_main.do?page=${page }"><button type="button" class="button">목록</button></a>
+							</c:when>
+							<c:otherwise>
+								<a href="review_main_search.do?page=${page }&&filter_location=${filter_location}"><button type="button" class="button">목록</button></a>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</c:otherwise>
 			</c:choose>
