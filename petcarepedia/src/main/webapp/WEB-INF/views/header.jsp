@@ -7,6 +7,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+	$().ready(function(){
+		$("#btnMainSearch-header").click(function(){
+			if($("#hname-header").val()==""){
+				Swal.fire({
+		            icon: 'info',                         
+		            title: '검색어 미입력',         
+		            text: '찾고싶은 동물병원의 이름을 입력해주세요',  
+		        });
+			} else {
+				headerSearchForm.submit();
+			}
+		})
+	})
+</script>
 </head>
 <body>
     <header>
@@ -22,8 +38,8 @@
                 <form name="headerSearchForm" action="main_search_proc.do" method="get">
                     <div class="header-search">
                         <div>
-                            <input type="text" placeholder="키워드를 검색해보세요!" name="hname" id="hname">
-                            <button type="button" id="btnMainSearch"><img src="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" width="30px" height="30px"></button>
+                            <input type="text" placeholder="동물병원명 검색" name="hname" id="hname-header">
+                            <button type="button" id="btnMainSearch-header"><img src="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" width="30px" height="30px"></button>
                         </div>
                     </div>
                 </form>

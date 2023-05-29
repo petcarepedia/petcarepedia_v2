@@ -22,6 +22,18 @@
 	            text: '환영합니다!',  
 	        });
 		}
+		
+		$("#btnMainSearch-index").click(function(){
+			if($("#hname-index").val()==""){
+				Swal.fire({
+		            icon: 'info',                         
+		            title: '검색어 미입력',         
+		            text: '찾고싶은 동물병원의 이름을 입력해주세요',  
+		        });
+			} else {
+				indexSearchForm.submit();
+			}
+		})
 	});
 </script>
 </head>
@@ -49,8 +61,8 @@
 		
 		<form name="indexSearchForm" action="main_search_proc.do" method="get">
 			<div class="main-search">
-				<input type="text" placeholder="찾고싶은 동물병원과 관련된 키워드를 검색해보세요!" name="hname" id="hname">
-				<button type="button" id="btnMainSearch"><img src="http://localhost:9000/petcarepedia/images/foot_white.png" width="30px" height="30px"></button>
+				<input type="text" placeholder="찾고싶은 동물병원의 이름을 검색해보세요!" name="hname" id="hname-index">
+				<button type="button" id="btnMainSearch-index"><img src="http://localhost:9000/petcarepedia/images/foot_white.png" width="30px" height="30px"></button>
 			</div>
 		</form>
 		
