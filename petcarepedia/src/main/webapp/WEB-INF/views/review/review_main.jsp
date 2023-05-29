@@ -32,7 +32,7 @@
 		});
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 		   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-           $(location).attr('href', "http://localhost:9000/petcarepedia/review_main.do?page="+e.page);         
+           $(location).attr('href', "http://localhost:9000/petcarepedia/review_main.do?page="+e.page);
    		 });
  	});
 </script> 
@@ -50,7 +50,7 @@
 				<table id="filter_lo" class="filter">
 					<tr>
 						<th rowspan='3'>지역구분</th>
-						<td><input type="checkbox" name="filter_location" value="서울전체"> 서울전체</td>
+						<td><input type="checkbox" name="filter_location"> 서울전체</td>
 						<td><input type="checkbox" name="filter_location" value="강남구"> 강남구</td>
 						<td><input type="checkbox" name="filter_location" value="강북구"> 강북구</td>
 						<td><input type="checkbox" name="filter_location" value="강서구"> 강서구</td>

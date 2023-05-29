@@ -30,9 +30,10 @@
 				     
 		    btnSize:'sm'	// 'sm'  or 'lg'		
 		});
+		$('input:checkbox[name=filter_location][value= "${filter_location}"]').attr("checked", true).parent().addClass('on');
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 		   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-           $(location).attr('href', "http://localhost:9000/petcarepedia/review_main_search.do?page="+e.page);         
+           $(location).attr('href', "http://localhost:9000/petcarepedia/review_main_search.do?page="+e.page+"&&filter_location="+filter_location);  
    		 });
  	});
 </script> 
@@ -46,11 +47,11 @@
 		<section id="filter">	
 		<div id="filter_page" class="review">
 			<p>상세검색</p>
-			<form name="ReviewSearchForm" action="review_main_search.do" method="post">
+			<form name="ReviewSearchForm" action="review_main_search.do" method="get">
 				<table id="filter_lo" class="filter">
 					<tr>
 						<th rowspan='3'>지역구분</th>
-						<td><input type="checkbox" name="filter_location" value="서울전체"> 서울전체</td>
+						<td><input type="checkbox" name="filter_location"> 서울전체</td>
 						<td><input type="checkbox" name="filter_location" value="강남구"> 강남구</td>
 						<td><input type="checkbox" name="filter_location" value="강북구"> 강북구</td>
 						<td><input type="checkbox" name="filter_location" value="강서구"> 강서구</td>
