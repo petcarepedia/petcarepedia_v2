@@ -39,6 +39,20 @@ public class SearchController {
 	}
 	
 	
+	/** searchAreaProc.do - 병원 리스트 출력하기 **/
+	@RequestMapping(value="/searchAreaProc.do", method=RequestMethod.GET)
+	public ModelAndView searchAreaProc(String gloc) {
+		ModelAndView model = new ModelAndView();
+		
+		ArrayList<HospitalVo> list = hospitalDao.searchGloc(gloc);
+		
+		model.addObject("list", list);
+		model.setViewName("/search/search_main");
+		
+		return model;
+	}
+	
+	
 	/** search_result.do - 병원 상세정보 **/
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
 	public ModelAndView search_result(String hid) {
