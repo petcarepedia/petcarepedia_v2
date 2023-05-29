@@ -54,7 +54,6 @@ $(document).ready(function(){
 	/*******************************************
 		리뷰 필터 클릭
 	 ********************************************/	
-	 /*var location_arr = [];*/
 	 $('input[type="checkbox"][name="filter_location"]').on('change', function() {
 		  if ($(this).is(':checked')) { 
 		    /*
