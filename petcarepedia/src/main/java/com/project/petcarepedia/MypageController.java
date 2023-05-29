@@ -275,7 +275,7 @@ public class MypageController {
 	/*
 	 * member_delete_proc - 회원탈퇴 처리
 	 */
-	@RequestMapping(value = "/member_delete_proc.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member_delete_proc.do", method = RequestMethod.POST)
 	public String member_delete_proc(String mid, String pass) {
 		String viewName = "";
 		MemberDao memberDao = new MemberDao();
@@ -283,7 +283,7 @@ public class MypageController {
 		if(result == 1) {
 			viewName = "redirect:/login.do";
 		} else {
-			
+			//오류페이지 호출
 		}
 		return viewName;
 	}
