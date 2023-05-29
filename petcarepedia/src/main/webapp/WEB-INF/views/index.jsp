@@ -100,7 +100,7 @@
 		    currentIndex++;
 		    currentIndex = currentIndex >= inners.length ? 0 : currentIndex;
 		    innerList.style.marginLeft = (-outer.clientWidth * currentIndex)+'px';
-		  }, 3000);
+		  }, 3500);
 		}
 		
 		let interval = getInterval(); // interval 등록
