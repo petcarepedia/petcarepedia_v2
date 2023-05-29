@@ -39,7 +39,7 @@ public class SearchController {
 	}
 	
 	
-	/** searchAreaProc.do - 병원 리스트 출력하기 **/
+	/** searchAreaProc.do - 지역구 병원 리스트 출력하기 **/
 	@RequestMapping(value="/searchAreaProc.do", method=RequestMethod.GET)
 	public ModelAndView searchAreaProc(String gloc) {
 		ModelAndView model = new ModelAndView();
@@ -138,7 +138,7 @@ public class SearchController {
 	@RequestMapping(value="likeProc.do", method=RequestMethod.GET)
 	public String likeProc(ReviewLikeVo reviewLikeVo, @RequestParam("hid") String hid) {
 	    ReviewDao reviewDao = new ReviewDao();
-	    int result = reviewDao.LikesUp2(reviewLikeVo);
+	    int result = reviewDao.LikesUp(reviewLikeVo);
 		/* System.out.println(result); */
 
 	    if (result == 1) {

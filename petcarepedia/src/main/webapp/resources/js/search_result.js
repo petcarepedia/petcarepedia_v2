@@ -2,40 +2,28 @@ $(document).ready(function(){
 /*******************************************
 	좋아요 버튼
 ********************************************/    
-  var scrollPositions = {}; // 버튼의 위치 정보를 저장할 객체
+  $('.gloc').on('change', function() {
+        $('.gloc').not(this).prop('checked', false); // 선택된 체크박스 이외의 체크박스를 해제합니다.
+        $('.gloc').parent().removeClass('selected'); // 모든 체크박스의 선택 스타일을 제거합니다.
 
-  $('.like').click(function(e) {
-    e.preventDefault();
+        if ($(this).is(':checked')) {
+          $(this).parent().addClass('selected'); // 선택된 체크박스에 선택 스타일을 적용합니다.
+        } else {
+          $(this).parent().removeClass('selected'); // 선택이 해제된 체크박스의 선택 스타일을 제거합니다.
+        }
 
-    var button = $(this);
-    var rid = button.data('rid');
+        filterResults(); // 필터링 함수 호출
+      });
 
-    // 스크롤 위치 저장
-    scrollPositions[rid] = $(window).scrollTop();
-
-    // 좋아요 처리 Ajax 호출
-    $.ajax({
-      url: 'likeProc.do',
-      method: 'GET',
-      data: {
-        hid: $('input[name="hid"]').val(),
-        rid: rid
-      },
-      success: function(result) {
-        // 성공 처리 로직 작성
-        // 클라이언트에서 버튼의 카운팅 증가
-        var count = parseInt(button.find('.like-count').text());
-        count++; // 카운트 증가
-        button.find('.like-count').text(count);
-
-        // 페이지 로드 시 스크롤 위치 복원
-        $(window).scrollTop(scrollPositions[rid]);
-      },
-      error: function() {
-        alert('오류가 발생했습니다.');
+      function filterResults() {
+        var selectedOption = $('.gloc:checked').val(); // 선택된 체크박스의 값 가져오기
+        // 필터링에 대한 추가 로직 구현
+        console.log('Selected Option:', selectedOption);
+        // 선택된 옵션을 이용하여 필터링된 결과를 표시하거나 다른 작업을 수행합니다.
       }
-    });
-  });
+
+------------------------------------------
+
 
 /*******************************************
 	예약 버튼
