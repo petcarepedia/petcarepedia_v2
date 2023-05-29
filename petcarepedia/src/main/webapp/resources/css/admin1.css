@@ -126,7 +126,7 @@ section.member tr:nth-child(13) td{
 	border:1px solid white;
 }
 section.hospital #section1 div nav ul li:nth-child(2) a,
-section.member #section1 div nav ul li:nth-child(3) a,
+section.member #section2 div nav ul li:nth-child(3) a,
 section.reserve #section1 div nav ul li:nth-child(4) a,
 section.review #section1 div nav ul li:nth-child(5) a
 {
@@ -371,24 +371,26 @@ section.review_detail div#d3 {
 /*************************************
 	member-detail style sheet
 **************************************/
-section.member_detail section#section1 div#d2 {
+/* section.member_detail section#section1 .d4  {
+	display:inline-block;
 	float:left;
+	border:1px solid red;
 	
-}
-section.member_detail section#section2 div#d3 {
-	float:left;
-	margin:150px 0 100px 0;
-	border :1px solid red;
-}
+} */
 
+
+ section.member_detail section#section2 {
+ 	float:right;
+ 	
+ }
 section.member_detail section#section2 ul{
-	margin-left:200px;
-	/* margin-top:50px; */
+	margin:120px 80px 0 0 ;
+	
 	
 }
-section.member_detail section#section2 .button5{
-	padding:5px 15px;
-	margin-left:400px;
+section.member_detail section#section2 #btn_save{
+	border:1px solid red;
+	margin:100px 0 0 500px;
 }
 section.member_detail section#section2 ul li{
 	list-style-type:none;	
@@ -412,7 +414,8 @@ section.member_detail section#section2 ul li label{
 	padding-top:20px;
 	margin:30px 0 30px 30px;
 }
-section.member_detail section#section2 ul li input[type="text"]{
+section.member_detail section#section2 ul li input[type="text"], 
+section.member_detail section#section2 ul li input[type="radio"]{
 	box-sizing: border-box;
 	width: 535px;
 	height: 53px;

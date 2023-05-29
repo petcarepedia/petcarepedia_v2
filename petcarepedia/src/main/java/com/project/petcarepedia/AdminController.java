@@ -51,30 +51,45 @@ public class AdminController {
 		return new Gson().toJson(jlist);
 	}
 	
+//	/**
+//	 * 회원 - 상세 페이지
+//	 * */
+//	@RequestMapping(value="/member_detail.do", method=RequestMethod.GET)
+//	public ModelAndView member_detail(String mid) {
+//		ModelAndView model = new ModelAndView();
+//		MemberDao memberDao = new MemberDao();
+//		MemberVo memberVo = memberDao.select(mid);
+//		
+//		model.addObject("memberVo", memberVo);
+//		model.setViewName("/admin/member/member_list");
+//		
+//		return model;
+//	}
 	/**
 	 * 회원 - 상세 페이지
 	 * */
 	@RequestMapping(value="/member_detail.do", method=RequestMethod.GET)
 	public ModelAndView member_detail(String mid) {
+		
 		ModelAndView model = new ModelAndView();
 		MemberDao memberDao = new MemberDao();
-		MemberVo memberVo = memberDao.select(mid);
+		MemberVo memberVo = memberDao.select(mid); 
 		
 		model.addObject("memberVo", memberVo);
-		model.setViewName("/admin/member/member_list");
+		model.setViewName("/admin/member/member_detail");
 		
 		return model;
 	}
+	
 	/**
 	 * 회원 - 조회페이지
 	 * */
 	@RequestMapping(value="/member_list.do", method=RequestMethod.GET)
-	public ModelAndView member_list() {
+	public ModelAndView member_list(MemberVo memberVo) {
 		ModelAndView model = new ModelAndView();
 		MemberDao memberDao = new MemberDao();
-		ArrayList<MemberVo> list = new ArrayList<MemberVo>();
+		ArrayList<MemberVo> list = memberDao.select();
 		
-		list = memberDao.select();
 		
 		model.addObject("list", list);
 		model.setViewName("/admin/member/member_list");

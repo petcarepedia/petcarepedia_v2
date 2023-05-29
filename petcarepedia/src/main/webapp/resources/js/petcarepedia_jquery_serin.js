@@ -1,45 +1,6 @@
 	
 $(document).ready(function(){
-	/*************************
-	 * 회원 - 수정
-	 **************************/
-	$("#btn_save").click(function(){
-			if($("#hname").val()==""){
-				alert("병원명을 입력해주세요");
-				$("#hname").focus();
-				return false;
-			}else if($("#gloc").val()==""){
-				alert("주소를 입력해주세요");
-				$("#gloc").focus();
-				return false;
-			}else if($("#loc").val()==""){
-				alert("주소를 입력해주세요");
-				$("#loc").focus();
-				return false;
-			}else if($("#tel").val()==""){
-				alert("전화번호를 입력해주세요");
-				$("#tel").focus();
-				return false;
-			}else if($("#htime").val()==""){
-				alert("영업시간을 입력해주세요");
-				$("#htime").focus();
-				return false;
-			}else if($("#animal").val()==""){
-				alert("특수동물 진료 여부을 입력해주세요");
-				$("#animal").focus();
-				return false;
-			}else if($("#ntime").val()==""){
-				alert("야간 진료 여부을 입력해주세요");
-				$("#ntime").focus();
-				return false;
-			}else if($("#holiday").val()==""){
-				alert("공휴일 진료 여부을 입력해주세요");
-				$("#holiday").focus();
-				return false;
-			}else{
-				updateForm.submit();
-			}
-		});
+
 	/*************************
 	 * 병원 - 수정
 	 **************************/
