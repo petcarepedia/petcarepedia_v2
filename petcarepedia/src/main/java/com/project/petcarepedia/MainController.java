@@ -64,7 +64,7 @@ public class MainController {
 	 * best_review_list.do
 	 */
 	@RequestMapping(value="/best_review_list.do",method=RequestMethod.GET)
-	public ModelAndView best_review_list(String page) {
+	public ModelAndView best_review_list(String rpage) {
 		ModelAndView model = new ModelAndView();
 		
 		//페이징 처리 - startCount, endCount 구하기
@@ -76,8 +76,8 @@ public class MainController {
 		int dbCount = 9;	//전체 행수
 		
 		//요청 페이지 계산
-		if(page != null){
-			reqPage = Integer.parseInt(page);
+		if(rpage != null){
+			reqPage = Integer.parseInt(rpage);
 			startCount = (reqPage-1) * pageSize+1; 
 			endCount = reqPage *pageSize;
 		}else{
@@ -91,7 +91,7 @@ public class MainController {
 		model.addObject("totals", dbCount);
 		model.addObject("pageSize", pageSize);
 		model.addObject("maxSize", pageCount);
-		model.addObject("page", reqPage);
+		model.addObject("rpage", reqPage);
 		
 		model.setViewName("best_review_list");
 		
