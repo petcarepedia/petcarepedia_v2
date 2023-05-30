@@ -1,16 +1,18 @@
 package com.project.petcarepedia;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.dao.MemberDao;
+import com.project.service.MemberService;
 import com.project.vo.MemberVo;
 
 @Controller
 public class LoginController {
-	MemberDao memberDao = new MemberDao();
+	@Autowired
+	private MemberService memberService;
 	
 	/**
 	 * login.do - 로그인
@@ -27,9 +29,7 @@ public class LoginController {
 	public ModelAndView login_proc(MemberVo memberVo) {
 		ModelAndView model = new ModelAndView();
 		
-		int result = memberDao.checkLogin(memberVo);
-		
-		if(result==1) {
+		if(memberService.getLogin(memberVo)==1) {
 			if(memberVo.getMid().equals("admin")) {
 				model.addObject("login_result", "success");
 				model.setViewName("redirect:/hospital_list.do");
@@ -60,7 +60,7 @@ public class LoginController {
 	public ModelAndView login_idfind_proc(MemberVo memberVo) {
 		ModelAndView model = new ModelAndView();
 		
-		String mid = memberDao.findId(memberVo);
+		String mid = memberService.getFindId(memberVo);
 		
 		if(mid!="") {
 			model.addObject("mid", mid);
@@ -105,7 +105,7 @@ public class LoginController {
 	public ModelAndView login_pwfind_proc(MemberVo memberVo) {
 		ModelAndView model = new ModelAndView();
 		
-		String mid = memberDao.findPass(memberVo);
+		String mid = memberService.getFindPass(memberVo);
 		
 		if(mid!="") {
 			model.addObject("mid", mid);
@@ -141,9 +141,7 @@ public class LoginController {
 	public String login_pwupdate_proc(MemberVo memberVo) {
 		String viewName = "";
 		
-		int result = memberDao.updatePass(memberVo);
-		
-		if(result==1) {
+		if(memberService.getUpdatePass(memberVo)==1) {
 			viewName = "/login/login_pwupdate_success";
 		} else {
 			//에러페이지
