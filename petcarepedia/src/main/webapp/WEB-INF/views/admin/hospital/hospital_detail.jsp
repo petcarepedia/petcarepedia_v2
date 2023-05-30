@@ -72,7 +72,7 @@
 									<td><input type="text" name="holiday" id="holiday" placeholder="O / X "> </td>
 								</tr>
 								<tr>
-									<th>홈페이지</th>
+									<th>홈페이지 링크</th>
 									<td><input type="text" name="hrink" id="hrink" placeholder="O / X "> </td>
 								</tr>
 								<tr>

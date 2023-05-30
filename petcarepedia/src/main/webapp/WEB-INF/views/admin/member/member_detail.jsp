@@ -35,7 +35,7 @@
 	      </div>
 	    </section>
 	    <section id="section2">
-	      <div >
+	      <div>
 	     	 <form name="MemberDetailForm" action="member_detail_proc.do" method="post">
 		        <ul>
 		          <li>
@@ -66,14 +66,16 @@
 		            <label>가입일</label>
 		            <input type="text" name="mdate" id="mdate" value="${memberVo.mdate}">
 		          </li>
-		         <li>
-		            <label>휴면 계정 전환</label>
-		            <input type="radio" name="human" id="human" value = yes >예
-		            <input type="radio" name="human" id="human" value = no >아니오
-		          </li>
+			         <li>
+			            <label>휴면 계정 전환</label>
+			            <input type="radio" name="human" id="human" value = yes >예
+			            <input type="radio" name="human" id="human" value = no >아니오
+			          </li>
 		        </ul>
+		        <div id="d4">
 	      		 <button type="button" class="button4" id="btn_save">수정완료</button>	
-	       	 	 <button type="button" class="button4"><a href="http://localhost:9000/petcarepedia/member_list.do">이전으로</a></button>
+	       	 	 <button type="button" class="button5"><a href="http://localhost:9000/petcarepedia/member_list.do">이전으로</a></button>
+		        </div>
 	      	  </form>
 	      </div>
 	    </section>

@@ -282,7 +282,7 @@ public class HospitalDao extends DBConn {
 		int result = 0;
 
 		String sql = "INSERT INTO PCP_HOSPITAL (HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, HRINK) VALUES" + 
-				" ('H_'||LTRIM(TO_CHAR(SEQU_PCP_HOSPITAL_HID.NEXTVAL,'0000')),?,?,?,?,?,?,?,?,?,?)";
+					 "  ('H_'||LTRIM(TO_CHAR(SEQU_PCP_HOSPITAL_HID.NEXTVAL,'0000')), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		getPreparedStatement(sql);
 
 		try {
@@ -295,10 +295,9 @@ public class HospitalDao extends DBConn {
 			pstmt.setString(7, hospitalVo.getHoliday());
 			pstmt.setString(8, hospitalVo.getAnimal());
 			pstmt.setString(9, hospitalVo.getIntro());
-			pstmt.setString(10, hospitalVo.getHrink());
+			pstmt.setString(10,hospitalVo.getHrink());
 
 			result = pstmt.executeUpdate();
-			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
