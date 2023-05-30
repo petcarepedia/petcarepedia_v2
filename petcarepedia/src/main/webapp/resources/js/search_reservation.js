@@ -35,9 +35,11 @@ $(document).ready(function() {
       $("<input>", { type: "hidden", name: "stime", value: timeSlot }),
       timeSlot
     );
-
+	
     timeContainer.append(timeElement);
   }
+  
+  
   // 클릭이벤트
 $(".rtime").on("click", ".stime", function() {
     // 선택된 시간 슬롯 요소에 스타일을 적용
