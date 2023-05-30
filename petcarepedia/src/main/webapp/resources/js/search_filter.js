@@ -1,13 +1,21 @@
 $(document).ready(function() {
-
+	//gloc 하나만 선택
 	$('input[type="checkbox"][name="gloc"]').click(function(){
 		  if($(this).prop('checked')){
 		     $('input[type="checkbox"][name="gloc"]').prop('checked',false);
 		     $(this).prop('checked',true);
 		    }
 	});
+	
+  	// time 하나만 선택
+	$('input[type="checkbox"][name="time"]').click(function(){
+		  if($(this).prop('checked')){
+		     $('input[type="checkbox"][name="time"]').prop('checked',false);
+		     $(this).prop('checked',true);
+		    }
+	});
 
-  // JavaScript
+  // 검색 필터링 기능
   function applyFilters() {
     var filters = [];
     var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
@@ -20,7 +28,7 @@ $(document).ready(function() {
 
     items.forEach(function(item) {
       var itemFilters = item.getAttribute('data-filter').split(' ');
-
+	
       if (filters.every(function(filter) {
         return itemFilters.includes(filter);
       })) {
@@ -31,10 +39,16 @@ $(document).ready(function() {
     });
   }
 
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  var checkboxes = document.querySelectorAll('input[type="checkbox"][name="gloc"]');
   checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('change', applyFilters);
   });
+  
+  
+
+
+
+  
 
 
 
