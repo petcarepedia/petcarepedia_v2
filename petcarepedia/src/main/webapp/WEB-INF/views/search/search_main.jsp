@@ -30,7 +30,7 @@
 		<section class="filter">
 		<h1 class="title">동물병원</h1>
 		
-			<form name="search_area" action="searchAreaProc.do" method="get">
+			<!-- <form name="search_area" action="searchAreaProc.do" method="get"> -->
 				<div class="area">
 					<div class="text_area">
 						<span>지역구분</span>
@@ -39,7 +39,7 @@
 					<div class="check_area">
 						<ul>
 							<!-- <li><input type="checkbox" name="gloc" value="서울전체" checked="checked"><span>서울 전체</span></li> -->
-							<li><input type="checkbox" class="gloc" name="gloc" data-filter=""><span>서울 전체</span></li>
+							<li><input type="checkbox" class="gloc" name="gloc" value="*" checked="checked"><span>서울 전체</span></li>
 							<li><input type="checkbox" class="gloc" name="gloc" value="강남구" data-filter="강남구"><span>강남구</span></li>
 							<li><input type="checkbox" class="gloc" name="gloc" value="강동구" data-filter="강동구"><span>강동구</span></li>
 							<li><input type="checkbox" class="gloc" name="gloc" value="강북구" data-filter="강북구"><span>강북구</span></li>
@@ -65,11 +65,11 @@
 							<li><input type="checkbox" class="gloc" name="gloc" value="종로구" data-filter="종로구"><span>종로구</span></li>
 							<li><input type="checkbox" class="gloc" name="gloc" value="중구" data-filter="중구"><span>중구</span></li>
 							<li><input type="checkbox" class="gloc" name="gloc" value="중랑구" data-filter="중랑구"><span>중랑구</span></li>
-							<input type="text" id="showFilter" value=""/>
+							<!-- <input type="text" id="showFilter" value=""/> -->
 						</ul>
 					</div>
 				</div>
-			</form>
+			<!-- </form> -->
 			
 				
 				<div class="time">
@@ -79,9 +79,9 @@
 					
 					<div class="check_time">
 						<ul>
-							<li><input type="checkbox" name="time" id="time" value="O"><span>진료중</span></li>
-							<li><input type="checkbox" name="holiday" id="time" value="O"><span>휴일진료</span></li>
-							<li><input type="checkbox" name="ntime" id="time" value="O"><span>야간진료</span></li>
+							<li><input type="checkbox" name="time" id="time" value="time"><span>진료중</span></li>
+							<li><input type="checkbox" name="time" id="holiday" value="휴O"><span>휴일진료</span></li>
+							<li><input type="checkbox" name="time" id="ntime" value="야O"><span>야간진료</span></li>
 						</ul>
 					</div>
 				</div>
@@ -93,7 +93,7 @@
 						
 						<div class="check_animal">
 							<ul>
-								<li><input type="checkbox" name="animal" id="animal" value="O"><span>취급</span></li>
+								<li><input type="checkbox" name="animal" id="animal" value="동O"><span>취급</span></li>
 								<!-- <li><input type="checkbox" name="animal" id="animal" value="고양이"><span>고양이</span></li>
 								<li><input type="checkbox" name="animal" id="animal" value="파충류"><span>파충류</span></li>
 								<li><input type="checkbox" name="animal" id="animal" value="조류"><span>조류</span></li>
@@ -111,7 +111,7 @@
 				
 					<c:forEach var="list" items="${list}">
 					<ul id="dataList">
-						<li data-filter="${list.gloc}">
+						<li data-filter="${list.gloc} * 휴${list.holiday} time 야${list.ntime} 동${list.animal} ">
 					
 						<div class="list1">
 							<div class="hinfo">
@@ -119,8 +119,11 @@
 									<span>${list.hname}</span>
 									<span>${list.tel}</span>
 									<span id="rstar" name="rstar" class="rstar">⭐ ${list.rstar}</span>
-									<input type="hidden" id="startTime" name="startTime" value="${list.hid}">
-							
+									<input type="hidden" id="hid" name="hid" value="${list.hid}">
+									<input type="hidden" id="startTime" name="startTime" value="${list.starttime}">
+									<input type="hidden" id="endTime" name="endTime" value="${list.endtime}">
+									<input type="hidden" id="holiday" name="holiday" value="휴일: ${list.holiday}" data-filter="${list.holiday}">
+									<input type="hidden" id="ntime" name="ntime" value="야간: ${list.ntime}" data-filter="${list.ntime}">
 							
 								<span id="harea" value="${list.gloc}">${list.gloc}</span>
 								<span id="htime">진료 중</span>

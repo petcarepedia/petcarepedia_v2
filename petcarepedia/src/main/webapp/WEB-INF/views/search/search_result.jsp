@@ -138,7 +138,27 @@
 					
 					<div class="total">
 						<span>${star.rstar} / 5</span>
-						<span> ⭐ ⭐ ⭐ ⭐ ⭐</span>
+						
+						<c:if test="${star.rstar>=1 && star.rstar<2}">
+							<span> ⭐ </span>
+						</c:if>	
+						
+						<c:if test="${star.rstar>=2 && star.rstar<3}">
+							<span> ⭐⭐ </span>
+						</c:if>	
+						
+						<c:if test="${star.rstar>=3 && star.rstar<4}">
+							<span> ⭐⭐⭐ </span>
+						</c:if>	
+						
+						<c:if test="${star.rstar>=4 && star.rstar<5}">
+							<span> ⭐⭐⭐⭐ </span>
+						</c:if>
+						
+						<c:if test="${star.rstar>=5}">
+							<span> ⭐⭐⭐⭐⭐ </span>
+						</c:if>
+							
 					</div>
 				</div>
 				
@@ -175,7 +195,26 @@
 						<hr class="member_hr">
 						<!-- <span>친절  ⭐⭐⭐⭐⭐</span>
 						<span>위생  ⭐⭐⭐⭐⭐</span> -->
-						<span class="stot">별점  ⭐⭐⭐⭐⭐</span>
+						<!-- <span class="stot">별점  ⭐⭐⭐⭐⭐</span> -->
+						<c:if test="${RM_select.rstar>=1 && RM_select.rstar<2}">
+							<span class="stot">별점  ⭐</span>
+						</c:if>	
+						
+						<c:if test="${RM_select.rstar>=2 && RM_select.rstar<3}">
+							<span class="stot">별점  ⭐⭐</span>
+						</c:if>	
+						
+						<c:if test="${RM_select.rstar>=3 && RM_select.rstar<4}">
+							<span class="stot">별점  ⭐⭐⭐</span>
+						</c:if>	
+						
+						<c:if test="${RM_select.rstar>=4 && RM_select.rstar<5}">
+							<span class="stot">별점  ⭐⭐⭐⭐</span>
+						</c:if>
+						
+						<c:if test="${RM_select.rstar>=5}">
+							<span> ⭐⭐⭐⭐⭐ </span>
+						</c:if>
 					</div>
 					
 					<div class="write">
