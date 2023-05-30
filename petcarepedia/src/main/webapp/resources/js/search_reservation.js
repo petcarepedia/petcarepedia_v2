@@ -1,13 +1,20 @@
 $(document).ready(function() {
+
 var today = new Date();
-var hours = ('0' + today.getHours()).slice(-2); 
+var hours = ('0' + today.getHours()).slice(-2);
 var minutes = ('0' + today.getMinutes()).slice(-2);
-var seconds = ('0' + today.getSeconds()).slice(-2); 
 
-var timeString = hours + ':' + minutes + ':' + seconds;
-var formattedTime2 = timeString.slice(0, 5);
+var nowTime = hours + minutes;
 
-$("input#now").val(formattedTime2);
+    //var startTime = $(this).find('input#startTime').val().replace(':', '');
+    //var endTime = $(this).find('input#endTime').val().replace(':', '');
+
+
+console.log(nowTime);
+
+
+
+$("input#now").val(nowTime);
 
 /*******************************************
 	time 
@@ -26,30 +33,28 @@ $("input#now").val(formattedTime2);
 
   while (currentTime <= endDate) {
     var formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
+    var formattedTime2 = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    var timeWithoutColon = formattedTime2.replace(':', '');
+    
+    if (parseInt(nowTime) < parseInt(timeWithoutColon)) {
       timeSlots.push(formattedTime);
-
+    }
+  
     currentTime.setMinutes(currentTime.getMinutes() + 30);
   }
-
+  
   // 시간 슬롯을 화면에 표시
   var timeContainer = $(".rtime");
   timeContainer.empty(); // 기존 내용 초기화
-
+  
   for (var i = 0; i < timeSlots.length; i++) {
     var timeSlot = timeSlots[i];
-    
-    if(formattedTime2 < timeSlot) {
-    
-
+  
     var timeElement = $("<span>", { class: "stime" }).append(
       $("<input>", { type: "hidden", name: "stime", value: timeSlot }),
       timeSlot
-    )};
-	
-	console.log(timeSlot);
-	console.log(formattedTime2);
-	
+    );
+  
     timeContainer.append(timeElement);
   }
   
