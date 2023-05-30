@@ -1,4 +1,32 @@
 $(document).ready(function() {
+/////// 진료중 버튼
+
+var today = new Date();
+var hours = ('0' + today.getHours()).slice(-2);
+var minutes = ('0' + today.getMinutes()).slice(-2);
+
+var nowTime = hours + minutes;
+
+
+$('ul#dataList li').each(function() {
+    var startTime = $(this).find('input#startTime').val().replace(':', '');
+    var endTime = $(this).find('input#endTime').val().replace(':', '');
+
+     if (parseInt(nowTime) > parseInt(endTime) || parseInt(nowTime) < parseInt(startTime)) {
+        $(this).find('span#htime').hide();
+        var dataFilter = $(this).attr('data-filter');
+        dataFilter = dataFilter.replace(' time', '');
+        $(this).attr('data-filter', dataFilter);
+    }
+});
+
+console.log(nowTime);
+
+
+
+
+
+////////////////////////
 	//gloc 하나만 선택
 	$('input[type="checkbox"][name="gloc"]').click(function(){
 		  if($(this).prop('checked')){

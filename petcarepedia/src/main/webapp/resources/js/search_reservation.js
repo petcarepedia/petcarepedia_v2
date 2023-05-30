@@ -1,4 +1,13 @@
 $(document).ready(function() {
+var today = new Date();
+var hours = ('0' + today.getHours()).slice(-2); 
+var minutes = ('0' + today.getMinutes()).slice(-2);
+var seconds = ('0' + today.getSeconds()).slice(-2); 
+
+var timeString = hours + ':' + minutes + ':' + seconds;
+var formattedTime2 = timeString.slice(0, 5);
+
+$("input#now").val(formattedTime2);
 
 /*******************************************
 	time 
@@ -10,7 +19,6 @@ $(document).ready(function() {
   // 시작 시간과 끝 시간을 Date 객체로 변환
   var startDate = new Date("1970/01/01 " + startTime);
   var endDate = new Date("1970/01/01 " + endTime);
-  var nowTime = new Date();
 
  // 30분 간격으로 시간 슬롯 생성
   var currentTime = startDate;
@@ -30,11 +38,17 @@ $(document).ready(function() {
 
   for (var i = 0; i < timeSlots.length; i++) {
     var timeSlot = timeSlots[i];
+    
+    if(formattedTime2 < timeSlot) {
+    
 
     var timeElement = $("<span>", { class: "stime" }).append(
       $("<input>", { type: "hidden", name: "stime", value: timeSlot }),
       timeSlot
-    );
+    )};
+	
+	console.log(timeSlot);
+	console.log(formattedTime2);
 	
     timeContainer.append(timeElement);
   }

@@ -111,7 +111,7 @@
 				
 					<c:forEach var="list" items="${list}">
 					<ul id="dataList">
-						<li data-filter="${list.gloc} * 휴${list.holiday} 동${list.animal} 야${list.ntime}">
+						<li data-filter="${list.gloc} * 휴${list.holiday} time 야${list.ntime} 동${list.animal} ">
 					
 						<div class="list1">
 							<div class="hinfo">
@@ -120,8 +120,10 @@
 									<span>${list.tel}</span>
 									<span id="rstar" name="rstar" class="rstar">⭐ ${list.rstar}</span>
 									<input type="hidden" id="hid" name="hid" value="${list.hid}">
-									<input type="text" id="holiday" name="holiday" value="휴일: ${list.holiday}" data-filter="${list.holiday}">
-									<input type="text" id="ntime" name="ntime" value="야간: ${list.ntime}" data-filter="${list.ntime}">
+									<input type="hidden" id="startTime" name="startTime" value="${list.starttime}">
+									<input type="hidden" id="endTime" name="endTime" value="${list.endtime}">
+									<input type="hidden" id="holiday" name="holiday" value="휴일: ${list.holiday}" data-filter="${list.holiday}">
+									<input type="hidden" id="ntime" name="ntime" value="야간: ${list.ntime}" data-filter="${list.ntime}">
 							
 								<span id="harea" value="${list.gloc}">${list.gloc}</span>
 								<span id="htime">진료 중</span>
