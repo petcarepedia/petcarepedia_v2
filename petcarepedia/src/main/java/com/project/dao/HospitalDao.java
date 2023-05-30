@@ -136,7 +136,7 @@ public class HospitalDao extends DBConn {
 		int result = 0;
 
 		String sql = "UPDATE PCP_HOSPITAL SET HNAME=? , GLOC=?, LOC =? , TEL=?, "+
-					 " HTIME=? , NTIME=? , HOLIDAY=?, ANIMAL=?, INTRO=? ,HRINK=? WHERE HID = ? ;";
+					 " HTIME=? , NTIME=? , HOLIDAY=?, ANIMAL=?, INTRO=? ,HRINK=? WHERE HID = ? ";
 		getPreparedStatement(sql);
 
 		try {
@@ -149,8 +149,8 @@ public class HospitalDao extends DBConn {
 			pstmt.setString(7, hospitalVo.getHoliday());
 			pstmt.setString(8, hospitalVo.getAnimal());
 			pstmt.setString(9, hospitalVo.getIntro());
-			pstmt.setString(11, hospitalVo.getHrink());
-			pstmt.setString(12, hospitalVo.getHid());
+			pstmt.setString(10, hospitalVo.getHrink());
+			pstmt.setString(11, hospitalVo.getHid());
 
 			result = pstmt.executeUpdate();
 

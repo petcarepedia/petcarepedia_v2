@@ -22,43 +22,44 @@
 					<div>
 						<nav>
 							<ul>
-							<li>신고리뷰관리</li>
-							<li><a href = "http://localhost:9000/petcarepedia/hospital_list.do">병원 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/member_list.do">회원 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/reserve_list.do">예약 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/review_list.do">신고 리뷰 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/login.do">나가기</a></li>
-						</ul>
+								<li>신고리뷰관리</li>
+								<li><a href = "http://localhost:9000/petcarepedia/hospital_list.do">병원 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/member_list.do">회원 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/reserve_list.do">예약 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/review_list.do">신고 리뷰 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/login.do">나가기</a></li>
+							</ul>
 						</nav>
 					</div>
 				</section>
 				<section id = "section2">
-					<div class="d3">
+					<div id="d3">
 						<table class="table">
-							<tr>
-								<th>번호</th>
-								<th>아이디</th>
-								<th>병원명</th>
-								<th>내용</th>
-								<th>작성일</th>
-							</tr>
+								<tr>
+									<th>번호</th>
+									<th>아이디</th>
+									<th>병원명</th>
+									<th>내용</th>
+									<th>작성일</th>
+								</tr>
 							<c:forEach var="reviewVo" items="${list}">
 								<tr>
 									<td>${reviewVo.rno}</td>
 									<td>${reviewVo.mid}</td>
 									<td>${reviewVo.hname}</td>
-									<td><a href="review.detail.do?${reviewVo.mid}">${reviewVo.rcontent}</a></td>
+									<td><a href="review.detail.do?${reviewVo.rid}">${reviewVo.rcontent}</a></td>
 									<td>${reviewVo.rdate}</td>
 								</tr>
 							</c:forEach>
-									<button type="button" class="button4" ><a href="http://localhost:9000/petcarepedia/hospital_list.do">이전으로</a></button>
 								<tr>
 									<td colspan="5" class="number">< 1  2  3  4  5  6  7  8  9  10  </td>
 								</tr>
-							</table>
-						</div>
-					</section>
+								<tr>
+						</table>
+						<button type="button" class="button4" ><a href="http://localhost:9000/petcarepedia/hospital_list.do">이전으로</a></button>
+					</div>
+				</section>
 			</section>
 		</div>
 	<!-- footer -->

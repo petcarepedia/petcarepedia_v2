@@ -190,7 +190,6 @@ section1 style sheet - 카테고리
 	height: 300px;
 	float : left;
 	margin-top : 80px;
-	border:1px soild red;
 }
 
 #section1 div nav ul{
@@ -363,7 +362,6 @@ section.review_dtail section#section2{
 
 
 section.review_detail div#d3 {
-	border:1px solid red;
 	margin-left:200px;
 	display:inline-block;
 }
