@@ -23,8 +23,8 @@
 								name = JSON.parse(result).name;
 								content = JSON.parse(result).content;
 								
-								$("#tname").html(name);
-								$("#tcontent").html(content);
+								$(".title").html("<p id='tname'>"+name+"</p>");
+								$(".title").after("<div class='termcont' id='tcontent'>"+content+"</div>");
 								
 								$(".term-box").show();
 								$(".back").show();
@@ -33,6 +33,8 @@
 		})
 		
 		$("#btnModalClose").click(function(){
+			$("#tname").remove();
+			$("#tcontent").remove();
 			$(".term-box").hide();
 			$(".back").hide();
 		})
@@ -46,9 +48,9 @@
 		<div class="term-modal">
 			<div class="term-modal-close" id="btnModalClose">X</div>
 			<div class="title">
-				<p id="tname"></p>
+				
 			</div>
-			<div class="termcont" id="tcontent"></div>
+			
 		</div>
 	</div>
 	
