@@ -2,8 +2,11 @@ package com.project.dao;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Repository;
+
 import com.project.vo.NoticeVo;
 
+@Repository
 public class NoticeDao extends DBConn {
 	
 	/*
