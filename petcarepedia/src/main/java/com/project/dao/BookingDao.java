@@ -101,15 +101,13 @@ public class BookingDao extends DBConn {
 	} // ArrayList<BookingVo> search(String mid)
 	
 	
-	/** select - 예약 완료 리스트 날짜(회원 기준/05.22) **/
+	/** select - 예약 완료 리스트 날짜(회원 기준/수정 05.30) **/
 	public ArrayList<BookingVo> search1(String mid) {
 		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
 
-		String sql = "SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, H.HRINK" + 
-				" FROM PCP_BOOKING B, PCP_HOSPITAL H" + 
-				" WHERE B.HID = H.HID" + 
-				" AND MID = ?" + 
-				" AND VDATE <= SYSDATE";
+		String sql = "SELECT B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, R.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, "
+						+ "	H.HRINK FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_REVIEW "
+						+ " WHERE B.HID = H.HID AND B.BID <> R.BID AND B.MID = ? and VDATE <= SYSDATE";
 		
 		getPreparedStatement(sql);
 
@@ -183,6 +181,39 @@ public class BookingDao extends DBConn {
 
 		return list;
 	} // ArrayList<BookingVo> search2(String mid)
+	
+	/** select3 - (회원 기준/05.30) **/
+	public ArrayList<BookingReviewVo> search3(String mid) {
+		ArrayList<BookingReviewVo> list2 = new ArrayList<BookingReviewVo>();
+		String sql = "SELECT B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, R.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, "
+					+ " H.HRINK FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_REVIEW"
+					+ " WHERE B.HID = H.HID AND B.BID = R.BID AND B.MID = ? and VDATE <= SYSDATE";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, mid);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BookingReviewVo bookingReviewVo = new BookingReviewVo();
+				bookingReviewVo.setBid(rs.getString(1));
+				bookingReviewVo.setBdate(rs.getString(2));
+				bookingReviewVo.setVdate(rs.getString(3));
+				bookingReviewVo.setVtime(rs.getString(4));
+				bookingReviewVo.setBstate(rs.getString(5));
+				bookingReviewVo.setMid(rs.getString(6));
+				bookingReviewVo.setHid(rs.getString(7));
+				bookingReviewVo.setHname(rs.getString(8));
+				bookingReviewVo.setLoc(rs.getString(9));
+				bookingReviewVo.setGloc(rs.getString(10));
+				bookingReviewVo.setTel(rs.getString(11));
+				bookingReviewVo.setHrink(rs.getString(12));
+				list2.add(bookingReviewVo);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list2;
+	} // ArrayList<BookingReviewVo> search3(String mid)
 	
 		
 	/** select(mid) - 로그인 후 예약확인하기 **/
