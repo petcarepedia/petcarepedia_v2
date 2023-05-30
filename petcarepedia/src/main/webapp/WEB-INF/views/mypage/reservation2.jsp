@@ -70,12 +70,45 @@
 							</div>
 						</div>
 						<div id = "btn_review">
-							<a href = "review_write.do?mid=${bookingVo.mid}&hid=${bookingVo.hid}">
+							<a href = "review_write.do?mid=${bookingVo.mid}&hid=${bookingVo.hid}&bid=${bookingVo.bid}">
 								<button type = "button" id = "btn_write_review">리뷰쓰기</button>
 							</a>
-							<a href = "my_review.do?mid=hong">
+<!-- 							<a href = "my_review.do?mid=hong">
 							<button type = "button" id = "btn_watch_review">리뷰보기</button>
-							</a>
+							</a> -->
+						</div>
+					</c:forEach>
+					<c:forEach var = "bookingReview" items = "${list2}">
+						<div id = "aside1">
+							<img src = "http://localhost:9000/petcarepedia/images/hos.png">
+							<div>
+								<span>서울시 > ${bookingReview.gloc}</span>
+								<span>${bookingReview.hname}</span>
+								<span></span>
+								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
+								<span>${bookingReview.loc}</span>
+								<img src = "http://localhost:9000/petcarepedia/images/홈.png">
+								<c:choose>
+								<c:when test = "${bookingReview.hrink eq 'X'}">
+									<a href = "#" onclick = "alert('홈페이지가 존재하지 않습니다.')">병원 홈페이지 가기</a>
+								</c:when>
+								<c:otherwise>
+									<a href = "${bookingReview.hrink}">병원 홈페이지 가기</a>
+								</c:otherwise>
+								</c:choose>
+								<img src = "http://localhost:9000/petcarepedia/images/전화.png">
+								<span>${bookingReview.tel}</span>
+								<span>예약 날짜 : ${bookingReview.vdate}</span>
+								<span>예약 시간 : ${bookingReview.vtime}</span>
+							</div>
+						</div>
+						<div id = "btn_review">
+<%-- 							<a href = "review_write.do?mid=${bookingVo.mid}&hid=${bookingVo.hid}&bid=${bookingVo.bid}">
+								<button type = "button" id = "btn_write_review">리뷰쓰기</button>
+							</a> --%>
+							<a href = "my_review.do?mid=hong">
+								<button type = "button" id = "btn_watch_review">리뷰보기</button>
+							</a> 
 						</div>
 					</c:forEach>
 				</section>

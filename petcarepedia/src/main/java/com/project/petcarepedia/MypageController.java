@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.BookingDao;
 import com.project.dao.BookmarkDao;
 import com.project.dao.MemberDao;
 import com.project.dao.ReviewDao;
+import com.project.vo.BookingReviewVo;
 import com.project.vo.BookingVo;
 import com.project.vo.BookmarkVo;
 import com.project.vo.MemberVo;
@@ -116,8 +116,10 @@ public class MypageController {
 		ModelAndView model = new ModelAndView();
 		BookingDao bookingDao = new BookingDao();
 		ArrayList<BookingVo> list = bookingDao.search1(mid);
+		ArrayList<BookingReviewVo> list2 = bookingDao.search3(mid);
 		model.setViewName("/mypage/reservation2");
 		model.addObject("list", list);
+		model.addObject("list2", list2);
 		return model;
 	}
 	
@@ -236,10 +238,11 @@ public class MypageController {
 	 * review_write.do - ∏Æ∫‰ æ≤±‚∆˚
 	 */
 	@RequestMapping(value = "/review_write.do", method = RequestMethod.GET)
-	public ModelAndView review_write(String mid, String hid) {
+	public ModelAndView review_write(String mid, String hid, String bid) {
 		ModelAndView model = new ModelAndView();
 		model.addObject("mid", mid);
 		model.addObject("hid", hid);
+		model.addObject("bid", bid);
 		model.setViewName("/mypage/review_write");
 		return model;
 	}
@@ -247,16 +250,15 @@ public class MypageController {
 	/*
 	 *  review_write_proc.do - ∏Æ∫‰ æ≤±‚√≥∏Æ
 	 */
-	@ResponseBody
 	@RequestMapping(value = "/review_write_proc.do", method = RequestMethod.POST)
 	public String review_write_proc(ReviewVo reviewVo) {
 		String viewName = "";
 		ReviewDao reviewDao = new ReviewDao();
 		int result = reviewDao.insert(reviewVo);
 		if(result == 1) {
-			viewName = "redirect:/my_review?mid=" + reviewVo.getMid();
+			viewName = "redirect:/my_review.do?mid=hong";
 		} else {
-			viewName = "<script>alert('∏Æ∫‰¿€º∫Ω«∆–');location.href = 'my_review.do?mid=hong';</script>";
+			
 		}
 		return viewName;
 	}
