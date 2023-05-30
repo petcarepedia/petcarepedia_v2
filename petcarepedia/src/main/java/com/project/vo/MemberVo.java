@@ -74,7 +74,7 @@ public class MemberVo {
 		this.nickname = nickname;
 	}
 	public String getPhone() {
-		if(phone1 != null) {
+		if(phone1 != "" && phone2 != "" && phone3 != "") {
 			phone = phone1 + "-" + phone2 + "-" + phone3;
 		}
 		return phone;
@@ -83,7 +83,7 @@ public class MemberVo {
 		this.phone = phone;
 	}
 	public String getBirth() {
-		if(birth1 != null) {
+		if(birth1 != "" && birth2 != "" && birth3 != "") {
 			birth = birth1 + "-" + birth2 + "-" + birth3;
 		}
 		return birth;
