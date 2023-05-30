@@ -80,8 +80,8 @@
 					<div class="check_time">
 						<ul>
 							<li><input type="checkbox" name="time" id="time" value="time"><span>진료중</span></li>
-							<li><input type="checkbox" name="time" id="holiday" value="O"><span>휴일진료</span></li>
-							<li><input type="checkbox" name="time" id="ntime" value="O"><span>야간진료</span></li>
+							<li><input type="checkbox" name="time" id="holiday" value="휴O"><span>휴일진료</span></li>
+							<li><input type="checkbox" name="time" id="ntime" value="야O"><span>야간진료</span></li>
 						</ul>
 					</div>
 				</div>
@@ -93,7 +93,7 @@
 						
 						<div class="check_animal">
 							<ul>
-								<li><input type="checkbox" name="animal" id="animal" value="O"><span>취급</span></li>
+								<li><input type="checkbox" name="animal" id="animal" value="동O"><span>취급</span></li>
 								<!-- <li><input type="checkbox" name="animal" id="animal" value="고양이"><span>고양이</span></li>
 								<li><input type="checkbox" name="animal" id="animal" value="파충류"><span>파충류</span></li>
 								<li><input type="checkbox" name="animal" id="animal" value="조류"><span>조류</span></li>
@@ -111,7 +111,7 @@
 				
 					<c:forEach var="list" items="${list}">
 					<ul id="dataList">
-						<li data-filter="${list.gloc} *" data-holiday="${list.holiday}">
+						<li data-filter="${list.gloc} * 휴${list.holiday} 동${list.animal} 야${list.ntime}">
 					
 						<div class="list1">
 							<div class="hinfo">

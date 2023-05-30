@@ -19,9 +19,7 @@ $(document).ready(function() {
   while (currentTime <= endDate) {
     var formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-    if (new Date("1970/01/01 " + formattedTime) > nowTime) { // 현재 시간보다 클 때만 출력
       timeSlots.push(formattedTime);
-    }
 
     currentTime.setMinutes(currentTime.getMinutes() + 30);
   }

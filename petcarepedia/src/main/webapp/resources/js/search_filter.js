@@ -39,7 +39,7 @@ $(document).ready(function() {
     });
   }
 
-  var checkboxes = document.querySelectorAll('input[type="checkbox"][name="gloc"]');
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('change', applyFilters);
   });
