@@ -40,11 +40,11 @@
 					<button class="button1"><img src="http://localhost:9000/animal/css/foot_sky.png"></button>
 				</div>
 				<div class="d3">
+					<button type="button" class="button"><a href="#">수정</a></button>
+					<button type="button" class="button">삭제</button>
 				<!-- 	<table class="table">
 						<tr>
 							<td colspan="5">
-								<button type="button" class="button5"><a href="#">수정</a></button>
-								<button type="button" class="button5">삭제</button>
 							</td>
 						</tr>
 						<tr>

@@ -24,7 +24,7 @@ import com.project.vo.ReviewVo;
 public class AdminController {
 	
 //	/**
-//	 * ¿¹¾à - È¸¿ø ¾ÆÀÌµğ °Ë»ö
+//	 * ï¿½ï¿½ï¿½ï¿½ - È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ë»ï¿½
 //	 * */
 //	@RequestMapping(value="/reserve_list_data.do", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
 //	@ResponseBody
@@ -52,7 +52,7 @@ public class AdminController {
 //	}
 	
 	/**
-	 * ¿¹¾à - Á¶È¸ÆäÀÌÁö
+	 * ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	@RequestMapping(value="/reserve_list.do", method=RequestMethod.GET)
 	public ModelAndView reserve_list(BookingVo bookingVo) {
@@ -66,7 +66,7 @@ public class AdminController {
 		return model;
 	}
 	/**
-	 * ½Å°í¸®ºä - »ó¼¼ÆäÀÌÁö
+	 * ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	@RequestMapping(value="/review_detail.do", method=RequestMethod.GET)
 	public ModelAndView review_detail(String rid) {
@@ -81,7 +81,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * ½Å°í¸®ºä - Á¶È¸ÆäÀÌÁö
+	 * ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	@RequestMapping(value="/review_list.do", method=RequestMethod.GET)
 	public ModelAndView review_list(ReviewVo reviewVo) {
@@ -96,7 +96,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * È¸¿ø - È¸¿ø ¾ÆÀÌµğ °Ë»ö
+	 * È¸ï¿½ï¿½ - È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ë»ï¿½
 	 * */
 	@RequestMapping(value="/member_list_data.do", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	@ResponseBody
@@ -122,7 +122,7 @@ public class AdminController {
 		return new Gson().toJson(jlist);
 	}
 	/**
-	 * È¸¿ø - »ó¼¼ ÆäÀÌÁö
+	 * È¸ï¿½ï¿½ - ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	@RequestMapping(value="/member_detail.do", method=RequestMethod.GET)
 	public ModelAndView member_detail(String mid) {
@@ -138,7 +138,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * È¸¿ø - Á¶È¸ÆäÀÌÁö
+	 * È¸ï¿½ï¿½ - ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	@RequestMapping(value="/member_list.do", method=RequestMethod.GET)
 	public ModelAndView member_list(MemberVo memberVo) {
@@ -156,7 +156,7 @@ public class AdminController {
 	
 
 	/**
-	 * º´¿ø - ¼öÁ¤ Ã³¸® ÆäÀÌÁö
+	 * ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	@RequestMapping(value = "/hospital_update_proc.do", method = RequestMethod.POST)
 	public String hospital_update_proc(HospitalVo hospitalVo) {
@@ -166,14 +166,14 @@ public class AdminController {
 		if (result == 1) {
 			viewName = "redirect:/hospital_list.do";
 		} else {
-			// ¿¡·¯ ÆäÀÌÁö È£Ãâ
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
 		}
 
 		return viewName;
 	}
 	
 	/**
-	 * º´¿ø - ¼öÁ¤ ÆäÀÌÁö
+	 * ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	@RequestMapping(value="/hospital_update.do", method=RequestMethod.GET)
 	public ModelAndView hostpital_update(String hid) {
@@ -189,7 +189,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * º´¿ø - º´¿ø Á¤º¸ µî·Ï Ã³¸®
+	 * ë³‘ì›- ê²€ìƒ‰ í˜ì´ì§€
 	 * */
 	@RequestMapping(value="/hospital_detail_proc.do", method=RequestMethod.POST)
 	public String hostpital_detail_proc(HospitalVo hospitalVo){
@@ -205,7 +205,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * º´¿ø - µî·ÏÆäÀÌÁö
+	 * ë³‘ì› - ê²€ìƒ‰
 	 * */
 	@RequestMapping(value="/hospital_detail.do", method=RequestMethod.GET)
 	public String hostpital_list_detail() {
@@ -214,7 +214,7 @@ public class AdminController {
 	
 	
 	/**
-	 * º´¿ø - °Ë»öÆäÀÌÁö
+	 * ë³‘ì› - ê²€ìƒ‰ í˜ì´ì§€
 	 * */
 	@RequestMapping(value="/hospital_list_detail.do", method=RequestMethod.GET)
 	public ModelAndView hostpital_detail(String hname) {
@@ -231,7 +231,7 @@ public class AdminController {
 
 	
 	/**
-	 * ¸ŞÀÎ - º´¿ø ÆäÀÌÁö
+	 * ë©”ì¸ - ë³‘ì› í˜ì´ì§€
 	 * */
 	@RequestMapping(value="/hospital_list.do", method=RequestMethod.GET)
 	public ModelAndView hospital_list() {
@@ -248,7 +248,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * ¸ŞÀÎ - º´¿ø ÆäÀÌÁö °Ë»ö
+	 * ë³‘ì› - ê²€ìƒ‰ì°½ í™œì„±í™”
 	 * */
 	@RequestMapping(value="/hospital_list_data.do", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	@ResponseBody
