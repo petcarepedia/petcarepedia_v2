@@ -21,6 +21,7 @@
 			<form name="writeForm" action="review_write_proc.do" method="post">
 			<input type = "hidden" name = "mid" value = "${mid}">
 			<input type = "hidden" name = "hid" value = "${hid}">
+			<input type = "hidden" name = "bid" value = "${bid}">
 				<section id = "section1">
 					<div>
 						<nav>
