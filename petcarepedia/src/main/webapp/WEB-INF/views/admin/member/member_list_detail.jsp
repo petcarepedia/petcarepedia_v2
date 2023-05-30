@@ -1,11 +1,18 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<head>
 <meta charset="UTF-8">
-<title>Member - List</title>
-<link rel="stylesheet" href="http://localhost:9000/animal/css/admin.css">
+	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
+	<link rel="stylesheet" href="http://localhost:9000/mycgv_jsp/css/am-pagination.css">
+	<script src="http://localhost:9000/pecarepedia/js/jquery-3.6.4.min.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/mycgv_jsp_jquery.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
+	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<title>펫캐어피디아 | 관리자</title>
 </head>
 <body>
 <!-- header -->
@@ -33,7 +40,7 @@
 					<button class="button1"><img src="http://localhost:9000/animal/css/foot_sky.png"></button>
 				</div>
 				<div class="d3">
-					<table class="table">
+				<!-- 	<table class="table">
 						<tr>
 							<td colspan="5">
 								<button type="button" class="button5"><a href="#">수정</a></button>
@@ -61,10 +68,10 @@
 						</tr>
 						<tr>
 							<td colspan="5">
-								<button type="button" class="button4"><a href="http://localhost:9000/animal/admin/member/member_list.jsp">이전으로</a></button>
 							</td>
 						</tr>
-					</table>
+					</table> -->
+					<button type="button" class="button4"><a href="http://localhost:9000/petcarepedia/member_list.jsp">이전으로</a></button>
 				</div>
 			</section>
 		</section>

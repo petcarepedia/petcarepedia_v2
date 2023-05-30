@@ -1,21 +1,25 @@
 	
 $(document).ready(function(){
-	
+
 	/*************************
 	 * 병원 - 수정
 	 **************************/
-	$("#btnUpdateSave").click(function(){
-		if($("#name").val()==""){
+	$("#btn_save").click(function(){
+			if($("#hname").val()==""){
 				alert("병원명을 입력해주세요");
-				$("#name").focus();
+				$("#hname").focus();
 				return false;
-			}else if($("#address").val()==""){
+			}else if($("#gloc").val()==""){
 				alert("주소를 입력해주세요");
-				$("#address").focus();
+				$("#gloc").focus();
 				return false;
-			}else if($("#phone").val()==""){
+			}else if($("#loc").val()==""){
+				alert("주소를 입력해주세요");
+				$("#loc").focus();
+				return false;
+			}else if($("#tel").val()==""){
 				alert("전화번호를 입력해주세요");
-				$("#phone").focus();
+				$("#tel").focus();
 				return false;
 			}else if($("#htime").val()==""){
 				alert("영업시간을 입력해주세요");
@@ -36,7 +40,7 @@ $(document).ready(function(){
 			}else{
 				updateForm.submit();
 			}
-	});
+		});
 	
 	
 	/*************************
@@ -80,6 +84,49 @@ $(document).ready(function(){
 			}
 		});
 	
+	/*************************
+	 * 회원 - 회원 아이디 검색창
+	 **************************/
+  $("#member_search_btn").click(function(){
+  	if($("#member_search_bar").val() ==""){
+			alert("회원아이디를 입력해주세요"); 
+			$("#member_search_bar").focus();
+			return false;
+		}else{	
+				$.ajax({
+					url:"http://localhost:9000/petcarepedia/member_list_data.do?mid="+$("#member_search_bar").val(), 
+					success:function(result){
+					let jdata = JSON.parse(result);
+					//alert(result);
+					let output = "<table class='table'>";
+						output += "<tr><td colspan ='6'>";						
+						output += "<button type='button' class='button'><a href='http://localhost:9000/petcarepedia/member_detail'>수정</a></button>";						
+						output += "<button type='button' class='button'>삭제</button>";						
+						output += "</td></tr>";						
+						output += "<tr><th>번호</th><th>아이디</th><th>성명</th><th>이메일</th><th>전화번호</th><th>가입일자</th></tr>";						
+						for(obj of jdata.jlist){
+							output += "<tr>";
+							output += "<td>"+ obj.rno +"</td>";
+							output += "<td>"+ obj.mid +"</td>";
+							output += "<td>"+ obj.name +"</td>";
+							output += "<td>"+ obj.email +"</td>";
+							output += "<td>"+ obj.phone +"</td>";
+							output += "<td>"+ obj.mdate +"</td>";
+							output += "</tr>";						
+							}//for
+							
+						output +="<tr><td colspan='6' class='number'>  1  2  3  4  5  6  7  8  9  10  </td></tr>";
+						output +="</table>";
+						
+						$("table.table").remove();
+						$("#d2").after(output);
+						
+					}//success
+					
+				});//ajax
+		}//else
+					
+  	});//function
 	/*************************
 	 * 병원 - 검색창
 	 **************************/
