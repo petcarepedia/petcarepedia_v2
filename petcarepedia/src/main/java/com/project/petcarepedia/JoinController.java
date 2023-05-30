@@ -1,25 +1,21 @@
 package com.project.petcarepedia;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.Reader;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.gson.Gson;
-import com.project.dao.MemberDao;
+import com.project.service.MemberService;
 import com.project.vo.MemberVo;
 
 @Controller
 public class JoinController {
-	MemberDao memberDao = new MemberDao();
+	@Autowired
+	private MemberService memberService;
 	
 	/**
 	 * join.do - 회원가입
@@ -36,9 +32,7 @@ public class JoinController {
 	public ModelAndView join_proc(MemberVo memberVo) {
 		ModelAndView model = new ModelAndView();
 		
-		int result = memberDao.insert(memberVo);
-		
-		if(result==1) {
+		if(memberService.getJoin(memberVo)==1) {
 			model.addObject("join_result", "success");
 			model.setViewName("/login/login");
 		} else {
@@ -53,10 +47,8 @@ public class JoinController {
 	 */
 	@RequestMapping(value="/id_check.do",method=RequestMethod.GET) //쿼리스트링방식이므로 -> GET
 	@ResponseBody
-	public String id_check(String id) {
-		int result = memberDao.checkId(id);
-		
-		return String.valueOf(result);
+	public String id_check(String mid) {
+		return memberService.getCheckId(mid);
 	}
 	
 	/**

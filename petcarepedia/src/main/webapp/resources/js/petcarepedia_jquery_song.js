@@ -13,7 +13,7 @@ $(document).ready(function(){
 	 */
 	$("#btnCheckId").click(function(){
 		$.ajax({
-				url : "id_check.do?id="+$("#id").val(),
+				url : "id_check.do?mid="+$("#id").val(),
 				success : function(result){
 					if(result == 1){
 						$("#idcheck_msg").text("중복된 아이디입니다.").css("color","red")
