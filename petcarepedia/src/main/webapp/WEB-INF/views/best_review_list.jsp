@@ -12,17 +12,17 @@
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=krftgsruiz"></script>
 <script>
 	$(document).ready(function(){
-		let page=Number($("#page").val());		// initial page
+		let rpage=Number($("#rpage").val());		// initial page
 		
-		if(page==1) $("#btnPrev").hide();
-		if(page==3) $("#btnNext").hide();
+		if(rpage==1) $("#btnPrev").hide();
+		if(rpage==3) $("#btnNext").hide();
 		
 		jQuery('#btnPrev').on('click',function(e){
 			$("#btnNext").show();
-			if(page>1){
-				page -= 1;
+			if(rpage>1){
+				rpage -= 1;
 				$.ajax({
-					url : "best_review_list.do?page="+page,
+					url : "best_review_list.do?rpage="+rpage,
 					success : function(list){
 							$("#brbox").html(list);
 						}
@@ -33,10 +33,10 @@
 	    
 	    jQuery('#btnNext').on('click',function(e){
 	    	$("#btnPrev").show();
-			if(page<3){
-				page += 1;
+			if(rpage<3){
+				rpage += 1;
 				$.ajax({
-					url : "best_review_list.do?page="+page,
+					url : "best_review_list.do?rpage="+rpage,
 					success : function(list){
 							console.log(list);
 							$("#brbox").html(list);
@@ -60,7 +60,7 @@
 				<button type="button" id="btnPrev"><img src="http://localhost:9000/petcarepedia/images/prev.png" width="30" height="30"></button>
 			</div>
 			<div class="review-list">
-				<input type="hidden" value="${page}" id="page">
+				<input type="hidden" value="${rpage}" id="rpage">
 				<c:forEach var="reviewVo" items="${list}">
 					<div id="brcontent" onclick="location.href='http://localhost:9000/petcarepedia/review_content.do?rid=${reviewVo.rid}'" class="review-card">
 							<div>

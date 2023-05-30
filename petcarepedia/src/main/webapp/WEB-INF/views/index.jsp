@@ -42,15 +42,17 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	
 	<!-- content -->
-	<div class="content">
-		<div class="main-door">
-			<div class="inner-list">
-		      <div class="inner"><img src="http://localhost:9000/petcarepedia/images/banner1.png"></div>
-		      <div class="inner"><img src="http://localhost:9000/petcarepedia/images/banner2.png"></div>
-		      <div class="inner"><img src="http://localhost:9000/petcarepedia/images/banner3.png"></div>
-		      <div class="inner"><img src="http://localhost:9000/petcarepedia/images/banner4.png"></div>
-		    </div>
-		</div>
+	<div class="main-door">
+		<div class="inner-list">
+	      <div class="inner"><img src="http://localhost:9000/petcarepedia/images/banner1_b.png"></div>
+	      <div class="inner"><img src="http://localhost:9000/petcarepedia/images/banner2_b.png"></div>
+	      <div class="inner"><img src="http://localhost:9000/petcarepedia/images/banner3_b.png"></div>
+	      <div class="inner"><img src="http://localhost:9000/petcarepedia/images/banner4_b.png"></div>
+	    </div>
+	</div>
+	
+	<div class="content main">
+		
 		<!-- <div class="main-door">
 			<p>내 <span>반려동물</span>의 <span>건강</span>을 위한 올바른 선택!</p>
 			<div>
@@ -100,7 +102,7 @@
 		    currentIndex++;
 		    currentIndex = currentIndex >= inners.length ? 0 : currentIndex;
 		    innerList.style.marginLeft = (-outer.clientWidth * currentIndex)+'px';
-		  }, 3000);
+		  }, 3500);
 		}
 		
 		let interval = getInterval(); // interval 등록

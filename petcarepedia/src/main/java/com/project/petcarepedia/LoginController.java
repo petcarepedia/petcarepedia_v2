@@ -30,8 +30,13 @@ public class LoginController {
 		int result = memberDao.checkLogin(memberVo);
 		
 		if(result==1) {
-			model.addObject("login_result", "success");
-			model.setViewName("redirect:/index.do");
+			if(memberVo.getMid().equals("admin")) {
+				model.addObject("login_result", "success");
+				model.setViewName("redirect:/hospital_list.do");
+			} else {
+				model.addObject("login_result", "success");
+				model.setViewName("redirect:/index.do");
+			}
 		} else {
 			model.addObject("login_result", "fail");
 			model.setViewName("/login/login");
