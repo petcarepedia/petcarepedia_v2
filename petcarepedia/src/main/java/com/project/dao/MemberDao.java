@@ -86,11 +86,53 @@ public class MemberDao extends DBConn{
 	public ArrayList<MemberVo> select() {
 		ArrayList<MemberVo> list = new ArrayList<MemberVo>();
 		
-		String sql = "select rownum,mid,pass,name,nickname,phone,to_char(to_date(birth),'yyyy-mm-dd') birth,email,addr,to_char(mdate,'yyyy-mm-dd') mdate\r\n" + 
+		String sql = "select rownum rno,mid,pass,name,nickname,phone,to_char(to_date(birth),'yyyy-mm-dd') birth,email,addr,to_char(mdate,'yyyy-mm-dd') mdate\r\n" + 
 				"from(select mid,pass,name,nickname,phone,birth,email,addr,mdate from pcp_member order by mdate)";
 		getPreparedStatement(sql);
 		
 		try {
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MemberVo memberVo = new MemberVo();
+				
+				memberVo.setRno(rs.getInt(1));
+				memberVo.setMid(rs.getString(2));
+				memberVo.setPass(rs.getString(3));
+				memberVo.setName(rs.getString(4));
+				memberVo.setNickname(rs.getString(5));
+				memberVo.setPhone(rs.getString(6));
+				memberVo.setBirth(rs.getString(7));
+				memberVo.setEmail(rs.getString(8));
+				memberVo.setAddr(rs.getString(9));
+				memberVo.setMdate(rs.getString(10));
+				
+				list.add(memberVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	/**
+	 * select - 회원 전체 리스트(관리자) / 페이징
+	 */
+	public ArrayList<MemberVo> select(int startCount, int endCount) {
+		ArrayList<MemberVo> list = new ArrayList<MemberVo>();
+		
+		String sql = "select rno,mid,pass,name,nickname,phone,birth,email,addr,mdate\n" + 
+				"from (select rownum rno,mid,pass,name,nickname,phone,to_char(to_date(birth),'yyyy-mm-dd') birth,email,addr,to_char(mdate,'yyyy-mm-dd') mdate\n" + 
+				"          from(select mid,pass,name,nickname,phone,birth,email,addr,mdate \n" + 
+				"                    from pcp_member \n" + 
+				"                    order by mdate))\n" + 
+				"where rno between ? and ?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setInt(1, startCount);
+			pstmt.setInt(2, endCount);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
