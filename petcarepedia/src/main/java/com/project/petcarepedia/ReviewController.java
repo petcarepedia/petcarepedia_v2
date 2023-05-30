@@ -39,6 +39,7 @@ public class ReviewController {
 
 	@RequestMapping(value="/review_main.do", method=RequestMethod.GET)
 	public ModelAndView review_main(String page) {
+		int count = 0;
 		ModelAndView model = new ModelAndView();		
 		ReviewDao reviewDao = new ReviewDao();
 
@@ -47,7 +48,7 @@ public class ReviewController {
 		int endCount = 0;
 		int pageSize = 7;	//한페이지당 게시물 수
 		int reqPage = 1;	//요청페이지	
-		int pageCount = 10;	//전체 페이지 수
+		int pageCount = 7;	//전체 페이지 수
 		int dbCount = reviewDao.totalRowCount();	//DB에서 가져온 전체 행수
 		
 		//총 페이지 수 계산
@@ -55,7 +56,7 @@ public class ReviewController {
 		if(dbCount % pageSize == 0){
 			pageCount = dbCount/pageSize;
 		}else{
-			pageCount = dbCount/pageSize;
+			pageCount = dbCount/pageSize+1;
 		}
 		*/
 		//요청 페이지 계산
@@ -63,13 +64,15 @@ public class ReviewController {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage-1) * pageSize+1; 
 			endCount = reqPage *pageSize;
+			count++;
 		}else{
 			startCount = 1;
 			endCount = 7;
 		}
 		
 		ArrayList<ReviewVo> list = reviewDao.selectList(startCount, endCount);
-
+		
+		model.addObject("count", count);
 		model.addObject("list", list);
 		model.addObject("totals", dbCount);
 		model.addObject("pageSize", pageSize);
@@ -225,7 +228,7 @@ public class ReviewController {
 		int endCount = 0;
 		int pageSize = 7;	//한페이지당 게시물 수
 		int reqPage = 1;	//요청페이지	
-		int pageCount = 10;	//전체 페이지 수
+		int pageCount = 7;	//전체 페이지 수
 		int dbCount = reviewDao.SearchRowCount(filter_location);	//DB에서 가져온 전체 행수
 		
 		//총 페이지 수 계산

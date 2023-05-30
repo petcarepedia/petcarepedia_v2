@@ -45,6 +45,7 @@
 		</div>
 		<section id="filter">	
 		<div id="filter_page" class="review">
+		<input type="hidden" id="count" value="${count }">
 			<p>상세검색</p>
 			<form name="ReviewSearchForm" action="review_main_search.do" method="get">
 				<table id="filter_lo" class="filter">
@@ -98,7 +99,7 @@
 						<span><a href="login.do">리뷰쓰기 ></a></span>
 					</c:when>
 					<c:otherwise>
-						<span><a href="review_write.do?mid=${mid }">리뷰쓰기 ></a></span>
+						<span><a href="reservation2.do?mid=${mid }">리뷰쓰기 ></a></span>
 					</c:otherwise>
 				</c:choose>
 			</div>

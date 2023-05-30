@@ -92,6 +92,9 @@
 						<a href="review_revise.do?rid=${reviewVo.rid }"><button type="button" class="button">수정</button></a>
 						<a href="review_delete.do?rid=${reviewVo.rid }"><button type="button" class="button">삭제</button></a>
 						<c:choose>
+							<c:when test="${page eq null }">
+								<a href="review_main.do"><button type="button" class="button">목록</button></a>
+							</c:when>
 							<c:when test="${filter_location eq null }">
 								<a href="review_main.do?page=${page }"><button type="button" class="button">목록</button></a>
 							</c:when>
@@ -104,6 +107,9 @@
 				<c:otherwise>
 					<div class="rc_button_r">
 						<c:choose>
+							<c:when test="${page eq null }">
+								<a href="review_main.do"><button type="button" class="button">목록</button></a>
+							</c:when>
 							<c:when test="${filter_location eq null }">
 								<a href="review_main.do?page=${page }"><button type="button" class="button">목록</button></a>
 							</c:when>

@@ -370,14 +370,15 @@ public class ReviewDao extends DBConn {
 	 */
 	public int insert(ReviewVo reviewVo) {
 		int result = 0;
-		String sql = "insert into pcp_review(rid, rcontent, rdate, rlike, rstar, rstate, mid, hid )"
-				+ " values('R_'||ltrim(to_char(sequ_pcp_review_rid.nextval,'0000')),?,sysdate,0,?,'X',?,?)";
+		String sql = "insert into pcp_review(rid, rcontent, rdate, rlike, rstar, rstate, mid, hid,bid )"
+				+ " values('R_'||ltrim(to_char(sequ_pcp_review_rid.nextval,'0000')),?,sysdate,0,?,'X',?,?,?)";
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, reviewVo.getRcontent());
 			pstmt.setFloat(2, reviewVo.getRstar());
 			pstmt.setString(3, reviewVo.getMid());
 			pstmt.setString(4, reviewVo.getHid());
+			pstmt.setString(5, reviewVo.getBid());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -515,8 +516,8 @@ public class ReviewDao extends DBConn {
 	//³»°¡ ¾´ ¸®ºä 
 	public ArrayList<ReviewVo> my_select(String mid) {
 		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
-		String sql = "select h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid\r\n" + 
-				"from pcp_review r, pcp_member m, pcp_hospital h where r.mid = m.mid and h.hid = r.hid and r.mid = ?";
+		String sql = "select h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid\r\n" + 
+				"from pcp_review r, pcp_member m, pcp_hospital h where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = ?";
 		getPreparedStatement(sql);
 		
 		try {
@@ -530,6 +531,7 @@ public class ReviewDao extends DBConn {
 				reviewVo.setGloc(rs.getString(4));
 				reviewVo.setRcontent(rs.getString(5));
 				reviewVo.setRid(rs.getString(6));
+				reviewVo.setBid(rs.getString(7));
 				list.add(reviewVo);
 			}
 		}catch (Exception e) {
