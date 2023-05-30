@@ -2,38 +2,26 @@ package com.project.petcarepedia;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.dao.NoticeDao;
+import com.project.service.NoticeService;
 import com.project.vo.NoticeVo;
 
 @Controller
 public class NoticeController {
 	
-	/*
-	// admin_norice.do 관리자 공지사항 리스트 페이지
-	@RequestMapping(value="/admin_notice.do", method=RequestMethod.GET)
-	public ModelAndView admin_notice() {
-		ModelAndView model = new ModelAndView();
-		NoticeDao noticeDao = new NoticeDao();
-		ArrayList<NoticeVo> noticeList = noticeDao.select();
-		
-		model.addObject("noticeList", noticeList);
-		model.setViewName("/admin/notice/admin_notice");
-		
-		return model;
-	}
-	*/
-
+	@Autowired
+	private NoticeService noticeService;
+	
 	//notice.do 관리자 공지사항 리스트 페이징
 
 	@RequestMapping(value="/admin_notice.do", method=RequestMethod.GET)
 	public ModelAndView admin_notice(String page) {
 		ModelAndView model = new ModelAndView();		
-		NoticeDao noticeDao = new NoticeDao();
 		
 		//페이징 처리 - startCount, endCount 구하기
 		int startCount = 0;
@@ -41,7 +29,7 @@ public class NoticeController {
 		int pageSize = 10;	//한페이지당 게시물 수
 		int reqPage = 1;	//요청페이지	
 		int pageCount = 1;	//전체 페이지 수
-		int dbCount = noticeDao.totalRowCount();	//DB에서 가져온 전체 행수
+		int dbCount = noticeService.getTotalPageCount();	//DB에서 가져온 전체 행수
 		
 		//총 페이지 수 계산
 		if(dbCount % pageSize == 0){
@@ -60,7 +48,7 @@ public class NoticeController {
 			endCount = 10;
 		}
 		
-		ArrayList<NoticeVo> list = noticeDao.select(startCount, endCount);
+		ArrayList<NoticeVo> list = noticeService.getListPage(startCount, endCount);
 	
 		model.addObject("list", list);
 		model.addObject("totals", dbCount);
@@ -80,8 +68,7 @@ public class NoticeController {
 	@RequestMapping(value="/admin_notice_content.do", method=RequestMethod.GET)
 	public ModelAndView admin_notice_content(String nid) {
 		ModelAndView model = new ModelAndView();
-		NoticeDao noticeDao = new NoticeDao();
-		NoticeVo noticeVo = noticeDao.enter_select(nid);
+		NoticeVo noticeVo = noticeService.getEnterContent(nid);
 		
 		model.addObject("noticeVo", noticeVo);
 		model.setViewName("/admin/notice/admin_notice_content");
@@ -99,8 +86,7 @@ public class NoticeController {
 	@RequestMapping(value="/admin_notice_write_proc.do", method=RequestMethod.POST)
 	public String admin_notice_write_proc(NoticeVo noticeVo) {
 		String viewName = "";
-		NoticeDao noticeDao = new NoticeDao();
-		int result = noticeDao.insert(noticeVo);
+		int result = noticeService.getInsert(noticeVo);
 		if(result == 1) {
 			viewName = "redirect:/admin_notice.do";
 		}
@@ -117,8 +103,7 @@ public class NoticeController {
 	public ModelAndView admin_notice_update(String nid) {
 		ModelAndView model = new ModelAndView();
 		
-		NoticeDao noticeDao = new NoticeDao();
-		NoticeVo noticeVo = noticeDao.select(nid);
+		NoticeVo noticeVo = noticeService.getContent(nid);
 
 		model.addObject("noticeVo", noticeVo);
 		model.setViewName("/admin/notice/admin_notice_update");
@@ -131,8 +116,7 @@ public class NoticeController {
 	@RequestMapping(value="/admin_notice_update_proc.do", method=RequestMethod.POST)
 	public ModelAndView admin_notice_update_proc(NoticeVo noticeVo) {
 		ModelAndView model = new ModelAndView();
-		NoticeDao noticeDao = new NoticeDao();
-		int result = noticeDao.update(noticeVo);
+		int result = noticeService.getUpdate(noticeVo);
 		
 		if(result == 1) {
 			model.setViewName("redirect:/admin_notice.do");
@@ -157,8 +141,8 @@ public class NoticeController {
 	@RequestMapping(value="/admin_notice_delete_proc.do", method=RequestMethod.POST)
 	public ModelAndView admin_notice_delete_proc(String nid) {
 		ModelAndView model = new ModelAndView();
-		NoticeDao noticeDao = new NoticeDao();
-		int result = noticeDao.delete(nid);
+		int result = noticeService.getDelete(nid);
+		
 		if(result == 1) {
 			model.setViewName("redirect:/admin_notice.do");
 		}
@@ -174,7 +158,6 @@ public class NoticeController {
 	@RequestMapping(value="/notice.do", method=RequestMethod.GET)
 	public ModelAndView notice(String page) {
 		ModelAndView model = new ModelAndView();		
-		NoticeDao noticeDao = new NoticeDao();
 		
 		//페이징 처리 - startCount, endCount 구하기
 		int startCount = 0;
@@ -182,7 +165,7 @@ public class NoticeController {
 		int pageSize = 10;	//한페이지당 게시물 수
 		int reqPage = 1;	//요청페이지	
 		int pageCount = 1;	//전체 페이지 수
-		int dbCount = noticeDao.totalRowCount();	//DB에서 가져온 전체 행수
+		int dbCount = noticeService.getTotalPageCount();	//DB에서 가져온 전체 행수
 		
 		//총 페이지 수 계산
 		if(dbCount % pageSize == 0){
@@ -201,7 +184,7 @@ public class NoticeController {
 			endCount = 10;
 		}
 		
-		ArrayList<NoticeVo> list = noticeDao.select(startCount, endCount);
+		ArrayList<NoticeVo> list = noticeService.getListPage(startCount, endCount);
 	
 		model.addObject("list", list);
 		model.addObject("totals", dbCount);
@@ -221,12 +204,11 @@ public class NoticeController {
 	@RequestMapping(value="/notice_content.do", method=RequestMethod.GET)
 	public ModelAndView notice_content(String nid) {
 		ModelAndView model = new ModelAndView();
-		NoticeDao noticeDao = new NoticeDao();
-		NoticeVo noticeVo = noticeDao.enter_select(nid);
+		NoticeVo noticeVo = noticeService.getEnterContent(nid);
 		
 		if(noticeVo != null) {
 			// 조회수 업데이트 DB
-			noticeDao.updateHits(nid);
+			noticeService.getUpdateHits(nid);
 		}
 		model.addObject("noticeVo", noticeVo);
 		model.setViewName("/notice/notice_content");
