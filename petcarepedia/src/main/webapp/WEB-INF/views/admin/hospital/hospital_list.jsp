@@ -23,12 +23,12 @@
 				<div>
 					<nav>
 						<ul>
-							<li>병원관리</li>
+							<li>회원관리</li>
 							<li><a href = "http://localhost:9000/petcarepedia/hospital_list.do">병원 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/member/member_list.do">회원 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/reserve/reserve_list.do">예약 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/review/review_list.do">신고 리뷰 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/admin_notice/admin_notice.do">공지 사항 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/member_list.do">회원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/reserve_list.do">예약 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/review_list.do">신고 리뷰 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/login.do">나가기</a></li>
 						</ul>
 					</nav>

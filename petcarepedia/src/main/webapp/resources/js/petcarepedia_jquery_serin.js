@@ -4,7 +4,7 @@ $(document).ready(function(){
 	/*************************
 	 * 병원 - 수정
 	 **************************/
-	$("#btn_save").click(function(){
+	$("#btn_update").click(function(){
 			if($("#hname").val()==""){
 				alert("병원명을 입력해주세요");
 				$("#hname").focus();
@@ -84,6 +84,44 @@ $(document).ready(function(){
 			}
 		});
 	
+	/*************************
+	 * 예약 - 회원 아이디 검색창
+	 **************************/
+  $("#reserve_search_btn").click(function(){
+  	if($("#reserve_search_bar").val() ==""){
+			alert("회원아이디를 입력해주세요"); 
+			$("#reserve_search_bar").focus();
+			return false;
+		}else{	
+				$.ajax({
+					url:"http://localhost:9000/petcarepedia/reserve_list_data.do?rid="+$("#reserve_search_bar").val(), 
+					success:function(result){
+					let jdata = JSON.parse(result);
+					//alert(result);
+					let output = "<table class='table'>";						
+						output += "<tr><th>번호</th><th>병원명</th><th>아이디</th><th>예약일</th><th>상태</th></tr>";						
+						for(obj of jdata.jlist){
+							output += "<tr>";
+							output += "<td>"+ obj.rno +"</td>";
+							output += "<td>"+ obj.hname +"</td>";
+							output += "<td>"+ obj.mid +"</td>";
+							output += "<td>"+ obj.rdate +"</td>";
+							output += "<td>"+ obj.rdate +"</td>";
+							output += "</tr>";						
+							}//for
+							
+						output +="<tr><td colspan='6' class='number'>  1  2  3  4  5  6  7  8  9  10  </td></tr>";
+						output +="</table>";
+						
+						$("table.table").remove();
+						$("#d2").after(output);
+						
+					}//success
+					
+				});//ajax
+		}//else
+					
+  	});//function
 	/*************************
 	 * 회원 - 회원 아이디 검색창
 	 **************************/
