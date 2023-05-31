@@ -108,7 +108,7 @@ public class SearchController {
 		int result = bookingDao.insert(bookingVo);
 		
 		if(result == 1) {
-			viewName = "redirect:/reservation.do";
+			viewName = "redirect:/reservation.do?mid=hong";
 		} else {
 			// 실패 - 에러페이지 호출
 			System.out.println("error");

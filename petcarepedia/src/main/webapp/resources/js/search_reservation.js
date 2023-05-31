@@ -4,7 +4,6 @@ $(document).ready(function() {
   var currentYear = currentDate.getFullYear();
   var currentMonth = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
   var currentDay = currentDate.getDate();
-  console.log("현재시간: " + currentDate);
 
   /* 날짜 출력 */
   moment.locale("ko"); // 한글 로케일 설정
@@ -41,6 +40,10 @@ $(document).ready(function() {
         // 선택된 날짜 스타일 변경
         dateElements.find("input").removeClass("selected-date");
         $(this).addClass("selected-date");
+        	
+        /** 다른 날짜 선택 시 시간 초기화 **/
+		$("#vtime").val("");
+		$(".stime").removeClass("selected");
         
         // 선택된 날짜 전역 변수에 저장
         selectedDate = clickedDate;
@@ -192,6 +195,33 @@ $(document).ready(function() {
 		var selectedTime = $(this).text();
 		$("#vtime").val(selectedTime);
 	});
+	
+
+	/** 날짜 먼저 선택하기 **/
+	$(".rtime").on("click", ".stime", function() {	
+		if($("#vdate").val() == ""){
+			alert("날짜를 먼저 선택해 주세요");
+			$("#vtime").val("");
+			$(".stime").removeClass("selected");
+			return false;
+		}
+	});
+	
+	
+	/** form submit 순서 **/
+		$("#check").click(function(){
+		if($("#vdate").val() == ""){
+			alert("날짜를 선택해 주세요");
+			return false;
+		} else if($("#vtime").val()=="") {
+			alert("시간을 선택해 주세요");
+			return false;
+		} else {
+			//서버전송
+			joinForm.submit();
+		}
+	});	//check
+	
 	
 	
 
