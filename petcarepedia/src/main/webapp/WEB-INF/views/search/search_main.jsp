@@ -15,6 +15,18 @@
 	<!-- <script src="http://localhost:9000/petcarepedia/js/search_main.js"></script> -->
 	<script src="http://localhost:9000/petcarepedia/js/search_filter.js"></script>
 	
+	<script>
+	$(document).ready(function(){
+		let shname = "${shname}";
+		let output = "<p style='margin-top:15px; font-size:14px; display:inline-block'><strong>'${shname}'</strong> 검색 결과 <strong>${size}</strong>건</p>";
+		output += "<a href='http://localhost:9000/petcarepedia/search_main.do' style='margin-left:10px; ";
+		output += "font-size:12px; color:lightgray;'>병원목록 새로고침</a>";
+		if(shname!=""){
+			$("h1.title").after(output);
+		}
+	});
+</script>
+	
 </head>
 
 <body>
