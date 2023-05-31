@@ -177,8 +177,19 @@ public class MemberDao extends DBConn{
 				memberVo.setPass(rs.getString(2));
 				memberVo.setName(rs.getString(3));
 				memberVo.setNickname(rs.getString(4));
+				
 				memberVo.setPhone(rs.getString(5));
+				String[] phoneArray = rs.getString(5).split("-");
+				memberVo.setPhone1(phoneArray[0]);
+				memberVo.setPhone2(phoneArray[1]);
+				memberVo.setPhone3(phoneArray[2]);
+				
 				memberVo.setBirth(rs.getString(6));
+				String[] birthArray = rs.getString(6).split("-");
+				memberVo.setBirth1(birthArray[0]);
+				memberVo.setBirth2(birthArray[1]);
+				memberVo.setBirth3(birthArray[2]);
+				
 				memberVo.setEmail(rs.getString(7));
 				memberVo.setAddr(rs.getString(8));
 				memberVo.setMdate(rs.getString(9));
