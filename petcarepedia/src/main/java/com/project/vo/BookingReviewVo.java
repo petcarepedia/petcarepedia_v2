@@ -1,7 +1,15 @@
 package com.project.vo;
 
 public class BookingReviewVo {
-	String bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink;
+	String bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img;
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
 
 	public String getBid() {
 		return bid;

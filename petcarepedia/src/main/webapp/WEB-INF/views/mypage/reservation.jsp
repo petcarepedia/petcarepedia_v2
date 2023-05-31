@@ -49,7 +49,7 @@
 				<section id = "section2">
 					<c:forEach var = "bookingVo" items = "${list}">
 						<div id = "aside1">
-							<img src = "http://localhost:9000/petcarepedia/images/hos.png">
+							<img src = "${bookingVo.img}">
 							<div>
 								<span>서울시 > ${bookingVo.gloc}</span>
 								<span>${bookingVo.hname}</span>

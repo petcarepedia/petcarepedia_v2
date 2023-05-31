@@ -18,7 +18,7 @@
 		<section id = "review_write">
 			<h1 id = "title">리뷰쓰기</h1>
 			<hr>
-			<form name="writeForm" action="review_write_proc.do" method="get">
+			<form name="writeForm" action="review_write_proc.do" method="post">
 			<input type = "hidden" name = "mid" value = "${mid}">
 			<input type = "hidden" name = "hid" value = "${hid}">
 			<input type = "hidden" name = "bid" value = "${bid}">
@@ -68,7 +68,7 @@
 						<img src = "http://localhost:9000/petcarepedia//images/star.png">
 						<img src = "http://localhost:9000/petcarepedia//images/star.png"> -->
 					</section>
-					<textarea name="rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)" minlength = "30" maxlength="50"></textarea>
+					<textarea name="rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)" minlength = "90" maxlength="150"></textarea>
 					<button type = "button" id = "cancle">취소</button>
 					<button type = "button" id = "btnReviewWrite">작성완료</button>
 				</div>
