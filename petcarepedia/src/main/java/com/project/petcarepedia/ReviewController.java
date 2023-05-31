@@ -20,11 +20,10 @@ public class ReviewController {
 	//review_main.do 리뷰 리스트 페이징
 
 	@RequestMapping(value="/review_main.do", method=RequestMethod.GET)
-	public ModelAndView review_main(String page) {
+	public ModelAndView review_main(String page, String mid) {
 		int count = 0;
 		ModelAndView model = new ModelAndView();		
 		ReviewDao reviewDao = new ReviewDao();
-
 		//페이징 처리 - startCount, endCount 구하기
 		int startCount = 0;
 		int endCount = 0;
@@ -32,6 +31,10 @@ public class ReviewController {
 		int reqPage = 1;	//요청페이지	
 		int pageCount = 7;	//전체 페이지 수
 		int dbCount = reviewDao.totalRowCount();	//DB에서 가져온 전체 행수
+		
+		//임시 아이디
+		mid = "hong";
+		
 		
 		//총 페이지 수 계산
 		/*
@@ -54,6 +57,7 @@ public class ReviewController {
 		
 		ArrayList<ReviewVo> list = reviewDao.selectList(startCount, endCount);
 		
+		model.addObject("mid", mid);
 		model.addObject("count", count);
 		model.addObject("list", list);
 		model.addObject("totals", dbCount);
@@ -73,24 +77,22 @@ public class ReviewController {
 	
 	//review_content.do 리뷰 상세 페이지
 	@RequestMapping(value="/review_content.do", method=RequestMethod.GET)
-	public ModelAndView review_content(String rid, String page, String filter_location) {
+	public ModelAndView review_content(String rid, String page, String mid, String filter_location)  {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
 		ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
-		ReviewVo reviewVo = reviewDao.enter_select(rid);
 		
-		MemberDao memberDao = new MemberDao();
-		MemberVo member = memberDao.select("hong");
-		
+		ReviewVo reviewVo = reviewDao.enter_select(rid);		
 		reviewLikeVo.setRid(reviewVo.getRid());
-		reviewLikeVo.setMid(member.getMid());
+		reviewLikeVo.setMid(mid);
+		
 		int likeCheck = reviewDao.idCheck(reviewLikeVo);
 		
+		model.addObject("mid", mid);
 		model.addObject("page", page);
 		model.addObject("filter_location", filter_location);
 		model.addObject("likeCheck", likeCheck);
 		model.addObject("reviewLikeVo", reviewLikeVo);
-		model.addObject("member", member);
 		model.addObject("reviewVo", reviewVo);
 		model.setViewName("/review/review_content");
 		
@@ -152,9 +154,10 @@ public class ReviewController {
 	
 	//리뷰 좋아요 처리
 	@RequestMapping(value="/review_like_Proc.do", method=RequestMethod.POST)
-	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo, String page, String filter_location) {
+	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo, String mid, String page, String filter_location) {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
+		reviewLikeVo.setMid(mid);
 		
 		if(reviewDao.idCheck(reviewLikeVo) == 1) {
 			reviewDao.LikesDownID(reviewLikeVo);
@@ -170,7 +173,7 @@ public class ReviewController {
 		if(page != "") {
 			model.addObject("page", page);
 		}
-		
+		model.addObject("mid", mid);
 		model.setViewName("redirect:/review_content.do?rid="+reviewLikeVo.getRid());
 		
 		return model;

@@ -116,7 +116,7 @@
 								</div>
 							</li>
 								<li id="list_middle" class="list">
-									<a href="review_content.do?rid=${list.rid }&&page=${page}&&filter_location=${filter_location}">
+									<a href="review_content.do?rid=${list.rid }&&page=${page}&&mid=${mid }&&filter_location=${filter_location}">
 										<div id="review_hname">${list.hname }</div>
 										<div>
 											${list.rcontent }

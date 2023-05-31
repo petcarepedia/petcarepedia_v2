@@ -38,7 +38,7 @@
 				<div class="table_right">
 					<div id="right_top">
 						<c:choose>
-							<c:when test="${reviewVo.mid eq member.mid}">
+							<c:when test="${reviewVo.mid eq mid}">
 								<button type="button" id="btnLike" disabled>
 									<span class="review_like">
 										♥️
@@ -49,7 +49,7 @@
 							<c:otherwise>
 								<form name="reviewLikeForm" action="review_like_Proc.do" method="post">
 									<input type="hidden" id="rid" name="rid" value="${reviewLikeVo.rid }">
-									<input type="hidden" id="mid" name="mid" value="${reviewLikeVo.mid }">
+									<input type="hidden" id="mid" name="mid" value="${mid }">
 									<input type="hidden" id="page" name="page" value="${page }">
 									<input type="hidden" id="filter_location" name="filter_location" value="${filter_location }">
 									<button type="submit" id="btnLikeProc">
