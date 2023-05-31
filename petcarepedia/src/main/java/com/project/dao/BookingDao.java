@@ -2,6 +2,7 @@ package com.project.dao;
 
 import java.util.ArrayList;
 
+import com.project.vo.BookingReviewVo;
 import com.project.vo.BookingVo;
 
 public class BookingDao extends DBConn {
@@ -105,9 +106,9 @@ public class BookingDao extends DBConn {
 	public ArrayList<BookingVo> search1(String mid) {
 		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
 
-		String sql = "SELECT B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, R.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, "
-						+ "	H.HRINK FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_REVIEW "
-						+ " WHERE B.HID = H.HID AND B.BID <> R.BID AND B.MID = ? and VDATE <= SYSDATE";
+		String sql = "select B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, B.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, H.HRINK\r\n"
+						+ "from pcp_review r, pcp_booking b, pcp_hospital h, pcp_member m where r.bid(+) = b.bid and "
+						+ " b.hid = h.hid and b.mid = m.mid and b.mid = ? and vdate <= sysdate and r.BID is null";
 		
 		getPreparedStatement(sql);
 
@@ -186,7 +187,7 @@ public class BookingDao extends DBConn {
 	public ArrayList<BookingReviewVo> search3(String mid) {
 		ArrayList<BookingReviewVo> list2 = new ArrayList<BookingReviewVo>();
 		String sql = "SELECT B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, R.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, "
-					+ " H.HRINK FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_REVIEW"
+					+ " H.HRINK FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_REVIEW R"
 					+ " WHERE B.HID = H.HID AND B.BID = R.BID AND B.MID = ? and VDATE <= SYSDATE";
 		getPreparedStatement(sql);
 		try {

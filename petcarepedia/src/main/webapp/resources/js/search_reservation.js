@@ -1,17 +1,19 @@
 $(document).ready(function() {
+  /* 시간 변수 */
+  var currentDate = new Date(); // 현재 날짜와 시간 가져오기
+  var currentYear = currentDate.getFullYear();
+  var currentMonth = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
+  var currentDay = currentDate.getDate();
+  console.log("현재시간: " + currentDate);
 
-  
-/*******************************************
-	date
-********************************************/
+  /* 날짜 출력 */
   moment.locale("ko"); // 한글 로케일 설정
-
   var currentDate = moment(); // moment.js를 사용하여 현재 날짜 생성
   var startDate = moment(currentDate); // 시작 날짜 설정
 
-  var dateElements = $(".sdate");
-  var prevButton = $("#prev");
-  var nextButton = $("#next");
+  var dateElements = $(".sdate"); // span
+  var prevButton = $("#prev"); // 이전 버튼
+  var nextButton = $("#next"); // 다음 버튼
 
   var datesPerPage = 5; // 페이지당 출력되는 날짜 수
   var currentPage = 1; // 현재 페이지 번호
@@ -19,11 +21,15 @@ $(document).ready(function() {
 
   var currentDateIndex = 0; // 현재 표시 중인 날짜 인덱스
   var selectedDate = ""; // 선택된 날짜 저장 변수
+  var firstFormattedDate = ""; // 첫 번째 날짜 함수 변수
 
   // 초기 날짜 표시
   function generateDates() {
     for (var i = 0; i < dateElements.length; i++) {
       var formattedDate = startDate.format("MM.DD(ddd)");
+      if (i === 0) {
+        firstFormattedDate = formattedDate; // 첫 번째 formattedDate 저장
+      }
       var inputElement = dateElements.eq(i).find("input");
       inputElement.val(formattedDate);
 
@@ -36,8 +42,32 @@ $(document).ready(function() {
         dateElements.find("input").removeClass("selected-date");
         $(this).addClass("selected-date");
         
-        // 선택된 날짜 저장
+        // 선택된 날짜 전역 변수에 저장
         selectedDate = clickedDate;
+        
+        // 오늘 날짜 선택 시
+        if(currentDate2 === selectedDate) {
+			// alert("시간 바꾸기");
+			
+			// console.log("nowTime : " + nowTime);
+			// console.log("timeSlots2 : " + timeSlots2[15]);
+			
+			for (var i = 0; i < timeSlots2.length; i++) {
+				var convertedNowTime = parseInt(nowTime);
+				var convertedTimeSlot = parseInt(timeSlots2[i]);
+    
+			    if (convertedNowTime > convertedTimeSlot) {
+			      $(".stime").eq(i).css("background", "#D9D9D9"); // 해당 인덱스의 요소에 css
+			      $(".stime").eq(i).css("pointer-events", "none"); // 해당 인덱스의 요소에 css
+			      $(".stime").eq(i).css("cursor", "no-drop"); // 해당 인덱스의 요소에 css
+			    } 
+				
+			}
+		}	else {
+			  $(".stime").css("background", ""); // 모든 요소의 배경색 초기화
+			  $(".stime").css("pointer-events", ""); // 모든 요소의 pointer-events 초기화
+			  $(".stime").css("cursor", ""); // 모든 요소의 cursor 초기화
+			}
       });
 
       startDate.add(1, "days");
@@ -74,132 +104,99 @@ $(document).ready(function() {
 
     for (var i = 0; i < datesPerPage; i++) {
       var index = currentDateIndex + i;
+
       if (index >= 0 && index < totalDates) {
         var formattedDate = moment(currentDate).add(index, "days").format("MM.DD(ddd)");
         var inputElement = dateElements.eq(i).find("input");
         inputElement.val(formattedDate);
-        
-      // 선택된 날짜인 경우 스타일 변경
+
+        // 선택된 날짜인 경우 스타일 변경
         if (formattedDate === selectedDate) {
           inputElement.addClass("selected-date");
         }
       }
     }
   }
-  
-  
-  
 
   // 초기 날짜 표시
   generateDates();
+	
+	
+	/* 시간 출력 */
+	var today = new Date();
+	var hours = ('0' + today.getHours()).slice(-2);
+	var minutes = ('0' + today.getMinutes()).slice(-2);
+	
+	var months = ('0' + (today.getMonth() + 1)).slice(-2);
+	var days = ('0' + today.getDate()).slice(-2);
+	
+	var nowTime = hours + minutes;
+	var nowDate = months + days;
+	
+	
+	$("input#nowdate").val(nowDate);
+	$("input#now").val(nowTime);
+	
+	var currentDate2 = currentDate.format("MM.DD(ddd)");
+
+	/* 시간 출력 */
+	// 시작 시간과 끝 시간 가져오기
+	var startTime = $("#startTime").val();
+	var endTime = $("#endTime").val();
+
+	// 시작 시간과 끝 시간을 Date 객체로 변환
+	var startDate = new Date(currentYear + "/" + currentMonth + "/" + currentDay + " " + startTime);
+	var endDate = new Date(currentYear + "/" + currentMonth + "/" + currentDay + " " + endTime);
+
+	// 30분 간격으로 시간 슬롯 생성
+	var currentTime = startDate;
+	var timeSlots = [];
+	var timeSlots2 = [];
+
+	while (currentTime <= endDate) {
+		var formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+		var formattedTime2 = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+		var timeWithoutColon = formattedTime2.replace(':', '');
+
+		timeSlots.push(formattedTime); // timeSlots에 배열 저장
+		timeSlots2.push(timeWithoutColon); // timeSlots2에 배열 저장
+
+		currentTime.setMinutes(currentTime.getMinutes() + 30);
+	}
   
-  ///시간 선택
-  
-  
-var today = new Date();
-var hours = ('0' + today.getHours()).slice(-2);
-var minutes = ('0' + today.getMinutes()).slice(-2);
+	// 시간 슬롯을 화면에 표시
+	var timeContainer = $(".rtime");
+	timeContainer.empty(); // 기존 내용 초기화
+	
+	// 날짜 시간 생성하기
+	
+	for (var i = 0; i < timeSlots.length; i++) {
+		var timeSlot = timeSlots[i];
+		
+		var timeElement = $("<span>", { class: "stime" }).append(
+		$("<input>", { type: "hidden", name: "stime", value: timeSlot }),timeSlot);
+		
+		timeContainer.append(timeElement);
+	}
+	
+	
+	
+	// 클릭이벤트
+	$(".rtime").on("click", ".stime", function() {
+		// 선택된 시간 슬롯 요소에 스타일을 적용
+		$(".stime").removeClass("selected");
+		$(this).addClass("selected");
+		
+			
+		// 선택된 시간 출력
+		var selectedTime = $(this).text();
+		$("#vtime").val(selectedTime);
+	});
+	
+	
 
-var years = today.getFullYear().toString().slice(-2);
-var months = ('0' + (today.getMonth() + 1)).slice(-2);
-var days = ('0' + today.getDate()).slice(-2);
-
-var nowTime = hours + minutes;
-var nowDate = months + days;
-
-console.log(nowTime);
-
-$("input#nowdate").val(nowDate);
-$("input#now").val(nowTime);
-
-var currentDate2 = currentDate.format("MMDD");
-console.log(currentDate2);
-
-/*******************************************
-	time 
-********************************************/
- // 시작 시간과 끝 시간 가져오기
-  var startTime = $("#startTime").val();
-  var endTime = $("#endTime").val();
-
-  // 시작 시간과 끝 시간을 Date 객체로 변환
-  
-var currentDate = new Date(); // 현재 날짜와 시간 가져오기
-var currentYear = currentDate.getFullYear();
-var currentMonth = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
-var currentDay = currentDate.getDate();
-
-var startDate = new Date(currentYear + "/" + currentMonth + "/" + currentDay + " " + startTime);
- var endDate = new Date(currentYear + "/" + currentMonth + "/" + currentDay + " " + endTime);
-
-    	
- // 30분 간격으로 시간 슬롯 생성
-  var currentTime = startDate;
-  var timeSlots = [];
-
-  while (currentTime <= endDate) {
-    var formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    var formattedTime2 = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-    //var timeWithoutColon = formattedTime2.replace(':', '');
-    
-    
-      timeSlots.push(formattedTime);
-  
-    currentTime.setMinutes(currentTime.getMinutes() + 30);
-  }
-  
-  // 시간 슬롯을 화면에 표시
-  var timeContainer = $(".rtime");
-  timeContainer.empty(); // 기존 내용 초기화
-  
-  for (var i = 0; i < timeSlots.length; i++) {
-    var timeSlot = timeSlots[i];
-  
-    var timeElement = $("<span>", { class: "stime" }).append(
-      $("<input>", { type: "hidden", name: "stime", value: timeSlot }),
-      timeSlot
-    );
-    
-    
-    timeContainer.append(timeElement);
-  }
-  
-  
-  // 클릭이벤트
-$(".rtime").on("click", ".stime", function() {
-    // 선택된 시간 슬롯 요소에 스타일을 적용
-    $(".stime").removeClass("selected");
-    $(this).addClass("selected");
-    
-    // 선택된 시간 출력
-    var selectedTime = $(this).text();
-    $("#vtime").val(selectedTime);
-  });
-  
-        //// 첫날 클릭시 클래스 추가
-        // 첫 번째 페이지의 첫 번째 날짜 선택 --> 수정할 부분
-        var isFirstPage = dateElements.eq(0).find("input");
-        
-var clickOne = $(".sdate:first");
-
-clickOne.on("click", function() {
-  alert("test");
-  var clickedInput = $(this).children("input");
-  
-  $(".stime").each(function() {
-    var timeElement = $(this).text(); // timeElement의 값 가져오기
-    var timeWithoutColon = timeElement.replace(/[^0-9]/g, ''); // 시간 값을 변환하여 timeWithoutColon에 할당
-    
-    if (parseInt(nowTime) > parseInt(timeWithoutColon)) {
-      //$(this).attr("id", "lastTime"); // id 설정
-      $(this).css("background", "#D9D9D9"); 
-      $(this).css({ "pointer-events": "none", "cursor": "no-drop" }); // 커서 클릭 금지 효과 추가
-    }
-  });
-});
-
-  
-  //  console.log("콘솔: "+timeWithoutColon);
+	
+	
 
 
-});
+}); // document
