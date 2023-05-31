@@ -517,7 +517,7 @@ public class ReviewDao extends DBConn {
 	public ArrayList<ReviewVo> my_select(String mid) {
 		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
 		String sql = "select h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid\r\n" + 
-				"from pcp_review r, pcp_member m, pcp_hospital h where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = ?";
+				"from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = ?";
 		getPreparedStatement(sql);
 		
 		try {

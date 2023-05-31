@@ -47,9 +47,11 @@
 								</button>
 							</c:when>
 							<c:otherwise>
-								<form name="LikeDownForm" action="review_like_Proc.do" method="post">
+								<form name="reviewLikeForm" action="review_like_Proc.do" method="post">
 									<input type="hidden" id="rid" name="rid" value="${reviewLikeVo.rid }">
 									<input type="hidden" id="mid" name="mid" value="${reviewLikeVo.mid }">
+									<input type="hidden" id="page" name="page" value="${page }">
+									<input type="hidden" id="filter_location" name="filter_location" value="${filter_location }">
 									<button type="submit" id="btnLikeProc">
 										<c:choose>
 											<c:when test="${likeCheck eq 1 }">

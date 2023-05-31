@@ -170,7 +170,7 @@ public class ReviewController {
 	
 	//리뷰 좋아요 처리
 	@RequestMapping(value="/review_like_Proc.do", method=RequestMethod.POST)
-	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo) {
+	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo, String page, String filter_location) {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
 		
@@ -182,6 +182,13 @@ public class ReviewController {
 			reviewDao.LikesUpID(reviewLikeVo);
 			reviewDao.LikesUp(reviewLikeVo);
 		}
+		if(filter_location != "") {
+			model.addObject("filter_location", filter_location);
+		}
+		if(page != "") {
+			model.addObject("page", page);
+		}
+		
 		model.setViewName("redirect:/review_content.do?rid="+reviewLikeVo.getRid());
 		
 		return model;
