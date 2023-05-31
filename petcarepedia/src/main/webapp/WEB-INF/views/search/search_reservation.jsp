@@ -9,10 +9,10 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_reservation.css">
 
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ko.min.js"></script>
-<script src="http://localhost:9000/petcarepedia/js/search_reservation.js"></script>
-<script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ko.min.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/search_reservation.js"></script>
+	<script>
 $(".hservation").click(function() {
 	 $("#hmodal").css("display", "block");
 	 $('input[name="hid"]').val($(this).val());
@@ -46,21 +46,20 @@ $(".hservation").click(function() {
 
 		<hr>
 	    
-	    	<div class="rtime">
-		</div>	
+	    	<div class="rtime"></div>	
 	    
 	    
 	    <!-- 영업시간 db연동 -->
-	    <input type="text" id="nowdate" name="nowdate" value="">
+	    <!-- <input type="text" id="nowdate" name="nowdate" value=""> -->
 	    <input type="text" id="now" name="now" value="">
 	    <input type="text" id="startTime" name="startTime" value="${time.start}">
 	    <input type="text" id="endTime" name="endTime" value="${time.end}">
 
 	    <form name="reservationForm" action="reservationProc.do" method="post">
-			<input type="hidden" name="hid" value="${hospital.hid}">
-			<input type="hidden" name="mid" value="hong">
-		    <input type="hidden" id="vdate" name="vdate" value="vdate">
-			<input type="hidden" id="vtime" name="vtime" value="vtime">
+			<input type="text" name="hid" value="${hospital.hid}">
+			<input type="text" name="mid" value="hong">
+		    <input type="text" id="vdate" name="vdate" value="">
+			<input type="text" id="vtime" name="vtime" value="">
 			<button id="check">확인</button>
 		</form>
 	</div>
