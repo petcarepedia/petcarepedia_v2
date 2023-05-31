@@ -79,9 +79,6 @@ public class MemberVo {
 		}
 		return phone;
 	}
-	public String getPhoneInfo() {
-		return phone;
-	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
@@ -89,9 +86,6 @@ public class MemberVo {
 		if(birth1 != "" && birth2 != "" && birth3 != "") {
 			birth = birth1 + "-" + birth2 + "-" + birth3;
 		}
-		return birth;
-	}
-	public String getBirthInfo() {
 		return birth;
 	}
 	public void setBirth(String birth) {
