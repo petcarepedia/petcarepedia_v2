@@ -47,6 +47,8 @@ public class MainController {
 		ArrayList<HospitalVo> list = hospitalDao.search(hname);
 		
 		model.addObject("list", list);
+		model.addObject("size", list.size());
+		model.addObject("shname", hname);
 		model.setViewName("/search/search_main");
 		
 		return model;
