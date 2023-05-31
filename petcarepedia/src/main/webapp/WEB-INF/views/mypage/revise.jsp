@@ -11,6 +11,14 @@
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<script>
+	$(document).ready(function(){
+		let phone1 = "${memberVo.phone1}";
+		$("#phone1").val(phone1).prop("selected", true);
+	});
+	
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -77,7 +85,7 @@
 							</li>
 							<li>
 								<label>주소</label>
-								<input type = "text" name = "addr" id = "address" placeholder = "  변경하실 주소를 입력해주세요">
+								<input type = "text" name = "addr" id = "address" placeholder = "  변경하실 주소를 입력해주세요" value="${memberVo.addr}">
 								<button type="button" class="btn_style2" id="btnSearchAddr">주소찾기</button>
 							</li>
 						</ul>

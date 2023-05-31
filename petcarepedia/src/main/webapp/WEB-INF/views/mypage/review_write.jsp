@@ -18,7 +18,7 @@
 		<section id = "review_write">
 			<h1 id = "title">리뷰쓰기</h1>
 			<hr>
-			<form name="writeForm" action="review_write_proc.do" method="post">
+			<form name="writeForm" action="review_write_proc.do" method="get">
 			<input type = "hidden" name = "mid" value = "${mid}">
 			<input type = "hidden" name = "hid" value = "${hid}">
 			<input type = "hidden" name = "bid" value = "${bid}">
