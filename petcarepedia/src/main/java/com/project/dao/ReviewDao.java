@@ -2,11 +2,13 @@ package com.project.dao;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Repository;
+
 import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
 
+@Repository
 public class ReviewDao extends DBConn {
-	
 	
 	// 리뷰와 병원 조인
 	public ArrayList<ReviewVo> RH_select(String hid) {
@@ -201,7 +203,7 @@ public class ReviewDao extends DBConn {
 	}
 	
 	
-	/* 리뷰 검색 카운트 가져오기*/
+	/* 리뷰 검색 카운트 가져오기(totalrowcount)*/
 	public int SearchRowCount(String filter_location) {
 			int count = 0;
 			String sql = "select count(*)\r\n" + 
@@ -223,80 +225,7 @@ public class ReviewDao extends DBConn {
 			
 			return count;		
 		}
-	
-	// 베스트 리뷰 리스트 3개 출력
-	public ArrayList<ReviewVo> best_select3() {
-		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
-		String sql = "select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc " + 
-				" from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc " + 
-				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc from pcp_review r, pcp_hospital h " + 
-				" where r.hid=h.hid order by r.rlike desc))" + 
-				" where rno <= 3";
-		getPreparedStatement(sql);
-		try {
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				ReviewVo list = new ReviewVo();
-				list.setRno(rs.getInt(1));
-				list.setRid(rs.getString(2));
-				list.setRcontent(rs.getString(3));
-				list.setRdate(rs.getString(4));
-				list.setRlike(rs.getInt(5));
-				list.setRstar(rs.getFloat(6));
-				list.setRstate(rs.getString(7));
-				list.setMid(rs.getString(8));
-				list.setHid(rs.getString(9));
-				list.setHname(rs.getString(10));
-				list.setAnimal(rs.getString(11));
-				list.setGloc(rs.getString(12));
-				
-				reviewList.add(list);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return reviewList;
-	}
-	
-	
-	
-	// 베스트 리뷰 리스트 9개 출력
-	public ArrayList<ReviewVo> best_select() {
-		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
-		String sql = "select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc " + 
-				" from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc " + 
-				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc from pcp_review r, pcp_hospital h " + 
-				" where r.hid=h.hid order by r.rlike desc))" + 
-				" where rno <= 9";
-		getPreparedStatement(sql);
-		try {
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				ReviewVo list = new ReviewVo();
-				list.setRno(rs.getInt(1));
-				list.setRid(rs.getString(2));
-				list.setRcontent(rs.getString(3));
-				list.setRdate(rs.getString(4));
-				list.setRlike(rs.getInt(5));
-				list.setRstar(rs.getFloat(6));
-				list.setRstate(rs.getString(7));
-				list.setMid(rs.getString(8));
-				list.setHid(rs.getString(9));
-				list.setHname(rs.getString(10));
-				list.setAnimal(rs.getString(11));
-				list.setGloc(rs.getString(12));
-				
-				reviewList.add(list);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return reviewList;
-	}
-	
-	
-	
-	
+
 	/*
 	 *  리뷰 상세보기
 	 */
@@ -375,7 +304,11 @@ public class ReviewDao extends DBConn {
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, reviewVo.getRcontent());
-			pstmt.setFloat(2, reviewVo.getRstar());
+			if(reviewVo.getRstar() == 0) {
+				pstmt.setFloat(2, 1);
+			} else {
+				pstmt.setFloat(2, reviewVo.getRstar());
+			}
 			pstmt.setString(3, reviewVo.getMid());
 			pstmt.setString(4, reviewVo.getHid());
 			pstmt.setString(5, reviewVo.getBid());
@@ -517,7 +450,7 @@ public class ReviewDao extends DBConn {
 	public ArrayList<ReviewVo> my_select(String mid) {
 		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
 		String sql = "select h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid\r\n" + 
-				"from pcp_review r, pcp_member m, pcp_hospital h where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = ?";
+				"from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = ?";
 		getPreparedStatement(sql);
 		
 		try {
