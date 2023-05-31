@@ -344,7 +344,7 @@ public class ReviewDao extends DBConn {
 	/*
 	 * ¸®ºä ½Å°í
 	 */
-	public int updateReport(String rid) {
+	public int update(String rid) {
 		int result = 0;
 		String sql = "update pcp_review set rstate='O' where rid=?";
 		getPreparedStatement(sql);

@@ -62,7 +62,7 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public int getUpdateReport(String rid) {
-		return reviewDao.updateReport(rid);
+		return reviewDao.update(rid);
 	}
 
 	@Override

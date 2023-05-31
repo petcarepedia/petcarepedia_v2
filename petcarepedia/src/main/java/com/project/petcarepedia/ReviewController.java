@@ -140,7 +140,7 @@ public class ReviewController {
 	public ModelAndView review_report_proc(String rid) {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
-		int result = reviewDao.updateReport(rid);
+		int result = reviewDao.update(rid);
 		if(result == 1) {
 			//내가 쓴 리뷰로 돌아감 (임시)
 			model.setViewName("redirect:/review_main.do");
