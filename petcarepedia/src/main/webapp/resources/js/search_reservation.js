@@ -4,7 +4,6 @@ $(document).ready(function() {
   var currentYear = currentDate.getFullYear();
   var currentMonth = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
   var currentDay = currentDate.getDate();
-  console.log("현재시간: " + currentDate);
 
   /* 날짜 출력 */
   moment.locale("ko"); // 한글 로케일 설정
@@ -21,6 +20,7 @@ $(document).ready(function() {
 
   var currentDateIndex = 0; // 현재 표시 중인 날짜 인덱스
   var selectedDate = ""; // 선택된 날짜 저장 변수
+  var selectedDate2 = ""; // 선택된 날짜 출력용 저장 변수
   var firstFormattedDate = ""; // 첫 번째 날짜 함수 변수
 
   // 초기 날짜 표시
@@ -36,14 +36,30 @@ $(document).ready(function() {
       // 날짜 클릭 이벤트 추가
       inputElement.on("click", function() {
         var clickedDate = $(this).val();
-        $("#vdate").val(clickedDate);
+        var clickedDate2 = $(this).val();
+        console.log("clickedDate: " + clickedDate);
+        
+		// 선택된 날짜를 yyyy-mm-dd 형식으로 변환
+		var parsedDate = moment(clickedDate2, "MM.DD(ddd)");
+		var formattedDate2 = parsedDate.format("YYYY-MM-DD");
+		
+		// input 값에 출력
+        $("#vdate").val(formattedDate2);
+        
 
         // 선택된 날짜 스타일 변경
         dateElements.find("input").removeClass("selected-date");
         $(this).addClass("selected-date");
+        	
+        /** 다른 날짜 선택 시 시간 초기화 **/
+		$("#vtime").val("");
+		$(".stime").removeClass("selected");
         
         // 선택된 날짜 전역 변수에 저장
         selectedDate = clickedDate;
+        
+        
+
         
         // 오늘 날짜 선택 시
         if(currentDate2 === selectedDate) {
@@ -157,13 +173,13 @@ $(document).ready(function() {
 		var formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 		var formattedTime2 = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
 		var timeWithoutColon = formattedTime2.replace(':', '');
-
+		
 		timeSlots.push(formattedTime); // timeSlots에 배열 저장
 		timeSlots2.push(timeWithoutColon); // timeSlots2에 배열 저장
 
 		currentTime.setMinutes(currentTime.getMinutes() + 30);
 	}
-  
+
 	// 시간 슬롯을 화면에 표시
 	var timeContainer = $(".rtime");
 	timeContainer.empty(); // 기존 내용 초기화
@@ -174,7 +190,7 @@ $(document).ready(function() {
 		var timeSlot = timeSlots[i];
 		
 		var timeElement = $("<span>", { class: "stime" }).append(
-		$("<input>", { type: "hidden", name: "stime", value: timeSlot }),timeSlot);
+		$("<input>", { type: "hidden", name: "stime", value: timeSlot}),timeSlot);
 		
 		timeContainer.append(timeElement);
 	}
@@ -190,10 +206,60 @@ $(document).ready(function() {
 			
 		// 선택된 시간 출력
 		var selectedTime = $(this).text();
-		$("#vtime").val(selectedTime);
+		var selectedTime2 = $(this).text();
+		var selectedTime3 = $(this).text();
+		
+		
+		// 시간과 분을 추출
+		var timeParts = selectedTime3.split(" ");
+		var time = timeParts[1]; // "03:30"을 얻음
+		
+		// 시간을 24시간 형식으로 변환
+		var formattedTime3 = "";
+		if (timeParts[0] === "오전") {
+		  formattedTime3 = time;
+		} else {
+		  var parts = time.split(":");
+		  var hours = parseInt(parts[0]) + 12; // 12를 더하여 오후 시간으로 변환
+		  var minutes = parts[1];
+		  formattedTime3 = hours + ":" + minutes;
+		}
+		
+//		console.log("selectedTime: " + selectedTime);
+//		console.log("selectedTime2: " + selectedTime2);
+//		console.log("selectedTime3: " + formattedTime3);
+		
+		$("#vtime").val(formattedTime3);
+	});
+	
+
+	/** 날짜 먼저 선택하기 **/
+	$(".rtime").on("click", ".stime", function() {	
+		if($("#vdate").val() == ""){
+			alert("날짜를 먼저 선택해 주세요");
+			$("#vtime").val("");
+			$(".stime").removeClass("selected");
+			return false;
+		}
 	});
 	
 	
+	/** form submit 순서 **/
+		$("#check").click(function(){
+		if($("#vdate").val() == ""){
+			alert("날짜를 선택해 주세요");
+			return false;
+		} else if($("#vtime").val()=="") {
+			alert("시간을 선택해 주세요");
+			return false;
+		} else {
+			//서버전송
+			joinForm.submit();
+		}
+	});	//check
+	
+	
+
 
 	
 	

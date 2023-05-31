@@ -7,7 +7,14 @@ public class BookingVo {
 	/** Ãß°¡ **/
 	String hname, loc, gloc, tel, hrink;
 	String start, end;
+	String img;
 	
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
 	public String getStart() {
 		return start;
 	}

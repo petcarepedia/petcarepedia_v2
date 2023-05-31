@@ -106,8 +106,8 @@ public class BookingDao extends DBConn {
 	public ArrayList<BookingVo> search1(String mid) {
 		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
 
-		String sql = "select B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, B.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, H.HRINK\r\n"
-						+ "from pcp_review r, pcp_booking b, pcp_hospital h, pcp_member m where r.bid(+) = b.bid and "
+		String sql = "select B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, B.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, H.HRINK, H.IMG"
+						+ " from pcp_review r, pcp_booking b, pcp_hospital h, pcp_member m where r.bid(+) = b.bid and "
 						+ " b.hid = h.hid and b.mid = m.mid and b.mid = ? and vdate <= sysdate and r.BID is null";
 		
 		getPreparedStatement(sql);
@@ -130,6 +130,7 @@ public class BookingDao extends DBConn {
 				bookingVo.setGloc(rs.getString(10));
 				bookingVo.setTel(rs.getString(11));
 				bookingVo.setHrink(rs.getString(12));
+				bookingVo.setImg(rs.getString(13));
 
 				list.add(bookingVo);
 			}
@@ -146,7 +147,7 @@ public class BookingDao extends DBConn {
 	public ArrayList<BookingVo> search2(String mid) {
 		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
 
-		String sql = "SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, H.HRINK" + 
+		String sql = "SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, H.HRINK, H.IMG" + 
 				" FROM PCP_BOOKING B, PCP_HOSPITAL H" + 
 				" WHERE B.HID = H.HID" + 
 				" AND MID = ?" + 
@@ -172,6 +173,7 @@ public class BookingDao extends DBConn {
 				bookingVo.setGloc(rs.getString(10));
 				bookingVo.setTel(rs.getString(11));
 				bookingVo.setHrink(rs.getString(12));
+				bookingVo.setImg(rs.getString(13));
 
 				list.add(bookingVo);
 			}
@@ -187,7 +189,7 @@ public class BookingDao extends DBConn {
 	public ArrayList<BookingReviewVo> search3(String mid) {
 		ArrayList<BookingReviewVo> list2 = new ArrayList<BookingReviewVo>();
 		String sql = "SELECT B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, R.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, "
-					+ " H.HRINK FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_REVIEW R"
+					+ " H.HRINK, H.IMG FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_REVIEW R"
 					+ " WHERE B.HID = H.HID AND B.BID = R.BID AND B.MID = ? and VDATE <= SYSDATE";
 		getPreparedStatement(sql);
 		try {
@@ -208,6 +210,7 @@ public class BookingDao extends DBConn {
 				bookingReviewVo.setGloc(rs.getString(10));
 				bookingReviewVo.setTel(rs.getString(11));
 				bookingReviewVo.setHrink(rs.getString(12));
+				bookingReviewVo.setImg(rs.getString(13));
 				list2.add(bookingReviewVo);
 			}
 		}catch (Exception e) {
