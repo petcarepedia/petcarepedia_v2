@@ -59,6 +59,8 @@ public class NoticeDao extends DBConn {
 		}
 		return noticeVo;
 	}
+	
+	
 	// 공지사항 html 띄어쓰기 출력
 	public NoticeVo enter_select(String nid) {
 		NoticeVo noticeVo = new NoticeVo();
