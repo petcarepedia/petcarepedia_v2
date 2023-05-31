@@ -344,7 +344,7 @@ public class ReviewDao extends DBConn {
 	/*
 	 * 리뷰 신고
 	 */
-	public int update(String rid) {
+	public int updateReport(String rid) {
 		int result = 0;
 		String sql = "update pcp_review set rstate='O' where rid=?";
 		getPreparedStatement(sql);
@@ -449,7 +449,7 @@ public class ReviewDao extends DBConn {
 	//내가 쓴 리뷰 
 	public ArrayList<ReviewVo> my_select(String mid) {
 		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
-		String sql = "select h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid\r\n" + 
+		String sql = "select h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid, h.img\r\n" + 
 				"from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = ?";
 		getPreparedStatement(sql);
 		
@@ -465,6 +465,7 @@ public class ReviewDao extends DBConn {
 				reviewVo.setRcontent(rs.getString(5));
 				reviewVo.setRid(rs.getString(6));
 				reviewVo.setBid(rs.getString(7));
+				reviewVo.setImg(rs.getString(8));
 				list.add(reviewVo);
 			}
 		}catch (Exception e) {
@@ -474,25 +475,6 @@ public class ReviewDao extends DBConn {
 		return list;
 	}
 	
-	
-	//좋아요 개수
-	public int LikeNum(String rid) {
-		int result = 0;
-		String sql = "select count(*) from pcp_review_like where rid = ?";
-		getPreparedStatement(sql);
-		try {
-			pstmt.setString(1, rid);
-			rs = pstmt.executeQuery();
-			while(rs.next()) result = rs.getInt(1);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
-	}
-	
-	
-
 
 	
 	/*

@@ -5,12 +5,9 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.dao.MemberDao;
 import com.project.dao.ReviewDao;
-import com.project.vo.MemberVo;
 import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
 
@@ -143,7 +140,7 @@ public class ReviewController {
 	public ModelAndView review_report_proc(String rid) {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
-		int result = reviewDao.update(rid);
+		int result = reviewDao.updateReport(rid);
 		if(result == 1) {
 			//내가 쓴 리뷰로 돌아감 (임시)
 			model.setViewName("redirect:/review_main.do");
