@@ -38,6 +38,14 @@
 				<div class="table_right">
 					<div id="right_top">
 						<c:choose>
+							<c:when test="${mid eq ''}">
+								<button type="button" id="btnLike" disabled>
+									<span class="review_like">
+										♥️
+									</span>
+									${reviewVo.rlike }
+								</button>
+							</c:when>
 							<c:when test="${reviewVo.mid eq mid}">
 								<button type="button" id="btnLike" disabled>
 									<span class="review_like">

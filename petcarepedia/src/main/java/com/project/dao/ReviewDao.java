@@ -2,11 +2,13 @@ package com.project.dao;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Repository;
+
 import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
 
+@Repository
 public class ReviewDao extends DBConn {
-	
 	
 	// 리뷰와 병원 조인
 	public ArrayList<ReviewVo> RH_select(String hid) {
@@ -201,7 +203,7 @@ public class ReviewDao extends DBConn {
 	}
 	
 	
-	/* 리뷰 검색 카운트 가져오기*/
+	/* 리뷰 검색 카운트 가져오기(totalrowcount)*/
 	public int SearchRowCount(String filter_location) {
 			int count = 0;
 			String sql = "select count(*)\r\n" + 
@@ -302,7 +304,11 @@ public class ReviewDao extends DBConn {
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, reviewVo.getRcontent());
-			pstmt.setFloat(2, reviewVo.getRstar());
+			if(reviewVo.getRstar() == 0) {
+				pstmt.setFloat(2, 1);
+			} else {
+				pstmt.setFloat(2, reviewVo.getRstar());
+			}
 			pstmt.setString(3, reviewVo.getMid());
 			pstmt.setString(4, reviewVo.getHid());
 			pstmt.setString(5, reviewVo.getBid());
