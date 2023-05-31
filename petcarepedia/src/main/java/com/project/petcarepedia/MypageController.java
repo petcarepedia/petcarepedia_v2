@@ -250,7 +250,7 @@ public class MypageController {
 	/*
 	 *  review_write_proc.do - 리뷰 쓰기처리
 	 */
-	@RequestMapping(value = "/review_write_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/review_write_proc.do", method = RequestMethod.GET)
 	public String review_write_proc(ReviewVo reviewVo) {
 		String viewName = "";
 		ReviewDao reviewDao = new ReviewDao();

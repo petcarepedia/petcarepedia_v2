@@ -20,7 +20,47 @@ $(document).ready(function(){
 		mypage - 수정하기페이지 버튼
 ******************************************************************************/
 	$("#revise form #section3 #btn_style1").click(function(){
-		updateForm.submit();
+		if($("#nickname").val() == "") {
+			alert("별명을 입력해주세요");
+			$("#nickname").focus();
+			return false;
+		} else if($("#year").val() == "") {
+			alert("생년월일을 입력해주세요");
+			$("#year").focus();
+			return false;
+		} else if($("#month").val() == "") {
+			alert("생년월일을 입력해주세요");
+			$("#month").focus();
+			return false;
+		} else if($("#date").val() == "") {
+			alert("생년월일을 입력해주세요");
+			$("#date").focus();
+			return false;
+		} else if($("#email").val() == "") {
+			alert("이메일을 입력해주세요");
+			$("#email").focus();
+			return false;
+		} else if($("#phone1").val() == "") {
+			alert("휴대폰 번호를 선택해주세요");
+			$("#phone1").focus();
+			return false;
+		} else if($("#phone2").val() == "") {
+			alert("휴대폰 번호를 선택해주세요");
+			$("#phone2").focus();
+			return false;
+		} else if($("#phone3").val() == "") {
+			alert("휴대폰 번호를 선택해주세요");
+			$("#phone3").focus();
+			return false;
+		} else if($("#address").val() == "") {
+			alert("변경하실 주소를 입력해주세요");
+			$("#address").focus();
+			return false;
+		} else {
+			updateForm.submit();
+		}
+	
+		
 	})
 
 
