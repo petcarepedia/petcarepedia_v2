@@ -6,7 +6,7 @@ $(document).ready(function(){
 	    return this;
 	}
 	
-	
+	$(".main-door").css("width",document.documentElement.clientWidth);
 	
 	/**************
 	 * 회원가입 - 아이디 중복 체크
@@ -353,7 +353,6 @@ $(document).ready(function(){
 	/*
 	  div사이즈 동적으로 구하기
 	*/
-	$(".main-door").css("width",document.documentElement.clientWidth);
 	const outer = document.querySelector('.main-door');
 	const innerList = document.querySelector('.inner-list');
 	const inners = document.querySelectorAll('.inner');

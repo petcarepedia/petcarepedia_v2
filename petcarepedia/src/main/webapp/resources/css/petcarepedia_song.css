@@ -27,10 +27,6 @@
 	background:#D9D9D9;
 	cursor:not-allowed;
 }
-/* #btnJoin, #btnPwUpdate, #btnLogin, #btnIdFind, #btnPwFind {
-		background:#D9D9D9;
-		cursor:not-allowed;
-	} */
 .btn-short {
 	width:90px; height:52px;
 	background:#98DFFF; color:white;
