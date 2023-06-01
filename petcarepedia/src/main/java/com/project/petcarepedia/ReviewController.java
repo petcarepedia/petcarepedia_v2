@@ -142,7 +142,7 @@ public class ReviewController {
 		
 		return model;
 	}
-	/*
+	
 	//review_report_check.do 리뷰 신고 체크
 	@RequestMapping(value="/review_report_check.do", method=RequestMethod.GET)
 	@ResponseBody
@@ -151,7 +151,6 @@ public class ReviewController {
 		int result = reviewDao.getIdCheckResult(rid);
 		return String.valueOf(result);
 	}
-	*/
 	
 	
 	//review_report_proc.do 리뷰 신고 처리

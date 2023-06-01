@@ -1,7 +1,10 @@
 package com.project.dao;
 
+import org.springframework.stereotype.Repository;
+
 import com.project.vo.ReviewLikeVo;
 
+@Repository
 public class ReviewLikeDao extends DBConn {
 
 	/*
