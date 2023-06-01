@@ -9,23 +9,6 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 </head>
 <body>
-	<!-- <div class="back"></div>
-	<div class="admin-login-modal">
-		<div class="admin-login-modal-close" id="btnModalClose">X</div>
-		<div class="title">
-			<p>관리자 로그인</p>
-		</div>
-		<div class="inputbox">
-			<form name="adminLoginForm" action="adminLoginProc.jsp" method="post">
-				<ul>
-					<li><input type="text" name="id" id="id" placeholder="아이디"></li>
-					<li><input type="password" name="pass" id="pass" placeholder="비밀번호"></li>
-					<li><button type="button" id="btnAdminLogin" class="btn-submit">로그인</button></li>
-				</ul>
-			</form>
-		</div>
-	</div> -->
-	
 	<footer>
 		<div class="footer-menu">
 			<div class="footer-content">

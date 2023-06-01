@@ -10,46 +10,6 @@
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-	$(document).ready(function(){
-		let name = "";
-		let content = "";
-		
-		//이용약관 모달
-		$(".btnModalOpen").click(function(){
-			let val = $(this).attr("id");
-			$.ajax({
-						url : "join_term_data.do?term="+val,
-						success : function(result){
-								name = JSON.parse(result).name;
-								content = JSON.parse(result).content;
-								
-								$(".title").html("<p id='tname'>"+name+"</p><input type='hidden' id='termNum' value='"+val+"'>");
-								$(".title").after("<div class='termcont' id='tcontent'>"+content+"</div>");
-								
-								$(".term-box").show();
-								$(".back").show();
-							}
-					})
-		})
-		
-		$("#btnModalClose").click(function(){
-			$("#tname").remove();
-			$("#tcontent").remove();
-			$(".term-box").hide();
-			$(".back").hide();
-		})
-		$("#btnModalAgree").click(function(){
-			let termNum = $("#termNum").val();
-			$("#term"+termNum).prop("checked",true);
-			$("#tname").remove();
-			$("#tcontent").remove();
-			$(".term-box").hide();
-			$(".back").hide();
-		})
-			
-	});
-</script>
 </head>
 <body>
 	<div class="back"></div>

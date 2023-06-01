@@ -6,7 +6,7 @@ $(document).ready(function(){
 	    return this;
 	}
 	
-	
+	$(".main-door").css("width",document.documentElement.clientWidth);
 	
 	/**************
 	 * 회원가입 - 아이디 중복 체크
@@ -120,6 +120,7 @@ $(document).ready(function(){
 			$("form[name='joinForm'] input:checkbox").prop('checked',false);
 		}
 	});
+	
 	//약관동의 유효성 체크
 	$(".terms").click(function(){
 		if($("#term1").is(':checked') && $("#term2").is(':checked')){
@@ -131,6 +132,38 @@ $(document).ready(function(){
 			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
 		}
 	});
+	//이용약관 모달
+	$(".btnModalOpen").click(function(){
+		let val = $(this).attr("id");
+		$.ajax({
+					url : "join_term_data.do?term="+val,
+					success : function(result){
+							let name = JSON.parse(result).name;
+							let content = JSON.parse(result).content;
+							
+							$(".title").html("<p id='tname'>"+name+"</p><input type='hidden' id='termNum' value='"+val+"'>");
+							$(".title").after("<div class='termcont' id='tcontent'>"+content+"</div>");
+							
+							$(".term-box").show();
+							$(".back").show();
+						}
+				})
+	})
+	
+	$("#btnModalClose").click(function(){
+		$("#tname").remove();
+		$("#tcontent").remove();
+		$(".term-box").hide();
+		$(".back").hide();
+	})
+	$("#btnModalAgree").click(function(){
+		let termNum = $("#termNum").val();
+		$("#term"+termNum).prop("checked",true);
+		$("#tname").remove();
+		$("#tcontent").remove();
+		$(".term-box").hide();
+		$(".back").hide();
+	})
 	
 	$.joinValidationCheck = function() {
 		if($("#idcheck_msg").text() == "사용 가능한 아이디입니다."
@@ -290,17 +323,46 @@ $(document).ready(function(){
 		location.href = "login_pwfind.do";
 	})
 	
+	//검색바 alert
+	$("#btnMainSearch-index").click(function(){
+		if($("#hname-index").val()==""){
+			Swal.fire({
+	            icon: 'info',                         
+	            title: '검색어 미입력',         
+	            text: '찾고싶은 동물병원의 이름을 입력해주세요',  
+	        });
+		} else {
+			indexSearchForm.submit();
+		}
+	});
 	
-	//관리자 로그인 모달
-	/*$("#btnAdminModal").click(function(){
-		$(".admin-login-modal").show();
-		$(".back").show();
+	
+	//메인페이지 베너슬라이드
+	/*
+	  div사이즈 동적으로 구하기
+	*/
+	const outer = document.querySelector('.main-door');
+	const innerList = document.querySelector('.inner-list');
+	const inners = document.querySelectorAll('.inner');
+	let currentIndex = 0; // 현재 슬라이드 화면 인덱스
+	
+	inners.forEach((inner) => {
+	  inner.style.width = outer.clientWidth+'px'; // inner의 width를 모두 outer의 width로 만들기
 	})
 	
-	$("#btnModalClose").click(function(){
-		$(".admin-login-modal").hide();
-		$(".back").hide();
-	})*/
+	innerList.style.width = (outer.clientWidth * inners.length)+'px'; // innerList의 width를 inner의 width * inner의 개수로 만들기
+	/*
+	  주기적으로 화면 넘기기
+	*/
+	const getInterval = () => {
+	  return setInterval(() => {
+	    currentIndex++;
+	    currentIndex = currentIndex >= inners.length ? 0 : currentIndex;
+	    innerList.style.marginLeft = (-outer.clientWidth * currentIndex)+'px';
+	  }, 3500);
+	}
+	
+	let interval = getInterval(); // interval 등록
 	
 }); //ready
 

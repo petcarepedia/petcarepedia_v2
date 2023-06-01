@@ -7,22 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script>
-	$().ready(function(){
-		$("#btnMainSearch-header").click(function(){
-			if($("#hname-header").val()==""){
-				Swal.fire({
-		            icon: 'info',                         
-		            title: '검색어 미입력',         
-		            text: '찾고싶은 동물병원의 이름을 입력해주세요',  
-		        });
-			} else {
-				headerSearchForm.submit();
-			}
-		})
-	})
-</script>
 </head>
 <body>
     <header>
@@ -72,5 +58,19 @@
             </div>
         </div>
     </header>
+    
+    <script>
+	    $("#btnMainSearch-header").click(function(){
+			if($("#hname-header").val()==""){
+				Swal.fire({
+		            icon: 'info',                         
+		            title: '검색어 미입력',         
+		            text: '찾고싶은 동물병원의 이름을 입력해주세요',  
+		        });
+			} else {
+				headerSearchForm.submit();
+			}
+		});
+    </script>
 </body>
 </html>

@@ -9,45 +9,7 @@
 <title>우리 동네 동물병원 리뷰 사전, 펫캐어피디아</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=krftgsruiz"></script>
-<script>
-	$(document).ready(function(){
-		let rpage=Number($("#rpage").val());		// initial page
-		
-		if(rpage==1) $("#btnPrev").hide();
-		if(rpage==3) $("#btnNext").hide();
-		
-		jQuery('#btnPrev').on('click',function(e){
-			$("#btnNext").show();
-			if(rpage>1){
-				rpage -= 1;
-				$.ajax({
-					url : "best_review_list.do?rpage="+rpage,
-					success : function(list){
-							$("#brbox").html(list);
-						}
-				})
-			}
-                    
-	    });
-	    
-	    jQuery('#btnNext').on('click',function(e){
-	    	$("#btnPrev").show();
-			if(rpage<3){
-				rpage += 1;
-				$.ajax({
-					url : "best_review_list.do?rpage="+rpage,
-					success : function(list){
-							console.log(list);
-							$("#brbox").html(list);
-						}
-				})
-			}
-                    
-	    });
-	    
-	});
-</script>
+<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song_bestreview.js"></script>
 </head>
 <body>
 	<div class="main-review">
@@ -69,7 +31,6 @@
 							</div>
 							<div>
 								<div>${reviewVo.gloc}</div>
-								<!-- <div>강아지</div> -->
 							</div>
 							<div>
 								${reviewVo.rcontent}
