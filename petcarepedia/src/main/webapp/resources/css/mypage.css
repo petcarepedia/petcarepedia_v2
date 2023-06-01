@@ -128,12 +128,12 @@ hr {
 
 #information #section3 #btn_style1 {
 /* 	position : absolute; */
+	border : none;
 	background: #7AB2CC;
 	text-align : center;
 	color : white;
 	width: 240px;
 	height: 48px;
-	border: 1px solid #8A8A8A;
 	border-radius: 5px;
 	font-weight: 700;
 	font-size: 15px;
@@ -236,12 +236,12 @@ hr {
 }
 
 #revise #section3 #btn_style1{
+	border : none;
 	background: #7AB2CC;
 	text-align : center;
 	color : white;
 	width: 240px;
 	height: 48px;
-	border: 1px solid #8A8A8A;
 	border-radius: 5px;
 	font-weight: 700;
 	font-size: 15px;
@@ -322,6 +322,7 @@ hr {
 	border: 1px solid #98DFFF;
 	border-radius: 5px;
 }
+
 #reservation #section2 #aside1 img{
 	margin-top : 12.5px;
 	margin-left : 12.5px;
@@ -341,6 +342,7 @@ hr {
 	display : flex;
 	flex-wrap: wrap;
 }
+
 #reservation #aside #section2 #aside1 div span {
 	display : inline-block;
 	width : 400px;
@@ -410,8 +412,8 @@ hr {
 	width: 110.77px;
 	height: 44px;
 	background: #FFB3BD;
-	border: 1px solid #8A8A8A;
 	border-radius: 5px;
+	border : none;
 }
 #reservation #section2 #aside2 img{
 	margin-top : 12.5px;
@@ -515,10 +517,12 @@ hr {
 #reservation form[name='deleteForm'] table td.re_cancle {
 	display : inline-block;
 	margin-left : 40px;
+	border : none;
 }
 #reservation form[name='deleteForm'] table td.btnCancle {
 	display : inline-block;
 	margin-left : 10px;
+	border : none;
 }
 #reservation form[name='deleteForm'] table td {
 	border:1px solid white;
@@ -530,7 +534,7 @@ hr {
 
 #table tr td button {
 	background: #FFB3BD;
-	border: 1px solid #8A8A8A;
+	border : none;
 	border-radius: 5px;
 	font-weight: 700;
 	font-size: 15px;
@@ -543,6 +547,7 @@ hr {
 /**************************************
 	mypage - reservation2
 **************************************/
+
 #reservation #btn_write_review, #reservation #btn_watch_review {
 	font-weight: 700;
 	font-size: 15px;
@@ -550,7 +555,7 @@ hr {
 	width: 110.77px;
 	height: 44px;
 	background: #FFB3BD;
-	border: 1px solid #8A8A8A;
+	border: none;
 	border-radius: 5px;
 }
 #btn_review a {
@@ -564,7 +569,12 @@ hr {
 	width : 250px;
 	margin : 270px 0px 10px 670px;
 }
-
+#section2:first-child #btn_review{
+	display : flex;
+	height : 50px;
+	padding-top : 10px;
+	margin-top : 3px;
+}
 #btn_reservation #btn3, #btn_reservation #btn4 {
 	width: 200px; 
 	height : 45px;
@@ -666,7 +676,7 @@ textarea[name='rcontent'] {
 #review_write #aside button{
 	float:right;
 	background: #FFB3BD;
-	border: 1px solid #8A8A8A;
+	border: none;
 	border-radius: 5px;
 	font-weight: 700;
 	font-size: 15px;
@@ -831,7 +841,8 @@ textarea[name='rcontent'] {
 	width : 250px;
 }
 #my_review #aside #section2 #aside3 span:nth-child(2) {
-	font-weight : 400;
+	font-weight : 500;
+	font-size : 18px;
 	text-align: justify;
 	margin : 0px 10px 10px 10px;
 }
@@ -848,7 +859,7 @@ textarea[name='rcontent'] {
 	width: 110.77px;
 	height: 44px;	
 	background: #FFB3BD;
-	border: 1px solid #8A8A8A;
+	border : none;
 	border-radius: 5px;
 	font-weight: 700;
 	font-size: 15px;
@@ -932,7 +943,7 @@ textarea[name='review'] {
 #review_revise #aside button{
 	float:right;
 	background: #FFB3BD;
-	border: 1px solid #8A8A8A;
+	border: none;
 	border-radius: 5px;
 	font-weight: 700;
 	font-size: 15px;
@@ -1140,7 +1151,7 @@ textarea[name='review'] {
 
 #signout #section3 button {
 	background: #7AB2CC;
-	border: 1px solid #8A8A8A;
+	border: none;
 	border-radius: 5px;
 	margin-left : 70px;
 	margin-top : 40px;
