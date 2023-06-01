@@ -324,18 +324,6 @@ $(document).ready(function(){
 	})
 	
 	//검색바 alert
-	$("#btnMainSearch-header").click(function(){
-		if($("#hname-header").val()==""){
-			Swal.fire({
-	            icon: 'info',                         
-	            title: '검색어 미입력',         
-	            text: '찾고싶은 동물병원의 이름을 입력해주세요',  
-	        });
-		} else {
-			headerSearchForm.submit();
-		}
-	});
-	
 	$("#btnMainSearch-index").click(function(){
 		if($("#hname-index").val()==""){
 			Swal.fire({

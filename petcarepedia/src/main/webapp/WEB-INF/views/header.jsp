@@ -58,5 +58,19 @@
             </div>
         </div>
     </header>
+    
+    <script>
+	    $("#btnMainSearch-header").click(function(){
+			if($("#hname-header").val()==""){
+				Swal.fire({
+		            icon: 'info',                         
+		            title: '검색어 미입력',         
+		            text: '찾고싶은 동물병원의 이름을 입력해주세요',  
+		        });
+			} else {
+				headerSearchForm.submit();
+			}
+		});
+    </script>
 </body>
 </html>
