@@ -33,7 +33,8 @@
 				</section>
 				<section id="section2">
 					<div id="d3">
-						<form name="updateForm" action="hospital_update_proc.do" method="post" enctype="multipart/form-data">
+						<form name="updateForm" action="hospital_update_proc.do" method="post">
+						<input type = "hidden" name = "hid" value = "${hospitalVo.hid}">
 							<table class="table">
 								<tr>
 									<th>병원명</th>
