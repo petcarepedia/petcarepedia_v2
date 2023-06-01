@@ -41,14 +41,6 @@
 	
 	<div class="content main">
 		
-		<!-- <div class="main-door">
-			<p>내 <span>반려동물</span>의 <span>건강</span>을 위한 올바른 선택!</p>
-			<div>
-				<p>우리 동네 동물병원 리뷰 사전 <span><span>펫</span><span>캐어</span><span>피디아</span></span></p>
-				<img src="http://localhost:9000/petcarepedia/images/logo_blue.png" width="70px" height="70px">
-			</div>
-		</div> -->
-		
 		<form name="indexSearchForm" action="main_search_proc.do" method="get">
 			<div class="main-search">
 				<input type="text" placeholder="찾고싶은 동물병원의 이름을 검색해보세요!" name="hname" id="hname-index">

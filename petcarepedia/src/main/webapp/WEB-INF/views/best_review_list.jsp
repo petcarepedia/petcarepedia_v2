@@ -31,7 +31,6 @@
 							</div>
 							<div>
 								<div>${reviewVo.gloc}</div>
-								<!-- <div>강아지</div> -->
 							</div>
 							<div>
 								${reviewVo.rcontent}
