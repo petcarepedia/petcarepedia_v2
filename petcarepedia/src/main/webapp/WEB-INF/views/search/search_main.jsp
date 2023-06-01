@@ -154,7 +154,7 @@
 							</div>
 							
 							<div class="himg">
-								<img src="http://localhost:9000/petcarepedia/images/search_main.png" width="122px" height="122px">
+								<img src="${list.img}" width="122px" height="122px">
 							</div>
 						</div>
 						</li>

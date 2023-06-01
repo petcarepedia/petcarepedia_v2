@@ -2,6 +2,7 @@ package com.project.service;
 
 import java.util.ArrayList;
 
+import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
 
 public interface ReviewService {
@@ -27,8 +28,36 @@ public interface ReviewService {
 	public ReviewVo getEnter_select(String rid);
 	
 	//리뷰 등록
-	public int insert(ReviewVo reviewVo);
+	public int getInsert(ReviewVo reviewVo);
 	
 	//리뷰 수정
-	public int update(ReviewVo reviewVo);
+	public int getUpdate(ReviewVo reviewVo);
+	
+	//리뷰 신고
+	public int getUpdateReport(String rid);
+	
+	//리뷰 삭제
+	public int getDelete(String rid);
+	
+	//베스트 리뷰 리스트
+	public ArrayList<ReviewVo> getSelect(int startCount, int endCount);
+	
+	//내가 쓴 리뷰
+	public ArrayList<ReviewVo> getMy_select(String mid);
+	
+	//좋아요 누른 아이디 삭제
+	public ReviewLikeVo getLikesDownID(ReviewLikeVo reviewLikeVo);
+	
+	//좋아요 감소
+	public int getLikesDown(ReviewLikeVo reviewLikeVo);
+	
+	//좋아요 누른 아이디 생성
+	public ReviewLikeVo getLikesUpID(ReviewLikeVo reviewLikeVo);
+	
+	//좋아요 증가
+	public int getLikesUp(ReviewLikeVo reviewLikeVo);
+	
+	//좋아요 누른 아이디 검색
+	public int getIdCheck(ReviewLikeVo reviewLikeVo);
+	
 }

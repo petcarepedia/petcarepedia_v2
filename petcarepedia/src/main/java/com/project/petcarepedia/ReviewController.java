@@ -5,12 +5,9 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.dao.MemberDao;
 import com.project.dao.ReviewDao;
-import com.project.vo.MemberVo;
 import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
 

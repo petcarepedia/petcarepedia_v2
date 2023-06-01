@@ -47,7 +47,7 @@
 				<section id = "section2">
 					<c:forEach var = "bookingVo" items = "${list}">
 						<div id = "aside1">
-							<img src = "http://localhost:9000/petcarepedia/images/hos.png">
+							<img src = "${bookingVo.img}">
 							<div>
 								<span>서울시 > ${bookingVo.gloc}</span>
 								<span>${bookingVo.hname}</span>
@@ -80,7 +80,7 @@
 					</c:forEach>
 					<c:forEach var = "bookingReview" items = "${list2}">
 						<div id = "aside1">
-							<img src = "http://localhost:9000/petcarepedia/images/hos.png">
+							<img src = "${bookingReview.img}">
 							<div>
 								<span>서울시 > ${bookingReview.gloc}</span>
 								<span>${bookingReview.hname}</span>

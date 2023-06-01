@@ -31,7 +31,7 @@
 			<div class="info_d">
 				<div class="images_d">
 					<%-- <img src="${hospital.img}"> --%>
-					<img src="http://localhost:9000/petcarepedia/images/hospital 1.png">
+					<img src="${hospital.img}">
 				</div>
 				
 				<div class="name_d">
@@ -196,6 +196,10 @@
 						<!-- <span>친절  ⭐⭐⭐⭐⭐</span>
 						<span>위생  ⭐⭐⭐⭐⭐</span> -->
 						<!-- <span class="stot">별점  ⭐⭐⭐⭐⭐</span> -->
+						<c:if test="${RM_select.rstar<1}">
+							<span class="stot">별점  </span>
+						</c:if>
+						
 						<c:if test="${RM_select.rstar>=1 && RM_select.rstar<2}">
 							<span class="stot">별점  ⭐</span>
 						</c:if>	
@@ -213,7 +217,7 @@
 						</c:if>
 						
 						<c:if test="${RM_select.rstar>=5}">
-							<span> ⭐⭐⭐⭐⭐ </span>
+							<span class="stot">별점  ⭐⭐⭐⭐⭐</span>
 						</c:if>
 					</div>
 					
