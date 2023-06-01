@@ -2,6 +2,7 @@ package com.project.petcarepedia;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +12,7 @@ import com.project.dao.BookingDao;
 import com.project.dao.BookmarkDao;
 import com.project.dao.MemberDao;
 import com.project.dao.ReviewDao;
+import com.project.service.BookmarkService;
 import com.project.vo.BookingReviewVo;
 import com.project.vo.BookingVo;
 import com.project.vo.BookmarkVo;
@@ -19,6 +21,10 @@ import com.project.vo.ReviewVo;
 
 @Controller
 public class MypageController {
+	@Autowired
+	private BookmarkService bookmarkService;
+	
+	
 	/*
 	 * information.do - 나의 회원정보 폼
 	 */
@@ -130,8 +136,8 @@ public class MypageController {
 	@RequestMapping(value = "/bookmark.do", method = RequestMethod.GET)
 	public ModelAndView bookmark(String mid) {
 		ModelAndView model = new ModelAndView();
-		BookmarkDao bookmarkDao = new BookmarkDao();
-		ArrayList<BookmarkVo> list = bookmarkDao.select(mid);
+		//BookmarkDao bookmarkDao = new BookmarkDao();
+		ArrayList<BookmarkVo> list = bookmarkService.getSelect(mid);
 		model.setViewName("/mypage/bookmark");
 		model.addObject("list", list);
 		return model;
@@ -154,8 +160,8 @@ public class MypageController {
 	@RequestMapping(value = "/bookmark_delete_proc.do", method = RequestMethod.POST)
 	public String bookmark_delete_proc(String bmid) {
 		String viewName = "";
-		BookmarkDao bookmarkDao = new BookmarkDao();
-		int result = bookmarkDao.delete(bmid);
+		//BookmarkDao bookmarkDao = new BookmarkDao();
+		int result = bookmarkService.bookmarkDelete(bmid);
 		if(result == 1) {
 			viewName = "redirect:/bookmark.do?mid=hong";
 		}

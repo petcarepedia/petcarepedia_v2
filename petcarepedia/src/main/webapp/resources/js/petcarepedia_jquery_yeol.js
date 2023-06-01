@@ -1,4 +1,17 @@
 $(document).ready(function(){
+
+/*******************************************************************************
+		리뷰쓰기 - 글자수 카운팅
+******************************************************************************/
+	$("#rcontent").on("keyup", function(){
+		$('#test_cnt').html("("+$(this).val().length+" / 50)");
+		if($(this).val().length > 50) {
+			alert("50글자 이하로 작성해주세요");
+            $(this).val($(this).val().substring(0, 50));
+            $('#test_cnt').html("(50 / 50)");
+        }
+	})
+
 	
 
 /*******************************************************************************
@@ -78,13 +91,19 @@ $("#btnReservationDelete").click(function(){
 		mypage - 리뷰쓰기 버튼
 ******************************************************************************/
 	$("#btnReviewWrite").click(function(){
-		writeForm.submit();
+		let content = $("#rcontent").val().length;
+		if(content < 30) {
+			alert("30글자 이상을 입력해주세요");
+			return false;
+		} else {
+			writeForm.submit();
+		}
 	})
 /*******************************************************************************
-		예약내역페이지 - 리뷰쓰기
+		예약내역페이지 - 리뷰쓰기 취소버튼
 ******************************************************************************/
 	$("#cancle").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/reservation2.do";
+		location.href = "http://localhost:9000/petcarepedia/reservation2.do?mid=hong";
 	})
 	
 
@@ -92,7 +111,13 @@ $("#btnReservationDelete").click(function(){
 	내가쓴리뷰 - 리뷰수정
 ******************************************************************************/
 	$("#btnReviewUpdate").click(function(){
-		updateForm.submit();
+	let content = $("#rcontent").val().length;
+		if(content < 30) {
+			alert("30글자 이상을 입력해주세요");
+			return false;
+		} else {
+			updateForm.submit();
+		}
 	})
 
 /*******************************************************************************

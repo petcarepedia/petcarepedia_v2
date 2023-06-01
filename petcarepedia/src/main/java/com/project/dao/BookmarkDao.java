@@ -2,10 +2,12 @@ package com.project.dao;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Repository;
+
 import com.project.vo.BookmarkVo;
-import com.project.vo.HospitalVo;
 
 
+@Repository
 public class BookmarkDao extends DBConn{
 	
 	/*

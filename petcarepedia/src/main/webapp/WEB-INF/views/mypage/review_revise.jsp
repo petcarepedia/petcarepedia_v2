@@ -56,7 +56,8 @@
 							</fieldset>
 						</div>
 					</section>
-					<textarea name="rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)">${reviewVo.rcontent}</textarea>
+					<textarea name="rcontent" id = "rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)" maxlength = "50">${reviewVo.rcontent}</textarea>
+					<div id="test_cnt">(0 / 50)</div>
 					<a href = "my_review.do?mid=hong">
 						<button type = "button" id = "cancle">취소</button>
 					</a>
