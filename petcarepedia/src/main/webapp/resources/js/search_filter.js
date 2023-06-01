@@ -20,7 +20,7 @@ $('ul#dataList li').each(function() {
     }
 });
 
-console.log(nowTime);
+//console.log(nowTime);
 
 
 

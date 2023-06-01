@@ -192,7 +192,7 @@ public class BookingDao extends DBConn {
 		ArrayList<BookingReviewVo> list2 = new ArrayList<BookingReviewVo>();
 		String sql = "SELECT B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, R.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, "
 					+ " H.HRINK, H.IMG FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_REVIEW R"
-					+ " WHERE B.HID = H.HID AND B.BID = R.BID AND B.MID = ? and VDATE <= SYSDATE";
+					+ " WHERE B.HID = H.HID AND B.BID = R.BID AND B.MID = R.MID AND B.MID = ? and VDATE <= SYSDATE";
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, mid);

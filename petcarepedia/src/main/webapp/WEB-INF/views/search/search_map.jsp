@@ -9,7 +9,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>간단한 지도 표시하기</title>
+    <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=7reerlqgi2"></script>
+	<script src="http://localhost:9000/petcarepedia/js/search_map.js"></script>
+    
     
     
 </head>
@@ -21,7 +24,7 @@
 
 <div id="map" style="width:100%;height:1000px;"></div>
 
-<script>
+<!-- <script>
 var HOME_PATH = window.HOME_PATH || '.';
 var hospital = new naver.maps.LatLng(37.6123503, 126.9317118),
     map = new naver.maps.Map('map', {
@@ -66,6 +69,6 @@ naver.maps.Event.addListener(marker, "click", function(e) {
         infowindow.open(map, marker);
     }
 });
-</script>
+</script> -->
 </body>
 </html>

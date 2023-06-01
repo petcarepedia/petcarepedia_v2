@@ -6,8 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.project.dao.BookingDao;
 import com.project.dao.BookmarkDao;
 import com.project.dao.HospitalDao;
@@ -163,6 +167,52 @@ public class SearchController {
 			return "failure";
 		}
 	}
+	
+	
+	/** search_map.do **/
+	@RequestMapping(value="/search_map.do", method=RequestMethod.GET)
+	public String search_map() {
+		return "/search/search_map";
+	}
+	
+	
+	/** search_mian_map.do **/
+	@RequestMapping(value="/search_main_map.do", method=RequestMethod.GET)
+	public String search_main_map() {
+		return "/search/search_main_map";
+	}
+	
+	
+	/** map_data.do **/
+	@RequestMapping(value="/map_data.do",method=RequestMethod.GET,produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String map_data(String gloc) {
+		ArrayList<HospitalVo> list = hospitalDao.searchGloc(gloc);
+		
+		JsonObject jlist = new JsonObject();
+		JsonArray jarray = new JsonArray();
+		
+		for(HospitalVo hospitalVo : list) {
+			JsonObject jobj = new JsonObject(); //{}
+			jobj.addProperty("hid", hospitalVo.getHid());
+			jobj.addProperty("hname", hospitalVo.getHname());
+			jobj.addProperty("gloc", hospitalVo.getGloc());
+			jobj.addProperty("loc", hospitalVo.getLoc());
+			jobj.addProperty("tel", hospitalVo.getTel());
+			jobj.addProperty("htime", hospitalVo.getHtime());
+			jobj.addProperty("ntime", hospitalVo.getNtime());
+			jobj.addProperty("holiday", hospitalVo.getHoliday());
+			jobj.addProperty("animal", hospitalVo.getAnimal());
+			jobj.addProperty("x", hospitalVo.getX());
+			jobj.addProperty("y", hospitalVo.getY());
+			
+			jarray.add(jobj);
+		}
+		
+		jlist.add("jlist", jarray);
+		
+		return new Gson().toJson(jlist);
+	}
 		
 	    
 	
@@ -177,11 +227,7 @@ public class SearchController {
 	
 	
 	
-	/** search_map.do **/
-	@RequestMapping(value="/search_map.do", method=RequestMethod.GET)
-	public String search_map() {
-		return "/search/search_map";
-	}
+
 	
 	
 	
