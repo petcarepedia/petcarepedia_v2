@@ -323,17 +323,30 @@ $(document).ready(function(){
 		location.href = "login_pwfind.do";
 	})
 	
+	//검색바 alert
+	$("#btnMainSearch-header").click(function(){
+		if($("#hname-header").val()==""){
+			Swal.fire({
+	            icon: 'info',                         
+	            title: '검색어 미입력',         
+	            text: '찾고싶은 동물병원의 이름을 입력해주세요',  
+	        });
+		} else {
+			headerSearchForm.submit();
+		}
+	});
 	
-	//관리자 로그인 모달
-	/*$("#btnAdminModal").click(function(){
-		$(".admin-login-modal").show();
-		$(".back").show();
-	})
-	
-	$("#btnModalClose").click(function(){
-		$(".admin-login-modal").hide();
-		$(".back").hide();
-	})*/
+	$("#btnMainSearch-index").click(function(){
+		if($("#hname-index").val()==""){
+			Swal.fire({
+	            icon: 'info',                         
+	            title: '검색어 미입력',         
+	            text: '찾고싶은 동물병원의 이름을 입력해주세요',  
+	        });
+		} else {
+			indexSearchForm.submit();
+		}
+	});
 	
 }); //ready
 

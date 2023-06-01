@@ -13,7 +13,7 @@
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=krftgsruiz"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-	$().ready(function (){
+	$(document).ready(function (){
 		let login_result = "${login_result}";
 		if(login_result=="success"){
 			Swal.fire({
@@ -22,18 +22,6 @@
 	            text: '환영합니다!',  
 	        });
 		}
-		
-		$("#btnMainSearch-index").click(function(){
-			if($("#hname-index").val()==""){
-				Swal.fire({
-		            icon: 'info',                         
-		            title: '검색어 미입력',         
-		            text: '찾고싶은 동물병원의 이름을 입력해주세요',  
-		        });
-			} else {
-				indexSearchForm.submit();
-			}
-		})
 	});
 </script>
 </head>
