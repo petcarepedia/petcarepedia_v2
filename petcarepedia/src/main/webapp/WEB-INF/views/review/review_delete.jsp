@@ -25,7 +25,7 @@
 					<tr>
 						<td colspan="2">
 							<button type="submit" class="rp_button">삭제</button>
-							<a href="review_content.do?rid=${rid }"><button type="button" class="rp_button">취소</button></a>
+							<a href="review_content.do?rid=${rid }&&page=${page }&&filter_location=${filter_location}&&mid=${mid}"><button type="button" class="rp_button">취소</button></a>
 							<a href="review_main.do"><button type="button" class="rp_button">목록</button></a>							
 						</td>				
 					</tr>
