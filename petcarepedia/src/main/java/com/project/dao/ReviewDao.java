@@ -474,6 +474,25 @@ public class ReviewDao extends DBConn {
 		
 		return list;
 	}
+
+
+
+	public int getIdCheckResult(String rid) {
+		int result = 0;
+		String sql ="select count(*) from pcp_review where rid = ? and rstate = 'O'";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, rid);
+			rs = pstmt.executeQuery();		
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 	
 	
 }
