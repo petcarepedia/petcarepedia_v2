@@ -74,18 +74,26 @@ public class MemberVo {
 		this.nickname = nickname;
 	}
 	public String getPhone() {
-		if(phone1 != "" && phone2 != "" && phone3 != "") {
+		String phone = this.phone;
+		
+		if(phone1 != "" && phone2 != "" && phone3 != "" && 
+			phone1 != null && phone2 != null && phone3 != null) {
 			phone = phone1 + "-" + phone2 + "-" + phone3;
 		}
+		
 		return phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getBirth() {
-		if(birth1 != "" && birth2 != "" && birth3 != "") {
+		String birth = this.birth;
+		
+		if(birth1 != "" && birth2 != "" && birth3 != "" && 
+			birth1 != null && birth2 != null && birth3 != null) {
 			birth = birth1 + "-" + birth2 + "-" + birth3;
 		}
+		
 		return birth;
 	}
 	public void setBirth(String birth) {

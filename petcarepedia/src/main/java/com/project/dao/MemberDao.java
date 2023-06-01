@@ -107,8 +107,6 @@ public class MemberDao extends DBConn{
 					memberVo.setPhone1(phoneArray[0]);
 					memberVo.setPhone2(phoneArray[1]);
 					memberVo.setPhone3(phoneArray[2]);
-				} else {
-					memberVo.setPhone(rs.getString(6));
 				}
 				
 				if(rs.getString(7) != null) {
@@ -116,8 +114,6 @@ public class MemberDao extends DBConn{
 					memberVo.setBirth1(birthArray[0]);
 					memberVo.setBirth2(birthArray[1]);
 					memberVo.setBirth3(birthArray[2]);
-				} else {
-					memberVo.setBirth(rs.getString(7));
 				}
 				
 				memberVo.setEmail(rs.getString(8));
@@ -166,8 +162,6 @@ public class MemberDao extends DBConn{
 					memberVo.setPhone1(phoneArray[0]);
 					memberVo.setPhone2(phoneArray[1]);
 					memberVo.setPhone3(phoneArray[2]);
-				} else {
-					memberVo.setPhone(rs.getString(6));
 				}
 				
 				if(rs.getString(7) != null) {
@@ -175,8 +169,6 @@ public class MemberDao extends DBConn{
 					memberVo.setBirth1(birthArray[0]);
 					memberVo.setBirth2(birthArray[1]);
 					memberVo.setBirth3(birthArray[2]);
-				} else {
-					memberVo.setBirth(rs.getString(7));
 				}
 				
 				memberVo.setEmail(rs.getString(8));
@@ -217,8 +209,6 @@ public class MemberDao extends DBConn{
 					memberVo.setPhone1(phoneArray[0]);
 					memberVo.setPhone2(phoneArray[1]);
 					memberVo.setPhone3(phoneArray[2]);
-				} else {
-					memberVo.setPhone(rs.getString(5));
 				}
 				
 				if(rs.getString(6) != null) {
@@ -226,8 +216,6 @@ public class MemberDao extends DBConn{
 					memberVo.setBirth1(birthArray[0]);
 					memberVo.setBirth2(birthArray[1]);
 					memberVo.setBirth3(birthArray[2]);
-				} else {
-					memberVo.setBirth(rs.getString(6));
 				}
 				
 				memberVo.setEmail(rs.getString(7));
