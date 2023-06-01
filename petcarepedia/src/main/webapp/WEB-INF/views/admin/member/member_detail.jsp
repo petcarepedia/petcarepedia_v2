@@ -40,7 +40,7 @@
 		        <ul>
 		          <li>
 		            <label>아이디</label>
-		            <input type="text" name="mid" id="mid" value="${memberVo.mid}">
+		            <input type="text" name="mid" id="mid" value="${memberVo.mid}" disalble>
 		          </li>
 		          <li>
 		            <label>성명</label>
@@ -66,14 +66,14 @@
 		            <label>가입일</label>
 		            <input type="text" name="mdate" id="mdate" value="${memberVo.mdate}">
 		          </li>
-			         <li>
-			            <label>휴면 계정 전환</label>
-			            <input type="radio" name="human" id="human" value = yes >예
-			            <input type="radio" name="human" id="human" value = no >아니오
-			          </li>
+		          <li>
+		            <label>휴면 계정 전환</label>
+		            <input type="radio" name="human" id="human" value = yes >예
+		            <input type="radio" name="human" id="human" value = no >아니오
+		          </li>
 		        </ul>
 		        <div id="d4">
-	      		 <button type="button" class="button4" id="btn_save">수정완료</button>	
+	      		 <button type="button" class="button4" id="btn_member">수정완료</button>	
 	       	 	 <button type="button" class="button5"><a href="http://localhost:9000/petcarepedia/member_list.do">이전으로</a></button>
 		        </div>
 	      	  </form>
