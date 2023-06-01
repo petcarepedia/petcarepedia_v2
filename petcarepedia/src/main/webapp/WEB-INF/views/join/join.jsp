@@ -17,13 +17,14 @@
 		
 		//이용약관 모달
 		$(".btnModalOpen").click(function(){
+			let val = $(this).attr("id");
 			$.ajax({
-						url : "join_term_data.do?term="+$(this).attr("id"),
+						url : "join_term_data.do?term="+val,
 						success : function(result){
 								name = JSON.parse(result).name;
 								content = JSON.parse(result).content;
 								
-								$(".title").html("<p id='tname'>"+name+"</p>");
+								$(".title").html("<p id='tname'>"+name+"</p><input type='hidden' id='termNum' value='"+val+"'>");
 								$(".title").after("<div class='termcont' id='tcontent'>"+content+"</div>");
 								
 								$(".term-box").show();
@@ -38,6 +39,14 @@
 			$(".term-box").hide();
 			$(".back").hide();
 		})
+		$("#btnModalAgree").click(function(){
+			let termNum = $("#termNum").val();
+			$("#term"+termNum).prop("checked",true);
+			$("#tname").remove();
+			$("#tcontent").remove();
+			$(".term-box").hide();
+			$(".back").hide();
+		})
 			
 	});
 </script>
@@ -46,11 +55,14 @@
 	<div class="back"></div>
 	<div class="term-box">
 		<div class="term-modal">
-			<div class="term-modal-close" id="btnModalClose">X</div>
+			<!-- <div class="term-modal-close" id="btnModalClose">X</div> -->
 			<div class="title">
 				
 			</div>
-			
+			<div class="term-btn">
+				<button class="btn-yes" id="btnModalAgree">동의</button>
+				<button class="btn-no" id="btnModalClose">닫기</button>
+			</div>
 		</div>
 	</div>
 	
