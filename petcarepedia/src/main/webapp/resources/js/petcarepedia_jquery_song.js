@@ -120,6 +120,7 @@ $(document).ready(function(){
 			$("form[name='joinForm'] input:checkbox").prop('checked',false);
 		}
 	});
+	
 	//약관동의 유효성 체크
 	$(".terms").click(function(){
 		if($("#term1").is(':checked') && $("#term2").is(':checked')){
@@ -131,6 +132,38 @@ $(document).ready(function(){
 			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
 		}
 	});
+	//이용약관 모달
+	$(".btnModalOpen").click(function(){
+		let val = $(this).attr("id");
+		$.ajax({
+					url : "join_term_data.do?term="+val,
+					success : function(result){
+							let name = JSON.parse(result).name;
+							let content = JSON.parse(result).content;
+							
+							$(".title").html("<p id='tname'>"+name+"</p><input type='hidden' id='termNum' value='"+val+"'>");
+							$(".title").after("<div class='termcont' id='tcontent'>"+content+"</div>");
+							
+							$(".term-box").show();
+							$(".back").show();
+						}
+				})
+	})
+	
+	$("#btnModalClose").click(function(){
+		$("#tname").remove();
+		$("#tcontent").remove();
+		$(".term-box").hide();
+		$(".back").hide();
+	})
+	$("#btnModalAgree").click(function(){
+		let termNum = $("#termNum").val();
+		$("#term"+termNum).prop("checked",true);
+		$("#tname").remove();
+		$("#tcontent").remove();
+		$(".term-box").hide();
+		$(".back").hide();
+	})
 	
 	$.joinValidationCheck = function() {
 		if($("#idcheck_msg").text() == "사용 가능한 아이디입니다."
