@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.ReviewDao;
+import com.project.dao.ReviewLikeDao;
 import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
 
@@ -30,7 +32,7 @@ public class ReviewController {
 		int dbCount = reviewDao.totalRowCount();	//DB에서 가져온 전체 행수
 		
 		//임시 아이디
-		//mid="hong";
+		mid="hong";
 		
 		
 		//총 페이지 수 계산
@@ -78,12 +80,12 @@ public class ReviewController {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
 		ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
-		
+		ReviewLikeDao reviewLikeDao = new ReviewLikeDao();
 		ReviewVo reviewVo = reviewDao.enter_select(rid);		
 		reviewLikeVo.setRid(reviewVo.getRid());
 		reviewLikeVo.setMid(mid);
 		
-		int likeCheck = reviewDao.idCheck(reviewLikeVo);
+		int likeCheck = reviewLikeDao.idCheck(reviewLikeVo);
 		
 		model.addObject("mid", mid);
 		model.addObject("page", page);
@@ -100,8 +102,12 @@ public class ReviewController {
 	
 	//review_delete.do 리뷰 삭제 페이지
 	@RequestMapping(value="/review_delete.do", method=RequestMethod.GET)
-	public ModelAndView admin_notice_delete(String rid) {
+	public ModelAndView admin_notice_delete(String rid, String page, String filter_location, String mid) {
 		ModelAndView model = new ModelAndView();
+		
+		model.addObject("page", page);
+		model.addObject("filter_location", filter_location);
+		model.addObject("mid", mid);
 		model.addObject("rid", rid);
 		model.setViewName("/review/review_delete");
 		
@@ -116,7 +122,6 @@ public class ReviewController {
 		ReviewDao reviewDao = new ReviewDao();
 		int result = reviewDao.delete(rid);
 		if(result == 1) {
-			//내가 쓴 리뷰로 돌아감 (임시)
 			model.setViewName("redirect:/review_main.do");
 		}
 		
@@ -126,13 +131,27 @@ public class ReviewController {
 	
 	//review_report.do 리뷰 신고 페이지
 	@RequestMapping(value="/review_report.do", method=RequestMethod.GET)
-	public ModelAndView review_report(String rid) {
+	public ModelAndView review_report(String rid, String page, String filter_location, String mid) {
 		ModelAndView model = new ModelAndView();
+		
+		model.addObject("page", page);
+		model.addObject("filter_location", filter_location);
+		model.addObject("mid", mid);
 		model.addObject("rid", rid);
 		model.setViewName("/review/review_report");
 		
 		return model;
 	}
+	/*
+	//review_report_check.do 리뷰 신고 체크
+	@RequestMapping(value="/review_report_check.do", method=RequestMethod.GET)
+	@ResponseBody
+	public String review_report_check(String rid) {
+		ReviewDao reviewDao = new ReviewDao();
+		int result = reviewDao.getIdCheckResult(rid);
+		return String.valueOf(result);
+	}
+	*/
 	
 	
 	//review_report_proc.do 리뷰 신고 처리
@@ -142,7 +161,6 @@ public class ReviewController {
 		ReviewDao reviewDao = new ReviewDao();
 		int result = reviewDao.update(rid);
 		if(result == 1) {
-			//내가 쓴 리뷰로 돌아감 (임시)
 			model.setViewName("redirect:/review_main.do");
 		}
 		
@@ -153,16 +171,17 @@ public class ReviewController {
 	@RequestMapping(value="/review_like_Proc.do", method=RequestMethod.POST)
 	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo, String mid, String page, String filter_location) {
 		ModelAndView model = new ModelAndView();
-		ReviewDao reviewDao = new ReviewDao();
+		ReviewLikeDao reviewLikeDao = new ReviewLikeDao();
+		
 		reviewLikeVo.setMid(mid);
 		
-		if(reviewDao.idCheck(reviewLikeVo) == 1) {
-			reviewDao.LikesDownID(reviewLikeVo);
-			reviewDao.LikesDown(reviewLikeVo);
+		if(reviewLikeDao.idCheck(reviewLikeVo) == 1) {
+			reviewLikeDao.LikesDownID(reviewLikeVo);
+			reviewLikeDao.LikesDown(reviewLikeVo);
 		}
 		else {
-			reviewDao.LikesUpID(reviewLikeVo);
-			reviewDao.LikesUp(reviewLikeVo);
+			reviewLikeDao.LikesUpID(reviewLikeVo);
+			reviewLikeDao.LikesUp(reviewLikeVo);
 		}
 		if(filter_location != "") {
 			model.addObject("filter_location", filter_location);
@@ -177,11 +196,11 @@ public class ReviewController {
 	}	
 	
 	
+	//리뷰 검색 페이징
 	@RequestMapping(value="/review_main_search.do", method=RequestMethod.GET)
-	public ModelAndView review_search_Proc(String page, String filter_location) {
+	public ModelAndView review_search_Proc(String page, String filter_location, String mid) {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
-		
 		//페이징 처리 - startCount, endCount 구하기
 		int startCount = 0;
 		int endCount = 0;
@@ -210,6 +229,7 @@ public class ReviewController {
 		
 		ArrayList<ReviewVo> list = reviewDao.selectSearchList(startCount, endCount, filter_location);
 
+		model.addObject("mid", mid);
 		model.addObject("filter_location", filter_location);
 		model.addObject("list", list);
 		model.addObject("totals", dbCount);

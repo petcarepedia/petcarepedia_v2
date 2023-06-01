@@ -80,29 +80,4 @@ public class ReviewServiceImpl implements ReviewService{
 		return reviewDao.my_select(mid);
 	}
 
-	@Override
-	public ReviewLikeVo getLikesDownID(ReviewLikeVo reviewLikeVo) {
-		return reviewDao.LikesDownID(reviewLikeVo);
-	}
-
-	@Override
-	public int getLikesDown(ReviewLikeVo reviewLikeVo) {
-		return reviewDao.LikesDown(reviewLikeVo);
-	}
-
-	@Override
-	public ReviewLikeVo getLikesUpID(ReviewLikeVo reviewLikeVo) {
-		return reviewDao.LikesUpID(reviewLikeVo);
-	}
-
-	@Override
-	public int getLikesUp(ReviewLikeVo reviewLikeVo) {
-		return reviewDao.LikesUp(reviewLikeVo);
-	}
-
-	@Override
-	public int getIdCheck(ReviewLikeVo reviewLikeVo) {
-		return reviewDao.idCheck(reviewLikeVo);
-	}
-
 }

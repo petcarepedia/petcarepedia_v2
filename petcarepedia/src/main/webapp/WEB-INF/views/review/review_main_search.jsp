@@ -48,6 +48,7 @@
 		<div id="filter_page" class="review">
 			<p>상세검색</p>
 			<form name="ReviewSearchForm" action="review_main_search.do" method="get">
+				<input type="hidden" id="mid" name="mid" value="${mid }">
 				<table id="filter_lo" class="filter">
 					<tr>
 						<th rowspan='3'>지역구분</th>

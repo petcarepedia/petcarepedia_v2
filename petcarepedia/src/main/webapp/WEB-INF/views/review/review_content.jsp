@@ -38,15 +38,7 @@
 				<div class="table_right">
 					<div id="right_top">
 						<c:choose>
-							<c:when test="${mid eq ''}">
-								<button type="button" id="btnLike" disabled>
-									<span class="review_like">
-										♥️
-									</span>
-									${reviewVo.rlike }
-								</button>
-							</c:when>
-							<c:when test="${reviewVo.mid eq mid}">
+							<c:when test="${reviewVo.mid eq mid || mid eq '' || mid eq null}">
 								<button type="button" id="btnLike" disabled>
 									<span class="review_like">
 										♥️
@@ -94,22 +86,28 @@
 						</tr>
 					</table>
 				</div>
-				<a href="review_report.do?rid=${reviewVo.rid }"><button type="button" class="report">신고하기</button></a>
+				<c:choose>
+					<c:when test="${reviewVo.mid eq mid }">
+					</c:when>
+					<c:otherwise>
+						<a href="review_report.do?rid=${reviewVo.rid }&&page=${page }&&filter_location=${filter_location}&&mid=${mid}"><button type="button" class="report">신고하기</button></a>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<c:choose>
-				<c:when test="${reviewVo.mid eq member.mid }">
+				<c:when test="${reviewVo.mid eq mid }">
 					<div class="rc_button_r">
 						<a href="review_revise.do?rid=${reviewVo.rid }"><button type="button" class="button">수정</button></a>
-						<a href="review_delete.do?rid=${reviewVo.rid }"><button type="button" class="button">삭제</button></a>
+						<a href="review_delete.do?rid=${reviewVo.rid }&&page=${page }&&filter_location=${filter_location}&&mid=${mid}"><button type="button" class="button">삭제</button></a>
 						<c:choose>
 							<c:when test="${page eq null }">
-								<a href="review_main.do"><button type="button" class="button">목록</button></a>
+								<a href="review_main.do?mid=${mid}"><button type="button" class="button">목록</button></a>
 							</c:when>
 							<c:when test="${filter_location eq null }">
-								<a href="review_main.do?page=${page }"><button type="button" class="button">목록</button></a>
+								<a href="review_main.do?page=${page }&&mid=${mid}"><button type="button" class="button">목록</button></a>
 							</c:when>
 							<c:otherwise>
-								<a href="review_main_search.do?page=${page }&&filter_location=${filter_location}"><button type="button" class="button">목록</button></a>
+								<a href="review_main_search.do?page=${page }&&filter_location=${filter_location}&&mid=${mid}"><button type="button" class="button">목록</button></a>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -118,13 +116,13 @@
 					<div class="rc_button_r">
 						<c:choose>
 							<c:when test="${page eq null }">
-								<a href="review_main.do"><button type="button" class="button">목록</button></a>
+								<a href="review_main.do?mid=${mid}"><button type="button" class="button">목록</button></a>
 							</c:when>
 							<c:when test="${filter_location eq null }">
-								<a href="review_main.do?page=${page }"><button type="button" class="button">목록</button></a>
+								<a href="review_main.do?page=${page }&&mid=${mid}"><button type="button" class="button">목록</button></a>
 							</c:when>
 							<c:otherwise>
-								<a href="review_main_search.do?page=${page }&&filter_location=${filter_location}"><button type="button" class="button">목록</button></a>
+								<a href="review_main_search.do?page=${page }&&filter_location=${filter_location}&&mid=${mid}"><button type="button" class="button">목록</button></a>
 							</c:otherwise>
 						</c:choose>
 					</div>
