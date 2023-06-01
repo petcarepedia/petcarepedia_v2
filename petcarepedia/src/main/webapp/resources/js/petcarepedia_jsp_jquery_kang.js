@@ -27,6 +27,11 @@ $(document).ready(function(){
 			$("#title").focus();
 			return false;
 		}
+		if($("#ncontent").val() == "") {
+			alert("내용을 입력해주세요.");
+			$("#ncontent").focus();
+			return false;
+		}
 		else {
 			writeForm.submit();
 		}
@@ -44,11 +49,38 @@ $(document).ready(function(){
 			$("#title").focus();
 			return false;
 		}
+		else if($("#ncontent").val() == "") {
+			alert("내용을 입력해주세요.");
+			$("#ncontent").focus();
+			return false;
+		}
 		else {
 			updateForm.submit();
 		}
 	});
 	
+
+	/*******************************************
+		리뷰 - 신고
+	 ********************************************/	
+	$("#btnReport").click(function() {
+		$.ajax({
+			url : "review_report_check.do?rid="+$("#rid").val(),
+			success : function(result) {
+				if(result == 1) {
+					alert("이미 신고된 리뷰 입니다.");
+					history.back()
+				}
+				else if(result == 0){
+					alert("신고되었습니다.");
+					reportForm.submit();
+				}
+			}
+		});
+	});
+
+
+
 
 	/*******************************************
 		리뷰 필터 클릭
@@ -72,6 +104,7 @@ $(document).ready(function(){
 		}
 	});
 	
+	
 	if($("#count").val() == 0 ) {
 		return false;
 	}
@@ -80,6 +113,7 @@ $(document).ready(function(){
 			scrollTop: $('#filter_lo').offset().top
 		}, 'slow');
 	}
+
 
 	
 

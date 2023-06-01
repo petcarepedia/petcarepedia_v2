@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.ReviewDao;
@@ -142,6 +143,15 @@ public class ReviewController {
 		return model;
 	}
 	
+	//review_report_check.do 리뷰 신고 체크
+	@RequestMapping(value="/review_report_check.do", method=RequestMethod.GET)
+	@ResponseBody
+	public String review_report_check(String rid) {
+		ReviewDao reviewDao = new ReviewDao();
+		int result = reviewDao.getIdCheckResult(rid);
+		return String.valueOf(result);
+	}
+	
 	
 	//review_report_proc.do 리뷰 신고 처리
 	@RequestMapping(value="/review_report_proc.do", method=RequestMethod.POST)
@@ -150,7 +160,6 @@ public class ReviewController {
 		ReviewDao reviewDao = new ReviewDao();
 		int result = reviewDao.update(rid);
 		if(result == 1) {
-			//내가 쓴 리뷰로 돌아감 (임시)
 			model.setViewName("redirect:/review_main.do");
 		}
 		
