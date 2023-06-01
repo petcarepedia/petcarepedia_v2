@@ -845,6 +845,8 @@ textarea[name='rcontent'] {
 	font-size : 18px;
 	text-align: justify;
 	margin : 0px 10px 10px 10px;
+	 letter-spacing: 1px;
+	 line-height : 1.6;
 }
 #my_review #aside #section2 #aside3 span:last-child {
 	font-weight: 400;
