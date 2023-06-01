@@ -66,11 +66,11 @@ $(document).ready(function() {
 			// alert("시간 바꾸기");
 			
 			// console.log("nowTime : " + nowTime);
-			// console.log("timeSlots2 : " + timeSlots2[15]);
 			
-			for (var i = 0; i < timeSlots2.length; i++) {
+			console.log(timeSlots3);
+			for (var i = 0; i < timeSlots3.length; i++) {
 				var convertedNowTime = parseInt(nowTime);
-				var convertedTimeSlot = parseInt(timeSlots2[i]);
+				var convertedTimeSlot = parseInt(timeSlots3[i]);
     
 			    if (convertedNowTime > convertedTimeSlot) {
 			      $(".stime").eq(i).css("background", "#D9D9D9"); // 해당 인덱스의 요소에 css
@@ -168,10 +168,12 @@ $(document).ready(function() {
 	var currentTime = startDate;
 	var timeSlots = [];
 	var timeSlots2 = [];
+	var timeSlots3 = [];
+	
 
 	while (currentTime <= endDate) {
-		var formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-		var formattedTime2 = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+		var formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // 화면 출력용
+		var formattedTime2 = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }); // input안에
 		var timeWithoutColon = formattedTime2.replace(':', '');
 		
 		timeSlots.push(formattedTime); // timeSlots에 배열 저장
@@ -179,12 +181,83 @@ $(document).ready(function() {
 
 		currentTime.setMinutes(currentTime.getMinutes() + 30);
 	}
+	
+	
+/* 시간 출력 */
+// 시작 시간과 끝 시간 가져오기
+var startTime = $("#startTime").val();
+var endTime = $("#endTime").val();
+
+// 시작 시간과 끝 시간을 Date 객체로 변환
+var startDate = new Date(currentYear + "/" + currentMonth + "/" + currentDay + " " + startTime);
+var endDate = new Date(currentYear + "/" + currentMonth + "/" + currentDay + " " + endTime);
+
+// 30분 간격으로 시간 슬롯 생성
+var currentTime = startDate;
+var timeSlots = [];
+var timeSlots2 = [];
+var timeSlots3 = [];
+
+while (currentTime <= endDate) {
+  var formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // 화면 출력용
+  var formattedTime2 = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }); // input안에
+  var timeWithoutColon = formattedTime2.replace(':', '');
+
+  timeSlots.push(formattedTime); // timeSlots에 배열 저장
+  timeSlots2.push(timeWithoutColon); // timeSlots2에 배열 저장
+
+  currentTime.setMinutes(currentTime.getMinutes() + 30);
+}
+
+	// 시간과 분을 추출
+	for (var i = 0; i < timeSlots.length; i++) {
+	  var timeParts = timeSlots[i].split(" "); // 시간 쪼개서 배열로
+	  var time = timeParts[1];
+	
+	  // 시간을 24시간 형식으로 변환
+	  var formattedTime3 = "";
+	
+	  if (timeParts[0] === "오전") {
+	    var parts = time.split(":");
+	    var hours = parseInt(parts[0]);
+	    var minutes = parts[1];
+	
+	    if (hours === 12) {
+	      hours = "0" + (hours - 12); // 12를 빼서 오전 시간으로 변환
+	    } else if(hours < 10) {
+	    	hours = "0" + hours;
+	    }
+	    
+	
+	    formattedTime3 = hours + minutes;
+	  } // 오전일 때 
+	  
+	  else {
+	    var parts = time.split(":");
+	    var hours = parseInt(parts[0]);
+	    var minutes = parts[1];
+	
+	    if (hours === 12) {
+	      formattedTime3 = hours + minutes;
+	    } else {
+	    	hours = hours + 12;
+	    }
+	
+	    formattedTime3 = hours + minutes;
+	  }
+	
+	  timeSlots3.push(formattedTime3);
+	} // for
+	
+	console.log("timeSlots12:" + timeSlots3);
+
+	
 
 	// 시간 슬롯을 화면에 표시
 	var timeContainer = $(".rtime");
 	timeContainer.empty(); // 기존 내용 초기화
 	
-	// 날짜 시간 생성하기
+	// 시간 생성하기
 	
 	for (var i = 0; i < timeSlots.length; i++) {
 		var timeSlot = timeSlots[i];
@@ -209,25 +282,36 @@ $(document).ready(function() {
 		var selectedTime2 = $(this).text();
 		var selectedTime3 = $(this).text();
 		
-		
 		// 시간과 분을 추출
 		var timeParts = selectedTime3.split(" ");
-		var time = timeParts[1]; // "03:30"을 얻음
+		var time = timeParts[1];
 		
 		// 시간을 24시간 형식으로 변환
 		var formattedTime3 = "";
 		if (timeParts[0] === "오전") {
-		  formattedTime3 = time;
+		  // formattedTime3 = time;
+		  var parts = time.split(":");
+		  
+		  if(parts[0]==12) {
+			  var hours = "0" + (parseInt(parts[0])-12); // 12를 더하여 오후 시간으로 변환
+			  var minutes = parts[1];
+			  formattedTime3 = hours + ":" + minutes;
+		  } else {
+		  	formattedTime3 = time;
+		  }		  
 		} else {
 		  var parts = time.split(":");
-		  var hours = parseInt(parts[0]) + 12; // 12를 더하여 오후 시간으로 변환
-		  var minutes = parts[1];
-		  formattedTime3 = hours + ":" + minutes;
+		  
+			  if(parts[0]==12) {
+				  var hours = parseInt(parts[0]); // 12를 더하여 오후 시간으로 변환
+				  var minutes = parts[1];
+				  formattedTime3 = hours + ":" + minutes;
+			  } else {
+			  	var hours = parseInt(parts[0]) + 12; // 12를 더하여 오후 시간으로 변환
+				  var minutes = parts[1];
+				  formattedTime3 = hours + ":" + minutes;
+			  }
 		}
-		
-//		console.log("selectedTime: " + selectedTime);
-//		console.log("selectedTime2: " + selectedTime2);
-//		console.log("selectedTime3: " + formattedTime3);
 		
 		$("#vtime").val(formattedTime3);
 	});

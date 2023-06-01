@@ -14,6 +14,7 @@
 	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 	<!-- <script src="http://localhost:9000/petcarepedia/js/search_main.js"></script> -->
 	<script src="http://localhost:9000/petcarepedia/js/search_filter.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/search_map.js"></script>
 	
 	<script>
 	$(document).ready(function(){
@@ -169,8 +170,9 @@
 			<section class="api">
 			<div class="hapi">
 				<!-- <iframe width="100%" height="100px"></iframe> -->
-				<iframe src="http://localhost:9000/petcarepedia/search_map.do"
-					scrolling="no" width="100%" height="1000px" frameborder=0></iframe>
+				<!-- <iframe src="http://localhost:9000/petcarepedia/search_map.do"
+					scrolling="no" width="100%" height="1000px" frameborder=0></iframe> -->
+				<jsp:include page="search_map.jsp"></jsp:include>	
 				<!-- <img src="http://localhost:9000/petcarepedia/images/API.png"> -->
 			</div>
 			</section>

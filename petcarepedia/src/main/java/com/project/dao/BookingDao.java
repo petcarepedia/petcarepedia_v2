@@ -36,8 +36,8 @@ public class BookingDao extends DBConn {
 	public ArrayList<BookingVo> select() {
 		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
 
-		String sql = "SELECT ROWNUM RNO, BID, to_char(BDATE, 'yyyy-mm-dd') BDATE,  to_char(BDATE, 'yyyy-mm-dd') VDATE, VTIME, BSTATE, MID "
-				+ "FROM (SELECT * FROM PCP_BOOKING ORDER BY BID DESC)";
+		String sql = "SELECT ROWNUM RNO, BID, to_char(BDATE, 'yyyy-mm-dd') BDATE,  to_char(BDATE, 'yyyy-mm-dd') VDATE, VTIME, BSTATE, MID, HNAME"
+				+ " FROM (SELECT * FROM PCP_BOOKING B, PCP_HOSPITAL H where b.hid = h.hid ORDER BY BID DESC)" ;
 		getPreparedStatement(sql);
 
 		try {
@@ -50,6 +50,8 @@ public class BookingDao extends DBConn {
 				bookingVo.setVdate(rs.getString(4));
 				bookingVo.setVtime(rs.getString(5));
 				bookingVo.setBstate(rs.getString(6));
+				bookingVo.setMid(rs.getString(7));
+				bookingVo.setHname(rs.getString(8));
 
 				list.add(bookingVo);
 			}
@@ -190,7 +192,7 @@ public class BookingDao extends DBConn {
 		ArrayList<BookingReviewVo> list2 = new ArrayList<BookingReviewVo>();
 		String sql = "SELECT B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, R.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, "
 					+ " H.HRINK, H.IMG FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_REVIEW R"
-					+ " WHERE B.HID = H.HID AND B.BID = R.BID AND B.MID = ? and VDATE <= SYSDATE";
+					+ " WHERE B.HID = H.HID AND B.BID = R.BID AND B.MID = R.MID AND B.MID = ? and VDATE <= SYSDATE";
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, mid);
