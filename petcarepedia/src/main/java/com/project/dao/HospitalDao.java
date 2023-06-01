@@ -3,8 +3,60 @@ package com.project.dao;
 import java.util.ArrayList;
 
 import com.project.vo.HospitalVo;
+import com.project.vo.NoticeVo;
 
 public class HospitalDao extends DBConn {
+	
+	/* 전체 카운트 가져오기*/
+	public int totalRowCount() {
+			int count = 0;
+			String sql = "select count(*) from pcp_hospital";
+			getPreparedStatement(sql);
+			
+			try {
+				rs = pstmt.executeQuery();
+				while(rs.next()) {				
+					count = rs.getInt(1);
+				}			
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return count;		
+		}
+	
+	/**
+	 * 병원 페이징 처리
+	 */
+	public ArrayList<HospitalVo> select(int startCount, int endCount) {
+		ArrayList<HospitalVo> hospitalList = new ArrayList<HospitalVo>();
+		String sql = "SELECT RNO ,HNAME,  ANIMAL, NTIME, HID" + 
+					" FROM (SELECT ROWNUM RNO ,HNAME,  ANIMAL, NTIME, HID" + 
+					"       FROM( SELECT HNAME,  ANIMAL, NTIME, HID FROM PCP_HOSPITAL ORDER BY HID DESC))" + 
+				    "WHERE RNO BETWEEN ? AND ?";
+		getPreparedStatement(sql);
+		try {
+			pstmt.setInt(1, startCount);
+			pstmt.setInt(2, endCount);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				HospitalVo list = new HospitalVo();
+				list.setRno(rs.getInt(1));
+				list.setHname(rs.getString(2));
+				list.setAnimal(rs.getString(3));
+				list.setNtime(rs.getString(4));
+				list.setHid(rs.getString(5));
+				
+				hospitalList.add(list);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return hospitalList;
+	}
+	
 	/**
 	 * selectStat - 병원 별점
 	 */
@@ -157,6 +209,7 @@ public class HospitalDao extends DBConn {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(result);
 		return result;
 	}
 
