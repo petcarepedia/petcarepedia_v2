@@ -50,7 +50,7 @@
 							<img src = "${bookingVo.img}">
 							<div>
 								<span>서울시 > ${bookingVo.gloc}</span>
-								<span>${bookingVo.hname}</span>
+								<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookingVo.hid}"><span>${bookingVo.hname}</span></a>
 								<span></span>
 								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
 								<span>${bookingVo.loc}</span>
@@ -80,7 +80,7 @@
 							<img src = "${bookingReview.img}">
 							<div>
 								<span>서울시 > ${bookingReview.gloc}</span>
-								<span>${bookingReview.hname}</span>
+								<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookingReview.hid}"><span>${bookingReview.hname}</span></a>
 								<span></span>
 								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
 								<span>${bookingReview.loc}</span>

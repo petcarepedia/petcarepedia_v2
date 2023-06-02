@@ -29,7 +29,16 @@
 				<input type = "hidden" name = "rid" value = "${rid}">
 				<table id = "table">
 					<tr>
-						<td><img class = "trash" src="https://www.the-pr.co.kr/news/photo/201803/32219_58601_5438.png"></td>
+						<th>병원명</th>
+						<td>${reviewVo.hname}</td>
+					</tr>
+					<tr>
+						<th>리뷰내용</th>
+						<td>${reviewVo.rcontent}</td>
+					</tr>
+					<tr>
+						<th>작성자</th>
+						<td>${reviewVo.mid}</td>
 					</tr>
 					<tr>					
 						<td class = "re_cancle">정말로 삭제하시겠습니까?</td>

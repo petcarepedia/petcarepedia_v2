@@ -36,33 +36,21 @@
 			</section>
 			<section id = "section2">
 				<c:forEach var = "bookmarkVo" items = "${list}">
-					<div id = "aside1">
-						<span>${bookmarkVo.hname}</span>
-						<span>${bookmarkVo.gloc}</span>
-						<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookmarkVo.hid}">병원 상세보기 ></a>
-						<a href = "bookmark_delete.do?bmid=${bookmarkVo.bmid}">
-							<img src = "http://localhost:9000/petcarepedia/images/bookmark2.png">
-						</a>
-					</div>
+					<form name="deleteForm" action="bookmark_delete_proc.do" method="post">
+					<input type = "hidden" name = "bmid" id = "bmid" value = "${bookmarkVo.bmid}">
+						<div id = "aside1">
+							<span>${bookmarkVo.hname}</span>
+							<span>${bookmarkVo.gloc}</span>
+							<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookmarkVo.hid}">병원 상세보기 ></a>
+							<button type = "button" id = "btnBookmarkDelete">
+								<img src = "http://localhost:9000/petcarepedia/images/bookmark_yellow.png">
+							</button>
+	<%-- 						<a href = "bookmark_delete.do?bmid=${bookmarkVo.bmid}">
+								<img src = "http://localhost:9000/petcarepedia/images/bookmark2.png">
+							</a> --%>
+						</div>
+					</form>
 				</c:forEach>
-				<!-- <div id = "aside1">
-					<span>더좋은동물병원</span>
-					<span>강남구</span>
-					<a href = "http://localhost:9000/petcarepedia/mypage/information.jsp">병원 상세보기 ></a>
-					<button type = "button"><img src = "http://localhost:9000/petcarepedia/images/bookmark2.png"></button>
-				</div>
-				<div id = "aside1">
-					<span>더좋은동물병원</span>
-					<span>강남구</span>
-					<a href = "http://localhost:9000/petcarepedia/mypage/information.jsp">병원 상세보기 ></a>
-					<button type = "button"><img src = "http://localhost:9000/petcarepedia/images/bookmark2.png"></button>
-				</div>
-				<div id = "aside1">
-					<span>더좋은동물병원</span>
-					<span>강남구</span>
-					<a href = "http://localhost:9000/petcarepedia/mypage/information.jsp">병원 상세보기 ></a>
-					<button type = "button"><img src = "http://localhost:9000/petcarepedia/images/bookmark2.png"></button>
-				</div> -->
 			</section>
 		</section>
 	</div>

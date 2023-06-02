@@ -52,7 +52,7 @@
 							<img src = "${bookingVo.img}">
 							<div>
 								<span>서울시 > ${bookingVo.gloc}</span>
-								<span>${bookingVo.hname}</span>
+								<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookingVo.hid}"><span>${bookingVo.hname}</span></a>
 								<span></span>
 								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
 								<span>${bookingVo.loc}</span>
@@ -71,7 +71,7 @@
 								<span>예약 시간 : ${bookingVo.vtime}</span>
 							</div>
 						</div>
-						<a href = "reservation_delete.do?bid=${bookingVo.bid}&mid=${bookingVo.mid}">
+						<a href = "reservation_delete.do?bid=${bookingVo.bid}&mid=${bookingVo.mid}&hid=${bookingVo.hid}">
 						<button type = "button" id = "btn_cancle1">예약취소</button></a>
 					</c:forEach>
 				</section>

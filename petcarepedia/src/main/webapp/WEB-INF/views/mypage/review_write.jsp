@@ -68,8 +68,8 @@
 						<img src = "http://localhost:9000/petcarepedia//images/star.png">
 						<img src = "http://localhost:9000/petcarepedia//images/star.png"> -->
 					</section>
-					<textarea name="rcontent" id = "rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)" maxlength="50"></textarea>
-						<div id="test_cnt">(0 / 50)</div>
+					<textarea name="rcontent" id = "rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~200자내)" maxlength="200"></textarea>
+						<div id="test_cnt">(0 / 200)</div>
 					<button type = "button" id = "cancle">취소</button>
 					<button type = "button" id = "btnReviewWrite">작성완료</button>
 				</div>

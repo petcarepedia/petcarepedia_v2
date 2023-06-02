@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.BookingDao;
-import com.project.dao.BookmarkDao;
+import com.project.dao.HospitalDao;
 import com.project.dao.MemberDao;
 import com.project.dao.ReviewDao;
 import com.project.service.BookmarkService;
 import com.project.vo.BookingReviewVo;
 import com.project.vo.BookingVo;
 import com.project.vo.BookmarkVo;
+import com.project.vo.HospitalVo;
 import com.project.vo.MemberVo;
 import com.project.vo.ReviewVo;
 
@@ -86,10 +87,13 @@ public class MypageController {
 	 * reservation.do - 예약내역 삭제하기 폼
 	 */
 	@RequestMapping(value = "/reservation_delete.do", method = RequestMethod.GET)
-	public ModelAndView reservation_delete(String bid, String mid) {
+	public ModelAndView reservation_delete(String bid, String mid, String hid) {
 		ModelAndView model = new ModelAndView();
+		BookingDao bookingDao = new BookingDao();
+		BookingVo bookingVo = bookingDao.select(bid);
 		model.addObject("bid", bid);
 		model.addObject("mid", mid);
+		model.addObject("bookingVo", bookingVo);
 		model.setViewName("/mypage/reservation_delete");
 		return model;
 	}
@@ -146,13 +150,13 @@ public class MypageController {
 	/*
 	 * bookmark_delete.do - 즐겨찾기 삭제하기 폼
 	 */
-	@RequestMapping(value = "/bookmark_delete.do", method = RequestMethod.GET)
-	public ModelAndView bookmark_delete(String bmid) {
-		ModelAndView model = new ModelAndView();
-		model.setViewName("/mypage/bookmark_delete");
-		model.addObject("bmid", bmid);
-		return model;
-	}
+//	@RequestMapping(value = "/bookmark_delete.do", method = RequestMethod.GET)
+//	public ModelAndView bookmark_delete(String bmid) {
+//		ModelAndView model = new ModelAndView();
+//		model.setViewName("/mypage/bookmark_delete");
+//		model.addObject("bmid", bmid);
+//		return model;
+//	}
 	
 	/*
 	 * bookmark_delete_proc.do - 즐겨찾기 삭제하기 처리
@@ -218,7 +222,10 @@ public class MypageController {
 	@RequestMapping(value = "/my_review_delete.do", method = RequestMethod.GET)
 	public ModelAndView reservation_delete(String rid) {
 		ModelAndView model = new ModelAndView();
+		ReviewDao reviewDao = new ReviewDao();
+		ReviewVo reviewVo = reviewDao.select(rid);
 		model.addObject("rid", rid);
+		model.addObject("reviewVo", reviewVo);
 		model.setViewName("/mypage/my_review_delete");
 		return model;
 	}
@@ -283,7 +290,7 @@ public class MypageController {
 	/*
 	 * member_delete_proc - 회원탈퇴 처리
 	 */
-	@RequestMapping(value = "/member_delete_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/member_delete_proc.do", method = RequestMethod.POST ,produces="application/x-www-form-urlencoded;charset=UTF-8")
 	public String member_delete_proc(String mid, String pass) {
 		String viewName = "";
 		MemberDao memberDao = new MemberDao();
