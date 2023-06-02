@@ -26,7 +26,6 @@
 								<li><a href = "http://localhost:9000/petcarepedia/reserve_list.do">예약 관리</a></li>
 								<li><a href = "http://localhost:9000/petcarepedia/review_list.do">신고 리뷰 관리</a></li>
 								<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/login.do">나가기</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -86,10 +85,8 @@
 								</tr>
 								<tr>
 									<td colspan="5"> 
-										<div id="d4">
-											<button type="button" class="button4" id="btn_update">수정완료</button>
-											<button type="button" class="button5"><a href="http://localhost:9000/petcarepedia/hospital_list.do"> 이전으로</a></button>
-										</div>
+										<button type="button" class="button5" id="btn_update">수정완료</button>
+										<button type="button" class="button5" id="btn_delete"><a href="hospital_list.do">이전으로</a></button>
 									</td>
 								</tr>
 							</table>
