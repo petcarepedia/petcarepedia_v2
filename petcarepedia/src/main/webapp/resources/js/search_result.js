@@ -1,4 +1,52 @@
 $(document).ready(function(){
+
+
+    $("#bookmark").click(function () {
+		const Toast = Swal.mixin({
+		    toast: true,
+		    position: 'center-center',
+		    showConfirmButton: false,
+		    timer: 5000,
+		    timerProgressBar: true,
+		    didOpen: (toast) => {
+		        toast.addEventListener('mouseenter', Swal.stopTimer)
+		        toast.addEventListener('mouseleave', Swal.resumeTimer)
+		    }
+		})
+		
+		Toast.fire({
+		    icon: 'success',
+		    title: '즐겨찾기에 추가되었습니다.'
+		})
+		bookmarkForm.submit();
+    });
+    
+    
+    
+        $("#11").click(function () {
+	Swal.fire({
+	   title: '정말로 그렇게 하시겠습니까?',
+	   text: '다시 되돌릴 수 없습니다. 신중하세요.',
+	   icon: 'warning',
+	   
+	   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+	   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+	   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+	   confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+	   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+	   
+	   reverseButtons: true, // 버튼 순서 거꾸로
+	   
+	}).then(result => {
+	   // 만약 Promise리턴을 받으면,
+	   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+	   
+	      Swal.fire('승인이 완료되었습니다.', '화끈하시네요~!', 'success');
+	   }
+	});
+    });
+
+
 /*******************************************
 	좋아요 버튼
 ********************************************/    
@@ -69,10 +117,6 @@ $("#reservation").click(function() {
  
  });
 	
-	
-/*******************************************
-	찜하기
-********************************************/
 
 	
 /*******************************************

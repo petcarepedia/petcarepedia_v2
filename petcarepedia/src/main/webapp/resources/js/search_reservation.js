@@ -158,11 +158,18 @@ $(document).ready(function() {
 	/* 시간 출력 */
 	// 시작 시간과 끝 시간 가져오기
 	var startTime = $("#startTime").val();
-	var endTime = $("#endTime").val();
+	var endTime = '';
+		if($("#endTime").val()=="24:00") {
+			endTime = "23:30";
+		} else {
+			endTime = $("#endTime").val();
+		}
+	
 
 	// 시작 시간과 끝 시간을 Date 객체로 변환
 	var startDate = new Date(currentYear + "/" + currentMonth + "/" + currentDay + " " + startTime);
 	var endDate = new Date(currentYear + "/" + currentMonth + "/" + currentDay + " " + endTime);
+	
 
 	// 30분 간격으로 시간 슬롯 생성
 	var currentTime = startDate;
@@ -170,7 +177,7 @@ $(document).ready(function() {
 	var timeSlots2 = [];
 	var timeSlots3 = [];
 	
-
+// 시작 시간과 끝 시간을 Date 객체로 변환
 	while (currentTime <= endDate) {
 		var formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // 화면 출력용
 		var formattedTime2 = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }); // input안에
@@ -181,33 +188,7 @@ $(document).ready(function() {
 
 		currentTime.setMinutes(currentTime.getMinutes() + 30);
 	}
-	
-	
-/* 시간 출력 */
-// 시작 시간과 끝 시간 가져오기
-var startTime = $("#startTime").val();
-var endTime = $("#endTime").val();
 
-// 시작 시간과 끝 시간을 Date 객체로 변환
-var startDate = new Date(currentYear + "/" + currentMonth + "/" + currentDay + " " + startTime);
-var endDate = new Date(currentYear + "/" + currentMonth + "/" + currentDay + " " + endTime);
-
-// 30분 간격으로 시간 슬롯 생성
-var currentTime = startDate;
-var timeSlots = [];
-var timeSlots2 = [];
-var timeSlots3 = [];
-
-while (currentTime <= endDate) {
-  var formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // 화면 출력용
-  var formattedTime2 = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }); // input안에
-  var timeWithoutColon = formattedTime2.replace(':', '');
-
-  timeSlots.push(formattedTime); // timeSlots에 배열 저장
-  timeSlots2.push(timeWithoutColon); // timeSlots2에 배열 저장
-
-  currentTime.setMinutes(currentTime.getMinutes() + 30);
-}
 
 	// 시간과 분을 추출
 	for (var i = 0; i < timeSlots.length; i++) {

@@ -14,7 +14,9 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_result.css">
 
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="http://localhost:9000/petcarepedia/js/search_result.js"></script>
+
 </head>
 
 <body>
@@ -36,16 +38,18 @@
 				
 				<div class="name_d">
 					<div class="area_d">
-						<a href="http://localhost:9000/petcarepedia/search_main.do">서울</a>
+						<!-- <a href="http://localhost:9000/petcarepedia/search_main.do">서울</a> -->
+						<a>서울</a>
 						<span>></span>
-						<a href="http://localhost:9000/petcarepedia/search_main.do">${hospital.gloc}</a>
+						<%-- <a href="http://localhost:9000/petcarepedia/search_main.do">${hospital.gloc}</a> --%>
+						<a>${hospital.gloc}</a>
 					</div>
 					
 					<span class="name">${hospital.hname}</span>
 					
 					<span class="grade">⭐  ${star.rstar} | 리뷰 ${fn:length(RM_select)}</span>
 					
-					<button type="button" id="reservation" value="${hospital.hid}"><img src="http://localhost:9000/petcarepedia/images/cal.png">간편 예약하기
+					<button type="button" id="reservation" value="${hospital.hid}"><img src="http://localhost:9000/petcarepedia/images/booking1.png">간편 예약하기
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -66,11 +70,11 @@
 						</a>	
 						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
 						<form name="bookmarkForm" action="bookmarkProc.do" method="get">
-							<a href="#" onclick = "alert('즐겨찾기에 추가되었습니다.')">
+							<!-- <a href="#" onclick = "alert('즐겨찾기에 추가되었습니다.')"> -->
 								<input type="hidden" name="hid" value="${hospital.hid}">
 								<input type="hidden" name="mid" value="hong">
-								<button type="button" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/like.png">찜하기</button>
-							</a>
+								<button type="button" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/bookmark1.png">찜하기</button>
+							<!-- </a> -->
 						</form>
 					</div>
 				</div>
@@ -79,7 +83,7 @@
 				
 				<div class="link">
 					<span><img src="http://localhost:9000/petcarepedia/images/loc.png">${hospital.loc}</span>
-					<c:if test="${hospital.hrink != null}">
+					<c:if test="${hospital.hrink != null} ">
 						<span><img src="http://localhost:9000/petcarepedia/images/home.png"><a href="${hospital.hrink}">병원 홈페이지 가기</a></span>
 					</c:if>
 					<span><img src="http://localhost:9000/petcarepedia/images/call.png">${hospital.tel}</span>

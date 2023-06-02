@@ -16,6 +16,7 @@ import com.project.dao.BookingDao;
 import com.project.dao.BookmarkDao;
 import com.project.dao.HospitalDao;
 import com.project.dao.ReviewDao;
+import com.project.dao.ReviewLikeDao;
 import com.project.vo.BookingVo;
 import com.project.vo.BookmarkVo;
 import com.project.vo.HospitalVo;
@@ -142,7 +143,8 @@ public class SearchController {
 	@RequestMapping(value="likeProc.do", method=RequestMethod.GET)
 	public String likeProc(ReviewLikeVo reviewLikeVo, @RequestParam("hid") String hid) {
 	    ReviewDao reviewDao = new ReviewDao();
-	    int result = reviewDao.LikesUp(reviewLikeVo);
+	    ReviewLikeDao reviewLikeDao = new ReviewLikeDao();
+	    int result = reviewLikeDao.LikesUp(reviewLikeVo);
 		/* System.out.println(result); */
 
 	    if (result == 1) {
