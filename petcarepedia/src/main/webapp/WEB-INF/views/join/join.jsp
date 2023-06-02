@@ -61,8 +61,9 @@
 						<span id="namecheck_msg"></span>
 					</li>
 					<li>
-						<label>별명</label>
-						<input type="text" name="nick" id="nick" placeholder="별명 입력">
+						<label>별명 <span class="ess">*</span></label>
+						<input type="text" name="nickname" id="nickname" placeholder="2자 이상 16자 이하 문자 또는 숫자">
+						<span id="nickcheck_msg"></span>
 					</li>
 					<li>
 						<label>휴대폰 <span class="ess">*</span></label>

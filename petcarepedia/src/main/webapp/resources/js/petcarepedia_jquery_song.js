@@ -39,6 +39,8 @@ $(document).ready(function(){
 	 */
 	let reg_id = /^(?=.*?[a-z])(?=.*?[0-9]).{4,20}$/;
 	let reg_pw = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$/;
+	let reg_phone = /^\d{4}$/;
+	let reg_nick = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
 	
 	//아이디 정규식 체크
 	$("form[name='joinForm'] #id").keyup(function(){
@@ -103,8 +105,8 @@ $(document).ready(function(){
 	});
 	//휴대폰 유효성 체크
 	$("form[name='joinForm'] #phone1,form[name='joinForm'] #phone2,form[name='joinForm'] #phone3").blur(function(){
-		if($("form[name='joinForm'] #phone1").val() == "default" || $("form[name='joinForm'] #phone2").val() == "" || $("form[name='joinForm'] #phone3").val() == ""){
-			$("#phonecheck_msg").text("휴대폰 번호를 입력하세요.").css("color","red")
+		if($("form[name='joinForm'] #phone1").val() == "default" || !reg_phone.test($("#phone2").val()) || !reg_phone.test($("#phone3").val())){
+			$("#phonecheck_msg").text("올바른 휴대폰 번호를 입력하세요.").css("color","red")
 			.css("font-size","12px").css("display","block").css("clear","both")
 			.css("padding-top","5px")
 			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
@@ -112,6 +114,18 @@ $(document).ready(function(){
 			$("#phonecheck_msg").text("").css("display","none");
 		}
 	});
+	//별명 유효성 체크
+	$("#nickname").keyup(function(){
+		if(!reg_nick.test($("#nickname").val())){
+			$("#nickcheck_msg").text("특수문자와 초성 및 모음 제외 2~16자로 입력하세요.").css("color","red")
+			.css("font-size","12px").css("display","block").css("clear","both")
+			.css("padding-top","5px")
+			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+		} else {
+			$("#nickcheck_msg").text("").css("display","none");
+		}
+	});
+	
 	//약관동의 전체체크
 	$("#termAll").click(function(){
 		if($("#termAll").is(':checked')){
@@ -173,6 +187,9 @@ $(document).ready(function(){
 			&& $("form[name='joinForm'] #phone1").val() != "default"
 			&& $("form[name='joinForm'] #phone2").val() != ""
 			&& $("form[name='joinForm'] #phone3").val() != ""
+			&& $("#phonecheck_msg").text() != "올바른 휴대폰 번호를 입력하세요."
+			&& $("form[name='joinForm'] #nickname").val() != ""
+			&& $("#nickcheck_msg").text() != "특수문자와 초성 및 모음 제외 2~16자로 입력하세요."
 			&& $("#term1").is(':checked') && $("#term2").is(':checked')){
 			$("#btnJoin").attr("disabled",false);
 		} else {
