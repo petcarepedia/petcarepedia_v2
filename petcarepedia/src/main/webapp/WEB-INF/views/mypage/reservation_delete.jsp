@@ -29,7 +29,25 @@
 				<input type = "hidden" name = "bid" value = "${bid}">
 				<table id = "table">
 					<tr>
-						<td><img class = "trash" src="https://m.wooribank.com/img/mw/else/img_mob_reserva01.png"></td>
+						<td>
+							<img src = "${bookingVo.img}" class = "image">
+						</td>
+					</tr>
+					<tr>
+						<th>병원명</th>
+						<td>${bookingVo.hname}</td>
+					</tr>
+					<tr>
+						<th>예약날짜</th>
+						<td>${bookingVo.vdate}</td>
+					</tr>
+					<tr>
+						<th>예약시간</th>
+						<td>${bookingVo.vtime}</td>
+					</tr>
+					<tr>
+						<th>전화번호</th>
+						<td>${bookingVo.tel}</td>
 					</tr>
 					<tr>					
 						<td class = "re_cancle">예약을 취소하시겠습니까?</td>

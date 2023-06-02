@@ -4,11 +4,11 @@ $(document).ready(function(){
 		리뷰쓰기 - 글자수 카운팅
 ******************************************************************************/
 	$("#rcontent").on("keyup", function(){
-		$('#test_cnt').html("("+$(this).val().length+" / 50)");
-		if($(this).val().length > 50) {
-			alert("50글자 이하로 작성해주세요");
-            $(this).val($(this).val().substring(0, 50));
-            $('#test_cnt').html("(50 / 50)");
+		$('#test_cnt').html("("+$(this).val().length+" / 200)");
+		if($(this).val().length > 200) {
+			alert("200글자 이하로 작성해주세요");
+            $(this).val($(this).val().substring(0, 200));
+            $('#test_cnt').html("(200 / 200)");
         }
 	})
 
@@ -37,22 +37,6 @@ $(document).ready(function(){
 			alert("별명을 입력해주세요");
 			$("#nickname").focus();
 			return false;
-		} else if($("#year").val() == "") {
-			alert("생년월일을 입력해주세요");
-			$("#year").focus();
-			return false;
-		} else if($("#month").val() == "") {
-			alert("생년월일을 입력해주세요");
-			$("#month").focus();
-			return false;
-		} else if($("#date").val() == "") {
-			alert("생년월일을 입력해주세요");
-			$("#date").focus();
-			return false;
-		} else if($("#email").val() == "") {
-			alert("이메일을 입력해주세요");
-			$("#email").focus();
-			return false;
 		} else if($("#phone1").val() == "") {
 			alert("휴대폰 번호를 선택해주세요");
 			$("#phone1").focus();
@@ -64,10 +48,6 @@ $(document).ready(function(){
 		} else if($("#phone3").val() == "") {
 			alert("휴대폰 번호를 선택해주세요");
 			$("#phone3").focus();
-			return false;
-		} else if($("#address").val() == "") {
-			alert("변경하실 주소를 입력해주세요");
-			$("#address").focus();
 			return false;
 		} else {
 			updateForm.submit();

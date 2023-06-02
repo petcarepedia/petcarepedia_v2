@@ -42,7 +42,7 @@
 				<section id = "section3">
 					<span>비밀번호를 입력해주세요</span>
 					<input type = "hidden" name = "mid" id = "mid" value = "${mid}">
-					<input type = "text" name = "pass" id = "pass" placeholder = "  비밀번호 입력">
+					<input type = "password" name = "pass" id = "pass" placeholder = "  비밀번호 입력">
 					<button type = "button" id = "btnMemberDelete">회원탈퇴</button>
 				</section>
 			</form>

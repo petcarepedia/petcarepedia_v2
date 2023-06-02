@@ -364,10 +364,11 @@ hr {
 	font-size: 14px;
 	color: #3D3D3D;
 }
-#reservation #aside #section2 #aside1 div span:nth-child(2) {
+#reservation #aside #section2 #aside1 div a:nth-child(2) span {
 	font-weight: 700;
 	font-size: 28px;
 	color: #3D3D3D;
+	margin-left : -3px;
 }
 #reservation #aside #section2 #aside1 div span:nth-child(3) {
 	font-weight: 500;
@@ -516,12 +517,13 @@ hr {
 }
 #reservation form[name='deleteForm'] table td.re_cancle {
 	display : inline-block;
-	margin-left : 40px;
+	margin-top : 30px;
+	margin-left : 20px;
 	border : none;
 }
 #reservation form[name='deleteForm'] table td.btnCancle {
 	display : inline-block;
-	margin-left : 10px;
+	margin-left : 3px;
 	border : none;
 }
 #reservation form[name='deleteForm'] table td {
@@ -1060,13 +1062,16 @@ textarea[name='review'] {
 #bookmark #section2 #aside1{
 	position : relative;
 }
-
-#bookmark #section2 #aside1 a img {
+#bookmark #section2 #aside1 button {
+	border : none;
+	background : white;
+}
+#bookmark #section2 #aside1 button img {
 	position : absolute;
-	left : 200px;
-	top : -15px;
-	width : 60px;
-	height : 60px;
+	left : 220px;
+	top : -1px;
+	width : 30px;
+	height : 30px;
 }
 #bookmark hr {
 	width : 630px;

@@ -10,6 +10,52 @@ import com.project.vo.BookmarkVo;
 @Repository
 public class BookmarkDao extends DBConn{
 	
+	public int deleteBookmark(BookmarkVo bookmarkVo) {
+		int result = 0;
+		
+		String sql = "DELETE FROM PCP_BOOKMARK WHERE HID=? AND MID=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, bookmarkVo.getHid());
+			pstmt.setString(2, bookmarkVo.getMid());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	
+	public int checkBookmark(BookmarkVo bookmarkVo) {
+		int result = 0;
+		
+		String sql = "SELECT COUNT(*) FROM PCP_BOOKMARK WHERE HID=? AND MID=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, bookmarkVo.getHid());
+			pstmt.setString(2, bookmarkVo.getMid());
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	
+	
+	
 	/*
 	 * 북마크 전체 리스트 출력
 	 */
