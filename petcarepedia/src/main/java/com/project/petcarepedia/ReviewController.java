@@ -32,7 +32,7 @@ public class ReviewController {
 		int dbCount = reviewDao.totalRowCount();	//DB에서 가져온 전체 행수
 		
 		//임시 아이디
-		mid="hong";
+		mid="test";
 		
 		
 		//총 페이지 수 계산

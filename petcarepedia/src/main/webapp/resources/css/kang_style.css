@@ -12,14 +12,21 @@ section.notice table.notice, section.notice table.notice th, section.notice tabl
 	padding:10px 3px;
 	color:#3D3D3D;
 }
+section.notice table.notice tr th:first-child {
+	border-top-left-radius: 5px;
+}
+section.notice table.notice tr th:last-child {
+	border-top-right-radius: 5px;
+}
 section.notice table.notice td a {
 	text-decoration:none;
 	color:#3D3D3D;
 }
 section.notice {
 	 margin:auto;
-	 margin-top:30px;
+	 margin-top:40px;
 	 height:700px;
+	 margin-bottom:100px;
 }
 section.review_content {
 	width:1000px; margin:auto;
@@ -34,6 +41,7 @@ section.notice .title, section.notice form .title, section.review_content .title
 	font-size:28px;
 	color:#3D3D3D;
 	border-bottom:1px solid black;
+	padding-bottom:10px;
 }
 section.notice #title_l, section.review_content #title_l {
 	padding:50px 60px 30px 60px;
@@ -44,9 +52,6 @@ section.notice th {
 }
 section.notice tr:last-child td {
 	border:2px solid white;
-}
-section.notice table.notice {
-	border:1px solid #98DFFF;
 }
 section.notice .button_r {
 	text-align:right;
@@ -83,9 +88,22 @@ section.notice table.notice_content {
 }
 section.notice table.notice_content td {
 	border-bottom:2px solid #D9D9D9;
+	color:#3d3d3d;
+	font-size:20px;
+	padding-bottom:5px;
 }
+
 section.notice table#nct td {
 	border-bottom:2px solid #98DFFF;
+	color:#3d3d3d;
+	font-size:20px;
+	padding-bottom:5px;
+}
+section.notice table#nct tr:last-child td, section.notice table.notice_content tr:last-child td {
+	font-size:14px;
+}
+section.notice table#nct tr:first-child td, section.notice table.notice_content tr:first-child td {
+	font-weight:700;
 }
 section.notice #date {
 	text-align:right;
@@ -119,6 +137,8 @@ section.notice table.notice_content tr td textarea.ncontent {
 	border:none;
 	width:100%;
 	height:99%;
+	font-size:14px;
+	color:#3d3d3d;
 }
 section.notice table.notice_content tr td textarea.ncontent:focus {
 	outline:none;
@@ -157,12 +177,11 @@ section.notice table.notice_delete tr td {
 }
 div p {
 	margin:1px;
-	font-family: 'Inter';
-	font-style: normal;
 	font-weight: 600;
 	font-size: 24px;
 	line-height: 29px;
 	padding-left:5px;
+	color:#3d3d3d;
 }
 div#best_review {
 	margin-top:150px;
@@ -217,30 +236,30 @@ div#filter_page table#filter_ani {
 	margin-bottom:40px;
 }
 div#review {
-	width:900px;
+	margin-bottom:100px;
 }
 div#review span {
-	font-family: 'Inter';
-	font-style: normal;
 	font-weight: 600;
 	font-size: 24px;
 	line-height: 29px;
 	padding-left:5px;
+	color:#3d3d3d;
 }
 div#review div#title span:last-child {
 	float:right;
 }
 div#review div#title span:last-child a {
 	text-decoration:none;
-	color:black;
+	color:#3d3d3d;
 }
 div#review div#title {
-	margin-bottom:10px;
+	margin-bottom:20px;
 }
 div#review ul {
 	list-style-type:none;
 	padding:0px;
 	border:1px solid #98DFFF;
+	border-radius:5px;
 }
 div#review ul li#result_sort {
 	display:unset;
@@ -254,6 +273,7 @@ div#review ul li#result_sort span:first-child {
 
 div#review ul li {
 	border:1px solid #98DFFF;
+	border-radius:5px;
 	height:70px;
 	margin:10px 25px;
 }
@@ -275,7 +295,7 @@ div#review ul li a, div#best_review ul li a {
 	overflow:hidden;
 }
 div#review ul li a:hover, div#best_review ul li a:hover {
-	cursor:default;
+	cursor:pointer;
 }
 div#best_review ul li a div.review_top, div#best_review ul li a div.review_bottom {
 	/* border:1px solid red; */
@@ -407,13 +427,20 @@ div#review ul li.review_list ul li#list_right div span {
 	font-size:14px;
 }
 li#list_left p {
+	margin-left:50px;
 	margin-top:10px;
 	margin-bottom:10px;
-	font-style: normal;
 	font-weight: 400;
-	font-size: 14px;
 	line-height: 17px;
+	display: flex;
+    align-items: center;
 }
+li#list_left p span{
+	height:20px;
+	font-size:16px;
+	line-height:17px;
+}
+
 li#list_middle p {
 	font-family: 'Inter';
 	font-style: normal;
@@ -430,6 +457,7 @@ section.review_content div.review_detail {
 	height:400px;
 	margin:auto;
 	border:1px solid #98DFFF;
+	border-radius:5px;
 	padding:10px;
 }
 section.review_content .rc_button_r {
@@ -452,13 +480,22 @@ section.review_content table.rv_detail_menu tr {
 section.review_content table.rv_detail_menu tr th {
 	width:80px;
 	height:25px;
+	color:#3d3d3d;
 }
 section.review_content table.rv_detail_menu tr td {
 	text-align:left;
 	font-size:14px;
 	font-weight: 10;
+	color:#3d3d3d;
 	/* border:1px solid blue; */
 }
+section.review_content table.rv_detail_menu tr td a {
+	text-decoration: none;
+	color:#3d3d3d;
+}
+section.review_content table.rv_detail_menu tr:nth-child(2) td {
+	display:flex;
+} 
 section.review_content table.rv_detail_menu tr td img,div#review ul li.review_list ul li#list_left p img {
 	width:20px;
 	margin-right:10px;
@@ -473,6 +510,7 @@ section.review_content table.rv_detail_menu tr:last-child {
 section.review_content table.rv_detail_menu tr:last-child td {
 	padding:20px 10px;
 	border:1px solid #D9D9D9;
+	border-radius:5px;
 	font-size:14px;
 }
 section.review_content div.review_detail div.table_right {
@@ -487,7 +525,7 @@ section.review_content div.review_detail button.report {
 	position: relative;
 	left:20px;
 	top: -395px;
-	font-size:10px;
+	font-size:15px;
 	background:white;
 	border:none;
 	color:red;
@@ -498,6 +536,7 @@ section.review_content div.review_detail button.report:hover {
 section.review_content div.review_detail div.table_right button {
 	background:white;
 	border:1px solid #98DFFF;
+	border-radius:5px;
 	margin-right:10px;
 	border-radius:5px;
 	height:30px;
@@ -525,11 +564,14 @@ section.review_content div.review_detail div.table_right div#star {
 	margin-top:50px;
 	height:100px;
 	text-align:center;
+	color:#3d3d3d;
 }
 section.review_content div.review_detail div.table_right table {
-	font-size:10px;
-	margin-left:130px;
-	margin-top:200px;
+	font-size:15px;
+	margin-left:80px;
+	margin-top:195px;
+	width:200px;
+	color:#3d3d3d;
 }
 section.review_content div.review_detail div.table_right div#star div.score{
 	border-top:1px solid black;
@@ -539,6 +581,7 @@ section.review_content div.review_detail div.table_right div#star div.score{
 	margin-left:50px;
 	margin-bottom:10px;
 	padding:5px;
+	padding-top:10px;
 	font-size:14px;
 }
 section.review_content div.review_detail div.table_right div#star div#score_l {
@@ -555,7 +598,7 @@ section.review_content div.review_detail div.table_right table td#tdc {
 	width:40px;
 }
 div#brbox {
-	margin-top:130px;
+	margin-top:140px;
 }
 div#brbox div.main-review div.sub a {
 	display:none;
@@ -599,4 +642,12 @@ button#review_test {
 section#review div#review ul li .am-pagination-default-sm li span {
 	height:20px;
 	font-size:12px;
+}
+#filter_page P {
+	margin-bottom:20px;
+}
+input#title {
+	color:#3d3d3d;
+	font-size:20px;
+	font-weight: 700;
 }

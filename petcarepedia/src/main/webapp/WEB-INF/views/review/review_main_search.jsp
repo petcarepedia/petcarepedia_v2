@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>review main</title>
+<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+<title>펫캐어피디아 | 리뷰사전</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_style.css">
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/am-pagination.css">
@@ -109,7 +110,7 @@
 					<li class="review_list">
 						<ul>
 							<li id="list_left" class="list">
-								<p><img src="http://localhost:9000/petcarepedia/images/cat.png">${list.mid }</p>
+								<p><img src="http://localhost:9000/petcarepedia/images/cat.png">${list.nickname }</p>
 								<div id="star">
 									<div id="avg">
 										⭐ ${list.rstar } / 5.0
