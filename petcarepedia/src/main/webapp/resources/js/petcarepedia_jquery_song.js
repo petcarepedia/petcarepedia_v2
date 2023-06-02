@@ -351,9 +351,6 @@ $(document).ready(function(){
 		}
 	});
 	
-	
-	
-	
 }); //ready
 
 
