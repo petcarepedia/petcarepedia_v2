@@ -13,9 +13,9 @@ public class ReviewDao extends DBConn {
 	// 府轰客 捍盔 炼牢
 	public ArrayList<ReviewVo> RH_select(String hid) {
 		ArrayList<ReviewVo> RHList = new ArrayList<ReviewVo>();
-		String sql = "select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, loc, tel, htime, ntime, holiday, intro, img, hrink\r\n" + 
-				"from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, h.loc, h.tel, h.htime, h.ntime, h.holiday, h.intro, h.img, h.hrink \r\n" + 
-				"from pcp_review r, pcp_hospital h where r.hid=h.hid and h.hid = ? order by r.rdate desc)";
+		String sql = " select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, loc, tel, htime, ntime, holiday, intro, img, hrink\r\n" + 
+				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, h.loc, h.tel, h.htime, h.ntime, h.holiday, h.intro, h.img, h.hrink \r\n" + 
+				" from pcp_review r, pcp_hospital h where r.hid=h.hid and h.hid = ? order by r.rdate desc)";
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, hid);
@@ -94,9 +94,9 @@ public class ReviewDao extends DBConn {
 	// 府轰 府胶飘
 	public ArrayList<ReviewVo> select() {
 		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
-		String sql = "select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc " + 
-				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc from pcp_review r, pcp_hospital h " + 
-				" where r.hid=h.hid order by r.rdate desc)";
+		String sql = " select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname " + 
+				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m " + 
+				" where r.hid=h.hid and r.mid = m.mid order by r.rdate desc)";
 		getPreparedStatement(sql);
 		try {
 			rs = pstmt.executeQuery();
@@ -115,6 +115,7 @@ public class ReviewDao extends DBConn {
 				list.setHname(rs.getString(10));
 				list.setAnimal(rs.getString(11));
 				list.setGloc(rs.getString(12));
+				list.setNickname(rs.getString(13));
 				
 				reviewList.add(list);
 			}
@@ -128,10 +129,10 @@ public class ReviewDao extends DBConn {
 	// 府轰 府胶飘 其捞隆 贸府
 	public ArrayList<ReviewVo> selectList(int startCount, int endCount) {
 		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
-		String sql = "select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc"
-				+ " from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc " + 
-				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc from pcp_review r, pcp_hospital h " + 
-				" where r.hid=h.hid order by r.rdate desc))"
+		String sql = " select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname"
+				+ " from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname " + 
+				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m " + 
+				" where r.hid=h.hid and r.mid = m.mid order by r.rdate desc))"
 				+ " where rno between ? and ? ";
 		getPreparedStatement(sql);
 		try {
@@ -153,6 +154,7 @@ public class ReviewDao extends DBConn {
 				list.setHname(rs.getString(10));
 				list.setAnimal(rs.getString(11));
 				list.setGloc(rs.getString(12));
+				list.setNickname(rs.getString(13));
 				
 				reviewList.add(list);
 			}
@@ -167,11 +169,11 @@ public class ReviewDao extends DBConn {
 	// 八祸 府轰 府胶飘 其捞隆 贸府
 	public ArrayList<ReviewVo> selectSearchList(int startCount, int endCount, String filter_location) {
 		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
-		String sql = "select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc " + 
-				"from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc " + 
-				"from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc from pcp_review r, pcp_hospital h " + 
-				"where r.hid=h.hid order by r.rdate desc) where gloc = ?) " + 
-				"where rno between ? and ?";
+		String sql = "select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname " + 
+				" from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname " + 
+				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m " + 
+				" where r.hid=h.hid and r.mid = m.mid order by r.rdate desc) where gloc = ?) " + 
+				" where rno between ? and ?";
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, filter_location);
@@ -193,6 +195,7 @@ public class ReviewDao extends DBConn {
 				list.setHname(rs.getString(10));
 				list.setAnimal(rs.getString(11));
 				list.setGloc(rs.getString(12));
+				list.setNickname(rs.getString(13));
 				
 				reviewList.add(list);
 			}
@@ -207,9 +210,9 @@ public class ReviewDao extends DBConn {
 	public int SearchRowCount(String filter_location) {
 			int count = 0;
 			String sql = "select count(*)\r\n" + 
-					"from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc\r\n" + 
-					"from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc from pcp_review r, pcp_hospital h\r\n" + 
-					"where r.hid=h.hid order by r.rdate desc) where gloc = ?)";
+					" from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname \r\n" + 
+					" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m \r\n" + 
+					" where r.hid=h.hid and r.mid = m.mid order by r.rdate desc) where gloc = ?)";
 			getPreparedStatement(sql);
 
 			try {
@@ -231,9 +234,9 @@ public class ReviewDao extends DBConn {
 	 */
 	public ReviewVo select(String rid) {
 		ReviewVo reviewVo = new ReviewVo();
-		String sql = "select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc " + 
-				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc from pcp_review r, pcp_hospital h " + 
-				" where r.hid=h.hid) where rid = ?";
+		String sql = "select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname " + 
+				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m " + 
+				" where r.hid=h.hid and r.mid = m.mid) where rid = ?";
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, rid);
@@ -251,6 +254,7 @@ public class ReviewDao extends DBConn {
 				reviewVo.setHname(rs.getString(10));
 				reviewVo.setAnimal(rs.getString(11));
 				reviewVo.setGloc(rs.getString(12));
+				reviewVo.setNickname(rs.getString(13));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -264,9 +268,9 @@ public class ReviewDao extends DBConn {
 	 */
 	public ReviewVo enter_select(String rid) {
 		ReviewVo reviewVo = new ReviewVo();
-		String sql = "select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc " + 
-				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc from pcp_review r, pcp_hospital h " + 
-				" where r.hid=h.hid) where rid = ?";
+		String sql = "select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname " + 
+				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m " + 
+				" where r.hid=h.hid and r.mid = m.mid) where rid = ?";
 		getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, rid);
@@ -284,6 +288,7 @@ public class ReviewDao extends DBConn {
 				reviewVo.setHname(rs.getString(10));
 				reviewVo.setAnimal(rs.getString(11));
 				reviewVo.setGloc(rs.getString(12));
+				reviewVo.setNickname(rs.getString(13));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -385,13 +390,13 @@ public class ReviewDao extends DBConn {
 	public ArrayList<ReviewVo> select(int startCount, int endCount) {
 		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
 		
-		String sql = "select rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar,mid\r\n" + 
-				"from(select rownum rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar,mid\r\n" + 
-				"from(select rid,r.hid,rcontent,hname,gloc,to_char(rdate,'yyyy-mm-dd') rdate,rlike,rstar,mid\r\n" + 
-				"from pcp_review r, pcp_hospital h\r\n" + 
-				"where r.hid=h.hid\r\n" + 
-				"order by rlike desc))\r\n" + 
-				"where rno between ? and ?";
+		String sql = "select rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar,mid, nickname \r\n" + 
+				" from(select rownum rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar,mid,nickname \r\n" + 
+				" from(select r.rid,r.hid,r.rcontent,h.hname,h.gloc,to_char(r.rdate,'yyyy-mm-dd') rdate,r.rlike,r.rstar,r.mid,m.nickname \r\n" + 
+				" from pcp_review r, pcp_hospital h, pcp_member m \r\n" + 
+				" where r.hid=h.hid and r.mid = m.mid \r\n" + 
+				" order by rlike desc))\r\n" + 
+				" where rno between ? and ?";
 		getPreparedStatement(sql);
 		
 		try {
@@ -412,6 +417,7 @@ public class ReviewDao extends DBConn {
 				reviewVo.setRlike(rs.getInt(8));
 				reviewVo.setRstar(rs.getFloat(9));
 				reviewVo.setMid(rs.getString(10));
+				reviewVo.setNickname(rs.getString(11));
 				
 				
 				list.add(reviewVo);
@@ -450,7 +456,7 @@ public class ReviewDao extends DBConn {
 	public ArrayList<ReviewVo> my_select(String mid) {
 		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
 		String sql = "select h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid, h.img\r\n" + 
-				"from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = ?";
+				" from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = ?";
 		getPreparedStatement(sql);
 		
 		try {
@@ -491,7 +497,7 @@ public class ReviewDao extends DBConn {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return result;
 	}
 	
 	

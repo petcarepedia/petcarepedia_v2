@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 <title>펫캐어피디아 | 관리자 공지 관리</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_admin.css">
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/am-pagination.css">

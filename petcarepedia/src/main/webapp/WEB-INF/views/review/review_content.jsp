@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 <title>펫캐어피디아 | 리뷰 상세보기</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_style.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
@@ -22,11 +23,16 @@
 				<table class="rv_detail_menu">
 					<tr>
 						<th>병원이름</th>
-						<td>${reviewVo.hname }</td>
+						<td>
+							<a href="search_result.do?hid=${reviewVo.hid }">
+								${reviewVo.hname }
+							</a>
+						</td>
+						
 					</tr>
 					<tr>
 						<th>작성자</th>
-						<td><img src="http://localhost:9000/petcarepedia/images/cat.png">${reviewVo.mid }</td>
+						<td><img src="http://localhost:9000/petcarepedia/images/cat.png">${reviewVo.nickname }</td>
 					</tr>
 					<tr>
 						<th>상세내용</th>

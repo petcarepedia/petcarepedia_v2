@@ -51,8 +51,19 @@ public class PageServiceImpl {
 			startCount = (reqPage - 1) * pageSize + 1;
 			endCount = reqPage * pageSize;
 		} else {
-			startCount = 1;
-			endCount = 5;
+			if(serviceName.equals("notice"))  {
+				startCount = 1;
+				endCount = 10;
+			}
+			else if(serviceName.equals("review")) {
+				startCount = 1;
+				endCount = 7;				
+			}
+			else {
+				startCount = 1;
+				endCount = 5;
+			}
+
 		}
 		
 		
