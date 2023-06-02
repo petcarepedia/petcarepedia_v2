@@ -36,7 +36,7 @@
 								${reviewVo.rcontent}
 							</div>
 							<div>
-								<p>❤️ ${reviewVo.rlike}</p>
+								<p><span style="color:red;">♥</span> ${reviewVo.rlike}</p>
 								<p>${reviewVo.rdate}</p>
 							</div>
 						
