@@ -6,7 +6,7 @@ import com.project.vo.BookingReviewVo;
 import com.project.vo.BookingVo;
 
 public class BookingDao extends DBConn {
-
+	
 	/** 예약 등록 **/
 	public int insert(BookingVo bookingVo) {
 		int result = 0;

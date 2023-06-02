@@ -2,6 +2,7 @@ package com.project.petcarepedia;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,7 @@ import com.project.dao.BookmarkDao;
 import com.project.dao.HospitalDao;
 import com.project.dao.ReviewDao;
 import com.project.dao.ReviewLikeDao;
+import com.project.service.BookingService;
 import com.project.vo.BookingVo;
 import com.project.vo.BookmarkVo;
 import com.project.vo.HospitalVo;
@@ -26,6 +28,10 @@ import com.project.vo.ReviewVo;
 
 @Controller
 public class SearchController {
+	
+	@Autowired
+	private BookingService bookingService;
+	
 	HospitalDao hospitalDao = new HospitalDao();
 	BookingDao bookingDao = new BookingDao();
 	
@@ -65,7 +71,7 @@ public class SearchController {
 		ReviewDao reviewDao = new ReviewDao();
 		HospitalVo hospital = hospitalDao.select(hid);
 		HospitalVo star = hospitalDao.selectStar(hid);
-		BookingVo bookingVo = bookingDao.selectTime(hid);
+		BookingVo bookingVo = bookingService.getSelectTime(hid);
 		ArrayList<ReviewVo> RM_select = reviewDao.RM_select(hid);
 		
 		
@@ -96,7 +102,7 @@ public class SearchController {
 		ModelAndView model = new ModelAndView();
 		
 		HospitalVo hospitalVo = hospitalDao.select(hid);
-		BookingVo bookingVo = bookingDao.selectTime(hid);
+		BookingVo bookingVo = bookingService.getSelectTime(hid);
 
 		model.addObject("hospital", hospitalVo);
 		model.addObject("time", bookingVo);
@@ -110,7 +116,7 @@ public class SearchController {
 	@RequestMapping(value="reservationProc.do", method=RequestMethod.POST)
 	public String reservationProc(BookingVo bookingVo) {
 		String viewName = "";
-		int result = bookingDao.insert(bookingVo);
+		int result = bookingService.getInsert(bookingVo);
 		
 		if(result == 1) {
 			viewName = "redirect:/reservation.do?mid=hong";
@@ -145,7 +151,6 @@ public class SearchController {
 	    ReviewDao reviewDao = new ReviewDao();
 	    ReviewLikeDao reviewLikeDao = new ReviewLikeDao();
 	    int result = reviewLikeDao.LikesUp(reviewLikeVo);
-		/* System.out.println(result); */
 
 	    if (result == 1) {
 	        return "redirect:/search_result.do?hid=" + hid;
@@ -161,7 +166,6 @@ public class SearchController {
 	public String rstateProc(String rid, @RequestParam("hid") String hid) {
 		ReviewDao reviewDao = new ReviewDao();
 	    int result = reviewDao.update(rid);
-		/* System.out.println(result); */
 
 	    if (result == 1) {
 			return "redirect:/search_result.do?hid=" + hid;
@@ -216,21 +220,5 @@ public class SearchController {
 		return new Gson().toJson(jlist);
 	}
 		
-	    
-	
-		
-		
-	
-	
-	
-	
-		
-	
-	
-	
-	
-
-	
-	
 	
 } // class
