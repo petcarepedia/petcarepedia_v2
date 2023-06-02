@@ -2,6 +2,7 @@ package com.project.petcarepedia;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,15 +17,22 @@ import com.project.dao.BookingDao;
 import com.project.dao.BookmarkDao;
 import com.project.dao.HospitalDao;
 import com.project.dao.ReviewDao;
+import com.project.dao.ReviewLikeDao;
+import com.project.service.BookingService;
 import com.project.vo.BookingVo;
 import com.project.vo.BookmarkVo;
 import com.project.vo.HospitalVo;
+import com.project.vo.MemberVo;
 import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
 
 
 @Controller
 public class SearchController {
+	
+	@Autowired
+	private BookingService bookingService;
+	
 	HospitalDao hospitalDao = new HospitalDao();
 	BookingDao bookingDao = new BookingDao();
 	
@@ -64,7 +72,7 @@ public class SearchController {
 		ReviewDao reviewDao = new ReviewDao();
 		HospitalVo hospital = hospitalDao.select(hid);
 		HospitalVo star = hospitalDao.selectStar(hid);
-		BookingVo bookingVo = bookingDao.selectTime(hid);
+		BookingVo bookingVo = bookingService.getSelectTime(hid);
 		ArrayList<ReviewVo> RM_select = reviewDao.RM_select(hid);
 		
 		
@@ -95,7 +103,7 @@ public class SearchController {
 		ModelAndView model = new ModelAndView();
 		
 		HospitalVo hospitalVo = hospitalDao.select(hid);
-		BookingVo bookingVo = bookingDao.selectTime(hid);
+		BookingVo bookingVo = bookingService.getSelectTime(hid);
 
 		model.addObject("hospital", hospitalVo);
 		model.addObject("time", bookingVo);
@@ -109,7 +117,7 @@ public class SearchController {
 	@RequestMapping(value="reservationProc.do", method=RequestMethod.POST)
 	public String reservationProc(BookingVo bookingVo) {
 		String viewName = "";
-		int result = bookingDao.insert(bookingVo);
+		int result = bookingService.getInsert(bookingVo);
 		
 		if(result == 1) {
 			viewName = "redirect:/reservation.do?mid=hong";
@@ -124,26 +132,67 @@ public class SearchController {
 	
 	
 	/** bookProc.do.do - 찜하기 처리 **/
+//	@RequestMapping(value="bookmarkProc.do", method=RequestMethod.GET)
+//	public String bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
+//	    BookmarkDao bookmarkDao = new BookmarkDao();
+//	    String viewName = "";
+//	    int result = bookmarkDao.CheckBookmark(bookmarkVo);
+//	    
+//	    if(result == 1) {
+//	    	viewName = "redirect:/search_main.do";
+//	    	System.out.println("실패");
+//	    } else if(result == 0) {
+//	    	bookmarkDao.insert(bookmarkVo);
+//	    	viewName = "redirect:/search_result.do?hid=" + hid;
+//	    	System.out.println("성공");
+//	    }
+//		return viewName;
+//	}
+	
+	/** bookProc.do.do - 찜하기 처리 **/
 	@RequestMapping(value="bookmarkProc.do", method=RequestMethod.GET)
-	public String bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
-	    BookmarkDao bookmarkDao = new BookmarkDao();
-	    int result = bookmarkDao.insert(bookmarkVo);
-	    
-	    if(result == 1) {
-	        return "redirect:/search_result.do?hid=" + hid;
-	    } else {
-	        // 실패 - 실패를 나타내는 문자열 반환
-	        return "failure";
-	    }
+	public ModelAndView bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
+		ModelAndView model = new ModelAndView();
+		BookmarkDao bookmarkDao = new BookmarkDao();
+		String viewName = "";
+		int result = bookmarkDao.checkBookmark(bookmarkVo);
+		System.out.println("result가져옴"+result);
+		
+		if(result == 0) {
+			bookmarkDao.insert(bookmarkVo);
+			model.addObject("bookmark_result", "success");
+			model.setViewName("redirect:/search_result.do?hid=" + hid);
+			System.out.println("성공");
+		} else {
+			bookmarkDao.deleteBookmark(bookmarkVo);
+			model.addObject("bookmark_result", "fail");
+			model.setViewName("redirect:/search_result.do?hid=" + hid);
+			System.out.println("실패");
+		}
+		return model;
 	}
 	
 	
+	/** search_bookmark_return.do - 찜하기 후 페이지 돌아가기 처리 **/
+	/*
+	 * @RequestMapping(value="search_bookmark_return.do", method=RequestMethod.POST)
+	 * public ModelAndView search_bookmark_return(BookmarkVo
+	 * bookmarkVo, @RequestParam("hid") String hid) { ModelAndView model = new
+	 * ModelAndView(); BookmarkDao bookmarkDao = new BookmarkDao();
+	 * 
+	 * if(bookmarkDao.CheckBookmark(bookmarkVo) == 1) {
+	 * model.addObject("bookmark_result", "ok");
+	 * model.setViewName("redirect:/search_result.do?hid=" + hid); } else { // 실패 -
+	 * 실패를 나타내는 문자열 반환 model.addObject("bookmark_result", "fail");
+	 * model.setViewName("redirect:/search_main.do"); } return model; }
+	 */
+	
+
 	/** likeProc.do - 좋아요 처리 **/
 	@RequestMapping(value="likeProc.do", method=RequestMethod.GET)
 	public String likeProc(ReviewLikeVo reviewLikeVo, @RequestParam("hid") String hid) {
-	    ReviewDao reviewDao = new ReviewDao();
-	    int result = reviewDao.LikesUp(reviewLikeVo);
-		/* System.out.println(result); */
+	    ReviewLikeDao reviewLikeDao = new ReviewLikeDao();
+	    int result = reviewLikeDao.LikesUp(reviewLikeVo);
 
 	    if (result == 1) {
 	        return "redirect:/search_result.do?hid=" + hid;
@@ -159,7 +208,6 @@ public class SearchController {
 	public String rstateProc(String rid, @RequestParam("hid") String hid) {
 		ReviewDao reviewDao = new ReviewDao();
 	    int result = reviewDao.update(rid);
-		/* System.out.println(result); */
 
 	    if (result == 1) {
 			return "redirect:/search_result.do?hid=" + hid;
@@ -214,21 +262,5 @@ public class SearchController {
 		return new Gson().toJson(jlist);
 	}
 		
-	    
-	
-		
-		
-	
-	
-	
-	
-		
-	
-	
-	
-	
-
-	
-	
 	
 } // class

@@ -2,11 +2,14 @@ package com.project.dao;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Repository;
+
 import com.project.vo.BookingReviewVo;
 import com.project.vo.BookingVo;
 
+@Repository
 public class BookingDao extends DBConn {
-
+	
 	/** 예약 등록 **/
 	public int insert(BookingVo bookingVo) {
 		int result = 0;
@@ -252,6 +255,36 @@ public class BookingDao extends DBConn {
 		return bookingVo;
 	} // select(String mid)
 	
+	
+	/** select(mid) - 로그인 후 예약확인하기(추가 06.02) **/
+	public BookingVo select2(String bid) {
+		BookingVo bookingVo = new BookingVo();
+		
+		String sql= "select BID, VDATE, VTIME, MID, B.HID, H.HNAME, H.TEL, H.IMG FROM PCP_BOOKING B, PCP_HOSPITAL H WHERE B.HID = H.HID AND B.bid = ?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, bid);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				bookingVo.setBid(rs.getString(1));
+				bookingVo.setVdate(rs.getString(2));
+				bookingVo.setVtime(rs.getString(3));
+				bookingVo.setMid(rs.getString(4));
+				bookingVo.setHid(rs.getString(5));
+				bookingVo.setHname(rs.getString(6));
+				bookingVo.setTel(rs.getString(7));
+				bookingVo.setImg(rs.getString(8));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return bookingVo;
+	}
+
 	
 	/** selectTime - 전체 영업시간(05.25) **/
 	public ArrayList<BookingVo> selectTime() {
