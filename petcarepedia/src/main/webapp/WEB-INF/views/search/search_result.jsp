@@ -16,6 +16,29 @@
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="http://localhost:9000/petcarepedia/js/search_result.js"></script>
+<script>
+$().ready(function (){
+	let bookmark_result = "${bookmark_result}";
+	console.log(bookmark_result);
+	/* if(bookmark_result=="fail"){
+		Swal.fire({
+            icon: 'error',                         
+            title: '로그인 실패',         
+            text: '아이디와 비밀번호를 다시 확인해주세요.',  
+        });
+	} else if(bookmark_result=="success"){
+		Swal.fire({
+            icon: 'success',                         
+            title: '회원가입 성공',         
+            text: '회원가입에 성공했습니다. 로그인해주세요.',  
+        });
+	} */
+	
+    $("#bookmark").click(function () {
+    	 bookmarkForm.submit();
+    });
+});
+</script>
 
 </head>
 
@@ -49,7 +72,7 @@
 					
 					<span class="grade">⭐  ${star.rstar} | 리뷰 ${fn:length(RM_select)}</span>
 					
-					<button type="button" id="reservation" value="${hospital.hid}"><img src="http://localhost:9000/petcarepedia/images/booking1.png">간편 예약하기
+					<button type="button" id="reservation" value="${hospital.hid}"><img src="http://localhost:9000/petcarepedia/images/cal.png">간편 예약하기
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -70,14 +93,12 @@
 						</a>	
 						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
 						<form name="bookmarkForm" action="bookmarkProc.do" method="get">
-							<!-- <a href="#" onclick = "alert('즐겨찾기에 추가되었습니다.')"> -->
-								<input type="hidden" name="hid" value="${hospital.hid}">
-								<input type="hidden" name="mid" value="hong">
-								<button type="button" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/bookmark1.png">찜하기</button>
-							<!-- </a> -->
+							<input type="hidden" name="hid" value="${hospital.hid}">
+							<input type="hidden" name="mid" value="hong">
+							<button type="button" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/like.png">찜하기</button>
 						</form>
 					</div>
-				</div>
+				</div>	
 				
 				<hr>
 				
@@ -242,8 +263,7 @@
 						<form name="rstateForm" action="rstateProc.do" method="post">
 							<input type="hidden" name="rid" value="${RM_select.rid}">
 							<input type="hidden" name="hid" value="${hospital.hid}">
-							<a href="#" onclick="return confirm('정말로 신고하시겠습니까?')" id="rstateBtn">
-								<button class="rstate" name="rstate">신고하기</button></a>
+								<button type="button" class="rstate" name="rstate">신고하기</button>
 							<!-- <span>신고하기</span> -->
 						</form>
 					</div>
