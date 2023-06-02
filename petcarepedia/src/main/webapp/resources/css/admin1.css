@@ -93,11 +93,19 @@ tr td:nth-child(1) {
 	float:right;
 }
 
-button.button4, button.button5{
+button.button4{
 	padding:5px 15px;
 	margin-right:20px;
 }
+button.button5{
+	padding:10px 30px;
+	margin:25px;
+}
 
+.d1 .table tr td > a {
+	color:#3D3D3D;
+	text-decoration:none;
+}
 
 .table tr td.number, section.hospital tr:last-child td.number{
 	border-color:white;
@@ -114,7 +122,9 @@ section.hospital_detail tr td:nth-child(4),section.hospital_detail tr td:nth-chi
 	width:90px;
 }
 section.reserve tr:nth-child(12) td,section.review tr:nth-child(12) td,
-section.member tr:nth-child(13) td{
+section.member tr:nth-child(13) td,section.hospital tr:last-child td,
+section#hospital_update tr:last-child td, section#hospital_content tr:last-child td, 
+section#hospital_delete tr:last-child td{
 	border:1px solid white;
 }
 section.hospital #section1 div nav ul li:nth-child(2) a,
@@ -130,6 +140,7 @@ section.review #section1 div nav ul li:nth-child(5) a
 #section2{
 	margin-right:80px;
 }
+
 /************************
 	header style
 *************************/
@@ -225,8 +236,9 @@ section1 style sheet - 카테고리
 hospital_list style sheet
 *****************************/
 section.hospital tr td:nth-child(3),
-section.hospital tr td:nth-child(4){
-	width:100px;
+section.hospital tr td:nth-child(4),
+section.hospital tr td:nth-child(5){
+	width:105px;
 
 }
 section.hospital tr:first-child td, section.hospital_detail tr:first-child td{
@@ -313,22 +325,31 @@ section.member_detail section#section2 div.d3 .table tr:nth-child(4) td{
 	height:300px;
 	background:#D9D9D9;
 } 
+section.hospital .button4 {
+	margin-left:40px;
+}
 /*************************************
 	hospital_update style sheet
 **************************************/
 section#hospital_update #section2 #d3,
-section#hospital_data #section2 #d3{
+section#hospital_data #section2 #d3,
+section#hospital_content #section2 #d3{
 	float:left;
 	margin-top : 100px;
 }
 section#hospital_update table.table tr th,
-section#hospital_data table.table tr th{
+section#hospital_data table.table tr th,
+section#hospital_delete table.table tr th,
+section#hospital_content table.table tr th{
 	width:180px;
 }
 section#hospital_update table.table tr td input,
 section#hospital_update table.table tr td textarea,
 section#hospital_data table.table tr td input,
-section#hospital_data table.table tr td textarea{
+section#hospital_data table.table tr td textarea,
+section#hospital_content table.table tr td input,
+section#hospital_content table.table tr td textarea,
+section#hospital_delete table.table tr td input{
 	width:520px;
 	height:50px;
 	border:1px solid #D9D9D9;
@@ -338,16 +359,28 @@ section#hospital_data table.table tr td textarea{
 }
 
 section#hospital_update table.table tr,
-section#hospital_data table.table tr{
+section#hospital_data table.table tr,
+section#hospital_content table.table tr{
 	height:55px;	
 }
 
 
 section#hospital_update table.table tr #intro,
-section#hospital_data table.table tr #intro{
+section#hospital_data table.table tr #intro,
+section#hospital_content table.table tr #intro{
 	height:110px;
 }
-
+/*************************************
+	hospital-delete style sheet
+**************************************/
+section#hospital_delete table.table{
+	width:750px;
+	height:320px;
+}
+section#hospital_delete section#section2 table{
+	border:1px solid red;
+	margin-top:200px;
+}
 
 /*************************************
 	review-detail style sheet
@@ -359,7 +392,6 @@ section.review_detail div img{
 section.review_dtail section#section2{
 	border:1px solid #3D3D3D;
 }
-
 
 section.review_detail div#d3 {
 	margin-left:200px;
@@ -419,3 +451,5 @@ section.reserve section#section2 .button4,
 section.review section#section2 .button4 {
 	margin-left:810px;
 }
+
+

@@ -2,9 +2,11 @@ package com.project.dao;
 
 import java.util.ArrayList;
 
-import com.project.vo.HospitalVo;
-import com.project.vo.NoticeVo;
+import org.springframework.stereotype.Repository;
 
+import com.project.vo.HospitalVo;
+
+@Repository
 public class HospitalDao extends DBConn {
 	
 	/* 전체 카운트 가져오기*/
@@ -31,10 +33,10 @@ public class HospitalDao extends DBConn {
 	 */
 	public ArrayList<HospitalVo> select(int startCount, int endCount) {
 		ArrayList<HospitalVo> hospitalList = new ArrayList<HospitalVo>();
-		String sql = "SELECT RNO ,HNAME,  ANIMAL, NTIME, HID" + 
-					" FROM (SELECT ROWNUM RNO ,HNAME,  ANIMAL, NTIME, HID" + 
-					"       FROM( SELECT HNAME,  ANIMAL, NTIME, HID FROM PCP_HOSPITAL ORDER BY HID DESC))" + 
-				    "WHERE RNO BETWEEN ? AND ?";
+		String sql = " SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY" + 
+					"  FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY " + 
+					"		 FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL ORDER BY HID))" + 
+					" WHERE RNO BETWEEN ? AND ?";
 		getPreparedStatement(sql);
 		try {
 			pstmt.setInt(1, startCount);
@@ -43,10 +45,11 @@ public class HospitalDao extends DBConn {
 			while(rs.next()) {
 				HospitalVo list = new HospitalVo();
 				list.setRno(rs.getInt(1));
-				list.setHname(rs.getString(2));
-				list.setAnimal(rs.getString(3));
-				list.setNtime(rs.getString(4));
-				list.setHid(rs.getString(5));
+				list.setHid(rs.getString(2));
+				list.setHname(rs.getString(3));
+				list.setAnimal(rs.getString(4));
+				list.setNtime(rs.getString(5));
+				list.setHoliday(rs.getString(6));
 				
 				hospitalList.add(list);
 			}
@@ -255,13 +258,14 @@ public class HospitalDao extends DBConn {
 	 */
 	public ArrayList<HospitalVo> select() {
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
-		String sql = "SELECT H.RNO, H.HID, H.HNAME, H.GLOC, H.LOC, H.TEL, H.HTIME, SUBSTR(H.HTIME, 0, 5) AS STARTTIME, SUBSTR(H.HTIME, 7, 6) AS ENDTIME, H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y, ROUND(AVG(RSTAR),1) AS RSTAR\r\n" + 
-				" FROM (SELECT ROWNUM RNO, HID, HNAME, GLOC, LOC, TEL, HTIME, SUBSTR(HTIME, 0, 5) STARTTIME, SUBSTR(HTIME, 7, 6) ENDTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK, X, Y\r\n" + 
-				"      FROM PCP_HOSPITAL\r\n" + 
-				"      ORDER BY HID DESC) H\r\n" + 
-				" LEFT JOIN PCP_REVIEW R ON H.HID = R.HID\r\n" + 
-				" GROUP BY H.RNO, H.HID, H.HNAME, H.GLOC, H.LOC, H.TEL, H.HTIME, SUBSTR(H.HTIME, 0, 5), SUBSTR(H.HTIME, 7, 6), H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y\r\n" + 
-				" ORDER BY H.HID DESC";
+		String sql = "SELECT  H.HID, H.HNAME, H.GLOC, H.LOC, H.TEL, H.HTIME, SUBSTR(H.HTIME, 0, 5) AS STARTTIME, SUBSTR(H.HTIME, 7, 6) AS ENDTIME, H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y, ROUND(AVG(RSTAR),1) AS RSTAR\r\n" + 
+				"				 FROM (SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, SUBSTR(HTIME, 0, 5) STARTTIME, SUBSTR(HTIME, 7, 6) ENDTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK, X, Y\r\n" + 
+				"				     FROM PCP_HOSPITAL\r\n" + 
+				"             ORDER BY HID DESC) H \r\n" + 
+				"				LEFT JOIN PCP_REVIEW R ON H.HID = R.HID\r\n" + 
+				"				 GROUP BY H.HID, H.HNAME, H.GLOC, H.LOC, H.TEL, H.HTIME, SUBSTR(H.HTIME, 0, 5), SUBSTR(H.HTIME, 7, 6), H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y\r\n" + 
+				"				 ORDER BY H.HID ";
+		
 		getPreparedStatement(sql);
 
 		try {
@@ -269,24 +273,23 @@ public class HospitalDao extends DBConn {
 
 			while (rs.next()) {
 				HospitalVo hospital = new HospitalVo();
-				hospital.setRno(rs.getInt(1));
-				hospital.setHid(rs.getString(2));
-				hospital.setHname(rs.getString(3));
-				hospital.setGloc(rs.getString(4));
-				hospital.setLoc(rs.getString(5));
-				hospital.setTel(rs.getString(6));
-				hospital.setHtime(rs.getString(7));
-				hospital.setStarttime(rs.getString(8));
-				hospital.setEndtime(rs.getString(9));
-				hospital.setNtime(rs.getString(10));
-				hospital.setHoliday(rs.getString(11));
-				hospital.setAnimal(rs.getString(12));
-				hospital.setIntro(rs.getString(13));
-				hospital.setImg(rs.getString(14));
-				hospital.setHrink(rs.getString(15));
-				hospital.setX(rs.getString(16));
-				hospital.setY(rs.getString(17));
-				hospital.setRstar(rs.getFloat(18));
+				hospital.setHid(rs.getString(1));
+				hospital.setHname(rs.getString(2));
+				hospital.setGloc(rs.getString(3));
+				hospital.setLoc(rs.getString(4));
+				hospital.setTel(rs.getString(5));
+				hospital.setHtime(rs.getString(6));
+				hospital.setStarttime(rs.getString(7));
+				hospital.setEndtime(rs.getString(8));
+				hospital.setNtime(rs.getString(9));
+				hospital.setHoliday(rs.getString(10));
+				hospital.setAnimal(rs.getString(11));
+				hospital.setIntro(rs.getString(12));
+				hospital.setImg(rs.getString(13));
+				hospital.setHrink(rs.getString(14));
+				hospital.setX(rs.getString(15));
+				hospital.setY(rs.getString(16));
+				hospital.setRstar(rs.getFloat(17));
 
 				list.add(hospital);
 			}
