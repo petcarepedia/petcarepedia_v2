@@ -94,6 +94,27 @@ public class SearchController {
 	}
 	
 	
+	/** search_result_map.do - 병원 상세 지도 정보 **/
+	@RequestMapping(value="/search_result_map.do", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String search_result_map(String hid) {
+		 HospitalVo list = hospitalDao.select(hid);
+
+		    JsonObject jobj = new JsonObject();
+		    jobj.addProperty("hid", list.getHid());
+		    jobj.addProperty("hname", list.getHname());
+		    jobj.addProperty("x", list.getX());
+		    jobj.addProperty("y", list.getY());
+
+//		    System.out.println(hid);
+//		    System.out.println(list.getHid());
+//		    System.out.println(list.getX());
+//		    System.out.println(list.getY());
+
+		    return new Gson().toJson(jobj);
+		}
+	
+	
 	/** search_reservation.do **/
 	/*
 	 * @RequestMapping(value="/search_reservation.do", method=RequestMethod.GET)

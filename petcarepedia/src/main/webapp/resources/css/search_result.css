@@ -232,6 +232,7 @@ div.api span:nth-child(2) {
 	font-size: 16px;
 	display: block;
 	padding-top: 15px;
+	margin-bottom: 5px;
 }
 
 div.api span:last-child {
@@ -248,12 +249,14 @@ div.api span:last-child {
 	margin-top:-4px;
 }
 
-div.api iframe.map {
+div.api div.map {
+	/* border: 1px solid red; */
 	width: 350px;
 	height: 285px;
-	padding:0px;
-	margin:0px;
+	padding: 0px;
+	margin: 0px;
 }
+
 
 
 /***************************************

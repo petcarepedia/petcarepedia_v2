@@ -234,8 +234,9 @@ $(document).ready(function() {
 						<span>병원정보</span>
 						<span>위치 & 진료시간</span>
 						<div class="map">
-							<iframe class="map" src="http://localhost:9000/petcarepedia/search_map.do"
-							scrolling="no" width="350px" height="285px" frameborder=0></iframe>
+							<!-- <iframe class="map" src="http://localhost:9000/petcarepedia/search_map.do"
+							scrolling="no" width="350px" height="285px" frameborder=0></iframe> -->
+							<jsp:include page="search_result_map.jsp"></jsp:include>
 						</div>
 						<span>${hospital.loc}</span>
 					</div>
