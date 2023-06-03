@@ -30,8 +30,8 @@ $(document).ready(function() {
                 hid: hid,
                 mid: "hong"
             },
-            success: function(result) {
-                if (result === "fail") {
+            success: function(bookmark_result) {
+                if (bookmark_result === "fail") {
                     Swal.fire({
                         icon: 'error',
                         title: '즐겨찾기 해제',
@@ -40,7 +40,7 @@ $(document).ready(function() {
                     }).then(function() {
                         location.reload(); // 확인 버튼 클릭 시 페이지 새로고침
                     });
-                } else if (result === "success") {
+                } else if (bookmark_result === "success") {
                     Swal.fire({
                         icon: 'success',
                         title: '즐겨찾기 추가',
@@ -53,10 +53,57 @@ $(document).ready(function() {
             }
         });
     });
+
+    $(".rstate").click(function() {
+    	var rid = $("input[name='rid']").val();
+    	
+        Swal.fire({
+            title: '정말로 신고 하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#FFB3BD',
+            cancelButtonColor: '#98DFFF',
+            confirmButtonText: '신고',
+            cancelButtonText: '취소',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "rstateForm.do",
+                    type: "POST",
+                    data: {
+                        rid: rid
+                    },
+                    success: function(rstate_result) {
+                        if (rstate_result === "fail") { 
+                            Swal.fire({
+                                icon: 'error',
+                                title: '신고 접수된 리뷰입니다',
+                                text: '관리자 확인중 입니다. 잠시만 기다려 주세요.',
+                                showConfirmButton: true
+                            }).then(function() {
+                                location.reload();
+                            });
+                        } else if (rstate_result === "success") {
+                            Swal.fire({
+                                icon: 'success',
+                                title: '신고되었습니다',
+                                text: '관리자 확인 중입니다.',
+                                showConfirmButton: true
+                            }).then(function() {
+                                location.reload();
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    });
 });
-
-
 </script>
+
+
+
 
 </head>
 
@@ -79,8 +126,7 @@ $(document).ready(function() {
 				
 				<div class="name_d">
 					<div class="area_d">
-						<!-- <a href="http://localhost:9000/petcarepedia/search_main.do">서울</a> -->
-						<a>서울</a>
+						<a href="http://localhost:9000/petcarepedia/search_main.do">서울</a>
 						<span>></span>
 						<%-- <a href="http://localhost:9000/petcarepedia/search_main.do">${hospital.gloc}</a> --%>
 						<a>${hospital.gloc}</a>
@@ -106,7 +152,7 @@ $(document).ready(function() {
 					
 					
 					<div class="buttons">
-						<a href="review_write.do?mid=${mid}">
+						<a href="review_write.do?mid=hong">
 							<button type="button" id="review"><img src="http://localhost:9000/petcarepedia/images/review.png">리뷰하기</button>
 						</a>	
 						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
@@ -285,15 +331,15 @@ $(document).ready(function() {
 						<span>작성 일자 : ${RM_select.rdate}</span>
 						<span> </span>
 						<form name="likeForm" action="likeProc.do" method="get">
-							<input type="hidden" name="hid" value="${hospital.hid}">
-							<input type="hidden" name="rid" value="${RM_select.rid}">
+							<input type="text" name="hid" value="${hospital.hid}">
+							<input type="text" name="rid" value="${RM_select.rid}">
 							<button id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 							<span class="heart">♥</span> <span class="like-count">${RM_select.rlike}</span></button>
 						</form>
 						
 						<form name="rstateForm" action="rstateProc.do" method="post">
-							<input type="hidden" name="rid" value="${RM_select.rid}">
-							<input type="hidden" name="hid" value="${hospital.hid}">
+							<input type="text" name="rid" value="${RM_select.rid}">
+							<input type="text" name="hid" value="${hospital.hid}">
 								<button type="button" class="rstate" name="rstate">신고하기</button>
 							<!-- <span>신고하기</span> -->
 						</form>

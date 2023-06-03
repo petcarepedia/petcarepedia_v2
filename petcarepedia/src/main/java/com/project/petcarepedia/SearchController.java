@@ -82,15 +82,13 @@ public class SearchController {
 		/* System.out.println(RM_select.size()); */
 		
 		
-		 // Check bookmark
+		// Check bookmark
 	    BookmarkVo bookmarkVo = new BookmarkVo();
 	    bookmarkVo.setHid(hid);
 	    bookmarkVo.setMid("hong"); // 이 부분을 세션 정보 또는 다른 값을 가져와 설정해야합니다.
 	    int bookmarkResult = bookmarkDao.checkBookmark(bookmarkVo);
 	    model.addObject("bookmarkResult", bookmarkResult);
 	    
-	    
-		
 	    model.setViewName("/search/search_result");
 		
 		return model;
@@ -138,23 +136,6 @@ public class SearchController {
 	}	
 	
 	
-	/** bookProc.do.do - 찜하기 처리 **/
-//	@RequestMapping(value="bookmarkProc.do", method=RequestMethod.GET)
-//	public String bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
-//	    BookmarkDao bookmarkDao = new BookmarkDao();
-//	    String viewName = "";
-//	    int result = bookmarkDao.CheckBookmark(bookmarkVo);
-//	    
-//	    if(result == 1) {
-//	    	viewName = "redirect:/search_main.do";
-//	    	System.out.println("실패");
-//	    } else if(result == 0) {
-//	    	bookmarkDao.insert(bookmarkVo);
-//	    	viewName = "redirect:/search_result.do?hid=" + hid;
-//	    	System.out.println("성공");
-//	    }
-//		return viewName;
-//	}
 	
 	/** bookProc.do.do - 찜하기 처리 **/
 //	@RequestMapping(value="bookmarkProc.do", method=RequestMethod.POST)
@@ -179,37 +160,26 @@ public class SearchController {
 //		return model;
 //	}
 	
-	@RequestMapping(value = "bookmarkProc.do", method = RequestMethod.POST)
+	
+	/** rstateForm.do - 신고하기 처리 **/
+	@RequestMapping(value="rstateForm.do", method=RequestMethod.POST)
 	@ResponseBody
-	public String bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
-	    BookmarkDao bookmarkDao = new BookmarkDao();
-	    int result = bookmarkDao.checkBookmark(bookmarkVo);
+	public String rstateForm(String rid) {
+	    ReviewDao reviewDao = new ReviewDao();
+	    int rstate_result = reviewDao.getIdCheckResult(rid);
 
-	    if (result == 0) {
-	        bookmarkDao.insert(bookmarkVo);
+	    if (rstate_result == 0) {
+	        reviewDao.update(rid);
+	        System.out.println(rstate_result);
+	        System.out.println(rid);
 	        return "success";
-	    } else if (result == 1) {
-	        bookmarkDao.deleteBookmark(bookmarkVo);
+	    } else if (rstate_result == 1) {
+	    	System.out.println(rstate_result);
 	        return "fail";
 	    }
 
 	    return "";
 	}
-	
-	
-	/** search_bookmark_return.do - 찜하기 후 페이지 돌아가기 처리 **/
-	/*
-	 * @RequestMapping(value="search_bookmark_return.do", method=RequestMethod.POST)
-	 * public ModelAndView search_bookmark_return(BookmarkVo
-	 * bookmarkVo, @RequestParam("hid") String hid) { ModelAndView model = new
-	 * ModelAndView(); BookmarkDao bookmarkDao = new BookmarkDao();
-	 * 
-	 * if(bookmarkDao.CheckBookmark(bookmarkVo) == 1) {
-	 * model.addObject("bookmark_result", "ok");
-	 * model.setViewName("redirect:/search_result.do?hid=" + hid); } else { // 실패 -
-	 * 실패를 나타내는 문자열 반환 model.addObject("bookmark_result", "fail");
-	 * model.setViewName("redirect:/search_main.do"); } return model; }
-	 */
 	
 
 	/** likeProc.do - 좋아요 처리 **/
@@ -227,17 +197,23 @@ public class SearchController {
 	}
 	
 	
-	/** stateProc.do - 신고하기 처리 **/
+	/** rstateForm.do - 신고하기 처리 **/
 	@RequestMapping(value="rstateProc.do", method=RequestMethod.POST)
+	@ResponseBody
 	public String rstateProc(String rid, @RequestParam("hid") String hid) {
 		ReviewDao reviewDao = new ReviewDao();
-	    int result = reviewDao.update(rid);
+	    int rstate_result = reviewDao.getIdCheckResult(rid);
 
-	    if (result == 1) {
-			return "redirect:/search_result.do?hid=" + hid;
-		} else {
-			return "failure";
+	    if (rstate_result == 0) {
+	    	reviewDao.update(rid);
+	    	System.out.println(rstate_result);
+	    	return "success";
+		} else if (rstate_result == 1) {
+			System.out.println(rstate_result);
+			return "fail";
 		}
+	    
+	    return "";
 	}
 	
 	
