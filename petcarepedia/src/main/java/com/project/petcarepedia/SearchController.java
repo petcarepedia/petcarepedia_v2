@@ -81,7 +81,6 @@ public class SearchController {
 		model.addObject("RM_select", RM_select);
 		/* System.out.println(RM_select.size()); */
 		
-		
 		// Check bookmark
 	    BookmarkVo bookmarkVo = new BookmarkVo();
 	    bookmarkVo.setHid(hid);
@@ -132,12 +131,43 @@ public class SearchController {
 		}
 		
 		return viewName;
+	}	
+	
+
+	/** reviewCheckProc.do - 府轰静扁 贸府 **/
+	@RequestMapping(value="reviewCheckProc.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String reviewCheckProc(String hid, String mid) {
+		int review_result = bookingDao.reviewCheck(hid, mid);
+		/* System.out.println(review_result); */
 		
+		if(review_result == 1) {
+			return "success";
+		} else {
+			return "fail";
+		}
 	}	
 	
 	
+	/** bookmarkProc.do - 合付农 贸府 **/
+	@RequestMapping(value = "bookmarkProc.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
+	    BookmarkDao bookmarkDao = new BookmarkDao();
+	    int result = bookmarkDao.checkBookmark(bookmarkVo);
+
+	    if (result == 0) {
+	        bookmarkDao.insert(bookmarkVo);
+	        return "success";
+	    } else if (result == 1) {
+	        bookmarkDao.deleteBookmark(bookmarkVo);
+	        return "fail";
+	    }
+
+	    return "";
+	}
 	
-	/** bookProc.do.do - 买窍扁 贸府 **/
+	/** bookmarkProc.do - 合付农 贸府 **/
 //	@RequestMapping(value="bookmarkProc.do", method=RequestMethod.POST)
 //	public ModelAndView bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
 //		ModelAndView model = new ModelAndView();
@@ -170,11 +200,12 @@ public class SearchController {
 
 	    if (rstate_result == 0) {
 	        reviewDao.update(rid);
-	        System.out.println(rstate_result);
-	        System.out.println(rid);
+//	        System.out.println(rstate_result);
+//	        System.out.println(rid);
 	        return "success";
 	    } else if (rstate_result == 1) {
-	    	System.out.println(rstate_result);
+//	    	System.out.println(rstate_result);
+//	    	System.out.println(rid);
 	        return "fail";
 	    }
 

@@ -18,7 +18,7 @@
 <script src="http://localhost:9000/petcarepedia/js/search_result.js"></script>
 <script>
 $(document).ready(function() {
-    $("#bookmark").click(function(event) {
+    $("#bookmark").click(function(event) { // 북마크
         event.preventDefault();
 
         var hid = "${hospital.hid}";
@@ -53,8 +53,36 @@ $(document).ready(function() {
             }
         });
     });
+    
+    $("#review").click(function(event) { // 리뷰
+    	event.preventDefault();
+        var hid = "${hospital.hid}";
 
-    $(".rstate").click(function() {
+        $.ajax({
+            url: "reviewCheckProc.do",
+            type: "POST",
+            data: {
+                hid: hid,
+                mid: "hong"
+            },
+            success: function(review_result) {
+                if (review_result === "fail") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '리뷰쓰기 실패',
+                        text: '예약을 먼저 진행해주세요.',
+                        showConfirmButton: true // 확인 버튼 표시
+                    }).then(function() {
+                        location.reload(); // 확인 버튼 클릭 시 페이지 새로고침
+                    });
+                } else if (review_result === "success") {
+                    window.location.href = "http://localhost:9000/petcarepedia/review_write.do?";
+                }
+            }
+        });
+    });
+
+    $(".rstate").click(function() { // 신고하기
     	var rid = $("input[name='rid']").val();
     	
         Swal.fire({
@@ -152,9 +180,14 @@ $(document).ready(function() {
 					
 					
 					<div class="buttons">
-						<a href="review_write.do?mid=hong">
-							<button type="button" id="review"><img src="http://localhost:9000/petcarepedia/images/review.png">리뷰하기</button>
-						</a>	
+						<form name="reviewForm" action="reviewCheckProc.do" method="post">
+						<!-- <a href="reviewCheckProc.do"> -->
+<!-- 						<a href="review_write.do?mid=hong"> -->
+							<input type="hidden" name="hid" value="${hospital.hid}">
+							<input type="hidden" name="mid" value="hong">
+							<button type="submit" id="review"><img src="http://localhost:9000/petcarepedia/images/review.png">리뷰하기</button>
+						<!-- </a> -->
+						</form>	
 						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
 						<form name="bookmarkForm" action="bookmarkProc.do" method="post">
 							<input type="hidden" name="hid" value="${hospital.hid}">

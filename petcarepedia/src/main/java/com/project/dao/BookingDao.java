@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.vo.BookingReviewVo;
 import com.project.vo.BookingVo;
+import com.project.vo.ReviewVo;
 
 @Repository
 public class BookingDao extends DBConn {
@@ -284,8 +285,32 @@ public class BookingDao extends DBConn {
 		
 		return bookingVo;
 	}
-
 	
+	
+	/** reviewCheck - 리뷰쓰기 예약 확인하기(06.03 추가) **/
+	public int reviewCheck(String hid, String mid) {
+		int result = 0;
+		
+	    String sql = "SELECT COUNT(*) FROM PCP_BOOKING WHERE HID=? AND MID=? AND BSTATE='진료완료'";
+	    getPreparedStatement(sql);
+
+	    try {
+	        pstmt.setString(1, hid);
+	        pstmt.setString(2, mid);
+
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            result = rs.getInt(1);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return result;
+	} // select(String mid)
+	
+		
 	/** selectTime - 전체 영업시간(05.25) **/
 	public ArrayList<BookingVo> selectTime() {
 		ArrayList<BookingVo> time= new ArrayList<BookingVo>();
