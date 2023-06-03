@@ -17,27 +17,45 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="http://localhost:9000/petcarepedia/js/search_result.js"></script>
 <script>
-$().ready(function (){
-	let bookmark_result = "${bookmark_result}";
-	console.log(bookmark_result);
-	/* if(bookmark_result=="fail"){
-		Swal.fire({
-            icon: 'error',                         
-            title: '로그인 실패',         
-            text: '아이디와 비밀번호를 다시 확인해주세요.',  
+$(document).ready(function() {
+    $("#bookmark").click(function(event) {
+        event.preventDefault();
+
+        var hid = "${hospital.hid}";
+
+        $.ajax({
+            url: "bookmarkProc.do",
+            type: "POST",
+            data: {
+                hid: hid,
+                mid: "hong"
+            },
+            success: function(result) {
+                if (result === "fail") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '즐겨찾기 해제',
+                        text: '즐겨찾기에서 해제했습니다.',
+                        showConfirmButton: true // 확인 버튼 표시
+                    }).then(function() {
+                        location.reload(); // 확인 버튼 클릭 시 페이지 새로고침
+                    });
+                } else if (result === "success") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '즐겨찾기 추가',
+                        text: '즐겨찾기에 추가했습니다.',
+                        showConfirmButton: true // 확인 버튼 표시
+                    }).then(function() {
+                        location.reload(); // 확인 버튼 클릭 시 페이지 새로고침
+                    });
+                }
+            }
         });
-	} else if(bookmark_result=="success"){
-		Swal.fire({
-            icon: 'success',                         
-            title: '회원가입 성공',         
-            text: '회원가입에 성공했습니다. 로그인해주세요.',  
-        });
-	} */
-	
-    $("#bookmark").click(function () {
-    	 bookmarkForm.submit();
     });
 });
+
+
 </script>
 
 </head>
@@ -92,10 +110,23 @@ $().ready(function (){
 							<button type="button" id="review"><img src="http://localhost:9000/petcarepedia/images/review.png">리뷰하기</button>
 						</a>	
 						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
-						<form name="bookmarkForm" action="bookmarkProc.do" method="get">
+						<form name="bookmarkForm" action="bookmarkProc.do" method="post">
 							<input type="hidden" name="hid" value="${hospital.hid}">
 							<input type="hidden" name="mid" value="hong">
-							<button type="button" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/like.png">찜하기</button>
+							<input type="text" name="Bookmark Result" value="${bookmarkResult}">
+							
+							<!-- 북마크 여부에 따라서 -->
+							<c:choose>
+								<c:when test="${bookmarkResult == 1}">
+									<button type="submit" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/bookmark_yellow.png">찜하기</button>
+								</c:when>
+								
+								<c:otherwise>
+									<button type="submit" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/bookmark.png">찜하기</button>
+								</c:otherwise>
+							
+							</c:choose>
+							
 						</form>
 					</div>
 				</div>	

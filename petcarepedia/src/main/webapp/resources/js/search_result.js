@@ -1,10 +1,5 @@
 $(document).ready(function(){
 
-	/** 찜하기 버튼 **/
-//    $("#bookmark").click(function () {
-//		bookmarkForm.submit();
-//    });
-
 
 
 	/** 신고하기 버튼 **/
