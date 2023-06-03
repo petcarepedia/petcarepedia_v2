@@ -46,7 +46,7 @@ $(document).ready(function(){
 						if(gloc==areaArr[i].location){
 							var map = new naver.maps.Map('map', {
 								center: new naver.maps.LatLng(areaArr[i].lat, areaArr[i].lng),
-								zoom: 12
+								zoom: 14
 							});
 							
 							i=areaArr.length;

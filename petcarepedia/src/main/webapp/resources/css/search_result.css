@@ -13,10 +13,13 @@
 div.result_main {
 	/* border: 1px solid gray; */
 	width: 1000px;
+	/* height: auto; */
 	margin: auto;
 	margin-top: 100px;
+	margin-bottom: 100px; 
 	/* text-align: center; */
 }
+
 
 
 /***************************************
@@ -425,6 +428,11 @@ div.review_card div.date button#like {
 
 div.review_card div.date button#like span.like-count {
 	font-size: 14px;
+}
+
+div.review_card div.date button#like span.heart {
+	font-size: 15px;
+	color: red;
 }
 
 div.review_card div.date span:last-child {

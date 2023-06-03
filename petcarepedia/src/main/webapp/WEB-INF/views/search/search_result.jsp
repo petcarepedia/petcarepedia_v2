@@ -113,7 +113,7 @@ $(document).ready(function() {
 						<form name="bookmarkForm" action="bookmarkProc.do" method="post">
 							<input type="hidden" name="hid" value="${hospital.hid}">
 							<input type="hidden" name="mid" value="hong">
-							<input type="text" name="Bookmark Result" value="${bookmarkResult}">
+							<input type="hidden" name="Bookmark Result" value="${bookmarkResult}">
 							
 							<!-- 북마크 여부에 따라서 -->
 							<c:choose>
@@ -238,7 +238,6 @@ $(document).ready(function() {
 				</div> -->
 				
 				<c:forEach var="RM_select" items="${RM_select}"> 
-				
 				<div class="review_card">
 					<div class="member">
 						<div class="name">
@@ -288,7 +287,8 @@ $(document).ready(function() {
 						<form name="likeForm" action="likeProc.do" method="get">
 							<input type="hidden" name="hid" value="${hospital.hid}">
 							<input type="hidden" name="rid" value="${RM_select.rid}">
-							<button id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp❤️ <span class="like-count">${RM_select.rlike}</span></button>
+							<button id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+							<span class="heart">♥</span> <span class="like-count">${RM_select.rlike}</span></button>
 						</form>
 						
 						<form name="rstateForm" action="rstateProc.do" method="post">
@@ -299,8 +299,8 @@ $(document).ready(function() {
 						</form>
 					</div>
 				</div>
-				
 				</c:forEach>
+				
 			</div>
 		</section>	
 	</div>	

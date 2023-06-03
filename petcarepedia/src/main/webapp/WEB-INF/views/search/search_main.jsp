@@ -155,7 +155,11 @@
 							</div>
 							
 							<div class="himg">
-								<img src="${list.img}" width="122px" height="122px">
+								<c:choose>
+								    <c:when test="${list.img != null && list.img != 'X'}">	
+								        <img src="${list.img}" width="122px" height="122px">
+								    </c:when>
+								</c:choose>						
 							</div>
 						</div>
 						</li>

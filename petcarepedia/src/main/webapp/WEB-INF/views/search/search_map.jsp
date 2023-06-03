@@ -13,6 +13,13 @@
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=7reerlqgi2"></script>
 	<script src="http://localhost:9000/petcarepedia/js/search_map.js"></script>
     
+	<style>
+	    div#map {
+	        width: 100%;
+	        height: 1300px;
+	    }
+	</style>
+
     
     
 </head>
@@ -22,7 +29,8 @@
 
 
 
-<div id="map" style="width:100%;height:1000px;"></div>
+<div id="map"></div>
+
 
 <!-- <script>
 var HOME_PATH = window.HOME_PATH || '.';
