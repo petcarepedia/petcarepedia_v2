@@ -2,15 +2,17 @@ package com.project.service;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.dao.MemberDao;
 import com.project.vo.MemberVo;
 
-@Service
+@Service("memberService")
 public class MemberServiceImpl implements MemberService{
 
-	private MemberDao memberDao = new MemberDao();
+	@Autowired
+	private MemberDao memberDao;
 	
 	@Override
 	public int getJoin(MemberVo memberVo) {
