@@ -240,7 +240,8 @@ $(document).ready(function() {
 							scrolling="no" width="350px" height="285px" frameborder=0></iframe> -->
 							<jsp:include page="search_result_map.jsp"></jsp:include>
 						</div>
-						<span>${hospital.loc}</span>
+						
+						<span class="api_home">${hospital.loc}</span>
 					</div>
 					
 					<div class="time">

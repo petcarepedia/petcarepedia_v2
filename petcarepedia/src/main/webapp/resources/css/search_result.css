@@ -235,7 +235,7 @@ div.api span:nth-child(2) {
 	margin-bottom: 5px;
 }
 
-div.api span:last-child {
+div.api span.api_home {
 	/* border: 2px solid red; */
 	font-size: 14px;
 	/* display: block; */
@@ -246,14 +246,14 @@ div.api span:last-child {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top:-4px;
+	/* margin-top:-4px; */
+	padding: 0px 10px;
 }
 
 div.api div.map {
 	/* border: 1px solid red; */
-	width: 350px;
+	width: 370px;
 	height: 285px;
-	padding: 0px;
 	margin: 0px;
 }
 
