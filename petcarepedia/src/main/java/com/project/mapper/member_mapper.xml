@@ -76,6 +76,6 @@
 	<select id="search" parameterType="string" resultType="com.project.vo.MemberVo">
 		SELECT MID, NAME, PHONE, EMAIL, MDATE 
 		FROM PCP_MEMBER 
-		WHERE MID LIKE #{mid}
+		WHERE MID LIKE '%'||#{mid}||'%'
 	</select>
 </mapper>

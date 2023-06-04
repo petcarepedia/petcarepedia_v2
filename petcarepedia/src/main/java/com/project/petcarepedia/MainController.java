@@ -23,7 +23,7 @@ public class MainController {
 	private HospitalService hospitalService;
 
 	@Autowired
-	private ReviewService reiviewService;
+	private ReviewService reviewService;
 	
 	/**
 	 * index.do
@@ -91,7 +91,7 @@ public class MainController {
 			endCount = pageSize;
 		}
 				
-		ArrayList<ReviewVo> list = reiviewService.getSelect(startCount, endCount);
+		ArrayList<ReviewVo> list = reviewService.getSelect(startCount, endCount);
 		
 		model.addObject("list", list);
 		model.addObject("totals", dbCount);
