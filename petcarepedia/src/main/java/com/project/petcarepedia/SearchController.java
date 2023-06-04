@@ -19,6 +19,10 @@ import com.project.dao.HospitalDao;
 import com.project.dao.ReviewDao;
 import com.project.dao.ReviewLikeDao;
 import com.project.service.BookingService;
+import com.project.service.BookmarkService;
+import com.project.service.HospitalService;
+import com.project.service.ReviewLikeService;
+import com.project.service.ReviewService;
 import com.project.vo.BookingVo;
 import com.project.vo.BookmarkVo;
 import com.project.vo.HospitalVo;
@@ -31,6 +35,14 @@ public class SearchController {
 	
 	@Autowired
 	private BookingService bookingService;
+	@Autowired
+	private HospitalService hospitalService;
+	@Autowired
+	private ReviewService reviewSerivce;
+	@Autowired
+	private ReviewLikeService reviewLikeService;
+	@Autowired
+	private BookmarkService bookmarkService;
 	
 	HospitalDao hospitalDao = new HospitalDao();
 	BookingDao bookingDao = new BookingDao();
@@ -41,7 +53,7 @@ public class SearchController {
 	public ModelAndView search_main() {
 		ModelAndView model = new ModelAndView();
 		
-		ArrayList<HospitalVo> list = hospitalDao.select();
+		ArrayList<HospitalVo> list = hospitalService.select();
 		
 		model.addObject("list", list);
 		model.setViewName("/search/search_main");
@@ -55,7 +67,7 @@ public class SearchController {
 	public ModelAndView searchAreaProc(String gloc) {
 		ModelAndView model = new ModelAndView();
 		
-		ArrayList<HospitalVo> list = hospitalDao.searchGloc(gloc);
+		ArrayList<HospitalVo> list = hospitalService.searchGloc(gloc);
 		
 		model.addObject("list", list);
 		model.setViewName("/search/search_main");
@@ -70,10 +82,10 @@ public class SearchController {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
 		BookmarkDao bookmarkDao = new BookmarkDao();
-		HospitalVo hospital = hospitalDao.select(hid);
-		HospitalVo star = hospitalDao.selectStar(hid);
+		HospitalVo hospital = hospitalService.select(hid);
+		HospitalVo star = hospitalService.selectStar(hid);
 		BookingVo bookingVo = bookingService.getSelectTime(hid);
-		ArrayList<ReviewVo> RM_select = reviewDao.RM_select(hid);
+		ArrayList<ReviewVo> RM_select = reviewSerivce.getRM_select(hid);
 		
 		model.addObject("hospital", hospital);
 		model.addObject("star", star);
@@ -98,21 +110,16 @@ public class SearchController {
 	@RequestMapping(value="/search_result_map.do", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String search_result_map(String hid) {
-		 HospitalVo list = hospitalDao.select(hid);
+		 HospitalVo list = hospitalService.select(hid);
 
-		    JsonObject jobj = new JsonObject();
-		    jobj.addProperty("hid", list.getHid());
-		    jobj.addProperty("hname", list.getHname());
-		    jobj.addProperty("x", list.getX());
-		    jobj.addProperty("y", list.getY());
+	    JsonObject jobj = new JsonObject();
+	    jobj.addProperty("hid", list.getHid());
+	    jobj.addProperty("hname", list.getHname());
+	    jobj.addProperty("x", list.getX());
+	    jobj.addProperty("y", list.getY());
 
-//		    System.out.println(hid);
-//		    System.out.println(list.getHid());
-//		    System.out.println(list.getX());
-//		    System.out.println(list.getY());
-
-		    return new Gson().toJson(jobj);
-		}
+	    return new Gson().toJson(jobj);
+	}
 	
 	
 	/** search_reservation.do **/
@@ -127,7 +134,7 @@ public class SearchController {
 	public ModelAndView search_reservation(String hid) {
 		ModelAndView model = new ModelAndView();
 		
-		HospitalVo hospitalVo = hospitalDao.select(hid);
+		HospitalVo hospitalVo = hospitalService.select(hid);
 		BookingVo bookingVo = bookingService.getSelectTime(hid);
 
 		model.addObject("hospital", hospitalVo);
@@ -159,7 +166,7 @@ public class SearchController {
 	@RequestMapping(value="reviewCheckProc.do", method=RequestMethod.POST)
 	@ResponseBody
 	public String reviewCheckProc(String hid, String mid) {
-		int review_result = bookingDao.reviewCheck(hid, mid);
+		int review_result = bookingService.getReviewCheck(hid, mid);
 		/* System.out.println(review_result); */
 		
 		if(review_result == 1) {
@@ -239,16 +246,15 @@ public class SearchController {
 	@ResponseBody
 	public String likeProc(ReviewLikeVo reviewLikeVo, @RequestParam("hid") String hid) {
 	    ReviewLikeDao reviewLikeDao = new ReviewLikeDao();
-	    int like_result = reviewLikeDao.idCheck(reviewLikeVo);
+	    int like_result = reviewLikeService.getIdCheck(reviewLikeVo);
 
         if (like_result == 0) { // 기록 없음
-            reviewLikeDao.LikesUpID(reviewLikeVo);
-            reviewLikeDao.LikesUp(reviewLikeVo);
-            System.out.println(like_result);
+        	reviewLikeService.getLikesUpID(reviewLikeVo);
+        	reviewLikeService.getLikesUp(reviewLikeVo);
             return "success";
         } else { // 기록 있음
-            reviewLikeDao.LikesDownID(reviewLikeVo);
-            reviewLikeDao.LikesDown(reviewLikeVo);
+        	reviewLikeService.getLikesDownID(reviewLikeVo);
+        	reviewLikeService.getLikesDown(reviewLikeVo);
             System.out.println(like_result);
             return "fail";
         }
@@ -293,7 +299,7 @@ public class SearchController {
 	@RequestMapping(value="/map_data.do",method=RequestMethod.GET,produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String map_data(String gloc) {
-		ArrayList<HospitalVo> list = hospitalDao.searchGloc(gloc);
+		ArrayList<HospitalVo> list = hospitalService.searchGloc(gloc);
 		
 		JsonObject jlist = new JsonObject();
 		JsonArray jarray = new JsonArray();

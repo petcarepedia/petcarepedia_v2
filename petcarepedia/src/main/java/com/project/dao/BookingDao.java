@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import com.project.vo.BookingReviewVo;
 import com.project.vo.BookingVo;
-import com.project.vo.ReviewVo;
 
 @Repository
 public class BookingDao extends DBConn {
