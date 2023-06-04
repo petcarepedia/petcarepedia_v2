@@ -214,9 +214,11 @@ $(document).ready(function() {
 				
 				<div class="link">
 					<span><img src="http://localhost:9000/petcarepedia/images/loc.png">${hospital.loc}</span>
-					<c:if test="${hospital.hrink != null} ">
-						<span><img src="http://localhost:9000/petcarepedia/images/home.png"><a href="${hospital.hrink}">병원 홈페이지 가기</a></span>
-					</c:if>
+					    
+					    <c:if test="${hospital.hrink != null && hospital.hrink != 'X'}">
+					    	<span><img src="http://localhost:9000/petcarepedia/images/home.png"><a href="${hospital.hrink}">병원 홈페이지 가기</a></span>
+					    </c:if>	
+					    
 					<span><img src="http://localhost:9000/petcarepedia/images/call.png">${hospital.tel}</span>
 				</div>
 				
