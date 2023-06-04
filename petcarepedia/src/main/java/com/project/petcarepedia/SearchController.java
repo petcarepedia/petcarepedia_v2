@@ -212,41 +212,47 @@ public class SearchController {
 //	}
 	
 	
-	/** rstateForm.do - 신고하기 처리 **/
-	@RequestMapping(value="rstateForm.do", method=RequestMethod.POST)
-	@ResponseBody
-	public String rstateForm(String rid) {
-	    ReviewDao reviewDao = new ReviewDao();
-	    int rstate_result = reviewDao.getIdCheckResult(rid);
-
-	    if (rstate_result == 0) {
-	        reviewDao.update(rid);
-//	        System.out.println(rstate_result);
-//	        System.out.println(rid);
-	        return "success";
-	    } else if (rstate_result == 1) {
-//	    	System.out.println(rstate_result);
-//	    	System.out.println(rid);
-	        return "fail";
-	    }
-
-	    return "";
-	}
+//	/** rstateForm.do - 신고하기 처리 **/
+//	@RequestMapping(value="rstateForm.do", method=RequestMethod.POST)
+//	@ResponseBody
+//	public String rstateForm(String rid) {
+//	    ReviewDao reviewDao = new ReviewDao();
+//	    int rstate_result = reviewDao.getIdCheckResult(rid);
+//
+//	    if (rstate_result == 0) {
+//	        reviewDao.update(rid);
+////	        System.out.println(rstate_result);
+////	        System.out.println(rid);
+//	        return "success";
+//	    } else if (rstate_result == 1) {
+////	    	System.out.println(rstate_result);
+////	    	System.out.println(rid);
+//	        return "fail";
+//	    }
+//
+//	    return "";
+//	}
 	
 
 	/** likeProc.do - 좋아요 처리 **/
-	@RequestMapping(value="likeProc.do", method=RequestMethod.GET)
+	@RequestMapping(value="likeProc.do", method=RequestMethod.POST)
+	@ResponseBody
 	public String likeProc(ReviewLikeVo reviewLikeVo, @RequestParam("hid") String hid) {
 	    ReviewLikeDao reviewLikeDao = new ReviewLikeDao();
-	    int result = reviewLikeDao.LikesUp(reviewLikeVo);
+	    int like_result = reviewLikeDao.idCheck(reviewLikeVo);
 
-	    if (result == 1) {
-	        return "redirect:/search_result.do?hid=" + hid;
-	    } else {
-	        // 실패 - 실패를 나타내는 문자열 반환
-	        return "failure";
-	    }
-	}
+        if (like_result == 0) { // 기록 없음
+            reviewLikeDao.LikesUpID(reviewLikeVo);
+            reviewLikeDao.LikesUp(reviewLikeVo);
+            System.out.println(like_result);
+            return "success";
+        } else { // 기록 있음
+            reviewLikeDao.LikesDownID(reviewLikeVo);
+            reviewLikeDao.LikesDown(reviewLikeVo);
+            System.out.println(like_result);
+            return "fail";
+        }
+    }
 	
 	
 	/** rstateForm.do - 신고하기 처리 **/

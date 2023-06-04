@@ -366,16 +366,18 @@ $(document).ready(function() {
 					<div class="date">
 						<span>작성 일자 : ${RM_select.rdate}</span>
 						<span> </span>
-						<form name="likeForm" action="likeProc.do" method="get">
+						<form name="likeForm" action="likeProc.do" method="post">
 							<input type="text" name="hid" value="${hospital.hid}">
 							<input type="text" name="rid" value="${RM_select.rid}">
-							<button id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-							<span class="heart">♥</span> <span class="like-count">${RM_select.rlike}</span></button>
+							<input type="text" name="mid" value="hong">
+							<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+							<span class="heart">♥</span> 
+							<span class="like-count">${RM_select.rlike}</span></button>
 						</form>
 						
 						<form name="rstateForm" action="rstateProc.do" method="post">
-							<input type="text" name="rid" value="${RM_select.rid}">
-							<input type="text" name="hid" value="${hospital.hid}">
+							<input type="hidden" name="rid" value="${RM_select.rid}">
+							<input type="hidden" name="hid" value="${hospital.hid}">
 								<button type="button" class="rstate" name="rstate">신고하기</button>
 							<!-- <span>신고하기</span> -->
 						</form>
