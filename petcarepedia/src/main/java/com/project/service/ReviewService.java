@@ -21,6 +21,9 @@ public interface ReviewService {
 	//리뷰 검색 리스트 페이지
 	public ArrayList<ReviewVo> getSelectSearchList(int startCount, int endCount, String filter_location);
 	
+	//리뷰 검색 총 리스트 수
+	public int getSearchRowCount(String filter_location);
+	
 	//리뷰 상세보기
 	public ReviewVo getSelect(String rid);
 	 
@@ -42,7 +45,17 @@ public interface ReviewService {
 	//베스트 리뷰 리스트
 	public ArrayList<ReviewVo> getSelect(int startCount, int endCount);
 	
+	//리뷰 총 리스트 수
+	public int getTotalRowCount();
+	
 	//내가 쓴 리뷰
 	public ArrayList<ReviewVo> getMy_select(String mid);
+	
+	//신고된 리뷰 체크
+	public int reviewCheckResult(String rid);
+
+	
+
+	
 	
 }
