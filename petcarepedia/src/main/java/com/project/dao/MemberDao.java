@@ -1,387 +1,114 @@
 package com.project.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import com.project.vo.HospitalVo;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.project.vo.MemberVo;
-import com.project.vo.ReviewVo;
 
+@Repository
 public class MemberDao extends DBConn{
+	
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
 	/**
 	 * insert - 회원가입
 	 */
 	public int insert(MemberVo memberVo) {
-		int result = 0;
-		
-		String sql = "INSERT INTO PCP_MEMBER(mid,pass,name,nickname,phone,birth,email,addr,mdate) VALUES(?,?,?,?,?,?,?,?,SYSDATE)";
-		getPreparedStatement(sql);
-		
-		try {
-			pstmt.setString(1, memberVo.getMid());
-			pstmt.setString(2, memberVo.getPass());
-			pstmt.setString(3, memberVo.getName());
-			pstmt.setString(4, memberVo.getNickname());
-			pstmt.setString(5, memberVo.getPhone());
-			pstmt.setString(6, memberVo.getBirth());
-			pstmt.setString(7, memberVo.getEmail());
-			pstmt.setString(8, memberVo.getAddr());
-			
-			result = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
+		return sqlSession.insert("mapper.member.join",memberVo);
 	}
 	
 	/**
-	 * checkLogin - 로그인 체크 / 회원탈퇴 비밀번호 확인
+	 * checkLogin - 로그인 체크
 	 */
 	public int checkLogin(MemberVo memberVo) {
-		int result = 0;
-		
-		String sql = "select count(*) from pcp_member where mid=? and pass=?";
-		getPreparedStatement(sql);
-		
-		try {
-			pstmt.setString(1, memberVo.getMid());
-			pstmt.setString(2, memberVo.getPass());
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				result = rs.getInt(1);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
+		return sqlSession.selectOne("mapper.member.login",memberVo);
 	}
 	
 	/**
 	 * delete - 회원탈퇴
 	 */
 	public int delete(String mid, String pass) {
-		int result = 0;
-		
-		String sql = "delete from pcp_member where mid=? and pass=?";
-		getPreparedStatement(sql);
-		
-		try {
-			pstmt.setString(1, mid);
-			pstmt.setString(2, pass);
-			
-			result = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
+		Map<String,String> param = new HashMap<String,String>();
+		param.put("mid", mid);
+		param.put("pass", pass);
+		return sqlSession.delete("mapper.member.delete", param);
 	}
 	
 	/**
 	 * select - 회원 전체 리스트(관리자)
 	 */
 	public ArrayList<MemberVo> select() {
-		ArrayList<MemberVo> list = new ArrayList<MemberVo>();
-		
-		String sql = "select rownum rno,mid,pass,name,nickname,phone,to_char(to_date(birth),'yyyy-mm-dd') birth,email,addr,to_char(mdate,'yyyy-mm-dd') mdate\r\n" + 
-				"from(select mid,pass,name,nickname,phone,birth,email,addr,mdate from pcp_member order by mdate)";
-		getPreparedStatement(sql);
-		
-		try {
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				MemberVo memberVo = new MemberVo();
-				
-				memberVo.setRno(rs.getInt(1));
-				memberVo.setMid(rs.getString(2));
-				memberVo.setPass(rs.getString(3));
-				memberVo.setName(rs.getString(4));
-				memberVo.setNickname(rs.getString(5));
-				
-				if(rs.getString(6) != null) {
-					String[] phoneArray = rs.getString(6).split("-");
-					memberVo.setPhone1(phoneArray[0]);
-					memberVo.setPhone2(phoneArray[1]);
-					memberVo.setPhone3(phoneArray[2]);
-				}
-				
-				if(rs.getString(7) != null) {
-					String[] birthArray = rs.getString(7).split("-");
-					memberVo.setBirth1(birthArray[0]);
-					memberVo.setBirth2(birthArray[1]);
-					memberVo.setBirth3(birthArray[2]);
-				}
-				
-				memberVo.setEmail(rs.getString(8));
-				memberVo.setAddr(rs.getString(9));
-				memberVo.setMdate(rs.getString(10));
-				
-				list.add(memberVo);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return list;
+		List<MemberVo> list = sqlSession.selectList("mapper.member.list");
+		return (ArrayList<MemberVo>)list;
 	}
 	
 	/**
 	 * select - 회원 전체 리스트(관리자) / 페이징
 	 */
 	public ArrayList<MemberVo> select(int startCount, int endCount) {
-		ArrayList<MemberVo> list = new ArrayList<MemberVo>();
+		Map<String,Integer> param = new HashMap<String,Integer>();
+		param.put("start", startCount);
+		param.put("end", endCount);
 		
-		String sql = "select rno,mid,pass,name,nickname,phone,birth,email,addr,mdate\n" + 
-				"from (select rownum rno,mid,pass,name,nickname,phone,to_char(to_date(birth),'yyyy-mm-dd') birth,email,addr,to_char(mdate,'yyyy-mm-dd') mdate\n" + 
-				"          from(select mid,pass,name,nickname,phone,birth,email,addr,mdate \n" + 
-				"                    from pcp_member \n" + 
-				"                    order by mdate))\n" + 
-				"where rno between ? and ?";
-		getPreparedStatement(sql);
-		
-		try {
-			pstmt.setInt(1, startCount);
-			pstmt.setInt(2, endCount);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				MemberVo memberVo = new MemberVo();
-				
-				memberVo.setRno(rs.getInt(1));
-				memberVo.setMid(rs.getString(2));
-				memberVo.setPass(rs.getString(3));
-				memberVo.setName(rs.getString(4));
-				memberVo.setNickname(rs.getString(5));
-				
-				if(rs.getString(6) != null) {
-					String[] phoneArray = rs.getString(6).split("-");
-					memberVo.setPhone1(phoneArray[0]);
-					memberVo.setPhone2(phoneArray[1]);
-					memberVo.setPhone3(phoneArray[2]);
-				}
-				
-				if(rs.getString(7) != null) {
-					String[] birthArray = rs.getString(7).split("-");
-					memberVo.setBirth1(birthArray[0]);
-					memberVo.setBirth2(birthArray[1]);
-					memberVo.setBirth3(birthArray[2]);
-				}
-				
-				memberVo.setEmail(rs.getString(8));
-				memberVo.setAddr(rs.getString(9));
-				memberVo.setMdate(rs.getString(10));
-				
-				list.add(memberVo);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return list;
+		List<MemberVo> list = sqlSession.selectList("mapper.member.list2",param);
+		return (ArrayList<MemberVo>)list;
 	}
 	
 	/**
 	 * select - 회원 개인 정보(마이페이지)
 	 */
 	public MemberVo select(String mid) {
-		MemberVo memberVo = new MemberVo();
-		
-		String sql = "select mid,pass,name,nickname,phone,to_char(to_date(birth),'yyyy-mm-dd') birth,email,addr,to_char(mdate,'yyyy-mm-dd') mdate from pcp_member\r\n" + 
-				"where mid=?";
-		getPreparedStatement(sql);
-		
-		try {
-			pstmt.setString(1, mid);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				memberVo.setMid(rs.getString(1));
-				memberVo.setPass(rs.getString(2));
-				memberVo.setName(rs.getString(3));
-				memberVo.setNickname(rs.getString(4));
-				
-				if(rs.getString(5) != null) {
-					String[] phoneArray = rs.getString(5).split("-");
-					memberVo.setPhone1(phoneArray[0]);
-					memberVo.setPhone2(phoneArray[1]);
-					memberVo.setPhone3(phoneArray[2]);
-				}
-				
-				if(rs.getString(6) != null) {
-					String[] birthArray = rs.getString(6).split("-");
-					memberVo.setBirth1(birthArray[0]);
-					memberVo.setBirth2(birthArray[1]);
-					memberVo.setBirth3(birthArray[2]);
-				}
-				
-				memberVo.setEmail(rs.getString(7));
-				memberVo.setAddr(rs.getString(8));
-				memberVo.setMdate(rs.getString(9));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return memberVo;
+		return sqlSession.selectOne("mapper.member.content",mid);
 	}
 	
 	/**
 	 * checkId - 회원가입 아이디 중복체크
 	 */
 	public int checkId(String mid) {
-		int result = 0;
-		
-		String sql = "select count(*) from pcp_member where mid=?";
-		getPreparedStatement(sql);
-		
-		try {
-			pstmt.setString(1, mid);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				result = rs.getInt(1);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
+		return sqlSession.selectOne("mapper.member.checkId",mid);
 	}
 	
 	/**
 	 * update - 회원정보 수정(마이페이지)
 	 */
 	public int update(MemberVo memberVo) {
-		int result = 0;
-		
-		String sql = "update pcp_member \r\n" + 
-				"set nickname=?,phone=?,birth=?,email=?,addr=?\r\n" + 
-				"where mid=?";
-		getPreparedStatement(sql);
-		
-		try {
-			pstmt.setString(1, memberVo.getNickname());
-			pstmt.setString(2, memberVo.getPhone());
-			pstmt.setString(3, memberVo.getBirth());
-			pstmt.setString(4, memberVo.getEmail());
-			pstmt.setString(5, memberVo.getAddr());
-			pstmt.setString(6, memberVo.getMid());
-			
-			result = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
+		return sqlSession.update("mapper.member.update",memberVo);
 	}
 	
 	/**
 	 * findId - 아이디 찾기
 	 */
 	public String findId(MemberVo memberVo) {
-		String mid = "";
-		
-		String sql = "select mid from pcp_member where name=? and phone=?";
-		getPreparedStatement(sql);
-		
-		try {
-			pstmt.setString(1, memberVo.getName());
-			pstmt.setString(2, memberVo.getPhone());
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				mid = rs.getString(1);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return mid;
+		return sqlSession.selectOne("mapper.member.find", memberVo);
 	}
 	
 	/**
 	 * findPass - 비밀번호 재설정 - 정보 일치 여부 확인
 	 */
 	public String findPass(MemberVo memberVo) {
-		String mid = "";
-		
-		String sql = "select mid from pcp_member where mid=? and name=? and phone=?";
-		getPreparedStatement(sql);
-		
-		try {
-			pstmt.setString(1, memberVo.getMid());
-			pstmt.setString(2, memberVo.getName());
-			pstmt.setString(3, memberVo.getPhone());
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				mid = rs.getString(1);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return mid;
+		return sqlSession.selectOne("mapper.member.find", memberVo);
 	}
 	
 	/**
 	 * updatePass - 비밀번호 재설정 - 재설정
 	 */
 	public int updatePass(MemberVo memberVo) {
-		int result = 0;
-		
-		String sql = "update pcp_member \r\n" + 
-				"set pass=?\r\n" + 
-				"where mid=?";
-		getPreparedStatement(sql);
-		
-		try {
-			pstmt.setString(1, memberVo.getPass());
-			pstmt.setString(2, memberVo.getMid());
-			
-			result = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
+		return sqlSession.update("mapper.member.updatePass",memberVo);
 	}
 	
 	/**
 	 * search - 멤버 상세 검색
 	 */
 	public ArrayList<MemberVo> search(String mid) {
-		ArrayList<MemberVo> list = new ArrayList<MemberVo>();
-		String sql = "SELECT MID, NAME, PHONE, EMAIL, MDATE FROM PCP_MEMBER WHERE MID LIKE ?";
-		getPreparedStatement(sql);
-
-		try {
-			pstmt.setString(1, "%"+ mid + "%");
-
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				MemberVo member = new MemberVo();
-				member.setMid(rs.getString(1));
-				member.setName(rs.getString(2));
-				member.setEmail(rs.getString(3));
-				member.setPhone(rs.getString(4));
-				member.setMdate(rs.getString(5));
-
-				list.add(member);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return list;
+		List<MemberVo> list = sqlSession.selectList("mapper.member.search",mid);
+		return (ArrayList<MemberVo>)list;
 	}
 }
 
