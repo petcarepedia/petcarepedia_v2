@@ -10,6 +10,7 @@ import com.project.vo.BookmarkVo;
 
 @Service("bookmarkService")
 public class BookmarkServiceImpl implements BookmarkService{
+	
 	@Autowired
 	private BookmarkDao bookmarkDao;
 	
