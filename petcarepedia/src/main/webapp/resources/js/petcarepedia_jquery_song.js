@@ -132,6 +132,13 @@ $(document).ready(function(){
 			$("form[name='joinForm'] input:checkbox").prop('checked',false);
 		}
 	});
+	$("form[name='joinForm'] input:checkbox,.term-modal").click(function(){
+		if($("#term1").is(':checked')&&$("#term2").is(':checked')&&$("#term3").is(':checked')&&$("#term4").is(':checked')){
+			$("#termAll").prop('checked',true);
+		} else {
+			$("#termAll").prop('checked',false);
+		}
+	});
 	
 	//약관동의 유효성 체크
 	$(".terms,.term-modal").click(function(){
