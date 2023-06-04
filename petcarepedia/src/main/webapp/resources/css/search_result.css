@@ -333,6 +333,29 @@ div.filter {
 	float: right;
 }
 
+div.review_card_no {
+	/* border: 1px solid #98DFFF; */
+	background: #F7FCFE;
+	border-radius: 5px;
+	clear: both;
+	width: 900px;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+div.review_card_no img#review_img {
+	width: 15%;
+	display: block;
+	margin: auto;
+	padding: 40px 0px 10px 0px;
+}
+
+div.review_card_no p {
+	/* border: 1px solid #98DFFF; */
+	font-size: 18px;
+	padding: 20px 0px;
+}
 
 div.review_card {
 	border: 1px solid #98DFFF;

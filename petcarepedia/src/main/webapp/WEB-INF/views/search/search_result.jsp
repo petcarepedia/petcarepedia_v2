@@ -319,89 +319,101 @@ $(document).ready(function() {
 					</div>
 				</div> -->
 				
-				<c:forEach var="RM_select" items="${RM_select}"> 
-				<div class="review_card">
-					<div class="member">
-						<div class="name">
-							<img src="http://localhost:9000/petcarepedia/images/cat.png">
-							<span>${RM_select.nickname}</span>
+				<c:choose>
+					<c:when test="${fn:length(RM_select) == 0}">
+					<div class="review_card_no">
+						<img id="review_img" src="http://localhost:9000/petcarepedia/images/review.png">
+						<p>등록된 리뷰가 아직 없습니다. 리뷰를 등록해주세요.</p>
+					</div>
+					</c:when>
+				
+					<c:otherwise>
+						<c:forEach var="RM_select" items="${RM_select}"> 
+						<div class="review_card">
+							<div class="member">
+								<div class="name">
+									<img src="http://localhost:9000/petcarepedia/images/cat.png">
+									<span>${RM_select.nickname}</span>
+								</div>
+								
+								<hr class="member_hr">
+								<span class="stext">⭐ <fmt:formatNumber type="number"  pattern="0" value="${RM_select.rstar}" /> / 5</span>
+								<hr class="member_hr">
+								<!-- <span>친절  ⭐⭐⭐⭐⭐</span>
+								<span>위생  ⭐⭐⭐⭐⭐</span> -->
+								<!-- <span class="stot">별점  ⭐⭐⭐⭐⭐</span> -->
+								<c:if test="${RM_select.rstar<1}">
+									<span class="stot">별점  </span>
+								</c:if>
+								
+								<c:if test="${RM_select.rstar>=1 && RM_select.rstar<2}">
+									<span class="stot">별점  ⭐</span>
+								</c:if>	
+								
+								<c:if test="${RM_select.rstar>=2 && RM_select.rstar<3}">
+									<span class="stot">별점  ⭐⭐</span>
+								</c:if>	
+								
+								<c:if test="${RM_select.rstar>=3 && RM_select.rstar<4}">
+									<span class="stot">별점  ⭐⭐⭐</span>
+								</c:if>	
+								
+								<c:if test="${RM_select.rstar>=4 && RM_select.rstar<5}">
+									<span class="stot">별점  ⭐⭐⭐⭐</span>
+								</c:if>
+								
+								<c:if test="${RM_select.rstar>=5}">
+									<span class="stot">별점  ⭐⭐⭐⭐⭐</span>
+								</c:if>
+							</div>
+							
+							<div class="write">
+								<!-- <h3>동물 종류 : 고양이</h3> -->
+								<p>${RM_select.rcontent}</p>
+							</div>
+							
+							<div class="date">
+								<span>작성 일자 : ${RM_select.rdate}</span>
+								<span> </span>
+								<form name="likeForm" action="likeProc.do" method="post">
+									<input type="hidden" name="hid" value="${hospital.hid}">
+									<input type="hidden" name="rid" value="${RM_select.rid}">
+									<input type="hidden" name="mid" value="hong">
+									
+									<!--  session 체크 이후 -->
+		<%-- 							<c:choose>
+									<c:when test="${RH_select.mid == null}">
+										<button type="submit" id="like-log" class="like" data-rid="${RM_select.rid}" disabled>좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+											<span class="heart">♥</span> 
+											<span class="like-count">${RM_select.rlike}</span>
+										</button>
+									</c:when>
+									<c:otherwise>
+										<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+											<span class="heart">♥</span> 
+											<span class="like-count">${RM_select.rlike}</span>
+										</button>
+									</c:otherwise>
+									</c:choose> --%>
+										<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+											<span class="heart">♥</span> 
+											<span class="like-count">${RM_select.rlike}</span>
+										</button>
+									
+								</form>
+								
+								<form name="rstateForm" action="rstateProc.do" method="post">
+									<input type="hidden" name="rid" value="${RM_select.rid}">
+									<input type="hidden" name="hid" value="${hospital.hid}">
+										<button type="button" class="rstate" name="rstate">신고하기</button>
+									<!-- <span>신고하기</span> -->
+								</form>
+							</div>
 						</div>
-						
-						<hr class="member_hr">
-						<span class="stext">⭐ <fmt:formatNumber type="number"  pattern="0" value="${RM_select.rstar}" /> / 5</span>
-						<hr class="member_hr">
-						<!-- <span>친절  ⭐⭐⭐⭐⭐</span>
-						<span>위생  ⭐⭐⭐⭐⭐</span> -->
-						<!-- <span class="stot">별점  ⭐⭐⭐⭐⭐</span> -->
-						<c:if test="${RM_select.rstar<1}">
-							<span class="stot">별점  </span>
-						</c:if>
-						
-						<c:if test="${RM_select.rstar>=1 && RM_select.rstar<2}">
-							<span class="stot">별점  ⭐</span>
-						</c:if>	
-						
-						<c:if test="${RM_select.rstar>=2 && RM_select.rstar<3}">
-							<span class="stot">별점  ⭐⭐</span>
-						</c:if>	
-						
-						<c:if test="${RM_select.rstar>=3 && RM_select.rstar<4}">
-							<span class="stot">별점  ⭐⭐⭐</span>
-						</c:if>	
-						
-						<c:if test="${RM_select.rstar>=4 && RM_select.rstar<5}">
-							<span class="stot">별점  ⭐⭐⭐⭐</span>
-						</c:if>
-						
-						<c:if test="${RM_select.rstar>=5}">
-							<span class="stot">별점  ⭐⭐⭐⭐⭐</span>
-						</c:if>
-					</div>
-					
-					<div class="write">
-						<!-- <h3>동물 종류 : 고양이</h3> -->
-						<p>${RM_select.rcontent}</p>
-					</div>
-					
-					<div class="date">
-						<span>작성 일자 : ${RM_select.rdate}</span>
-						<span> </span>
-						<form name="likeForm" action="likeProc.do" method="post">
-							<input type="hidden" name="hid" value="${hospital.hid}">
-							<input type="hidden" name="rid" value="${RM_select.rid}">
-							<input type="hidden" name="mid" value="hong">
-							
-							<!--  session 체크 이후 -->
-<%-- 							<c:choose>
-							<c:when test="${RH_select.mid == null}">
-								<button type="submit" id="like-log" class="like" data-rid="${RM_select.rid}" disabled>좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-									<span class="heart">♥</span> 
-									<span class="like-count">${RM_select.rlike}</span>
-								</button>
-							</c:when>
-							<c:otherwise>
-								<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-									<span class="heart">♥</span> 
-									<span class="like-count">${RM_select.rlike}</span>
-								</button>
-							</c:otherwise>
-							</c:choose> --%>
-								<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-									<span class="heart">♥</span> 
-									<span class="like-count">${RM_select.rlike}</span>
-								</button>
-							
-						</form>
-						
-						<form name="rstateForm" action="rstateProc.do" method="post">
-							<input type="hidden" name="rid" value="${RM_select.rid}">
-							<input type="hidden" name="hid" value="${hospital.hid}">
-								<button type="button" class="rstate" name="rstate">신고하기</button>
-							<!-- <span>신고하기</span> -->
-						</form>
-					</div>
-				</div>
-				</c:forEach>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+				
 				
 			</div>
 		</section>	
