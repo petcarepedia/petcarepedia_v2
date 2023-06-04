@@ -40,17 +40,14 @@
 						<th>작성자</th>
 						<td>${reviewVo.mid}</td>
 					</tr>
-					<tr>					
-						<td class = "re_cancle">정말로 삭제하시겠습니까?</td>
-					</tr>				
-					<tr>
-						<td class = "btnCancle" colspan="2">
-							<button type="button" class="btn_style" id = "btnReviewDelete">삭제완료</button>
-							<a href="my_review.do?mid=hong">
-							<button type="button" class="btn_style">이전페이지</button></a>
-						</td>				
-					</tr>
 				</table>
+				<div class = "box">
+					<p>정말로 삭제하시겠습니까?</p>
+					<button type="button" class="btn_style" id = "btnReviewDelete">삭제완료</button>
+					<a href="my_review.do?mid=hong">
+						<button type="button" class="btn_style">이전페이지</button>
+					</a>
+				</div>
 			</form>
 		</section>
 	</div>

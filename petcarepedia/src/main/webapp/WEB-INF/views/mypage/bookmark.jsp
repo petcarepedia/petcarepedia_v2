@@ -11,6 +11,31 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+function bookmark(bmid) {
+	Swal.fire({
+        title: '즐겨찾기를 해제하시겠습니까?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '승인',
+        cancelButtonText: '취소'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                '해제가 완료되었습니다.',
+                '화끈하시네요~!',
+                'success'
+            ).then(() => {
+                location.href = "bookmark_delete_proc.do?bmid=" + bmid;
+            });
+        }
+    });
+}
+
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -36,25 +61,23 @@
 			</section>
 			<section id = "section2">
 				<c:forEach var = "bookmarkVo" items = "${list}">
-					<form name="deleteForm" action="bookmark_delete_proc.do" method="post">
-					<input type = "hidden" name = "bmid" id = "bmid" value = "${bookmarkVo.bmid}">
+						<%-- <input type = "hidden" name = "bmid" id = "bmid" value = "${bookmarkVo.bmid}"> --%>
 						<div id = "aside1">
 							<span>${bookmarkVo.hname}</span>
 							<span>${bookmarkVo.gloc}</span>
 							<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookmarkVo.hid}">병원 상세보기 ></a>
-							<button type = "button" id = "btnBookmarkDelete">
+							<button type = "button" id = "btnBookmarkDelete" onclick = "bookmark('${bookmarkVo.bmid}')">
 								<img src = "http://localhost:9000/petcarepedia/images/bookmark_yellow.png">
 							</button>
 	<%-- 						<a href = "bookmark_delete.do?bmid=${bookmarkVo.bmid}">
 								<img src = "http://localhost:9000/petcarepedia/images/bookmark2.png">
 							</a> --%>
 						</div>
-					</form>
 				</c:forEach>
 			</section>
 		</section>
 	</div>
 	<jsp:include page="../footer.jsp"></jsp:include>
-	
 </body>
+
 </html>

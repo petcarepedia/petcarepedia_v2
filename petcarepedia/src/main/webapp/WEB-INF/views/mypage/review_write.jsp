@@ -19,7 +19,7 @@
 			<h1 id = "title">리뷰쓰기</h1>
 			<hr>
 			<form name="writeForm" action="review_write_proc.do" method="post">
-			<input type = "hidden" name = "mid" value = "${mid}">
+			<input type = "hidden" name = "mid" value = "${memberVo.mid}">
 			<input type = "hidden" name = "hid" value = "${hid}">
 			<input type = "hidden" name = "bid" value = "${bid}">
 				<section id = "section1">
@@ -39,7 +39,7 @@
 				<div id = "aside">
 					<section>
 						<img src = "http://localhost:9000/petcarepedia/images/cat.png">
-						<span>과테말라 냥이</span>
+						<span>${memberVo.nickname}</span>
 						<span>의사의 진료는 어떠셨나요?</span>
 						<span>별점을 선택해주세요</span>
 						<!-- <img src = "http://localhost:9000/petcarepedia//images/star.png">

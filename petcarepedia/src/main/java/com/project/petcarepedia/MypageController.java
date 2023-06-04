@@ -9,14 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.BookingDao;
-import com.project.dao.HospitalDao;
 import com.project.dao.MemberDao;
 import com.project.dao.ReviewDao;
 import com.project.service.BookmarkService;
 import com.project.vo.BookingReviewVo;
 import com.project.vo.BookingVo;
 import com.project.vo.BookmarkVo;
-import com.project.vo.HospitalVo;
 import com.project.vo.MemberVo;
 import com.project.vo.ReviewVo;
 
@@ -76,9 +74,10 @@ public class MypageController {
 		ModelAndView model = new ModelAndView();
 		BookingDao bookingDao = new BookingDao();
 		ArrayList<BookingVo> list = bookingDao.search2(mid);
-		
+		ArrayList<BookingVo> list2 = bookingDao.search4(mid);
 		model.setViewName("/mypage/reservation");
 		model.addObject("list", list);
+		model.addObject("list2", list2);
 		
 		return model;
 	}
@@ -87,10 +86,10 @@ public class MypageController {
 	 * reservation.do - 예약내역 삭제하기 폼
 	 */
 	@RequestMapping(value = "/reservation_delete.do", method = RequestMethod.GET)
-	public ModelAndView reservation_delete(String bid, String mid, String hid) {
+	public ModelAndView reservation_delete(String bid, String mid) {
 		ModelAndView model = new ModelAndView();
 		BookingDao bookingDao = new BookingDao();
-		BookingVo bookingVo = bookingDao.select(bid);
+		BookingVo bookingVo = bookingDao.select2(bid);
 		model.addObject("bid", bid);
 		model.addObject("mid", mid);
 		model.addObject("bookingVo", bookingVo);
@@ -161,7 +160,7 @@ public class MypageController {
 	/*
 	 * bookmark_delete_proc.do - 즐겨찾기 삭제하기 처리
 	 */
-	@RequestMapping(value = "/bookmark_delete_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/bookmark_delete_proc.do", method = RequestMethod.GET)
 	public String bookmark_delete_proc(String bmid) {
 		String viewName = "";
 		//BookmarkDao bookmarkDao = new BookmarkDao();
@@ -253,7 +252,9 @@ public class MypageController {
 	@RequestMapping(value = "/review_write.do", method = RequestMethod.GET)
 	public ModelAndView review_write(String mid, String hid, String bid) {
 		ModelAndView model = new ModelAndView();
-		model.addObject("mid", mid);
+		MemberDao memberDao = new MemberDao();
+		MemberVo memberVo = memberDao.select(mid);
+		model.addObject("memberVo", memberVo);
 		model.addObject("hid", hid);
 		model.addObject("bid", bid);
 		model.setViewName("/mypage/review_write");

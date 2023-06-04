@@ -56,22 +56,43 @@
 								<span></span>
 								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
 								<span>${bookingVo.loc}</span>
-								<img src = "http://localhost:9000/petcarepedia/images/홈.png">
-								<c:choose>
-								<c:when test = "${bookingVo.hrink eq 'X'}">
-									<a href = "#" onclick = "alert('홈페이지가 존재하지 않습니다.')">병원 홈페이지 가기</a>
-								</c:when>
-								<c:otherwise>
-								<a href = "${bookingVo.hrink}">병원 홈페이지 가기</a>
-								</c:otherwise>
-								</c:choose>
-								<img src = "http://localhost:9000/petcarepedia/images/전화.png">
-								<span>${bookingVo.tel}</span>
-								<span>예약 날짜 : ${bookingVo.vdate}</span>
-								<span>예약 시간 : ${bookingVo.vtime}</span>
+								<c:if test = "${bookingVo.hrink ne 'X'}">
+									<img src = "http://localhost:9000/petcarepedia/images/홈.png">
+									<a href = "${bookingVo.hrink}">병원 홈페이지 가기</a>
+								</c:if>
+								<div class = "box">
+									<img src = "http://localhost:9000/petcarepedia/images/전화.png">
+									<span>${bookingVo.tel}</span>
+									<span>예약 날짜 : ${bookingVo.vdate}</span>
+									<span>예약 시간 : ${bookingVo.vtime}</span>
+								</div>
 							</div>
 						</div>
-						<a href = "reservation_delete.do?bid=${bookingVo.bid}&mid=${bookingVo.mid}&hid=${bookingVo.hid}">
+						<a href = "reservation_delete.do?bid=${bookingVo.bid}&mid=${bookingVo.mid}">
+						<button type = "button" id = "btn_cancle1">예약취소</button></a>
+					</c:forEach>
+					<c:forEach var = "bookingVo" items = "${list2}">
+						<div id = "aside1">
+							<img src = "${bookingVo.img}">
+							<div>
+								<span>서울시 > ${bookingVo.gloc}</span>
+								<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookingVo.hid}"><span>${bookingVo.hname}</span></a>
+								<span></span>
+								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
+								<span>${bookingVo.loc}</span>
+								<c:if test = "${bookingVo.hrink ne 'X'}">
+									<img src = "http://localhost:9000/petcarepedia/images/홈.png">
+									<a href = "${bookingVo.hrink}">병원 홈페이지 가기</a>
+								</c:if>
+								<div class = "box">
+									<img src = "http://localhost:9000/petcarepedia/images/전화.png">
+									<span>${bookingVo.tel}</span>
+									<span>예약 날짜 : ${bookingVo.vdate}</span>
+									<span>예약 시간 : ${bookingVo.vtime}</span>
+								</div>
+							</div>
+						</div>
+						<a href = "reservation_delete.do?bid=${bookingVo.bid}&mid=${bookingVo.mid}">
 						<button type = "button" id = "btn_cancle1">예약취소</button></a>
 					</c:forEach>
 				</section>

@@ -29,11 +29,6 @@
 				<input type = "hidden" name = "bid" value = "${bid}">
 				<table id = "table">
 					<tr>
-						<td>
-							<img src = "${bookingVo.img}" class = "image">
-						</td>
-					</tr>
-					<tr>
 						<th>병원명</th>
 						<td>${bookingVo.hname}</td>
 					</tr>
@@ -49,17 +44,14 @@
 						<th>전화번호</th>
 						<td>${bookingVo.tel}</td>
 					</tr>
-					<tr>					
-						<td class = "re_cancle">예약을 취소하시겠습니까?</td>
-					</tr>				
-					<tr>
-						<td class = "btnCancle" colspan="2">
-							<button type="button" class="btn_style" id = "btnReservationDelete">취소완료</button>
-							<a href="reservation.do?mid=${mid}">
-							<button type="button" class="btn_style">이전페이지</button></a>
-						</td>				
-					</tr>
 				</table>
+				<div class = "box">
+					<p>예약을 취소하시겠습니까?</p>
+					<button type="button" class="btn_style" id = "btnReservationDelete">취소완료</button>
+					<a href="reservation.do?mid=${mid}">
+						<button type="button" class="btn_style">이전페이지</button>
+					</a>
+				</div>
 			</form>
 		</section>
 	</div>

@@ -42,11 +42,11 @@ $(document).ready(function(){
 			$("#phone1").focus();
 			return false;
 		} else if($("#phone2").val() == "") {
-			alert("휴대폰 번호를 선택해주세요");
+			alert("휴대폰 번호를 입력해주세요");
 			$("#phone2").focus();
 			return false;
 		} else if($("#phone3").val() == "") {
-			alert("휴대폰 번호를 선택해주세요");
+			alert("휴대폰 번호를 입력해주세요");
 			$("#phone3").focus();
 			return false;
 		} else {
@@ -108,13 +108,10 @@ $("#btnReservationDelete").click(function(){
 	})
 
 
-
 /*******************************************
 		mypage - 북마크해제
 ********************************************/
-	$("#btnBookmarkDelete").click(function(){
-		deleteForm.submit();
-	})
+
 
 /*******************************************
 		mypage - 회원탈퇴

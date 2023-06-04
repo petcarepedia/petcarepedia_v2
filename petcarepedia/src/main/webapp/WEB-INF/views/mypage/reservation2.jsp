@@ -54,19 +54,16 @@
 								<span></span>
 								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
 								<span>${bookingVo.loc}</span>
-								<img src = "http://localhost:9000/petcarepedia/images/홈.png">
-								<c:choose>
-								<c:when test = "${bookingVo.hrink eq 'X'}">
-									<a href = "#" onclick = "alert('홈페이지가 존재하지 않습니다.')">병원 홈페이지 가기</a>
-								</c:when>
-								<c:otherwise>
+								<c:if test = "${bookingVo.hrink != 'X'}">
+									<img src = "http://localhost:9000/petcarepedia/images/홈.png">
 									<a href = "${bookingVo.hrink}">병원 홈페이지 가기</a>
-								</c:otherwise>
-								</c:choose>
-								<img src = "http://localhost:9000/petcarepedia/images/전화.png">
-								<span>${bookingVo.tel}</span>
-								<span>예약 날짜 : ${bookingVo.vdate}</span>
-								<span>예약 시간 : ${bookingVo.vtime}</span>
+								</c:if>
+								<div class = "box">
+									<img src = "http://localhost:9000/petcarepedia/images/전화.png">
+									<span>${bookingVo.tel}</span>
+									<span>예약 날짜 : ${bookingVo.vdate}</span>
+									<span>예약 시간 : ${bookingVo.vtime}</span>
+								</div>
 							</div>
 						</div>
 						<div id = "btn_review">
@@ -84,19 +81,16 @@
 								<span></span>
 								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
 								<span>${bookingReview.loc}</span>
-								<img src = "http://localhost:9000/petcarepedia/images/홈.png">
-								<c:choose>
-								<c:when test = "${bookingReview.hrink eq 'X'}">
-									<a href = "#" onclick = "alert('홈페이지가 존재하지 않습니다.')">병원 홈페이지 가기</a>
-								</c:when>
-								<c:otherwise>
+								<c:if test = "${bookingReview.hrink ne 'X'}">
+									<img src = "http://localhost:9000/petcarepedia/images/홈.png">
 									<a href = "${bookingReview.hrink}">병원 홈페이지 가기</a>
-								</c:otherwise>
-								</c:choose>
-								<img src = "http://localhost:9000/petcarepedia/images/전화.png">
-								<span>${bookingReview.tel}</span>
-								<span>예약 날짜 : ${bookingReview.vdate}</span>
-								<span>예약 시간 : ${bookingReview.vtime}</span>
+								</c:if>
+								<div class = "box">
+									<img src = "http://localhost:9000/petcarepedia/images/전화.png">
+									<span>${bookingReview.tel}</span>
+									<span>예약 날짜 : ${bookingReview.vdate}</span>
+									<span>예약 시간 : ${bookingReview.vtime}</span>
+								</div>
 							</div>
 						</div>
 						<div id = "btn_review">

@@ -37,9 +37,9 @@
 				<div id = "aside">
 					<section>
 						<img src = "http://localhost:9000/petcarepedia/images/cat.png">
-						<span>과테말라 냥이</span>
+						<span>${reviewVo.nickname}</span>
 						<span>의사의 진료는 어떠셨나요?</span>
-						<span>별점을 선택해주세요</span>
+						<span>별점을 다시 선택해주세요</span>
 
 						<div id = "star">
 							<fieldset>

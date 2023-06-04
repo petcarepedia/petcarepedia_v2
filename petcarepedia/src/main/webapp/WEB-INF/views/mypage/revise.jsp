@@ -11,7 +11,7 @@
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 	$(document).ready(function(){
 		let phone1 = "${memberVo.phone1}";
@@ -45,17 +45,18 @@
 				</section>
 				<div id = "aside">
 					<section id = "section2">
+					<p><span class="ess">*</span> 표시는 필수 입력 항목입니다.</p>
 						<ul>
 							<li>
-								<label >아이디</label>
+								<label >*아이디</label>
 								<label>${memberVo.mid}</label>
 							</li>
 							<li>
-								<label>성명</label>
+								<label>*성명</label>
 								<label>${memberVo.name}</label>
 							</li>
 							<li>
-								<label>별명</label>
+								<label>*별명</label>
 								<input type = "text" name = "nickname" id = "nickname" placeholder = "  변경하실  별명을 입력해주세요" value = "${memberVo.nickname}">
 							</li>
 							<li>
@@ -71,7 +72,7 @@
 								<input type = "text" name = "email" id = "email" placeholder = "  변경하실 이메일 주소를 입력해주세요" value = "${memberVo.email}">
 							</li>
 							<li>
-								<label>휴대폰</label>
+								<label>*휴대폰</label>
 								<div>
 									<select name="phone1" id="phone1">
 										<option value="default">선택</option>
