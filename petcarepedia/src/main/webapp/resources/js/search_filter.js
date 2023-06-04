@@ -1,27 +1,45 @@
 $(document).ready(function() {
 /////// 진료중 버튼
+	var today = new Date();
+	var hours = ('0' + today.getHours()).slice(-2);
+	var minutes = ('0' + today.getMinutes()).slice(-2);
+	var nowTime = hours + minutes;
+	var isWeekend = isSaturdayOrSunday(today);
+	
+	function isSaturdayOrSunday(date) { // 토요일, 일요일 확인
+	    var dayOfWeek = date.getDay();
+	    return {
+	        isWeekend: dayOfWeek === 6 || dayOfWeek === 0,
+	        dayOfWeek: dayOfWeek
+	    };
+	}
+	
+	$('ul#dataList li').each(function() {
+	    var $this = $(this);
+	    var startTime = $this.find('input#startTime').val().replace(':', '');
+	    var endTime = $this.find('input#endTime').val().replace(':', '');
+	    var holiday = $this.find('input#holiday').val();
+	
+	    if (holiday == '휴일: X') { // 휴일영업X
+	        if (parseInt(nowTime) > parseInt(endTime) || parseInt(nowTime) < parseInt(startTime) || (isWeekend.isWeekend && (isWeekend.dayOfWeek === 6 || isWeekend.dayOfWeek === 0))) {
+	            $this.find('span#htime').hide();
+	            var dataFilter = $this.attr('data-filter');
+	            dataFilter = dataFilter.replace('time', '');
+	            $this.attr('data-filter', dataFilter);
+	        }
+	
+	    } else if (holiday == '휴일: O') { // 휴일영업O
+	        if (parseInt(nowTime) > parseInt(endTime) || parseInt(nowTime) < parseInt(startTime)) {
+	            $this.find('span#htime').hide();
+	            var dataFilter = $this.attr('data-filter');
+	            dataFilter = dataFilter.replace('ime', '');
+	            $this.attr('data-filter', dataFilter);
+	        }
+	    }
+	});
 
-var today = new Date();
-var hours = ('0' + today.getHours()).slice(-2);
-var minutes = ('0' + today.getMinutes()).slice(-2);
 
-var nowTime = hours + minutes;
-
-
-$('ul#dataList li').each(function() {
-    var startTime = $(this).find('input#startTime').val().replace(':', '');
-    var endTime = $(this).find('input#endTime').val().replace(':', '');
-
-     if (parseInt(nowTime) > parseInt(endTime) || parseInt(nowTime) < parseInt(startTime)) {
-        $(this).find('span#htime').hide();
-        var dataFilter = $(this).attr('data-filter');
-        dataFilter = dataFilter.replace(' time', '');
-        $(this).attr('data-filter', dataFilter);
-    }
-});
-
-//console.log(nowTime);
-
+	
 
 
 
@@ -36,12 +54,12 @@ $('ul#dataList li').each(function() {
 	});
 	
   	// time 하나만 선택
-	$('input[type="checkbox"][name="time"]').click(function(){
-		  if($(this).prop('checked')){
-		     $('input[type="checkbox"][name="time"]').prop('checked',false);
-		     $(this).prop('checked',true);
-		    }
-	});
+//	$('input[type="checkbox"][name="time"]').click(function(){
+//		  if($(this).prop('checked')){
+//		     $('input[type="checkbox"][name="time"]').prop('checked',false);
+//		     $(this).prop('checked',true);
+//		    }
+//	});
 
   // 검색 필터링 기능
   function applyFilters() {

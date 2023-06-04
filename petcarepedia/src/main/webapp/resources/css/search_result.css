@@ -418,6 +418,20 @@ div.review_card div.date span {
 	display:inline-block;
 }
 
+div.review_card div.date button#like-log {
+	border: 1px solid #98DFFF;
+	border-radius: 5px;
+/* 	background: white; */
+	background: #333;
+	font-size: 14px;
+	width: 165px;
+	height: 35px;
+	margin-top: 15px; 
+	padding-bottom: 7px;
+	pointer-events: none;
+	cursor: no-drop;
+}
+
 div.review_card div.date button#like {
 	border: 1px solid #98DFFF;
 	border-radius: 5px;

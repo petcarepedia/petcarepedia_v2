@@ -367,12 +367,30 @@ $(document).ready(function() {
 						<span>작성 일자 : ${RM_select.rdate}</span>
 						<span> </span>
 						<form name="likeForm" action="likeProc.do" method="post">
-							<input type="text" name="hid" value="${hospital.hid}">
-							<input type="text" name="rid" value="${RM_select.rid}">
-							<input type="text" name="mid" value="hong">
-							<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-							<span class="heart">♥</span> 
-							<span class="like-count">${RM_select.rlike}</span></button>
+							<input type="hidden" name="hid" value="${hospital.hid}">
+							<input type="hidden" name="rid" value="${RM_select.rid}">
+							<input type="hidden" name="mid" value="hong">
+							
+							<!--  session 체크 이후 -->
+<%-- 							<c:choose>
+							<c:when test="${RH_select.mid == null}">
+								<button type="submit" id="like-log" class="like" data-rid="${RM_select.rid}" disabled>좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									<span class="heart">♥</span> 
+									<span class="like-count">${RM_select.rlike}</span>
+								</button>
+							</c:when>
+							<c:otherwise>
+								<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									<span class="heart">♥</span> 
+									<span class="like-count">${RM_select.rlike}</span>
+								</button>
+							</c:otherwise>
+							</c:choose> --%>
+								<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									<span class="heart">♥</span> 
+									<span class="like-count">${RM_select.rlike}</span>
+								</button>
+							
 						</form>
 						
 						<form name="rstateForm" action="rstateProc.do" method="post">
