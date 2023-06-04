@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
 	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/am-pagination.css">
-	<script src="http://localhost:9000/pecarepedia/js/jquery-3.6.4.min.js"></script>
-	<script src="http://localhost:9000/petcarepedia/js/mycgv_jsp_jquery.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_serin.js"></script>
 	<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
@@ -53,7 +53,6 @@
 							<li><a href = "http://localhost:9000/petcarepedia/reserve_list.do">예약 관리</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/review_list.do">신고 리뷰 관리</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/login.do">나가기</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -78,7 +77,7 @@
 							<td>${bookingVo.rno}</td>
 							<td><a href="reserve_detail.do?bid=${bookingVo.bid}">${bookingVo.hname}</a></td>
 							<td>${bookingVo.mid}</td>
-							<td>${bookingVo.bdate}</td>
+							<td>${bookingVo.vdate}</td>
 							<td>${bookingVo.bstate}</td>
 						</tr>
 					</c:forEach>
@@ -87,7 +86,6 @@
 						<td colspan="5"><div id="ampaginationsm"></div></td>
 					</tr>
 				</table>
-				<button type="button" class="button4" ><a href="http://localhost:9000/petcarepedia/hospital_list.do">이전으로</a></button>
 			</section>
 		</section>
 	</div>

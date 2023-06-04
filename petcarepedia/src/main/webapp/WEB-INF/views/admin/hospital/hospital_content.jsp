@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,14 +82,14 @@
 									<th>파일 업로드</th>
 									<td>
 										<c:if test="${hospitalVo.hsfile != null}">
-											<img src="http://localhost:9000/petcarepedia/upload/${bvo.hsfile}">
+											<img src="http://localhost:9000/petcarepedia/upload/${hospitalVo.hsfile}">
 										</c:if>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="5"> 
-										<button type="button" class="button5" id="btn_update">수정완료</button>
-										<button type="button" class="button5" id="btn_delete"><a href="hospital_list.do">이전으로</a></button>
+										<button type="button" class="button5" id="btn_update"><a href="hospital_update.do?hid=${hospitalVo.hid}">수정하기</a></button>
+										<button type="button" class="button5" id="btn_delete"><a href="hospital_delete.do?hid=${hospitalVo.hid}">삭제하기</a></button>
 									</td>
 								</tr>
 							</table>

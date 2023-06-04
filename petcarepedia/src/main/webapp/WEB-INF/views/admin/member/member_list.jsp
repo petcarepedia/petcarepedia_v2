@@ -6,10 +6,11 @@
 <head>
 	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
 	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/am-pagination.css">
-	<script src="http://localhost:9000/pecarepedia/js/jquery-3.6.4.min.js"></script>
-	<script src="http://localhost:9000/petcarepedia/js/mycgv_jsp_jquery.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_serin.js"></script>
 	<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<title>펫캐어피디아 | 관리자</title>
 	<script>
 	$(document).ready(function(){
 		var pager = jQuery('#ampaginationsm').pagination({
@@ -30,11 +31,11 @@
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/petcarepedia/admin_notice.do?page="+e.page);         
+	           $(location).attr('href', "http://localhost:9000/petcarepedia/hospital_list.do?page="+e.page);         
 	    });
 		
  	});
-</script> 
+	</script>  
 </head>
 <body>
 
@@ -52,7 +53,6 @@
 								<li><a href = "http://localhost:9000/petcarepedia/reserve_list.do">예약 관리</a></li>
 								<li><a href = "http://localhost:9000/petcarepedia/review_list.do">신고 리뷰 관리</a></li>
 								<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/login.do">나가기</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -65,12 +65,6 @@
 					</button>
 				</div>
 				<table class="table">
-					<tr>
-						<td colspan="6">
-							<button type="button" class="button"><a href="http://localhost:9000/petcarepedia/member_detail">수정</a></button>
-							<button type="button" class="button">삭제</button>
-						</td>
-					</tr>
 					<tr>
 						<th>번호</th>
 						<th>아이디</th>
@@ -90,11 +84,9 @@
 					</tr>
 					</c:forEach>
 					<tr>
-						<td colspan="5"><div id="ampaginationsm"></div></td>
+						<td colspan="6"><div id="ampaginationsm"></div></td>
 					</tr>
 				</table>
-				
-				<button type="button" class="button4"><a href="http://localhost:9000/petcarepedia/hospital_list.do">이전으로</a></button>
 			</section>
 		</section>
 	</div>
