@@ -1,7 +1,12 @@
 package com.project.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.vo.BookingReviewVo;
@@ -10,8 +15,13 @@ import com.project.vo.BookingVo;
 @Repository
 public class BookingDao extends DBConn {
 	
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
 	/** 예약 등록 **/
 	public int insert(BookingVo bookingVo) {
+//		return sqlSession.insert("mapper.booking.insert", bookingVo);
+
 		int result = 0;
 
 		String sql = "INSERT INTO PCP_BOOKING(bid, bdate, vdate, vtime, bstate, mid, hid)"
@@ -30,13 +40,16 @@ public class BookingDao extends DBConn {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return result;
-
 	} // insert(BookingVo bookingVo)
 
 	
 	/** select - 예약 리스트 **/
 	public ArrayList<BookingVo> select() {
+//		List<BookingVo> list = sqlSession.selectList("mapper.booking.select");
+//		return (ArrayList<BookingVo>) list;
+		
 		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
 
 		String sql = "SELECT ROWNUM RNO, BID, to_char(BDATE, 'yyyy-mm-dd') BDATE,  to_char(BDATE, 'yyyy-mm-dd') VDATE, VTIME, BSTATE, MID, HNAME"
@@ -69,6 +82,9 @@ public class BookingDao extends DBConn {
 	
 	/** select - 예약 리스트(회원 기준 추가/05.22) **/
 	public ArrayList<BookingVo> search(String mid) {
+//		List<BookingVo> list = sqlSession.selectList("mapper.booking.search", mid);
+//		return (ArrayList<BookingVo>) list;
+		
 		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
 
 		String sql = "SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL" + 
@@ -109,11 +125,14 @@ public class BookingDao extends DBConn {
 	
 	/** select - 예약 완료 리스트 날짜(회원 기준/수정 06.03) **/
 	public ArrayList<BookingVo> search1(String mid) {
+//		List<BookingVo> list = sqlSession.selectList("mapper.booking.search1", mid);
+//		return (ArrayList<BookingVo>) list;
+		
 		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
 
 		String sql = "select B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, B.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, H.HRINK, H.IMG"
 				+ " FROM pcp_review r, pcp_booking b, pcp_hospital h, pcp_member m where r.bid(+) = b.bid and"
-				+ " and b.mid = ? and vdate <= TO_CHAR(sysdate,'YYYY-MM-DD') AND vtime < to_char(sysdate,'HH24:MI') and r.BID is null order by bid desc";
+				+ " b.mid = ? and vdate <= TO_CHAR(sysdate,'YYYY-MM-DD') AND vtime < to_char(sysdate,'HH24:MI') and r.BID is null order by bid desc";
 		
 		getPreparedStatement(sql);
 
@@ -150,6 +169,9 @@ public class BookingDao extends DBConn {
 	
 	/** select - 예약중 리스트 날짜(회원 기준/수정 06.03) **/
 	public ArrayList<BookingVo> search2(String mid) {
+//		List<BookingVo> list = sqlSession.selectList("mapper.booking.search2", mid);
+//		return (ArrayList<BookingVo>) list;
+		
 		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
 
 		String sql = "SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, HID, HNAME, LOC, GLOC, TEL,HRINK, IMG"
@@ -192,6 +214,9 @@ public class BookingDao extends DBConn {
 	
 	/** select3 - (회원 기준/수정 06.03) **/
 	public ArrayList<BookingReviewVo> search3(String mid) {
+//		List<BookingReviewVo> list2 = sqlSession.selectList("mapper.booking.search3", mid);
+//		return (ArrayList<BookingReviewVo>) list2;
+		
 		ArrayList<BookingReviewVo> list2 = new ArrayList<BookingReviewVo>();
 		
 		String sql = "SELECT B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, R.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, H.HRINK, H.IMG"
@@ -230,6 +255,9 @@ public class BookingDao extends DBConn {
 	
 	/** select4 - (회원 기준/추가 06.03) **/
 	public ArrayList<BookingVo> search4(String mid) {
+//		List<BookingVo> list = sqlSession.selectList("mapper.booking.search4", mid);
+//		return (ArrayList<BookingVo>) list;
+		
 		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
 		String sql = "SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, HID, HNAME, LOC, GLOC, TEL,HRINK, IMG\r\n" + 
 				"FROM (SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, B.HID HID, H.HNAME HNAME, H.LOC LOC, H.GLOC GLOC, H.TEL TEL, H.HRINK HRINK, H.IMG IMG\r\n" + 
@@ -271,6 +299,8 @@ public class BookingDao extends DBConn {
 		
 	/** select(mid) - 로그인 후 예약확인하기 **/
 	public BookingVo select(String mid) {
+//		return sqlSession.selectOne("mapper.booing.select", mid);
+		
 		BookingVo bookingVo = new BookingVo();
 		
 		String sql= "SELECT  ROWNUM RNO, BID, to_char(BDATE, 'yyyy-mm-dd') BDATE,  to_char(BDATE, 'yyyy-mm-dd') VDATE, VTIME, BSTATE, MID " + 
@@ -302,6 +332,8 @@ public class BookingDao extends DBConn {
 	
 	/** select(mid) - 로그인 후 예약확인하기(추가 06.02) **/
 	public BookingVo select2(String bid) {
+//		return sqlSession.selectOne("mapper.booing.select2", bid);
+		
 		BookingVo bookingVo = new BookingVo();
 		
 		String sql= "select BID, VDATE, VTIME, MID, B.HID, H.HNAME, H.TEL, H.IMG FROM PCP_BOOKING B, PCP_HOSPITAL H WHERE B.HID = H.HID AND B.bid = ?";
@@ -332,6 +364,12 @@ public class BookingDao extends DBConn {
 	
 	/** reviewCheck - 리뷰쓰기 예약 확인하기(06.03 추가) **/
 	public int reviewCheck(String hid, String mid) {
+//		Map<String, String> param = new HashMap<String, String>();
+//		param.put("hid", hid);
+//		param.put("mid", mid);
+//
+//		return sqlSession.selectOne("mapper.booking.reviewCheck", param);
+		
 		int result = 0;
 		
 	    String sql = "SELECT COUNT(*) FROM PCP_BOOKING WHERE HID=? AND MID=? AND BSTATE='진료완료'";
@@ -356,6 +394,9 @@ public class BookingDao extends DBConn {
 		
 	/** selectTime - 전체 영업시간(05.25) **/
 	public ArrayList<BookingVo> selectTime() {
+//		List<BookingVo> list = sqlSession.selectList("mapper.booking.selectTime");
+//		return (ArrayList<BookingVo>) list;
+		
 		ArrayList<BookingVo> time= new ArrayList<BookingVo>();
 		
 		String sql= "SELECT HID, HNAME, SUBSTR(HTIME, 0,5 ) 'START',  SUBSTR(HTIME, 7,6 ) 'END'" + 
@@ -387,6 +428,8 @@ public class BookingDao extends DBConn {
 	
 	/** selectTime - 영업시간(05.25) **/
 	public BookingVo selectTime(String hid) {
+//		return sqlSession.selectOne("mapper.booing.selectTime2", hid);
+		
 		BookingVo bookingVo = new BookingVo();
 		
 		String sql= "SELECT HID, HNAME, SUBSTR(HTIME, 0,5 ) \"START\",  SUBSTR(HTIME, 7,6 ) \"END\"" + 
@@ -409,13 +452,14 @@ public class BookingDao extends DBConn {
 		}
 		
 		return bookingVo;
-		
 	} // selectTime - 영업시간
 	
 
 	
 	/** update - 예약 수정하기 **/
 	public int update(BookingVo bookingVo) {
+//		return sqlSession.update("mapper.booking.update", bookingVo);
+		
 		int result = 0;
 
 		String sql = "UPDATE PCP_BOOKING SET VDATE=?, VTIME=?, BSTATE=? WHERE BID=?";
@@ -439,6 +483,8 @@ public class BookingDao extends DBConn {
 	
 	/** delete - 예약 삭제하기 **/
 	public int delete(String bid) {
+//		return sqlSession.delete("mapper.booking.delete", bid);
+		
 		int result = 0;
 
 		String sql = "DELETE FROM PCP_BOOKING WHERE BID=? ";

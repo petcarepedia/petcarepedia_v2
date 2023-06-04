@@ -4,47 +4,84 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="mapper.board">
-
-	<insert id="insert" parameterType="com.mycgv_jsp.vo.BoardVo">
-		insert into 
-			mycgv_board
-				(bid,btitle,bcontent,bhits,id,bdate,bfile,bsfile)
-			values
-				('b_'||ltrim(to_char(sequ_mycgv_board_bid.nextval,'0000')),#{btitle},#{bcontent},
-						0,#{id},sysdate,#{bfile, jdbcType=VARCHAR},#{bsfile, jdbcType=VARCHAR})
+<mapper namespace="mapper.booking">
+	
+	<insert id="insert" parameterType="com.project.vo.BookingVo">
+		INSERT INTO PCP_BOOKING(bid, bdate, vdate, vtime, bstate, mid, hid)
+		values ('B_'||LTRIM(to_char(SEQU_PCP_BOOKING_BID.nextVal, '0000')), sysdate, #{vdate}, #{vtime}, '예약중', #{mid}, #{hid})
 	</insert>
 	
-	<select id="list" parameterType="map" resultType="com.mycgv_jsp.vo.BoardVo">
-		select rno, bid, btitle, bcontent, bhits, id, bdate
-		from (select rownum rno, bid, btitle, bcontent, bhits, id, to_char(bdate,'yyyy-mm-dd') bdate  
-				from (select bid, btitle, bcontent, bhits, id, bdate from mycgv_board  
-						order by bdate desc))
-		where rno between #{start} and #{end}
+	<select id="select" resultType="com.project.vo.BookingVo">
+		SELECT ROWNUM RNO, BID, to_char(BDATE, 'yyyy-mm-dd') BDATE,  to_char(BDATE, 'yyyy-mm-dd') VDATE, VTIME, BSTATE, MID, HNAME
+		FROM (SELECT * FROM PCP_BOOKING B, PCP_HOSPITAL H where b.hid = h.hid ORDER BY BID DESC)
 	</select>
 	
-	<select id="list2" resultType="com.mycgv_jsp.vo.BoardVo">
-		select rownum rno, bid, btitle, bcontent, bhits, id, to_char(bdate,'yyyy-mm-dd') bdate 
-				from (select bid, btitle, bcontent, bhits, id, bdate 
-						from mycgv_board
-						order by bdate desc)
+	<select id="search" parameterType="String" resultType="com.project.vo.BookingVo">
+		SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL
+		FROM PCP_BOOKING B, PCP_HOSPITAL H
+		WHERE B.HID = H.HID
+		AND MID = #{mid}
 	</select>
 	
-	<select id="content" parameterType="String" resultType="com.mycgv_jsp.vo.BoardVo">
-		select bid, btitle, bcontent, bhits, id, bdate, bfile, bsfile 
-			from mycgv_board
-			where bid=#{bid}
+	<select id="search1" parameterType="String" resultType="com.project.vo.BookingVo">
+		select B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, B.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, H.HRINK, H.IMG
+		FROM pcp_review r, pcp_booking b, pcp_hospital h, pcp_member m where r.bid(+) = b.bid
+		and b.mid = #{mid} and vdate <= TO_CHAR(sysdate,'YYYY-MM-DD') AND vtime < to_char(sysdate,'HH24:MI') and r.BID is null order by bid desc
 	</select>
 	
-	<update id="update" parameterType="com.mycgv_jsp.vo.BoardVo">
-		update mycgv_board set btitle=#{btitle}, bcontent=#{bcontent} where bid=#{bid}
+	<select id="search2" parameterType="String" resultType="com.project.vo.BookingVo">
+		SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, HID, HNAME, LOC, GLOC, TEL,HRINK, IMG
+		FROM (SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, B.HID HID, H.HNAME HNAME, H.LOC LOC, H.GLOC GLOC, H.TEL TEL, H.HRINK HRINK, H.IMG IMG
+				FROM PCP_BOOKING B, PCP_HOSPITAL H
+				WHERE B.HID = H.HID AND MID = #{mid} AND VDATE = TO_CHAR(SYSDATE,'YYYY-MM-DD'))
+		WHERE VTIME >= TO_CHAR(SYSDATE,'HH24:MI') order by bid desc
+	</select>
+	
+	<select id="search3" parameterType="String" resultType="com.project.vo.BookingReviewVo">
+		SELECT B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, R.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, H.HRINK, H.IMG
+		FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_REVIEW
+		WHERE B.HID = H.HID AND B.BID = R.BID AND B.MID = R.MID AND B.MID = #{mid} and vdate <= TO_CHAR(sysdate,'YYYY-MM-DD')
+		AND vtime < to_char(sysdate,'HH24:MI') order by bid desc
+	</select>
+
+	<select id="search4" parameterType="String" resultType="com.project.vo.BookingVo">
+		SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, HID, HNAME, LOC, GLOC, TEL,HRINK, IMG
+		FROM (SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, B.HID HID, H.HNAME HNAME, H.LOC LOC, H.GLOC GLOC, H.TEL TEL, H.HRINK HRINK, H.IMG IMG
+				FROM PCP_BOOKING B, PCP_HOSPITAL H
+				WHERE B.HID = H.HID AND MID = #{mid} AND VDATE > TO_CHAR(SYSDATE,'YYYY-MM-DD')) order by bid desc
+	</select>
+	
+	<select id="select2" parameterType="String" resultType="com.project.vo.BookingVo">
+		SELECT  ROWNUM RNO, BID, to_char(BDATE, 'yyyy-mm-dd') BDATE,  to_char(BDATE, 'yyyy-mm-dd') VDATE, VTIME, BSTATE, MID
+		FROM (SELECT * FROM PCP_BOOKING ORDER BY BID DESC)
+				WHERE MID=#{mid}
+	</select>
+	
+	<select id="select3" parameterType="String" resultType="com.project.vo.BookingVo">
+		select BID, VDATE, VTIME, MID, B.HID, H.HNAME, H.TEL, H.IMG 
+		FROM PCP_BOOKING B, PCP_HOSPITAL H 
+		WHERE B.HID = H.HID AND B.bid = #{bid}
+	</select>
+	
+	<select id="reviewCheck" parameterType="map" resultType="com.project.vo.BookingVo">
+		SELECT COUNT(*) FROM PCP_BOOKING WHERE HID=#{hid} AND MID=#{mid} AND BSTATE='진료완료'
+	</select>
+	
+	<select id="selectTime" resultType="com.project.vo.BookingVo">
+		SELECT HID, HNAME, SUBSTR(HTIME, 0,5 ) 'START',  SUBSTR(HTIME, 7,6 ) 'END'
+		FROM PCP_HOSPITAL ORDER BY HID
+	</select>
+	
+	<select id="selectTime2" parameterType="String" resultType="com.project.vo.BookingVo">
+		SELECT HID, HNAME, SUBSTR(HTIME, 0,5 ) \"START\",  SUBSTR(HTIME, 7,6 ) \"END\"
+		FROM PCP_HOSPITAL WHERE HID=#{hid}
+	</select>
+
+	<update id="update" parameterType="com.project.vo.BookingVo">
+		UPDATE PCP_BOOKING SET VDATE=#{vdate}, VTIME=#{vtime}, BSTATE=#{bstate} WHERE BID=#{bid}
 	</update>
-	
-	<update id="updateHits" parameterType="String">
-		update mycgv_board set bhits=bhits+1 where bid=#{bid}
-	</update>
-	
+
 	<delete id="delete" parameterType="String">
-		delete from mycgv_board where bid=#{bid}
+		DELETE FROM PCP_BOOKING WHERE BID=#{bid}
 	</delete>
 </mapper>
