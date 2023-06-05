@@ -171,24 +171,29 @@ $("#btnReservationDelete").click(function(){
 		mypage - 회원탈퇴
 ********************************************/
 	$("#btnMemberDelete").click(function(){
-			Swal.fire({
-	        title: '정말로 탈퇴하시겠습니까?',
-	        icon: 'warning',
-	        showCancelButton: true,
-	        confirmButtonColor: '#3085d6',
-	        cancelButtonColor: '#d33',
-	        confirmButtonText: '승인',
-	        cancelButtonText: '취소'
-	    }).then((result) => {
-	        if (result.isConfirmed) {
-	            Swal.fire(
-	                '탈퇴가 완료되었습니다.',
-	                'success'
-	            ).then(() => {
-	                deleteForm.submit();
-	            });
-	        }
-	    });
+	if($("#pass").val() == "") {
+		alert("비밀번호를 입력해주세요");
+		$("#pass").focus();
+	} else {
+				Swal.fire({
+		        title: '정말로 탈퇴하시겠습니까?',
+		        icon: 'warning',
+		        showCancelButton: true,
+		        confirmButtonColor: '#3085d6',
+		        cancelButtonColor: '#d33',
+		        confirmButtonText: '승인',
+		        cancelButtonText: '취소'
+		    }).then((result) => {
+		        if (result.isConfirmed) {
+		            Swal.fire(
+		                '탈퇴가 완료되었습니다.',
+		                'success'
+		            ).then(() => {
+		                deleteForm.submit();
+		            });
+		        }
+		    });
+	    }
 	});
 
 
