@@ -84,7 +84,7 @@
 		from pcp_review r, pcp_hospital h, pcp_member m 
 		where r.hid=h.hid and r.mid = m.mid  
 		order by rlike desc))
-		where rno between #{stsrt} and #{end}
+		where rno between #{start} and #{end}
 	</select>
 	
 	<select id="count" resultType="int">
