@@ -6,5 +6,44 @@
     
 <mapper namespace="mapper.page">
 
+
+
+	<select id = "Blist" parameterType="map" resultType="com.project.vo.BookingVo">	
+		SELECT RNO, HNAME, MID, VDATE,  BSTATE, VTIME, BID, BDATE
+						FROM (SELECT ROWNUM RNO, HNAME,  MID,   to_char(BDATE, 'yyyy-mm-dd') VDATE ,BSTATE, VTIME,  BID, BDATE
+								FROM (SELECT H.HNAME, M.MID ,  VDATE ,B.BSTATE,VTIME , BID, BDATE
+				                            FROM PCP_BOOKING B, PCP_HOSPITAL H,  PCP_MEMBER M where b.hid = h.hid AND M.MID = B.MID ORDER BY BDATE DESC)) 
+						WHERE RNO BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id = "Mlist" parameterType="map" resultType="com.project.vo.MemberVo">	
+		select rno,mid,pass,name,nickname,phone,birth,email,addr,mdate 
+		from (select rownum rno,mid,pass,name,nickname,phone,
+				to_char(to_date(birth),'yyyy-mm-dd') birth,email,addr,
+				to_char(mdate,'yyyy-mm-dd') mdate 
+				from (select mid,pass,name,nickname,phone,birth,email,addr,mdate 
+						from pcp_member 
+						order by mdate))
+		where rno between #{start} and #{end}
+	</select>
+	
+	<select id = "Hlist" parameterType="map" resultType="com.project.vo.HospitalVo">	
+		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
+					  FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
+						 FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL ORDER BY HID)) 
+					WHERE RNO BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="Bcount" resultType="int">
+		select count(*) from pcp_booking
+	</select>
+	
+	<select id="Mcount" resultType="int">
+		select count(*) from pcp_member
+	</select>
+	
+	<select id="Hcount" resultType="int">
+		select count(*) from pcp_hospital
+	</select>
 	
 </mapper>

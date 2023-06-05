@@ -1,6 +1,7 @@
 package com.project.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,15 +20,10 @@ public class HospitalServiceImpl implements HospitalService{
 	}
 	
 	@Override
-	public ArrayList<HospitalVo> select(int startCount, int endCount){
-		return hospitalDao.select(startCount, endCount);
-	}
-	
-	@Override
 	public HospitalVo selectStar(String hid) {
 		return hospitalDao.selectStar(hid);
 	}
-
+	
 	@Override
 	public ArrayList<HospitalVo> searchGloc(String gloc){
 		return hospitalDao.searchGloc(gloc);

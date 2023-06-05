@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 import com.project.dao.NoticeDao;
+import com.project.dao.PageDao;
 import com.project.dao.ReviewDao;
 
 public class PageServiceImpl {
@@ -15,6 +15,10 @@ public class PageServiceImpl {
 	private NoticeDao noticeDao;
 	@Autowired
 	private ReviewDao reviewDao;
+	@Autowired
+	private PageDao pageDao;
+	
+	
 
 
 	public Map<String, Integer> getPageResult(String page, String serviceName) {
@@ -37,6 +41,18 @@ public class PageServiceImpl {
 			dbCount = reviewDao.totalRowCount();
 			pageSize = 7;
 		}
+		else if(serviceName.equals("hospital")) {
+			dbCount = pageDao.HtotalRowCount();
+			pageSize = 10;
+		}
+		else if(serviceName.equals("member")) {
+			dbCount = pageDao.HtotalRowCount();
+			pageSize = 10;
+		}
+		else if(serviceName.equals("booking")) {
+			dbCount = pageDao.HtotalRowCount();
+			pageSize = 10;
+		}
 
 		// 총 페이지 수 계산
 		if (dbCount % pageSize == 0) {
@@ -56,6 +72,18 @@ public class PageServiceImpl {
 				endCount = 10;
 			}
 			else if(serviceName.equals("review")) {
+				startCount = 1;
+				endCount = 7;				
+			}
+			else if(serviceName.equals("hospital")) {
+				startCount = 1;
+				endCount = 7;				
+			}
+			else if(serviceName.equals("member")) {
+				startCount = 1;
+				endCount = 7;				
+			}
+			else if(serviceName.equals("booking")) {
 				startCount = 1;
 				endCount = 7;				
 			}
