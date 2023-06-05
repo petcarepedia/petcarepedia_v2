@@ -1,6 +1,7 @@
 package com.project.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,6 @@ public class HospitalServiceImpl implements HospitalService{
 	@Override	
 	public int totalRowCount() {
 		return hospitalDao.totalRowCount();
-	}
-	
-	@Override
-	public ArrayList<HospitalVo> select(int startCount, int endCount){
-		return hospitalDao.select(startCount, endCount);
 	}
 	
 	@Override

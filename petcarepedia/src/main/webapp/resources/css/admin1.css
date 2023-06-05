@@ -116,7 +116,7 @@ section.reserve tr:last-child td,section.review tr:nth-child(12) td,
 section.member tr:last-child td, section.hospital tr:last-child td,
 section#hospital_update tr:last-child td, section#hospital_content tr:last-child td, 
 section#hospital_delete tr:last-child td, section#hospital_data tr:last-child td,
-section.review tr:last-child td{
+section.review tr:last-child td, section#review_delete2 tr:last-child td{
 	border:1px solid white;
 }
 section.hospital #section1 div nav ul li:nth-child(2) a,
@@ -227,7 +227,8 @@ section1 style sheet - 카테고리
 /****************************
 hospital_list style sheet
 *****************************/
- section.hospital tr:first-child td, section.hospital_detail tr:first-child td{
+ section.hospital tr:first-child td, section.hospital_detail tr:first-child td,
+ section.review_detail tr:first-child td{
 	border:1px solid white;
 	border-bottom: 1px solid #3D3D3D;
  	padding:0 0 20px 600px; 
@@ -463,6 +464,54 @@ section.member_detail section#section2 ul li input[type="text"]{
 	review-detail style sheet
 **************************************/
 
-section.review_detail section#section2 {
+/* section.review_detail section#section2 {
 	border:1px solid red;
+
+}
+section.review_detail table {
+	width:60%;
+	height:350px;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 17px;
+}
+
+section.review_detail table tr th {
+	width:100px;
+	height:25px;
+	color:#3d3d3d;
+}
+section.review_detail table tr td {
+	text-align:left;
+	font-size:14px;
+	font-weight: 10;
+	color:#3d3d3d;
+	
+} */
+
+section#review_delete2 table{
+	margin-top:120px;
+}
+section#review_delete2 table tr th {
+	width:100px;
+	height:25px;
+	color:#3d3d3d;
+}
+section#review_delete2 table tr:nth-child(2) td{
+	display:inline-flex;
+	align-items:center;
+	border:1px solid white;
+}
+section#review_delete2 table tr:nth-child(2) td >p {
+	float:left;
+	padding: 4px 0 0 20px;
+}
+section#review_delete2 table tr:nth-child(3) td {
+	height:200px;
+}
+section#review_delete2 img{
+	float:left;
+	width:45px;
+	height:45px;
 }

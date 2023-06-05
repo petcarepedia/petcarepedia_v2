@@ -2,6 +2,7 @@ package com.project.petcarepedia;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +20,15 @@ import com.google.gson.JsonObject;
 import com.project.dao.BookingDao;
 import com.project.dao.MemberDao;
 import com.project.dao.ReviewDao;
+import com.project.service.BookingService;
 import com.project.service.HospitalService;
+import com.project.service.MemberService;
+import com.project.service.PageServiceImpl;
+import com.project.service.ReviewService;
 import com.project.vo.BookingVo;
 import com.project.vo.HospitalVo;
 import com.project.vo.MemberVo;
+import com.project.vo.NoticeVo;
 import com.project.vo.ReviewVo;
 
 @Controller
@@ -30,188 +36,109 @@ public class AdminController {
 
 	@Autowired
 	private HospitalService hospitalService;
-
+	
+	@Autowired
+	private MemberService memberService;
+	
+	@Autowired
+	private ReviewService reviewService;
+	
+	@Autowired
+	private BookingService bookingService;
+	
+	@Autowired
+	private PageServiceImpl pageService;
+	
+	
 	/**
-	 * 리뷰 - 페이징 처리
+	 * 리뷰 페이징
 	 */
-	@RequestMapping(value = "/review_list.do", method = RequestMethod.GET)
+	@RequestMapping(value="/review_list.do", method=RequestMethod.GET)
 	public ModelAndView review_list(String page) {
-		ModelAndView model = new ModelAndView();
-		ReviewDao reviewDao = new ReviewDao();
+		ModelAndView model = new ModelAndView();		
+		Map<String, Integer> param = pageService.getPageResult(page, "review2");
 		
-		int startCount = 0;
-		int endCount = 0;
-		int pageSize = 10; // �븳�럹�씠吏��떦 寃뚯떆臾� �닔
-		int reqPage = 1; // �슂泥��럹�씠吏�
-		int pageCount = 1; // �쟾泥� �럹�씠吏� �닔
-		int dbCount = reviewDao.totalRowCount(); // DB�뿉�꽌 媛��졇�삩 �쟾泥� �뻾�닔
-		
-		if (dbCount % pageSize == 0) {
-			pageCount = dbCount / pageSize;
-		} else {
-			pageCount = dbCount / pageSize + 3;
-		}
-		
-		if (page != null) {
-			reqPage = Integer.parseInt(page);
-			startCount = (reqPage - 1) * pageSize + 1;
-			endCount = reqPage * pageSize;
-		} else {
-			startCount = 1;
-			endCount = 10;
-		}
-		
-		ArrayList<ReviewVo> list = reviewDao.select(startCount, endCount);
-		
+		ArrayList<ReviewVo> list = pageService.getRListPage(param.get("startCount"), param.get("endCount"));
 		model.addObject("list", list);
-		model.addObject("totals", dbCount);
-		model.addObject("pageSize", pageSize);
-		model.addObject("maxSize", pageCount);
-		model.addObject("page", reqPage);
+		model.addObject("totals", param.get("dbCount"));
+		model.addObject("pageSize",param.get("pageSize"));
+		model.addObject("maxSize", param.get("maxSize"));
+		model.addObject("page", param.get("page"));
 		
 		model.setViewName("/admin/review/review_list");
 		
 		return model;
 	}
+	
 	/**
-	 * 예약 - 페이징 처리
+	 * 예약 페이징
 	 */
-	@RequestMapping(value = "/reserve_list.do", method = RequestMethod.GET)
+	@RequestMapping(value="/reserve_list.do", method=RequestMethod.GET)
 	public ModelAndView reserve_list(String page) {
-		ModelAndView model = new ModelAndView();
-		BookingDao bookingDao = new BookingDao();
+		ModelAndView model = new ModelAndView();		
+		Map<String, Integer> param = pageService.getPageResult(page, "booking");
 		
-		int startCount = 0;
-		int endCount = 0;
-		int pageSize = 10; // �븳�럹�씠吏��떦 寃뚯떆臾� �닔
-		int reqPage = 1; // �슂泥��럹�씠吏�
-		int pageCount = 1; // �쟾泥� �럹�씠吏� �닔
-		int dbCount = bookingDao.totalRowCount(); // DB�뿉�꽌 媛��졇�삩 �쟾泥� �뻾�닔
-
-		if (dbCount % pageSize == 0) {
-			pageCount = dbCount / pageSize;
-		} else {
-			pageCount = dbCount / pageSize + 3;
-		}
-
-		if (page != null) {
-			reqPage = Integer.parseInt(page);
-			startCount = (reqPage - 1) * pageSize + 1;
-			endCount = reqPage * pageSize;
-		} else {
-			startCount = 1;
-			endCount = 10;
-		}
-
-		ArrayList<BookingVo> list = bookingDao.select(startCount, endCount);
-
+		ArrayList<BookingVo> list = pageService.getBListPage(param.get("startCount"), param.get("endCount"));
+		
 		model.addObject("list", list);
-		model.addObject("totals", dbCount);
-		model.addObject("pageSize", pageSize);
-		model.addObject("maxSize", pageCount);
-		model.addObject("page", reqPage);
-
+		model.addObject("totals", param.get("dbCount"));
+		model.addObject("pageSize",param.get("pageSize"));
+		model.addObject("maxSize", param.get("maxSize"));
+		model.addObject("page", param.get("page"));
+		
 		model.setViewName("/admin/reserve/reserve_list");
-
-		return model;
-	}
-
-	/**
-	 * 회원 - 페이징 처리
-	 */
-	@RequestMapping(value = "/member_list.do", method = RequestMethod.GET)
-	public ModelAndView member_list(String page) {
-		ModelAndView model = new ModelAndView();
-		MemberDao memberDao = new MemberDao();
 		
-		int startCount = 0;
-		int endCount = 0;
-		int pageSize = 10; // �븳�럹�씠吏��떦 寃뚯떆臾� �닔
-		int reqPage = 1; // �슂泥��럹�씠吏�
-		int pageCount = 1; // �쟾泥� �럹�씠吏� �닔
-		int dbCount = memberDao.totalRowCount(); // DB�뿉�꽌 媛��졇�삩 �쟾泥� �뻾�닔
-
-		if (dbCount % pageSize == 0) {
-			pageCount = dbCount / pageSize;
-		} else {
-			pageCount = dbCount / pageSize + 3;
-		}
-
-		if (page != null) {
-			reqPage = Integer.parseInt(page);
-			startCount = (reqPage - 1) * pageSize + 1;
-			endCount = reqPage * pageSize;
-		} else {
-			startCount = 1;
-			endCount = 10;
-		}
-
-		ArrayList<MemberVo> list = memberDao.select(startCount, endCount);
-
-		model.addObject("list", list);
-		model.addObject("totals", dbCount);
-		model.addObject("pageSize", pageSize);
-		model.addObject("maxSize", pageCount);
-		model.addObject("page", reqPage);
-
-		model.setViewName("/admin/member/member_list");
-
 		return model;
 	}
-
+	
 	/**
-	 * �병원 - 페이징 처리
+	 * 회원 페이징
 	 */
-	@RequestMapping(value = "/hospital_list.do", method = RequestMethod.GET)
-	public ModelAndView hospital_list(String page) {
-		ModelAndView model = new ModelAndView();
-
-		// �럹�씠吏� 泥섎━ - startCount, endCount 援ы븯湲�
-		int startCount = 0;
-		int endCount = 0;
-		int pageSize = 10; // �븳�럹�씠吏��떦 寃뚯떆臾� �닔
-		int reqPage = 1; // �슂泥��럹�씠吏�
-		int pageCount = 1; // �쟾泥� �럹�씠吏� �닔
-		int dbCount = hospitalService.totalRowCount(); // DB�뿉�꽌 媛��졇�삩 �쟾泥� �뻾�닔
-
-		// 珥� �럹�씠吏� �닔 怨꾩궛
-		if (dbCount % pageSize == 0) {
-			pageCount = dbCount / pageSize;
-		} else {
-			pageCount = dbCount / pageSize + 3;
-		}
-
-		// �슂泥� �럹�씠吏� 怨꾩궛
-		if (page != null) {
-			reqPage = Integer.parseInt(page);
-			startCount = (reqPage - 1) * pageSize + 1;
-			endCount = reqPage * pageSize;
-		} else {
-			startCount = 1;
-			endCount = 10;
-		}
-
-		ArrayList<HospitalVo> list = hospitalService.select(startCount, endCount);
-
+	@RequestMapping(value="/member_list.do", method=RequestMethod.GET)
+	public ModelAndView member_list(String page) {
+		ModelAndView model = new ModelAndView();		
+		Map<String, Integer> param = pageService.getPageResult(page, "member");
+		
+		ArrayList<MemberVo> list = pageService.getMListPage(param.get("startCount"), param.get("endCount"));
 		model.addObject("list", list);
-		model.addObject("totals", dbCount);
-		model.addObject("pageSize", pageSize);
-		model.addObject("maxSize", pageCount);
-		model.addObject("page", reqPage);
-
-		model.setViewName("/admin/hospital/hospital_list");
-
+		model.addObject("totals", param.get("dbCount"));
+		model.addObject("pageSize",param.get("pageSize"));
+		model.addObject("maxSize", param.get("maxSize"));
+		model.addObject("page", param.get("page"));
+		
+		model.setViewName("/admin/member/member_list");
+		
 		return model;
 	}
-
+	
+	/**
+	 * 병원 페이징
+	 */
+	@RequestMapping(value="/hospital_list.do", method=RequestMethod.GET)
+	public ModelAndView hospital_list(String page) {
+		ModelAndView model = new ModelAndView();		
+		Map<String, Integer> param = pageService.getPageResult(page, "hospital");
+		
+		ArrayList<HospitalVo> list = pageService.getHListPage(param.get("startCount"), param.get("endCount"));
+		model.addObject("list", list);
+		model.addObject("totals", param.get("dbCount"));
+		model.addObject("pageSize",param.get("pageSize"));
+		model.addObject("maxSize", param.get("maxSize"));
+		model.addObject("page", param.get("page"));
+		
+		model.setViewName("/admin/hospital/hospital_list");
+		
+		return model;
+	}
+	
 	/**
 	 * 예약 - 검색
 	 */
 	@RequestMapping(value = "/reserve_list_detail.do", method = RequestMethod.GET)
 	public ModelAndView reserve_list_detail(String mid) {
 		ModelAndView model = new ModelAndView();
-		BookingDao bookingDao = new BookingDao();
-		ArrayList<BookingVo> bookingVo = bookingDao.select();
+		
+		ArrayList<BookingVo> bookingVo = bookingService.getSelect();
 
 		model.addObject("bookindVo", bookingVo);
 		model.setViewName("/admin/reserve/reserve_list_detail");
@@ -225,8 +152,7 @@ public class AdminController {
 	@RequestMapping(value = "/reserve_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String reserve_list_data(String mid) {
-		BookingDao bookingDao = new BookingDao();
-		ArrayList<BookingVo> list = bookingDao.search5(mid);
+		ArrayList<BookingVo> list = bookingService.getSearch5(mid);
 
 		JsonObject jlist = new JsonObject();
 		JsonArray jarray = new JsonArray();
@@ -245,21 +171,50 @@ public class AdminController {
 
 		return new Gson().toJson(jlist);
 	}
-
+	
 	/**
-	 * 신고 - 리뷰 상세 페이지
+	 * 신고리뷰 - 삭제 페이지
+	 */
+	@RequestMapping(value = "/review_delete_proc2.do", method = RequestMethod.POST)
+	public String review_delete_proc2(String rid) {
+		String viewName = "";
+		int result = reviewService.getDelete(rid);
+		if (result == 1) {
+			viewName = "redirect:/review_list.do";
+		} else {
+
+		}
+		return viewName;
+	}
+	
+	/**
+	 * 신고리뷰 - 삭제 페이지
+	 */
+	@RequestMapping(value="/review_delete2.do", method=RequestMethod.GET)
+	public ModelAndView review_delete2(String rid) {
+		ModelAndView model = new ModelAndView();
+		ReviewVo reviewVo = reviewService.getSelect(rid);
+		
+		model.addObject("reviewVo", reviewVo);
+		model.setViewName("admin/review/review_delete2");
+		
+		return model;
+	}
+	
+	/**
+	 * 신고리뷰 - 상세 페이지
 	 */
 	@RequestMapping(value = "/review_detail.do", method = RequestMethod.GET)
 	public ModelAndView review_detail(String rid) {
 		ModelAndView model = new ModelAndView();
-		ReviewDao reviewDao = new ReviewDao();
-		ReviewVo reviewVo = reviewDao.select(rid);
+		ReviewVo reviewVo = reviewService.getSelect(rid);
 
 		model.addObject("reviewVo", reviewVo);
 		model.setViewName("/admin/review/review_detail");
 
 		return model;
 	}
+	
 
 	/**
 	 * 회원 - 검색창
@@ -267,8 +222,7 @@ public class AdminController {
 	@RequestMapping(value = "/member_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String member_list_data(String mid) {
-		MemberDao memberDao = new MemberDao();
-		ArrayList<MemberVo> list = memberDao.search(mid);
+		ArrayList<MemberVo> list = memberService.getSearch(mid);
 
 		JsonObject jlist = new JsonObject();
 		JsonArray jarray = new JsonArray();
@@ -295,8 +249,7 @@ public class AdminController {
 	public ModelAndView member_detail(String mid) {
 
 		ModelAndView model = new ModelAndView();
-		MemberDao memberDao = new MemberDao();
-		MemberVo memberVo = memberDao.select(mid);
+		MemberVo memberVo = memberService.getSelect(mid);
 
 		model.addObject("memberVo", memberVo);
 		model.setViewName("/admin/member/member_detail");
@@ -336,7 +289,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 병원 수정 처리
+	 * 병원 - 수정 처리
 	 */
 	@RequestMapping(value = "/hospital_update_proc.do", method = RequestMethod.POST)
 	public String hospital_update_proc(HospitalVo hospitalVo) {
@@ -352,7 +305,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 蹂묒썝 - �닔�젙�럹�씠吏�
+	 * 병원 - 수정
 	 */
 	@RequestMapping(value = "/hospital_update.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_update(String hid) {
@@ -382,7 +335,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 蹂묒썝- �벑濡� �럹�씠吏�
+	 * 병원 - 상세
 	 */
 	@RequestMapping(value = "/hospital_detail_proc.do", method = RequestMethod.POST)
 	public String hostpital_detail_proc(HospitalVo hospitalVo, HttpServletRequest request) throws Exception {
@@ -438,7 +391,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 蹂묒썝 - 寃��깋李� �솢�꽦�솕
+	 * 
 	 */
 	@RequestMapping(value = "/hospital_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -449,7 +402,7 @@ public class AdminController {
 		JsonArray jarray = new JsonArray();
 
 		for (HospitalVo hospitalVo : list) {
-			JsonObject jobj = new JsonObject(); // {}
+			JsonObject jobj = new JsonObject(); 
 			jobj.addProperty("hid", hospitalVo.getHid());
 			jobj.addProperty("hname", hospitalVo.getHname());
 			jobj.addProperty("ntime", hospitalVo.getNtime());
