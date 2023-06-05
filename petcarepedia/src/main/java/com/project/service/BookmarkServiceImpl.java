@@ -21,22 +21,22 @@ public class BookmarkServiceImpl implements BookmarkService{
 	}
 	
 	@Override
-	public int bookmarkInsert(BookmarkVo bookmarkVo) {
+	public int getInsert(BookmarkVo bookmarkVo) {
 		return bookmarkDao.insert(bookmarkVo);
 	}
 	
 	@Override
-	public int bookmarkDelete(String bmid) {
+	public int getDelete(String bmid) {
 		return bookmarkDao.delete(bmid);
 	}
 	
 	@Override
-	public int deleteBookmark(BookmarkVo bookmarkVo) {
+	public int getDeleteBookmark(BookmarkVo bookmarkVo) {
 		return bookmarkDao.deleteBookmark(bookmarkVo);
 	}
 	
 	@Override
-	public int checkBookmark(BookmarkVo bookmarkVo) {
+	public int getCheckBookmark(BookmarkVo bookmarkVo) {
 		return bookmarkDao.checkBookmark(bookmarkVo);
 	}
 }
