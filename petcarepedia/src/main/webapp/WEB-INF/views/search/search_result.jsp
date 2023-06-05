@@ -84,6 +84,7 @@ $(document).ready(function() {
 
     $(".rstate").click(function() { // 신고하기
     	var rid = $("input[name='rid']").val();
+    	var hid = $("input[name='hid']").val();
     	
         Swal.fire({
             title: '정말로 신고 하시겠습니까?',
@@ -97,10 +98,11 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "rstateForm.do",
+                    url: "rstateProc.do",
                     type: "POST",
                     data: {
-                        rid: rid
+                        rid: rid,
+                        hid: hid
                     },
                     success: function(rstate_result) {
                         if (rstate_result === "fail") { 
