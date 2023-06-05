@@ -11,7 +11,7 @@ public class ReviewLikeServiceImpl implements ReviewLikeService {
 	private ReviewLikeDao reviewLikeDao;
 	
 	@Override
-	public ReviewLikeVo getLikesDownID(ReviewLikeVo reviewLikeVo) {
+	public int getLikesDownID(ReviewLikeVo reviewLikeVo) {
 		return reviewLikeDao.LikesDownID(reviewLikeVo);
 	}
 
@@ -21,7 +21,7 @@ public class ReviewLikeServiceImpl implements ReviewLikeService {
 	}
 
 	@Override
-	public ReviewLikeVo getLikesUpID(ReviewLikeVo reviewLikeVo) {
+	public int getLikesUpID(ReviewLikeVo reviewLikeVo) {
 		return reviewLikeDao.LikesUpID(reviewLikeVo);
 	}
 
