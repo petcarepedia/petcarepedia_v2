@@ -296,6 +296,39 @@ public class BookingDao extends DBConn {
 //		
 //		return list;
 	} // ArrayList<BookingVo> search4(String mid)
+	
+	
+	/** search5 - 회원아이디 상세 검색창 (06.05 추가)**/
+	public ArrayList<BookingVo> search5(String mid) {
+		return sqlSession.selectList("mapper.booking.search5", mid);
+		
+//		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
+//		String sql = " select bid, hname, mid,  to_char(BDATE, 'yyyy-mm-dd') VDATE, bstate "
+//					+ " from  pcp_booking b, pcp_hospital h  where b.hid = h.hid and mid like ?";
+//					
+//		getPreparedStatement(sql);
+//
+//		try {
+//			pstmt.setString(1, "%"+ mid + "%");
+//
+//			rs = pstmt.executeQuery();
+//
+//			while (rs.next()) {
+//				BookingVo booking = new BookingVo();
+//				booking.setBid(rs.getString(1));
+//				booking.setHname(rs.getString(2));
+//				booking.setMid(rs.getString(3));
+//				booking.setVdate(rs.getString(4));
+//				booking.setBstate(rs.getString(5));
+//
+//				list.add(booking);
+//			}
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return list;
+	} // ArrayList<BookingVo> search5(String mid)
 
 	
 		
