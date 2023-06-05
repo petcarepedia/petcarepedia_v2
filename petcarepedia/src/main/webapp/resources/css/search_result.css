@@ -20,6 +20,13 @@ div.result_main {
 	/* text-align: center; */
 }
 
+div.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
 
 
 /***************************************
@@ -255,6 +262,7 @@ div.api div.map {
 	width: 370px;
 	height: 285px;
 	margin: 0px;
+	z-index: 0;
 }
 
 
