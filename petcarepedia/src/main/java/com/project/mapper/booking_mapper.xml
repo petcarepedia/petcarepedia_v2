@@ -83,13 +83,15 @@
 	</select>
 	
 	<select id="selectTime" resultType="com.project.vo.BookingVo">
+	
 		SELECT HID, HNAME, SUBSTR(HTIME, 0,5 ) 'START',  SUBSTR(HTIME, 7,6 ) 'END'
 		FROM PCP_HOSPITAL ORDER BY HID
 	</select>
 	
 	<select id="selectTime2" parameterType="String" resultType="com.project.vo.BookingVo">
-		SELECT HID, HNAME, SUBSTR(HTIME, 0,5 ) \"START\",  SUBSTR(HTIME, 7,6 ) \"END\"
-		FROM PCP_HOSPITAL WHERE HID=#{hid}
+		SELECT HID, HNAME, SUBSTR(HTIME, 1, 5) AS "START", SUBSTR(HTIME, 7, 6) AS "END"
+		FROM PCP_HOSPITAL
+		WHERE HID=#{hid}
 	</select>
 
 	<update id="update" parameterType="com.project.vo.BookingVo">
