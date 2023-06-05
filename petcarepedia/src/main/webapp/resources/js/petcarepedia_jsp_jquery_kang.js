@@ -8,12 +8,12 @@ $(document).ready(function(){
 	 ********************************************/	
 	$("#btnNTW").click(function() {
 		if($("#title").val() == "") {
-			issue("제목을 입력해주세요.");
+			alert("제목을 입력해주세요.");
 			$("#title").focus();
 			return false;
 		}
 		if($("#ncontent").val() == "") {
-			issue("내용을 입력해주세요.");
+			alert("내용을 입력해주세요.");
 			$("#ncontent").focus();
 			return false;
 		}
@@ -30,12 +30,12 @@ $(document).ready(function(){
 	 ********************************************/	
 	$("#BTN_update").click(function() {
 		if($("#title").val() == "") {
-			issue("제목을 입력해주세요.");
+			alert("제목을 입력해주세요.");
 			$("#title").focus();
 			return false;
 		}
 		else if($("#ncontent").val() == "") {
-			issue("내용을 입력해주세요.");
+			alert("내용을 입력해주세요.");
 			$("#ncontent").focus();
 			return false;
 		}
