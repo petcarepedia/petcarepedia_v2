@@ -2,6 +2,7 @@ package com.project.petcarepedia;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,15 +12,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.project.dao.HospitalDao;
-import com.project.dao.ReviewDao;
+import com.project.service.HospitalService;
+import com.project.service.ReviewService;
 import com.project.vo.HospitalVo;
 import com.project.vo.ReviewVo;
 
 @Controller
 public class MainController {
-	HospitalDao hospitalDao = new HospitalDao();
-	ReviewDao reviewDao = new ReviewDao();
+	@Autowired
+	private HospitalService hospitalService;
+
+	@Autowired
+	private ReviewService reiviewService;
 	
 	/**
 	 * index.do
@@ -44,7 +48,7 @@ public class MainController {
 	public ModelAndView main_search_proc(String hname) {
 		ModelAndView model = new ModelAndView();
 		
-		ArrayList<HospitalVo> list = hospitalDao.search(hname);
+		ArrayList<HospitalVo> list = hospitalService.search(hname);
 		
 		model.addObject("list", list);
 		model.addObject("size", list.size());
@@ -87,7 +91,7 @@ public class MainController {
 			endCount = pageSize;
 		}
 				
-		ArrayList<ReviewVo> list = reviewDao.select(startCount, endCount);
+		ArrayList<ReviewVo> list = reiviewService.getSelect(startCount, endCount);
 		
 		model.addObject("list", list);
 		model.addObject("totals", dbCount);
@@ -114,7 +118,7 @@ public class MainController {
 	@RequestMapping(value="/main_map_data.do",method=RequestMethod.GET,produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String main_map_data(String gloc) {
-		ArrayList<HospitalVo> list = hospitalDao.searchGloc(gloc);
+		ArrayList<HospitalVo> list = hospitalService.searchGloc(gloc);
 		
 		JsonObject jlist = new JsonObject();
 		JsonArray jarray = new JsonArray();
