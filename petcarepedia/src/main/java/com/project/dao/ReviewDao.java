@@ -150,7 +150,7 @@ public class ReviewDao extends DBConn {
 		param.put("start", startCount);
 		param.put("end", endCount);
 		
-		return sqlSession.selectList("mapper.review.ListPage", param);
+		return sqlSession.selectList("mapper.review.listPage", param);
 		/*
 		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
 		String sql = " select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname"
