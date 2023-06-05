@@ -24,17 +24,18 @@
 	</beans:bean>
 	
 	<!-- Service -->
-	<beans:bean id="memberService" class="com.project.service.MemberServiceImpl"></beans:bean>
+	<!-- <beans:bean id="memberService" class="com.project.service.MemberServiceImpl"></beans:bean>
 	<beans:bean id="hospitalService" class="com.project.service.HospitalServiceImpl"></beans:bean>
 	<beans:bean id="bookingService" class="com.project.service.BookingServiceImpl"></beans:bean>
 	<beans:bean id="bookmarkService" class="com.project.service.BookmarkServiceImpl"></beans:bean>
 	<beans:bean id="reviewService" class="com.project.service.ReviewServiceImpl"></beans:bean>
 	<beans:bean id="reviewLikeService" class="com.project.service.ReviewLikeServiceImpl"></beans:bean>
 	<beans:bean id="noticeService" class="com.project.service.NoticeServiceImpl"></beans:bean>
-	<beans:bean id="pageService" class="com.project.service.PageServiceImpl"></beans:bean>
+	<beans:bean id="pageService" class="com.project.service.PageServiceImpl"></beans:bean> -->
 	
 	<context:component-scan base-package="com.project.petcarepedia" />
 	<context:component-scan base-package="com.project.dao" />
+	<context:component-scan base-package="com.project.service" />
 	
 	
 	

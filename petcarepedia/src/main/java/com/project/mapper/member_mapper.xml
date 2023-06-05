@@ -4,47 +4,78 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="mapper.board">
+<mapper namespace="mapper.member">
 
-	<insert id="insert" parameterType="com.mycgv_jsp.vo.BoardVo">
-		insert into 
-			mycgv_board
-				(bid,btitle,bcontent,bhits,id,bdate,bfile,bsfile)
-			values
-				('b_'||ltrim(to_char(sequ_mycgv_board_bid.nextval,'0000')),#{btitle},#{bcontent},
-						0,#{id},sysdate,#{bfile, jdbcType=VARCHAR},#{bsfile, jdbcType=VARCHAR})
+	<insert id="join" parameterType="com.project.vo.MemberVo">
+		INSERT 
+			INTO PCP_MEMBER(mid,pass,name,nickname,phone,birth,email,addr,mdate) 
+			VALUES(#{mid},#{pass},#{name},#{nickname},#{phone},#{birth},#{email},#{addr},SYSDATE)
 	</insert>
 	
-	<select id="list" parameterType="map" resultType="com.mycgv_jsp.vo.BoardVo">
-		select rno, bid, btitle, bcontent, bhits, id, bdate
-		from (select rownum rno, bid, btitle, bcontent, bhits, id, to_char(bdate,'yyyy-mm-dd') bdate  
-				from (select bid, btitle, bcontent, bhits, id, bdate from mycgv_board  
-						order by bdate desc))
+	<select id="login" parameterType="com.project.vo.MemberVo" resultType="int">
+		select count(*) from pcp_member where mid=#{mid} and pass=#{pass}
+	</select>
+	
+	<delete id="delete" parameterType="map">
+		delete from pcp_member where mid=#{mid} and pass=#{pass}
+	</delete>
+	
+	<select id="list" resultType="com.project.vo.MemberVo">
+		select rownum rno,mid,pass,name,nickname,phone,
+				to_char(to_date(birth),'yyyy-mm-dd') birth,email,addr,
+				to_char(mdate,'yyyy-mm-dd') mdate 
+		from (select mid,pass,name,nickname,phone,birth,email,addr,mdate 
+				from pcp_member 
+				order by mdate)
+	</select>
+	
+	<select id="list2" parameterType="map" resultType="com.project.vo.MemberVo">
+		select rno,mid,pass,name,nickname,phone,birth,email,addr,mdate 
+		from (select rownum rno,mid,pass,name,nickname,phone,
+				to_char(to_date(birth),'yyyy-mm-dd') birth,email,addr,
+				to_char(mdate,'yyyy-mm-dd') mdate 
+				from (select mid,pass,name,nickname,phone,birth,email,addr,mdate 
+						from pcp_member 
+						order by mdate))
 		where rno between #{start} and #{end}
 	</select>
 	
-	<select id="list2" resultType="com.mycgv_jsp.vo.BoardVo">
-		select rownum rno, bid, btitle, bcontent, bhits, id, to_char(bdate,'yyyy-mm-dd') bdate 
-				from (select bid, btitle, bcontent, bhits, id, bdate 
-						from mycgv_board
-						order by bdate desc)
+	<select id="content" parameterType="string" resultType="com.project.vo.MemberVo">
+		select mid,pass,name,nickname,phone,to_char(to_date(birth),'yyyy-mm-dd') birth,
+				email,addr,to_char(mdate,'yyyy-mm-dd') mdate 
+		from pcp_member
+		where mid=#{mid}
 	</select>
 	
-	<select id="content" parameterType="String" resultType="com.mycgv_jsp.vo.BoardVo">
-		select bid, btitle, bcontent, bhits, id, bdate, bfile, bsfile 
-			from mycgv_board
-			where bid=#{bid}
+	<select id="checkId" parameterType="string" resultType="int">
+		select count(*) from pcp_member where mid=#{mid}
 	</select>
 	
-	<update id="update" parameterType="com.mycgv_jsp.vo.BoardVo">
-		update mycgv_board set btitle=#{btitle}, bcontent=#{bcontent} where bid=#{bid}
+	<update id="update" parameterType="com.project.vo.MemberVo">
+		update pcp_member
+		set nickname=#{nickname},phone=#{phone},birth=#{birth},email=#{email},addr=#{addr} 
+		where mid=#{mid}
 	</update>
 	
-	<update id="updateHits" parameterType="String">
-		update mycgv_board set bhits=bhits+1 where bid=#{bid}
+	<select id="find" parameterType="com.project.vo.MemberVo" resultType="string">
+		select mid 
+		from pcp_member 
+		where name=#{name} 
+			and phone=#{phone}
+		<if test='mid != null'>
+			and mid=#{mid}
+		</if>
+	</select>
+	
+	<update id="updatePass" parameterType="com.project.vo.MemberVo">
+		update pcp_member
+		set pass=#{pass}
+		where mid=#{mid}
 	</update>
 	
-	<delete id="delete" parameterType="String">
-		delete from mycgv_board where bid=#{bid}
-	</delete>
+	<select id="search" parameterType="string" resultType="com.project.vo.MemberVo">
+		SELECT MID, NAME, PHONE, EMAIL, MDATE 
+		FROM PCP_MEMBER 
+		WHERE MID LIKE #{mid}
+	</select>
 </mapper>

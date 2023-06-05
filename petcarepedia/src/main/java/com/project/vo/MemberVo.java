@@ -85,6 +85,12 @@ public class MemberVo {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+		if(phone!=null) {
+			String[] arr = phone.split("-");
+			setPhone1(arr[0]);
+			setPhone2(arr[1]);
+			setPhone3(arr[2]);
+		}
 	}
 	public String getBirth() {
 		String birth = this.birth;
@@ -98,6 +104,12 @@ public class MemberVo {
 	}
 	public void setBirth(String birth) {
 		this.birth = birth;
+		if(birth!=null) {
+			String[] arr = birth.split("-");
+			setBirth1(arr[0]);
+			setBirth2(arr[1]);
+			setBirth3(arr[2]);
+		}
 	}
 	public String getEmail() {
 		return email;
