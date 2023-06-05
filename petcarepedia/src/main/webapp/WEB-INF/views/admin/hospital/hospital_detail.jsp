@@ -28,14 +28,13 @@
 								<li><a href = "http://localhost:9000/petcarepedia/reserve_list.do">예약 관리</a></li>
 								<li><a href = "http://localhost:9000/petcarepedia/review_list.do">신고 리뷰 관리</a></li>
 								<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/login.do">나가기</a></li>
 							</ul>
 						</nav>
 					</div>
 				</section>
 				<section id="section2">
 					<div id="d3">
-						<form name="writeForm" action="hospital_detail_proc.do" method="post">
+						<form name="writeForm" action="hospital_detail_proc.do" method="post" enctype="multipart/form-data">
 							<table class="table">
 								<tr>
 									<th>병원명</th>
@@ -87,11 +86,9 @@
 								</tr>
 								<tr>
 									<td colspan="5"> 
-										<div id="d4">
-											<button type="button" class="button4" id="btn_save">저장하기</button>
-											<button type="reset" class="button4">다시쓰기</button>
-											<button type="button" class="button5"><a href="http://localhost:9000/petcarepedia/hospital_list.do"> 이전으로</a></button>
-										</div>
+										<button type="button" class="button5" id="btn_save">저장하기</button>
+										<button type="reset" class="button5">다시쓰기</button>
+										<button type="button" class="button5"><a href="http://localhost:9000/petcarepedia/hospital_list.do"> 이전으로</a></button>
 									</td>
 								</tr>
 							</table>

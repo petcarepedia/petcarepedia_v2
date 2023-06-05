@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/am-pagination.css">
 	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_serin.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
 	<script>
@@ -53,7 +54,6 @@
 								<li><a href = "http://localhost:9000/petcarepedia/reserve_list.do">예약 관리</a></li>
 								<li><a href = "http://localhost:9000/petcarepedia/review_list.do">신고 리뷰 관리</a></li>
 								<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/login.do">나가기</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -69,19 +69,17 @@
 							</tr>
 						<c:forEach var="reviewVo" items="${list}">
 							<tr>
-							<td>${reviewVo.rno}</td>
-							<td>${reviewVo.mid}</td>
-							<td>${reviewVo.hname}</td>
-							<td><a href="review_detail.do?rid=${reviewVo.rid}">${reviewVo.rcontent}</a></td>
-							<td>${reviewVo.rdate}</td>
+								<td>${reviewVo.rno}</td>
+								<td>${reviewVo.mid}</td>
+								<td>${reviewVo.hname}</td>
+								<td><a href="review_detail.do?rid=${reviewVo.rid}">${reviewVo.rcontent}</a></td>
+								<td>${reviewVo.rdate}</td>
 							</tr>
 						</c:forEach>
 							<tr>
 								<td colspan="5"><div id="ampaginationsm"></div></td>
 							</tr>
-							<tr>
 					</table>
-					<button type="button" class="button4" ><a href="http://localhost:9000/petcarepedia/hospital_list.do">이전으로</a></button>
 				</section>
 			</section>
 		</div>

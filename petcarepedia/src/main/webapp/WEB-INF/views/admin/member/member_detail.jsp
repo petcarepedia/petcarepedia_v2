@@ -29,7 +29,6 @@
 				<li><a href = "http://localhost:9000/petcarepedia/reserve_list.do">예약 관리</a></li>
 				<li><a href = "http://localhost:9000/petcarepedia/review_list.do">신고 리뷰 관리</a></li>
 				<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
-				<li><a href = "http://localhost:9000/petcarepedia/login.do">나가기</a></li>
 			</ul>
 	        </nav>
 	      </div>
@@ -40,40 +39,38 @@
 		        <ul>
 		          <li>
 		            <label>아이디</label>
-		            <input type="text" name="mid" id="mid" value="${memberVo.mid}" disalble>
+		            <input type="text" name="mid" id="mid" value="${memberVo.mid}" disabled>
 		          </li>
 		          <li>
 		            <label>성명</label>
-		            <input type="text" name="name" id="name" value="${memberVo.name}">
+		            <input type="text" name="name" id="name" value="${memberVo.name}" disabled>
+		          </li>
+		          <li>
+		            <label>별명</label>
+		            <input type="text" name="nickname" id="nickname" value="${memberVo.nickname}" disabled>
 		          </li>
 		          <li>
 		            <label>생년월일</label>
-		            <input type="text" name="birth" id="birth" value="${memberVo.birth}">
+		            <input type="text" name="birth" id="birth" value="${memberVo.birth}" disabled>
 		          </li>
 		          <li>
 		            <label>이메일</label>
-		            <input type="text" name="email" id="email" value="${memberVo.email}">
+		            <input type="text" name="email" id="email" value="${memberVo.email}" disabled>
 		          </li>
 		          <li>
 		            <label>휴대폰</label>
-		            <input type="text" name="phone" id="phone" value="${memberVo.phone}">
+		            <input type="text" name="phone" id="phone" value="${memberVo.phone}" disabled>
 		          </li>
 		          <li>
 		            <label>주소</label>
-		            <input type="text" name="addr" id="addr" value="${memberVo.addr}">
+		            <input type="text" name="addr" id="addr" value="${memberVo.addr}" disabled >
 		          </li>
 		          <li>
 		            <label>가입일</label>
-		            <input type="text" name="mdate" id="mdate" value="${memberVo.mdate}">
-		          </li>
-		          <li>
-		            <label>휴면 계정 전환</label>
-		            <input type="radio" name="human" id="human" value = yes >예
-		            <input type="radio" name="human" id="human" value = no >아니오
+		            <input type="text" name="mdate" id="mdate" value="${memberVo.mdate}" disabled>
 		          </li>
 		        </ul>
 		        <div id="d4">
-	      		 <button type="button" class="button4" id="btn_member">수정완료</button>	
 	       	 	 <button type="button" class="button5"><a href="http://localhost:9000/petcarepedia/member_list.do">이전으로</a></button>
 		        </div>
 	      	  </form>

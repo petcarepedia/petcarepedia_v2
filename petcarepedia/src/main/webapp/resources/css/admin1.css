@@ -99,7 +99,7 @@ button.button4{
 }
 button.button5{
 	padding:10px 30px;
-	margin:25px;
+	margin:25px 10px;
 }
 
 .d1 .table tr td > a {
@@ -107,24 +107,16 @@ button.button5{
 	text-decoration:none;
 }
 
-.table tr td.number, section.hospital tr:last-child td.number{
-	border-color:white;
-	background:#D9D9D9;
-	font_size:13pt; 
-	font-weight:600;
-	word-spacing:20px;
-	border-radius:5px;
-	
-}
-section.hospital tr td:nth-child(4), section.hospital tr td:nth-child(5),
+
 section.reserve tr td:nth-child(5),section.review tr td:nth-child(5),
 section.hospital_detail tr td:nth-child(4),section.hospital_detail tr td:nth-child(5){
 	width:90px;
 }
-section.reserve tr:nth-child(12) td,section.review tr:nth-child(12) td,
-section.member tr:nth-child(13) td,section.hospital tr:last-child td,
+section.reserve tr:last-child td,section.review tr:nth-child(12) td,
+section.member tr:last-child td, section.hospital tr:last-child td,
 section#hospital_update tr:last-child td, section#hospital_content tr:last-child td, 
-section#hospital_delete tr:last-child td{
+section#hospital_delete tr:last-child td, section#hospital_data tr:last-child td,
+section.review tr:last-child td{
 	border:1px solid white;
 }
 section.hospital #section1 div nav ul li:nth-child(2) a,
@@ -235,22 +227,28 @@ section1 style sheet - 카테고리
 /****************************
 hospital_list style sheet
 *****************************/
-section.hospital tr td:nth-child(3),
-section.hospital tr td:nth-child(4),
-section.hospital tr td:nth-child(5){
-	width:105px;
-
-}
-section.hospital tr:first-child td, section.hospital_detail tr:first-child td{
+ section.hospital tr:first-child td, section.hospital_detail tr:first-child td{
 	border:1px solid white;
 	border-bottom: 1px solid #3D3D3D;
  	padding:0 0 20px 600px; 
-} 
+}  
 
 section.hospital tr td:nth-child(2), section.hospital_detail tr td:nth-child(2) {
 	width:260px;
 	text-align:left;
 	text-indent:10px;
+}
+
+section.hospital table tr td:first-child {
+	width:70px;
+}
+
+section.hospital tr td:nth-child(3),
+section.hospital tr td:nth-child(4){
+	width:120px;
+}
+section.hospital tr td:nth-child(5){
+	width:130px;
 }
 
 /****************************
@@ -261,16 +259,27 @@ section.member tr:first-child td, section.member_detail tr:first-child td{
 	border-bottom: 1px solid #3D3D3D;
  	padding:0 0 20px 600px; 
 } 
-section.member tr td:nth-child(4), section.member tr td:nth-child(5){
-	width:180px;
+section.member tr td:first-child{
+	width:60px;
 }
-section.member .table, section.reserve .table{
+section.member tr td:nth-child(2){
+	width:110px;
+}
+
+section.member .table{
 	width:750px;
 	height:20px;
 	margin:auto; 
 	border-collapse:collapse;
 	border-radius:5px;
-	margin-top:20px;
+	margin-top:80px;
+}
+section.reserve .table{
+	width:750px;
+	height:20px;
+	margin:auto; 
+	border-collapse:collapse;
+	border-radius:5px;
 }
 
 /****************************
@@ -281,11 +290,14 @@ section.reserve tr td:last-child{
 	cursor:pointer;
 }
 section.reserve tr td:nth-child(2) {
-	width:200px;
+	width:250px;
 }
 
 .d1 section.reserve div.d2, .d1 section.review div.d2{
 	margin-bottom:80px; 
+}
+section.reserve tr:last-child td {
+	border-top:1px solid #3d3d3d;
 }
 
 /****************************
@@ -304,6 +316,8 @@ section.review tr td:nth-child(3){
 section.review section#section2 {
 	margin-top:220px;
 }
+
+
 
 /*************************************
 	hospital_list_detail style sheet
@@ -404,6 +418,7 @@ section.review_detail div#d3 {
  	float:left;
  	width:700px;
  	margin-top:150px;
+ 	margin-left:50px;
  }
 
 section.member_detail section#section2 #btn_save{
@@ -419,7 +434,7 @@ section.member_detail section#section2 ul li label{
 	border-radius: 5px;
 	background: #7AB2CC;
 	font-weight: 700;
-	font-size: 13px;
+	font-size: 11pt;
 	line-height: 15px;
 	display: inline-block;
 	align-items: center;
@@ -440,16 +455,14 @@ section.member_detail section#section2 ul li input[type="text"]{
 	border-bottom: 1px solid #8A8A8A; 
 	margin-top:10px;
 	text-indent:10px;
-}
-
-section.member_detail section#section2 ul li input[name="human"]{ 
-	margin-left:12px;
-}
-
-section.member section#section2 .button4,
-section.reserve section#section2 .button4,
-section.review section#section2 .button4 {
-	margin-left:810px;
+	font-size: 10pt;
 }
 
 
+/*************************************
+	review-detail style sheet
+**************************************/
+
+section.review_detail section#section2 {
+	border:1px solid red;
+}
