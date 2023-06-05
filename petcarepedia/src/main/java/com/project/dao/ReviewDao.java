@@ -150,7 +150,7 @@ public class ReviewDao extends DBConn {
 		param.put("start", startCount);
 		param.put("end", endCount);
 		
-		return sqlSession.selectList("mapper.reiview.ListPage", param);
+		return sqlSession.selectList("mapper.review.ListPage", param);
 		/*
 		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
 		String sql = " select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname"
@@ -197,7 +197,7 @@ public class ReviewDao extends DBConn {
 		rspagingVo.setStart(startCount);
 		rspagingVo.setEnd(endCount);
 		rspagingVo.setFilter_location(filter_location);
-		return sqlSession.selectList("mapper.reiview.searchListPage", rspagingVo);
+		return sqlSession.selectList("mapper.review.searchListPage", rspagingVo);
 		/*
 		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
 		String sql = "select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname " + 
@@ -446,7 +446,7 @@ public class ReviewDao extends DBConn {
 		param.put("start", startCount);
 		param.put("end", endCount);
 		
-		return sqlSession.selectList("mapper.reiview.bestList", param);
+		return sqlSession.selectList("mapper.review.bestList", param);
 		/*
 		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
 		
