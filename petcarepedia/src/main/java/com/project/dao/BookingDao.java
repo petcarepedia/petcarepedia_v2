@@ -464,7 +464,7 @@ public class BookingDao extends DBConn {
 	
 	/** selectTime - 영업시간(05.25) **/
 	public BookingVo selectTime(String hid) {
-		return sqlSession.selectOne("mapper.booing.selectTime2", hid);
+		return sqlSession.selectOne("mapper.booking.selectTime2", hid);
 		
 //		BookingVo bookingVo = new BookingVo();
 //		
