@@ -65,7 +65,8 @@ public class ReviewDao extends DBConn {
 	
 	
 	public ArrayList<ReviewVo> RM_select(String hid) {
-		return sqlSession.selectOne("mapper.review.RM_select", hid);
+		List<ReviewVo> list = sqlSession.selectList("mapper.review.my_select", hid);
+		return (ArrayList<ReviewVo>)list;
 		/*
 		ArrayList<ReviewVo> RM_select = new ArrayList<ReviewVo>();
 		String sql = "SELECT ROWNUM RNO, RID, M.NICKNAME, RCONTENT, TO_CHAR(RDATE, 'YYYY-MM-DD') RDATE, RLIKE, ROUND(RSTAR, 0) RSTAR" + 
