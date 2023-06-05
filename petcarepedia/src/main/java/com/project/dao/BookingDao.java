@@ -130,9 +130,11 @@ public class BookingDao extends DBConn {
 		
 		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
 
-		String sql = "select B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, B.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, H.HRINK, H.IMG"
-				+ " FROM pcp_review r, pcp_booking b, pcp_hospital h, pcp_member m where r.bid(+) = b.bid and"
-				+ " b.mid = ? and vdate <= TO_CHAR(sysdate,'YYYY-MM-DD') AND vtime < to_char(sysdate,'HH24:MI') and r.BID is null order by bid desc";
+		String sql = "select bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img\r\n" + 
+				"from(select b.bid bid, b.bdate bdate, b.vdate vdate, b.vtime vtime, b.bstate bstate, b.mid mid, b.hid hid, h.hname hname, h.loc loc, h.gloc gloc,\r\n" + 
+				"h.tel tel, h.hrink hrink, h.img img from pcp_review r, pcp_booking b, pcp_hospital h, pcp_member m where r.bid(+) = b.bid \r\n" + 
+				"and b.hid = h.hid and b.mid = m.mid and b.mid = ? and  r.bid is null)\r\n" + 
+				"where vdate < to_char(sysdate,'yyyy-mm-dd') or (vdate = to_char(sysdate,'yyyy-mm-dd') and vtime < to_char(sysdate,'hh24:mi')) order by bid desc";
 		
 		getPreparedStatement(sql);
 
@@ -219,10 +221,10 @@ public class BookingDao extends DBConn {
 		
 		ArrayList<BookingReviewVo> list2 = new ArrayList<BookingReviewVo>();
 		
-		String sql = "SELECT B.BID, B.BDATE, B.VDATE, B.VTIME, B.BSTATE, R.MID, B.HID, H.HNAME, H.LOC, H.GLOC, H.TEL, H.HRINK, H.IMG"
-				+ " FROM PCP_BOOKING B, PCP_HOSPITAL H, PCP_REVIEW"
-				+ " WHERE B.HID = H.HID AND B.BID = R.BID AND B.MID = R.MID AND B.MID = ? and vdate <= TO_CHAR(sysdate,'YYYY-MM-DD')"
-				+ " AND vtime < to_char(sysdate,'HH24:MI') order by bid desc";
+		String sql = "select bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img\r\n" + 
+				"from(select b.bid bid, b.bdate bdate, b.vdate vdate, b.vtime vtime, b.bstate bstate, b.mid mid, b.hid hid, h.hname hname, h.loc loc, h.gloc gloc,\r\n" + 
+				"h.tel tel, h.hrink hrink, h.img img from pcp_review r, pcp_booking b, pcp_hospital h, pcp_member m \r\n" + 
+				"where b.hid = h.hid and b.mid = m.mid and b.mid = ? and b.bid = r.bid) order by bid desc";
 		
 		getPreparedStatement(sql);
 		try {
