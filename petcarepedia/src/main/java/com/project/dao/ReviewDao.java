@@ -1,17 +1,26 @@
 package com.project.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
 
 @Repository
 public class ReviewDao extends DBConn {
 	
+	@Autowired
+	private SqlSession sqlSession;
+	
 	// 리뷰와 병원 조인
 	public ArrayList<ReviewVo> RH_select(String hid) {
+		return sqlSession.selectOne("mapper.review.RH_select", hid);
+		/*
 		ArrayList<ReviewVo> RHList = new ArrayList<ReviewVo>();
 		String sql = " select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, loc, tel, htime, ntime, holiday, intro, img, hrink\r\n" + 
 				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, h.loc, h.tel, h.htime, h.ntime, h.holiday, h.intro, h.img, h.hrink \r\n" + 
@@ -49,11 +58,14 @@ public class ReviewDao extends DBConn {
 			e.printStackTrace();
 		}
 		return RHList;
+		*/
 	}
 
 	
 	
 	public ArrayList<ReviewVo> RM_select(String hid) {
+		return sqlSession.selectOne("mapper.review.RM_select", hid);
+		/*
 		ArrayList<ReviewVo> RM_select = new ArrayList<ReviewVo>();
 		String sql = "SELECT ROWNUM RNO, RID, M.NICKNAME, RCONTENT, TO_CHAR(RDATE, 'YYYY-MM-DD') RDATE, RLIKE, ROUND(RSTAR, 0) RSTAR" + 
 				" FROM (SELECT * FROM PCP_REVIEW R, PCP_HOSPITAL H" + 
@@ -83,6 +95,7 @@ public class ReviewDao extends DBConn {
 			e.printStackTrace();
 		}
 		return RM_select;
+		*/
 	}
 
 	
@@ -93,6 +106,9 @@ public class ReviewDao extends DBConn {
 	
 	// 리뷰 리스트
 	public ArrayList<ReviewVo> select() {
+		List<ReviewVo> list = sqlSession.selectList("mapper.review.list");
+		return (ArrayList<ReviewVo>)list;
+		/*
 		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
 		String sql = " select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname " + 
 				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m " + 
@@ -123,11 +139,18 @@ public class ReviewDao extends DBConn {
 			e.printStackTrace();
 		}
 		return reviewList;
+		*/
 	}
 	
 
-	// 리뷰 리스트 페이징 처리
-	public ArrayList<ReviewVo> selectList(int startCount, int endCount) {
+	// 리뷰 리스트 페이징 처리 
+	public List<Object> selectList(int startCount, int endCount) {
+		Map<String, Integer> param = new HashMap<String, Integer>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		
+		return sqlSession.selectList("mapper.reiview.ListPage", param);
+		/*
 		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
 		String sql = " select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname"
 				+ " from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname " + 
@@ -162,12 +185,20 @@ public class ReviewDao extends DBConn {
 			e.printStackTrace();
 		}
 		return reviewList;
+		*/
 	}
 	
 	
 	
 	// 검색 리뷰 리스트 페이징 처리
-	public ArrayList<ReviewVo> selectSearchList(int startCount, int endCount, String filter_location) {
+	public List<Object> selectSearchList(int startCount, int endCount, String filter_location) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("filter_location", filter_location);
+		
+		return sqlSession.selectList("mapper.reiview.searchListPage", param);
+		/*
 		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
 		String sql = "select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname " + 
 				" from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname " + 
@@ -203,36 +234,42 @@ public class ReviewDao extends DBConn {
 			e.printStackTrace();
 		}
 		return reviewList;
+		*/
 	}
 	
 	
 	/* 리뷰 검색 카운트 가져오기(totalrowcount)*/
 	public int SearchRowCount(String filter_location) {
-			int count = 0;
-			String sql = "select count(*)\r\n" + 
-					" from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname \r\n" + 
-					" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m \r\n" + 
-					" where r.hid=h.hid and r.mid = m.mid order by r.rdate desc) where gloc = ?)";
+		return sqlSession.selectOne("mapper.review.searchCount", filter_location);
+		/*
+		int count = 0;
+		String sql = "select count(*)\r\n" + 
+				" from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname \r\n" + 
+				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m \r\n" + 
+				" where r.hid=h.hid and r.mid = m.mid order by r.rdate desc) where gloc = ?)";
 			getPreparedStatement(sql);
-
+		
 			try {
 				pstmt.setString(1, filter_location);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {				
 					count = rs.getInt(1);
-				}			
+					}			
 				
-			} catch (Exception e) {
-				e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
 			}
 			
-			return count;		
-		}
+		return count;	
+		*/
+	}
 
 	/*
 	 *  리뷰 상세보기
 	 */
 	public ReviewVo select(String rid) {
+		return sqlSession.selectOne("mapper.review.content", rid);
+		/*
 		ReviewVo reviewVo = new ReviewVo();
 		String sql = "select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname " + 
 				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m " + 
@@ -260,6 +297,7 @@ public class ReviewDao extends DBConn {
 			e.printStackTrace();
 		}
 		return reviewVo;
+		*/
 	}
 	
 	
@@ -267,6 +305,8 @@ public class ReviewDao extends DBConn {
 	 *  리뷰 상세보기 띄어쓰기
 	 */
 	public ReviewVo enter_select(String rid) {
+		return sqlSession.selectOne("mapper.review.enter_content", rid);
+		/*
 		ReviewVo reviewVo = new ReviewVo();
 		String sql = "select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname " + 
 				" from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m " + 
@@ -294,6 +334,7 @@ public class ReviewDao extends DBConn {
 			e.printStackTrace();
 		}
 		return reviewVo;
+		*/
 	}
 	
 	
@@ -303,6 +344,8 @@ public class ReviewDao extends DBConn {
 	 * 리뷰 등록하기
 	 */
 	public int insert(ReviewVo reviewVo) {
+		return sqlSession.insert("mapper.review.insert", reviewVo);
+		/*
 		int result = 0;
 		String sql = "insert into pcp_review(rid, rcontent, rdate, rlike, rstar, rstate, mid, hid,bid )"
 				+ " values('R_'||ltrim(to_char(sequ_pcp_review_rid.nextval,'0000')),?,sysdate,0,?,'X',?,?,?)";
@@ -322,6 +365,7 @@ public class ReviewDao extends DBConn {
 			e.printStackTrace();
 		}
 		return result;
+		*/
 	}
 	
 	
@@ -329,6 +373,8 @@ public class ReviewDao extends DBConn {
 	 * 리뷰 수정
 	 */
 	public int update(ReviewVo reviewVo) {
+		return sqlSession.update("mapper.review.update", reviewVo);
+		/*
 		int result = 0;
 		String sql = "update pcp_review set rcontent=?, rstar=? where rid=?";
 		getPreparedStatement(sql);
@@ -343,6 +389,7 @@ public class ReviewDao extends DBConn {
 			e.printStackTrace();
 		}
 		return result;
+		*/
 	}
 	
 	
@@ -350,6 +397,8 @@ public class ReviewDao extends DBConn {
 	 * 리뷰 신고
 	 */
 	public int update(String rid) {
+		return sqlSession.update("mapper.review.report", rid);
+		/*
 		int result = 0;
 		String sql = "update pcp_review set rstate='O' where rid=?";
 		getPreparedStatement(sql);
@@ -362,6 +411,7 @@ public class ReviewDao extends DBConn {
 			e.printStackTrace();
 		}
 		return result;
+		*/
 	}
 	
 	
@@ -369,6 +419,8 @@ public class ReviewDao extends DBConn {
 	 * 리뷰 삭제
 	 */
 	public int delete(String rid) {
+		return sqlSession.delete("mapper.review.delete", rid);
+		/*
 		int result = 0;
 		String sql = "delete pcp_review where rid=?";
 		getPreparedStatement(sql);
@@ -380,6 +432,7 @@ public class ReviewDao extends DBConn {
 			e.printStackTrace();
 		}
 		return result;
+		*/
 	}
 	
 	//베스트리뷰
@@ -387,7 +440,13 @@ public class ReviewDao extends DBConn {
 	/**
 	 * select - 베스트리뷰
 	 */
-	public ArrayList<ReviewVo> select(int startCount, int endCount) {
+	public List<Object> select(int startCount, int endCount) {
+		Map<String, Integer> param = new HashMap<String, Integer>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		
+		return sqlSession.selectList("mapper.reiview.bestList", param);
+		/*
 		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
 		
 		String sql = "select rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar,mid, nickname \r\n" + 
@@ -427,6 +486,7 @@ public class ReviewDao extends DBConn {
 		}
 		
 		return list;
+		*/
 	}
 	
 	
@@ -434,26 +494,32 @@ public class ReviewDao extends DBConn {
 	
 	/* 전체 카운트 가져오기*/
 	public int totalRowCount() {
-			int count = 0;
-			String sql = "select count(*) from pcp_review";
-			getPreparedStatement(sql);
+		return sqlSession.selectOne("mapper.review.count");
+		/*
+		int count = 0;
+		String sql = "select count(*) from pcp_review";
+		getPreparedStatement(sql);
+		
+		try {
+			rs = pstmt.executeQuery();
+			while(rs.next()) {				
+				count = rs.getInt(1);
+			}			
 			
-			try {
-				rs = pstmt.executeQuery();
-				while(rs.next()) {				
-					count = rs.getInt(1);
-				}			
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			return count;		
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
+		return count;		
+		*/
+	}
 
 	
 	//내가 쓴 리뷰 
 	public ArrayList<ReviewVo> my_select(String mid) {
+		List<ReviewVo> list = sqlSession.selectList("mapper.review.my_select", mid);
+		return (ArrayList<ReviewVo>)list;
+		/*
 		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
 		String sql = "select h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid, h.img\r\n" + 
 				" from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = ?";
@@ -479,11 +545,15 @@ public class ReviewDao extends DBConn {
 		}
 		
 		return list;
+		*/
 	}
 
 
-
-	public int getIdCheckResult(String rid) {
+	//신고된 리뷰 체크
+	public int reviewCheckResult(String rid) {
+		return sqlSession.selectOne("mapper.review.reportReivew", rid);
+		
+		/*
 		int result = 0;
 		String sql ="select count(*) from pcp_review where rid = ? and rstate = 'O'";
 		getPreparedStatement(sql);
@@ -498,6 +568,7 @@ public class ReviewDao extends DBConn {
 			e.printStackTrace();
 		}
 		return result;
+		*/
 	}
 	
 	

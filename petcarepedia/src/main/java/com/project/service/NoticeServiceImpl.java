@@ -1,6 +1,7 @@
 package com.project.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.project.dao.NoticeDao;
 import com.project.vo.NoticeVo;
 
-@Service
+@Service("noticeService")
 public class NoticeServiceImpl implements NoticeService{
 
 	@Autowired
@@ -16,7 +17,13 @@ public class NoticeServiceImpl implements NoticeService{
 	
 	@Override
 	public ArrayList<NoticeVo> getListPage(int startCount, int endCount) {
-		return noticeDao.select(startCount, endCount);
+		ArrayList<NoticeVo> rlist = new ArrayList<NoticeVo>();
+		List<Object> list = noticeDao.select(startCount, endCount);
+		for(Object obj : list) {
+			NoticeVo noticeVo = (NoticeVo)obj;
+			rlist.add(noticeVo);
+		}
+		return rlist;
 	}
 
 	@Override

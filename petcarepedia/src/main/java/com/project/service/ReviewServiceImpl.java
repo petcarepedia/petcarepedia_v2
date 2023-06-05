@@ -1,12 +1,12 @@
 package com.project.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.dao.ReviewDao;
-import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
 
 @Service
@@ -32,12 +32,29 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public ArrayList<ReviewVo> getSelectList(int startCount, int endCount) {
-		return reviewDao.selectList(startCount, endCount);
+		ArrayList<ReviewVo> nlist = new ArrayList<ReviewVo>();
+		List<Object> list = reviewDao.selectList(startCount, endCount);
+		for(Object obj : list) {
+			ReviewVo reviewVo = (ReviewVo)obj;
+			nlist.add(reviewVo);
+		}
+		return nlist;
 	}
 
 	@Override
 	public ArrayList<ReviewVo> getSelectSearchList(int startCount, int endCount, String filter_location) {
-		return reviewDao.selectSearchList(startCount, endCount, filter_location);
+		ArrayList<ReviewVo> nlist = new ArrayList<ReviewVo>();
+		List<Object> list = reviewDao.selectSearchList(startCount, endCount, filter_location);
+		for(Object obj : list) {
+			ReviewVo reviewVo = (ReviewVo)obj;
+			nlist.add(reviewVo);
+		}
+		return nlist;
+	}
+	
+	@Override
+	public int getSearchRowCount(String filter_location) {
+		return reviewDao.SearchRowCount(filter_location);
 	}
 
 	@Override
@@ -72,12 +89,28 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public ArrayList<ReviewVo> getSelect(int startCount, int endCount) {
-		return reviewDao.select(startCount, endCount);
+		ArrayList<ReviewVo> nlist = new ArrayList<ReviewVo>();
+		List<Object> list = reviewDao.select(startCount, endCount);
+		for(Object obj : list) {
+			ReviewVo reviewVo = (ReviewVo)obj;
+			nlist.add(reviewVo);
+		}
+		return nlist;
 	}
-
+	
+	@Override
+	public int getTotalRowCount() {
+		return reviewDao.totalRowCount();
+	}
+	
 	@Override
 	public ArrayList<ReviewVo> getMy_select(String mid) {
 		return reviewDao.my_select(mid);
+	}
+
+	@Override
+	public int reviewCheckResult(String rid) {
+		return reviewDao.reviewCheckResult(rid);
 	}
 
 }
