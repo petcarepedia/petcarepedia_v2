@@ -21,7 +21,7 @@
 		update pcp_review set rlike = rlike+1 where rid = #{rid}
 	</update>
 	
-	<select id="idCheck" parameterType="com.project.vo.ReviewLikeVo">
-		select count(*) from pcp_review_like where mid=#{mid} and rid=#{rid}
+	<select id="idCheck" parameterType="com.project.vo.ReviewLikeVo" resultType="int">
+		select count(*) num from pcp_review_like where mid=#{mid} and rid=#{rid}
 	</select>
 </mapper>
