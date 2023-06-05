@@ -67,9 +67,9 @@
 	</select>
 	
 	<select id="select2" parameterType="String" resultType="com.project.vo.BookingVo">
-		SELECT  ROWNUM RNO, BID, to_char(BDATE, 'yyyy-mm-dd') BDATE,  to_char(BDATE, 'yyyy-mm-dd') VDATE, VTIME, BSTATE, MID
-		FROM (SELECT * FROM PCP_BOOKING ORDER BY BID DESC)
-				WHERE MID=#{mid}
+	select BID, VDATE, VTIME, MID, B.HID, H.HNAME, H.TEL, H.IMG 
+	FROM PCP_BOOKING B, PCP_HOSPITAL H 
+	WHERE B.HID = H.HID AND B.bid = #{bid}
 	</select>
 	
 	<select id="select3" parameterType="String" resultType="com.project.vo.BookingVo">
