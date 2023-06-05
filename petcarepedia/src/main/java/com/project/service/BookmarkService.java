@@ -12,4 +12,7 @@ public interface BookmarkService {
 	// ∫œ∏∂≈© ªË¡¶
 	int bookmarkDelete(String bmid);
 	
+	int deleteBookmark(BookmarkVo bookmarkVo);
+	
+	int checkBookmark(BookmarkVo bookmarkVo);
 }
