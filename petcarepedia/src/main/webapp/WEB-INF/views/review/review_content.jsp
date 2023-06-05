@@ -32,7 +32,7 @@
 					</tr>
 					<tr>
 						<th>작성자</th>
-						<td><img src="http://localhost:9000/petcarepedia/images/cat.png">${reviewVo.nickname }</td>
+						<td><img src="http://localhost:9000/petcarepedia/images/cat.png"><p>${reviewVo.nickname }</p></td>
 					</tr>
 					<tr>
 						<th>상세내용</th>

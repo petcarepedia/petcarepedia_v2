@@ -7,7 +7,6 @@ import com.project.vo.HospitalVo;
 public interface HospitalService {
 		
 		int totalRowCount();
-		ArrayList<HospitalVo> select(int startCount, int endCount);
 		HospitalVo selectStar(String hid);
 		ArrayList<HospitalVo> searchGloc(String gloc);
 		ArrayList<HospitalVo> search(String hname);
