@@ -6,7 +6,7 @@
     
 <mapper namespace="mapper.bookmark">
 	<delete id = "deleteBookmark" parameterType = "com.project.vo.BookmarkVo">
-		DELETE FROM PCP_BOOKMARK WHERE HID=#{hid} AND MID={mid}
+		DELETE FROM PCP_BOOKMARK WHERE HID=#{hid} AND MID=#{mid}
 	</delete>
 	
 	<delete id = "delete" parameterType = "String">
