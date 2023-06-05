@@ -232,6 +232,9 @@ div#filter_page table.filter tr td {
 div#filter_page table#filter_lo {
 	margin-bottom:10px;
 }
+div#filter_page table#filter_lo tr{
+	
+}
 div#filter_page table#filter_ani {
 	margin-bottom:40px;
 }

@@ -54,19 +54,22 @@ $(document).ready(function(){
 			success : function(result) {
 				if(result == 1) {
 					Swal.fire({
-	                    icon: 'error',
-	                    title: '이미 신고된 리뷰입니다.',
-	                    text: '',
-	                });
-					history.back()
+						  title: '이미 신고된 리뷰입니다.',
+						  text: '',
+						  icon: 'info',
+	                }).then(function(){
+							history.back();
+						});
+					
 				}
 				else if(result == 0){
 					Swal.fire({
-	                    icon: 'success',
-	                    title: '신고되었습니다.',
-	                    text: '',
-	                });
-					reportForm.submit();
+						  title: '신고되었습니다.',
+						  text: '',
+						  icon: 'success',
+	                }).then(function(){
+							reportForm.submit();
+						});
 				}
 			}
 		});
@@ -97,7 +100,6 @@ $(document).ready(function(){
 		}
 	});
 	
-	
 	if($("#count").val() == 0 ) {
 		return false;
 	}
@@ -106,6 +108,7 @@ $(document).ready(function(){
 			scrollTop: $('#filter_lo').offset().top
 		}, 'slow');
 	}
+
 	
 
 	

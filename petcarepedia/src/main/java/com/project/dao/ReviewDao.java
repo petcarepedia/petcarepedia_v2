@@ -197,7 +197,7 @@ public class ReviewDao extends DBConn {
 		RSpagingVo rspagingVo = new RSpagingVo();
 		rspagingVo.setStart(startCount);
 		rspagingVo.setEnd(endCount);
-		rspagingVo.setFilter_location(filter_location);
+		rspagingVo.setGloc(filter_location);
 		return sqlSession.selectList("mapper.review.searchListPage", rspagingVo);
 		/*
 		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
