@@ -24,7 +24,7 @@
 			<div class="review-list">
 				<input type="hidden" value="${rpage}" id="rpage">
 				<c:forEach var="reviewVo" items="${list}">
-					<div id="brcontent" onclick="location.href='http://localhost:9000/petcarepedia/review_content.do?rid=${reviewVo.rid}'" class="review-card">
+					<div id="brcontent" onclick="location.href='http://localhost:9000/petcarepedia/review_content.do?rid=${reviewVo.rid}&mid=hong'" class="review-card">
 							<div>
 								<a>${reviewVo.hname}</a>
 								<p>⭐ ${reviewVo.rstar}</p>
