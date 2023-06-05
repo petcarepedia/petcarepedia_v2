@@ -78,9 +78,17 @@ public class MainController {
 		int endCount = 0;
 		int pageSize = 3;	//한페이지당 게시물 수
 		int reqPage = 1;	//요청페이지	
-		int pageCount = 1;	//전체 페이지 수
-		int dbCount = 9;	//전체 행수
+		int pageCount = 0;	//전체 페이지 수
+		int dbCount = reviewService.getTotalRowCount();	//전체 행수
+		if(dbCount>9) dbCount=9;
 		
+		//총 페이지 수 계산
+		if(dbCount % pageSize == 0){
+			pageCount = dbCount/pageSize;
+		}else{
+			pageCount = dbCount/pageSize+1;
+		}
+				
 		//요청 페이지 계산
 		if(rpage != null){
 			reqPage = Integer.parseInt(rpage);
