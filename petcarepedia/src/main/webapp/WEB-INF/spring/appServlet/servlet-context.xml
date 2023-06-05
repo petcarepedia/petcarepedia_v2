@@ -37,6 +37,11 @@
 	<context:component-scan base-package="com.project.dao" />
 	<context:component-scan base-package="com.project.service" />
 	
+	<resources mapping="/upload/**" location="/resources/upload/" />
+	
+	<!-- multipartResolver -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</beans:bean>
 	
 	
 </beans:beans>
