@@ -97,7 +97,7 @@ public class SearchController {
 	    BookmarkVo bookmarkVo = new BookmarkVo();
 	    bookmarkVo.setHid(hid);
 	    bookmarkVo.setMid("hong"); // 이 부분을 세션 정보 또는 다른 값을 가져와 설정해야합니다.
-	    int bookmarkResult = bookmarkDao.checkBookmark(bookmarkVo);
+	    int bookmarkResult = bookmarkService.checkBookmark(bookmarkVo);
 	    model.addObject("bookmarkResult", bookmarkResult);
 	    
 	    model.setViewName("/search/search_result");
@@ -182,7 +182,7 @@ public class SearchController {
 	@ResponseBody
 	public String bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
 	    BookmarkDao bookmarkDao = new BookmarkDao();
-	    int result = bookmarkDao.checkBookmark(bookmarkVo);
+	    int result = bookmarkService.checkBookmark(bookmarkVo);
 
 	    if (result == 0) {
 	        bookmarkDao.insert(bookmarkVo);
@@ -266,7 +266,7 @@ public class SearchController {
 	@ResponseBody
 	public String rstateProc(String rid, @RequestParam("hid") String hid) {
 		ReviewDao reviewDao = new ReviewDao();
-	    int rstate_result = reviewDao.getIdCheckResult(rid);
+	    int rstate_result = reviewSerivce.reviewCheckResult(rid);
 
 	    if (rstate_result == 0) {
 	    	reviewDao.update(rid);
