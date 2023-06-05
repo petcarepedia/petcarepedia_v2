@@ -61,7 +61,9 @@
 	<jsp:include page="footer.jsp"></jsp:include>
 
 	<script>
-		$(".main-door").css("width",document.documentElement.clientWidth);
+		$(".inner > img").css("width",document.documentElement.clientWidth);
+		$(".main-door").css("width",document.documentElement.clientWidth).css("height",$(".inner > img").height());
+
 		//메인페이지 베너슬라이드
 		/*
 		  div사이즈 동적으로 구하기
