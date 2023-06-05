@@ -335,7 +335,7 @@ public class BookingDao extends DBConn {
 		
 	/** select(mid) - 로그인 후 예약확인하기 **/
 	public BookingVo select(String mid) {
-		return sqlSession.selectOne("mapper.booing.select", mid);
+		return sqlSession.selectOne("mapper.booking.select", mid);
 		
 //		BookingVo bookingVo = new BookingVo();
 //		
@@ -368,7 +368,7 @@ public class BookingDao extends DBConn {
 	
 	/** select(mid) - 로그인 후 예약확인하기(추가 06.02) **/
 	public BookingVo select2(String bid) {
-		return sqlSession.selectOne("mapper.booing.select2", bid);
+		return sqlSession.selectOne("mapper.booking.select2", bid);
 		
 //		BookingVo bookingVo = new BookingVo();
 //		
