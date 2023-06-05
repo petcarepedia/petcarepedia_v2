@@ -1,6 +1,7 @@
 package com.project.petcarepedia;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.service.NoticeService;
+import com.project.service.PageServiceImpl;
 import com.project.vo.NoticeVo;
 
 @Controller
@@ -17,12 +19,16 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
+	@Autowired
+	private PageServiceImpl pageService;
+	
 	//notice.do 관리자 공지사항 리스트 페이징
 
 	@RequestMapping(value="/admin_notice.do", method=RequestMethod.GET)
 	public ModelAndView admin_notice(String page) {
 		ModelAndView model = new ModelAndView();		
-		
+		Map<String, Integer> param = pageService.getPageResult(page, "notice");
+		/*
 		//페이징 처리 - startCount, endCount 구하기
 		int startCount = 0;
 		int endCount = 0;
@@ -47,14 +53,14 @@ public class NoticeController {
 			startCount = 1;
 			endCount = 10;
 		}
-		
-		ArrayList<NoticeVo> list = noticeService.getListPage(startCount, endCount);
+		*/
+		ArrayList<NoticeVo> list = noticeService.getListPage(param.get("startCount"), param.get("endCount"));
 	
 		model.addObject("list", list);
-		model.addObject("totals", dbCount);
-		model.addObject("pageSize", pageSize);
-		model.addObject("maxSize", pageCount);
-		model.addObject("page", reqPage);
+		model.addObject("totals", param.get("dbCount"));
+		model.addObject("pageSize",param.get("pageSize"));
+		model.addObject("maxSize", param.get("maxSize"));
+		model.addObject("page", param.get("page"));
 		
 		model.setViewName("/admin/notice/admin_notice");
 		
@@ -158,7 +164,8 @@ public class NoticeController {
 	@RequestMapping(value="/notice.do", method=RequestMethod.GET)
 	public ModelAndView notice(String page) {
 		ModelAndView model = new ModelAndView();		
-		
+		Map<String, Integer> param = pageService.getPageResult(page, "notice");
+		/*
 		//페이징 처리 - startCount, endCount 구하기
 		int startCount = 0;
 		int endCount = 0;
@@ -183,14 +190,14 @@ public class NoticeController {
 			startCount = 1;
 			endCount = 10;
 		}
+		*/
+		ArrayList<NoticeVo> list = noticeService.getListPage(param.get("startCount"), param.get("endCount"));
 		
-		ArrayList<NoticeVo> list = noticeService.getListPage(startCount, endCount);
-	
 		model.addObject("list", list);
-		model.addObject("totals", dbCount);
-		model.addObject("pageSize", pageSize);
-		model.addObject("maxSize", pageCount);
-		model.addObject("page", reqPage);
+		model.addObject("totals", param.get("dbCount"));
+		model.addObject("pageSize",param.get("pageSize"));
+		model.addObject("maxSize", param.get("maxSize"));
+		model.addObject("page", param.get("page"));
 		
 		model.setViewName("/notice/notice");
 		

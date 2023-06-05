@@ -53,11 +53,19 @@ $(document).ready(function(){
 			url : "review_report_check.do?rid="+$("#rid").val(),
 			success : function(result) {
 				if(result == 1) {
-					alert("이미 신고된 리뷰 입니다.");
+					Swal.fire({
+	                    icon: 'error',
+	                    title: '이미 신고된 리뷰입니다.',
+	                    text: '',
+	                });
 					history.back()
 				}
 				else if(result == 0){
-					alert("신고되었습니다.");
+					Swal.fire({
+	                    icon: 'success',
+	                    title: '신고되었습니다.',
+	                    text: '',
+	                });
 					reportForm.submit();
 				}
 			}

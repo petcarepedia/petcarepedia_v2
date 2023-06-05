@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 
 import com.project.dao.NoticeDao;
 import com.project.dao.ReviewDao;
 
+
+@Service("pageService")
 public class PageServiceImpl {
 	
 	@Autowired
@@ -20,6 +22,7 @@ public class PageServiceImpl {
 	public Map<String, Integer> getPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
 		// 페이징 처리 - startCount, endCount 구하기
+		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
 		int pageSize = 5; // 한페이지당 게시물 수
@@ -37,12 +40,20 @@ public class PageServiceImpl {
 			dbCount = reviewDao.totalRowCount();
 			pageSize = 7;
 		}
-
-		// 총 페이지 수 계산
-		if (dbCount % pageSize == 0) {
-			pageCount = dbCount / pageSize;
-		} else {
-			pageCount = dbCount / pageSize + 1;
+		else if (serviceName.equals("reviewSearch")) {
+			dbCount = reviewDao.totalRowCount();
+			pageSize = 7;
+		}
+		if(serviceName.equals("review") || serviceName.equals("reviewSearch")) {
+			pageCount = 7;
+		}
+		else {
+			// 총 페이지 수 계산
+			if (dbCount % pageSize == 0) {
+				pageCount = dbCount / pageSize;
+			} else {
+				pageCount = dbCount / pageSize + 1;
+			}
 		}
 
 		// 요청 페이지 계산
@@ -50,12 +61,15 @@ public class PageServiceImpl {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
 			endCount = reqPage * pageSize;
+			if(serviceName.equals("review")) {
+				count++;
+			}
 		} else {
 			if(serviceName.equals("notice"))  {
 				startCount = 1;
 				endCount = 10;
 			}
-			else if(serviceName.equals("review")) {
+			else if(serviceName.equals("review") || serviceName.equals("reviewSearch")) {
 				startCount = 1;
 				endCount = 7;				
 			}
@@ -68,6 +82,7 @@ public class PageServiceImpl {
 		
 		
 		//param 객체에 데이터 put
+		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
 		param.put("dbCount", dbCount);

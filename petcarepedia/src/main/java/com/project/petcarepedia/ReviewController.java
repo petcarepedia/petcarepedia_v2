@@ -1,6 +1,7 @@
 package com.project.petcarepedia;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.ReviewLikeDao;
+import com.project.service.PageServiceImpl;
 import com.project.service.ReviewLikeService;
 import com.project.service.ReviewService;
 import com.project.vo.ReviewLikeVo;
@@ -23,12 +25,18 @@ public class ReviewController {
 	private ReviewService reviewService;
 	@Autowired
 	private ReviewLikeService reviewLikeService;
+	@Autowired
+	private PageServiceImpl pageService;
+	
 	//review_main.do 리뷰 리스트 페이징
-
 	@RequestMapping(value="/review_main.do", method=RequestMethod.GET)
 	public ModelAndView review_main(String page, String mid) {
-		int count = 0;
-		ModelAndView model = new ModelAndView();		
+
+		ModelAndView model = new ModelAndView();	
+		//임시 아이디
+		mid="test";
+		Map<String, Integer> param = pageService.getPageResult(page, "review");
+		/*
 		//페이징 처리 - startCount, endCount 구하기
 		int startCount = 0;
 		int endCount = 0;
@@ -36,9 +44,8 @@ public class ReviewController {
 		int reqPage = 1;	//요청페이지	
 		int pageCount = 7;	//전체 페이지 수
 		int dbCount = reviewService.getTotalRowCount();	//DB에서 가져온 전체 행수
-		
-		//임시 아이디
-		mid="test";
+		*/
+
 		
 		
 		//총 페이지 수 계산
@@ -49,26 +56,27 @@ public class ReviewController {
 			pageCount = dbCount/pageSize+1;
 		}
 		*/
+		/*
 		//요청 페이지 계산
 		if(page != null){
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage-1) * pageSize+1; 
 			endCount = reqPage *pageSize;
-			count++;
 		}else{
 			startCount = 1;
 			endCount = 7;
 		}
+		*/
 		
-		ArrayList<ReviewVo> list = reviewService.getSelectList(startCount, endCount);
+		ArrayList<ReviewVo> list = reviewService.getSelectList(param.get("startCount"), param.get("endCount"));
 		
 		model.addObject("mid", mid);
-		model.addObject("count", count);
+		model.addObject("count", param.get("count"));
 		model.addObject("list", list);
-		model.addObject("totals", dbCount);
-		model.addObject("pageSize", pageSize);
-		model.addObject("maxSize", pageCount);
-		model.addObject("page", reqPage);
+		model.addObject("totals", param.get("dbCount"));
+		model.addObject("pageSize", param.get("pageSize"));
+		model.addObject("maxSize", param.get("maxSize"));
+		model.addObject("page", param.get("page"));
 		
 		model.setViewName("/review/review_main");
 		
@@ -200,6 +208,8 @@ public class ReviewController {
 	@RequestMapping(value="/review_main_search.do", method=RequestMethod.GET)
 	public ModelAndView review_search_Proc(String page, String filter_location, String mid) {
 		ModelAndView model = new ModelAndView();
+		Map<String, Integer> param = pageService.getPageResult(page, "reviewSearch");
+		/*
 		//페이징 처리 - startCount, endCount 구하기
 		int startCount = 0;
 		int endCount = 0;
@@ -207,7 +217,7 @@ public class ReviewController {
 		int reqPage = 1;	//요청페이지	
 		int pageCount = 7;	//전체 페이지 수
 		int dbCount = reviewService.getSearchRowCount(filter_location);	//DB에서 가져온 전체 행수
-		
+		*/
 		//총 페이지 수 계산
 		/*
 		if(dbCount % pageSize == 0){
@@ -216,6 +226,7 @@ public class ReviewController {
 			pageCount = dbCount/pageSize;
 		}
 		*/
+		/*
 		//요청 페이지 계산
 		if(page != null){
 			reqPage = Integer.parseInt(page);
@@ -225,16 +236,17 @@ public class ReviewController {
 			startCount = 1;
 			endCount = 7;
 		}
+		*/
 		
-		ArrayList<ReviewVo> list = reviewService.getSelectSearchList(startCount, endCount, filter_location);
+		ArrayList<ReviewVo> list = reviewService.getSelectSearchList(param.get("startCount"), param.get("endCount"), filter_location);
 
 		model.addObject("mid", mid);
 		model.addObject("filter_location", filter_location);
 		model.addObject("list", list);
-		model.addObject("totals", dbCount);
-		model.addObject("pageSize", pageSize);
-		model.addObject("maxSize", pageCount);
-		model.addObject("page", reqPage);
+		model.addObject("totals", param.get("dbCount"));
+		model.addObject("pageSize", param.get("pageSize"));
+		model.addObject("maxSize", param.get("maxSize"));
+		model.addObject("page", param.get("page"));
 		
 		model.setViewName("/review/review_main_search");
 		

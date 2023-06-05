@@ -1,10 +1,12 @@
 package com.project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.project.dao.ReviewLikeDao;
 import com.project.vo.ReviewLikeVo;
 
+@Service("reviewLikeService")
 public class ReviewLikeServiceImpl implements ReviewLikeService {
 
 	@Autowired
