@@ -130,7 +130,7 @@ public class BookmarkDao extends DBConn{
 	}
 	
 	public int delete(String bmid) {
-		return sqlSession.delete("mapper.bookmark.bookDelete", bmid);
+		return sqlSession.delete("mapper.bookmark.delete", bmid);
 //		int result = 0;
 //		String sql = "delete from pcp_bookmark where bmid = ?";
 //		getPreparedStatement(sql);
