@@ -39,7 +39,7 @@ public class SearchController {
 	@Autowired
 	private HospitalService hospitalService;
 	@Autowired
-	private ReviewService reviewSerivce;
+	private ReviewService reviewService;
 	@Autowired
 	private ReviewLikeService reviewLikeService;
 	@Autowired
@@ -86,7 +86,7 @@ public class SearchController {
 		HospitalVo hospital = hospitalService.select(hid);
 		HospitalVo star = hospitalService.selectStar(hid);
 		BookingVo bookingVo = bookingService.getSelectTime(hid);
-		ArrayList<ReviewVo> RM_select = reviewSerivce.getRM_select(hid);
+		ArrayList<ReviewVo> RM_select = reviewService.getRM_select(hid);
 		
 		model.addObject("hospital", hospital);
 		model.addObject("star", star);
@@ -186,10 +186,10 @@ public class SearchController {
 	    int result = bookmarkService.getCheckBookmark(bookmarkVo);
 
 	    if (result == 0) {
-	        bookmarkDao.insert(bookmarkVo);
+	        bookmarkService.getInsert(bookmarkVo);
 	        return "success";
 	    } else if (result == 1) {
-	        bookmarkDao.deleteBookmark(bookmarkVo);
+	    	bookmarkService.getDeleteBookmark(bookmarkVo);
 	        return "fail";
 	    }
 
@@ -266,10 +266,10 @@ public class SearchController {
 	@ResponseBody
 	public String rstateProc(String rid, @RequestParam("hid") String hid) {
 		ReviewDao reviewDao = new ReviewDao();
-	    int rstate_result = reviewSerivce.reviewCheckResult(rid);
+	    int rstate_result = reviewService.reviewCheckResult(rid);
 
 	    if (rstate_result == 0) {
-	    	reviewDao.update(rid);
+	    	reviewService.getUpdateReport(rid);
 	    	System.out.println(rstate_result);
 	    	return "success";
 		} else if (rstate_result == 1) {
