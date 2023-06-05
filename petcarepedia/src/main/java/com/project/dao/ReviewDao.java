@@ -65,7 +65,7 @@ public class ReviewDao extends DBConn {
 	
 	
 	public ArrayList<ReviewVo> RM_select(String hid) {
-		List<ReviewVo> list = sqlSession.selectList("mapper.review.my_select", hid);
+		List<ReviewVo> list = sqlSession.selectList("mapper.review.RM_select", hid);
 		return (ArrayList<ReviewVo>)list;
 		/*
 		ArrayList<ReviewVo> RM_select = new ArrayList<ReviewVo>();
