@@ -902,7 +902,11 @@ textarea[name='rcontent'] {
 	margin : 0px 10px 10px 10px;
 	word-break:break-all;
 	height : 150px;
-	overflow:hidden;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 7;
+	-webkit-box-orient: vertical;
  	letter-spacing: 1px;
 	line-height : 1.6;
 	padding-bottom : 10px;
