@@ -300,7 +300,8 @@ public class BookingDao extends DBConn {
 	
 	/** search5 - 회원아이디 상세 검색창 (06.05 추가)**/
 	public ArrayList<BookingVo> search5(String mid) {
-		return sqlSession.selectList("mapper.booking.search5", mid);
+		List<BookingVo> list = sqlSession.selectList("mapper.booking.search5", mid);
+		return (ArrayList<BookingVo>) list;
 		
 //		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
 //		String sql = " select bid, hname, mid,  to_char(BDATE, 'yyyy-mm-dd') VDATE, bstate "
