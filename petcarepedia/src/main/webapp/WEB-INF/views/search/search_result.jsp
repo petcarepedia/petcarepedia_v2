@@ -276,7 +276,15 @@ $(document).ready(function() {
 					<span>리뷰 ${fn:length(RM_select)}</span>
 					
 					<div class="total">
-						<span>${star.rstar} / 5</span>
+						<c:choose>
+							<c:when test="${star.rstar>=1}">
+								<span>${star.rstar} / 5</span>
+							</c:when>
+							
+							<c:otherwise>
+								<span>0 / 5</span>
+							</c:otherwise>
+						</c:choose>
 						
 						<c:if test="${star.rstar>=1 && star.rstar<2}">
 							<span> ⭐ </span>
