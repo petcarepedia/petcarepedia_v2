@@ -11,6 +11,12 @@
 		values ('B_'||LTRIM(to_char(SEQU_PCP_BOOKING_BID.nextVal, '0000')), sysdate, #{vdate}, #{vtime}, '예약중', #{mid}, #{hid})
 	</insert>
 	
+	<select id="checkBooking" parameterType="com.project.vo.BookingVo" resultType="int">
+		SELECT COUNT(*) 
+		FROM PCP_BOOKING 
+		WHERE MID=#{mid} AND HID=#{hid} AND VDATE=#{vdate} AND VTIME=#{vtime}
+	</select>
+	
 	<select id="select" resultType="com.project.vo.BookingVo">
 		SELECT ROWNUM RNO, BID, to_char(BDATE, 'yyyy-mm-dd') BDATE,  to_char(BDATE, 'yyyy-mm-dd') VDATE, VTIME, BSTATE, MID, HNAME
 		FROM (SELECT * FROM PCP_BOOKING B, PCP_HOSPITAL H where b.hid = h.hid ORDER BY BID DESC)

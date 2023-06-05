@@ -22,6 +22,11 @@ public class BookingServiceImpl implements BookingService{
 	}
 	
 	@Override
+	public int getCheckBooking(BookingVo bookingVo) {
+		return bookingDao.insert(bookingVo); 
+	}
+	
+	@Override
 	public ArrayList<BookingVo> getSelect() {
 		return bookingDao.select();
 	}

@@ -9,6 +9,7 @@ import com.project.vo.BookingVo;
 public interface BookingService {
 	
 	public int getInsert(BookingVo bookingVo);
+	public int getCheckBooking(BookingVo bookingVo);
 	public ArrayList<BookingVo> getSelect();
 	public ArrayList<BookingVo> getSearch(String mid);
 	public ArrayList<BookingVo> getSearch1(String mid);
