@@ -8,13 +8,13 @@
 	<select id="RH_select" parameterType="String" resultType="com.project.vo.ReviewVo">
 		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, loc, tel, htime, ntime, holiday, intro, img, hrink 
 		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, h.loc, h.tel, h.htime, h.ntime, h.holiday, h.intro, h.img, h.hrink
-		from pcp_review r, pcp_hospital h where r.hid=h.hid and h.hid = ? order by r.rdate desc)
+		from pcp_review r, pcp_hospital h where r.hid=h.hid and h.hid = #{hid} order by r.rdate desc)
 	</select>
 	
 	<select id="RM_select" parameterType="String" resultType="com.project.vo.ReviewVo">
 		SELECT ROWNUM RNO, RID, M.NICKNAME, RCONTENT, TO_CHAR(RDATE, 'YYYY-MM-DD') RDATE, RLIKE, ROUND(RSTAR, 0) RSTAR
 		FROM (SELECT * FROM PCP_REVIEW R, PCP_HOSPITAL H
-		WHERE R.HID = H.HID AND H.HID=?
+		WHERE R.HID = H.HID AND H.HID=#{hid}
 		ORDER BY R.RDATE) T, PCP_MEMBER M 
 		WHERE T.MID = M.MID
 	</select>
