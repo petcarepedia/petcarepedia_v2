@@ -77,7 +77,7 @@
 						<th>병원명</th>
 						<th>기타 동물 여부</th>
 						<th>야간 진료 여부</th>
-						<th>휴무 진료 여부</th>
+						<th>공휴일 진료 여부</th>
 					</tr>
 					<c:forEach var="hospitalVo" items="${list}">
 					<tr>

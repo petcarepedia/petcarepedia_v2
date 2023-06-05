@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,7 +81,9 @@
 								<tr>
 									<th>파일 업로드</th>
 									<td>
-										<input type="file" name="file1">
+										<c:if test="${hospitalVo.hsfile != null}">
+											<img src="http://localhost:9000/petcarepedia/upload/${bvo.hsfile}">
+										</c:if>
 									</td>
 								</tr>
 								<tr>
