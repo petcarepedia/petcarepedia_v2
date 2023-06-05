@@ -11,7 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.project.dao.BookingDao;
 import com.project.dao.MemberDao;
 import com.project.dao.ReviewDao;
+import com.project.service.BookingService;
 import com.project.service.BookmarkService;
+import com.project.service.MemberService;
+import com.project.service.ReviewService;
 import com.project.vo.BookingReviewVo;
 import com.project.vo.BookingVo;
 import com.project.vo.BookmarkVo;
@@ -22,7 +25,12 @@ import com.project.vo.ReviewVo;
 public class MypageController {
 	@Autowired
 	private BookmarkService bookmarkService;
-	
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private BookingService bookingService;
+	@Autowired
+	private ReviewService reviewService;
 	
 	/*
 	 * information.do - 나의 회원정보 폼
@@ -30,8 +38,8 @@ public class MypageController {
 	@RequestMapping(value = "/information.do", method = RequestMethod.GET)
 	public ModelAndView information(String mid) {
 		ModelAndView model = new ModelAndView();
-		MemberDao memberDao = new MemberDao();
-		MemberVo memberVo = memberDao.select(mid);
+		//MemberDao memberDao = new MemberDao();
+		MemberVo memberVo = memberService.getSelect(mid);
 		model.addObject("memberVo", memberVo);
 		model.setViewName("/mypage/information");
 		return model;
@@ -43,8 +51,8 @@ public class MypageController {
 	@RequestMapping(value = "/revise.do", method = RequestMethod.GET)
 	public ModelAndView revise(String mid) {
 		ModelAndView model = new ModelAndView();
-		MemberDao memberDao = new MemberDao();
-		MemberVo memberVo = memberDao.select(mid);
+		//MemberDao memberDao = new MemberDao();
+		MemberVo memberVo = memberService.getSelect(mid);
 		model.addObject("memberVo", memberVo);
 		model.setViewName("/mypage/revise");
 		return model;
@@ -56,8 +64,8 @@ public class MypageController {
 	@RequestMapping(value = "/member_update_proc.do", method = RequestMethod.POST)
 	public String member_update_proc(MemberVo memberVo) {
 		String viewName = "";
-		MemberDao memberDao = new MemberDao();
-		int result = memberDao.update(memberVo);
+		//MemberDao memberDao = new MemberDao();
+		int result = memberService.getUpdate(memberVo);
 		if(result == 1) {
 			viewName = "redirect:/information.do?mid=" + memberVo.getMid();
 		} else {
@@ -72,9 +80,9 @@ public class MypageController {
 	@RequestMapping(value = "/reservation.do", method = RequestMethod.GET)
 	public ModelAndView reservation(String mid) {
 		ModelAndView model = new ModelAndView();
-		BookingDao bookingDao = new BookingDao();
-		ArrayList<BookingVo> list = bookingDao.search2(mid);
-		ArrayList<BookingVo> list2 = bookingDao.search4(mid);
+		//BookingDao bookingDao = new BookingDao();
+		ArrayList<BookingVo> list = bookingService.getSearch2(mid);
+		ArrayList<BookingVo> list2 = bookingService.getSearch4(mid);
 		model.setViewName("/mypage/reservation");
 		model.addObject("list", list);
 		model.addObject("list2", list2);
@@ -88,8 +96,8 @@ public class MypageController {
 	@RequestMapping(value = "/reservation_delete.do", method = RequestMethod.GET)
 	public ModelAndView reservation_delete(String bid, String mid) {
 		ModelAndView model = new ModelAndView();
-		BookingDao bookingDao = new BookingDao();
-		BookingVo bookingVo = bookingDao.select2(bid);
+		//BookingDao bookingDao = new BookingDao();
+		BookingVo bookingVo = bookingService.getSelect2(bid);
 		model.addObject("bid", bid);
 		model.addObject("mid", mid);
 		model.addObject("bookingVo", bookingVo);
@@ -106,8 +114,8 @@ public class MypageController {
 	@RequestMapping(value = "/reservation_delete_proc.do", method = RequestMethod.POST)
 	public String reservation_delete_proc(String bid) {
 		String viewName = "";
-		BookingDao bookingDao = new BookingDao();
-		int result = bookingDao.delete(bid);
+		//BookingDao bookingDao = new BookingDao();
+		int result = bookingService.getDelete(bid);
 		if(result == 1) {
 			viewName = "redirect:/reservation.do?mid=hong";
 		}
@@ -123,9 +131,9 @@ public class MypageController {
 	@RequestMapping(value = "/reservation2.do", method = RequestMethod.GET)
 	public ModelAndView reservation2(String mid) {
 		ModelAndView model = new ModelAndView();
-		BookingDao bookingDao = new BookingDao();
-		ArrayList<BookingVo> list = bookingDao.search1(mid);
-		ArrayList<BookingReviewVo> list2 = bookingDao.search3(mid);
+		//BookingDao bookingDao = new BookingDao();
+		ArrayList<BookingVo> list = bookingService.getSearch1(mid);
+		ArrayList<BookingReviewVo> list2 = bookingService.getSearch3(mid);
 		model.setViewName("/mypage/reservation2");
 		model.addObject("list", list);
 		model.addObject("list2", list2);
@@ -164,7 +172,7 @@ public class MypageController {
 	public String bookmark_delete_proc(String bmid) {
 		String viewName = "";
 		//BookmarkDao bookmarkDao = new BookmarkDao();
-		int result = bookmarkService.bookmarkDelete(bmid);
+		int result = bookmarkService.getDelete(bmid);
 		if(result == 1) {
 			viewName = "redirect:/bookmark.do?mid=hong";
 		}
@@ -178,8 +186,8 @@ public class MypageController {
 	@RequestMapping(value = "/my_review.do", method = RequestMethod.GET)
 	public ModelAndView my_review(String mid) {
 		ModelAndView model = new ModelAndView();
-		ReviewDao reviewDao = new ReviewDao();
-		ArrayList<ReviewVo> list = reviewDao.my_select(mid);
+		//ReviewDao reviewDao = new ReviewDao();
+		ArrayList<ReviewVo> list = reviewService.getMy_select(mid);
 		
 		model.addObject("list", list);
 		model.setViewName("/mypage/my_review");
@@ -192,8 +200,8 @@ public class MypageController {
 	@RequestMapping(value = "/review_revise.do", method = RequestMethod.GET)
 	public ModelAndView review_revise(String rid) {
 		ModelAndView model = new ModelAndView();
-		ReviewDao reviewDao = new ReviewDao();
-		ReviewVo reviewVo = reviewDao.select(rid);
+		//ReviewDao reviewDao = new ReviewDao();
+		ReviewVo reviewVo = reviewService.getSelect(rid);
 		
 		model.addObject("reviewVo", reviewVo);
 		model.setViewName("/mypage/review_revise");
@@ -206,8 +214,8 @@ public class MypageController {
 	@RequestMapping(value = "/review_update_proc.do", method = RequestMethod.POST)
 	public String review_update_proc(ReviewVo reviewVo) {
 		String viewName = "";
-		ReviewDao reviewDao = new ReviewDao();
-		int result = reviewDao.update(reviewVo);
+		//ReviewDao reviewDao = new ReviewDao();
+		int result = reviewService.getUpdate(reviewVo);
 		if(result == 1) {
 			viewName = "redirect:/my_review.do?mid=hong";
 		} else {
@@ -221,8 +229,8 @@ public class MypageController {
 	@RequestMapping(value = "/my_review_delete.do", method = RequestMethod.GET)
 	public ModelAndView reservation_delete(String rid) {
 		ModelAndView model = new ModelAndView();
-		ReviewDao reviewDao = new ReviewDao();
-		ReviewVo reviewVo = reviewDao.select(rid);
+		//ReviewDao reviewDao = new ReviewDao();
+		ReviewVo reviewVo = reviewService.getSelect(rid);
 		model.addObject("rid", rid);
 		model.addObject("reviewVo", reviewVo);
 		model.setViewName("/mypage/my_review_delete");
@@ -235,8 +243,8 @@ public class MypageController {
 	@RequestMapping(value = "/my_review_delete_proc.do", method = RequestMethod.POST)
 	public String my_review_delete_proc(String rid) {
 		String viewName = "";
-		ReviewDao reviewDao = new ReviewDao();
-		int result = reviewDao.delete(rid);
+		//ReviewDao reviewDao = new ReviewDao();
+		int result = reviewService.getDelete(rid);
 		if(result == 1) {
 			viewName = "redirect:/my_review.do?mid=hong";
 		}
@@ -252,8 +260,8 @@ public class MypageController {
 	@RequestMapping(value = "/review_write.do", method = RequestMethod.GET)
 	public ModelAndView review_write(String mid, String hid, String bid) {
 		ModelAndView model = new ModelAndView();
-		MemberDao memberDao = new MemberDao();
-		MemberVo memberVo = memberDao.select(mid);
+		//MemberDao memberDao = new MemberDao();
+		MemberVo memberVo = memberService.getSelect(mid);
 		model.addObject("memberVo", memberVo);
 		model.addObject("hid", hid);
 		model.addObject("bid", bid);
@@ -267,8 +275,8 @@ public class MypageController {
 	@RequestMapping(value = "/review_write_proc.do", method = RequestMethod.POST)
 	public String review_write_proc(ReviewVo reviewVo) {
 		String viewName = "";
-		ReviewDao reviewDao = new ReviewDao();
-		int result = reviewDao.insert(reviewVo);
+		//ReviewDao reviewDao = new ReviewDao();
+		int result = reviewService.getInsert(reviewVo);
 		if(result == 1) {
 			viewName = "redirect:/my_review.do?mid=hong";
 		} else {
@@ -294,8 +302,8 @@ public class MypageController {
 	@RequestMapping(value = "/member_delete_proc.do", method = RequestMethod.POST ,produces="application/x-www-form-urlencoded;charset=UTF-8")
 	public String member_delete_proc(String mid, String pass) {
 		String viewName = "";
-		MemberDao memberDao = new MemberDao();
-		int result = memberDao.delete(mid, pass);
+		//MemberDao memberDao = new MemberDao();
+		int result = memberService.getDelete(mid, pass);
 		if(result == 1) {
 			viewName = "redirect:/login.do";
 		} else {
