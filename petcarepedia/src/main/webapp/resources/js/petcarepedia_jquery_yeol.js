@@ -50,7 +50,13 @@ $(document).ready(function(){
 			$("#phone3").focus();
 			return false;
 		} else {
-			updateForm.submit();
+			 Swal.fire({
+	            icon: 'success',
+	            title: '수정 완료',
+	            showConfirmButton: true // 확인 버튼 표시
+	        }).then(function() {
+				updateForm.submit();
+        	});
 		}
 	
 		
@@ -63,7 +69,25 @@ $(document).ready(function(){
 		mypage - reservation 예약취소버튼
 ********************************************/
 $("#btnReservationDelete").click(function(){
-	deleteForm.submit();
+	Swal.fire({
+	        title: '정말로 취소하시겠습니까?',
+	        icon: 'warning',
+	        showCancelButton: true,
+	        confirmButtonColor: '#3085d6',
+	        cancelButtonColor: '#d33',
+	        confirmButtonText: '승인',
+	        cancelButtonText: '취소'
+	    }).then((result) => {
+	        if (result.isConfirmed) {
+	            Swal.fire(
+	                '취소가 완료되었습니다.',
+	                'success'
+	            ).then(() => {
+	                deleteForm.submit();
+	            });
+	        }
+	    });
+	
 })
 
 
@@ -76,7 +100,13 @@ $("#btnReservationDelete").click(function(){
 			alert("30글자 이상을 입력해주세요");
 			return false;
 		} else {
-			writeForm.submit();
+			Swal.fire({
+	            icon: 'success',
+	            title: '작성 완료',
+	            showConfirmButton: true // 확인 버튼 표시
+	        }).then(function() {
+				writeForm.submit();
+        	});
 		}
 	})
 /*******************************************************************************
@@ -96,7 +126,13 @@ $("#btnReservationDelete").click(function(){
 			alert("30글자 이상을 입력해주세요");
 			return false;
 		} else {
-			updateForm.submit();
+			Swal.fire({
+	            icon: 'success',
+	            title: '수정 완료',
+	            showConfirmButton: true // 확인 버튼 표시
+	        }).then(function() {
+				updateForm.submit();
+        	});
 		}
 	})
 
@@ -104,7 +140,25 @@ $("#btnReservationDelete").click(function(){
 	내가쓴리뷰 - 리뷰삭제
 ******************************************************************************/
 	$("#btnReviewDelete").click(function(){
-		deleteForm.submit();
+		Swal.fire({
+	        title: '정말로 삭제하시겠습니까?',
+	        icon: 'warning',
+	        showCancelButton: true,
+	        confirmButtonColor: '#3085d6',
+	        cancelButtonColor: '#d33',
+	        confirmButtonText: '승인',
+	        cancelButtonText: '취소'
+	    }).then((result) => {
+	        if (result.isConfirmed) {
+	            Swal.fire(
+	                '삭제가 완료되었습니다.',
+	                'success'
+	            ).then(() => {
+	                deleteForm.submit();
+	            });
+	        }
+	    });
+	
 	})
 
 
@@ -117,7 +171,24 @@ $("#btnReservationDelete").click(function(){
 		mypage - 회원탈퇴
 ********************************************/
 	$("#btnMemberDelete").click(function(){
-		deleteForm.submit();
+			Swal.fire({
+	        title: '정말로 탈퇴하시겠습니까?',
+	        icon: 'warning',
+	        showCancelButton: true,
+	        confirmButtonColor: '#3085d6',
+	        cancelButtonColor: '#d33',
+	        confirmButtonText: '승인',
+	        cancelButtonText: '취소'
+	    }).then((result) => {
+	        if (result.isConfirmed) {
+	            Swal.fire(
+	                '탈퇴가 완료되었습니다.',
+	                'success'
+	            ).then(() => {
+	                deleteForm.submit();
+	            });
+	        }
+	    });
 	});
 
 

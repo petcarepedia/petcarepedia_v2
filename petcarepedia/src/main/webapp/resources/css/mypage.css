@@ -402,6 +402,10 @@ hr {
 	color : #3D3D3D;
 	text-decoration : none;
 }
+#reservation #aside #section2 #aside1 div a span:hover{
+	font-weight:bold;
+	color :#7ab2cc;
+}
 #reservation #aside #section2 #aside1 div span:nth-child(9) {
 	font-weight: 400;
 	font-size: 14px;
@@ -575,7 +579,7 @@ hr {
 	mypage - reservation2
 **************************************/
 
-#reservation #btn_write_review, #reservation #btn_watch_review {
+#reservation #btn_write_review {
 	font-weight: 700;
 	font-size: 15px;
 	color: #FFFFFF;
@@ -585,6 +589,17 @@ hr {
 	border: none;
 	border-radius: 5px;
 }
+#reservation #btn_watch_review {
+	font-weight: 700;
+	font-size: 15px;
+	color: #FFFFFF;
+	width: 110.77px;
+	height: 44px;
+	background: #7AB2CC;
+	border: none;
+	border-radius: 5px;
+}
+
 #btn_review a {
 	text-decoration : none;
 }
@@ -783,6 +798,15 @@ textarea[name='rcontent'] {
 	border-radius: 5px 0px 0px 5px;
 	border-right : none;
 }
+#my_review #aside #section2 #aside1 a {
+	text-decoration : none;
+	font : 300px;
+	color : black;
+}
+#my_review #aside #section2 #aside1 a span:hover{
+	font-weight:bold;
+	color :#7ab2cc;
+}
 #my_review #aside #section2 {
 	width : 750px;
 	height : 250px;
@@ -857,7 +881,7 @@ textarea[name='rcontent'] {
 #my_review #aside #section2 #aside3 {
 	float:left;
 	width : 300px;
-	height : 215px;
+	 height : 215px; 
 	border: 1px solid #98DFFF;
 	border-radius: 5px;
 }
@@ -877,8 +901,11 @@ textarea[name='rcontent'] {
 	text-align: justify;
 	margin : 0px 10px 10px 10px;
 	word-break:break-all;
+	height : 150px;
+	overflow:hidden;
  	letter-spacing: 1px;
 	line-height : 1.6;
+	padding-bottom : 10px;
 }
 #my_review #aside #section2 #aside3 span:last-child {
 	font-weight: 400;

@@ -36,7 +36,9 @@
 				<c:forEach var = "reviewVo" items = "${list}">
 					<section id = "section2">
 						<div id = "aside1">
-							<span>${reviewVo.hname}</span>
+							<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookingVo.hid}">
+								<span>${reviewVo.hname}</span>
+							</a>
 							<span>${reviewVo.tel}</span>
 							<span>
 								<span>${reviewVo.gloc}</span>
