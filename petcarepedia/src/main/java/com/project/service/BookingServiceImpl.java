@@ -1,6 +1,7 @@
 package com.project.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,7 +67,7 @@ public class BookingServiceImpl implements BookingService{
 	}
 	
 	@Override
-	public int getReviewCheck(String hid, String mid) {
+	public BookingVo getReviewCheck(String hid, String mid) {
 		return bookingDao.reviewCheck(hid, mid);
 	}
 	

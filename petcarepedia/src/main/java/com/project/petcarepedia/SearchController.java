@@ -79,7 +79,7 @@ public class SearchController {
 	
 	/** search_result.do - 병원 상세정보 **/
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
-	public ModelAndView search_result(String hid) {
+	public ModelAndView search_result(String hid, String mid) {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
 		BookmarkDao bookmarkDao = new BookmarkDao();
@@ -100,6 +100,11 @@ public class SearchController {
 	    bookmarkVo.setMid("hong"); // 이 부분을 세션 정보 또는 다른 값을 가져와 설정해야합니다.
 	    int bookmarkResult = bookmarkService.getCheckBookmark(bookmarkVo);
 	    model.addObject("bookmarkResult", bookmarkResult);
+	    
+	    // reveiw chech
+	    BookingVo blist = bookingService.getReviewCheck(hid, mid);
+	    model.addObject("blist", blist);
+	    
 	    
 	    model.setViewName("/search/search_result");
 		
@@ -167,14 +172,26 @@ public class SearchController {
 	@RequestMapping(value="reviewCheckProc.do", method=RequestMethod.POST)
 	@ResponseBody
 	public String reviewCheckProc(String hid, String mid) {
-		int review_result = bookingService.getReviewCheck(hid, mid);
-		/* System.out.println(review_result); */
-		
-		if(review_result == 1) {
-			return "success";
-		} else {
-			return "fail";
+		String result = "";
+		if(hid != "" && mid != "") {
+			result = "success";
+			} else {
+				result = "fail";
 		}
+		return result;
+		
+		
+		
+//		System.out.println(hid);
+//		System.out.println(mid);
+//		
+//		System.out.println(blist.getCount());
+//		
+//		if(blist == null) {
+//			
+//		} else {
+//			;
+//		}		
 	}	
 	
 	
@@ -255,7 +272,7 @@ public class SearchController {
         } else { // 기록 있음
         	reviewLikeService.getLikesDownID(reviewLikeVo);
         	reviewLikeService.getLikesDown(reviewLikeVo);
-            System.out.println(like_result);
+			/* System.out.println(like_result); */
             return "fail";
         }
     }

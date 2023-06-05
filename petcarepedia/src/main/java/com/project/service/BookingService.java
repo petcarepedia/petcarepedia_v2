@@ -18,7 +18,7 @@ public interface BookingService {
 	public ArrayList<BookingVo> getSearch5(String mid);
 	public BookingVo getSelect(String mid);
 	public BookingVo getSelect2(String bid);
-	public int getReviewCheck(String hid, String mid);
+	public BookingVo getReviewCheck(String hid, String mid);
 	public ArrayList<BookingVo> getSelectTime();
 	public BookingVo getSelectTime(String hid);
 	public int getUpdate(BookingVo bookingVo);

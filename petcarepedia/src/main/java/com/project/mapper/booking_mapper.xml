@@ -79,7 +79,9 @@
 	</select>
 	
 	<select id="reviewCheck" parameterType="map" resultType="com.project.vo.BookingVo">
-		SELECT COUNT(*) FROM PCP_BOOKING WHERE HID=#{hid} AND MID=#{mid} AND BSTATE='진료완료'
+		SELECT COUNT(*) COUNT, MID, BID, HID 
+		FROM PCP_BOOKING WHERE HID=#{hid} AND MID=#{mid} 
+		GROUP BY MID, BID, HID
 	</select>
 	
 	<select id="selectTime" resultType="com.project.vo.BookingVo">

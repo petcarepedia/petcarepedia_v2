@@ -56,14 +56,17 @@ $(document).ready(function() {
     
     $("#review").click(function(event) { // 리뷰
     	event.preventDefault();
-        var hid = "${hospital.hid}";
-
+    	var hid = $("input[name='rhid']").val();
+        var mid = $("input[name='rmid']").val();
+        var bid = $("input[name='rbid']").val();
+        
         $.ajax({
             url: "reviewCheckProc.do",
             type: "POST",
             data: {
                 hid: hid,
-                mid: "hong"
+                mid: mid,
+                bid: bid
             },
             success: function(review_result) {
                 if (review_result === "fail") {
@@ -76,7 +79,7 @@ $(document).ready(function() {
                         location.reload(); // 확인 버튼 클릭 시 페이지 새로고침
                     });
                 } else if (review_result === "success") {
-                    window.location.href = "http://localhost:9000/petcarepedia/review_write.do?";
+                    window.location.href = "http://localhost:9000/petcarepedia/review_write.do?mid="+mid+"&hid="+hid+"&bid="+bid;
                 }
             }
         });
@@ -164,32 +167,16 @@ $(document).ready(function() {
 					
 					<span class="name">${hospital.hname}</span>
 					
-					<span class="grade">⭐  ${star.rstar} | 리뷰 ${fn:length(RM_select)}</span>
-					
-					<button type="button" id="reservation" value="${hospital.hid}"><img src="http://localhost:9000/petcarepedia/images/cal.png">간편 예약하기
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp></button>
-					<div id="hmodal" class="modal">
-					<div class="modal-content">
-					    <span class="close">&times;</span>
-					   <!-- <iframe id="reservation-iframe" src="" 
-						width="500px" height="500px" frameborder=0 ></iframe> -->
-					  <jsp:include page="search_reservation.jsp"></jsp:include>	
-					  </div>
-				  	</div>
-					
-					
 					<div class="buttons">
-						<form name="reviewForm" action="reviewCheckProc.do" method="post">
+<%-- 						<form name="reviewForm" action="reviewCheckProc.do" method="post">
 						<!-- <a href="reviewCheckProc.do"> -->
 <!-- 						<a href="review_write.do?mid=hong"> -->
-							<input type="hidden" name="hid" value="${hospital.hid}">
-							<input type="hidden" name="mid" value="hong">
+							<input type="hidden" name="rhid" value="${blist.hid}">
+							<input type="hidden" name="rmid" value="${blist.mid}">
+							<input type="hidden" name="rbid" value="${blist.bid}">
 							<button type="submit" id="review"><img src="http://localhost:9000/petcarepedia/images/review.png">리뷰하기</button>
 						<!-- </a> -->
-						</form>	
+						</form>	 --%>
 						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
 						<form name="bookmarkForm" action="bookmarkProc.do" method="post">
 							<input type="hidden" name="hid" value="${hospital.hid}">
@@ -199,17 +186,47 @@ $(document).ready(function() {
 							<!-- 북마크 여부에 따라서 -->
 							<c:choose>
 								<c:when test="${bookmarkResult == 1}">
-									<button type="submit" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/bookmark_yellow.png">찜하기</button>
+									<button type="submit" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/bookmark_yellow.png"></button>
 								</c:when>
 								
 								<c:otherwise>
-									<button type="submit" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/bookmark.png">찜하기</button>
+									<button type="submit" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/bookmark.png"></button>
 								</c:otherwise>
 							
 							</c:choose>
 							
 						</form>
 					</div>
+					
+						<c:choose>
+							<c:when test="${star.rstar>=1}">
+								<span class="grade">⭐  ${star.rstar} | 리뷰 ${fn:length(RM_select)}</span>
+							</c:when>
+							
+							<c:otherwise>
+								<span class="grade">⭐  0 | 리뷰 ${fn:length(RM_select)}</span>
+							</c:otherwise>
+						</c:choose>
+					
+					<%-- <span class="grade">⭐  ${star.rstar} | 리뷰 ${fn:length(RM_select)}</span> --%>
+					
+					<button type="button" id="reservation" value="${hospital.hid}"><img src="http://localhost:9000/petcarepedia/images/cal.png">간편 예약하기
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								&nbsp&nbsp&nbsp&nbsp&nbsp>
+					</button>
+					<div id="hmodal" class="modal">
+						<div class="modal-content">
+						    <span class="close">&times;</span>
+						   <!-- <iframe id="reservation-iframe" src="" 
+							width="500px" height="500px" frameborder=0 ></iframe> -->
+						  <jsp:include page="search_reservation.jsp"></jsp:include>	
+						  </div>
+				  	</div>
+					
+					
+					
 				</div>	
 				
 				<hr>
@@ -334,7 +351,7 @@ $(document).ready(function() {
 					<c:when test="${fn:length(RM_select) == 0}">
 					<div class="review_card_no">
 						<img id="review_img" src="http://localhost:9000/petcarepedia/images/review.png">
-						<p>등록된 리뷰가 아직 없습니다. 리뷰를 등록해주세요.</p>
+						<p>등록된 리뷰가 아직 없습니다.</p>
 					</div>
 					</c:when>
 				

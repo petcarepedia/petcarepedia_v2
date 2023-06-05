@@ -398,12 +398,12 @@ public class BookingDao extends DBConn {
 	}
 	
 	
-	/** reviewCheck - 리뷰쓰기 예약 확인하기(06.03 추가) **/
-	public int reviewCheck(String hid, String mid) {
+	/** reviewCheck - 리뷰쓰기 예약 확인하기(06.03 수정) **/
+	public BookingVo reviewCheck(String hid, String mid) {
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("hid", hid);
 		param.put("mid", mid);
-
+		System.out.println(mid);
 		return sqlSession.selectOne("mapper.booking.reviewCheck", param);
 		
 //		int result = 0;
