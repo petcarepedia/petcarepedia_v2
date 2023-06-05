@@ -204,11 +204,15 @@
 		margin-bottom:20px;
 		padding-top:100px;
   		overflow: hidden;
+  		max-width:1920px;
 	}
 	.inner-list {
 	  display: flex;
 	  transition: .3s ease-out;
 	  height: 100%;
+	}
+	.inner > img {
+		max-width:1920px;
 	}
 	
 	.main-search {
