@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.dao.ReviewLikeDao;
 import com.project.service.PageServiceImpl;
 import com.project.service.ReviewLikeService;
 import com.project.service.ReviewService;
@@ -34,7 +33,7 @@ public class ReviewController {
 
 		ModelAndView model = new ModelAndView();	
 		//임시 아이디
-		mid="test";
+		mid="hong";
 		Map<String, Integer> param = pageService.getPageResult(page, "review");
 		/*
 		//페이징 처리 - startCount, endCount 구하기
@@ -94,6 +93,8 @@ public class ReviewController {
 		ModelAndView model = new ModelAndView();
 		ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
 		ReviewVo reviewVo = reviewService.getEnter_select(rid);		
+		
+		reviewVo.setRcontent(reviewVo.getRcontent().replace("\n", "<br>"));
 		reviewLikeVo.setRid(reviewVo.getRid());
 		reviewLikeVo.setMid(mid);
 		

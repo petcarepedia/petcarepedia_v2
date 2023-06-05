@@ -81,7 +81,7 @@
 						<td><input type="checkbox" name="filter_location" value="은평구"> 은평구</td>
 						<td><input type="checkbox" name="filter_location" value="종로구"> 종로구</td>
 						<td><input type="checkbox" name="filter_location" value="중구"> 중구</td>
-						<td><input type="checkbox" name="filter_location" value="중량구"> 중량구</td>
+						<td><input type="checkbox" name="filter_location" value="중랑구"> 중랑구</td>
 						<td> </td>
 						<td> </td>
 						<td> </td>
@@ -120,7 +120,7 @@
 								<li id="list_middle" class="list">
 									<a href="review_content.do?rid=${list.rid }&&page=${page}&&mid=${mid }&&filter_location=${filter_location}">
 										<div id="review_hname">${list.hname }</div>
-										<div>
+										<div class="rvc">
 											${list.rcontent }
 										</div>
 									</a>

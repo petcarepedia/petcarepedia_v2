@@ -2,7 +2,7 @@ package com.project.vo;
 
 public class RSpagingVo {
 	int start, end;
-	String filter_location;
+	String gloc;
 	
 	
 
@@ -18,10 +18,10 @@ public class RSpagingVo {
 	public void setEnd(int end) {
 		this.end = end;
 	}
-	public String getFilter_location() {
-		return filter_location;
+	public String getGloc() {
+		return gloc;
 	}
-	public void setFilter_location(String filter_location) {
-		this.filter_location = filter_location;
+	public void setGloc(String gloc) {
+		this.gloc = gloc;
 	}
 }
