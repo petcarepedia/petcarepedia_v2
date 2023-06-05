@@ -30,4 +30,13 @@ public class BookmarkServiceImpl implements BookmarkService{
 		return bookmarkDao.delete(bmid);
 	}
 	
+	@Override
+	public int deleteBookmark(BookmarkVo bookmarkVo) {
+		return bookmarkDao.deleteBookmark(bookmarkVo);
+	}
+	
+	@Override
+	public int checkBookmark(BookmarkVo bookmarkVo) {
+		return bookmarkDao.checkBookmark(bookmarkVo);
+	}
 }
