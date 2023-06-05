@@ -134,7 +134,7 @@ $(document).ready(function(){
 	});
 	
 	//약관동의 유효성 체크
-	$(".terms").click(function(){
+	$(".terms,.term-modal").click(function(){
 		if($("#term1").is(':checked') && $("#term2").is(':checked')){
 			$("#termcheck_msg").text("").css("display","none");
 		} else {
@@ -205,6 +205,9 @@ $(document).ready(function(){
 		$.joinValidationCheck();
 	});
 	$("form[name='joinForm'] input").keyup(function(){
+		$.joinValidationCheck();
+	});
+	$(".term-modal").click(function(){
 		$.joinValidationCheck();
 	});
 	
