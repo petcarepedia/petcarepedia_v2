@@ -75,7 +75,7 @@ public class NoticeController {
 	public ModelAndView admin_notice_content(String nid) {
 		ModelAndView model = new ModelAndView();
 		NoticeVo noticeVo = noticeService.getEnterContent(nid);
-		
+		noticeVo.setNcontent(noticeVo.getNcontent().replace("\n", "<br>"));
 		model.addObject("noticeVo", noticeVo);
 		model.setViewName("/admin/notice/admin_notice_content");
 		

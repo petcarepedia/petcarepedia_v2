@@ -8,14 +8,22 @@ $(document).ready(function(){
 	 ********************************************/	
 	$("#btnNTW").click(function() {
 		if($("#title").val() == "") {
-			alert("제목을 입력해주세요.");
-			$("#title").focus();
-			return false;
+			Swal.fire({
+				  title: '타이틀을 입력해주세요',
+				  text: '',
+				  icon: 'warning',
+            }).then(function(){
+					$("#title").focus();
+				});
 		}
-		if($("#ncontent").val() == "") {
-			alert("내용을 입력해주세요.");
-			$("#ncontent").focus();
-			return false;
+		else if($("#ncontent").val() == "") {
+			Swal.fire({
+				  title: '내용을 입력해주세요',
+				  text: '',
+				  icon: 'warning',
+            }).then(function(){
+					$("#ncontent").focus();
+				});
 		}
 		else {
 			writeForm.submit();
@@ -30,14 +38,22 @@ $(document).ready(function(){
 	 ********************************************/	
 	$("#BTN_update").click(function() {
 		if($("#title").val() == "") {
-			alert("제목을 입력해주세요.");
-			$("#title").focus();
-			return false;
+			Swal.fire({
+				  title: '타이틀을 입력해주세요',
+				  text: '',
+				  icon: 'warning',
+            }).then(function(){
+					$("#title").focus();
+				});
 		}
 		else if($("#ncontent").val() == "") {
-			alert("내용을 입력해주세요.");
-			$("#ncontent").focus();
-			return false;
+			Swal.fire({
+				  title: '내용을 입력해주세요',
+				  text: '',
+				  icon: 'warning',
+            }).then(function(){
+					$("#ncontent").focus();
+				});
 		}
 		else {
 			updateForm.submit();
@@ -100,14 +116,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	if($("#count").val() == 0 ) {
-		return false;
-	}
-	else {
-		$('html, body').animate({
-			scrollTop: $('#filter_lo').offset().top
-		}, 'slow');
-	}
+
 
 	
 

@@ -232,9 +232,6 @@ div#filter_page table.filter tr td {
 div#filter_page table#filter_lo {
 	margin-bottom:10px;
 }
-div#filter_page table#filter_lo tr{
-	
-}
 div#filter_page table#filter_ani {
 	margin-bottom:40px;
 }
@@ -653,4 +650,11 @@ input#title {
 	color:#3d3d3d;
 	font-size:20px;
 	font-weight: 700;
+}
+div.review_content {
+	overflow: visible;
+	width: 200px;
+	height:40px;
+	white-space:normal;
+	text-overflow:ellipsis;
 }

@@ -120,7 +120,7 @@
 								<li id="list_middle" class="list">
 									<a href="review_content.do?rid=${list.rid }&&page=${page}&&mid=${mid}">
 										<div id="review_hname">${list.hname }</div>
-										<div>
+										<div class="review_content">
 											${list.rcontent }
 										</div>
 									</a>
