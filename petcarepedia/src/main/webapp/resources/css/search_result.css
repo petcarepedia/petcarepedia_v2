@@ -13,10 +13,13 @@
 div.result_main {
 	/* border: 1px solid gray; */
 	width: 1000px;
+	/* height: auto; */
 	margin: auto;
 	margin-top: 100px;
+	margin-bottom: 100px; 
 	/* text-align: center; */
 }
+
 
 
 /***************************************
@@ -229,9 +232,10 @@ div.api span:nth-child(2) {
 	font-size: 16px;
 	display: block;
 	padding-top: 15px;
+	margin-bottom: 5px;
 }
 
-div.api span:last-child {
+div.api span.api_home {
 	/* border: 2px solid red; */
 	font-size: 14px;
 	/* display: block; */
@@ -242,15 +246,17 @@ div.api span:last-child {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top:-4px;
+	/* margin-top:-4px; */
+	padding: 0px 10px;
 }
 
-div.api iframe.map {
-	width: 350px;
+div.api div.map {
+	/* border: 1px solid red; */
+	width: 370px;
 	height: 285px;
-	padding:0px;
-	margin:0px;
+	margin: 0px;
 }
+
 
 
 /***************************************
@@ -327,6 +333,29 @@ div.filter {
 	float: right;
 }
 
+div.review_card_no {
+	/* border: 1px solid #98DFFF; */
+	background: #F7FCFE;
+	border-radius: 5px;
+	clear: both;
+	width: 900px;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+div.review_card_no img#review_img {
+	width: 15%;
+	display: block;
+	margin: auto;
+	padding: 40px 0px 10px 0px;
+}
+
+div.review_card_no p {
+	/* border: 1px solid #98DFFF; */
+	font-size: 18px;
+	padding: 20px 0px;
+}
 
 div.review_card {
 	border: 1px solid #98DFFF;
@@ -412,6 +441,20 @@ div.review_card div.date span {
 	display:inline-block;
 }
 
+div.review_card div.date button#like-log {
+	border: 1px solid #98DFFF;
+	border-radius: 5px;
+/* 	background: white; */
+	background: #333;
+	font-size: 14px;
+	width: 165px;
+	height: 35px;
+	margin-top: 15px; 
+	padding-bottom: 7px;
+	pointer-events: none;
+	cursor: no-drop;
+}
+
 div.review_card div.date button#like {
 	border: 1px solid #98DFFF;
 	border-radius: 5px;
@@ -425,6 +468,11 @@ div.review_card div.date button#like {
 
 div.review_card div.date button#like span.like-count {
 	font-size: 14px;
+}
+
+div.review_card div.date button#like span.heart {
+	font-size: 15px;
+	color: red;
 }
 
 div.review_card div.date span:last-child {

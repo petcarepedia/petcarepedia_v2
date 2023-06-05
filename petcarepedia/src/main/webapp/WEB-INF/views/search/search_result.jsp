@@ -17,28 +17,121 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="http://localhost:9000/petcarepedia/js/search_result.js"></script>
 <script>
-$().ready(function (){
-	let bookmark_result = "${bookmark_result}";
-	console.log(bookmark_result);
-	/* if(bookmark_result=="fail"){
-		Swal.fire({
-            icon: 'error',                         
-            title: '로그인 실패',         
-            text: '아이디와 비밀번호를 다시 확인해주세요.',  
+$(document).ready(function() {
+    $("#bookmark").click(function(event) { // 북마크
+        event.preventDefault();
+
+        var hid = "${hospital.hid}";
+
+        $.ajax({
+            url: "bookmarkProc.do",
+            type: "POST",
+            data: {
+                hid: hid,
+                mid: "hong"
+            },
+            success: function(bookmark_result) {
+                if (bookmark_result === "fail") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '즐겨찾기 해제',
+                        text: '즐겨찾기에서 해제했습니다.',
+                        showConfirmButton: true // 확인 버튼 표시
+                    }).then(function() {
+                        location.reload(); // 확인 버튼 클릭 시 페이지 새로고침
+                    });
+                } else if (bookmark_result === "success") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '즐겨찾기 추가',
+                        text: '즐겨찾기에 추가했습니다.',
+                        showConfirmButton: true // 확인 버튼 표시
+                    }).then(function() {
+                        location.reload(); // 확인 버튼 클릭 시 페이지 새로고침
+                    });
+                }
+            }
         });
-	} else if(bookmark_result=="success"){
-		Swal.fire({
-            icon: 'success',                         
-            title: '회원가입 성공',         
-            text: '회원가입에 성공했습니다. 로그인해주세요.',  
+    });
+    
+    $("#review").click(function(event) { // 리뷰
+    	event.preventDefault();
+        var hid = "${hospital.hid}";
+
+        $.ajax({
+            url: "reviewCheckProc.do",
+            type: "POST",
+            data: {
+                hid: hid,
+                mid: "hong"
+            },
+            success: function(review_result) {
+                if (review_result === "fail") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '리뷰쓰기 실패',
+                        text: '예약을 먼저 진행해주세요.',
+                        showConfirmButton: true // 확인 버튼 표시
+                    }).then(function() {
+                        location.reload(); // 확인 버튼 클릭 시 페이지 새로고침
+                    });
+                } else if (review_result === "success") {
+                    window.location.href = "http://localhost:9000/petcarepedia/review_write.do?";
+                }
+            }
         });
-	} */
-	
-    $("#bookmark").click(function () {
-    	 bookmarkForm.submit();
+    });
+
+    $(".rstate").click(function() { // 신고하기
+    	var rid = $("input[name='rid']").val();
+    	
+        Swal.fire({
+            title: '정말로 신고 하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#FFB3BD',
+            cancelButtonColor: '#98DFFF',
+            confirmButtonText: '신고',
+            cancelButtonText: '취소',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "rstateForm.do",
+                    type: "POST",
+                    data: {
+                        rid: rid
+                    },
+                    success: function(rstate_result) {
+                        if (rstate_result === "fail") { 
+                            Swal.fire({
+                                icon: 'error',
+                                title: '신고 접수된 리뷰입니다',
+                                text: '관리자 확인중 입니다. 잠시만 기다려 주세요.',
+                                showConfirmButton: true
+                            }).then(function() {
+                                location.reload();
+                            });
+                        } else if (rstate_result === "success") {
+                            Swal.fire({
+                                icon: 'success',
+                                title: '신고되었습니다',
+                                text: '관리자 확인 중입니다.',
+                                showConfirmButton: true
+                            }).then(function() {
+                                location.reload();
+                            });
+                        }
+                    }
+                });
+            }
+        });
     });
 });
 </script>
+
+
+
 
 </head>
 
@@ -61,8 +154,7 @@ $().ready(function (){
 				
 				<div class="name_d">
 					<div class="area_d">
-						<!-- <a href="http://localhost:9000/petcarepedia/search_main.do">서울</a> -->
-						<a>서울</a>
+						<a href="http://localhost:9000/petcarepedia/search_main.do">서울</a>
 						<span>></span>
 						<%-- <a href="http://localhost:9000/petcarepedia/search_main.do">${hospital.gloc}</a> --%>
 						<a>${hospital.gloc}</a>
@@ -88,14 +180,32 @@ $().ready(function (){
 					
 					
 					<div class="buttons">
-						<a href="review_write.do?mid=${mid}">
-							<button type="button" id="review"><img src="http://localhost:9000/petcarepedia/images/review.png">리뷰하기</button>
-						</a>	
-						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
-						<form name="bookmarkForm" action="bookmarkProc.do" method="get">
+						<form name="reviewForm" action="reviewCheckProc.do" method="post">
+						<!-- <a href="reviewCheckProc.do"> -->
+<!-- 						<a href="review_write.do?mid=hong"> -->
 							<input type="hidden" name="hid" value="${hospital.hid}">
 							<input type="hidden" name="mid" value="hong">
-							<button type="button" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/like.png">찜하기</button>
+							<button type="submit" id="review"><img src="http://localhost:9000/petcarepedia/images/review.png">리뷰하기</button>
+						<!-- </a> -->
+						</form>	
+						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
+						<form name="bookmarkForm" action="bookmarkProc.do" method="post">
+							<input type="hidden" name="hid" value="${hospital.hid}">
+							<input type="hidden" name="mid" value="hong">
+							<input type="hidden" name="Bookmark Result" value="${bookmarkResult}">
+							
+							<!-- 북마크 여부에 따라서 -->
+							<c:choose>
+								<c:when test="${bookmarkResult == 1}">
+									<button type="submit" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/bookmark_yellow.png">찜하기</button>
+								</c:when>
+								
+								<c:otherwise>
+									<button type="submit" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/bookmark.png">찜하기</button>
+								</c:otherwise>
+							
+							</c:choose>
+							
 						</form>
 					</div>
 				</div>	
@@ -104,9 +214,11 @@ $().ready(function (){
 				
 				<div class="link">
 					<span><img src="http://localhost:9000/petcarepedia/images/loc.png">${hospital.loc}</span>
-					<c:if test="${hospital.hrink != null} ">
-						<span><img src="http://localhost:9000/petcarepedia/images/home.png"><a href="${hospital.hrink}">병원 홈페이지 가기</a></span>
-					</c:if>
+					    
+					    <c:if test="${hospital.hrink != null && hospital.hrink != 'X'}">
+					    	<span><img src="http://localhost:9000/petcarepedia/images/home.png"><a href="${hospital.hrink}">병원 홈페이지 가기</a></span>
+					    </c:if>	
+					    
 					<span><img src="http://localhost:9000/petcarepedia/images/call.png">${hospital.tel}</span>
 				</div>
 				
@@ -124,10 +236,12 @@ $().ready(function (){
 						<span>병원정보</span>
 						<span>위치 & 진료시간</span>
 						<div class="map">
-							<iframe class="map" src="http://localhost:9000/petcarepedia/search_map.do"
-							scrolling="no" width="350px" height="285px" frameborder=0></iframe>
+							<!-- <iframe class="map" src="http://localhost:9000/petcarepedia/search_map.do"
+							scrolling="no" width="350px" height="285px" frameborder=0></iframe> -->
+							<jsp:include page="search_result_map.jsp"></jsp:include>
 						</div>
-						<span>${hospital.loc}</span>
+						
+						<span class="api_home">${hospital.loc}</span>
 					</div>
 					
 					<div class="time">
@@ -206,70 +320,102 @@ $().ready(function (){
 					</div>
 				</div> -->
 				
-				<c:forEach var="RM_select" items="${RM_select}"> 
+				<c:choose>
+					<c:when test="${fn:length(RM_select) == 0}">
+					<div class="review_card_no">
+						<img id="review_img" src="http://localhost:9000/petcarepedia/images/review.png">
+						<p>등록된 리뷰가 아직 없습니다. 리뷰를 등록해주세요.</p>
+					</div>
+					</c:when>
 				
-				<div class="review_card">
-					<div class="member">
-						<div class="name">
-							<img src="http://localhost:9000/petcarepedia/images/cat.png">
-							<span>${RM_select.nickname}</span>
+					<c:otherwise>
+						<c:forEach var="RM_select" items="${RM_select}"> 
+						<div class="review_card">
+							<div class="member">
+								<div class="name">
+									<img src="http://localhost:9000/petcarepedia/images/cat.png">
+									<span>${RM_select.nickname}</span>
+								</div>
+								
+								<hr class="member_hr">
+								<span class="stext">⭐ <fmt:formatNumber type="number"  pattern="0" value="${RM_select.rstar}" /> / 5</span>
+								<hr class="member_hr">
+								<!-- <span>친절  ⭐⭐⭐⭐⭐</span>
+								<span>위생  ⭐⭐⭐⭐⭐</span> -->
+								<!-- <span class="stot">별점  ⭐⭐⭐⭐⭐</span> -->
+								<c:if test="${RM_select.rstar<1}">
+									<span class="stot">별점  </span>
+								</c:if>
+								
+								<c:if test="${RM_select.rstar>=1 && RM_select.rstar<2}">
+									<span class="stot">별점  ⭐</span>
+								</c:if>	
+								
+								<c:if test="${RM_select.rstar>=2 && RM_select.rstar<3}">
+									<span class="stot">별점  ⭐⭐</span>
+								</c:if>	
+								
+								<c:if test="${RM_select.rstar>=3 && RM_select.rstar<4}">
+									<span class="stot">별점  ⭐⭐⭐</span>
+								</c:if>	
+								
+								<c:if test="${RM_select.rstar>=4 && RM_select.rstar<5}">
+									<span class="stot">별점  ⭐⭐⭐⭐</span>
+								</c:if>
+								
+								<c:if test="${RM_select.rstar>=5}">
+									<span class="stot">별점  ⭐⭐⭐⭐⭐</span>
+								</c:if>
+							</div>
+							
+							<div class="write">
+								<!-- <h3>동물 종류 : 고양이</h3> -->
+								<p>${RM_select.rcontent}</p>
+							</div>
+							
+							<div class="date">
+								<span>작성 일자 : ${RM_select.rdate}</span>
+								<span> </span>
+								<form name="likeForm" action="likeProc.do" method="post">
+									<input type="hidden" name="hid" value="${hospital.hid}">
+									<input type="hidden" name="rid" value="${RM_select.rid}">
+									<input type="hidden" name="mid" value="hong">
+									
+									<!--  session 체크 이후 -->
+		<%-- 							<c:choose>
+									<c:when test="${RH_select.mid == null}">
+										<button type="submit" id="like-log" class="like" data-rid="${RM_select.rid}" disabled>좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+											<span class="heart">♥</span> 
+											<span class="like-count">${RM_select.rlike}</span>
+										</button>
+									</c:when>
+									<c:otherwise>
+										<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+											<span class="heart">♥</span> 
+											<span class="like-count">${RM_select.rlike}</span>
+										</button>
+									</c:otherwise>
+									</c:choose> --%>
+										<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+											<span class="heart">♥</span> 
+											<span class="like-count">${RM_select.rlike}</span>
+										</button>
+									
+								</form>
+								
+								<form name="rstateForm" action="rstateProc.do" method="post">
+									<input type="hidden" name="rid" value="${RM_select.rid}">
+									<input type="hidden" name="hid" value="${hospital.hid}">
+										<button type="button" class="rstate" name="rstate">신고하기</button>
+									<!-- <span>신고하기</span> -->
+								</form>
+							</div>
 						</div>
-						
-						<hr class="member_hr">
-						<span class="stext">⭐ <fmt:formatNumber type="number"  pattern="0" value="${RM_select.rstar}" /> / 5</span>
-						<hr class="member_hr">
-						<!-- <span>친절  ⭐⭐⭐⭐⭐</span>
-						<span>위생  ⭐⭐⭐⭐⭐</span> -->
-						<!-- <span class="stot">별점  ⭐⭐⭐⭐⭐</span> -->
-						<c:if test="${RM_select.rstar<1}">
-							<span class="stot">별점  </span>
-						</c:if>
-						
-						<c:if test="${RM_select.rstar>=1 && RM_select.rstar<2}">
-							<span class="stot">별점  ⭐</span>
-						</c:if>	
-						
-						<c:if test="${RM_select.rstar>=2 && RM_select.rstar<3}">
-							<span class="stot">별점  ⭐⭐</span>
-						</c:if>	
-						
-						<c:if test="${RM_select.rstar>=3 && RM_select.rstar<4}">
-							<span class="stot">별점  ⭐⭐⭐</span>
-						</c:if>	
-						
-						<c:if test="${RM_select.rstar>=4 && RM_select.rstar<5}">
-							<span class="stot">별점  ⭐⭐⭐⭐</span>
-						</c:if>
-						
-						<c:if test="${RM_select.rstar>=5}">
-							<span class="stot">별점  ⭐⭐⭐⭐⭐</span>
-						</c:if>
-					</div>
-					
-					<div class="write">
-						<!-- <h3>동물 종류 : 고양이</h3> -->
-						<p>${RM_select.rcontent}</p>
-					</div>
-					
-					<div class="date">
-						<span>작성 일자 : ${RM_select.rdate}</span>
-						<span> </span>
-						<form name="likeForm" action="likeProc.do" method="get">
-							<input type="hidden" name="hid" value="${hospital.hid}">
-							<input type="hidden" name="rid" value="${RM_select.rid}">
-							<button id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp❤️ <span class="like-count">${RM_select.rlike}</span></button>
-						</form>
-						
-						<form name="rstateForm" action="rstateProc.do" method="post">
-							<input type="hidden" name="rid" value="${RM_select.rid}">
-							<input type="hidden" name="hid" value="${hospital.hid}">
-								<button type="button" class="rstate" name="rstate">신고하기</button>
-							<!-- <span>신고하기</span> -->
-						</form>
-					</div>
-				</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 				
-				</c:forEach>
+				
 			</div>
 		</section>	
 	</div>	

@@ -19,10 +19,13 @@ import com.project.dao.HospitalDao;
 import com.project.dao.ReviewDao;
 import com.project.dao.ReviewLikeDao;
 import com.project.service.BookingService;
+import com.project.service.BookmarkService;
+import com.project.service.HospitalService;
+import com.project.service.ReviewLikeService;
+import com.project.service.ReviewService;
 import com.project.vo.BookingVo;
 import com.project.vo.BookmarkVo;
 import com.project.vo.HospitalVo;
-import com.project.vo.MemberVo;
 import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
 
@@ -32,6 +35,14 @@ public class SearchController {
 	
 	@Autowired
 	private BookingService bookingService;
+	@Autowired
+	private HospitalService hospitalService;
+	@Autowired
+	private ReviewService reviewSerivce;
+	@Autowired
+	private ReviewLikeService reviewLikeService;
+	@Autowired
+	private BookmarkService bookmarkService;
 	
 	HospitalDao hospitalDao = new HospitalDao();
 	BookingDao bookingDao = new BookingDao();
@@ -42,7 +53,7 @@ public class SearchController {
 	public ModelAndView search_main() {
 		ModelAndView model = new ModelAndView();
 		
-		ArrayList<HospitalVo> list = hospitalDao.select();
+		ArrayList<HospitalVo> list = hospitalService.select();
 		
 		model.addObject("list", list);
 		model.setViewName("/search/search_main");
@@ -56,7 +67,7 @@ public class SearchController {
 	public ModelAndView searchAreaProc(String gloc) {
 		ModelAndView model = new ModelAndView();
 		
-		ArrayList<HospitalVo> list = hospitalDao.searchGloc(gloc);
+		ArrayList<HospitalVo> list = hospitalService.searchGloc(gloc);
 		
 		model.addObject("list", list);
 		model.setViewName("/search/search_main");
@@ -70,11 +81,11 @@ public class SearchController {
 	public ModelAndView search_result(String hid) {
 		ModelAndView model = new ModelAndView();
 		ReviewDao reviewDao = new ReviewDao();
-		HospitalVo hospital = hospitalDao.select(hid);
-		HospitalVo star = hospitalDao.selectStar(hid);
+		BookmarkDao bookmarkDao = new BookmarkDao();
+		HospitalVo hospital = hospitalService.select(hid);
+		HospitalVo star = hospitalService.selectStar(hid);
 		BookingVo bookingVo = bookingService.getSelectTime(hid);
-		ArrayList<ReviewVo> RM_select = reviewDao.RM_select(hid);
-		
+		ArrayList<ReviewVo> RM_select = reviewSerivce.getRM_select(hid);
 		
 		model.addObject("hospital", hospital);
 		model.addObject("star", star);
@@ -82,11 +93,32 @@ public class SearchController {
 		model.addObject("RM_select", RM_select);
 		/* System.out.println(RM_select.size()); */
 		
-		model.setViewName("/search/search_result");
-		
+		// Check bookmark
+	    BookmarkVo bookmarkVo = new BookmarkVo();
+	    bookmarkVo.setHid(hid);
+	    bookmarkVo.setMid("hong"); // 이 부분을 세션 정보 또는 다른 값을 가져와 설정해야합니다.
+	    int bookmarkResult = bookmarkDao.checkBookmark(bookmarkVo);
+	    model.addObject("bookmarkResult", bookmarkResult);
+	    
+	    model.setViewName("/search/search_result");
 		
 		return model;
-		
+	}
+	
+	
+	/** search_result_map.do - 병원 상세 지도 정보 **/
+	@RequestMapping(value="/search_result_map.do", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String search_result_map(String hid) {
+		 HospitalVo list = hospitalService.select(hid);
+
+	    JsonObject jobj = new JsonObject();
+	    jobj.addProperty("hid", list.getHid());
+	    jobj.addProperty("hname", list.getHname());
+	    jobj.addProperty("x", list.getX());
+	    jobj.addProperty("y", list.getY());
+
+	    return new Gson().toJson(jobj);
 	}
 	
 	
@@ -102,7 +134,7 @@ public class SearchController {
 	public ModelAndView search_reservation(String hid) {
 		ModelAndView model = new ModelAndView();
 		
-		HospitalVo hospitalVo = hospitalDao.select(hid);
+		HospitalVo hospitalVo = hospitalService.select(hid);
 		BookingVo bookingVo = bookingService.getSelectTime(hid);
 
 		model.addObject("hospital", hospitalVo);
@@ -127,93 +159,125 @@ public class SearchController {
 		}
 		
 		return viewName;
+	}	
+	
+
+	/** reviewCheckProc.do - 리뷰쓰기 처리 **/
+	@RequestMapping(value="reviewCheckProc.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String reviewCheckProc(String hid, String mid) {
+		int review_result = bookingService.getReviewCheck(hid, mid);
+		/* System.out.println(review_result); */
 		
+		if(review_result == 1) {
+			return "success";
+		} else {
+			return "fail";
+		}
 	}	
 	
 	
-	/** bookProc.do.do - 찜하기 처리 **/
-//	@RequestMapping(value="bookmarkProc.do", method=RequestMethod.GET)
-//	public String bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
-//	    BookmarkDao bookmarkDao = new BookmarkDao();
-//	    String viewName = "";
-//	    int result = bookmarkDao.CheckBookmark(bookmarkVo);
-//	    
-//	    if(result == 1) {
-//	    	viewName = "redirect:/search_main.do";
-//	    	System.out.println("실패");
-//	    } else if(result == 0) {
-//	    	bookmarkDao.insert(bookmarkVo);
-//	    	viewName = "redirect:/search_result.do?hid=" + hid;
-//	    	System.out.println("성공");
-//	    }
-//		return viewName;
-//	}
-	
-	/** bookProc.do.do - 찜하기 처리 **/
-	@RequestMapping(value="bookmarkProc.do", method=RequestMethod.GET)
-	public ModelAndView bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
-		ModelAndView model = new ModelAndView();
-		BookmarkDao bookmarkDao = new BookmarkDao();
-		String viewName = "";
-		int result = bookmarkDao.checkBookmark(bookmarkVo);
-		System.out.println("result가져옴"+result);
-		
-		if(result == 0) {
-			bookmarkDao.insert(bookmarkVo);
-			model.addObject("bookmark_result", "success");
-			model.setViewName("redirect:/search_result.do?hid=" + hid);
-			System.out.println("성공");
-		} else {
-			bookmarkDao.deleteBookmark(bookmarkVo);
-			model.addObject("bookmark_result", "fail");
-			model.setViewName("redirect:/search_result.do?hid=" + hid);
-			System.out.println("실패");
-		}
-		return model;
+	/** bookmarkProc.do - 북마크 처리 **/
+	@RequestMapping(value = "bookmarkProc.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
+	    BookmarkDao bookmarkDao = new BookmarkDao();
+	    int result = bookmarkDao.checkBookmark(bookmarkVo);
+
+	    if (result == 0) {
+	        bookmarkDao.insert(bookmarkVo);
+	        return "success";
+	    } else if (result == 1) {
+	        bookmarkDao.deleteBookmark(bookmarkVo);
+	        return "fail";
+	    }
+
+	    return "";
 	}
 	
+	/** bookmarkProc.do - 북마크 처리 **/
+//	@RequestMapping(value="bookmarkProc.do", method=RequestMethod.POST)
+//	public ModelAndView bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
+//		ModelAndView model = new ModelAndView();
+//		BookmarkDao bookmarkDao = new BookmarkDao();
+//		String viewName = "";
+//		int result = bookmarkDao.checkBookmark(bookmarkVo);
+//		System.out.println("result가져옴"+result);
+//		
+//		if(result == 0) {
+//			bookmarkDao.insert(bookmarkVo);
+//			model.addObject("bookmark_result", "success");
+//			model.setViewName("redirect:/search_result.do?hid=" + hid);
+//			System.out.println("성공");
+//		} else if(result == 1) {
+//			bookmarkDao.deleteBookmark(bookmarkVo);
+//			model.addObject("bookmark_result", "fail");
+//			model.setViewName("redirect:/search_result.do?hid=" + hid);
+//			System.out.println("실패");
+//		}
+//		return model;
+//	}
 	
-	/** search_bookmark_return.do - 찜하기 후 페이지 돌아가기 처리 **/
-	/*
-	 * @RequestMapping(value="search_bookmark_return.do", method=RequestMethod.POST)
-	 * public ModelAndView search_bookmark_return(BookmarkVo
-	 * bookmarkVo, @RequestParam("hid") String hid) { ModelAndView model = new
-	 * ModelAndView(); BookmarkDao bookmarkDao = new BookmarkDao();
-	 * 
-	 * if(bookmarkDao.CheckBookmark(bookmarkVo) == 1) {
-	 * model.addObject("bookmark_result", "ok");
-	 * model.setViewName("redirect:/search_result.do?hid=" + hid); } else { // 실패 -
-	 * 실패를 나타내는 문자열 반환 model.addObject("bookmark_result", "fail");
-	 * model.setViewName("redirect:/search_main.do"); } return model; }
-	 */
+	
+//	/** rstateForm.do - 신고하기 처리 **/
+//	@RequestMapping(value="rstateForm.do", method=RequestMethod.POST)
+//	@ResponseBody
+//	public String rstateForm(String rid) {
+//	    ReviewDao reviewDao = new ReviewDao();
+//	    int rstate_result = reviewDao.getIdCheckResult(rid);
+//
+//	    if (rstate_result == 0) {
+//	        reviewDao.update(rid);
+////	        System.out.println(rstate_result);
+////	        System.out.println(rid);
+//	        return "success";
+//	    } else if (rstate_result == 1) {
+////	    	System.out.println(rstate_result);
+////	    	System.out.println(rid);
+//	        return "fail";
+//	    }
+//
+//	    return "";
+//	}
 	
 
 	/** likeProc.do - 좋아요 처리 **/
-	@RequestMapping(value="likeProc.do", method=RequestMethod.GET)
+	@RequestMapping(value="likeProc.do", method=RequestMethod.POST)
+	@ResponseBody
 	public String likeProc(ReviewLikeVo reviewLikeVo, @RequestParam("hid") String hid) {
 	    ReviewLikeDao reviewLikeDao = new ReviewLikeDao();
-	    int result = reviewLikeDao.LikesUp(reviewLikeVo);
+	    int like_result = reviewLikeService.getIdCheck(reviewLikeVo);
 
-	    if (result == 1) {
-	        return "redirect:/search_result.do?hid=" + hid;
-	    } else {
-	        // 실패 - 실패를 나타내는 문자열 반환
-	        return "failure";
-	    }
-	}
+        if (like_result == 0) { // 기록 없음
+        	reviewLikeService.getLikesUpID(reviewLikeVo);
+        	reviewLikeService.getLikesUp(reviewLikeVo);
+            return "success";
+        } else { // 기록 있음
+        	reviewLikeService.getLikesDownID(reviewLikeVo);
+        	reviewLikeService.getLikesDown(reviewLikeVo);
+            System.out.println(like_result);
+            return "fail";
+        }
+    }
 	
 	
-	/** stateProc.do - 신고하기 처리 **/
+	/** rstateForm.do - 신고하기 처리 **/
 	@RequestMapping(value="rstateProc.do", method=RequestMethod.POST)
+	@ResponseBody
 	public String rstateProc(String rid, @RequestParam("hid") String hid) {
 		ReviewDao reviewDao = new ReviewDao();
-	    int result = reviewDao.update(rid);
+	    int rstate_result = reviewDao.getIdCheckResult(rid);
 
-	    if (result == 1) {
-			return "redirect:/search_result.do?hid=" + hid;
-		} else {
-			return "failure";
+	    if (rstate_result == 0) {
+	    	reviewDao.update(rid);
+	    	System.out.println(rstate_result);
+	    	return "success";
+		} else if (rstate_result == 1) {
+			System.out.println(rstate_result);
+			return "fail";
 		}
+	    
+	    return "";
 	}
 	
 	
@@ -235,7 +299,7 @@ public class SearchController {
 	@RequestMapping(value="/map_data.do",method=RequestMethod.GET,produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String map_data(String gloc) {
-		ArrayList<HospitalVo> list = hospitalDao.searchGloc(gloc);
+		ArrayList<HospitalVo> list = hospitalService.searchGloc(gloc);
 		
 		JsonObject jlist = new JsonObject();
 		JsonArray jarray = new JsonArray();

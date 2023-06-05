@@ -46,8 +46,23 @@ public class BookingServiceImpl implements BookingService{
 	}
 	
 	@Override
+	public ArrayList<BookingVo> getSearch4(String mid) {
+		return bookingDao.search4(mid);
+	}
+	
+	@Override
 	public BookingVo getSelect(String mid) {
 		return bookingDao.select(mid);
+	}
+	
+	@Override
+	public BookingVo getSelect2(String bid) {
+		return bookingDao.select2(bid);
+	}
+	
+	@Override
+	public int getReviewCheck(String hid, String mid) {
+		return bookingDao.reviewCheck(hid, mid);
 	}
 	
 	@Override
