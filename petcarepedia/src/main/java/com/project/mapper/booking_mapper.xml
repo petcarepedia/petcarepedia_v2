@@ -30,8 +30,8 @@
 				from pcp_review r, pcp_booking b, pcp_hospital h, pcp_member m 
 				where r.bid(+) = b.bid 
 				and b.hid = h.hid and b.mid = m.mid and b.mid = #{mid} and  r.bid is null)
-		where vdate < to_char(sysdate,'yyyy-mm-dd') or (vdate = to_char(sysdate,'yyyy-mm-dd') 
-		and vtime < to_char(sysdate,'hh24:mi')) order by bid desc
+		where to_char(sysdate,'yyyy-mm-dd') > vdate or (vdate = to_char(sysdate,'yyyy-mm-dd') 
+		and to_char(sysdate,'hh24:mi') > vtime) order by bid desc
 
 	</select>
 	
@@ -58,6 +58,12 @@
 		FROM (SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, B.HID HID, H.HNAME HNAME, H.LOC LOC, H.GLOC GLOC, H.TEL TEL, H.HRINK HRINK, H.IMG IMG
 				FROM PCP_BOOKING B, PCP_HOSPITAL H
 				WHERE B.HID = H.HID AND MID = #{mid} AND VDATE > TO_CHAR(SYSDATE,'YYYY-MM-DD')) order by bid desc
+	</select>
+	
+	<select id="search5" parameterType="String" resultType="com.project.vo.BookingVo">
+		select bid, hname, mid, to_char(BDATE, 'yyyy-mm-dd') VDATE, bstate
+		from  pcp_booking b, pcp_hospital h 
+		where b.hid = h.hid and mid like %#{mid}%	
 	</select>
 	
 	<select id="select2" parameterType="String" resultType="com.project.vo.BookingVo">
