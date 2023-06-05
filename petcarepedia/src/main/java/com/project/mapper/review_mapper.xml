@@ -33,19 +33,19 @@
 		where rno between #{start} and #{end} 
 	</select>
 	
-	<select id="searchListPage" parameterType="map" resultType="com.project.vo.ReviewVo">
+	<select id="searchListPage" parameterType="com.project.vo.RSpagingVo" resultType="com.project.vo.ReviewVo">
 		select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
 		from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
 		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m 
-		where r.hid=h.hid and r.mid = m.mid order by r.rdate desc) where gloc = #{filter_location}) 
+		where r.hid=h.hid and r.mid = m.mid order by r.rdate desc) where gloc = #{gloc}) 
 		where rno between #{start} and #{end}
 	</select>
 	
-	<select id="searchCount">
+	<select id="searchCount" parameterType="String">
 		select count(*)
 		from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
 		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m 
-		where r.hid=h.hid and r.mid = m.mid order by r.rdate desc) where gloc = #{filter_location})
+		where r.hid=h.hid and r.mid = m.mid order by r.rdate desc) where gloc = #{gloc})
 	</select>
 	
 	<select id="content" parameterType="String" resultType="com.project.vo.ReviewVo">
@@ -87,7 +87,7 @@
 		where rno between #{stsrt} and #{end}
 	</select>
 	
-	<select id="count">
+	<select id="count" resultType="int">
 		select count(*) from pcp_review
 	</select>
 	
@@ -96,7 +96,7 @@
 		from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = #{mid}
 	</select>
 	
-	<select id="reportReivew" parameterType="String">
+	<select id="reportReivew" parameterType="String" resultType="int">
 		select count(*) from pcp_review where rid = #{rid} and rstate = 'O'
 	</select>
 </mapper>

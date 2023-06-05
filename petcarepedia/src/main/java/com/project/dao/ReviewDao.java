@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.vo.RSpagingVo;
 import com.project.vo.ReviewVo;
 
 @Repository
@@ -192,12 +193,11 @@ public class ReviewDao extends DBConn {
 	
 	// 검색 리뷰 리스트 페이징 처리
 	public List<Object> selectSearchList(int startCount, int endCount, String filter_location) {
-		Map<String, Object> param = new HashMap<String, Object>();
-		param.put("start", startCount);
-		param.put("end", endCount);
-		param.put("filter_location", filter_location);
-		
-		return sqlSession.selectList("mapper.reiview.searchListPage", param);
+		RSpagingVo rspagingVo = new RSpagingVo();
+		rspagingVo.setStart(startCount);
+		rspagingVo.setEnd(endCount);
+		rspagingVo.setFilter_location(filter_location);
+		return sqlSession.selectList("mapper.reiview.searchListPage", rspagingVo);
 		/*
 		ArrayList<ReviewVo> reviewList = new ArrayList<ReviewVo>();
 		String sql = "select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname " + 
@@ -240,7 +240,8 @@ public class ReviewDao extends DBConn {
 	
 	/* 리뷰 검색 카운트 가져오기(totalrowcount)*/
 	public int SearchRowCount(String filter_location) {
-		return sqlSession.selectOne("mapper.review.searchCount", filter_location);
+		String gloc = filter_location;
+		return sqlSession.selectOne("mapper.review.searchCount", gloc);
 		/*
 		int count = 0;
 		String sql = "select count(*)\r\n" + 
