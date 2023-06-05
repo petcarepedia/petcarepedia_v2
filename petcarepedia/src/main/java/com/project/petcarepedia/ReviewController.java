@@ -92,13 +92,12 @@ public class ReviewController {
 	@RequestMapping(value="/review_content.do", method=RequestMethod.GET)
 	public ModelAndView review_content(String rid, String page, String mid, String filter_location)  {
 		ModelAndView model = new ModelAndView();
-		ReviewLikeDao reviewLikeDao = new ReviewLikeDao();
 		ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
 		ReviewVo reviewVo = reviewService.getEnter_select(rid);		
 		reviewLikeVo.setRid(reviewVo.getRid());
 		reviewLikeVo.setMid(mid);
 		
-		int likeCheck = reviewLikeDao.idCheck(reviewLikeVo);
+		int likeCheck = reviewLikeService.getIdCheck(reviewLikeVo);
 		
 		model.addObject("mid", mid);
 		model.addObject("page", page);
