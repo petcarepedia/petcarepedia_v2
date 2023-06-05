@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.project.dao.ReviewDao;
 import com.project.vo.ReviewVo;
 
-@Service
+@Service("reviewService")
 public class ReviewServiceImpl implements ReviewService{
 
 	@Autowired
