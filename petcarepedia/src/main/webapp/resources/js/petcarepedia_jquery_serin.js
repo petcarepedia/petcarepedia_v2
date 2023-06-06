@@ -2,6 +2,11 @@
 $(document).ready(function(){
 	
 	/*************************
+	 * 예약 - 상태 변경
+	 **************************/
+	
+	 
+	/*************************
 	 * 병원 - 수정
 	 **************************/
 	$("#btn_update").click(function(){
@@ -164,6 +169,28 @@ $(document).ready(function(){
 	 * 병원 - 검색창
 	 **************************/
   $("#search_btn").click(function(){
+  
+  	var pager = jQuery('#ampaginationsm').pagination({
+		
+		    maxSize: '${maxSize}',	// max page size
+		    totals:  '${totals}',	// total pages	
+		    page: 	 '${page}',		// initial page		
+		    pageSize:'${pageSize}',	// max number items per page
+		
+		    // custom labels		
+		    lastText: '&raquo;&raquo;', 		
+		    firstText:'&laquo;&laquo;',		
+		    prevText: '&laquo;',		
+		    nextText: '&raquo;',
+				     
+		    btnSize:'sm'	// 'sm'  or 'lg'		
+		});
+		
+		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+	           $(location).attr('href', "http://localhost:9000/mycgv_jsp/board_list_json.do?page="+e.page);         
+	    });
+  
   	if($("#search_bar").val() ==""){
 			alert("병원명을 입력해주세요"); 
 			$("#search_bar").focus();

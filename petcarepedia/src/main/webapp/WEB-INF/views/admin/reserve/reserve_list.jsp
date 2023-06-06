@@ -37,6 +37,17 @@
 		
  	});
 </script> 
+<script>
+$(document).ready(function(){
+	$("#btn_bstate").click(function(){
+		//alert("예약중!!");
+		if($("#btn_bstate").val() != ""){
+			$("p").hide();
+			
+		}
+	});
+});
+</script>
 </head>
 <body>
 <!-- header -->
@@ -78,10 +89,29 @@
 							<td><a href="reserve_detail.do?bid=${bookingVo.bid}">${bookingVo.hname}</a></td>
 							<td>${bookingVo.mid}</td>
 							<td>${bookingVo.vdate}</td>
-							<td>${bookingVo.bstate}</td>
+							<td>
+								<form name="reserve_bstate" action="reserve_state_data" method="post">
+									<input type = "hidden" name ="bstate" value = "${bookingVo.bstate}">
+									<input type = "hidden" name = "bid" value = "${bookingVo.bid}">
+									<button type="button" id="btn_bstate">
+										<c:choose>
+											<c:when test="${bookingVo.bstate eq '예약중'}">
+												<span>
+													예약 완료
+												</span>
+											</c:when>
+											<c:otherwise>
+												<span>
+													에약 취소
+												</span>
+											</c:otherwise>
+										</c:choose>
+										${bookingVo.bstate}
+									</button>
+								</form>
+							</td>
 						</tr>
 					</c:forEach>
-					<tr>
 					<tr>
 						<td colspan="5"><div id="ampaginationsm"></div></td>
 					</tr>

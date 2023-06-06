@@ -34,12 +34,20 @@
 		where rno between #{start} and #{end}
 	</select>
 	
+	<select id = "Hslist" parameterType="map" resultType="com.project.vo.HospitalVo">	
+		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
+					  FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
+						 FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL ORDER BY HID)) 
+					WHERE RNO BETWEEN #{start} AND #{end}
+	</select>
+	
 	<select id = "Hlist" parameterType="map" resultType="com.project.vo.HospitalVo">	
 		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
 					  FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
 						 FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL ORDER BY HID)) 
 					WHERE RNO BETWEEN #{start} AND #{end}
 	</select>
+	
 	
 	<select id="Rcount" resultType="int">
 		select count(*) from pcp_review
@@ -51,6 +59,10 @@
 	
 	<select id="Mcount" resultType="int">
 		select count(*) from pcp_member
+	</select>
+	
+	<select id="Hscount" resultType="int">
+		select count(*) from pcp_hospital
 	</select>
 	
 	<select id="Hcount" resultType="int">

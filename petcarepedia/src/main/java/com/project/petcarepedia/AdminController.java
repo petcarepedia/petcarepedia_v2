@@ -18,8 +18,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.project.dao.BookingDao;
-import com.project.dao.MemberDao;
-import com.project.dao.ReviewDao;
 import com.project.service.BookingService;
 import com.project.service.HospitalService;
 import com.project.service.MemberService;
@@ -28,7 +26,6 @@ import com.project.service.ReviewService;
 import com.project.vo.BookingVo;
 import com.project.vo.HospitalVo;
 import com.project.vo.MemberVo;
-import com.project.vo.NoticeVo;
 import com.project.vo.ReviewVo;
 
 @Controller
@@ -129,6 +126,25 @@ public class AdminController {
 		model.setViewName("/admin/hospital/hospital_list");
 		
 		return model;
+	}
+	
+	/**
+	 * 예약 - 상태 변경 처리
+	 */
+	
+	@RequestMapping(value = "/reserve_state_data.do", method = RequestMethod.POST)
+	public String reserve_state_date(String bid) {
+		String viewName = "";
+		BookingDao bookingDao = new BookingDao();
+		int result = bookingDao.Bselect(bid);
+		
+ 		if(result == 1) {
+ 			viewName = "redirect:/reserve_list.do";
+ 		}else {
+ 			
+ 		}
+
+		return viewName;
 	}
 	
 	/**
@@ -391,13 +407,25 @@ public class AdminController {
 	}
 
 	/**
-	 * 
+	 * 병원 - 검색 처리
 	 */
 	@RequestMapping(value = "/hospital_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String hospital_list_data(String hname) {
+	public String hospital_list_data(String hname, String page) {
 		ArrayList<HospitalVo> list = hospitalService.search(hname);
-
+		
+		ModelAndView model = new ModelAndView();		
+		Map<String, Integer> param = pageService.getPageResult(page, "hospital_search");
+		
+		ArrayList<HospitalVo> hlist = pageService.getHsListPage(param.get("startCount"), param.get("endCount"));
+		model.addObject("list", hlist);
+		model.addObject("totals", param.get("dbCount"));
+		model.addObject("pageSize",param.get("pageSize"));
+		model.addObject("maxSize", param.get("maxSize"));
+		model.addObject("page", param.get("page"));
+		
+		model.setViewName("/admin/hospital/hospital_list");
+		
 		JsonObject jlist = new JsonObject();
 		JsonArray jarray = new JsonArray();
 
@@ -415,5 +443,6 @@ public class AdminController {
 
 		return new Gson().toJson(jlist);
 	}
+	
 
 }
