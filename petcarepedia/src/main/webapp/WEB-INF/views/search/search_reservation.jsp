@@ -22,7 +22,7 @@ $(".hservation").click(function() {
  });
  
 $(document).ready(function() {
-    $("#check").click(function(event) { // 예약
+    $("#check").click(function() { // 예약
         event.preventDefault();
 
         var hid = $("input[name='hid']").val();
@@ -47,7 +47,7 @@ $(document).ready(function() {
                         text: '예약 일시를 다시 선택해주세요.',
                         showConfirmButton: true // 확인 버튼 표시
                     }).then(function() {
-                        location.reload(); // 확인 버튼 클릭 시 페이지 새로고침
+                        /* location.reload(); // 확인 버튼 클릭 시 페이지 새로고침 */
                     });
                 } else if (check_result === "success") {
                     Swal.fire({
@@ -98,10 +98,10 @@ $(document).ready(function() {
 	    <input type="hidden" id="endTime" name="endTime" value="${time.end}">
 
 	    <form name="reservationForm" action="reservationProc.do" method="post">
-			<input type="text" name="hid" value="${hospital.hid}">
-			<input type="text" name="mid" value="hong">
-		    <input type="text" id="vdate" name="vdate" value="">
-			<input type="text" id="vtime" name="vtime" value="">
+			<input type="hidden" name="hid" value="${hospital.hid}">
+			<input type="hidden" name="mid" value="hong">
+		    <input type="hidden" id="vdate" name="vdate" value="">
+			<input type="hidden" id="vtime" name="vtime" value="">
 			<button type="button" id="check">확인</button>
 		</form>
 	</div>

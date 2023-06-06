@@ -309,7 +309,7 @@ $(document).ready(function() {
 	});
 	
 	
-	/** formm submit 순서 **/
+	/** from submit 순서 **/
 		$("#check").click(function(){
 		if($("#vdate").val() == ""){
 			alert("날짜를 선택해 주세요");
@@ -317,9 +317,7 @@ $(document).ready(function() {
 		} else if($("#vtime").val()=="") {
 			alert("시간을 선택해 주세요");
 			return false;
-		} else {
-			//서버전송
-		}
+		} 
 	});	//check
 	
 	

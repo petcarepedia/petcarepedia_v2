@@ -1,7 +1,6 @@
 package com.project.service;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,7 @@ public class BookingServiceImpl implements BookingService{
 	
 	@Override
 	public int getCheckBooking(BookingVo bookingVo) {
-		return bookingDao.insert(bookingVo); 
+		return bookingDao.checkBooking(bookingVo); 
 	}
 	
 	@Override
