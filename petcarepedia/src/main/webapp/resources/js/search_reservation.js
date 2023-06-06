@@ -37,7 +37,7 @@ $(document).ready(function() {
       inputElement.on("click", function() {
         var clickedDate = $(this).val();
         var clickedDate2 = $(this).val();
-        console.log("clickedDate: " + clickedDate);
+//        console.log("clickedDate: " + clickedDate);
         
 		// 선택된 날짜를 yyyy-mm-dd 형식으로 변환
 		var parsedDate = moment(clickedDate2, "MM.DD(ddd)");
@@ -309,7 +309,7 @@ $(document).ready(function() {
 	});
 	
 	
-	/** form submit 순서 **/
+	/** from submit 순서 **/
 		$("#check").click(function(){
 		if($("#vdate").val() == ""){
 			alert("날짜를 선택해 주세요");
@@ -317,10 +317,7 @@ $(document).ready(function() {
 		} else if($("#vtime").val()=="") {
 			alert("시간을 선택해 주세요");
 			return false;
-		} else {
-			//서버전송
-			joinForm.submit();
-		}
+		} 
 	});	//check
 	
 	

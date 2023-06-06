@@ -20,6 +20,48 @@ $(".hservation").click(function() {
 	 $('input[name="endTime"]').val($("#endTime").val());
 	$('span#rhname').text($(this).attr("id"));
  });
+ 
+$(document).ready(function() {
+    $("#check").click(function() { // 예약
+        event.preventDefault();
+
+        var hid = $("input[name='hid']").val();
+        var mid = $("input[name='mid']").val();
+        var vdate = $("input[name='vdate']").val();
+        var vtime = $("input[name='vtime']").val();
+        
+        $.ajax({
+            url: "reservationProc.do",
+            type: "POST",
+            data: {
+                hid: hid,
+                mid: mid,
+                vdate: vdate,
+                vtime: vtime
+            },
+            success: function(check_result) {
+                if (check_result === "fail") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '중복 예약하셨습니다',
+                        text: '예약 일시를 다시 선택해주세요.',
+                        showConfirmButton: true // 확인 버튼 표시
+                    }).then(function() {
+                        /* location.reload(); // 확인 버튼 클릭 시 페이지 새로고침 */
+                    });
+                } else if (check_result === "success") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '예약 완료',
+                        showConfirmButton: true // 확인 버튼 표시
+                    }).then(function() {
+                    	window.location.href = "http://localhost:9000/petcarepedia/reservation.do?mid=" + mid; // 확인 버튼 클릭 시 페이지 새로고침
+                    });
+                }
+            }
+        });
+    });
+});
 </script>
 
 
@@ -60,7 +102,7 @@ $(".hservation").click(function() {
 			<input type="hidden" name="mid" value="hong">
 		    <input type="hidden" id="vdate" name="vdate" value="">
 			<input type="hidden" id="vtime" name="vtime" value="">
-			<button id="check">확인</button>
+			<button type="button" id="check">확인</button>
 		</form>
 	</div>
 </body>

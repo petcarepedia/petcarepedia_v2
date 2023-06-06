@@ -43,7 +43,37 @@ public class BookingDao extends DBConn {
 //		
 //		return result;
 	} // insert(BookingVo bookingVo)
-
+	
+	
+	/** 예약 중복 확인 **/
+	public int checkBooking(BookingVo bookingVo) {
+		return sqlSession.selectOne("mapper.booking.checkBooking", bookingVo);
+		
+//		int result = 0;
+//		
+//		String sql = "SELECT COUNT(*) FROM PCP_BOOKING WHERE MID=? AND HID=? AND VDATE=? AND VTIME=?";
+//		getPreparedStatement(sql);
+//		
+//		try {
+//			pstmt.setString(1, bookingVo.getMid());
+//			pstmt.setString(2, bookingVo.getHid());
+//			pstmt.setString(3, bookingVo.getVdate());
+//			pstmt.setString(4, bookingVo.getVtime());
+//			
+//			rs = pstmt.executeQuery();
+//			
+//			if(rs.next()) {
+//				result = rs.getInt(1);
+//			}
+//				
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return result;
+	} //  int CheckBooking(BookingVo bookingVo)
+		
 	
 	/** select - 예약 리스트 **/
 	public ArrayList<BookingVo> select() {
@@ -398,12 +428,12 @@ public class BookingDao extends DBConn {
 	}
 	
 	
-	/** reviewCheck - 리뷰쓰기 예약 확인하기(06.03 추가) **/
-	public int reviewCheck(String hid, String mid) {
+	/** reviewCheck - 리뷰쓰기 예약 확인하기(06.03 수정) **/
+	public BookingVo reviewCheck(String hid, String mid) {
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("hid", hid);
 		param.put("mid", mid);
-
+		System.out.println(mid);
 		return sqlSession.selectOne("mapper.booking.reviewCheck", param);
 		
 //		int result = 0;

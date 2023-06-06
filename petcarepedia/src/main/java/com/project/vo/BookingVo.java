@@ -8,7 +8,14 @@ public class BookingVo {
 	String hname, loc, gloc, tel, hrink;
 	String start, end;
 	String img;
+	int count;
 	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public String getImg() {
 		return img;
 	}
