@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	$(".header-menu").css("width",window.innerWidth)
+					.css("left","0").css("right","0");
+	
 	jQuery.fn.center = function () {
 	    this.css("position","absolute");
 	    this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px");
