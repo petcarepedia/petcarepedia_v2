@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,18 +41,17 @@
 						<span>${reviewVo.nickname}</span>
 						<span>의사의 진료는 어떠셨나요?</span>
 						<span>별점을 다시 선택해주세요</span>
-
 						<div id = "star">
 							<fieldset>
-								<input type="radio" name="reviewStar" value="5" id="rate1"><label
+								<input type="radio" name="rstar" value="5" id="rate1"><label
 									for="rate1">★</label>
-								<input type="radio" name="reviewStar" value="4" id="rate2"><label
+								<input type="radio" name="rstar" value="4" id="rate2"><label
 									for="rate2">★</label>
-								<input type="radio" name="reviewStar" value="3" id="rate3"><label
+								<input type="radio" name="rstar" value="3" id="rate3"><label
 									for="rate3">★</label>
-								<input type="radio" name="reviewStar" value="2" id="rate4"><label
+								<input type="radio" name="rstar" value="2" id="rate4"><label
 									for="rate4">★</label>
-								<input type="radio" name="reviewStar" value="1" id="rate5"><label
+								<input type="radio" name="rstar" value="1" id="rate5"><label
 									for="rate5">★</label>
 							</fieldset>
 						</div>
