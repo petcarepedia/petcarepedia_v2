@@ -58,7 +58,7 @@
 					</section>
 					<textarea name="rcontent" id = "rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)" maxlength = "200">${reviewVo.rcontent}</textarea>
 					<div id="test_cnt">(0 / 200)</div>
-					<a href = "my_review.do?mid=hong">
+					<a href = "mypage_review_content.do?rid=${reviewVo.rid} ">
 						<button type = "button" id = "cancle">취소</button>
 					</a>
 					<button type = "button" id = "btnReviewUpdate">작성완료</button>

@@ -26,7 +26,7 @@
 			<h1 id = "title">내가 쓴 리뷰</h1>
 			<hr>
 			<form name="deleteForm" action="my_review_delete_proc.do" method="post">
-				<input type = "hidden" name = "rid" value = "${rid}">
+			<input type = "hidden" name = "rid" value = "${rid}">
 				<table id = "table">
 					<tr>
 						<th>병원명</th>
@@ -44,8 +44,8 @@
 				<div class = "box">
 					<p>정말로 삭제하시겠습니까?</p>
 					<button type="button" class="btn_style" id = "btnReviewDelete">삭제완료</button>
-					<a href="my_review.do?mid=hong">
-						<button type="button" class="btn_style">이전페이지</button>
+					<a href="mypage_review_content.do?rid=${reviewVo.rid}">
+						<button type="button" class="btn_style">취소</button>
 					</a>
 				</div>
 			</form>

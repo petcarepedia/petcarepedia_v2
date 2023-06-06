@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,11 +67,27 @@
 								</div>
 							</div>
 						</div>
-						<div id = "btn_review">
-							<a href = "review_write.do?mid=${bookingVo.mid}&hid=${bookingVo.hid}&bid=${bookingVo.bid}">
-								<button type = "button" id = "btn_write_review">리뷰쓰기</button>
-							</a>
-						</div>
+						<jsp:useBean id="now" class="java.util.Date" />
+						<fmt:parseDate value = "${bookingVo.vdate}" pattern="yyyy-MM-dd" var = "vdate" />
+						<fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="today"></fmt:parseNumber>
+						<fmt:parseNumber value="${vdate.time / (1000*60*60*24)}" integerOnly="true" var="vdate"></fmt:parseNumber>
+						<c:choose>
+							<c:when test = "${today-vdate <= 3}">
+								<div id = "btn_review">
+									<a href = "review_write.do?mid=${bookingVo.mid}&hid=${bookingVo.hid}&bid=${bookingVo.bid}">
+										<button type = "button" id = "btn_write_review">리뷰쓰기</button>
+									</a>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div id = "btn_review">
+									<span>리뷰작성기간 만료</span>
+									<%-- <a href = "review_write.do?mid=${bookingVo.mid}&hid=${bookingVo.hid}&bid=${bookingVo.bid}">
+										<button type = "button" id = "btn_write_review">리뷰쓰기</button>
+									</a> --%>
+								</div>
+							</c:otherwise>
+						</c:choose>
 					</c:forEach>
 					<c:forEach var = "bookingReview" items = "${list2}">
 						<div id = "aside1">
@@ -94,7 +111,7 @@
 							</div>
 						</div>
 						<div id = "btn_review">
-							<a href = "my_review.do?mid=hong">
+							<a href = "mypage_review_content.do?rid=${bookingReview.rid}">
 								<button type = "button" id = "btn_watch_review">리뷰보기</button>
 							</a> 
 						</div>

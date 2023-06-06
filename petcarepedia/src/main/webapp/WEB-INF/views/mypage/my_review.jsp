@@ -55,12 +55,10 @@
 							<span><!-- 진료 일자 : 2023-04-26 --></span>
 						</div>
 						<div id = "aside4">
-						<a href = "review_revise.do?rid=${reviewVo.rid}">
-							<button type = "button" id = "btnReview_revise">리뷰수정</button>
+						<a href = "mypage_review_content.do?rid=${reviewVo.rid}">
+							<button type = "button" id = "btnReview_content">상세보기</button>
 						</a>
-						<a href = "my_review_delete.do?rid=${reviewVo.rid}">
-							<button type = "button" id = "btnReview_delete">리뷰삭제</button>
-						</a>
+
 						</div>
 					</section>
 				</c:forEach>

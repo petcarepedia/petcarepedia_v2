@@ -611,6 +611,12 @@ hr {
 	width : 250px;
 	margin : 270px 0px 3.5px 670px;
 }
+#btn_review span {
+	margin-left : -12px;
+	font-weight : bold;
+	color : #8A8A8A;
+	
+}
 #section2:first-child #btn_review{
 	display : flex;
 	height : 50px;
@@ -917,13 +923,13 @@ textarea[name='rcontent'] {
 	margin-left : 140px;
 }
 #my_review #aside #section2 #aside4 {
-	margin-left : 490px;
+	margin-left : 615px;
 }
 #my_review #aside #section2 #aside4 button {
 	margin-top : 10px;
 	width: 110.77px;
 	height: 44px;	
-	background: #FFB3BD;
+	background: #7AB2CC;
 	border : none;
 	border-radius: 5px;
 	font-weight: 700;
@@ -1118,7 +1124,7 @@ textarea[name='review'] {
 	margin-left : 55px;
 	margin-top : 10px;
 	text-align : center;
-	padding-top : 5px;
+	padding-top : 6px;
 	text-decoration : none;
 	color : white;
 	background: #FFB3BD;
@@ -1133,8 +1139,8 @@ textarea[name='review'] {
 }
 #bookmark #section2 #aside1 button img{
 	position : absolute;
-	left : 220px;
-	top : -1px;
+	left : 230px;
+	top : 0px;
 	width : 30px;
 	height : 30px;
 }
@@ -1238,10 +1244,6 @@ textarea[name='review'] {
 }
 
 
- th, td {
-	border : 1px solid #98DFFF;
-	border-radius: 5px;
-}
 #reservation form[name=deleteForm] img {
 	float : left;
 	margin-left : 100px;
@@ -1251,19 +1253,31 @@ textarea[name='review'] {
 	height : 50px;
 }
 #reservation form[name=deleteForm] table tr th {
-	width : 30%;
+	width: 147px;
+  	padding: 10px;
+  	font-weight: bold;
+  	vertical-align: top;
+  	color: #153d73;
+  	border-right: 1px solid #ccc;
+  	border-bottom: 1px solid #ccc;
 }
 #reservation form[name=deleteForm] table tr td {
 	width : 70%;
 	padding: 10px;
 	word-break:break-all;
+ 	vertical-align: top;
+  	border-right: 1px solid #ccc;
+  	border-bottom: 1px solid #ccc;
 }
 #reservation form[name=deleteForm] table {
-	margin-left : 300px;
-	margin-top : 30px;
 	width : 500px;
+ 	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border-top: 1px solid #ccc;
+	border-left: 3px solid #369;
+	margin : 50px 280px;
 }
-
 
 
 #reservation form[name=deleteForm] button {
@@ -1278,6 +1292,7 @@ textarea[name='review'] {
 	margin-right : 10px;
 	margin-bottom : 100px;
 }
+
 #reservation form[name=deleteForm] div.box {
 	margin-left : 410px;
 	margin-top : 20px;
@@ -1287,4 +1302,50 @@ textarea[name='review'] {
 	margin-left : 30px;
 	font-weight : bold;
 	
+}
+
+/**************************************
+	mypage - mypage_review_content
+**************************************/
+#rc_button_r {
+	width : 500px;
+	margin-top : 70px;
+	margin-left : -210px;
+}
+#rc_button_r > a {
+	text-decoration : none;
+}
+#rc_button_r > a > button {
+	background: #FFB3BD;
+	border : none;
+	border-radius: 5px;
+	font-weight: 700;
+	font-size: 15px;
+	color: #FFFFFF;
+	width: 120px;
+	height: 44px;
+}
+div.content > section.review_content > div.review_detail > div.rc_button_r > a {
+	text-decoration : none;
+}
+#rdate {
+	padding-right : 15px;
+}
+section.review_content table.rv_detail_menu tr td {
+	text-align:left;
+	font-size:14px;
+	font-weight: 10;
+	color:#3d3d3d;
+	/* border:1px solid blue; */
+}
+
+section.review_content table.rv_detail_menu tr td img {
+	margin-top : 10px;
+	width : 25px;
+	height : 25px;
+}
+section.review_content table.rv_detail_menu tr td span {
+	vertical-align: bottom;
+	height : 25px;
+	margin-top : 12px;
 }
