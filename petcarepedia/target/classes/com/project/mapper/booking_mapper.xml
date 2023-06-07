@@ -50,9 +50,9 @@
 	</select>
 	
 	<select id="search3" parameterType="String" resultType="com.project.vo.BookingReviewVo">
-		select bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img
+		select bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img, rid
 		from(select b.bid bid, b.bdate bdate, b.vdate vdate, b.vtime vtime, b.bstate bstate, b.mid mid, b.hid hid, h.hname hname, 
-				h.loc loc, h.gloc gloc, h.tel tel, h.hrink hrink, h.img img 
+				h.loc loc, h.gloc gloc, h.tel tel, h.hrink hrink, h.img img, r.rid rid
 				from pcp_review r, pcp_booking b, pcp_hospital h, pcp_member m 
 				where b.hid = h.hid and b.mid = m.mid and b.mid = #{mid} and b.bid = r.bid) 
 		order by bid desc

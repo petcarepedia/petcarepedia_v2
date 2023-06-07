@@ -544,6 +544,23 @@ public class BookingDao extends DBConn {
 //
 //		return result;
 	} // int update(BookingVo bookingVo)
+	
+	/** 진료상태 수정 (06.07 추가) **/
+	public int Bselect(String bid) {
+		int result = 0;
+		String sql = "update pcp_booking set bstate = '예약 완료' where bid=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, bid);
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 
 	
 	/** delete - 예약 삭제하기 **/
