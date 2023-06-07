@@ -35,7 +35,8 @@ public class LoginController {
 		
 		if(svo != null) {
 			if(svo.getLoginResult()==1) {
-				if(memberVo.getMid().equals("admin")) {
+				session.setAttribute("svo",svo);
+				if(svo.getMid().equals("admin")) {
 					model.addObject("login_result", "success");
 					model.setViewName("redirect:/admin_hospital_list.do");
 				} else {
@@ -47,6 +48,23 @@ public class LoginController {
 			model.addObject("login_result", "fail");
 			model.setViewName("/login/login");
 		}
+		
+		return model;
+	}
+	
+	/**
+	 * logout.do - ·Î±×¾Æ¿ô
+	 */
+	@RequestMapping(value="/logout.do",method=RequestMethod.GET)
+	public ModelAndView logout(HttpSession session) {
+		ModelAndView model = new ModelAndView();
+		SessionVo svo = (SessionVo)session.getAttribute("svo");
+		if(svo != null) {
+			session.invalidate();
+			model.addObject("logout_result","success");
+		}
+		
+		model.setViewName("redirect:/index.do");
 		
 		return model;
 	}
