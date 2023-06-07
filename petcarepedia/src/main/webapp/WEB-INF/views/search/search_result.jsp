@@ -255,6 +255,8 @@ $(document).ready(function() {
 						<span>병원정보</span>
 						<span>위치 & 진료시간</span>
 						<div class="map">
+							<!-- <iframe class="map" src="http://localhost:9000/petcarepedia/search_map.do"
+							scrolling="no" width="350px" height="285px" frameborder=0></iframe> -->
 							<jsp:include page="search_result_map.jsp"></jsp:include>
 						</div>
 						
@@ -422,10 +424,7 @@ $(document).ready(function() {
 									</c:otherwise>
 									</c:choose> --%>
 										<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-											<!-- <span class="heart">♥</span>  -->
-											  <a href="javascript:;" class="icon heart">
-											     <img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">
-											  </a>
+											<span class="heart">♥</span> 
 											<span class="like-count">${RM_select.rlike}</span>
 										</button>
 									
