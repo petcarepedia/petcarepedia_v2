@@ -22,10 +22,10 @@
 			<div id = "btn_box">
 				<h1 id = "title">예약 내역</h1>
 				<div id = "btn_reservation">
-					<a href = "reservation.do?mid=hong">
+					<a href = "mypage_reservation.do?mid=hong">
 						<button type = "button" id = "btn1">예약중</button>
 					</a>
-					<a href = "reservation2.do?mid=hong">
+					<a href = "mypage_reservation2.do?mid=hong">
 						<button type = "button" id = "btn2">진료 완료</button>
 					</a>
 				</div>
@@ -36,11 +36,11 @@
 					<nav>
 						<ul>
 							<li>마이페이지</li>
-							<li><a href = "information.do?mid=hong">회원 정보</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/reservation.do?mid=hong">예약 내역</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/my_review.do?mid=hong">내가 쓴 리뷰</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do?mid=hong">즐겨찾기</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/signout.do?mid=hong">회원 탈퇴</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/mypage_member_information.do?mid=hong">회원 정보</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/mypage_reservation.do?mid=hong">예약 내역</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/mypage_my_review.do?mid=hong">내가 쓴 리뷰</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/mypage_bookmark.do?mid=hong">즐겨찾기</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/mypage_signout.do?mid=hong">회원 탈퇴</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -68,7 +68,7 @@
 								</div>
 							</div>
 						</div>
-						<a href = "reservation_delete.do?bid=${bookingVo.bid}&mid=${bookingVo.mid}">
+						<a href = "mypage_reservation_delete.do?bid=${bookingVo.bid}&mid=${bookingVo.mid}">
 						<button type = "button" id = "btn_cancle1">예약취소</button></a>
 					</c:forEach>
 					<c:forEach var = "bookingVo" items = "${list2}">
@@ -92,7 +92,7 @@
 								</div>
 							</div>
 						</div>
-						<a href = "reservation_delete.do?bid=${bookingVo.bid}&mid=${bookingVo.mid}">
+						<a href = "mypage_reservation_delete.do?bid=${bookingVo.bid}&mid=${bookingVo.mid}">
 						<button type = "button" id = "btn_cancle1">예약취소</button></a>
 					</c:forEach>
 				</section>

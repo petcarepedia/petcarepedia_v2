@@ -61,13 +61,13 @@
 					</tr>
 				</table>
 				<div class="rc_button_r" id = "rc_button_r">
-					<a href = "review_revise.do?rid=${reviewVo.rid}">
+					<a href = "mypage_review_revise.do?rid=${reviewVo.rid}">
 						<button type = "button" id = "btnReview_revise">수정하기</button>
 					</a>
-					<a href = "my_review_delete.do?rid=${reviewVo.rid}">
+					<a href = "mypage_review_delete.do?rid=${reviewVo.rid}">
 						<button type = "button" id = "btnReview_delete">삭제하기</button>
 					</a>
-					<a href = "my_review.do?mid=hong">
+					<a href = "mypage_my_review.do?mid=hong">
 						<button type = "button" id = "cancle">리뷰목록</button>
 					</a>
 				</div>
