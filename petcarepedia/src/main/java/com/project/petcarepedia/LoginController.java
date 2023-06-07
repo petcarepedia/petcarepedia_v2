@@ -1,5 +1,7 @@
 package com.project.petcarepedia;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.service.MemberService;
 import com.project.vo.MemberVo;
+import com.project.vo.SessionVo;
 
 @Controller
 public class LoginController {
@@ -26,16 +29,19 @@ public class LoginController {
 	 * login_proc.do - 로그인 처리
 	 */
 	@RequestMapping(value="/login_proc.do",method=RequestMethod.POST)
-	public ModelAndView login_proc(MemberVo memberVo) {
+	public ModelAndView login_proc(MemberVo memberVo, HttpSession session) {
 		ModelAndView model = new ModelAndView();
+		SessionVo svo = memberService.getLogin(memberVo);
 		
-		if(memberService.getLogin(memberVo)==1) {
-			if(memberVo.getMid().equals("admin")) {
-				model.addObject("login_result", "success");
-				model.setViewName("redirect:/admin_hospital_list.do");
-			} else {
-				model.addObject("login_result", "success");
-				model.setViewName("redirect:/index.do");
+		if(svo != null) {
+			if(svo.getLoginResult()==1) {
+				if(memberVo.getMid().equals("admin")) {
+					model.addObject("login_result", "success");
+					model.setViewName("redirect:/admin_hospital_list.do");
+				} else {
+					model.addObject("login_result", "success");
+					model.setViewName("redirect:/index.do");
+				}
 			}
 		} else {
 			model.addObject("login_result", "fail");

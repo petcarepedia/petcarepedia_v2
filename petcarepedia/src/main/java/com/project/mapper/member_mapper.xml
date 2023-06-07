@@ -12,8 +12,11 @@
 			VALUES(#{mid},#{pass},#{name},#{nickname},#{phone},#{birth},#{email},#{addr},SYSDATE)
 	</insert>
 	
-	<select id="login" parameterType="com.project.vo.MemberVo" resultType="int">
-		select count(*) from pcp_member where mid=#{mid} and pass=#{pass}
+	<select id="login" parameterType="com.project.vo.MemberVo" resultType="com.project.vo.SessionVo">
+		select count(*) loginResult, mid, nickname
+		from pcp_member 
+		where mid=#{mid} and pass=#{pass}
+		group by mid, nickname
 	</select>
 	
 	<delete id="delete" parameterType="map">

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.vo.MemberVo;
+import com.project.vo.SessionVo;
 
 @Repository
 public class MemberDao extends DBConn{
@@ -27,7 +28,7 @@ public class MemberDao extends DBConn{
 	/**
 	 * checkLogin - 로그인 체크
 	 */
-	public int checkLogin(MemberVo memberVo) {
+	public SessionVo checkLogin(MemberVo memberVo) {
 		return sqlSession.selectOne("mapper.member.login",memberVo);
 	}
 	
