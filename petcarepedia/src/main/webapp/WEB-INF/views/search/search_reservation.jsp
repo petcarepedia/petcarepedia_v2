@@ -59,7 +59,7 @@ $(document).ready(function() {
                         confirmButtonColor:'#98dfff',
                   	    confirmButtonText:'확인'
                     }).then(function() {
-                    	window.location.href = "http://localhost:9000/petcarepedia/mypage_member_reservation.do?mid=" + mid; // 확인 버튼 클릭 시 페이지 새로고침
+                    	window.location.href = "http://localhost:9000/petcarepedia/mypage_reservation.do?mid=" + mid;
                     });
                 }
             }
