@@ -32,21 +32,13 @@
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/petcarepedia/admin_notice.do?page="+e.page);         
+	           $(location).attr('href', "http://localhost:9000/petcarepedia/admin_reserve_list.do?page="+e.page);         
 	    });
 		
  	});
 </script> 
 <script>
-$(document).ready(function(){
-	$("#btn_bstate").click(function(){
-		//alert("예약중!!");
-		if($("#btn_bstate").val() != ""){
-			$("p").hide();
-			
-		}
-	});
-});
+	
 </script>
 </head>
 <body>
@@ -59,10 +51,10 @@ $(document).ready(function(){
 					<nav>
 						<ul>
 							<li>예약관리</li>
-							<li><a href = "http://localhost:9000/petcarepedia/hospital_list.do">병원 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/member_list.do">회원 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/reserve_list.do">예약 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/review_list.do">신고 리뷰 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_hospital_list.do">병원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_member_list.do">회원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_reserve_list.do">예약 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_review_list.do">신고 리뷰 관리</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
 						</ul>
 					</nav>
@@ -85,32 +77,12 @@ $(document).ready(function(){
 					</tr>
 					<c:forEach var="bookingVo" items="${list}">
 						<tr>
-							<td>${bookingVo.rno}</td>
-							<td><a href="reserve_detail.do?bid=${bookingVo.bid}">${bookingVo.hname}</a></td>
-							<td>${bookingVo.mid}</td>
-							<td>${bookingVo.vdate}</td>
-							<td>
-								<form name="reserve_bstate" action="reserve_state_data" method="post">
-									<input type = "hidden" name ="bstate" value = "${bookingVo.bstate}">
-									<input type = "hidden" name = "bid" value = "${bookingVo.bid}">
-									<button type="button" id="btn_bstate">
-										<c:choose>
-											<c:when test="${bookingVo.bstate eq '예약중'}">
-												<span>
-													예약 완료
-												</span>
-											</c:when>
-											<c:otherwise>
-												<span>
-													에약 취소
-												</span>
-											</c:otherwise>
-										</c:choose>
-										${bookingVo.bstate}
-									</button>
-								</form>
-							</td>
-						</tr>
+					      <td>${bookingVo.rno}</td>
+					      <td><a href="admin_reserve_detail.do?bid=${bookingVo.bid}">${bookingVo.hname}</a></td>
+					      <td>${bookingVo.mid}</td>
+					      <td class="date">${bookingVo.vdate}</td>
+					      <td class="state">${bookingVo.bstate}</td>
+					    </tr>
 					</c:forEach>
 					<tr>
 						<td colspan="5"><div id="ampaginationsm"></div></td>

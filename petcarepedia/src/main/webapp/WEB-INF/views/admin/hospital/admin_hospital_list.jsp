@@ -13,6 +13,7 @@
 	<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
+	
 	<script>
 	$(document).ready(function(){
 		var pager = jQuery('#ampaginationsm').pagination({
@@ -33,11 +34,12 @@
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/petcarepedia/hospital_list.do?page="+e.page);         
+	           $(location).attr('href', "http://localhost:9000/petcarepedia/admin_hospital_list.do?page="+e.page);         
 	    });
 		
  	});
 	</script> 
+	
 </head>
 <body>
 <!-- header -->
@@ -50,10 +52,10 @@
 					<nav>
 						<ul>
 							<li>병원관리</li>
-							<li><a href = "http://localhost:9000/petcarepedia/hospital_list.do">병원 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/member_list.do">회원 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/reserve_list.do">예약 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/review_list.do">신고 리뷰 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_hospital_list.do">병원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_member_list.do">회원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_reserve_list.do">예약 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_review_list.do">신고 리뷰 관리</a></li>
 							<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
 						</ul>
 					</nav>
@@ -69,7 +71,7 @@
 				<table class="table">
 					<tr>
 						<td colspan="5" >
-							<button type="button" class="button4"><a href="http://localhost:9000/petcarepedia/hospital_detail.do">등록하기</a></button>
+							<button type="button" class="button4"><a href="http://localhost:9000/petcarepedia/admin_hospital_detail.do">등록하기</a></button>
 						</td>
 					</tr>
 					<tr>
@@ -82,7 +84,7 @@
 					<c:forEach var="hospitalVo" items="${list}">
 					<tr>
 						<td>${hospitalVo.rno}</td>
-						<td><a href="hospital_content.do?hid=${hospitalVo.hid}">${hospitalVo.hname}</a></td>
+						<td><a href="admin_hospital_content.do?hid=${hospitalVo.hid}">${hospitalVo.hname}</a></td>
 						<td>${hospitalVo.animal}</td>
 						<td>${hospitalVo.ntime}</td>
 						<td>${hospitalVo.holiday}</td>

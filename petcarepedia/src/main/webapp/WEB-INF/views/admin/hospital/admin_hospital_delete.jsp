@@ -8,10 +8,20 @@
 	<link rel="stylesheet" href="http://localhost:9000/mycgv_jsp/css/am-pagination.css">
 	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_serin.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
 	<script>
-		alert("삭제할 병원이 맞는 지 확인해주세요");
+		$().ready(function () {
+	        Swal.fire({
+	            icon: 'warning',                         // Alert 타입
+	            /* title: 'Alert가 실행되었습니다.',   */       // Alert 제목
+	            text: '삭제할 병원이 맞는 지 확인해주세요',  // Alert 내용
+	            
+	            confirmButtonColor:'#98dfff',
+	      	  	confirmButtonText:'확인'
+	        });
+		});
 	</script>
 </head>
 <body>
@@ -24,10 +34,10 @@
 						<nav>
 							<ul>
 								<li>병원관리</li>
-								<li><a href = "http://localhost:9000/petcarepedia/hospital_list.do">병원 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/member_list.do">회원 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/reserve_list.do">예약 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/review_list.do">신고 리뷰 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/admin_hospital_list.do">병원 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/admin_member_list.do">회원 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/admin_reserve_list.do">예약 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/admin_review_list.do">신고 리뷰 관리</a></li>
 								<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
 							</ul>
 						</nav>
@@ -59,7 +69,7 @@
 								<tr>
 									<td colspan="5"> 
 										<button type="submit" class="button5" id="btn_update">삭제완료</a></button>
-										<button type="button" class="button5" id="btn_delete"><a href="hospital_delete.do?hid=${hospitalVo.hid}">이전으로</a></button>
+										<button type="button" class="button5" id="btn_delete"><a href="admin_hospital_delete.do?hid=${hospitalVo.hid}">이전으로</a></button>
 									</td>
 								</tr>
 							</table>

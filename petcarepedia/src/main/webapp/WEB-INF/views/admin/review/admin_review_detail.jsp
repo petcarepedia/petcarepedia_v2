@@ -22,18 +22,18 @@
 						<nav>
 							<ul>
 								<li>신고리뷰관리</li>
-								<li><a href = "http://localhost:9000/petcarepedia/hospital_list.do">병원 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin/member/member_list.do">회원 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin/reserve/reserve_list.do">예약 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin/review/review_list.do">신고 리뷰 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin/admin_notice/admin_notice.do">공지 사항 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/admin_hospital_list.do">병원 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/admin_member_list.do">회원 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/admin_reserve_list.do">예약 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/admin_review_list.do">신고 리뷰 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
 							</ul>
 						</nav>
 					</div>
 				</section>
 				<section id="section2">
 					<button type="submit" class="button4" id="btn_delete">
-						<a href="http://localhost:9000/petcarepedia/review_delete2.do?rid=${reviewVo.rid}">삭제하기</a>
+						<a href="http://localhost:9000/petcarepedia/admin_review_delete2.do?rid=${reviewVo.rid}">삭제하기</a>
 					</button>
 					<div class="review_detail">
 						<div id = "table" >

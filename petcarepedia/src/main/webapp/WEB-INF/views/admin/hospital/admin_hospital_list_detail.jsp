@@ -50,11 +50,11 @@
 					<nav>
 						<ul>
 							<li>병원관리</li>
-							<li><a href = "http://localhost:9000/petcarepedia/hospital_list.do">병원 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/member/member_list.do">회원 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/reserve/reserve_list.do">예약 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/review/review_list.do">신고 리뷰 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/admin_notice/admin_notice.do">공지 사항 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_hospital_list.do">병원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_member/member_list.do">회원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_reserve/reserve_list.do">예약 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_review/review_list.do">신고 리뷰 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_admin_notice/admin_notice.do">공지 사항 관리</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -64,7 +64,7 @@
 			<div class="d2">
 				<input type="text" class="search_bar" placeholder="병원명 입력">
 				<button type="button" class="button1">
-					<a href="http://localhost:9000/petcarepedia/hospital_list_detail.do">
+					<a href="http://localhost:9000/petcarepedia/admin_hospital_list_detail.do">
 						<img src="http://localhost:9000/petcarepedia/images/foot_sky.png">
 					</a>
 				</button>

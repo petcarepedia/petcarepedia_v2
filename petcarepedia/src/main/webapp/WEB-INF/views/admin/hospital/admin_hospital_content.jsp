@@ -21,13 +21,13 @@
 					<div id="d2">
 						<nav>
 							<ul>
-								<li>병원관리</li>
-								<li><a href = "http://localhost:9000/petcarepedia/hospital_list.do">병원 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/member_list.do">회원 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/reserve_list.do">예약 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/review_list.do">신고 리뷰 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
-							</ul>
+							<li>병원관리</li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_hospital_list.do">병원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_member_list.do">회원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_reserve_list.do">예약 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_review_list.do">신고 리뷰 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
+						</ul>
 						</nav>
 					</div>
 				</section>
@@ -88,8 +88,8 @@
 								</tr>
 								<tr>
 									<td colspan="5"> 
-										<button type="button" class="button5" id="btn_update"><a href="hospital_update.do?hid=${hospitalVo.hid}">수정하기</a></button>
-										<button type="button" class="button5" id="btn_delete"><a href="hospital_delete.do?hid=${hospitalVo.hid}">삭제하기</a></button>
+										<button type="button" class="button5" id="btn_update"><a href="admin_hospital_update.do?hid=${hospitalVo.hid}">수정하기</a></button>
+										<button type="button" class="button5" id="btn_delete"><a href="admin_hospital_delete.do?hid=${hospitalVo.hid}">삭제하기</a></button>
 									</td>
 								</tr>
 							</table>

@@ -48,9 +48,9 @@ public class AdminController {
 	
 	
 	/**
-	 * 리뷰 페이징
+	 * 由щ럭 �럹�씠吏�
 	 */
-	@RequestMapping(value="/review_list.do", method=RequestMethod.GET)
+	@RequestMapping(value="/admin_review_list.do", method=RequestMethod.GET)
 	public ModelAndView review_list(String page) {
 		ModelAndView model = new ModelAndView();		
 		Map<String, Integer> param = pageService.getPageResult(page, "review2");
@@ -62,15 +62,15 @@ public class AdminController {
 		model.addObject("maxSize", param.get("maxSize"));
 		model.addObject("page", param.get("page"));
 		
-		model.setViewName("/admin/review/review_list");
+		model.setViewName("/admin/review/admin_review_list");
 		
 		return model;
 	}
 	
 	/**
-	 * 예약 페이징
+	 * �삁�빟 �럹�씠吏�
 	 */
-	@RequestMapping(value="/reserve_list.do", method=RequestMethod.GET)
+	@RequestMapping(value="/admin_reserve_list.do", method=RequestMethod.GET)
 	public ModelAndView reserve_list(String page) {
 		ModelAndView model = new ModelAndView();		
 		Map<String, Integer> param = pageService.getPageResult(page, "booking");
@@ -83,15 +83,15 @@ public class AdminController {
 		model.addObject("maxSize", param.get("maxSize"));
 		model.addObject("page", param.get("page"));
 		
-		model.setViewName("/admin/reserve/reserve_list");
+		model.setViewName("/admin/reserve/admin_reserve_list");
 		
 		return model;
 	}
 	
 	/**
-	 * 회원 페이징
+	 * �쉶�썝 �럹�씠吏�
 	 */
-	@RequestMapping(value="/member_list.do", method=RequestMethod.GET)
+	@RequestMapping(value="/admin_member_list.do", method=RequestMethod.GET)
 	public ModelAndView member_list(String page) {
 		ModelAndView model = new ModelAndView();		
 		Map<String, Integer> param = pageService.getPageResult(page, "member");
@@ -103,15 +103,15 @@ public class AdminController {
 		model.addObject("maxSize", param.get("maxSize"));
 		model.addObject("page", param.get("page"));
 		
-		model.setViewName("/admin/member/member_list");
+		model.setViewName("/admin/member/admin_member_list");
 		
 		return model;
 	}
 	
 	/**
-	 * 병원 페이징
+	 * 蹂묒썝 �럹�씠吏�
 	 */
-	@RequestMapping(value="/hospital_list.do", method=RequestMethod.GET)
+	@RequestMapping(value="/admin_hospital_list.do", method=RequestMethod.GET)
 	public ModelAndView hospital_list(String page) {
 		ModelAndView model = new ModelAndView();		
 		Map<String, Integer> param = pageService.getPageResult(page, "hospital");
@@ -123,13 +123,13 @@ public class AdminController {
 		model.addObject("maxSize", param.get("maxSize"));
 		model.addObject("page", param.get("page"));
 		
-		model.setViewName("/admin/hospital/hospital_list");
+		model.setViewName("/admin/hospital/admin_hospital_list");
 		
 		return model;
 	}
 	
 	/**
-	 * 예약 - 상태 변경 처리
+	 * �삁�빟 - �긽�깭 蹂�寃� 泥섎━
 	 */
 	
 	@RequestMapping(value = "/reserve_state_data.do", method = RequestMethod.POST)
@@ -139,7 +139,7 @@ public class AdminController {
 		int result = bookingDao.Bselect(bid);
 		
  		if(result == 1) {
- 			viewName = "redirect:/reserve_list.do";
+ 			viewName = "redirect:/admin_reserve_list.do";
  		}else {
  			
  		}
@@ -148,22 +148,22 @@ public class AdminController {
 	}
 	
 	/**
-	 * 예약 - 검색
+	 * �삁�빟 - 寃��깋
 	 */
-	@RequestMapping(value = "/reserve_list_detail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin_reserve_list_detail.do", method = RequestMethod.GET)
 	public ModelAndView reserve_list_detail(String mid) {
 		ModelAndView model = new ModelAndView();
 		
 		ArrayList<BookingVo> bookingVo = bookingService.getSelect();
 
 		model.addObject("bookindVo", bookingVo);
-		model.setViewName("/admin/reserve/reserve_list_detail");
+		model.setViewName("/admin/reserve/admin_reserve_list_detail");
 
 		return model;
 	}
 
 	/**
-	 * 예약 - 검색 처리
+	 * �삁�빟 - 寃��깋 泥섎━
 	 */
 	@RequestMapping(value = "/reserve_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -189,14 +189,14 @@ public class AdminController {
 	}
 	
 	/**
-	 * 신고리뷰 - 삭제 페이지
+	 * �떊怨좊━酉� - �궘�젣 �럹�씠吏�
 	 */
 	@RequestMapping(value = "/review_delete_proc2.do", method = RequestMethod.POST)
 	public String review_delete_proc2(String rid) {
 		String viewName = "";
 		int result = reviewService.getDelete(rid);
 		if (result == 1) {
-			viewName = "redirect:/review_list.do";
+			viewName = "redirect:/admin_review_list.do";
 		} else {
 
 		}
@@ -204,36 +204,36 @@ public class AdminController {
 	}
 	
 	/**
-	 * 신고리뷰 - 삭제 페이지
+	 * �떊怨좊━酉� - �궘�젣 �럹�씠吏�
 	 */
-	@RequestMapping(value="/review_delete2.do", method=RequestMethod.GET)
+	@RequestMapping(value="/admin_review_delete2.do", method=RequestMethod.GET)
 	public ModelAndView review_delete2(String rid) {
 		ModelAndView model = new ModelAndView();
 		ReviewVo reviewVo = reviewService.getSelect(rid);
 		
 		model.addObject("reviewVo", reviewVo);
-		model.setViewName("admin/review/review_delete2");
+		model.setViewName("admin/review/admin_review_delete2");
 		
 		return model;
 	}
 	
 	/**
-	 * 신고리뷰 - 상세 페이지
+	 * �떊怨좊━酉� - �긽�꽭 �럹�씠吏�
 	 */
-	@RequestMapping(value = "/review_detail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin_review_detail.do", method = RequestMethod.GET)
 	public ModelAndView review_detail(String rid) {
 		ModelAndView model = new ModelAndView();
 		ReviewVo reviewVo = reviewService.getSelect(rid);
 
 		model.addObject("reviewVo", reviewVo);
-		model.setViewName("/admin/review/review_detail");
+		model.setViewName("/admin/review/admin_review_detail");
 
 		return model;
 	}
 	
 
 	/**
-	 * 회원 - 검색창
+	 * �쉶�썝 - 寃��깋李�
 	 * */
 	@RequestMapping(value = "/member_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -259,29 +259,29 @@ public class AdminController {
 	}
 
 	/**
-	 * 회원 - 상세페이지
+	 * �쉶�썝 - �긽�꽭�럹�씠吏�
 	 */
-	@RequestMapping(value = "/member_detail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin_member_detail.do", method = RequestMethod.GET)
 	public ModelAndView member_detail(String mid) {
 
 		ModelAndView model = new ModelAndView();
 		MemberVo memberVo = memberService.getSelect(mid);
 
 		model.addObject("memberVo", memberVo);
-		model.setViewName("/admin/member/member_detail");
+		model.setViewName("/admin/member/admin_member_detail");
 
 		return model;
 	}
 
 	/**
-	 * 병원 - 삭제 처리
+	 * 蹂묒썝 - �궘�젣 泥섎━
 	 */
 	@RequestMapping(value = "/hospital_delete_proc.do", method = RequestMethod.POST)
 	public String hospital_delete_proc(String hid) {
 		String viewName = "";
 		int result = hospitalService.delete(hid);
 		if (result == 1) {
-			viewName = "redirect:/hospital_list.do";
+			viewName = "redirect:/admin_hospital_list.do";
 		} else {
 
 		}
@@ -290,68 +290,68 @@ public class AdminController {
 	}
 
 	/**
-	 * 병원 - 삭제 페이지
+	 * 蹂묒썝 - �궘�젣 �럹�씠吏�
 	 */
-	@RequestMapping(value = "/hospital_delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin_hospital_delete.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_delete(String hid) {
 
 		ModelAndView model = new ModelAndView();
 		HospitalVo hospitalVo = hospitalService.select(hid);
 
 		model.addObject("hospitalVo", hospitalVo);
-		model.setViewName("/admin/hospital/hospital_delete");
+		model.setViewName("/admin/hospital/admin_hospital_delete");
 
 		return model;
 	}
 
 	/**
-	 * 병원 - 수정 처리
+	 * 蹂묒썝 - �닔�젙 泥섎━
 	 */
 	@RequestMapping(value = "/hospital_update_proc.do", method = RequestMethod.POST)
 	public String hospital_update_proc(HospitalVo hospitalVo) {
 		String viewName = "";
 		int result = hospitalService.update(hospitalVo);
 		if (result == 1) {
-			viewName = "redirect:/hospital_list.do";
+			viewName = "redirect:/admin_hospital_list.do";
 		} else {
-			// 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 호占쏙옙
+			// �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �샇�뜝�룞�삕
 		}
 
 		return viewName;
 	}
 
 	/**
-	 * 병원 - 수정
+	 * 蹂묒썝 - �닔�젙
 	 */
-	@RequestMapping(value = "/hospital_update.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin_hospital_update.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_update(String hid) {
 
 		ModelAndView model = new ModelAndView();
 		HospitalVo hospitalVo = hospitalService.select(hid);
 
 		model.addObject("hospitalVo", hospitalVo);
-		model.setViewName("/admin/hospital/hospital_update");
+		model.setViewName("/admin/hospital/admin_hospital_update");
 
 		return model;
 	}
 
 	/**
-	 * 蹂묒썝 - �긽�꽭�럹�씠吏�
+	 * 癰귣쵐�뜚 - 占쎄맒占쎄쉭占쎈읂占쎌뵠筌욑옙
 	 */
-	@RequestMapping(value = "/hospital_content.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin_hospital_content.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_content(String hid) {
 
 		ModelAndView model = new ModelAndView();
 		HospitalVo hospitalVo = hospitalService.select(hid);
 
 		model.addObject("hospitalVo", hospitalVo);
-		model.setViewName("/admin/hospital/hospital_content");
+		model.setViewName("/admin/hospital/admin_hospital_content");
 
 		return model;
 	}
 
 	/**
-	 * 병원 - 상세
+	 * 蹂묒썝 - �긽�꽭
 	 */
 	@RequestMapping(value = "/hospital_detail_proc.do", method = RequestMethod.POST)
 	public String hostpital_detail_proc(HospitalVo hospitalVo, HttpServletRequest request) throws Exception {
@@ -369,7 +369,7 @@ public class AdminController {
 			hospitalVo.setHfile(hfile);
 			hospitalVo.setHsfile(hsfile);
 		} else {
-			System.out.println("파일 X");
+			System.out.println("�뙆�씪 X");
 		}
 
 		int result = hospitalService.insert(hospitalVo);
@@ -377,7 +377,7 @@ public class AdminController {
 			File saveFile = new File(root_path + attach_path + hospitalVo.getHsfile());
 			hospitalVo.getFile1().transferTo(saveFile);
 
-			viewName = "redirect:/hospital_list.do";
+			viewName = "redirect:/admin_hospital_list.do";
 		} else {
 
 		}
@@ -385,29 +385,29 @@ public class AdminController {
 	}
 
 	/**
-	 * 蹂묒썝 - 寃��깋
+	 * 癰귣쵐�뜚 - 野껓옙占쎄퉳
 	 */
-	@RequestMapping(value = "/hospital_detail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin_hospital_detail.do", method = RequestMethod.GET)
 	public String hostpital_list_detail() {
-		return "/admin/hospital/hospital_detail";
+		return "/admin/hospital/admin_hospital_detail";
 	}
 
 	/**
-	 * 蹂묒썝 - 寃��깋 �럹�씠吏�
+	 * 癰귣쵐�뜚 - 野껓옙占쎄퉳 占쎈읂占쎌뵠筌욑옙
 	 */
-	@RequestMapping(value = "/hospital_list_detail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin_hospital_list_detail.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_detail(String hname) {
 		ModelAndView model = new ModelAndView();
 		ArrayList<HospitalVo> list = hospitalService.search(hname);
 
 		model.addObject("list", list);
-		model.setViewName("/admin/hospital/hospital_list_detail");
+		model.setViewName("/admin/hospital/admin_hospital_list_detail");
 
 		return model;
 	}
 
 	/**
-	 * 병원 - 검색 처리
+	 * 蹂묒썝 - 寃��깋 泥섎━
 	 */
 	@RequestMapping(value = "/hospital_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -424,7 +424,7 @@ public class AdminController {
 		model.addObject("maxSize", param.get("maxSize"));
 		model.addObject("page", param.get("page"));
 		
-		model.setViewName("/admin/hospital/hospital_list");
+		model.setViewName("/admin/hospital/admin_hospital_list");
 		
 		JsonObject jlist = new JsonObject();
 		JsonArray jarray = new JsonArray();
