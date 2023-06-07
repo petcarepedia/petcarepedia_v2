@@ -8,12 +8,10 @@
 	<link rel="stylesheet" href="http://localhost:9000/mycgv_jsp/css/am-pagination.css">
 	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_serin.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
 </head>
-<script>
-		alert("삭제할 리뷰가 맞는 지 확인해주세요");
-	</script>
 <body>
 	<!-- header -->
 	<jsp:include page="../admin_header.jsp"></jsp:include>
