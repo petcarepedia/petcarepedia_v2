@@ -76,7 +76,7 @@
 		                            <a href="http://localhost:9000/petcarepedia/mypage_member_information.do?mid=${sessionScope.svo.mid}">마이페이지</a>
 		                        </li>
 		                        <li>
-		                            <a href="http://localhost:9000/petcarepedia/logout.do">로그아웃</a>
+		                            <a id="logout">로그아웃</a>
 		                        </li>
 		                        <li>
 		                            <a href="http://localhost:9000/petcarepedia/notice.do">공지사항</a>
@@ -105,6 +105,31 @@
 		});
 	    
 	    $(".header-menu").css("width",window.innerWidth).css("left","0").css("right","0");
+	    
+	    $("#logout").click(function(){
+	    	Swal.fire({
+                title: '로그아웃하시겠습니까?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#FFB3BD',
+                cancelButtonColor: '#98dfff',
+                confirmButtonText: '로그아웃',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                    	title: '로그아웃이 완료되었습니다.',
+                    	icon: 'success',
+                    	confirmButtonColor: '#98dfff',
+                    	confirmButtonText: '확인',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        	location.href="http://localhost:9000/petcarepedia/logout.do";
+                        }
+                    })
+                }
+            })
+	    })
     </script>
 </body>
 </html>
