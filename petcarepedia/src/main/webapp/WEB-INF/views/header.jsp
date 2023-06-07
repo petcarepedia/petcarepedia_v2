@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -31,29 +32,58 @@
                 </form>
                 
                 <div class="header-nav">
-                    <ul>
-                        <li>
-                            <a href="http://localhost:9000/petcarepedia/search_main.do">병원검색</a>
-                        </li>
-                        <li>
-                            <a href="http://localhost:9000/petcarepedia/review_main.do">리뷰사전</a>
-                        </li>
-                        <li>
-                            <a href="http://localhost:9000/petcarepedia/login.do">로그인</a>
-                        </li>
-                        <li>
-                            <a href="http://localhost:9000/petcarepedia/join.do">회원가입</a>
-                        </li>
-                        <li>
-                            <a href="http://localhost:9000/petcarepedia/mypage_member_information.do?mid=hong">마이페이지</a>
-                        </li>
-                        <li>
-                            <a href="#">로그아웃</a>
-                        </li>
-                        <li>
-                            <a href="http://localhost:9000/petcarepedia/notice.do">공지사항</a>
-                        </li>
-                    </ul>
+                	<c:choose>
+						<c:when test="${sessionScope.svo == null}">
+		                    <ul>
+		                        <li>
+		                            <a href="http://localhost:9000/petcarepedia/search_main.do">병원검색</a>
+		                        </li>
+		                        <li>
+		                            <a href="http://localhost:9000/petcarepedia/review_main.do">리뷰사전</a>
+		                        </li>
+		                        <li>
+		                            <a href="http://localhost:9000/petcarepedia/login.do">로그인</a>
+		                        </li>
+		                        <li>
+		                            <a href="http://localhost:9000/petcarepedia/join.do">회원가입</a>
+		                        </li>
+		                        <!-- <li>
+		                            <a href="http://localhost:9000/petcarepedia/mypage_member_information.do?mid=hong">마이페이지</a>
+		                        </li>
+		                        <li>
+		                            <a href="#">로그아웃</a>
+		                        </li> -->
+		                        <li>
+		                            <a href="http://localhost:9000/petcarepedia/notice.do">공지사항</a>
+		                        </li>
+		                    </ul>
+		                </c:when>
+						<c:otherwise>
+							<ul>
+		                        <li>
+		                            <a href="http://localhost:9000/petcarepedia/search_main.do">병원검색</a>
+		                        </li>
+		                        <li>
+		                            <a href="http://localhost:9000/petcarepedia/review_main.do">리뷰사전</a>
+		                        </li>
+		                        <!-- <li>
+		                            <a href="http://localhost:9000/petcarepedia/login.do">로그인</a>
+		                        </li>
+		                        <li>
+		                            <a href="http://localhost:9000/petcarepedia/join.do">회원가입</a>
+		                        </li> -->
+		                        <li>
+		                            <a href="http://localhost:9000/petcarepedia/mypage_member_information.do?mid=${sessionScope.svo.mid}">마이페이지</a>
+		                        </li>
+		                        <li>
+		                            <a href="http://localhost:9000/petcarepedia/logout.do">로그아웃</a>
+		                        </li>
+		                        <li>
+		                            <a href="http://localhost:9000/petcarepedia/notice.do">공지사항</a>
+		                        </li>
+		                    </ul>
+						</c:otherwise>
+					</c:choose>
                 </div>
             </div>
         </div>
