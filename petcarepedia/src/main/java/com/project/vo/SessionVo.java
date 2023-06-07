@@ -2,7 +2,7 @@ package com.project.vo;
 
 public class SessionVo {
 	int LoginResult;
-	String id, nickname;
+	String mid, nickname;
 	
 	public int getLoginResult() {
 		return LoginResult;
@@ -10,11 +10,11 @@ public class SessionVo {
 	public void setLoginResult(int loginResult) {
 		LoginResult = loginResult;
 	}
-	public String getId() {
-		return id;
+	public String getMid() {
+		return mid;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setMid(String mid) {
+		this.mid = mid;
 	}
 	public String getNickname() {
 		return nickname;

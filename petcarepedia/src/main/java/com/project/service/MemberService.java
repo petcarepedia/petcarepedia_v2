@@ -3,10 +3,11 @@ package com.project.service;
 import java.util.ArrayList;
 
 import com.project.vo.MemberVo;
+import com.project.vo.SessionVo;
 
 public interface MemberService {
 	public int getJoin(MemberVo memberVo);
-	public int getLogin(MemberVo memberVo);
+	public SessionVo getLogin(MemberVo memberVo);
 	public int getDelete(String mid, String pass);
 	public ArrayList<MemberVo> getList();
 	public ArrayList<MemberVo> getList(int startCount, int endCount);

@@ -19,12 +19,16 @@
 	            icon: 'error',                         
 	            title: '로그인 실패',         
 	            text: '아이디와 비밀번호를 다시 확인해주세요.',  
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
 	        });
 		} else if(join_result=="success"){
 			Swal.fire({
 	            icon: 'success',                         
 	            title: '회원가입 성공',         
 	            text: '회원가입에 성공했습니다. 로그인해주세요.',  
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
 	        });
 		}
 	});
