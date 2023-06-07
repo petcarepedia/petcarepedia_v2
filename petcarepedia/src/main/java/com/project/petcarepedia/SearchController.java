@@ -91,7 +91,7 @@ public class SearchController {
 		// Check bookmark
 	    BookmarkVo bookmarkVo = new BookmarkVo();
 	    bookmarkVo.setHid(hid);
-	    bookmarkVo.setMid("hong"); // 이 부분을 세션 정보 또는 다른 값을 가져와 설정해야합니다.
+	    bookmarkVo.setMid(mid); // 이 부분을 세션 정보 또는 다른 값을 가져와 설정해야합니다.
 	    int bookmarkResult = bookmarkService.getCheckBookmark(bookmarkVo);
 	    model.addObject("bookmarkResult", bookmarkResult);
 	    

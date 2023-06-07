@@ -1,34 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-    
+	pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
-	<title>펫캐어피디아 | 검색 결과</title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_result.css">
+<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png"
+	rel="shortcut icon" type="image/x-icon">
+<title>펫캐어피디아 | 검색 결과</title>
+<link rel="stylesheet"
+	href="http://localhost:9000/petcarepedia/css/search_result.css">
 
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="http://localhost:9000/petcarepedia/js/search_result.js"></script>
 <script>
 $(document).ready(function() {
+	var sid = $("input[name='mid']").val();
+	
     $("#bookmark").click(function(event) { // 북마크
         event.preventDefault();
+        
 
         var hid = "${hospital.hid}";
+        
+        if(sid == "") {
+        	Swal.fire({
+                icon: 'warning',
+                title: '로그인 확인',
+                text: '로그인을 해주세요',
+                showConfirmButton: true, // 확인 버튼 표시
+                confirmButtonColor:'#98dfff',
+          	    confirmButtonText:'확인'
+            });
+        } else {
 
         $.ajax({
             url: "bookmarkProc.do",
             type: "POST",
             data: {
                 hid: hid,
-                mid: "hong"
+                mid: sid
             },
             success: function(bookmark_result) {
                 if (bookmark_result === "fail") {
@@ -56,6 +72,7 @@ $(document).ready(function() {
                 }
             }
         });
+        }
     });
     
     $("#review").click(function(event) { // 리뷰
@@ -152,10 +169,10 @@ $(document).ready(function() {
 	<!-- header -->
 	<!-- <iframe width="100%" height="100px"></iframe> -->
 	<div class="header-wrapper">
-		<jsp:include page="../header.jsp"></jsp:include>	
+		<jsp:include page="../header.jsp"></jsp:include>
 	</div>
-	
-	
+
+
 	<!-- content -->
 	<div class="result_main">
 		<section class="info">
@@ -164,7 +181,7 @@ $(document).ready(function() {
 					<%-- <img src="${hospital.img}"> --%>
 					<img src="${hospital.img}">
 				</div>
-				
+
 				<div class="name_d">
 					<div class="area_d">
 						<a href="http://localhost:9000/petcarepedia/search_main.do">서울</a>
@@ -172,11 +189,11 @@ $(document).ready(function() {
 						<%-- <a href="http://localhost:9000/petcarepedia/search_main.do">${hospital.gloc}</a> --%>
 						<a>${hospital.gloc}</a>
 					</div>
-					
+
 					<span class="name">${hospital.hname}</span>
-					
+
 					<div class="buttons">
-<%-- 						<form name="reviewForm" action="reviewCheckProc.do" method="post">
+						<%-- 						<form name="reviewForm" action="reviewCheckProc.do" method="post">
 						<!-- <a href="reviewCheckProc.do"> -->
 <!-- 						<a href="review_write.do?mid=hong"> -->
 							<input type="hidden" name="rhid" value="${blist.hid}">
@@ -187,90 +204,100 @@ $(document).ready(function() {
 						</form>	 --%>
 						<!-- <button type="button" id="share"><img src="http://localhost:9000/petcarepedia/images/share.png">공유하기</button> -->
 						<form name="bookmarkForm" action="bookmarkProc.do" method="post">
-							<input type="hidden" name="hid" value="${hospital.hid}">
-							<input type="hidden" name="mid" value="hong">
-							<input type="hidden" name="Bookmark Result" value="${bookmarkResult}">
-							
+							<input type="text" name="hid" value="${hospital.hid}">
+							<input type="text" name="mid" value="${sessionScope.svo.mid}"> 
+							<input type="text" name="Bookmark Result" value="${bookmarkResult}">
+
 							<!-- 북마크 여부에 따라서 -->
 							<c:choose>
 								<c:when test="${bookmarkResult == 1}">
-									<button type="submit" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/bookmark_yellow.png"></button>
+									<button type="submit" id="bookmark">
+										<img
+											src="http://localhost:9000/petcarepedia/images/bookmark_yellow.png">
+									</button>
 								</c:when>
-								
+
 								<c:otherwise>
-									<button type="submit" id="bookmark"><img src="http://localhost:9000/petcarepedia/images/bookmark.png"></button>
+									<button type="submit" id="bookmark">
+										<img
+											src="http://localhost:9000/petcarepedia/images/bookmark.png">
+									</button>
 								</c:otherwise>
-							
+
 							</c:choose>
-							
+
 						</form>
 					</div>
-					
-						<c:choose>
-							<c:when test="${star.rstar>=1}">
-								<span class="grade">⭐  ${star.rstar} | 리뷰 ${fn:length(RM_select)}</span>
-							</c:when>
-							
-							<c:otherwise>
-								<span class="grade">⭐  0 | 리뷰 ${fn:length(RM_select)}</span>
-							</c:otherwise>
-						</c:choose>
-					
+
+					<c:choose>
+						<c:when test="${star.rstar>=1}">
+							<span class="grade">⭐ ${star.rstar} | 리뷰
+								${fn:length(RM_select)}</span>
+						</c:when>
+
+						<c:otherwise>
+							<span class="grade">⭐ 0 | 리뷰 ${fn:length(RM_select)}</span>
+						</c:otherwise>
+					</c:choose>
+
 					<%-- <span class="grade">⭐  ${star.rstar} | 리뷰 ${fn:length(RM_select)}</span> --%>
-					
-					<button type="button" id="reservation" value="${hospital.hid}"><img src="http://localhost:9000/petcarepedia/images/cal.png">간편 예약하기
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-								&nbsp&nbsp&nbsp&nbsp&nbsp>
+
+					<button type="button" id="reservation" value="${hospital.hid}">
+						<img src="http://localhost:9000/petcarepedia/images/cal.png">간편
+						예약하기 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						&nbsp&nbsp&nbsp&nbsp&nbsp>
 					</button>
 					<div id="hmodal" class="modal">
 						<div class="modal-content">
-						    <span class="close">&times;</span>
-						   <!-- <iframe id="reservation-iframe" src="" 
+							<span class="close">&times;</span>
+							<!-- <iframe id="reservation-iframe" src="" 
 							width="500px" height="500px" frameborder=0 ></iframe> -->
-						  <jsp:include page="search_reservation.jsp"></jsp:include>	
-						  </div>
-				  	</div>
-					
-					
-					
-				</div>	
-				
+							<jsp:include page="search_reservation.jsp"></jsp:include>
+						</div>
+					</div>
+
+
+
+				</div>
+
 				<hr>
-				
+
 				<div class="link">
-					<span><img src="http://localhost:9000/petcarepedia/images/loc.png">${hospital.loc}</span>
-					    
-					    <c:if test="${hospital.hrink != null && hospital.hrink != 'X'}">
-					    	<span><img src="http://localhost:9000/petcarepedia/images/home.png"><a href="${hospital.hrink}">병원 홈페이지 가기</a></span>
-					    </c:if>	
-					    
-					<span><img src="http://localhost:9000/petcarepedia/images/call.png">${hospital.tel}</span>
+					<span><img
+						src="http://localhost:9000/petcarepedia/images/loc.png">${hospital.loc}</span>
+
+					<c:if test="${hospital.hrink != null && hospital.hrink != 'X'}">
+						<span><img
+							src="http://localhost:9000/petcarepedia/images/home.png"><a
+							href="${hospital.hrink}">병원 홈페이지 가기</a></span>
+					</c:if>
+
+					<span><img
+						src="http://localhost:9000/petcarepedia/images/call.png">${hospital.tel}</span>
 				</div>
-				
+
 				<hr>
-				
+
 				<div class="nav">
-					<span id="info_s">병원정보</span>
-					<span id="review_s">리뷰</span>
+					<span id="info_s">병원정보</span> <span id="review_s">리뷰</span>
 				</div>
-				
+
 				<hr>
-				
+
 				<div class="api_info">
 					<div class="api">
-						<span>병원정보</span>
-						<span>위치 & 진료시간</span>
+						<span>병원정보</span> <span>위치 & 진료시간</span>
 						<div class="map">
 							<!-- <iframe class="map" src="http://localhost:9000/petcarepedia/search_map.do"
 							scrolling="no" width="350px" height="285px" frameborder=0></iframe> -->
 							<jsp:include page="search_result_map.jsp"></jsp:include>
 						</div>
-						
+
 						<span class="api_home">${hospital.loc}</span>
 					</div>
-					
+
 					<div class="time">
 						<ul>
 							<li>영업시간</li>
@@ -279,7 +306,7 @@ $(document).ready(function() {
 							<li>특수동물 취급 여부</li>
 							<li>소개</li>
 						</ul>
-						
+
 						<ul>
 							<li>${hospital.htime}</li>
 							<li>${hospital.ntime}</li>
@@ -291,51 +318,51 @@ $(document).ready(function() {
 						</ul>
 					</div>
 				</div>
-				
+
 				<hr>
 			</div>
-		
+
 		</section>
-		
+
 		<section class="review">
 			<div class="list">
 				<div class="grade">
 					<span>리뷰 ${fn:length(RM_select)}</span>
-					
+
 					<div class="total">
 						<c:choose>
 							<c:when test="${star.rstar>=1}">
 								<span>${star.rstar} / 5</span>
 							</c:when>
-							
+
 							<c:otherwise>
 								<span>0 / 5</span>
 							</c:otherwise>
 						</c:choose>
-						
+
 						<c:if test="${star.rstar>=1 && star.rstar<2}">
 							<span> ⭐ </span>
-						</c:if>	
-						
+						</c:if>
+
 						<c:if test="${star.rstar>=2 && star.rstar<3}">
 							<span> ⭐⭐ </span>
-						</c:if>	
-						
+						</c:if>
+
 						<c:if test="${star.rstar>=3 && star.rstar<4}">
 							<span> ⭐⭐⭐ </span>
-						</c:if>	
-						
+						</c:if>
+
 						<c:if test="${star.rstar>=4 && star.rstar<5}">
 							<span> ⭐⭐⭐⭐ </span>
 						</c:if>
-						
+
 						<c:if test="${star.rstar>=5}">
 							<span> ⭐⭐⭐⭐⭐ </span>
 						</c:if>
-							
+
 					</div>
 				</div>
-				
+
 				<!-- <div class="filter">
 					<span>동물종류</span>
 					<div class="dropdown-content">
@@ -354,70 +381,72 @@ $(document).ready(function() {
 						 <p>평점 낮은 순서</p>
 					</div>
 				</div> -->
-				
+
 				<c:choose>
 					<c:when test="${fn:length(RM_select) == 0}">
-					<div class="review_card_no">
-						<img id="review_img" src="http://localhost:9000/petcarepedia/images/review.png">
-						<p>등록된 리뷰가 아직 없습니다.</p>
-					</div>
+						<div class="review_card_no">
+							<img id="review_img"
+								src="http://localhost:9000/petcarepedia/images/review.png">
+							<p>등록된 리뷰가 아직 없습니다.</p>
+						</div>
 					</c:when>
-				
+
 					<c:otherwise>
-						<c:forEach var="RM_select" items="${RM_select}"> 
-						<div class="review_card">
-							<div class="member">
-								<div class="name">
-									<img src="http://localhost:9000/petcarepedia/images/cat.png">
-									<span>${RM_select.nickname}</span>
-								</div>
-								
-								<hr class="member_hr">
-								<span class="stext">⭐ <fmt:formatNumber type="number"  pattern="0" value="${RM_select.rstar}" /> / 5</span>
-								<hr class="member_hr">
-								<!-- <span>친절  ⭐⭐⭐⭐⭐</span>
+						<c:forEach var="RM_select" items="${RM_select}">
+							<div class="review_card">
+								<div class="member">
+									<div class="name">
+										<img src="http://localhost:9000/petcarepedia/images/cat.png">
+										<span>${RM_select.nickname}</span>
+									</div>
+
+									<hr class="member_hr">
+									<span class="stext">⭐ <fmt:formatNumber type="number"
+											pattern="0" value="${RM_select.rstar}" /> / 5
+									</span>
+									<hr class="member_hr">
+									<!-- <span>친절  ⭐⭐⭐⭐⭐</span>
 								<span>위생  ⭐⭐⭐⭐⭐</span> -->
-								<!-- <span class="stot">별점  ⭐⭐⭐⭐⭐</span> -->
-								<c:if test="${RM_select.rstar<1}">
-									<span class="stot">별점  </span>
-								</c:if>
-								
-								<c:if test="${RM_select.rstar>=1 && RM_select.rstar<2}">
-									<span class="stot">별점  ⭐</span>
-								</c:if>	
-								
-								<c:if test="${RM_select.rstar>=2 && RM_select.rstar<3}">
-									<span class="stot">별점  ⭐⭐</span>
-								</c:if>	
-								
-								<c:if test="${RM_select.rstar>=3 && RM_select.rstar<4}">
-									<span class="stot">별점  ⭐⭐⭐</span>
-								</c:if>	
-								
-								<c:if test="${RM_select.rstar>=4 && RM_select.rstar<5}">
-									<span class="stot">별점  ⭐⭐⭐⭐</span>
-								</c:if>
-								
-								<c:if test="${RM_select.rstar>=5}">
-									<span class="stot">별점  ⭐⭐⭐⭐⭐</span>
-								</c:if>
-							</div>
-							
-							<div class="write">
-								<!-- <h3>동물 종류 : 고양이</h3> -->
-								<p>${RM_select.rcontent}</p>
-							</div>
-							
-							<div class="date">
-								<span>작성 일자 : ${RM_select.rdate}</span>
-								<span> </span>
-								<form name="likeForm" action="likeProc.do" method="post">
-									<input type="hidden" name="hid" value="${hospital.hid}">
-									<input type="hidden" name="rid" value="${RM_select.rid}">
-									<input type="hidden" name="mid" value="hong">
-									
-									<!--  session 체크 이후 -->
-		<%-- 							<c:choose>
+									<!-- <span class="stot">별점  ⭐⭐⭐⭐⭐</span> -->
+									<c:if test="${RM_select.rstar<1}">
+										<span class="stot">별점 </span>
+									</c:if>
+
+									<c:if test="${RM_select.rstar>=1 && RM_select.rstar<2}">
+										<span class="stot">별점 ⭐</span>
+									</c:if>
+
+									<c:if test="${RM_select.rstar>=2 && RM_select.rstar<3}">
+										<span class="stot">별점 ⭐⭐</span>
+									</c:if>
+
+									<c:if test="${RM_select.rstar>=3 && RM_select.rstar<4}">
+										<span class="stot">별점 ⭐⭐⭐</span>
+									</c:if>
+
+									<c:if test="${RM_select.rstar>=4 && RM_select.rstar<5}">
+										<span class="stot">별점 ⭐⭐⭐⭐</span>
+									</c:if>
+
+									<c:if test="${RM_select.rstar>=5}">
+										<span class="stot">별점 ⭐⭐⭐⭐⭐</span>
+									</c:if>
+								</div>
+
+								<div class="write">
+									<!-- <h3>동물 종류 : 고양이</h3> -->
+									<p>${RM_select.rcontent}</p>
+								</div>
+
+								<div class="date">
+									<span>작성 일자 : ${RM_select.rdate}</span> <span> </span>
+									<form name="likeForm" action="likeProc.do" method="post">
+										<input type="text" name="hid" value="${hospital.hid}">
+										<input type="text" name="rid" value="${RM_select.rid}">
+										<input type="text" name="mid" value="hong">
+
+										<!--  session 체크 이후 -->
+										<%-- 							<c:choose>
 									<c:when test="${RH_select.mid == null}">
 										<button type="submit" id="like-log" class="like" data-rid="${RM_select.rid}" disabled>좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 											<span class="heart">♥</span> 
@@ -431,37 +460,40 @@ $(document).ready(function() {
 										</button>
 									</c:otherwise>
 									</c:choose> --%>
-									<a href="javascript:;" class="icon heart">
-										<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-											<!-- <span class="heart">♥</span>  -->
-											  
-											     <img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">
-											<span class="like-count">${RM_select.rlike}</span>
-										</button>
-								  </a>
-									
-								</form>
-								
-								<form name="rstateForm" action="rstateProc.do" method="post">
-									<input type="hidden" name="rid" value="${RM_select.rid}">
-									<input type="hidden" name="hid" value="${hospital.hid}">
+										<a href="javascript:;" class="icon heart">
+											<button type="submit" id="like" class="like"
+												data-rid="${RM_select.rid}">
+												좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+												<!-- <span class="heart">♥</span>  -->
+
+												<img
+													src="https://cdn-icons-png.flaticon.com/512/812/812327.png"
+													alt="찜하기"> <span class="like-count">${RM_select.rlike}</span>
+											</button>
+										</a>
+
+									</form>
+
+									<form name="rstateForm" action="rstateProc.do" method="post">
+										<input type="text" name="rid" value="${RM_select.rid}">
+										<input type="text" name="hid" value="${hospital.hid}">
 										<button type="button" class="rstate" name="rstate">신고하기</button>
-									<!-- <span>신고하기</span> -->
-								</form>
+										<!-- <span>신고하기</span> -->
+									</form>
+								</div>
 							</div>
-						</div>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-				
-				
-			</div>
-		</section>	
-	</div>	
 
-	
+
+			</div>
+		</section>
+	</div>
+
+
 	<!-- footer -->
 	<!-- <iframe width="100%" height="100px"></iframe> -->
-	<jsp:include page="../footer.jsp"></jsp:include>	
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>
