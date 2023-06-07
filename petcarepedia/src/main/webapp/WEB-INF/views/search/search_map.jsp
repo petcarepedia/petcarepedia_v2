@@ -18,7 +18,9 @@
 	        width: 100%;
 	        height: 1300px;
 	    }
+
 	</style>
+	
 
     
     
@@ -26,6 +28,7 @@
 <body>
 
 <div id="map"></div>
+
 
 </body>
 </html>

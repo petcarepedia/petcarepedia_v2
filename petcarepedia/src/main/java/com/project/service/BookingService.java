@@ -23,6 +23,7 @@ public interface BookingService {
 	public ArrayList<BookingVo> getSelectTime();
 	public BookingVo getSelectTime(String hid);
 	public int getUpdate(BookingVo bookingVo);
+	public int getBselect(String bid);
 	public int getDelete(String bid);
 
 }

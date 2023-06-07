@@ -266,8 +266,8 @@ $(document).ready(function() {
 					<div class="time">
 						<ul>
 							<li>영업시간</li>
-							<li>야간 휴진 여부</li>
-							<li>휴일 휴진 여부</li>
+							<li>야간 진료 여부</li>
+							<li>휴일 진료 여부</li>
 							<li>특수동물 취급 여부</li>
 							<li>소개</li>
 						</ul>
@@ -423,10 +423,14 @@ $(document).ready(function() {
 										</button>
 									</c:otherwise>
 									</c:choose> --%>
+									<a href="javascript:;" class="icon heart">
 										<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-											<span class="heart">♥</span> 
+											<!-- <span class="heart">♥</span>  -->
+											  
+											     <img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">
 											<span class="like-count">${RM_select.rlike}</span>
 										</button>
+								  </a>
 									
 								</form>
 								

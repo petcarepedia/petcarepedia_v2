@@ -263,7 +263,7 @@ div.api span.api_home {
 	padding: 0px 10px;
 }
 
-div.api div.map {
+div.map {
 	/* border: 1px solid red; */
 	width: 370px;
 	height: 285px;
@@ -467,6 +467,9 @@ div.review_card div.date button#like-log {
 	padding-bottom: 7px;
 	pointer-events: none;
 	cursor: no-drop;
+	display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 div.review_card div.date button#like {
@@ -477,11 +480,16 @@ div.review_card div.date button#like {
 	width: 165px;
 	height: 35px;
 	margin-top: 15px; 
-	padding-bottom: 7px;
+	/* padding-bottom: 7px; */
+	 display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 div.review_card div.date button#like span.like-count {
 	font-size: 14px;
+	margin-bottom: 7px; 
+	padding-left: 5px;
 }
 
 div.review_card div.date button#like span.heart {
@@ -523,7 +531,7 @@ div.review_card div.date button.rstate:hover {
 /***************************************
 	modal
 ***************************************/
-div.name_d div.modal {
+div.modal {
 	display: none;
   position: fixed;
   z-index: 1;
@@ -536,7 +544,7 @@ div.name_d div.modal {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-div.name_d div.modal-content {
+div.modal-content {
 	border: 1px solid red;
   background-color: #fefefe;
   margin: 10% auto;
@@ -546,14 +554,43 @@ div.name_d div.modal-content {
   weight:  500px;
 }
 
-div.name_d div.modal-content span.close {
+div.modal-content span.close {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-div.name_d div.modal-content span.close:hover
+div.modal-content span.close:hover
 {
 	cursor: pointer;
 }
+
+
+
+/** ÇÏÆ® **/
+a.icon {
+  text-decoration:none; color:inherit; cursor: pointer;
+}
+
+.icon.heart img{
+	/* padding-top: 10px; */
+    width: 15px;
+    height: 15px;
+}
+
+.icon.heart.fas{
+  color:red
+}
+.heart{
+    transform-origin: center;
+}
+.heart.active img{
+    animation: animateHeart .3s linear forwards;
+}
+
+@keyframes animateHeart{
+    0%{transform:scale(.2);}
+    40%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+  }

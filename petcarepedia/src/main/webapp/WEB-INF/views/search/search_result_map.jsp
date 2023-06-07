@@ -17,6 +17,7 @@
 	    div#map {
 	        width: 100%;
 	        height: 285px;
+	        z-index: -10;
 	    }
 	</style>
 
