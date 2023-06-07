@@ -1336,6 +1336,7 @@ section.review_content table.rv_detail_menu tr td {
 	font-size:14px;
 	font-weight: 10;
 	color:#3d3d3d;
+	word-break:break-all;
 	/* border:1px solid blue; */
 }
 
