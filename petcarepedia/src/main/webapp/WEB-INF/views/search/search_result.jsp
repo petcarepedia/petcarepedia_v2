@@ -113,7 +113,12 @@ $(document).ready(function() {
                                 icon: 'error',
                                 title: '신고 접수된 리뷰입니다',
                                 text: '관리자 확인중 입니다. 잠시만 기다려 주세요.',
-                                showConfirmButton: true
+                                showConfirmButton: true,
+                                confirmButtonText:'확인',
+                                didOpen: () => {
+                                    const confirmButton = Swal.getConfirmButton();
+                                    confirmButton.style.backgroundColor = '#98DFFF';
+                                  }
                             }).then(function() {
                                 location.reload();
                             });
