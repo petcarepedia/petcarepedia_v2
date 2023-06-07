@@ -195,6 +195,23 @@ public class MypageController {
 	}
  	
 	/*
+	 * mypage_review_content.do - 리뷰 상세보기 페이지
+	 */
+	@RequestMapping(value = "/mypage_review_content.do", method = RequestMethod.GET)
+	public ModelAndView mypage_review_content(String rid) {
+		ModelAndView model = new ModelAndView();
+		ReviewVo reviewVo = reviewService.getEnter_select(rid);	
+		model.addObject("reviewVo", reviewVo);
+		model.setViewName("/mypage/mypage_review_content");
+		return model;
+	}
+	
+	
+	
+	
+	
+	
+	/*
 	 * review_revise.do - 리뷰 수정 폼
 	 */
 	@RequestMapping(value = "/review_revise.do", method = RequestMethod.GET)

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,25 +41,24 @@
 						<span>${reviewVo.nickname}</span>
 						<span>의사의 진료는 어떠셨나요?</span>
 						<span>별점을 다시 선택해주세요</span>
-
 						<div id = "star">
 							<fieldset>
-								<input type="radio" name="reviewStar" value="5" id="rate1"><label
+								<input type="radio" name="rstar" value="5" id="rate1"><label
 									for="rate1">★</label>
-								<input type="radio" name="reviewStar" value="4" id="rate2"><label
+								<input type="radio" name="rstar" value="4" id="rate2"><label
 									for="rate2">★</label>
-								<input type="radio" name="reviewStar" value="3" id="rate3"><label
+								<input type="radio" name="rstar" value="3" id="rate3"><label
 									for="rate3">★</label>
-								<input type="radio" name="reviewStar" value="2" id="rate4"><label
+								<input type="radio" name="rstar" value="2" id="rate4"><label
 									for="rate4">★</label>
-								<input type="radio" name="reviewStar" value="1" id="rate5"><label
+								<input type="radio" name="rstar" value="1" id="rate5"><label
 									for="rate5">★</label>
 							</fieldset>
 						</div>
 					</section>
 					<textarea name="rcontent" id = "rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)" maxlength = "200">${reviewVo.rcontent}</textarea>
 					<div id="test_cnt">(0 / 200)</div>
-					<a href = "my_review.do?mid=hong">
+					<a href = "mypage_review_content.do?rid=${reviewVo.rid} ">
 						<button type = "button" id = "cancle">취소</button>
 					</a>
 					<button type = "button" id = "btnReviewUpdate">작성완료</button>
