@@ -71,6 +71,8 @@
 				headerSearchForm.submit();
 			}
 		});
+	    
+	    $(".header-menu").css("width",window.innerWidth).css("left","0").css("right","0");
     </script>
 </body>
 </html>
