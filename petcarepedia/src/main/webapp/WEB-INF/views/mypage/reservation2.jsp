@@ -74,6 +74,7 @@
 						<c:choose>
 							<c:when test = "${today-vdate <= 3}">
 								<div id = "btn_review">
+									<span id = "review_span">*리뷰작성기한은 3일입니다</span>
 									<a href = "review_write.do?mid=${bookingVo.mid}&hid=${bookingVo.hid}&bid=${bookingVo.bid}">
 										<button type = "button" id = "btn_write_review">리뷰쓰기</button>
 									</a>

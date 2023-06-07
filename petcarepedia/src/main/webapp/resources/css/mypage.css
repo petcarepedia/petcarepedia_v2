@@ -617,6 +617,16 @@ hr {
 	color : #8A8A8A;
 	
 }
+#review_span {
+	position : relative;
+	font-size : 12px;
+	height : 11px;
+	top : -30px;
+	left : -25px;
+}
+#btn_write_review {
+	margin-left : -130px;
+}
 #section2:first-child #btn_review{
 	display : flex;
 	height : 50px;
