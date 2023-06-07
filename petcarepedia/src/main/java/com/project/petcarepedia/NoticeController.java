@@ -212,7 +212,7 @@ public class NoticeController {
 	public ModelAndView notice_content(String nid) {
 		ModelAndView model = new ModelAndView();
 		NoticeVo noticeVo = noticeService.getEnterContent(nid);
-		
+		noticeVo.setNcontent(noticeVo.getNcontent().replace("\n", "<br>"));
 		if(noticeVo != null) {
 			// 조회수 업데이트 DB
 			noticeService.getUpdateHits(nid);

@@ -33,7 +33,7 @@ public class ReviewController {
 
 		ModelAndView model = new ModelAndView();	
 		//임시 아이디
-		mid="hong";
+		//mid="test";
 		Map<String, Integer> param = pageService.getPageResult(page, "review");
 		/*
 		//페이징 처리 - startCount, endCount 구하기

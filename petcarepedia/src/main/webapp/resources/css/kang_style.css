@@ -496,9 +496,18 @@ section.review_content table.rv_detail_menu tr td a {
 section.review_content table.rv_detail_menu tr:nth-child(2) td {
 	display:flex;
 } 
-section.review_content table.rv_detail_menu tr td img,div#review ul li.review_list ul li#list_left p img {
+section.review_content table.rv_detail_menu tr:nth-child(2) td p {
+	font-size:16px;
+	font-weight:100;
+} 
+div#review ul li.review_list ul li#list_left p img {
 	width:20px;
 	margin-right:10px;
+}
+section.review_content table.rv_detail_menu tr td img {
+	width:30px;
+	height:30px;
+	margin-right:10px;	
 }
 section.review_content table.rv_detail_menu tr:nth-child(2) td:nth-child(2) {
 	width:200px;
@@ -513,6 +522,7 @@ section.review_content table.rv_detail_menu tr:last-child td {
 	border-radius:5px;
 	font-size:14px;
 	text-align: justify;
+	word-break:break-all;
 }	
 section.review_content div.review_detail div.table_right {
 	position: relative;
