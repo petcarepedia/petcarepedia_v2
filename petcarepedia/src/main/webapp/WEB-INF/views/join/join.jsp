@@ -12,6 +12,20 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
+	<div class="back"></div>
+	<div class="term-box">
+		<div class="term-modal">
+			<!-- <div class="term-modal-close" id="btnModalClose">X</div> -->
+			<div class="title">
+				
+			</div>
+			<div class="term-btn">
+				<button class="btn-yes" id="btnModalAgree">동의</button>
+				<button class="btn-no" id="btnModalClose">닫기</button>
+			</div>
+		</div>
+	</div>
+	
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
@@ -22,12 +36,12 @@
 				<img src="http://localhost:9000/petcarepedia/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="joinForm" action="joinProc.jsp" method="post">
+			<form name="joinForm" action="join_proc.do" method="post">
 				<ul>
 					<li>
 						<label>아이디 <span class="ess">*</span></label>
 						<p><span class="ess">*</span> 표시는 필수 입력 항목입니다.</p>
-						<input type="text" name="id" id="id" placeholder="4~20자의 영문, 숫자 조합" class="input-short">
+						<input type="text" name="mid" id="id" placeholder="4~20자의 영문, 숫자 조합" class="input-short">
 						<button type="button" id="btnCheckId" class="btn-short" disabled>중복확인</button>
 						<span id="idcheck_msg"></span>
 					</li>
@@ -47,8 +61,9 @@
 						<span id="namecheck_msg"></span>
 					</li>
 					<li>
-						<label>별명</label>
-						<input type="text" name="nick" id="nick" placeholder="별명 입력">
+						<label>별명 <span class="ess">*</span></label>
+						<input type="text" name="nickname" id="nickname" placeholder="2자 이상 16자 이하 문자 또는 숫자">
+						<span id="nickcheck_msg"></span>
 					</li>
 					<li>
 						<label>휴대폰 <span class="ess">*</span></label>
@@ -85,22 +100,22 @@
 								<input type="checkbox" name="term" id="termAll" value="all"><span>전체 동의</span>
 							</li>
 							<li>
-								<input type="checkbox" name="term" id="term1" value="1"><span><a>이용약관</a> 동의 <span class="ess">*</span></span>
+								<input type="checkbox" name="term" id="term1" value="1"><span><a id="1" class="btnModalOpen">이용약관</a> 동의 <span class="ess">*</span></span>
 							</li>
 							<li>
-								<input type="checkbox" name="term" id="term2" value="2"><span><a>개인정보 수집 및 이용</a> 동의 <span class="ess">*</span></span>
+								<input type="checkbox" name="term" id="term2" value="2"><span><a id="2" class="btnModalOpen">개인정보 수집 및 이용</a> 동의 <span class="ess">*</span></span>
 							</li>
 							<li>
-								<input type="checkbox" name="term" id="term3" value="3"><span>[선택] <a>위치기반서비스 이용약관</a> 동의</span>
+								<input type="checkbox" name="term" id="term3" value="3"><span>[선택] <a id="3" class="btnModalOpen">위치기반서비스 이용약관</a> 동의</span>
 							</li>
 							<li>
-								<input type="checkbox" name="term" id="term4" value="4"><span>[선택] <a>마케팅 정보 활용 및 수신</a> 동의</span>
+								<input type="checkbox" name="term" id="term4" value="4"><span>[선택] <a id="4" class="btnModalOpen">마케팅 정보 활용 및 수신</a> 동의</span>
 							</li>
 						</ul>
 					</li>
 					<span id="termcheck_msg"></span>
 					<li>
-						<button type="button" id="btnJoin" class="btn-submit" disabled>회원가입</button>
+						<button type="submit" id="btnJoin" class="btn-submit" disabled>회원가입</button>
 					</li>
 				</ul>
 			</form>

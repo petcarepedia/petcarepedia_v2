@@ -9,6 +9,26 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+	$().ready(function (){
+		let login_result = "${login_result}";
+		let join_result = "${join_result}";
+		if(login_result=="fail"){
+			Swal.fire({
+	            icon: 'error',                         
+	            title: '로그인 실패',         
+	            text: '아이디와 비밀번호를 다시 확인해주세요.',  
+	        });
+		} else if(join_result=="success"){
+			Swal.fire({
+	            icon: 'success',                         
+	            title: '회원가입 성공',         
+	            text: '회원가입에 성공했습니다. 로그인해주세요.',  
+	        });
+		}
+	});
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -21,14 +41,14 @@
 				<img src="http://localhost:9000/petcarepedia/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="loginForm" action="loginProc.jsp" method="post">
+			<form name="loginForm" action="login_proc.do" method="post">
 				<ul>
-					<li><input type="text" name="id" id="id" placeholder="아이디"></li>
+					<li><input type="text" name="mid" id="id" placeholder="아이디"></li>
 					<li><input type="password" name="pass" id="pass" placeholder="비밀번호"></li>
-					<li><button type="button" id="btnLogin" class="btn-submit" disabled>로그인</button></li>
+					<li><button type="submit" id="btnLogin" class="btn-submit" disabled>로그인</button></li>
 					<li>
-						<a href="http://localhost:9000/petcarepedia/join/join.jsp">회원가입</a>
-						<a href="http://localhost:9000/petcarepedia/login/login_idfind.jsp">아이디 / 비밀번호 찾기</a>
+						<a href="http://localhost:9000/petcarepedia/join.do">회원가입</a>
+						<a href="http://localhost:9000/petcarepedia/login_idfind.do">아이디 / 비밀번호 찾기</a>
 					</li>
 				</ul>
 			</form>

@@ -24,7 +24,29 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.project.petcarepedia" />
+	<context:component-scan base-package="com.project.dao" />
+	<context:component-scan base-package="com.project.service" />
 	
+	<resources mapping="/upload/**" location="/resources/upload/" />
 	
+	<!-- multipartResolver -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</beans:bean>
+	
+	<!-- sessionAuthInterceptor -->
+	<beans:bean id="sessionAuthInterceptor" class="com.project.interceptor.SessionAuthInterceptor">
+	</beans:bean>
+	
+	<!-- sessionAuthInterceptor check request -->
+	<!-- <interceptors>
+		<interceptor>
+			<mapping path="/mypage*"/>
+			<beans:ref bean="sessionAuthInterceptor"></beans:ref>
+		</interceptor>
+		<interceptor>
+			<mapping path="/admin*"/>
+			<beans:ref bean="sessionAuthInterceptor"></beans:ref>
+		</interceptor>
+	</interceptors> -->
 	
 </beans:beans>

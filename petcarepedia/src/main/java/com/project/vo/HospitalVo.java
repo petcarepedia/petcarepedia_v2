@@ -1,9 +1,12 @@
 package com.project.vo;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 public class HospitalVo {
 	int rno;
-	String hid, hname, gloc, loc, tel, htime, ntime, holiday, animal,intro, img, hrink;
-	
+	String hid, hname, gloc, loc, tel, htime, ntime, holiday, animal,intro, img, hrink, x, y, starttime, endtime, hfile, hsfile;
+	float rstar;
+	CommonsMultipartFile file1;
 	public int getRno() {
 		return rno;
 	}
@@ -82,6 +85,56 @@ public class HospitalVo {
 	public void setHrink(String hrink) {
 		this.hrink = hrink;
 	}
+	public String getX() {
+		return x;
+	}
+	public void setX(String x) {
+		this.x = x;
+	}
+	public String getY() {
+		return y;
+	}
+	public void setY(String y) {
+		this.y = y;
+	}
+	public String getStarttime() {
+		return starttime;
+	}
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
+	}
+	public String getEndtime() {
+		return endtime;
+	}
+	public void setEndtime(String endtime) {
+		this.endtime = endtime;
+	}
+	public String getHfile() {
+		return hfile;
+	}
+	public void setHfile(String hfile) {
+		this.hfile = hfile;
+	}
+	public String getHsfile() {
+		return hsfile;
+	}
+	public void setHsfile(String hsfile) {
+		this.hsfile = hsfile;
+	}
+	public float getRstar() {
+		return rstar;
+	}
+	public void setRstar(float rstar) {
+		this.rstar = rstar;
+	}
+	public CommonsMultipartFile getFile1() {
+		return file1;
+	}
+	public void setFile1(CommonsMultipartFile file1) {
+		this.file1 = file1;
+	}
+	
+	
 	
 	
 }

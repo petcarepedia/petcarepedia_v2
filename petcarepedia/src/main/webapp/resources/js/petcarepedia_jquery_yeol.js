@@ -1,13 +1,19 @@
 $(document).ready(function(){
+
+/*******************************************************************************
+		리뷰쓰기 - 글자수 카운팅
+******************************************************************************/
+	$("#rcontent").on("keyup", function(){
+		$('#test_cnt').html("("+$(this).val().length+" / 200)");
+		if($(this).val().length > 200) {
+			alert("200글자 이하로 작성해주세요");
+            $(this).val($(this).val().substring(0, 200));
+            $('#test_cnt').html("(200 / 200)");
+        }
+	})
+
 	
 
-/*******************************************
-		mypage - 회원정보페이지(수정하기)버튼
-********************************************/
-	$("#btn_style1").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/revise.do";
-	});
-	
 /*******************************************************************************
 		수정하기  - 주소찾기 : daum API
 ******************************************************************************/
@@ -27,87 +33,168 @@ $(document).ready(function(){
 		mypage - 수정하기페이지 버튼
 ******************************************************************************/
 	$("#revise form #section3 #btn_style1").click(function(){
-		var result = confirm('수정을 완료하시겠습니까?');
-		
-		if(result) {
-			location.href = "http://localhost:9000/petcarepedia/mypage/information.jsp";
+		if($("#nickname").val() == "") {
+			alert("별명을 입력해주세요");
+			$("#nickname").focus();
+			return false;
+		} else if($("#phone1").val() == "") {
+			alert("휴대폰 번호를 선택해주세요");
+			$("#phone1").focus();
+			return false;
+		} else if($("#phone2").val() == "") {
+			alert("휴대폰 번호를 입력해주세요");
+			$("#phone2").focus();
+			return false;
+		} else if($("#phone3").val() == "") {
+			alert("휴대폰 번호를 입력해주세요");
+			$("#phone3").focus();
+			return false;
+		} else {
+			 Swal.fire({
+	            icon: 'success',
+	            title: '수정 완료',
+	            showConfirmButton: true // 확인 버튼 표시
+	        }).then(function() {
+				updateForm.submit();
+        	});
 		}
+	
+		
 	})
 
 
 
 
 /*******************************************
-		mypage - 예약내역페이지
+		mypage - reservation 예약취소버튼
 ********************************************/
-	$("#btn1").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/mypage/reservation.jsp";
-	});
-	$("#btn2").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/mypage/reservation2.jsp";
-	});
-	$("#btn3").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/mypage/reservation.jsp";
-	});
-	$("#btn4").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/mypage/reservation2.jsp";
-	});
+$("#btnReservationDelete").click(function(){
+	Swal.fire({
+	        title: '정말로 취소하시겠습니까?',
+	        icon: 'warning',
+	        showCancelButton: true,
+	        confirmButtonColor: '#3085d6',
+	        cancelButtonColor: '#d33',
+	        confirmButtonText: '승인',
+	        cancelButtonText: '취소'
+	    }).then((result) => {
+	        if (result.isConfirmed) {
+	            Swal.fire(
+	                '취소가 완료되었습니다.',
+	                'success'
+	            ).then(() => {
+	                deleteForm.submit();
+	            });
+	        }
+	    });
 	
-	$("#btn_cancle1").click(function(){
-		var result = confirm('예약을 취소하시겠습니까?');
-		if(result) {
-			$("#aside1").hide();
-			$("#btn_cancle1").hide();
-		}
-	});
-	
-	$("#btn_cancle2").click(function(){
-		var result = confirm('예약을 취소하시겠습니까?');
-		if(result) {
-			$("#aside2").hide();
-			$("#btn_cancle2").hide();
-		}
-	});
-	
-	$("#btn_write_review").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/mypage/review_write.jsp";
-	})
+})
 
 
 /*******************************************************************************
-		예약내역페이지 - 리뷰쓰기
+		mypage - 리뷰쓰기 버튼
+******************************************************************************/
+	$("#btnReviewWrite").click(function(){
+		let content = $("#rcontent").val().length;
+		if(content < 30) {
+			alert("30글자 이상을 입력해주세요");
+			return false;
+		} else {
+			Swal.fire({
+	            icon: 'success',
+	            title: '작성 완료',
+	            showConfirmButton: true // 확인 버튼 표시
+	        }).then(function() {
+				writeForm.submit();
+        	});
+		}
+	})
+/*******************************************************************************
+		예약내역페이지 - 리뷰쓰기 취소버튼
 ******************************************************************************/
 	$("#cancle").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/mypage/reservation2.jsp";
+		location.href = "http://localhost:9000/petcarepedia/reservation2.do?mid=hong";
 	})
 	
 
 /*******************************************************************************
 	내가쓴리뷰 - 리뷰수정
 ******************************************************************************/
-	$("#btnReview_revise").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/mypage/review_revise.jsp";
+	$("#btnReviewUpdate").click(function(){
+	let content = $("#rcontent").val().length;
+		if(content < 30) {
+			alert("30글자 이상을 입력해주세요");
+			return false;
+		} else {
+			Swal.fire({
+	            icon: 'success',
+	            title: '수정 완료',
+	            showConfirmButton: true // 확인 버튼 표시
+	        }).then(function() {
+				updateForm.submit();
+        	});
+		}
+	})
+
+/*******************************************************************************
+	내가쓴리뷰 - 리뷰삭제
+******************************************************************************/
+	$("#btnReviewDelete").click(function(){
+		Swal.fire({
+	        title: '정말로 삭제하시겠습니까?',
+	        icon: 'warning',
+	        showCancelButton: true,
+	        confirmButtonColor: '#3085d6',
+	        cancelButtonColor: '#d33',
+	        confirmButtonText: '승인',
+	        cancelButtonText: '취소'
+	    }).then((result) => {
+	        if (result.isConfirmed) {
+	            Swal.fire(
+	                '삭제가 완료되었습니다.',
+	                'success'
+	            ).then(() => {
+	                deleteForm.submit();
+	            });
+	        }
+	    });
+	
 	})
 
 
 /*******************************************
 		mypage - 북마크해제
 ********************************************/
-	$("#bookmark1").click(function(){
-		var result = confirm('즐겨찾기를 해제하시겠습니까?');
-		if(result) {
-			$("#bookmark #section2").hide();
-		}
+
+
+/*******************************************
+		mypage - 회원탈퇴
+********************************************/
+	$("#btnMemberDelete").click(function(){
+	if($("#pass").val() == "") {
+		alert("비밀번호를 입력해주세요");
+		$("#pass").focus();
+	} else {
+				Swal.fire({
+		        title: '정말로 탈퇴하시겠습니까?',
+		        icon: 'warning',
+		        showCancelButton: true,
+		        confirmButtonColor: '#3085d6',
+		        cancelButtonColor: '#d33',
+		        confirmButtonText: '승인',
+		        cancelButtonText: '취소'
+		    }).then((result) => {
+		        if (result.isConfirmed) {
+		            Swal.fire(
+		                '탈퇴가 완료되었습니다.',
+		                'success'
+		            ).then(() => {
+		                deleteForm.submit();
+		            });
+		        }
+		    });
+	    }
 	});
-	$("#bookmark2").click(function(){
-		var result = confirm('즐겨찾기를 해제하시겠습니까?');
-		if(result) {
-			$("#bookmark #section2").hide();
-		}
-	});
-
-
-
 
 
 

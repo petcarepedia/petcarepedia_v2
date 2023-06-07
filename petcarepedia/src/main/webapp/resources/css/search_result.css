@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 /***************************************
 	공통
 ***************************************/
@@ -5,66 +6,85 @@
 	margin: 0px;
 	padding: 0px;
 	color: #3d3d3d;
+	font-family: 'Nanum Gothic', sans-serif;
 	
 }
 
 div.result_main {
 	/* border: 1px solid gray; */
 	width: 1000px;
+	/* height: auto; */
 	margin: auto;
+	margin-top: 100px;
+	margin-bottom: 100px; 
 	/* text-align: center; */
+}
+
+div.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
 }
 
 
 /***************************************
 	section_info_info
 ***************************************/
-div.images_d {
+div.result_main div.images_d {
 	/* border: 1px solid gray; */
 	height: 220px;
 	white-space: nowrap;
 	overflow-x: auto;
 	overflow-y: hidden;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 	
 }
 
-div.images_d img {
+div.result_main div.images_d img {
 	/* border: 1px solid red; */
-	width: auto;
-	height: 100%;
+	width: 100%;
+	height: auto;
 	display: inline-block;
-	margin: 0px -3px;
+	/* margin: 0px -3px; */
+	object-fit: contain;
 }
 
-div.name_d {
+div.result_main div.name_d {
 	/* border: 1px solid red; */
+	/* background: red; */
 	margin-left: 5px;
 	padding-bottom: 20px;
+	height: auto;
 	
 }
 
-div.area_d {
+div.result_main div.area_d {
 	/* border: 1px solid red; */
 	padding-top: 20px;
 	font-size: 14px;
 }
 
-span.name {
+div.result_main span.name {
 	/* border: 1px solid red; */
 	font-size: 28px;
 	font-weight: bold;
 	margin-top: 10px;
-	display: block;
+	display: inline-block;
+	float:left;
 }
 
-span.grade {
+div.result_main span.grade {
 	/* border: 1px solid red; */
 	font-size: 14px;
 	margin-top: 10px;
 	display: block;
 }
 
-div.name_d button#reservation {
+div.result_main div.name_d button#reservation {
 	background: #98DFFF;
 	color: white;
 	border-style: none;
@@ -73,7 +93,8 @@ div.name_d button#reservation {
 	font-weight: bold;
 	/* padding: 15px 20px 15px 50px; */
 	margin-top: 10px;
-	width: 400px;
+	margin-bottom: -5px;
+	width: 350px;
 	height: 45px;
 	text-align: left;
 	display: flex;
@@ -81,63 +102,69 @@ div.name_d button#reservation {
 		
 }
 
-div.name_d button#reservation: hover {
+div.result_main div.name_d button#reservation: hover {
 	cursor: pointer;
 }
 
-div.name_d button#reservation img {
+div.result_main div.name_d button#reservation img {
 	/* border: 1px solid red; */
 	width: 30px;
 	margin: 0px 10px;
 }
 
-div.buttons {
+div.result_main div.buttons {
 	/* border: 1px solid red; */
 	display: flex;
 	align-items: center;
-	
+	clean: both;
+	padding-left: 10px;	
 }
 
-div.name_d button#review {
+div.name_d div.buttons a {
+	text-decoration: none;
+	}
+
+div.result_main div.name_d button#review {
 	background: #FFB3BD;
 	border-style: none;
 	border-radius: 5px;
 	font-size: 15px;
 	margin-top: 10px;
-	width: 120px;
+	width: 193px;
 	height: 40px;
 	text-align: left;
 	display: flex;
 	align-items: center;
-	margin-right: 45px;
+	margin-right: 10px;
 }
 
-div.name_d button#share, div.name_d button#like  {
+div.result_main div.name_d button#share, div.name_d button#bookmark  {
 	background: #FFFFFF;
-	border: 1px solid #8A8A8A;
+	/* border: 1px solid #8A8A8A; */
+	border: none;
 	border-radius: 5px;
-	font-size: 15px;
+	/* font-size: 15px; */
 	margin-top: 10px;
-	width: 120px;
-	height: 40px;
-	text-align: left;
+	width: 35px;
+	height: 35px;
+	text-align: center;
 	display: flex;
 	align-items: center;
-	margin-right: 45px;
+	/* margin-right: 30px; */
 }
 
 
-div.buttons img {
+div.name_d div.buttons img {
 	/* border: 1px solid red; */
-	width: 30px;
-	margin: 0px 10px;
+	width: 35px;
+	/* margin: 0px 10px; */
 }
 
-div.name_d button:hover {
+div.result_main div.name_d button:hover {
 	cursor: pointer;
 }
 
-hr {
+div.result_main hr {
 	border: 1px solid #828282;
 }
 
@@ -218,9 +245,10 @@ div.api span:nth-child(2) {
 	font-size: 16px;
 	display: block;
 	padding-top: 15px;
+	margin-bottom: 5px;
 }
 
-div.api span:last-child {
+div.api span.api_home {
 	/* border: 2px solid red; */
 	font-size: 14px;
 	/* display: block; */
@@ -231,15 +259,18 @@ div.api span:last-child {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top:-4px;
+	/* margin-top:-4px; */
+	padding: 0px 10px;
 }
 
-div.api iframe.map {
-	width: 350px;
+div.map {
+	/* border: 1px solid red; */
+	width: 370px;
 	height: 285px;
-	padding:0px;
-	margin:0px;
+	margin: 0px;
+	z-index: 0;
 }
+
 
 
 /***************************************
@@ -286,7 +317,7 @@ div.grade {
 	margin-bottom: 15px;
 }
 
-div.grade > span{
+div.grade > span {
 	font-size: 20px;
 	font-weight: bold;
 	padding: 20px 0px;
@@ -316,6 +347,29 @@ div.filter {
 	float: right;
 }
 
+div.review_card_no {
+	/* border: 1px solid #98DFFF; */
+	background: #F7FCFE;
+	border-radius: 5px;
+	clear: both;
+	width: 900px;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+div.review_card_no img#review_img {
+	width: 15%;
+	display: block;
+	margin: auto;
+	padding: 40px 0px 10px 0px;
+}
+
+div.review_card_no p {
+	/* border: 1px solid #98DFFF; */
+	font-size: 18px;
+	padding: 20px 0px;
+}
 
 div.review_card {
 	border: 1px solid #98DFFF;
@@ -325,6 +379,7 @@ div.review_card {
 	display: flex;
 	flex-direction: row;
 	padding-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 div.review_card div.member {
@@ -372,6 +427,7 @@ div.review_card div.write {
 	/* border: 1px solid red; */
 	width: 290px;
 	margin-left: 20px;
+	margin-top: 40px;
 	flex: 1;
 }
 
@@ -381,7 +437,8 @@ div.review_card div.write > h3 {
 }
 
 div.review_card div.write >p {
-	font-size: 12px;
+	/* border: 1px solid red; */
+	font-size: 14px;
 }
 
 div.review_card div.date {
@@ -393,8 +450,26 @@ div.review_card div.date {
 }
 
 div.review_card div.date span {
+	/* border: 1px solid #98DFFF; */
 	font-size: 12px;
 	display:inline-block;
+}
+
+div.review_card div.date button#like-log {
+	border: 1px solid #98DFFF;
+	border-radius: 5px;
+/* 	background: white; */
+	background: #333;
+	font-size: 14px;
+	width: 165px;
+	height: 35px;
+	margin-top: 15px; 
+	padding-bottom: 7px;
+	pointer-events: none;
+	cursor: no-drop;
+	display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 div.review_card div.date button#like {
@@ -405,7 +480,21 @@ div.review_card div.date button#like {
 	width: 165px;
 	height: 35px;
 	margin-top: 15px; 
-	
+	/* padding-bottom: 7px; */
+	 display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.review_card div.date button#like span.like-count {
+	font-size: 14px;
+	margin-bottom: 7px; 
+	padding-left: 5px;
+}
+
+div.review_card div.date button#like span.heart {
+	font-size: 15px;
+	color: red;
 }
 
 div.review_card div.date span:last-child {
@@ -422,11 +511,27 @@ div.review_card div.date button#like:hover {
 	cursor: pointer;
 }
 
+div.review_card div.date a#rstateBtn {
+	/* border: 1px solid #98DFFF; */
+}
+
+div.review_card div.date button.rstate {
+	border: none;
+	background-color: transparent;
+	color: red;
+	text-decoration: underline;
+	font-size: 12px;
+}
+
+div.review_card div.date button.rstate:hover {
+	cursor: pointer;
+}
+
 
 /***************************************
 	modal
 ***************************************/
-div.name_d div.modal {
+div.modal {
 	display: none;
   position: fixed;
   z-index: 1;
@@ -439,7 +544,7 @@ div.name_d div.modal {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-div.name_d div.modal-content {
+div.modal-content {
 	border: 1px solid red;
   background-color: #fefefe;
   margin: 10% auto;
@@ -449,14 +554,43 @@ div.name_d div.modal-content {
   weight:  500px;
 }
 
-div.name_d div.modal-content span.close {
+div.modal-content span.close {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-div.name_d div.modal-content span.close:hover
+div.modal-content span.close:hover
 {
 	cursor: pointer;
 }
+
+
+
+/** 하트 **/
+a.icon {
+  text-decoration:none; color:inherit; cursor: pointer;
+}
+
+.icon.heart img{
+	/* padding-top: 10px; */
+    width: 15px;
+    height: 15px;
+}
+
+.icon.heart.fas{
+  color:red
+}
+.heart{
+    transform-origin: center;
+}
+.heart.active img{
+    animation: animateHeart .3s linear forwards;
+}
+
+@keyframes animateHeart{
+    0%{transform:scale(.2);}
+    40%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+  }

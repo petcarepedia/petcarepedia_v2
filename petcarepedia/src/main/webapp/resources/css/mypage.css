@@ -1,15 +1,15 @@
 /*****************************
 	commons style sheet
 ******************************/
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+* {font-family: 'Nanum Gothic', sans-serif;}
 *{
 	padding : 0px;
 	margin : 0px;
-	font-family: 'Inter';
+/* 	font-family: 'Inter'; */
 	font-style: normal;
 }
-
 #content {
-	
 	width : 1000px;
 	height : 700px;
 	margin:auto; 
@@ -17,7 +17,12 @@
 	padding-top : 20px;
 }
 
-
+#section1 div nav ul li a:hover {
+	font-size : 16px;
+	font-weight:bold;
+	color :#7ab2cc;
+	text-decoration : none;
+}
 
 button {
 	cursor : pointer;
@@ -27,7 +32,7 @@ hr {
 	left: 580px;
 	top: 237px;  */
 	margin-left : 200px;
-	width: 670px;
+	width: 777px;
 	height: 0px;
 	border: 1px solid #8A8A8A;
 	transform: rotate(-0.09deg);
@@ -68,16 +73,15 @@ hr {
 	margin-bottom : 25px;
 	padding-left : 7px;
 }
+
 #section1 div nav ul li a {
 	font-size : 16px;
-	font-weight : 500;
+/* 	font-weight : 500; */
 	color : #3D3D3D;
 	text-decoration : none;
 }
 #section1 div nav ul li:nth-child(2) a{
 	font-weight:bold;
-	color : #3D3D3D;
-	text-decoration : none;
 }
 
 
@@ -106,6 +110,18 @@ hr {
 	padding: 2px 0 0 0;
 	font-weight : 700;
 	font-size: 14px;
+  	vertical-align: bottom;
+
+}
+#section2 p {
+	margin-bottom : 10px;
+	margin-top : -20px;
+	margin-left : 440px;
+	font-size : 12px;
+}
+#section2 p span.ess {
+	font : black;
+	font-weight : 500px;
 }
 #section2 ul li {
 	margin-bottom : 7px;
@@ -120,23 +136,23 @@ hr {
 	left: 580px;
 	top: 284px; */
 	width: 614px;
-	height: 375.36px;	
+/* 	height: 375.36px;	 */
 	padding-top : 47px;
 }
 
 #information #section3 #btn_style1 {
 /* 	position : absolute; */
+	border : none;
 	background: #7AB2CC;
 	text-align : center;
 	color : white;
 	width: 240px;
 	height: 48px;
-	border: 1px solid #8A8A8A;
 	border-radius: 5px;
 	font-weight: 700;
 	font-size: 15px;
 	line-height: 18px;
-	margin-top : 30px;
+	margin-top : 35px;
 	margin-left : 202px;
 /* 	left: 782px;
 	top: 693px; */
@@ -145,6 +161,27 @@ hr {
 /**************************************
 	mypage - revise
 **************************************/
+#revise form #aisde #section2 ul li label:first-child{
+	display : inline-block;
+	text-align : center;
+	width: 77px;
+	height: 35px;
+	background: #98DFFF;
+	color : white;
+	font-size: 14px;
+	font-weight: 700;
+	padding:20px 0 0 0;
+	border-radius: 5px;
+}
+#revise form #aside #section2 ul li label:nth-child(2){
+	display : inline-block;
+	width : 520px;
+	height: 35px;
+	border-bottom: 1px solid #8A8A8A;
+	padding: 2px 0 0 0;
+	font-weight : 700;
+	font-size: 14px;
+}
 #year, #month, #date{
 	width: 120px;
 	height: 45px;
@@ -172,13 +209,21 @@ hr {
 	border : 1px solid #8A8A8A;
 	
 }
-#section2 ul li:nth-child(5) div{
+
+#section2 ul li:nth-child(3) input {
+	display : inline-block;
+	width : 520px;
+	height : 50px;
+	border-radius : 5px;
+	border : 1px solid #8A8A8A;
+}
+#section2 ul li:nth-child(6) div{
 	display : inline-block;
 	border-bottom : 1px solid #8A8A8A;
 	width : 520px;
 	height: 50px;
 }
-#section2 ul li:nth-child(3) div {
+#section2 ul li:nth-child(4) div {
 	display : inline-block;
 	border-bottom : 1px solid #8A8A8A;
 	width : 520px;
@@ -192,7 +237,6 @@ hr {
 	height: 27px;
 	font-size: 12px;
 	list-style-type:none;
-	margin-top : 10px;
 	margin-right : 20px;
 	padding-right : 10px;
 	text-align : right;
@@ -206,12 +250,12 @@ hr {
 }
 
 #revise #section3 #btn_style1{
+	border : none;
 	background: #7AB2CC;
 	text-align : center;
 	color : white;
 	width: 240px;
 	height: 48px;
-	border: 1px solid #8A8A8A;
 	border-radius: 5px;
 	font-weight: 700;
 	font-size: 15px;
@@ -238,10 +282,13 @@ hr {
 **************************************/
 #content2 {
 	width : 1000px;
-	height : 750px;
+/* 	height : 750px; */
 	margin:auto; 
 	margin-top : 100px;
 	padding-top : 20px;
+}
+#reservation #aside {
+	margin-bottom : 100px;
 }
 #reservation hr {
 	width : 777px;
@@ -256,7 +303,7 @@ hr {
 	height : 45px;
 	padding : 0px;
 }
-#btn_reservation #btn1, #btn_reservation #btn2 {
+#btn_reservation a button {
 	width: 200px; 
 	height : 45px;
 }
@@ -279,6 +326,9 @@ hr {
 	border : 1px solid #F2F2F2;
 	border-radius: 20px 5px 0px 0px;
 }
+#btn_reservation a {
+	text-decoration : none;
+}
 #btn_box {
 	float : left;
 }
@@ -289,6 +339,7 @@ hr {
 	border: 1px solid #98DFFF;
 	border-radius: 5px;
 }
+
 #reservation #section2 #aside1 img{
 	margin-top : 12.5px;
 	margin-left : 12.5px;
@@ -308,6 +359,7 @@ hr {
 	display : flex;
 	flex-wrap: wrap;
 }
+
 #reservation #aside #section2 #aside1 div span {
 	display : inline-block;
 	width : 400px;
@@ -320,7 +372,7 @@ hr {
  #reservation #aside #section2 #aside1 div span:nth-child(5) {
 	width : 330px;
 	height : 25px;
-	margin-top : 12px;
+	margin-top : 15px;
 	font-weight: 400;
 	font-size: 14px;
 } 
@@ -329,10 +381,11 @@ hr {
 	font-size: 14px;
 	color: #3D3D3D;
 }
-#reservation #aside #section2 #aside1 div span:nth-child(2) {
+#reservation #aside #section2 #aside1 div a:nth-child(2) span {
 	font-weight: 700;
 	font-size: 28px;
 	color: #3D3D3D;
+	margin-left : -3px;
 }
 #reservation #aside #section2 #aside1 div span:nth-child(3) {
 	font-weight: 500;
@@ -349,6 +402,10 @@ hr {
 	color : #3D3D3D;
 	text-decoration : none;
 }
+#reservation #aside #section2 #aside1 div a span:hover{
+	font-weight:bold;
+	color :#7ab2cc;
+}
 #reservation #aside #section2 #aside1 div span:nth-child(9) {
 	font-weight: 400;
 	font-size: 14px;
@@ -356,19 +413,45 @@ hr {
 	margin-top : 17px;
 	color: #3D3D3D;
 }
-#reservation #aside #section2 #aside1 div span:nth-child(10), #reservation #aside #section2 #aside1 div span:nth-child(11) {
+#reservation #aside #section2 #aside1 div div.box {
+	width : 400px;
+	height : 100px;
+	padding-left : -5px;
+}
+#reservation #aside #section2 #aside1 div div.box img {
+	margin-left : 0px;
+}
+#reservation #aside #section2 #aside1 div div.box span {
+	display : inline-block;
+	font-size : 14px;
+	width : 150px;
+	height : 30px;
+	vertical-align: middle;
+}
+#reservation #aside #section2 #aside1 div div.box span:nth-child(2),
+#reservation #aside #section2 #aside1 div div.box span:nth-child(3){
+	padding-top : 15px;
+}
+
+
+#reservation #aside #section2 #aside1 div div.box span:nth-child(4){
+	margin-top : -38px;
+	margin-left : 197px;
+}
+/*#reservation #aside #section2 #aside1 div div.box span:nth-child(10), #reservation #aside #section2 #aside1 div div.box span:nth-child(11) {
 	font-weight: 500;
 	font-size: 14px;
 	width : 170px;
 	height : 20px;
 	color: #3D3D3D;
 }
-#reservation #aside #section2 #aside1 div span:nth-child(10){
+#reservation #aside #section2 #aside1 div div.box span:nth-child(10){
 	margin-top : 20px;
 }
-#reservation #aside #section2 #aside1 div span:nth-child(11) {
+#reservation #aside #section2 #aside1 div div.box span:nth-child(11) {
 	margin-left : 208px;
 }
+*/
 #section2 #btn_cancle1, #section2 #btn_cancle2 {
 	font-weight: 700;
 	font-size: 15px;
@@ -377,8 +460,8 @@ hr {
 	width: 110.77px;
 	height: 44px;
 	background: #FFB3BD;
-	border: 1px solid #8A8A8A;
 	border-radius: 5px;
+	border : none;
 }
 #reservation #section2 #aside2 img{
 	margin-top : 12.5px;
@@ -463,37 +546,99 @@ hr {
 	margin-left : 208px;
 }
 #reservation #section1 div nav ul li:nth-child(2) a {
-	font-weight : 500;
+	 font-weight : 500; 
 }
 #reservation #section1 div nav ul li:nth-child(3) a {
 	font-weight: bold;
 }
 
+#reservation form[name='deleteForm'] img {
+	width : 300px;
+	height : 250px;
+	margin-bottom : 20px;
+}
+
+#reservation form[name='deleteForm'] table td.re_cancle {
+	display : inline-block;
+	margin-top : 30px;
+	margin-left : 150px;
+	border : none;
+}
+#reservation form[name='deleteForm'] table td.btnCancle {
+	display : inline-block;
+	margin-left : 3px;
+	border : none;
+}
+
+
+
+
+
+
 /**************************************
 	mypage - reservation2
 **************************************/
-#reservation #btn_write_review, #reservation #btn_watch_review {
+
+#reservation #btn_write_review {
 	font-weight: 700;
 	font-size: 15px;
 	color: #FFFFFF;
 	width: 110.77px;
 	height: 44px;
 	background: #FFB3BD;
-	border: 1px solid #8A8A8A;
+	border: none;
 	border-radius: 5px;
 }
-#btn_watch_review {
+#reservation #btn_watch_review {
+	font-weight: 700;
+	font-size: 15px;
+	color: #FFFFFF;
+	width: 110.77px;
+	height: 44px;
+	background: #7AB2CC;
+	border: none;
+	border-radius: 5px;
+}
+
+#btn_review a {
+	text-decoration : none;
+}
+/* #btn_watch_review {
 	margin-top : 10px;
 	margin-left : 5px;
-}
+} */
 #btn_review {
 	width : 250px;
-	margin : 248px 0px 10px 550px;
+	margin : 270px 0px 3.5px 670px;
+}
+#btn_review span {
+	margin-left : -12px;
+	font-weight : bold;
+	color : #8A8A8A;
+	
+}
+#review_span {
+	position : relative;
+	font-size : 12px;
+	height : 11px;
+	top : -30px;
+	left : -25px;
+}
+#btn_write_review {
+	margin-left : -130px;
+}
+#section2:first-child #btn_review{
+	display : flex;
+	height : 50px;
+	padding-top : 10px;
+	margin-top : 3px;
 }
 #btn_reservation #btn3, #btn_reservation #btn4 {
 	width: 200px; 
 	height : 45px;
 }
+
+
 #btn_reservation #btn3 {
 	font-weight: 600;
 	font-size: 18px;
@@ -513,6 +658,7 @@ hr {
 	border : 1px solid #98DFFF;
 	border-radius: 20px 5px 0px 0px;
 }
+
 
 /**************************************
 	mypage - review_write
@@ -576,19 +722,20 @@ hr {
 	margin-right : 10px;
 	margin-left : 10px;
 }
-textarea[name='review'] {
+textarea[name='rcontent'] {
 	float : left;
 	background: #FFFFFF;
 	border: 1px solid #8A8A8A;
 	border-radius: 5px;
 	width: 596px;
 	height: 197px;
+	padding : 8px;
 }
 
 #review_write #aside button{
 	float:right;
 	background: #FFB3BD;
-	border: 1px solid #8A8A8A;
+	border: none;
 	border-radius: 5px;
 	font-weight: 700;
 	font-size: 15px;
@@ -643,9 +790,16 @@ textarea[name='review'] {
 	mypage - my_review
 **************************************/
 #my_review hr {
-	width : 736px;
+	width : 777px;
 }
+#my_review #aside {
+	padding-bottom : 30px;
+	margin-bottom : 100px;
 
+	}
+#my_review #aside #aside4 a {
+	text-decoration : none;
+}
 #my_review #section1 div nav ul li:nth-child(2) a {
 	font-weight : 500;
 }
@@ -659,6 +813,15 @@ textarea[name='review'] {
 	border: 1px solid #98DFFF;
 	border-radius: 5px 0px 0px 5px;
 	border-right : none;
+}
+#my_review #aside #section2 #aside1 a {
+	text-decoration : none;
+	font : 300px;
+	color : black;
+}
+#my_review #aside #section2 #aside1 a span:hover{
+	font-weight:bold;
+	color :#7ab2cc;
 }
 #my_review #aside #section2 {
 	width : 750px;
@@ -695,17 +858,20 @@ textarea[name='review'] {
 	} */
 #my_review #aside #section2 #aside1 span:nth-child(3) {
 	width : 200px;
+	padding-top : 2px;
 }
 #my_review #aside #section2 #aside1 span:nth-child(3) span {
-	width: 102.26px;
-	height: 28px;
+	display : inline-block;
+	width: 110px;
+	height: 25px;
 	margin-top : 10px;
 	background: #7AB2CC;
 	border-radius: 5px;
 	font-weight: 500;
 	font-size: 15px;
 	color: #FFFFFF;
-	padding-top : 5px;
+	margin-left : -4px;
+	padding-top : 7px;
 	padding-left : 4px;
 	text-align : center;
 }
@@ -731,7 +897,7 @@ textarea[name='review'] {
 #my_review #aside #section2 #aside3 {
 	float:left;
 	width : 300px;
-	height : 215px;
+	 height : 215px; 
 	border: 1px solid #98DFFF;
 	border-radius: 5px;
 }
@@ -743,11 +909,23 @@ textarea[name='review'] {
 	font-weight: 700;
 	margin : 10px 10px 10px 10px;
 	width : 250px;
+	font-size : 16px;
 }
 #my_review #aside #section2 #aside3 span:nth-child(2) {
-	font-weight : 400;
+	font-weight : 500;
+	font-size : 14px;
 	text-align: justify;
 	margin : 0px 10px 10px 10px;
+	word-break:break-all;
+	height : 150px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 7;
+	-webkit-box-orient: vertical;
+ 	letter-spacing: 1px;
+	line-height : 1.6;
+	padding-bottom : 10px;
 }
 #my_review #aside #section2 #aside3 span:last-child {
 	font-weight: 400;
@@ -755,14 +933,14 @@ textarea[name='review'] {
 	margin-left : 140px;
 }
 #my_review #aside #section2 #aside4 {
-	margin-left : 490px;
+	margin-left : 615px;
 }
 #my_review #aside #section2 #aside4 button {
 	margin-top : 10px;
 	width: 110.77px;
 	height: 44px;	
-	background: #FFB3BD;
-	border: 1px solid #8A8A8A;
+	background: #7AB2CC;
+	border : none;
 	border-radius: 5px;
 	font-weight: 700;
 	font-size: 15px;
@@ -846,7 +1024,7 @@ textarea[name='review'] {
 #review_revise #aside button{
 	float:right;
 	background: #FFB3BD;
-	border: 1px solid #8A8A8A;
+	border: none;
 	border-radius: 5px;
 	font-weight: 700;
 	font-size: 15px;
@@ -901,13 +1079,14 @@ textarea[name='review'] {
 	mypage - bookmark
 **************************************/
 #bookmark hr {
-	width : 650px;
+	width : 777px;
 }
 #bookmark #section2 {
 	float : left;
 	width : 650px;
-	height : 200px;
-	margin-left : 50px;
+/* 	height : 200px; */
+	margin-left : 120px;
+	margin-bottom : 100px;
 }
 #bookmark #section2 #aside1, #bookmark #section2 #aside2 {
 	float : left;
@@ -916,6 +1095,8 @@ textarea[name='review'] {
 #bookmark #section2 #aside1 {
 	width : 250px;
 	height : 200px;
+	padding-top : 10px;
+	padding-left : 10px;
 	margin-left : 30px;
 	border: 1px solid #98DFFF;
 	border-radius: 5px;
@@ -927,32 +1108,33 @@ textarea[name='review'] {
 #bookmark #section2 #aside1 span:first-child {
 	font-weight: 700;
 	font-size: 25px;
-	margin : 20px 0px 20px 20px;
+	margin : 25px 0px 20px 25px;
 	width : 200px;
+	height : 50px;
 	text-align : center;
 }
 #bookmark #section2 #aside1 span:nth-child(2) {
 	width: 123.73px;
-	height: 28px;
+	height: 25px;
 	text-align : center;
-	margin-left : 50px;
-	padding-top : 5px;
+	margin-left : 55px;
+	padding-top : 7px;
 	font-weight: 500;
 	font-size: 15px;
 	color: #FFFFFF;
 	background: #7AB2CC;
 	border-radius: 5px;
 }
-#bookmark #section2 #aside1 a{
+#bookmark #section2 #aside1 a:nth-child(3){
 	float : left;
 	font-weight: 700;
 	font-size: 15px;
 	width: 123.73px;
 	height: 28px;
-	margin-left : 50px;
+	margin-left : 55px;
 	margin-top : 10px;
 	text-align : center;
-	padding-top : 5px;
+	padding-top : 6px;
 	text-decoration : none;
 	color : white;
 	background: #FFB3BD;
@@ -961,16 +1143,21 @@ textarea[name='review'] {
 #bookmark #section2 #aside1{
 	position : relative;
 }
-
-#bookmark #section2 #aside1 button img {
-	position : absolute;
-	left : 200px;
-	top : -15px;
-	width : 60px;
-	height : 60px;
+#bookmark #section2 #aside1 button {
+	border : none;
+	background : white;
 }
+#bookmark #section2 #aside1 button img{
+	position : absolute;
+	left : 230px;
+	top : 0px;
+	width : 30px;
+	height : 30px;
+}
+
+
 #bookmark hr {
-	width : 630px;
+	width : 777px;
 }
 #bookmark #section1 div nav ul li:nth-child(2) a {
 	font-weight : 500;
@@ -991,15 +1178,15 @@ textarea[name='review'] {
 	font-weight: bold;
 }
 #signout hr {
-	width : 500px;
+	width : 777px;
 }
 #signout #section2 {
 	float : left;
 	width : 700px;
-	height : 250px;
+/* 	height : 250px; */
 }
 #signout #section2 div {
-	margin-left : 50px;
+	margin-left : 200px;
 	float : left;
 	width: 428px;
 	height: 223px;
@@ -1032,10 +1219,11 @@ textarea[name='review'] {
 #signout #section3 {
 	float : left;
 	width : 400px;
-	height : 100px;
-	margin-left : 50px;
+/* 	height : 100px; */
+	margin-left : 200px;
 	float : left;
 	margin-top : 30px;
+	margin-bottom : 100px;
 }
 #signout #section3 span {
 	float : left;
@@ -1054,7 +1242,7 @@ textarea[name='review'] {
 
 #signout #section3 button {
 	background: #7AB2CC;
-	border: 1px solid #8A8A8A;
+	border: none;
 	border-radius: 5px;
 	margin-left : 70px;
 	margin-top : 40px;
@@ -1063,4 +1251,112 @@ textarea[name='review'] {
 	font-weight: 700;
 	font-size: 15px;
 	color: #FFFFFF;
+}
+
+
+#reservation form[name=deleteForm] img {
+	float : left;
+	margin-left : 100px;
+}
+
+#reservation form[name=deleteForm] table tr th, #reservation form[name=deleteForm] table tr td {
+	height : 50px;
+}
+#reservation form[name=deleteForm] table tr th {
+	width: 147px;
+  	padding: 10px;
+  	font-weight: bold;
+  	vertical-align: top;
+  	color: #153d73;
+  	border-right: 1px solid #ccc;
+  	border-bottom: 1px solid #ccc;
+}
+#reservation form[name=deleteForm] table tr td {
+	width : 70%;
+	padding: 10px;
+	word-break:break-all;
+ 	vertical-align: top;
+  	border-right: 1px solid #ccc;
+  	border-bottom: 1px solid #ccc;
+}
+#reservation form[name=deleteForm] table {
+	width : 500px;
+ 	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border-top: 1px solid #ccc;
+	border-left: 3px solid #369;
+	margin : 50px 280px;
+}
+
+
+#reservation form[name=deleteForm] button {
+	background: #FFB3BD;
+	border : none;
+	border-radius: 5px;
+	font-weight: 700;
+	font-size: 15px;
+	color: #FFFFFF;
+	width: 120px;
+	height: 44px;
+	margin-right : 10px;
+	margin-bottom : 100px;
+}
+
+#reservation form[name=deleteForm] div.box {
+	margin-left : 410px;
+	margin-top : 20px;
+}
+#reservation form[name=deleteForm] div.box p{
+	margin-bottom : 20px;
+	margin-left : 30px;
+	font-weight : bold;
+	
+}
+
+/**************************************
+	mypage - mypage_review_content
+**************************************/
+#rc_button_r {
+	width : 500px;
+	margin-top : 70px;
+	margin-left : -210px;
+}
+#rc_button_r > a {
+	text-decoration : none;
+}
+#rc_button_r > a > button {
+	background: #FFB3BD;
+	border : none;
+	border-radius: 5px;
+	font-weight: 700;
+	font-size: 15px;
+	color: #FFFFFF;
+	width: 120px;
+	height: 44px;
+}
+div.content > section.review_content > div.review_detail > div.rc_button_r > a {
+	text-decoration : none;
+}
+#rdate {
+	padding-right : 15px;
+}
+section.review_content table.rv_detail_menu tr td {
+	text-align:left;
+	font-size:14px;
+	font-weight: 10;
+	color:#3d3d3d;
+	word-break:break-all;
+	/* border:1px solid blue; */
+}
+
+section.review_content table.rv_detail_menu tr td img {
+	margin-top : 10px;
+	width : 25px;
+	height : 25px;
+}
+section.review_content table.rv_detail_menu tr td span {
+	vertical-align: bottom;
+	height : 25px;
+	margin-top : 12px;
 }

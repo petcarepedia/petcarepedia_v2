@@ -21,14 +21,15 @@
 				<img src="http://localhost:9000/petcarepedia/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="pwUpdateForm" action="login_pwupdateProc.jsp" method="post">
+			<form name="pwUpdateForm" action="login_pwupdate_proc.do" method="post">
 				<div class="find-box">
 					<div class="find-pw">
 						<div id="btnMenuIdFind">아이디 찾기</div>
 						<div id="btnMenuPwFind">비밀번호 재설정</div>
 					</div>
 					
-					<p>hong**** 계정의 비밀번호를 재설정해주세요.</p>
+					<p><span id="id_sec"></span> 계정의 비밀번호를 재설정해주세요.</p>
+					<input type="hidden" name="mid" value="${mid}">
 					
 					<ul>
 						<li>
@@ -41,7 +42,7 @@
 							<input type="password" name="cpass" id="cpass" placeholder="비밀번호를 다시 입력해주세요">
 							<span id="cpwcheck_msg"></span>
 						</li>
-						<li><button type="button" id="btnPwUpdate" class="btn-submit" disabled>비밀번호 재설정</button></li>
+						<li><button type="submit" id="btnPwUpdate" class="btn-submit" disabled>비밀번호 재설정</button></li>
 					</ul>
 				</div>
 			</form>
@@ -50,5 +51,17 @@
 	
 	<!-- footer -->
 	<jsp:include page="../footer.jsp"></jsp:include>
+	
+	<script>
+		let id = "${mid}";
+		let id_sec = "";
+		if(id.length%2==0){
+			id_sec = id.substring(0,id.length/2) + '*'.repeat(id.length/2);
+		} else {
+			id_sec = id.substring(0,id.length/2+1) + '*'.repeat(id.length/2);
+		}
+		
+		document.getElementById("id_sec").innerHTML=id_sec;
+	</script>
 </body>
 </html>

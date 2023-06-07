@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+* {font-family: 'Nanum Gothic', sans-serif;}
+
 /***********************
 	commons style sheet
 ************************/
@@ -8,13 +11,13 @@
 .d1{
 	width:1000px;
 	margin:auto;
-	border:1px solid black;
+	margin-top:140px;
+	margin-bottom:100px;
 }
 .table{
 	width:750px;
 	/* top:100px; */
 	margin:auto; 
-	height:420px;
 	border-collapse:collapse;
 	border-radius:5px;
 	margin-top:20px;
@@ -93,7 +96,7 @@ section.member tr:last-child td
 	padding:0 0 0 650px;
 }
 
-.table tr td.number, section.hospital tr:last-child td.number{
+.table tr td.number, section.notice tr:last-child td.number{
 	border-color:white;
 	background:#D9D9D9;
 	font_size:13pt; 
@@ -102,9 +105,9 @@ section.member tr:last-child td
 	border-radius:5px;
 	
 }
-section.hospital tr td:nth-child(4), section.hospital tr td:nth-child(5),
+section.notice tr td:nth-child(4), section.notice tr td:nth-child(5),
 section.reserve tr td:nth-child(5),section.review tr td:nth-child(5),
-section.hospital_datail tr td:nth-child(4),section.hospital_detail tr td:nth-child(5){
+section.notice_datail tr td:nth-child(4),section.notice_detail tr td:nth-child(5){
 	width:100px;
 }
 section.reserve tr:nth-child(12) td,section.review tr:nth-child(12) td,
@@ -114,7 +117,8 @@ section.member tr:nth-child(13) td{
 section.hospital #section1 div nav ul li:nth-child(2) a,
 section.member #section1 div nav ul li:nth-child(3) a,
 section.reserve #section1 div nav ul li:nth-child(4) a,
-section.review #section1 div nav ul li:nth-child(5) a
+section.review #section1 div nav ul li:nth-child(5) a,
+section.notice #section1 div nav ul li:nth-child(6) a
 {
 	font-weight:bold;
 	color : #3D3D3D;
@@ -133,7 +137,6 @@ section1 style sheet - 카테고리
 	height: 300px;
 	float : left;
 	margin-top : 80px;
-	border:1px soild red;
 }
 
 #section1 div nav ul{
@@ -166,33 +169,39 @@ section1 style sheet - 카테고리
 }
 
 /****************************
-hospital_list style sheet
+notice_list style sheet
 *****************************/
-section.hospital tr td:nth-child(2) {
+section.notice tr td:nth-child(2) {
 	width:250px;
 	text-align:left;
 	text-indent:10px;
+
 }
 
- section.hospital tr:nth-child(13) td{
+ section.notice tr:last-child td{
 	border-color:white;
 	background:white;
 	font_size:11pt;
 	font-weight:700;
 }
 
-section.hospital tr:first-child td, section.hospital_detail tr:first-child td{
+section.notice tr:first-child td, section.notice_detail tr:first-child td{
 	border:1px solid white;
 	border-bottom: 1px solid #3D3D3D;
  	padding:0 0 20px 600px; 
 } 
 
-section.hospital tr td:nth-child(2) {
+section.notice tr td:nth-child(2) {
 	width:280px;
 	text-align:left;
 	text-indent:10px;
+
 }
-secton.hospital tr:ntf-child(12) td{/* .number */
+section.notice tr td:nth-child(2) a {
+	text-decoration:none;
+	color:#3D3D3D;
+}
+secton.notice tr:ntf-child(12) td{/* .number */
 	border-color:white;
 	padding:0 0 0 650px;
 	
@@ -243,42 +252,41 @@ section.review tr td:nth-child(4) {
 }
 
 /*************************************
-	hospital_list_detail style sheet
+	notice_list_detail style sheet
 **************************************/
-section.hospital_detail .button5{
+section.notice_detail .button5{
 	padding:5px 15px;
 
 }
 .d1 {
 	width : 1000px;
 	height : 700px;
-	border : 1px solid red;
 }
-section.hospital_detail table.table tr:last-child td{
+section.notice_detail table.table tr:last-child td{
 	border:1px solid white;
 	margin-right:700px;
 }
 
-section.hospital_detail > section.section2 {
+section.notice_detail > section.section2 {
 	float : left;
 	border:1px solid blue;
 	margin:auto;
 }
 
-section.hospital_detail table.table tr:nth-last-child(-n+2) {
+section.notice_detail table.table tr:nth-last-child(-n+2) {
 	border:2px solid #333;
 }
 
 /*************************************
 	공지사항 추가 사항
 ***************************************/
-section.hospital tr:first-child td {
+section.notice tr:first-child td {
 	padding-left:700px;
 } 
-
-
-
-
+div#ampaginationsm ul li.active a {
+	background-color:#D9D9D9;
+	border-color:#D9D9D9;
+}
 
 
 

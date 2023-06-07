@@ -1,8 +1,115 @@
 package com.project.vo;
 
+/**
+ * @author tj
+ *
+ */
 public class ReviewVo {
-	String rid, rcontent, rdate, rstar, rstate, hid, mid;
+	// 리뷰에서 필요한 Vo
+	String rid, rcontent, rdate, rstate, hid, mid, hname, animal, gloc;
 	int rlike, rno;
+	float rstar;
+	//병원과 조인 Vo
+	String loc, tel, htime, ntime, holiday, intro, img, hrink;
+	// 내가 쓴 리뷰
+	String bid, nickname;
+	
+	
+	
+	public float getRstar() {
+		return rstar;
+	}
+	public void setRstar(float rstar) {
+		this.rstar = rstar;
+	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	
+	public String getBid() {
+		return bid;
+	}
+	public void setBid(String bid) {
+		this.bid = bid;
+	}
+	
+	
+	//병원 조인
+	public String getLoc() {
+		return loc;
+	}
+	public void setLoc(String loc) {
+		this.loc = loc;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getHtime() {
+		return htime;
+	}
+	public void setHtime(String htime) {
+		this.htime = htime;
+	}
+	public String getNtime() {
+		return ntime;
+	}
+	public void setNtime(String ntime) {
+		this.ntime = ntime;
+	}
+	public String getHoliday() {
+		return holiday;
+	}
+	public void setHoliday(String holiday) {
+		this.holiday = holiday;
+	}
+	public String getIntro() {
+		return intro;
+	}
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public String getHrink() {
+		return hrink;
+	}
+	public void setHrink(String hrink) {
+		this.hrink = hrink;
+	}
+	
+
+	//리뷰사용
+	
+	public String getHname() {
+		return hname;
+	}
+	public void setHname(String hname) {
+		this.hname = hname;
+	}
+	public String getAnimal() {
+		return animal;
+	}
+	public void setAnimal(String animal) {
+		this.animal = animal;
+	}
+	public String getGloc() {
+		return gloc;
+	}
+	public void setGloc(String gloc) {
+		this.gloc = gloc;
+	}
+	
 	public String getRid() {
 		return rid;
 	}
@@ -20,12 +127,6 @@ public class ReviewVo {
 	}
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
-	}
-	public String getRstar() {
-		return rstar;
-	}
-	public void setRstar(String rstar) {
-		this.rstar = rstar;
 	}
 	public String getRstate() {
 		return rstate;
@@ -57,5 +158,4 @@ public class ReviewVo {
 	public void setRno(int rno) {
 		this.rno = rno;
 	}
-	
 }

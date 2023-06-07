@@ -4,49 +4,106 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="http://localhost:9000/petcarepedia/admin/images/foot_blue.png" rel="shortcut icon" type="images/x-icon">
-<title>reservation</title>
+	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<title>펫캐어피디아 | 예약</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_reservation.css">
+
+<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ko.min.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/search_reservation.js"></script>
+	<script>
+$(".hservation").click(function() {
+	 $("#hmodal").css("display", "block");
+	 $('input[name="hid"]').val($(this).val());
+	 $('input[name="startTime"]').val($("#startTime").val());
+	 $('input[name="endTime"]').val($("#endTime").val());
+	$('span#rhname').text($(this).attr("id"));
+ });
+ 
+$(document).ready(function() {
+    $("#check").click(function() { // 예약
+        event.preventDefault();
+
+        var hid = $("input[name='hid']").val();
+        var mid = $("input[name='mid']").val();
+        var vdate = $("input[name='vdate']").val();
+        var vtime = $("input[name='vtime']").val();
+        
+        $.ajax({
+            url: "reservationProc.do",
+            type: "POST",
+            data: {
+                hid: hid,
+                mid: mid,
+                vdate: vdate,
+                vtime: vtime
+            },
+            success: function(check_result) {
+                if (check_result === "fail") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '중복 예약하셨습니다',
+                        text: '예약 일시를 다시 선택해주세요.',
+                        showConfirmButton: true // 확인 버튼 표시
+                    }).then(function() {
+                        /* location.reload(); // 확인 버튼 클릭 시 페이지 새로고침 */
+                    });
+                } else if (check_result === "success") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '예약 완료',
+                        showConfirmButton: true // 확인 버튼 표시
+                    }).then(function() {
+                    	window.location.href = "http://localhost:9000/petcarepedia/reservation.do?mid=" + mid; // 확인 버튼 클릭 시 페이지 새로고침
+                    });
+                }
+            }
+        });
+    });
+});
+</script>
 
 
 </head>
 <body>
 	<div class="reservation">
 		<div class="title">
-			<span>더조은 동물병원</span>
+			<span id="rhname">${hospital.hname}</span>
 			<span>원하는 날짜/시간 선택</span>
 		</div>
 		
 		<hr>
 		
-		<form name="reservation" action="#" method="get">
-			<div class="date">
-		        <span><a><</a></span>
-		        <span><input type="hidden" name="date" value="04.27(목)">04.27(목)</span>
-		        <span><input type="hidden" name="date" value="04.28(금)">04.28(금)</span>
-		        <span><input type="hidden" name="date" value="04.29(토)">04.29(토)</span>
-		        <span><input type="hidden" name="date" value="05.01(월)">05.01(월)</span>
-		        <span><input type="hidden" name="date" value="05.02(화)">05.02(화)</span>
-		        <span><a>></a></span>
-		    </div>
-			
-			<hr>
-			
-			 <div class="time">
-		        <span><input type="hidden" name="time" value="11:00">11:00</span>
-		        <span><input type="hidden" name="time" value="11:30">11:30</span>
-		        <span><input type="hidden" name="time" value="12:00">12:00</span>
-		        <span><input type="hidden" name="time" value="14:00">14:00</span>
-		        <span><input type="hidden" name="time" value="14:30">14:30</span>
-		        <span><input type="hidden" name="time" value="15:00">15:00</span>
-		        <span><input type="hidden" name="time" value="15:30">15:30</span>
-		        <span><input type="hidden" name="time" value="16:00">16:00</span>
-		        <span><input type="hidden" name="time" value="16:30">16:30</span>
-		        <span><input type="hidden" name="time" value="17:00">17:00</span>
-		    </div>
+	
+		<div class="date">
+		  <span><a id="prev">&lt;</a></span>
+		  <span class="sdate"><input type="text" name="date" value="" readonly></span>
+		  <span class="sdate"><input type="text" name="date" value="" readonly></span>
+		  <span class="sdate"><input type="text" name="date" value="" readonly></span>
+		  <span class="sdate"><input type="text" name="date" value="" readonly></span>
+		  <span class="sdate"><input type="text" name="date" value="" readonly></span>
+		  <span><a id="next">&gt;</a></span>
+		</div>
+
+		<hr>
+	    
+	    	<div class="rtime"></div>	
+	    
+	    
+	    <!-- 영업시간 db연동 -->
+	    <!-- <input type="text" id="nowdate" name="nowdate" value=""> -->
+	    <input type="hidden" id="now" name="now" value="">
+	    <input type="hidden" id="startTime" name="startTime" value="${time.start}">
+	    <input type="hidden" id="endTime" name="endTime" value="${time.end}">
+
+	    <form name="reservationForm" action="reservationProc.do" method="post">
+			<input type="hidden" name="hid" value="${hospital.hid}">
+			<input type="hidden" name="mid" value="hong">
+		    <input type="hidden" id="vdate" name="vdate" value="">
+			<input type="hidden" id="vtime" name="vtime" value="">
+			<button type="button" id="check">확인</button>
 		</form>
-		
-		<button  type="button" id="check">확인</button>
 	</div>
 </body>
 </html>

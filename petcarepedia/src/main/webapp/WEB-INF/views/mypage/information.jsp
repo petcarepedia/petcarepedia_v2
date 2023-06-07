@@ -1,19 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/resources/css/mypage.css">
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/resources/css/petcarepedia_song.css">
-<script src="http://localhost:9000/petcarepedia/resources/js/jquery-3.6.4.min.js"></script>
-<script src="http://localhost:9000/petcarepedia/resources/js/petcarepedia_jquery_yeol.js"></script>
+<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+<title>펫캐어피디아 | 나의 회원정보</title>
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/mypage.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
+<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
+<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
 </head>
 <body>
 	<!-- header -->
 	 <jsp:include page="../header.jsp"></jsp:include>
-			
 	<div id = "content">
 		<section id = "information">
 			<h1 id = "title">나의 회원정보</h1>
@@ -23,11 +24,11 @@
 					<nav>
 						<ul>
 							<li>마이페이지</li>
-							<li><a href = "http://localhost:9000/petcarepedia/information.do">회원 정보</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/reservation.do">예약 내역</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/my_review.do">내가 쓴 리뷰</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do">즐겨찾기</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/signout.do">회원 탈퇴</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/information.do?mid=${memberVo.mid}">회원 정보</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/reservation.do?mid=${memberVo.mid}">예약 내역</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/my_review.do?mid=${memberVo.mid}">내가 쓴 리뷰</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do?mid=${memberVo.mid}">즐겨찾기</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/signout.do?mid=${memberVo.mid}">회원 탈퇴</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -37,32 +38,38 @@
 					<ul>
 						<li>
 							<label >아이디</label>
-							<label>hong1234</label>
+							<label>${memberVo.mid}</label>
 						</li>
 						<li>
 							<label>성명</label>
-							<label>홍길동</label>
+							<label>${memberVo.name}</label>
+						</li>
+						<li>
+							<label>별명</label>
+							<label>${memberVo.nickname}</label>
 						</li>
 						<li>
 							<label>생년월일</label>
-							<label>1987년 08월 27일</label>
+							<label>${memberVo.birth}</label>
 						</li>
 						<li>
 							<label>이메일</label>
-							<label>petcarepedia@gmail.com</label>
+							<label>${memberVo.email}</label>
 						</li>
 						<li>
 							<label>휴대폰</label>
-							<label>010-1234-5678</label>
+							<label>${memberVo.phone}</label>
 						</li>
 						<li>
 							<label>주소</label>
-							<label>서울시 강남구 강남대로 78길 8, 한국빌딩 4F</label>
+							<label>${memberVo.addr}</label>
 						</li>
 					</ul>
 				</section>
 				<section id = "section3">
-					<button type = "button" id = "btn_style1">수정하기</button>
+					<a href = "revise.do?mid=${memberVo.mid}">
+						<button type = "button" id = "btn_style1">수정하기</button>
+					</a>
 				</section>
 			</div>
 		</section>

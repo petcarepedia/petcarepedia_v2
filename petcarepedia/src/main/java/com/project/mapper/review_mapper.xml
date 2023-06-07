@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="mapper.review">
+	<select id="RH_select" parameterType="String" resultType="com.project.vo.ReviewVo">
+		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, loc, tel, htime, ntime, holiday, intro, img, hrink 
+		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, h.loc, h.tel, h.htime, h.ntime, h.holiday, h.intro, h.img, h.hrink
+		from pcp_review r, pcp_hospital h where r.hid=h.hid and h.hid = #{hid} order by r.rdate desc)
+	</select>
+	
+	<select id="RM_select" parameterType="String" resultType="com.project.vo.ReviewVo">
+		SELECT ROWNUM RNO, RID, M.NICKNAME, RCONTENT, TO_CHAR(RDATE, 'YYYY-MM-DD') RDATE, RLIKE, ROUND(RSTAR, 0) RSTAR
+		FROM (SELECT * FROM PCP_REVIEW R, PCP_HOSPITAL H
+		WHERE R.HID = H.HID AND H.HID=#{hid}
+		ORDER BY R.RDATE) T, PCP_MEMBER M 
+		WHERE T.MID = M.MID
+	</select>
+	
+	<select id="list" resultType="com.project.vo.ReviewVo">
+		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
+		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m 
+		where r.hid=h.hid and r.mid = m.mid order by r.rdate desc)
+	</select>
+	
+	<select id="listPage" parameterType="map" resultType="com.project.vo.ReviewVo">
+		select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname
+		from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
+		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m 
+		where r.hid=h.hid and r.mid = m.mid order by r.rdate desc))
+		where rno between #{start} and #{end} 
+	</select>
+	
+	<select id="searchListPage" parameterType="com.project.vo.RSpagingVo" resultType="com.project.vo.ReviewVo">
+		select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
+		from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
+		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m 
+		where r.hid=h.hid and r.mid = m.mid order by r.rdate desc) where gloc = #{gloc}) 
+		where rno between #{start} and #{end}
+	</select>
+	
+	<select id="searchCount" parameterType="String">
+		select count(*)
+		from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
+		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m 
+		where r.hid=h.hid and r.mid = m.mid order by r.rdate desc) where gloc = #{gloc})
+	</select>
+	
+	<select id="content" parameterType="String" resultType="com.project.vo.ReviewVo">
+		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
+		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m 
+		where r.hid=h.hid and r.mid = m.mid) where rid = #{rid}
+	</select>
+	
+	<select id="enter_content" parameterType="String" resultType="com.project.vo.ReviewVo">
+		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
+		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m 
+		where r.hid=h.hid and r.mid = m.mid) where rid = #{rid}
+	</select>
+	
+	<insert id="insert" parameterType="com.project.vo.ReviewVo">
+		insert into pcp_review(rid, rcontent, rdate, rlike, rstar, rstate, mid, hid,bid )
+		values('R_'||ltrim(to_char(sequ_pcp_review_rid.nextval,'0000')),#{rcontent},sysdate,0,#{rstar},'X',#{mid},#{hid},#{bid})
+	</insert>
+	
+	<update id="update" parameterType="com.project.vo.ReviewVo">
+		update pcp_review set rcontent=#{rcontent}, rstar=#{rstar} where rid=#{rid}
+	</update>
+	
+	<update id="report" parameterType="String">
+		update pcp_review set rstate='O' where rid=#{rid}
+	</update>
+	
+	<delete id="delete">
+		delete pcp_review where rid=#{rid}
+	</delete>
+	
+	<select id="bestList" parameterType="map" resultType="com.project.vo.ReviewVo">
+		select rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar,mid, nickname 
+		from(select rownum rno,rid,hid,rcontent,hname,gloc,rdate,rlike,rstar,mid,nickname
+		from(select r.rid,r.hid,r.rcontent,h.hname,h.gloc,to_char(r.rdate,'yyyy-mm-dd') rdate,r.rlike,r.rstar,r.mid,m.nickname 
+		from pcp_review r, pcp_hospital h, pcp_member m 
+		where r.hid=h.hid and r.mid = m.mid  
+		order by rlike desc))
+		where rno between #{start} and #{end}
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(*) from pcp_review
+	</select>
+	
+	<select id="my_select" parameterType="String" resultType="com.project.vo.ReviewVo">
+		select h.hid, h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid, h.img
+		from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = #{mid}
+	</select>
+	
+	<select id="reportReivew" parameterType="String" resultType="int">
+		select count(*) from pcp_review where rid = #{rid} and rstate = 'O'
+	</select>
+</mapper>

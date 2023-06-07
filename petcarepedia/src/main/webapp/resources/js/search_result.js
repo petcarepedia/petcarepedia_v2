@@ -1,53 +1,147 @@
 $(document).ready(function(){
+
+
+/*******************************************
+	좋아요 버튼
+********************************************/    
+var scrollPositions = {}; // 버튼의 위치 정보를 저장할 객체
+
+$('#like').click(function(e) {
+    e.preventDefault();
+
+    var button = $(this);
+    var rid = button.data('rid');
+    var mid = 'hong';
+
+    // 스크롤 위치 저장
+    //scrollPositions[rid] = $('html, body').scrollTop();
+    scrollPositions[rid] = $(window).scrollTop();
+    
+
+    // 좋아요 처리 Ajax 호출
+    $.ajax({
+        url: 'likeProc.do',
+        method: 'POST',
+        data: {
+            hid: $('input[name="hid"]').val(),
+            rid: rid,
+            mid: mid
+        },
+        success: function(response) {
+            if (response == "success") {
+                // 성공 처리 로직 작성
+                // 클라이언트에서 버튼의 카운팅 증가 또는 감소
+                var count = parseInt(button.find('.like-count').text());
+                count++; // 또는 count--;
+                button.find('.like-count').text(count);
+                $('html, body').scrollTop(scrollPositions[rid]);
+            } else if (response == "fail") {
+                // 성공 처리 로직 작성
+                // 클라이언트에서 버튼의 카운팅 증가 또는 감소
+                var count = parseInt(button.find('.like-count').text());
+                count--; // 또는 count--;
+                button.find('.like-count').text(count);
+                $('html, body').scrollTop(scrollPositions[rid]);
+            }
+            
+            // 페이지 로드 시 스크롤 위치 복원
+            $('html, body').scrollTop(scrollPositions[rid]);
+        }
+    });
+});
+
+
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+
 /*******************************************
 	예약 버튼
 ********************************************/
-	/*$("#reservation").click(function() {
-		var url = 'http://localhost:9000/WebCarePedia/search/search_reservation.jsp';
-	    window.open(url, 'popup', 'width=500,height=500,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,resizable=no');
-	});*/
+
 	
-	$("#reservation").click(function() {
-		 $("#hmodal").css("display", "block");
-		  });
+$("#reservation").click(function() {
+  var hid = $(this).val();
+  var iframeSrc = "search_reservation.do?hid=" + hid;
+  
+ 
+
+  var modal = $("#hmodal");
+  var iframe = $("#reservation-iframe");
+
+  iframe.attr("src", iframeSrc);
+  modal.css("display", "block");
+  
+});
 		  
 		  // 모달 닫기
 		  $(".close").click(function() {
 		    $("#hmodal").css("display", "none");
 		  });
 	
-/*******************************************
-	리뷰작성
-********************************************/
-	$("#review").click(function() {
-		 window.location.href = 'http://localhost:9000/WebCarePedia/search/search_main.jsp';
-	});
 	
-	
-/*******************************************
-	찜하기
-********************************************/
-	$("#like").click(function() {
-		 window.location.href = 'http://localhost:9000/WebCarePedia/search/search_main.jsp';
-	});
-	
+
 	
 /*******************************************
 	네비게이션
 ********************************************/
 	 $("#info_s").click(function() {
+	 	var offsetTop = $(".api_info").offset().top - 100;
 		    $('html, body').animate({
-		      scrollTop: $(".api_info").offset().top
+		      scrollTop: offsetTop
 		    }, 500);
 		  });
+		  
 		  $("#review_s").click(function() {
+		  var offsetTop2 = $(".review").offset().top - 100;
 		    $('html, body').animate({
-		      scrollTop: $(".review").offset().top
+		      scrollTop: offsetTop2
 		    }, 500);
 		  });
 
 
 
+/** 하트효과**/
+//heart 좋아요 클릭시! 하트 뿅
+$(function(){
+    var $likeBtn =$('.icon.heart');
+
+        $likeBtn.click(function(){
+        $likeBtn.toggleClass('active');
+
+        if($likeBtn.hasClass('active')){          
+           $(this).find('img').attr({
+              'src': 'https://cdn-icons-png.flaticon.com/512/803/803087.png',
+               alt:'찜하기 완료'
+                });
+          
+          
+         }else{
+            $(this).find('i').removeClass('fas').addClass('far')
+           $(this).find('img').attr({
+              'src': 'https://cdn-icons-png.flaticon.com/512/812/812327.png',
+              alt:"찜하기"
+           })
+         }
+     })
+})
 
 
 

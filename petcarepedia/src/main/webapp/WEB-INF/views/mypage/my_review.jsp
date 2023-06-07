@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/resources/css/mypage.css">
-<link rel="stylesheet" href="http://localhost:9000/petcarepedia/resources/css/petcarepedia_song.css">
+<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+<title>펫캐어피디아 | 내가 쓴 리뷰</title>
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/mypage.css">
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
 </head>
@@ -21,67 +23,45 @@
 					<nav>
 						<ul>
 							<li>마이페이지</li>
-							<li><a href = "http://localhost:9000/petcarepedia/information.do">회원 정보</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/reservation.do">예약 내역</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/my_review.do">내가 쓴 리뷰</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do">즐겨찾기</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/signout.do">회원 탈퇴</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/information.do?mid=hong">회원 정보</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/reservation.do?mid=hong">예약 내역</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/my_review.do?mid=hong">내가 쓴 리뷰</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/bookmark.do?mid=hong">즐겨찾기</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/signout.do?mid=hong">회원 탈퇴</a></li>
 						</ul>
 					</nav>
 				</div>
 			</section>
 			<div id = "aside">
-				<section id = "section2">
-					<div id = "aside1">
-						<span>더조은 동물병원</span>
-						<span>02-1234-1234</span>
-						<span>
-							<span>강남구</span>
-						</span>
-						<img src = "http://localhost:9000/petcarepedia/resources/images/cat.png">
-						<span>과테말라 냥이</span>
-					</div>
-					<div id = "aside2">
-						<img src = "http://localhost:9000/petcarepedia/resources/images/hos.png">
-					</div>
-					<div id = "aside3">
-						<span>동물 종류 : 고양이</span>
-						<span>교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.
-								교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.교정상담 받았습니다.
-						</span>
-						<span>진료 일자 : 2023-04-26</span>
-					</div>
-					<div id = "aside4">
-						<button type = "button" id = "btnReview_revise">리뷰수정</button>
-						<button type = "button" id = "btnReview_delete">리뷰삭제</button>
-					</div>
-				</section>
-				<section id = "section2">
-					<div id = "aside1">
-						<span>더조은 동물병원</span>
-						<span>02-1234-1234</span>
-						<span>
-							<span>강남구</span>
-						</span>
-						<img src = "http://localhost:9000/petcarepedia/resources/images/cat.png">
-						<span>과테말라 냥이</span>
-					</div>
-					<div id = "aside2">
-						<img src = "http://localhost:9000/petcarepedia/resources/images/hos.png">
-					</div>
-					<div id = "aside3">
-						<span>동물 종류 : 고양이</span>
-						<span>교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.
-								교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.교정상담 받았습니다. 선생님이 친절하세요. 선생님이 친절하세요.교정상담 받았습니다.
-						</span>
-						<span>진료 일자 : 2023-04-26</span>
-					</div>
-					<div id = "aside4">
-						<button type = "button" id = "btnReview_revise">리뷰수정</button>
-						<button type = "button" id = "btnReview_delete">리뷰삭제</button>
-					</div>
-				</section>
-				
+				<c:forEach var = "reviewVo" items = "${list}">
+					<section id = "section2">
+						<div id = "aside1">
+							<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${reviewVo.hid}">
+								<span>${reviewVo.hname}</span>
+							</a>
+							<span>${reviewVo.tel}</span>
+							<span>
+								<span>${reviewVo.gloc}</span>
+							</span>
+							<img src = "http://localhost:9000/petcarepedia/images/cat.png">
+							<span>${reviewVo.nickname}</span>
+						</div>
+						<div id = "aside2">
+							<img src = "${reviewVo.img}">
+						</div>
+						<div id = "aside3">
+							<span>리뷰 내용</span>
+							<span> ${reviewVo.rcontent}</span>
+							<span><!-- 진료 일자 : 2023-04-26 --></span>
+						</div>
+						<div id = "aside4">
+						<a href = "mypage_review_content.do?rid=${reviewVo.rid}">
+							<button type = "button" id = "btnReview_content">상세보기</button>
+						</a>
+
+						</div>
+					</section>
+				</c:forEach>
 			</div>
 		</section>
 	</div>	

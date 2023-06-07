@@ -1,77 +1,104 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Hospital- List</title>
-<link rel="stylesheet" href="http://localhost:9000/animal/css/admin.css">
+	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
+	<link rel="stylesheet" href="http://localhost:9000/mycgv_jsp/css/am-pagination.css">
+	<script src="http://localhost:9000/pecarepedia/js/jquery-3.6.4.min.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/mycgv_jsp_jquery.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
+		<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<title>펫캐어피디아 | 관리자</title>
+<script>
+	$(document).ready(function(){
+		var pager = jQuery('#ampaginationsm').pagination({
+		
+		    maxSize: '${maxSize}',	// max page size
+		    totals:  '${totals}',	// total pages	
+		    page: 	 '${page}',		// initial page		
+		    pageSize:'${pageSize}',	// max number items per page
+		
+		    // custom labels		
+		    lastText: '&raquo;&raquo;', 		
+		    firstText:'&laquo;&laquo;',		
+		    prevText: '&laquo;',		
+		    nextText: '&raquo;',
+				     
+		    btnSize:'sm'	// 'sm'  or 'lg'		
+		});
+		
+		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+	           $(location).attr('href', "http://localhost:9000/mycgv_jsp/board_list_json.do?page="+e.page);         
+	    });
+		
+ 	});
+</script>
 </head>
 <body>
 <!-- header -->
-	<iframe width="100%" height="100px" frameborder=0></iframe>
+	<jsp:include page="../admin_header.jsp"></jsp:include>
 	
 	<div class="d1">
-		<section class="hospital_detail">
+		<section class="hospital">
 			<section id = "section1">
 				<div>
 					<nav>
 						<ul>
 							<li>병원관리</li>
-							<li><a href = "http://localhost:9000/animal/admin/hospital/hospital_list.jsp">병원 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/member/member_list.jsp">회원 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/reserve/reserve_list.jsp">예약 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/review/review_list.jsp">신고 리뷰 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/review/review_list.jsp">공지 사항 관리</a></li>
-							<li><a href = "#">나가기</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/hospital_list.do">병원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/member/member_list.do">회원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/reserve/reserve_list.do">예약 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/review/review_list.do">신고 리뷰 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/admin_notice/admin_notice.do">공지 사항 관리</a></li>
 						</ul>
 					</nav>
 				</div>
 			</section>
-			<section class="section2">
-				<div class="d2">
-					<input type="text" class="search_bar" placeholder="병원명 입력">
-					<button class="button1"><img src="http://localhost:9000/animal/css/foot_sky.png"></button>
-				</div>
-				<div class="d3">
-					<table class="table">
-						<tr>
-							<td colspan="5">
-								<button type="button" class="button"><a href="http://localhost:9000/animal/admin/hospital/hospital_detail.jsp">등록</a></button>
-								<button type="button" class="button"><a href="#">수정</a></button>
-								<button type="button" class="button">삭제</button>
-							</td>
-						</tr>
-						<tr>
-							<th>번호</th>
-							<th>병원명</th>
-							<th>상태</th>
-							<th>등록일</th>
-							<th>수정일</th>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td><a href="">멍멍동물병원</a></td>
-							<td>영업중</td>
-							<td>2023-01-01</td>
-							<td>2023-04-23</td>
-						</tr>
-						<tr>
-							<td colspan="5">
-								<br>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="5">
-								<button type="button" class="button4"><a href="http://localhost:9000/animal/admin/hospital/hospital_list.jsp">이전으로</a></button>
-							</td>
-						</tr>
-					</table>
-				</div>
+		<form name="hopitalForm" action="hospital_list_data.do" method="post">
+		<section id="section2">
+			<div class="d2">
+				<input type="text" class="search_bar" placeholder="병원명 입력">
+				<button type="button" class="button1">
+					<a href="http://localhost:9000/petcarepedia/hospital_list_detail.do">
+						<img src="http://localhost:9000/petcarepedia/images/foot_sky.png">
+					</a>
+				</button>
+			</div>
+			<script>
+				$(document).ready(function(){
+					var pager = jQuery('#ampaginationsm').pagination({
+					
+					    maxSize: '${maxSize}',	// max page size
+					    totals:  '${totals}',	// total pages	
+					    page: 	 '${page}',		// initial page		
+					    pageSize:'${pageSize}',	// max number items per page
+					
+					    // custom labels		
+					    lastText: '&raquo;&raquo;', 		
+					    firstText:'&laquo;&laquo;',		
+					    prevText: '&laquo;',		
+					    nextText: '&raquo;',
+							     
+					    btnSize:'sm'	// 'sm'  or 'lg'		
+					});
+					
+					jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+						   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+				           $(location).attr('href', "http://localhost:9000/mycgv_jsp/board_list_json.do?page="+e.page);         
+				    });
+					
+			 	});
+			</script>
 			</section>
+		</form>
 		</section>
 	</div>
-<!-- footer -->
-	<iframe  width="100%" height="350px" frameborder=0></iframe>
+	<!-- footer -->
+		<jsp:include page="../../footer.jsp"></jsp:include>
 </body>
 </html>

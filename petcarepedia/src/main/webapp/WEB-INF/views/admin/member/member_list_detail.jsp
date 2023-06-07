@@ -1,11 +1,18 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<head>
 <meta charset="UTF-8">
-<title>Member - List</title>
-<link rel="stylesheet" href="http://localhost:9000/animal/css/admin.css">
+	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
+	<link rel="stylesheet" href="http://localhost:9000/mycgv_jsp/css/am-pagination.css">
+	<script src="http://localhost:9000/pecarepedia/js/jquery-3.6.4.min.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/mycgv_jsp_jquery.js"></script>
+	<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
+	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
+	<title>펫캐어피디아 | 관리자</title>
 </head>
 <body>
 <!-- header -->
@@ -17,12 +24,12 @@
 					<nav>
 						<ul>
 							<li>회원관리</li>
-							<li><a href = "http://localhost:9000/animal/admin/hospital/hospital_list.jsp">병원 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/member/member_list.jsp">회원 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/reserve/reserve_list.jsp">예약 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/review/review_list.jsp">신고 리뷰 관리</a></li>
-							<li><a href = "http://localhost:9000/animal/admin/review/review_list.jsp">공지 사항 관리</a></li>
-							<li><a href = "#">나가기</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/hospital_list.do">병원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/member/member_list.do">회원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/reserve/reserve_list.do">예약 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/review/review_list.do">신고 리뷰 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin/admin_notice/admin_notice.do">공지 사항 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/login.do">나가기</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -33,11 +40,11 @@
 					<button class="button1"><img src="http://localhost:9000/animal/css/foot_sky.png"></button>
 				</div>
 				<div class="d3">
-					<table class="table">
+					<button type="button" class="button"><a href="#">수정</a></button>
+					<button type="button" class="button">삭제</button>
+				<!-- 	<table class="table">
 						<tr>
 							<td colspan="5">
-								<button type="button" class="button5"><a href="#">수정</a></button>
-								<button type="button" class="button5">삭제</button>
 							</td>
 						</tr>
 						<tr>
@@ -61,10 +68,10 @@
 						</tr>
 						<tr>
 							<td colspan="5">
-								<button type="button" class="button4"><a href="http://localhost:9000/animal/admin/member/member_list.jsp">이전으로</a></button>
 							</td>
 						</tr>
-					</table>
+					</table> -->
+					<button type="button" class="button4"><a href="http://localhost:9000/petcarepedia/member_list.jsp">이전으로</a></button>
 				</div>
 			</section>
 		</section>

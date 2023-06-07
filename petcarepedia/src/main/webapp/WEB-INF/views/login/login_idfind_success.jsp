@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
+
 </head>
 <body>
 	<!-- header -->
@@ -30,7 +31,7 @@
 				<ul>
 					<li class="find-success">
 						<p>회원가입 시 사용한 아이디는</p>
-						<p>hong****</p>
+						<p id="id_sec"></p>
 						<p>입니다.</p>
 					</li>
 					<li><button type="button" id="btnBackLogin" class="btn-submit">로그인 화면으로 돌아가기</button></li>
@@ -41,5 +42,17 @@
 	
 	<!-- footer -->
 	<jsp:include page="../footer.jsp"></jsp:include>
+	
+	<script>
+		let id = "${mid}";
+		let id_sec = "";
+		if(id.length%2==0){
+			id_sec = id.substring(0,id.length/2) + '*'.repeat(id.length/2);
+		} else {
+			id_sec = id.substring(0,id.length/2+1) + '*'.repeat(id.length/2);
+		}
+		
+		document.getElementById("id_sec").innerHTML=id_sec;
+	</script>
 </body>
 </html>

@@ -21,7 +21,7 @@
 				<img src="http://localhost:9000/petcarepedia/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="idFindForm" action="login_idfindProc.jsp" method="post">
+			<form name="idFindForm" action="login_idfind_proc.do" method="post">
 				<div class="find-box">
 					<div>
 						<div id="btnMenuIdFind">아이디 찾기</div>
@@ -45,7 +45,7 @@
 							<input type="text" name="phone2" id="phone2" placeholder="1234" class="input-short2">
 							<input type="text" name="phone3" id="phone3" placeholder="5678" class="input-short2">
 						</li>
-						<li><button type="button" id="btnIdFind" class="btn-submit" disabled>아이디 찾기</button></li>
+						<li><button type="submit" id="btnIdFind" class="btn-submit" disabled>아이디 찾기</button></li>
 					</ul>
 				</div>
 			</form>

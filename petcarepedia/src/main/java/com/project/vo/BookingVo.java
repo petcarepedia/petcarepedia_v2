@@ -1,9 +1,69 @@
 package com.project.vo;
 
 public class BookingVo {
-	String bid, bdate, vdate, vitme, bstate, mid;
+	String bid, bdate, vdate, vtime, bstate, mid, hid;
 	int rno;
 	
+	/** Ãß°¡ **/
+	String hname, loc, gloc, tel, hrink;
+	String start, end;
+	String img;
+	int count;
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public String getStart() {
+		return start;
+	}
+	public void setStart(String start) {
+		this.start = start;
+	}
+	public String getEnd() {
+		return end;
+	}
+	public void setEnd(String end) {
+		this.end = end;
+	}
+	public String getHrink() {
+		return hrink;
+	}
+	public void setHrink(String hrink) {
+		this.hrink = hrink;
+	}
+	public String getHname() {
+		return hname;
+	}
+	public void setHname(String hname) {
+		this.hname = hname;
+	}
+	public String getLoc() {
+		return loc;
+	}
+	public void setLoc(String loc) {
+		this.loc = loc;
+	}
+	public String getGloc() {
+		return gloc;
+	}
+	public void setGloc(String gloc) {
+		this.gloc = gloc;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public String getBid() {
 		return bid;
 	}
@@ -22,11 +82,11 @@ public class BookingVo {
 	public void setVdate(String vdate) {
 		this.vdate = vdate;
 	}
-	public String getVitme() {
-		return vitme;
+	public String getVtime() {
+		return vtime;
 	}
-	public void setVitme(String vitme) {
-		this.vitme = vitme;
+	public void setVtime(String vtime) {
+		this.vtime = vtime;
 	}
 	public String getBstate() {
 		return bstate;
@@ -45,6 +105,13 @@ public class BookingVo {
 	}
 	public void setRno(int rno) {
 		this.rno = rno;
+	}
+	
+	public String getHid() {
+		return hid;
+	}
+	public void setHid(String hid) {
+		this.hid = hid;
 	}
 	
 	
