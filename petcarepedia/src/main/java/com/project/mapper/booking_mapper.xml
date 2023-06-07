@@ -69,7 +69,7 @@
 	<select id="search5" parameterType="String" resultType="com.project.vo.BookingVo">
 		select bid, hname, mid, to_char(BDATE, 'yyyy-mm-dd') VDATE, bstate
 		from  pcp_booking b, pcp_hospital h 
-		where b.hid = h.hid and mid like %#{mid}%	
+		where b.hid = h.hid and mid like '%'|| #{mid} ||'%'	
 	</select>
 	
 	<select id="select2" parameterType="String" resultType="com.project.vo.BookingVo">

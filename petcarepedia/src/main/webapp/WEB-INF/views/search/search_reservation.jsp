@@ -45,7 +45,9 @@ $(document).ready(function() {
                         icon: 'error',
                         title: '중복 예약하셨습니다',
                         text: '예약 일시를 다시 선택해주세요.',
-                        showConfirmButton: true // 확인 버튼 표시
+                        showConfirmButton: true, // 확인 버튼 표시
+                        confirmButtonColor:'#98dfff',
+                  	    confirmButtonText:'확인'
                     }).then(function() {
                         /* location.reload(); // 확인 버튼 클릭 시 페이지 새로고침 */
                     });
@@ -53,7 +55,9 @@ $(document).ready(function() {
                     Swal.fire({
                         icon: 'success',
                         title: '예약 완료',
-                        showConfirmButton: true // 확인 버튼 표시
+                        showConfirmButton: true, // 확인 버튼 표시
+                        confirmButtonColor:'#98dfff',
+                  	    confirmButtonText:'확인'
                     }).then(function() {
                     	window.location.href = "http://localhost:9000/petcarepedia/reservation.do?mid=" + mid; // 확인 버튼 클릭 시 페이지 새로고침
                     });
