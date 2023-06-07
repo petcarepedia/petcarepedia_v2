@@ -18,6 +18,12 @@ public class ReviewDao extends DBConn {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//신고된 리뷰 조회
+	public ArrayList<ReviewVo> reportList() {
+		List<ReviewVo> list = sqlSession.selectList("mapper.review.reportList");
+		return (ArrayList<ReviewVo>)list;
+	}
+	
 	// 리뷰와 병원 조인
 	public ArrayList<ReviewVo> RH_select(String hid) {
 		return sqlSession.selectOne("mapper.review.RH_select", hid);

@@ -70,9 +70,10 @@ $(document).ready(function(){
 			success : function(result) {
 				if(result == 1) {
 					Swal.fire({
-						  title: '이미 신고된 리뷰입니다.',
-						  text: '',
+						  title: '신고 접수된 리뷰입니다.',
+						  text: '관리자 확인중 입니다. 잠시만 기다려주세요',
 						  icon: 'info',
+						  confirmButtonColor: '#FFB3BD',
 	                }).then(function(){
 							history.back();
 						});
@@ -81,8 +82,9 @@ $(document).ready(function(){
 				else if(result == 0){
 					Swal.fire({
 						  title: '신고되었습니다.',
-						  text: '',
+						  text: '관리자 확인 후 처리하겠습니다.',
 						  icon: 'success',
+						  confirmButtonColor: '#FFB3BD',
 	                }).then(function(){
 							reportForm.submit();
 						});

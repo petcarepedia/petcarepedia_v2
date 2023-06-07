@@ -101,7 +101,7 @@
 						<span><a href="login.do">리뷰쓰기 ></a></span>
 					</c:when>
 					<c:otherwise>
-						<span><a href="reservation2.do?mid=${mid }">리뷰쓰기 ></a></span>
+						<span><a href="mypage_reservation2.do?mid=${mid }">리뷰쓰기 ></a></span>
 					</c:otherwise>
 				</c:choose>
 			</div>
