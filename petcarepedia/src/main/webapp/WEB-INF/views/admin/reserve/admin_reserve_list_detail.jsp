@@ -23,13 +23,12 @@
 				<div>
 					<nav>
 						<ul>
-							<li>회원관리</li>
-							<li><a href = "http://localhost:9000/petcarepedia/hospital_list.do">병원 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/member/member_list.do">회원 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/reserve/reserve_list.do">예약 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/review/review_list.do">신고 리뷰 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/admin/admin_notice/admin_notice.do">공지 사항 관리</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/login.do">나가기</a></li>
+							<li>신고리뷰관리</li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_hospital_list.do">병원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_member/member_list.do">회원 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_reserve/reserve_list.do">예약 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_review/review_list.do">신고 리뷰 관리</a></li>
+							<li><a href = "http://localhost:9000/petcarepedia/admin_admin_notice/admin_notice.do">공지 사항 관리</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -40,7 +39,6 @@
 					<button class="button1"><img src="http://localhost:9000/animal/css/foot_sky.png"></button>
 				</div>
 				<div class="d3">
-					<button type="button" class="button"><a href="#">수정</a></button>
 					<button type="button" class="button">삭제</button>
 				<!-- 	<table class="table">
 						<tr>
@@ -71,7 +69,7 @@
 							</td>
 						</tr>
 					</table> -->
-					<button type="button" class="button4"><a href="http://localhost:9000/petcarepedia/member_list.jsp">이전으로</a></button>
+					<button type="button" class="button4"><a href="http://localhost:9000/petcarepedia/admin_member_list.jsp">이전으로</a></button>
 				</div>
 			</section>
 		</section>

@@ -1,13 +1,20 @@
 package com.project.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.dao.NoticeDao;
+import com.project.dao.PageDao;
 import com.project.dao.ReviewDao;
+import com.project.vo.BookingVo;
+import com.project.vo.HospitalVo;
+import com.project.vo.MemberVo;
+import com.project.vo.ReviewVo;
 
 
 @Service("pageService")
@@ -17,8 +24,59 @@ public class PageServiceImpl {
 	private NoticeDao noticeDao;
 	@Autowired
 	private ReviewDao reviewDao;
+	@Autowired
+	private PageDao pageDao;
 
 
+	public ArrayList<HospitalVo> getHsListPage(int startCount, int endCount) {
+		ArrayList<HospitalVo> rlist = new ArrayList<HospitalVo>();
+		List<Object> list = pageDao.Hselect(startCount, endCount);
+		for(Object obj : list) {
+			HospitalVo hospitalVo = (HospitalVo)obj;
+			rlist.add(hospitalVo);
+		}
+		return rlist;
+	}
+	
+	public ArrayList<ReviewVo> getRListPage(int startCount, int endCount) {
+		ArrayList<ReviewVo> rlist = new ArrayList<ReviewVo>();
+		List<Object> list = pageDao.Rselect(startCount, endCount);
+		for(Object obj : list) {
+			ReviewVo reviewVo = (ReviewVo)obj;
+			rlist.add(reviewVo);
+		}
+		return rlist;
+	}
+	
+	public ArrayList<BookingVo> getBListPage(int startCount, int endCount) {
+		ArrayList<BookingVo> rlist = new ArrayList<BookingVo>();
+		List<Object> list = pageDao.Bselect(startCount, endCount);
+		for(Object obj : list) {
+			BookingVo bookingVo = (BookingVo)obj;
+			rlist.add(bookingVo);
+		}
+		return rlist;
+	}
+	
+	public ArrayList<MemberVo> getMListPage(int startCount, int endCount) {
+		ArrayList<MemberVo> rlist = new ArrayList<MemberVo>();
+		List<Object> list = pageDao.Mselect(startCount, endCount);
+		for(Object obj : list) {
+			MemberVo memberVo = (MemberVo)obj;
+			rlist.add(memberVo);
+		}
+		return rlist;
+	}
+	
+	public ArrayList<HospitalVo> getHListPage(int startCount, int endCount) {
+		ArrayList<HospitalVo> rlist = new ArrayList<HospitalVo>();
+		List<Object> list = pageDao.Hselect(startCount, endCount);
+		for(Object obj : list) {
+			HospitalVo hospitalVo = (HospitalVo)obj;
+			rlist.add(hospitalVo);
+		}
+		return rlist;
+	}
 	public Map<String, Integer> getPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
 		// 페이징 처리 - startCount, endCount 구하기
@@ -44,6 +102,26 @@ public class PageServiceImpl {
 			dbCount = reviewDao.totalRowCount();
 			pageSize = 7;
 		}
+		else if (serviceName.equals("hospital")) {
+			dbCount = pageDao.HtotalRowCount();
+			pageSize = 10;
+		}
+		else if (serviceName.equals("member")) {
+			dbCount = pageDao.MtotalRowCount();
+			pageSize = 7;
+		}
+		else if (serviceName.equals("booking")) {
+			dbCount = pageDao.BtotalRowCount();
+			pageSize = 7;
+		}
+		else if (serviceName.equals("review2")) {
+			dbCount = pageDao.RtotalRowCount();
+			pageSize = 7;
+		}
+		else if (serviceName.equals("hospital_search")) {
+			dbCount = pageDao.HstotalRowCount();
+			pageSize = 7;
+		}
 		if(serviceName.equals("review") || serviceName.equals("reviewSearch")) {
 			pageCount = 7;
 		}
@@ -61,11 +139,11 @@ public class PageServiceImpl {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
 			endCount = reqPage * pageSize;
-			if(serviceName.equals("review")) {
+			if(serviceName.equals("notice")) {
 				count++;
 			}
 		} else {
-			if(serviceName.equals("notice"))  {
+			if(serviceName.equals("review"))  {
 				startCount = 1;
 				endCount = 10;
 			}
@@ -73,13 +151,32 @@ public class PageServiceImpl {
 				startCount = 1;
 				endCount = 7;				
 			}
+			else if(serviceName.equals("hospital")) {
+				startCount = 1;
+				endCount = 10;				
+			}
+			else if(serviceName.equals("member")) {
+				startCount = 1;
+				endCount = 10;				
+			}
+			else if(serviceName.equals("booking")) {
+				startCount = 1;
+				endCount = 10;				
+			}
+			else if(serviceName.equals("review2")) {
+				startCount = 1;
+				endCount = 10;				
+			}
+			else if(serviceName.equals("hospital_search")) {
+				startCount = 1;
+				endCount = 10;				
+			}
 			else {
 				startCount = 1;
 				endCount = 5;
 			}
 
 		}
-		
 		
 		//param 객체에 데이터 put
 		param.put("count", count);
@@ -93,4 +190,7 @@ public class PageServiceImpl {
 		
 		return param;
 	}
+
+
+	
 }

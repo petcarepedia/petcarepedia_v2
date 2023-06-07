@@ -4,8 +4,24 @@ $(document).ready(function(){
 	/*************************
 	 * 예약 - 상태 변경
 	 **************************/
+  	var currentDate = new Date();
+	var Year = currentDate.getFullYear();
+	var Month = currentDate.getMonth() + 1;
+	var Day = currentDate.getDate();
 	
-	 
+	var current = new Date(Year, Month - 1, Day); // Date 객체로 변환
+	
+	$(".date").each(function() {
+	  var currentTd = $(this).text();
+	  var dateTd = new Date(currentTd); // Date 객체로 변환
+	
+	  if (dateTd < current) {
+	    $(this).next(".state").text("진료완료");
+	  } else {
+	    $(this).next(".state").text("예약중");
+	  }
+	});
+ 	 
 	/*************************
 	 * 병원 - 수정
 	 **************************/
@@ -169,30 +185,15 @@ $(document).ready(function(){
 	 * 병원 - 검색창
 	 **************************/
   $("#search_btn").click(function(){
-  
-  	var pager = jQuery('#ampaginationsm').pagination({
-		
-		    maxSize: '${maxSize}',	// max page size
-		    totals:  '${totals}',	// total pages	
-		    page: 	 '${page}',		// initial page		
-		    pageSize:'${pageSize}',	// max number items per page
-		
-		    // custom labels		
-		    lastText: '&raquo;&raquo;', 		
-		    firstText:'&laquo;&laquo;',		
-		    prevText: '&laquo;',		
-		    nextText: '&raquo;',
-				     
-		    btnSize:'sm'	// 'sm'  or 'lg'		
-		});
-		
-		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
-			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/mycgv_jsp/board_list_json.do?page="+e.page);         
-	    });
-  
-  	if($("#search_bar").val() ==""){
-			alert("병원명을 입력해주세요"); 
+		if($("#search_bar").val() ==""){
+			Swal.fire({
+		        icon: 'warning',                         // Alert 타입
+		        /* title: 'Alert가 실행되었습니다.',*/       // Alert 제목
+		        text: '병원명을 입력해주세요',  		// Alert 내용
+		        
+		        confirmButtonColor:'#98dfff',
+		  	  	confirmButtonText:'확인'
+			});
 			$("#search_bar").focus();
 			return false;
 		}else{	

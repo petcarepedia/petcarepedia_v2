@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
 	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/admin1.css">
 	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/am-pagination.css">
 	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
@@ -32,58 +31,67 @@
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/petcarepedia/admin_notice.do?page="+e.page);         
+	           $(location).attr('href', "http://localhost:9000/petcarepedia/admin_member_list.do?page="+e.page);         
 	    });
 		
  	});
-</script> 
+	</script>  
 </head>
 <body>
+
 <!-- header -->
-	<jsp:include page="../admin_header.jsp"></jsp:include>
-	
+	<jsp:include page="../admin_header.jsp"></jsp:include>	
 	<div class="d1">
-		 <section class="review">
-			 <section id = "section1">
+		<section class="member">
+			<section id = "section1">
 					<div>
 						<nav>
 							<ul>
-								<li>신고리뷰관리</li>
-								<li><a href = "http://localhost:9000/petcarepedia/hospital_list.do">병원 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/member_list.do">회원 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/reserve_list.do">예약 관리</a></li>
-								<li><a href = "http://localhost:9000/petcarepedia/review_list.do">신고 리뷰 관리</a></li>
+								<li>회원관리</li>
+								<li><a href = "http://localhost:9000/petcarepedia/admin_hospital_list.do">병원 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/admin_member_list.do">회원 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/admin_reserve_list.do">예약 관리</a></li>
+								<li><a href = "http://localhost:9000/petcarepedia/admin_review_list.do">신고 리뷰 관리</a></li>
 								<li><a href = "http://localhost:9000/petcarepedia/admin_notice.do">공지 사항 관리</a></li>
 							</ul>
 						</nav>
 					</div>
 				</section>
-				<section id = "section2">
-					<table class="table">
-							<tr>
-								<th>번호</th>
-								<th>아이디</th>
-								<th>병원명</th>
-								<th>내용</th>
-								<th>작성일</th>
-							</tr>
-						<c:forEach var="reviewVo" items="${list}">
-							<tr>
-								<td>${reviewVo.rno}</td>
-								<td>${reviewVo.mid}</td>
-								<td>${reviewVo.hname}</td>
-								<td><a href="review_detail.do?rid=${reviewVo.rid}">${reviewVo.rcontent}</a></td>
-								<td>${reviewVo.rdate}</td>
-							</tr>
-						</c:forEach>
-							<tr>
-								<td colspan="5"><div id="ampaginationsm"></div></td>
-							</tr>
-					</table>
-				</section>
+			<section id="section2">
+				<div class="d2" id = "d2">
+					<input type="text"  class="search_bar" id ="member_search_bar"placeholder="회원아이디 입력">
+					<button type="submit" class="button1" id="member_search_btn">
+						<img src="http://localhost:9000/petcarepedia/images/foot_sky.png">
+					</button>
+				</div>
+				<table class="table">
+					<tr>
+						<th>번호</th>
+						<th>아이디</th>
+						<th>성명</th>
+						<th>이메일</th>
+						<th>전화번호</th>
+						<th>가입일자</th>
+					</tr>
+					<c:forEach var="memberVo" items="${list}">
+					<tr>
+						<td>${memberVo.rno}</td>
+						<td><a href="admin_member_detail.do?mid=${memberVo.mid}">${memberVo.mid}</a></td>
+						<td>${memberVo.name}</td>
+						<td>${memberVo.email}</td>
+						<td>${memberVo.phone}</td>
+						<td>${memberVo.mdate}</td>
+					</tr>
+					</c:forEach>
+					<tr>
+						<td colspan="6"><div id="ampaginationsm"></div></td>
+					</tr>
+				</table>
 			</section>
-		</div>
+		</section>
+	</div>
 	<!-- footer -->
 		<jsp:include page="../../footer.jsp"></jsp:include>
+	
 </body>
 </html>
