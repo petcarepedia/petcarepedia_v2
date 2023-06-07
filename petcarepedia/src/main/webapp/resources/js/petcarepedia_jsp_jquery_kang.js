@@ -12,6 +12,8 @@ $(document).ready(function(){
 				  title: '타이틀을 입력해주세요',
 				  text: '',
 				  icon: 'warning',
+				  confirmButtonColor: '#98DFFF',
+				  confirmButtonText:'확인',
             }).then(function(){
 					$("#title").focus();
 				});
@@ -21,6 +23,8 @@ $(document).ready(function(){
 				  title: '내용을 입력해주세요',
 				  text: '',
 				  icon: 'warning',
+				  confirmButtonColor: '#98DFFF',
+				  confirmButtonText:'확인',
             }).then(function(){
 					$("#ncontent").focus();
 				});
@@ -42,6 +46,8 @@ $(document).ready(function(){
 				  title: '타이틀을 입력해주세요',
 				  text: '',
 				  icon: 'warning',
+				  confirmButtonColor: '#98DFFF',
+				  confirmButtonText:'확인',
             }).then(function(){
 					$("#title").focus();
 				});
@@ -51,6 +57,8 @@ $(document).ready(function(){
 				  title: '내용을 입력해주세요',
 				  text: '',
 				  icon: 'warning',
+				  confirmButtonColor: '#98DFFF',
+				  confirmButtonText:'확인',
             }).then(function(){
 					$("#ncontent").focus();
 				});
@@ -71,9 +79,10 @@ $(document).ready(function(){
 				if(result == 1) {
 					Swal.fire({
 						  title: '신고 접수된 리뷰입니다.',
-						  text: '관리자 확인중 입니다. 잠시만 기다려주세요',
-						  icon: 'info',
-						  confirmButtonColor: '#FFB3BD',
+						  text: '빠른 시일 내에 처리하겠습니다.',
+						  icon: 'error',
+						  confirmButtonColor: '#98DFFF',
+						  confirmButtonText:'확인',
 	                }).then(function(){
 							history.back();
 						});
@@ -84,7 +93,8 @@ $(document).ready(function(){
 						  title: '신고되었습니다.',
 						  text: '관리자 확인 후 처리하겠습니다.',
 						  icon: 'success',
-						  confirmButtonColor: '#FFB3BD',
+						  confirmButtonColor: '#98DFFF',
+						  confirmButtonText:'확인',
 	                }).then(function(){
 							reportForm.submit();
 						});
@@ -117,8 +127,6 @@ $(document).ready(function(){
 			}  
 		}
 	});
-	
-
 
 	
 
