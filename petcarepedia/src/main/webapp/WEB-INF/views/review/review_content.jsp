@@ -17,7 +17,7 @@
 	<div class="content">
 		<section class="review_content">
 			<div id="title_l">
-				<h1 class="title">리뷰상세</h1>
+				<h1 class="title">리뷰상세${sessionScope.svo.mid }</h1>
 			</div>
 			<div class="review_detail">
 				<table class="rv_detail_menu">
@@ -44,7 +44,7 @@
 				<div class="table_right">
 					<div id="right_top">
 						<c:choose>
-							<c:when test="${reviewVo.mid eq mid || mid eq '' || mid eq null}">
+							<c:when test="${reviewVo.mid eq sessionScope.svo.mid || sessionScope.svo.mid eq '' || sessionScope.svo.mid eq null}">
 								<button type="button" id="btnLike" disabled>
 									<span class="review_like">
 										♥️
@@ -55,7 +55,6 @@
 							<c:otherwise>
 								<form name="reviewLikeForm" action="review_like_Proc.do" method="post">
 									<input type="hidden" id="rid" name="rid" value="${reviewLikeVo.rid }">
-									<input type="hidden" id="mid" name="mid" value="${mid }">
 									<input type="hidden" id="page" name="page" value="${page }">
 									<input type="hidden" id="filter_location" name="filter_location" value="${filter_location }">
 									<button type="submit" id="btnLikeProc">
@@ -93,27 +92,27 @@
 					</table>
 				</div>
 				<c:choose>
-					<c:when test="${reviewVo.mid eq mid }">
+					<c:when test="${reviewVo.mid eq sessionScope.svo.mid }">
 					</c:when>
 					<c:otherwise>
-						<a href="review_report.do?rid=${reviewVo.rid }&&page=${page }&&filter_location=${filter_location}&&mid=${mid}"><button type="button" class="report">신고하기</button></a>
+						<a href="review_report.do?rid=${reviewVo.rid }&&page=${page }&&filter_location=${filter_location}"><button type="button" class="report">신고하기</button></a>
 					</c:otherwise>
 				</c:choose>
 			</div>
 			<c:choose>
-				<c:when test="${reviewVo.mid eq mid }">
+				<c:when test="${reviewVo.mid eq sessionScope.svo.mid }">
 					<div class="rc_button_r">
 						<a href="review_revise.do?rid=${reviewVo.rid }"><button type="button" class="button">수정</button></a>
-						<a href="review_delete.do?rid=${reviewVo.rid }&&page=${page }&&filter_location=${filter_location}&&mid=${mid}"><button type="button" class="button">삭제</button></a>
+						<a href="review_delete.do?rid=${reviewVo.rid }&&page=${page }&&filter_location=${filter_location}"><button type="button" class="button">삭제</button></a>
 						<c:choose>
 							<c:when test="${page eq null }">
-								<a href="review_main.do?mid=${mid}"><button type="button" class="button">목록</button></a>
+								<a href="review_main.do"><button type="button" class="button">목록</button></a>
 							</c:when>
 							<c:when test="${filter_location eq null }">
-								<a href="review_main.do?page=${page }&&mid=${mid}"><button type="button" class="button">목록</button></a>
+								<a href="review_main.do?page=${page }"><button type="button" class="button">목록</button></a>
 							</c:when>
 							<c:otherwise>
-								<a href="review_main_search.do?page=${page }&&filter_location=${filter_location}&&mid=${mid}"><button type="button" class="button">목록</button></a>
+								<a href="review_main_search.do?page=${page }&&filter_location=${filter_location}"><button type="button" class="button">목록</button></a>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -125,10 +124,10 @@
 								<a href="review_main.do?mid=${mid}"><button type="button" class="button">목록</button></a>
 							</c:when>
 							<c:when test="${filter_location eq null }">
-								<a href="review_main.do?page=${page }&&mid=${mid}"><button type="button" class="button">목록</button></a>
+								<a href="review_main.do?page=${page }"><button type="button" class="button">목록</button></a>
 							</c:when>
 							<c:otherwise>
-								<a href="review_main_search.do?page=${page }&&filter_location=${filter_location}&&mid=${mid}"><button type="button" class="button">목록</button></a>
+								<a href="review_main_search.do?page=${page }&&filter_location=${filter_location}"><button type="button" class="button">목록</button></a>
 							</c:otherwise>
 						</c:choose>
 					</div>

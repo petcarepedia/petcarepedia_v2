@@ -48,9 +48,8 @@
 		<section id="filter">	
 		<div id="filter_page" class="review">
 		<input type="hidden" id="count" value="${count }">
-			<p>상세검색</p>
+			<p>상세검색${sessionScope.svo.mid }</p>
 			<form name="ReviewSearchForm" action="review_main_search.do" method="get">
-				<input type="hidden" id="mid" name="mid" value="${mid }">
 				<table id="filter_lo" class="filter">
 					<tr>
 						<th rowspan='3'>지역구분</th>
@@ -98,11 +97,11 @@
 			<div id="title">
 				<span>리뷰</span>
 				<c:choose>
-					<c:when test="${mid == null }">
+					<c:when test="${sessionScope.svo.mid == null}">
 						<span><a href="login.do">리뷰쓰기 ></a></span>
 					</c:when>
 					<c:otherwise>
-						<span><a href="mypage_reservation2.do?mid=${mid }">리뷰쓰기 ></a></span>
+						<span><a href="mypage_reservation2.do">리뷰쓰기 ></a></span>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -119,7 +118,7 @@
 								</div>
 							</li>
 								<li id="list_middle" class="list">
-									<a href="review_content.do?rid=${list.rid }&&page=${page}&&mid=${mid}">
+									<a href="review_content.do?rid=${list.rid }&&page=${page}">
 										<div id="review_hname">${list.hname }</div>
 										<div class="rvc">
 											${list.rcontent }

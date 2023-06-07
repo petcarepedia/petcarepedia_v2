@@ -3,6 +3,8 @@ package com.project.petcarepedia;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +31,7 @@ public class ReviewController {
 	
 	//review_main.do 리뷰 리스트 페이징
 	@RequestMapping(value="/review_main.do", method=RequestMethod.GET)
-	public ModelAndView review_main(String page, String mid) {
+	public ModelAndView review_main(String page, HttpSession session) {
 
 		ModelAndView model = new ModelAndView();	
 		//임시 아이디
@@ -69,7 +71,6 @@ public class ReviewController {
 		
 		ArrayList<ReviewVo> list = reviewService.getSelectList(param.get("startCount"), param.get("endCount"));
 		
-		model.addObject("mid", mid);
 		model.addObject("count", param.get("count"));
 		model.addObject("list", list);
 		model.addObject("totals", param.get("dbCount"));
@@ -89,18 +90,17 @@ public class ReviewController {
 	
 	//review_content.do 리뷰 상세 페이지
 	@RequestMapping(value="/review_content.do", method=RequestMethod.GET)
-	public ModelAndView review_content(String rid, String page, String mid, String filter_location)  {
+	public ModelAndView review_content(String rid, String page, String filter_location, HttpSession session)  {
 		ModelAndView model = new ModelAndView();
 		ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
 		ReviewVo reviewVo = reviewService.getEnter_select(rid);		
 		
 		reviewVo.setRcontent(reviewVo.getRcontent().replace("\n", "<br>"));
 		reviewLikeVo.setRid(reviewVo.getRid());
-		reviewLikeVo.setMid(mid);
+		reviewLikeVo.setMid(String.valueOf(session.getAttribute("mid")));
 		
 		int likeCheck = reviewLikeService.getIdCheck(reviewLikeVo);
 		
-		model.addObject("mid", mid);
 		model.addObject("page", page);
 		model.addObject("filter_location", filter_location);
 		model.addObject("likeCheck", likeCheck);
@@ -178,10 +178,10 @@ public class ReviewController {
 	
 	//리뷰 좋아요 처리
 	@RequestMapping(value="/review_like_Proc.do", method=RequestMethod.POST)
-	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo, String mid, String page, String filter_location) {
+	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo, String page, String filter_location, HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		
-		reviewLikeVo.setMid(mid);
+		reviewLikeVo.setMid(String.valueOf(session.getAttribute("mid")));
 		
 		if(reviewLikeService.getIdCheck(reviewLikeVo) == 1) {
 			reviewLikeService.getLikesDownID(reviewLikeVo);
@@ -197,7 +197,6 @@ public class ReviewController {
 		if(page != "") {
 			model.addObject("page", page);
 		}
-		model.addObject("mid", mid);
 		model.setViewName("redirect:/review_content.do?rid="+reviewLikeVo.getRid());
 		
 		return model;
@@ -206,7 +205,7 @@ public class ReviewController {
 	
 	//리뷰 검색 페이징
 	@RequestMapping(value="/review_main_search.do", method=RequestMethod.GET)
-	public ModelAndView review_search_Proc(String page, String filter_location, String mid) {
+	public ModelAndView review_search_Proc(String page, String filter_location, HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		Map<String, Integer> param = pageService.getPageResult(page, "reviewSearch");
 		/*
@@ -240,7 +239,6 @@ public class ReviewController {
 		
 		ArrayList<ReviewVo> list = reviewService.getSelectSearchList(param.get("startCount"), param.get("endCount"), filter_location);
 
-		model.addObject("mid", mid);
 		model.addObject("filter_location", filter_location);
 		model.addObject("list", list);
 		model.addObject("totals", param.get("dbCount"));
