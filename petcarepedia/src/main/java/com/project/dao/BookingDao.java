@@ -18,14 +18,14 @@ public class BookingDao extends DBConn {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	/** ¿¹¾à µî·Ï **/
+	/** ì˜ˆì•½ ë“±ë¡ **/
 	public int insert(BookingVo bookingVo) {
 		return sqlSession.insert("mapper.booking.insert", bookingVo);
 
 //		int result = 0;
 //
 //		String sql = "INSERT INTO PCP_BOOKING(bid, bdate, vdate, vtime, bstate, mid, hid)"
-//				+ "  values ('B_'||LTRIM(to_char(SEQU_PCP_BOOKING_BID.nextVal, '0000')), sysdate, ?,?,'¿¹¾àÁß',?,?)";
+//				+ "  values ('B_'||LTRIM(to_char(SEQU_PCP_BOOKING_BID.nextVal, '0000')), sysdate, ?,?,'ì˜ˆì•½ì¤‘',?,?)";
 //
 //		getPreparedStatement(sql);
 //
@@ -45,7 +45,7 @@ public class BookingDao extends DBConn {
 	} // insert(BookingVo bookingVo)
 	
 	
-	/** ¿¹¾à Áßº¹ È®ÀÎ **/
+	/** ì˜ˆì•½ ì¤‘ë³µ í™•ì¸ **/
 	public int checkBooking(BookingVo bookingVo) {
 		return sqlSession.selectOne("mapper.booking.checkBooking", bookingVo);
 		
@@ -75,7 +75,7 @@ public class BookingDao extends DBConn {
 	} //  int CheckBooking(BookingVo bookingVo)
 		
 	
-	/** select - ¿¹¾à ¸®½ºÆ® **/
+	/** select - ì˜ˆì•½ ë¦¬ìŠ¤íŠ¸ **/
 	public ArrayList<BookingVo> select() {
 		List<BookingVo> list = sqlSession.selectList("mapper.booking.select");
 		return (ArrayList<BookingVo>) list;
@@ -110,7 +110,7 @@ public class BookingDao extends DBConn {
 	} // ArrayList<BookingVo> select()
 	
 	
-	/** select - ¿¹¾à ¸®½ºÆ®(È¸¿ø ±âÁØ Ãß°¡/05.22) **/
+	/** select - ì˜ˆì•½ ë¦¬ìŠ¤íŠ¸(íšŒì› ê¸°ì¤€ ì¶”ê°€/05.22) **/
 	public ArrayList<BookingVo> search(String mid) {
 		List<BookingVo> list = sqlSession.selectList("mapper.booking.search", mid);
 		return (ArrayList<BookingVo>) list;
@@ -153,7 +153,7 @@ public class BookingDao extends DBConn {
 	} // ArrayList<BookingVo> search(String mid)
 	
 	
-	/** select - ¿¹¾à ¿Ï·á ¸®½ºÆ® ³¯Â¥(È¸¿ø ±âÁØ/¼öÁ¤ 06.03) **/
+	/** select - ì˜ˆì•½ ì™„ë£Œ ë¦¬ìŠ¤íŠ¸ ë‚ ì§œ(íšŒì› ê¸°ì¤€/ìˆ˜ì • 06.03) **/
 	public ArrayList<BookingVo> search1(String mid) {
 		List<BookingVo> list = sqlSession.selectList("mapper.booking.search1", mid);
 		return (ArrayList<BookingVo>) list;
@@ -199,7 +199,7 @@ public class BookingDao extends DBConn {
 	} // ArrayList<BookingVo> search1(String mid)
 	
 	
-	/** select - ¿¹¾àÁß ¸®½ºÆ® ³¯Â¥(È¸¿ø ±âÁØ/¼öÁ¤ 06.03) **/
+	/** select - ì˜ˆì•½ì¤‘ ë¦¬ìŠ¤íŠ¸ ë‚ ì§œ(íšŒì› ê¸°ì¤€/ìˆ˜ì • 06.03) **/
 	public ArrayList<BookingVo> search2(String mid) {
 		List<BookingVo> list = sqlSession.selectList("mapper.booking.search2", mid);
 		return (ArrayList<BookingVo>) list;
@@ -244,7 +244,7 @@ public class BookingDao extends DBConn {
 //		return list;
 	} // ArrayList<BookingVo> search2(String mid)
 	
-	/** select3 - (È¸¿ø ±âÁØ/¼öÁ¤ 06.03) **/
+	/** select3 - (íšŒì› ê¸°ì¤€/ìˆ˜ì • 06.03) **/
 	public ArrayList<BookingReviewVo> search3(String mid) {
 		List<BookingReviewVo> list2 = sqlSession.selectList("mapper.booking.search3", mid);
 		return (ArrayList<BookingReviewVo>) list2;
@@ -285,7 +285,7 @@ public class BookingDao extends DBConn {
 	} // ArrayList<BookingReviewVo> search3(String mid)
 	
 	
-	/** select4 - (È¸¿ø ±âÁØ/Ãß°¡ 06.03) **/
+	/** select4 - (íšŒì› ê¸°ì¤€/ì¶”ê°€ 06.03) **/
 	public ArrayList<BookingVo> search4(String mid) {
 		List<BookingVo> list = sqlSession.selectList("mapper.booking.search4", mid);
 		return (ArrayList<BookingVo>) list;
@@ -328,7 +328,7 @@ public class BookingDao extends DBConn {
 	} // ArrayList<BookingVo> search4(String mid)
 	
 	
-	/** search5 - È¸¿ø¾ÆÀÌµğ »ó¼¼ °Ë»öÃ¢ (06.05 Ãß°¡)**/
+	/** search5 - íšŒì›ì•„ì´ë”” ìƒì„¸ ê²€ìƒ‰ì°½ (06.05 ì¶”ê°€)**/
 	public ArrayList<BookingVo> search5(String mid) {
 		List<BookingVo> list = sqlSession.selectList("mapper.booking.search5", mid);
 		return (ArrayList<BookingVo>) list;
@@ -363,7 +363,7 @@ public class BookingDao extends DBConn {
 
 	
 		
-	/** select(mid) - ·Î±×ÀÎ ÈÄ ¿¹¾àÈ®ÀÎÇÏ±â **/
+	/** select(mid) - ë¡œê·¸ì¸ í›„ ì˜ˆì•½í™•ì¸í•˜ê¸° **/
 	public BookingVo select(String mid) {
 		return sqlSession.selectOne("mapper.booking.select", mid);
 		
@@ -396,7 +396,7 @@ public class BookingDao extends DBConn {
 	} // select(String mid)
 	
 	
-	/** select(mid) - ·Î±×ÀÎ ÈÄ ¿¹¾àÈ®ÀÎÇÏ±â(Ãß°¡ 06.02) **/
+	/** select(mid) - ë¡œê·¸ì¸ í›„ ì˜ˆì•½í™•ì¸í•˜ê¸°(ì¶”ê°€ 06.02) **/
 	public BookingVo select2(String bid) {
 		return sqlSession.selectOne("mapper.booking.select2", bid);
 		
@@ -428,7 +428,7 @@ public class BookingDao extends DBConn {
 	}
 	
 	
-	/** reviewCheck - ¸®ºä¾²±â ¿¹¾à È®ÀÎÇÏ±â(06.03 ¼öÁ¤) **/
+	/** reviewCheck - ë¦¬ë·°ì“°ê¸° ì˜ˆì•½ í™•ì¸í•˜ê¸°(06.03 ìˆ˜ì •) **/
 	public BookingVo reviewCheck(String hid, String mid) {
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("hid", hid);
@@ -438,7 +438,7 @@ public class BookingDao extends DBConn {
 		
 //		int result = 0;
 //		
-//	    String sql = "SELECT COUNT(*) FROM PCP_BOOKING WHERE HID=? AND MID=? AND BSTATE='Áø·á¿Ï·á'";
+//	    String sql = "SELECT COUNT(*) FROM PCP_BOOKING WHERE HID=? AND MID=? AND BSTATE='ì§„ë£Œì™„ë£Œ'";
 //	    getPreparedStatement(sql);
 //
 //	    try {
@@ -458,7 +458,7 @@ public class BookingDao extends DBConn {
 	} // select(String mid)
 	
 		
-	/** selectTime - ÀüÃ¼ ¿µ¾÷½Ã°£(05.25) **/
+	/** selectTime - ì „ì²´ ì˜ì—…ì‹œê°„(05.25) **/
 	public ArrayList<BookingVo> selectTime() {
 		List<BookingVo> list = sqlSession.selectList("mapper.booking.selectTime");
 		return (ArrayList<BookingVo>) list;
@@ -489,10 +489,10 @@ public class BookingDao extends DBConn {
 //		}
 //		
 //		return time;
-	} // selectTime - ÀüÃ¼ ¿µ¾÷½Ã°£
+	} // selectTime - ì „ì²´ ì˜ì—…ì‹œê°„
 	
 	
-	/** selectTime - ¿µ¾÷½Ã°£(05.25) **/
+	/** selectTime - ì˜ì—…ì‹œê°„(05.25) **/
 	public BookingVo selectTime(String hid) {
 		return sqlSession.selectOne("mapper.booking.selectTime2", hid);
 		
@@ -518,10 +518,10 @@ public class BookingDao extends DBConn {
 //		}
 //		
 //		return bookingVo;
-	} // selectTime - ¿µ¾÷½Ã°£
+	} // selectTime - ì˜ì—…ì‹œê°„
 
 	
-	/** update - ¿¹¾à ¼öÁ¤ÇÏ±â **/
+	/** update - ì˜ˆì•½ ìˆ˜ì •í•˜ê¸° **/
 	public int update(BookingVo bookingVo) {
 		return sqlSession.update("mapper.booking.update", bookingVo);
 		
@@ -546,7 +546,7 @@ public class BookingDao extends DBConn {
 	} // int update(BookingVo bookingVo)
 
 	
-	/** delete - ¿¹¾à »èÁ¦ÇÏ±â **/
+	/** delete - ì˜ˆì•½ ì‚­ì œí•˜ê¸° **/
 	public int delete(String bid) {
 		return sqlSession.delete("mapper.booking.delete", bid);
 		
