@@ -2,10 +2,12 @@ package com.project.service;
 
 import java.util.ArrayList;
 
-import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
 
 public interface ReviewService {
+	
+	//신고된 리뷰 조회
+	public ArrayList<ReviewVo> getReportList();
 	
 	// 리뷰와 병원 조인
 	public ArrayList<ReviewVo> getRH_select(String hid);
