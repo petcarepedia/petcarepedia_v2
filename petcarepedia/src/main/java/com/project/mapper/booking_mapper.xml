@@ -105,6 +105,10 @@
 	<update id="update" parameterType="com.project.vo.BookingVo">
 		UPDATE PCP_BOOKING SET VDATE=#{vdate}, VTIME=#{vtime}, BSTATE=#{bstate} WHERE BID=#{bid}
 	</update>
+	
+	<update id="Bselect" parameterType="String">
+		update pcp_booking set bstate = '예약 완료' where bid=#{bid}
+	</update>
 
 	<delete id="delete" parameterType="String">
 		DELETE FROM PCP_BOOKING WHERE BID=#{bid}
