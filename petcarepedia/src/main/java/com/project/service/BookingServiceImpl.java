@@ -91,6 +91,11 @@ public class BookingServiceImpl implements BookingService{
 	}
 	
 	@Override
+	public int getBselect(String bid) {
+		return bookingDao.Bselect(bid);
+	}
+	
+	@Override
 	public int getDelete(String bid) {
 		return bookingDao.delete(bid);
 	}
