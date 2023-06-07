@@ -36,7 +36,9 @@ $(document).ready(function() {
                         icon: 'error',
                         title: '즐겨찾기 해제',
                         text: '즐겨찾기에서 해제했습니다.',
-                        showConfirmButton: true // 확인 버튼 표시
+                        showConfirmButton: true, // 확인 버튼 표시
+                        confirmButtonColor:'#98dfff',
+                  	    confirmButtonText:'확인'
                     }).then(function() {
                         location.reload(); // 확인 버튼 클릭 시 페이지 새로고침
                     });
@@ -45,7 +47,9 @@ $(document).ready(function() {
                         icon: 'success',
                         title: '즐겨찾기 추가',
                         text: '즐겨찾기에 추가했습니다.',
-                        showConfirmButton: true // 확인 버튼 표시
+                        showConfirmButton: true, // 확인 버튼 표시
+                        confirmButtonColor:'#98dfff',
+                  	    confirmButtonText:'확인'
                     }).then(function() {
                         location.reload(); // 확인 버튼 클릭 시 페이지 새로고침
                     });
@@ -113,7 +117,9 @@ $(document).ready(function() {
                                 icon: 'error',
                                 title: '신고 접수된 리뷰입니다',
                                 text: '관리자 확인중 입니다. 잠시만 기다려 주세요.',
-                                showConfirmButton: true
+                                showConfirmButton: true,
+                                confirmButtonText:'확인',
+                                confirmButtonColor:'#98dfff'
                             }).then(function() {
                                 location.reload();
                             });
@@ -122,7 +128,9 @@ $(document).ready(function() {
                                 icon: 'success',
                                 title: '신고되었습니다',
                                 text: '관리자 확인 중입니다.',
-                                showConfirmButton: true
+                                showConfirmButton: true,
+                                confirmButtonText:'확인',
+                                confirmButtonColor:'#98dfff'
                             }).then(function() {
                                 location.reload();
                             });

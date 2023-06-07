@@ -480,6 +480,7 @@ div.review_card div.date button#like {
 	width: 165px;
 	height: 35px;
 	margin-top: 15px; 
+	margin-left: 20px;
 	/* padding-bottom: 7px; */
 	 display: flex;
   align-items: center;
@@ -570,6 +571,7 @@ div.modal-content span.close:hover
 
 /** ÇÏÆ® **/
 a.icon {
+
   text-decoration:none; color:inherit; cursor: pointer;
 }
 
@@ -594,3 +596,5 @@ a.icon {
     40%{transform:scale(1.2);}
     100%{transform:scale(1);}
   }
+  
+  
