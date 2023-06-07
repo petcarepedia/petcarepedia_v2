@@ -355,7 +355,9 @@ $(document).ready(function(){
 			Swal.fire({
 	            icon: 'info',                         
 	            title: '검색어 미입력',         
-	            text: '찾고싶은 동물병원의 이름을 입력해주세요',  
+	            text: '찾고싶은 동물병원의 이름을 입력해주세요', 
+	            confirmButtonColor:'#98dfff',
+	  			confirmButtonText:'확인' 
 	        });
 		} else {
 			indexSearchForm.submit();
