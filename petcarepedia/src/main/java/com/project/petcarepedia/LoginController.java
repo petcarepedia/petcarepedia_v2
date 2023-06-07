@@ -32,7 +32,7 @@ public class LoginController {
 		if(memberService.getLogin(memberVo)==1) {
 			if(memberVo.getMid().equals("admin")) {
 				model.addObject("login_result", "success");
-				model.setViewName("redirect:/hospital_list.do");
+				model.setViewName("redirect:/admin_hospital_list.do");
 			} else {
 				model.addObject("login_result", "success");
 				model.setViewName("redirect:/index.do");

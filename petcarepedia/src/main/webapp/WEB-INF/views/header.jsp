@@ -45,7 +45,7 @@
                             <a href="http://localhost:9000/petcarepedia/join.do">회원가입</a>
                         </li>
                         <li>
-                            <a href="http://localhost:9000/petcarepedia/information.do?mid=hong">마이페이지</a>
+                            <a href="http://localhost:9000/petcarepedia/mypage_information.do?mid=hong">마이페이지</a>
                         </li>
                         <li>
                             <a href="#">로그아웃</a>
