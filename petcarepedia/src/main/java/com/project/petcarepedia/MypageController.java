@@ -35,26 +35,26 @@ public class MypageController {
 	/*
 	 * information.do - ³ªÀÇ È¸¿øÁ¤º¸ Æû
 	 */
-	@RequestMapping(value = "/information.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_member_information.do", method = RequestMethod.GET)
 	public ModelAndView information(String mid) {
 		ModelAndView model = new ModelAndView();
 		//MemberDao memberDao = new MemberDao();
 		MemberVo memberVo = memberService.getSelect(mid);
 		model.addObject("memberVo", memberVo);
-		model.setViewName("/mypage/information");
+		model.setViewName("/mypage/mypage_member_information");
 		return model;
 	}
 	
 	/*
-	 * revise.do - ¼öÁ¤ÇÏ±â Æû
+	 * revise.do - È¸¿øÁ¤º¸ ¼öÁ¤ÇÏ±â Æû
 	 */
-	@RequestMapping(value = "/revise.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_member_revise.do", method = RequestMethod.GET)
 	public ModelAndView revise(String mid) {
 		ModelAndView model = new ModelAndView();
 		//MemberDao memberDao = new MemberDao();
 		MemberVo memberVo = memberService.getSelect(mid);
 		model.addObject("memberVo", memberVo);
-		model.setViewName("/mypage/revise");
+		model.setViewName("/mypage/mypage_member_revise");
 		return model;
 	}
 	
@@ -67,7 +67,7 @@ public class MypageController {
 		//MemberDao memberDao = new MemberDao();
 		int result = memberService.getUpdate(memberVo);
 		if(result == 1) {
-			viewName = "redirect:/information.do?mid=" + memberVo.getMid();
+			viewName = "redirect:/mypage_member_information.do?mid=" + memberVo.getMid();
 		} else {
 			//¿À·ùÆäÀÌÁö È£Ãâ
 		}
@@ -77,13 +77,13 @@ public class MypageController {
 	/*
 	 * reservation.do - ¿¹¾à³»¿ª(¿¹¾àÁß) Æû
 	 */
-	@RequestMapping(value = "/reservation.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_reservation.do", method = RequestMethod.GET)
 	public ModelAndView reservation(String mid) {
 		ModelAndView model = new ModelAndView();
 		//BookingDao bookingDao = new BookingDao();
 		ArrayList<BookingVo> list = bookingService.getSearch2(mid);
 		ArrayList<BookingVo> list2 = bookingService.getSearch4(mid);
-		model.setViewName("/mypage/reservation");
+		model.setViewName("/mypage/mypage_reservation");
 		model.addObject("list", list);
 		model.addObject("list2", list2);
 		
@@ -93,7 +93,7 @@ public class MypageController {
 	/*
 	 * reservation.do - ¿¹¾à³»¿ª »èÁ¦ÇÏ±â Æû
 	 */
-	@RequestMapping(value = "/reservation_delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_reservation_delete.do", method = RequestMethod.GET)
 	public ModelAndView reservation_delete(String bid, String mid) {
 		ModelAndView model = new ModelAndView();
 		//BookingDao bookingDao = new BookingDao();
@@ -101,7 +101,7 @@ public class MypageController {
 		model.addObject("bid", bid);
 		model.addObject("mid", mid);
 		model.addObject("bookingVo", bookingVo);
-		model.setViewName("/mypage/reservation_delete");
+		model.setViewName("/mypage/mypage_reservation_delete");
 		return model;
 	}
 	
@@ -117,7 +117,7 @@ public class MypageController {
 		//BookingDao bookingDao = new BookingDao();
 		int result = bookingService.getDelete(bid);
 		if(result == 1) {
-			viewName = "redirect:/reservation.do?mid=hong";
+			viewName = "redirect:/mypage_reservation.do?mid=hong";
 		}
 		return viewName;
 	}
@@ -128,13 +128,13 @@ public class MypageController {
 	/*
 	 * reservation2.do - ¿¹¾à³»¿ª(Áø·á¿Ï·á) Æû
 	 */
-	@RequestMapping(value = "/reservation2.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_reservation2.do", method = RequestMethod.GET)
 	public ModelAndView reservation2(String mid) {
 		ModelAndView model = new ModelAndView();
 		//BookingDao bookingDao = new BookingDao();
 		ArrayList<BookingVo> list = bookingService.getSearch1(mid);
 		ArrayList<BookingReviewVo> list2 = bookingService.getSearch3(mid);
-		model.setViewName("/mypage/reservation2");
+		model.setViewName("/mypage/mypage_reservation2");
 		model.addObject("list", list);
 		model.addObject("list2", list2);
 		return model;
@@ -144,12 +144,12 @@ public class MypageController {
 	/*
 	 * bookmark.do - Áñ°ÜÃ£±â Æû
 	 */
-	@RequestMapping(value = "/bookmark.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_bookmark.do", method = RequestMethod.GET)
 	public ModelAndView bookmark(String mid) {
 		ModelAndView model = new ModelAndView();
 		//BookmarkDao bookmarkDao = new BookmarkDao();
 		ArrayList<BookmarkVo> list = bookmarkService.getSelect(mid);
-		model.setViewName("/mypage/bookmark");
+		model.setViewName("/mypage/mypage_bookmark");
 		model.addObject("list", list);
 		return model;
 	}
@@ -174,7 +174,7 @@ public class MypageController {
 		//BookmarkDao bookmarkDao = new BookmarkDao();
 		int result = bookmarkService.getDelete(bmid);
 		if(result == 1) {
-			viewName = "redirect:/bookmark.do?mid=hong";
+			viewName = "redirect:/mypage_bookmark.do?mid=hong";
 		}
 		return viewName;
 	}
@@ -183,14 +183,14 @@ public class MypageController {
 	/*
 	 * my_review.do - ³»°¡ ¾´ ¸®ºä Æû
 	 */
-	@RequestMapping(value = "/my_review.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_my_review.do", method = RequestMethod.GET)
 	public ModelAndView my_review(String mid) {
 		ModelAndView model = new ModelAndView();
 		//ReviewDao reviewDao = new ReviewDao();
 		ArrayList<ReviewVo> list = reviewService.getMy_select(mid);
 		
 		model.addObject("list", list);
-		model.setViewName("/mypage/my_review");
+		model.setViewName("/mypage/mypage_my_review");
 		return model;
 	}
  	
@@ -214,14 +214,14 @@ public class MypageController {
 	/*
 	 * review_revise.do - ¸®ºä ¼öÁ¤ Æû
 	 */
-	@RequestMapping(value = "/review_revise.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_review_revise.do", method = RequestMethod.GET)
 	public ModelAndView review_revise(String rid) {
 		ModelAndView model = new ModelAndView();
 		//ReviewDao reviewDao = new ReviewDao();
 		ReviewVo reviewVo = reviewService.getSelect(rid);
 		
 		model.addObject("reviewVo", reviewVo);
-		model.setViewName("/mypage/review_revise");
+		model.setViewName("/mypage/mypage_review_revise");
 		
 		return model;
 	}
@@ -234,7 +234,7 @@ public class MypageController {
 		//ReviewDao reviewDao = new ReviewDao();
 		int result = reviewService.getUpdate(reviewVo);
 		if(result == 1) {
-			viewName = "redirect:/my_review.do?mid=hong";
+			viewName = "redirect:/mypage_my_review.do?mid=hong";
 		} else {
 			//¿À·ùÆäÀÌÁö È£Ãâ
 		}
@@ -243,14 +243,14 @@ public class MypageController {
 	/*
 	 * review_delete.do - ¸®ºä »èÁ¦ÇÏ±â Æû
 	 */
-	@RequestMapping(value = "/my_review_delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_review_delete.do", method = RequestMethod.GET)
 	public ModelAndView reservation_delete(String rid) {
 		ModelAndView model = new ModelAndView();
 		//ReviewDao reviewDao = new ReviewDao();
 		ReviewVo reviewVo = reviewService.getSelect(rid);
 		model.addObject("rid", rid);
 		model.addObject("reviewVo", reviewVo);
-		model.setViewName("/mypage/my_review_delete");
+		model.setViewName("/mypage/mypage_review_delete");
 		return model;
 	}
 	
@@ -263,7 +263,7 @@ public class MypageController {
 		//ReviewDao reviewDao = new ReviewDao();
 		int result = reviewService.getDelete(rid);
 		if(result == 1) {
-			viewName = "redirect:/my_review.do?mid=hong";
+			viewName = "redirect:/mypage_my_review.do?mid=hong";
 		}
 		return viewName;
 	}
@@ -274,7 +274,7 @@ public class MypageController {
 	/*
 	 * review_write.do - ¸®ºä ¾²±âÆû
 	 */
-	@RequestMapping(value = "/review_write.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_review_write.do", method = RequestMethod.GET)
 	public ModelAndView review_write(String mid, String hid, String bid) {
 		ModelAndView model = new ModelAndView();
 		//MemberDao memberDao = new MemberDao();
@@ -282,7 +282,7 @@ public class MypageController {
 		model.addObject("memberVo", memberVo);
 		model.addObject("hid", hid);
 		model.addObject("bid", bid);
-		model.setViewName("/mypage/review_write");
+		model.setViewName("/mypage/mypage_review_write");
 		return model;
 	}
 	
@@ -295,7 +295,7 @@ public class MypageController {
 		//ReviewDao reviewDao = new ReviewDao();
 		int result = reviewService.getInsert(reviewVo);
 		if(result == 1) {
-			viewName = "redirect:/my_review.do?mid=hong";
+			viewName = "redirect:/mypage_my_review.do?mid=hong";
 		} else {
 			
 		}
@@ -305,11 +305,11 @@ public class MypageController {
 	/*
 	 * signout.do - È¸¿øÅ»ÅðÆû
 	 */
-	@RequestMapping(value = "/signout.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_signout.do", method = RequestMethod.GET)
 	public ModelAndView signout(String mid) {
 		ModelAndView model = new ModelAndView();
 		model.addObject("mid", mid);
-		model.setViewName("/mypage/signout");
+		model.setViewName("/mypage/mypage_signout");
 		return model;
 	}
 	
