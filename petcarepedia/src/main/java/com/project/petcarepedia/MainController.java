@@ -29,8 +29,12 @@ public class MainController {
 	 * index.do
 	 */
 	@RequestMapping(value="/index.do",method=RequestMethod.GET)
-	public String index() {
-		return "index";
+	public ModelAndView index(String login_result,String logout_result) {
+		ModelAndView model = new ModelAndView();
+		model.addObject("login_result", login_result);
+		model.addObject("logout_result", logout_result);
+		model.setViewName("index");
+		return model;
 	}
 	
 	/**

@@ -15,18 +15,25 @@
 <script>
 	$(document).ready(function (){
 		let login_result = "${login_result}";
-		let login_result = "${logout_result}";
+		let logout_result = "${logout_result}";
+		
 		if(login_result=="success"){
 			Swal.fire({
 	            icon: 'success',                         
 	            title: '로그인 성공',         
-	            text: '환영합니다!',  
+	            text: '${sessionScope.svo.nickname}님, 환영합니다!',  
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
 	        });
-		} else if(logout_result=="success"){
+		} 
+		
+		if(logout_result=="success"){
 			Swal.fire({
 	            icon: 'success',                         
 	            title: '로그아웃 성공',         
-	            text: '로그아웃되었습니다.',  
+	            text: '다음에 다시 만나요!',  
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
 	        });
 		}
 	});

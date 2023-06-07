@@ -117,16 +117,7 @@
                 cancelButtonText: '취소'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire({
-                    	title: '로그아웃이 완료되었습니다.',
-                    	icon: 'success',
-                    	confirmButtonColor: '#98dfff',
-                    	confirmButtonText: '확인',
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                        	location.href="http://localhost:9000/petcarepedia/logout.do";
-                        }
-                    })
+                	location.href="http://localhost:9000/petcarepedia/logout.do";
                 }
             })
 	    })
