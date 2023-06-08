@@ -71,18 +71,44 @@ public class AdminController {
 	/**
 	 * 占쎌굙占쎈튋 占쎈읂占쎌뵠筌욑옙
 	 */
+//	@RequestMapping(value="/admin_reserve_list.do", method=RequestMethod.GET)
+//	public ModelAndView reserve_list(String page) {
+//		ModelAndView model = new ModelAndView();		
+//		Map<String, Integer> param = pageService.getPageResult(page, "booking");
+//		
+//		ArrayList<BookingVo> list = pageService.getBListPage(param.get("startCount"), param.get("endCount"));
+//		
+//		model.addObject("list", list);
+//		model.addObject("totals", param.get("dbCount"));
+//		model.addObject("pageSize",param.get("pageSize"));
+//		model.addObject("maxSize", param.get("maxSize"));
+//		model.addObject("page", param.get("page"));
+//		
+//		model.setViewName("/admin/reserve/admin_reserve_list");
+//		
+//		return model;
+//	}
+	
 	@RequestMapping(value="/admin_reserve_list.do", method=RequestMethod.GET)
-	public ModelAndView reserve_list(String page) {
-		ModelAndView model = new ModelAndView();		
-		Map<String, Integer> param = pageService.getPageResult(page, "booking");
+	public ModelAndView reserve_list(String page, String mid) {
+		ModelAndView model = new ModelAndView();
+		Map<String, Integer> param = new HashMap<String,Integer>();
+		ArrayList<BookingVo> list = new ArrayList<BookingVo>();
 		
-		ArrayList<BookingVo> list = pageService.getBListPage(param.get("startCount"), param.get("endCount"));
+		if(mid!=null && mid!="") {
+			param = pageService.getBPageResult(page, mid);
+			list = pageService.getBsListPage(param.get("startCount"), param.get("endCount"), mid);
+		} else {
+			param = pageService.getBPageResult(page, "booking");
+			list = pageService.getBListPage(param.get("startCount"), param.get("endCount"));
+		}
 		
 		model.addObject("list", list);
 		model.addObject("totals", param.get("dbCount"));
 		model.addObject("pageSize",param.get("pageSize"));
 		model.addObject("maxSize", param.get("maxSize"));
 		model.addObject("page", param.get("page"));
+		model.addObject("mid", mid);
 		
 		model.setViewName("/admin/reserve/admin_reserve_list");
 		
@@ -93,16 +119,25 @@ public class AdminController {
 	 * 占쎌돳占쎌뜚 占쎈읂占쎌뵠筌욑옙
 	 */
 	@RequestMapping(value="/admin_member_list.do", method=RequestMethod.GET)
-	public ModelAndView member_list(String page) {
-		ModelAndView model = new ModelAndView();		
-		Map<String, Integer> param = pageService.getPageResult(page, "member");
+	public ModelAndView member_list(String page, String mid) {
+		ModelAndView model = new ModelAndView();
+		Map<String, Integer> param = new HashMap<String,Integer>();
+		ArrayList<MemberVo> list = new ArrayList<MemberVo>();
 		
-		ArrayList<MemberVo> list = pageService.getMListPage(param.get("startCount"), param.get("endCount"));
+		if(mid!=null && mid!="") {
+			param = pageService.getMPageResult(page, mid);
+			list = pageService.getMsListPage(param.get("startCount"), param.get("endCount"), mid);
+		} else {
+			param = pageService.getMPageResult(page, "member");
+			list = pageService.getMListPage(param.get("startCount"), param.get("endCount"));
+		}
+		
 		model.addObject("list", list);
 		model.addObject("totals", param.get("dbCount"));
 		model.addObject("pageSize",param.get("pageSize"));
 		model.addObject("maxSize", param.get("maxSize"));
 		model.addObject("page", param.get("page"));
+		model.addObject("mid", mid);
 		
 		model.setViewName("/admin/member/admin_member_list");
 		
@@ -119,10 +154,10 @@ public class AdminController {
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
 		
 		if(hname!=null && hname!="") {
-			param = pageService.getPageResult(page, hname);
+			param = pageService.getHPageResult(page, hname);
 			list = pageService.getHsListPage(param.get("startCount"), param.get("endCount"), hname);
 		} else {
-			param = pageService.getPageResult(page, "hospital");
+			param = pageService.getHPageResult(page, "hospital");
 			list = pageService.getHListPage(param.get("startCount"), param.get("endCount"));
 		}
 		

@@ -10,10 +10,12 @@
 	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_serin.js"></script>
 	<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
 	<script>
 	$(document).ready(function(){
+		var mid = "${mid}";
 		var pager = jQuery('#ampaginationsm').pagination({
 		
 		    maxSize: '${maxSize}',	    		// max page size
@@ -32,14 +34,16 @@
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/petcarepedia/admin_reserve_list.do?page="+e.page);         
+			   if(mid!=null && mid!=""){
+				   $(location).attr('href', "http://localhost:9000/petcarepedia/admin_reserve_list.do?page="+e.page+"&mid="+mid);
+			   } else {
+				   $(location).attr('href', "http://localhost:9000/petcarepedia/admin_reserve_list.do?page="+e.page);
+			   }
+	                    
 	    });
 		
  	});
-</script> 
-<script>
-	
-</script>
+	</script> 
 </head>
 <body>
 <!-- header -->

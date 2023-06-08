@@ -12,7 +12,7 @@
 	<header>
 		<div class="header-menu1">
 			<div class="header-content">
-				<a href="http://localhost:9000/petcarepedia/hospital_list.do">
+				<a href="http://localhost:9000/petcarepedia/admin_hospital_list.do">
 					<div class="header-logo">
 						<img src="http://localhost:9000/petcarepedia/images/logo_white.png" width="60px" height="60px">
 						<span>PetCare Pedia</span>
