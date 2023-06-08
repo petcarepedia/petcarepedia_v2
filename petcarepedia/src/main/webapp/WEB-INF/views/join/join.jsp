@@ -86,7 +86,12 @@
 					</li>
 					<li>
 						<label>이메일</label>
-						<input type="text" name="email" id="email" placeholder="이메일 입력">
+						<input type="text" name="email" id="email" placeholder="이메일 입력" class="input-short">
+						<button type="button" class="btn-short" id="btnAuthEmail">인증번호 전송</button>
+						<span id="emailcheck_msg"></span>
+						<input type="text" name="cemail" id="cemail" placeholder="인증번호 입력" class="input-short">
+						<button type="button" class="btn-short" id="btnCheckEmail">인증번호 확인</button>
+						<span id="emailauthcheck_msg"></span>
 					</li>
 					<li>
 						<label>주소</label>

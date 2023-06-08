@@ -34,12 +34,50 @@ $(document).ready(function(){
 	});
 	
 	/**************
+	 * 회원가입 - 이메일 체크
+	 */
+	 $('#btnAuthEmail').click(function() {
+		const email = $('#email').val(); // 이메일 주소값 얻어오기!
+		console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
+		const checkInput = $('#cemail') // 인증번호 입력하는곳 
+		
+		$.ajax({
+			type : 'get',
+			url : "mail_check.do?email="+email,
+			success : function (data) {
+				console.log("data : " +  data);
+				checkInput.attr('disabled',false);
+				code =data;
+				alert('인증번호가 전송되었습니다.');
+			}			
+		}); // end ajax
+		
+		// 인증번호 비교 
+		// blur -> focus가 벗어나는 경우 발생
+		$('#cemail').blur(function () {
+			const inputCode = $(this).val();
+			const $resultMsg = $('#emailauthcheck_msg');
+			
+			if(inputCode === code){
+				$resultMsg.html('인증번호가 일치합니다.');
+				$resultMsg.css('color','green');
+				$('#btnAuthEmail').attr('disabled',true);
+				$('#email').attr('readonly',true);
+			}else{
+				$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+				$resultMsg.css('color','red');
+			}
+		});
+	}); // end send eamil
+	
+	/**************
 	 * 회원가입 - 유효성 체크
 	 */
 	let reg_id = /^(?=.*?[a-z])(?=.*?[0-9]).{4,20}$/;
 	let reg_pw = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$/;
 	let reg_phone = /^\d{4}$/;
 	let reg_nick = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
+	let reg_email = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	
 	//아이디 정규식 체크
 	$("form[name='joinForm'] #id").keyup(function(){
