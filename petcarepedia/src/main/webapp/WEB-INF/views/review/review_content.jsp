@@ -106,15 +106,25 @@
 				</c:choose>
 			</div>
 			<c:choose>
-				<c:when test="${reviewVo.mid eq mid }">
+				<c:when test="${reviewVo.mid eq sessionScope.svo.mid }">
 					<div class="rc_button_r">
-						<a href="review_revise.do?rid=${reviewVo.rid }"><button type="button" class="button">수정</button></a>
-						<a href="review_delete.do?rid=${reviewVo.rid }&&page=${page }&&filter_location=${filter_location}"><button type="button" class="button">삭제</button></a>
+						<a href="mypage_review_revise.do?rid=${reviewVo.rid }"><button type="button" class="button">수정</button></a>
 						<c:choose>
-							<c:when test="${page eq null }">
+							<c:when test="${page eq null || page eq '' }">
+								<a href="review_delete.do?rid=${reviewVo.rid }"><button type="button" class="button">삭제</button></a>
+							</c:when>
+							<c:when test="${filter_location eq null || filter_location eq '' }">
+								<a href="review_delete.do?rid=${reviewVo.rid }&&page=${page }"><button type="button" class="button">삭제</button></a>
+							</c:when>
+							<c:otherwise>
+								<a href="review_delete.do?rid=${reviewVo.rid }&&page=${page }&&filter_location=${filter_location}"><button type="button" class="button">삭제</button></a>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+							<c:when test="${page eq null || page eq '' }">
 								<a href="review_main.do"><button type="button" class="button">목록</button></a>
 							</c:when>
-							<c:when test="${filter_location eq null }">
+							<c:when test="${filter_location eq null || filter_location eq '' }">
 								<a href="review_main.do?page=${page }"><button type="button" class="button">목록</button></a>
 							</c:when>
 							<c:otherwise>

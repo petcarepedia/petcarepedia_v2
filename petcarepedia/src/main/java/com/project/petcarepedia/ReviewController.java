@@ -123,12 +123,11 @@ public class ReviewController {
 	
 	//review_delete.do 리뷰 삭제 페이지
 	@RequestMapping(value="/review_delete.do", method=RequestMethod.GET)
-	public ModelAndView admin_notice_delete(String rid, String page, String filter_location, String mid) {
+	public ModelAndView admin_notice_delete(String rid, String page, String filter_location) {
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("page", page);
 		model.addObject("filter_location", filter_location);
-		model.addObject("mid", mid);
 		model.addObject("rid", rid);
 		model.setViewName("/review/review_delete");
 		
