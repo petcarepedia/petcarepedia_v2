@@ -39,10 +39,11 @@ public class PageDao {
 		return sqlSession.selectList("mapper.page.Mlist", param);
 	}
 	
-	public List<Object> Hsselect(int startCount, int endCount) {
-		Map<String, Integer> param = new HashMap<String, Integer>();
+	public List<Object> Hsselect(int startCount, int endCount, String hname) {
+		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("start", startCount);
-		param.put("end", endCount);		
+		param.put("end", endCount);	
+		param.put("hname", hname);	
 		
 		return sqlSession.selectList("mapper.page.Hslist", param);
 	}
@@ -65,8 +66,8 @@ public class PageDao {
 	public int MtotalRowCount() {
 		return sqlSession.selectOne("mapper.page.Mcount");
 	}
-	public int HstotalRowCount() {
-		return sqlSession.selectOne("mapper.page.Hscount");
+	public int HstotalRowCount(String hname) {
+		return sqlSession.selectOne("mapper.page.Hscount", hname);
 	}
 	public int HtotalRowCount() {
 		return sqlSession.selectOne("mapper.page.Hcount");

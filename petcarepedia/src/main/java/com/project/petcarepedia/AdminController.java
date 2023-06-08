@@ -2,6 +2,7 @@ package com.project.petcarepedia;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -48,7 +49,7 @@ public class AdminController {
 	
 	
 	/**
-	 * 由щ럭 �럹�씠吏�
+	 * �뵳�됰윮 占쎈읂占쎌뵠筌욑옙
 	 */
 	@RequestMapping(value="/admin_review_list.do", method=RequestMethod.GET)
 	public ModelAndView review_list(String page) {
@@ -68,7 +69,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * �삁�빟 �럹�씠吏�
+	 * 占쎌굙占쎈튋 占쎈읂占쎌뵠筌욑옙
 	 */
 	@RequestMapping(value="/admin_reserve_list.do", method=RequestMethod.GET)
 	public ModelAndView reserve_list(String page) {
@@ -89,7 +90,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * �쉶�썝 �럹�씠吏�
+	 * 占쎌돳占쎌뜚 占쎈읂占쎌뵠筌욑옙
 	 */
 	@RequestMapping(value="/admin_member_list.do", method=RequestMethod.GET)
 	public ModelAndView member_list(String page) {
@@ -109,19 +110,28 @@ public class AdminController {
 	}
 	
 	/**
-	 * 蹂묒썝 �럹�씠吏�
+	 * 癰귣쵐�뜚 占쎈읂占쎌뵠筌욑옙
 	 */
 	@RequestMapping(value="/admin_hospital_list.do", method=RequestMethod.GET)
-	public ModelAndView hospital_list(String page) {
-		ModelAndView model = new ModelAndView();		
-		Map<String, Integer> param = pageService.getPageResult(page, "hospital");
+	public ModelAndView hospital_list(String page, String hname) {
+		ModelAndView model = new ModelAndView();
+		Map<String, Integer> param = new HashMap<String,Integer>();
+		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
 		
-		ArrayList<HospitalVo> list = pageService.getHListPage(param.get("startCount"), param.get("endCount"));
+		if(hname!=null && hname!="") {
+			param = pageService.getPageResult(page, hname);
+			list = pageService.getHsListPage(param.get("startCount"), param.get("endCount"), hname);
+		} else {
+			param = pageService.getPageResult(page, "hospital");
+			list = pageService.getHListPage(param.get("startCount"), param.get("endCount"));
+		}
+		
 		model.addObject("list", list);
 		model.addObject("totals", param.get("dbCount"));
 		model.addObject("pageSize",param.get("pageSize"));
 		model.addObject("maxSize", param.get("maxSize"));
 		model.addObject("page", param.get("page"));
+		model.addObject("hname", hname);
 		
 		model.setViewName("/admin/hospital/admin_hospital_list");
 		
@@ -129,7 +139,45 @@ public class AdminController {
 	}
 	
 	/**
-	 * �삁�빟 - �긽�깭 蹂�寃� 泥섎━
+	 * 癰귣쵐�뜚 - 野껓옙占쎄퉳 筌ｌ꼶�봺
+	 */
+//	@RequestMapping(value = "/hospital_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+//	@ResponseBody
+//	public String hospital_list_data(String hname, String page) {
+//		ArrayList<HospitalVo> list = hospitalService.search(hname);
+//		
+//		ModelAndView model = new ModelAndView();		
+//		Map<String, Integer> param = pageService.getPageResult(page, "hospital_search");
+//		
+//		ArrayList<HospitalVo> hlist = pageService.getHsListPage(param.get("startCount"), param.get("endCount"));
+//		model.addObject("list", hlist);
+//		model.addObject("totals", param.get("dbCount"));
+//		model.addObject("pageSize",param.get("pageSize"));
+//		model.addObject("maxSize", param.get("maxSize"));
+//		model.addObject("page", param.get("page"));
+//		
+//		model.setViewName("/admin/hospital/admin_hospital_list");
+//		
+//		JsonObject jlist = new JsonObject();
+//		JsonArray jarray = new JsonArray();
+//
+//		for (HospitalVo hospitalVo : list) {
+//			JsonObject jobj = new JsonObject(); 
+//			jobj.addProperty("hid", hospitalVo.getHid());
+//			jobj.addProperty("hname", hospitalVo.getHname());
+//			jobj.addProperty("ntime", hospitalVo.getNtime());
+//			jobj.addProperty("animal", hospitalVo.getAnimal());
+//			jobj.addProperty("holiday", hospitalVo.getHoliday());
+//
+//			jarray.add(jobj);
+//		}
+//		jlist.add("jlist", jarray);
+//
+//		return new Gson().toJson(jlist);
+//	}
+	
+	/**
+	 * 占쎌굙占쎈튋 - 占쎄맒占쎄묶 癰귨옙野껓옙 筌ｌ꼶�봺
 	 */
 	
 	@RequestMapping(value = "/reserve_state_data.do", method = RequestMethod.POST)
@@ -148,7 +196,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * �삁�빟 - 寃��깋
+	 * 占쎌굙占쎈튋 - 野껓옙占쎄퉳
 	 */
 	@RequestMapping(value = "/admin_reserve_list_detail.do", method = RequestMethod.GET)
 	public ModelAndView reserve_list_detail(String mid) {
@@ -163,7 +211,7 @@ public class AdminController {
 	}
 
 	/**
-	 * �삁�빟 - 寃��깋 泥섎━
+	 * 占쎌굙占쎈튋 - 野껓옙占쎄퉳 筌ｌ꼶�봺
 	 */
 	@RequestMapping(value = "/reserve_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -189,7 +237,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * �떊怨좊━酉� - �궘�젣 �럹�씠吏�
+	 * 占쎈뻿�⑥쥓�봺�뀎占� - 占쎄텣占쎌젫 占쎈읂占쎌뵠筌욑옙
 	 */
 	@RequestMapping(value = "/review_delete_proc2.do", method = RequestMethod.POST)
 	public String review_delete_proc2(String rid) {
@@ -204,7 +252,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * �떊怨좊━酉� - �궘�젣 �럹�씠吏�
+	 * 占쎈뻿�⑥쥓�봺�뀎占� - 占쎄텣占쎌젫 占쎈읂占쎌뵠筌욑옙
 	 */
 	@RequestMapping(value="/admin_review_delete2.do", method=RequestMethod.GET)
 	public ModelAndView review_delete2(String rid) {
@@ -218,7 +266,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * �떊怨좊━酉� - �긽�꽭 �럹�씠吏�
+	 * 占쎈뻿�⑥쥓�봺�뀎占� - 占쎄맒占쎄쉭 占쎈읂占쎌뵠筌욑옙
 	 */
 	@RequestMapping(value = "/admin_review_detail.do", method = RequestMethod.GET)
 	public ModelAndView review_detail(String rid) {
@@ -233,7 +281,7 @@ public class AdminController {
 	
 
 	/**
-	 * �쉶�썝 - 寃��깋李�
+	 * 占쎌돳占쎌뜚 - 野껓옙占쎄퉳筌∽옙
 	 * */
 	@RequestMapping(value = "/member_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -259,7 +307,7 @@ public class AdminController {
 	}
 
 	/**
-	 * �쉶�썝 - �긽�꽭�럹�씠吏�
+	 * 占쎌돳占쎌뜚 - 占쎄맒占쎄쉭占쎈읂占쎌뵠筌욑옙
 	 */
 	@RequestMapping(value = "/admin_member_detail.do", method = RequestMethod.GET)
 	public ModelAndView member_detail(String mid) {
@@ -274,7 +322,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 蹂묒썝 - �궘�젣 泥섎━
+	 * 癰귣쵐�뜚 - 占쎄텣占쎌젫 筌ｌ꼶�봺
 	 */
 	@RequestMapping(value = "/hospital_delete_proc.do", method = RequestMethod.POST)
 	public String hospital_delete_proc(String hid) {
@@ -290,7 +338,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 蹂묒썝 - �궘�젣 �럹�씠吏�
+	 * 癰귣쵐�뜚 - 占쎄텣占쎌젫 占쎈읂占쎌뵠筌욑옙
 	 */
 	@RequestMapping(value = "/admin_hospital_delete.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_delete(String hid) {
@@ -305,7 +353,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 蹂묒썝 - �닔�젙 泥섎━
+	 * 癰귣쵐�뜚 - 占쎈땾占쎌젟 筌ｌ꼶�봺
 	 */
 	@RequestMapping(value = "/hospital_update_proc.do", method = RequestMethod.POST)
 	public String hospital_update_proc(HospitalVo hospitalVo) {
@@ -314,14 +362,14 @@ public class AdminController {
 		if (result == 1) {
 			viewName = "redirect:/admin_hospital_list.do";
 		} else {
-			// �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �샇�뜝�룞�삕
+			// 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎌깈占쎈쐻占쎈짗占쎌굲
 		}
 
 		return viewName;
 	}
 
 	/**
-	 * 蹂묒썝 - �닔�젙
+	 * 癰귣쵐�뜚 - 占쎈땾占쎌젟
 	 */
 	@RequestMapping(value = "/admin_hospital_update.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_update(String hid) {
@@ -336,7 +384,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 癰귣쵐�뜚 - 占쎄맒占쎄쉭占쎈읂占쎌뵠筌욑옙
+	 * �솻洹ｌ탳占쎈쐸 - �뜝�럡留믣뜝�럡�돪�뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
 	 */
 	@RequestMapping(value = "/admin_hospital_content.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_content(String hid) {
@@ -351,7 +399,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 蹂묒썝 - �긽�꽭
+	 * 癰귣쵐�뜚 - 占쎄맒占쎄쉭
 	 */
 	@RequestMapping(value = "/hospital_detail_proc.do", method = RequestMethod.POST)
 	public String hostpital_detail_proc(HospitalVo hospitalVo, HttpServletRequest request) throws Exception {
@@ -369,7 +417,7 @@ public class AdminController {
 			hospitalVo.setHfile(hfile);
 			hospitalVo.setHsfile(hsfile);
 		} else {
-			System.out.println("�뙆�씪 X");
+			System.out.println("占쎈솁占쎌뵬 X");
 		}
 
 		int result = hospitalService.insert(hospitalVo);
@@ -385,7 +433,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 癰귣쵐�뜚 - 野껓옙占쎄퉳
+	 * �솻洹ｌ탳占쎈쐸 - �뇦猿볦삕�뜝�럡�돰
 	 */
 	@RequestMapping(value = "/admin_hospital_detail.do", method = RequestMethod.GET)
 	public String hostpital_list_detail() {
@@ -393,7 +441,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 癰귣쵐�뜚 - 野껓옙占쎄퉳 占쎈읂占쎌뵠筌욑옙
+	 * �솻洹ｌ탳占쎈쐸 - �뇦猿볦삕�뜝�럡�돰 �뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
 	 */
 	@RequestMapping(value = "/admin_hospital_list_detail.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_detail(String hname) {
@@ -405,44 +453,5 @@ public class AdminController {
 
 		return model;
 	}
-
-	/**
-	 * 蹂묒썝 - 寃��깋 泥섎━
-	 */
-	@RequestMapping(value = "/hospital_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	@ResponseBody
-	public String hospital_list_data(String hname, String page) {
-		ArrayList<HospitalVo> list = hospitalService.search(hname);
-		
-		ModelAndView model = new ModelAndView();		
-		Map<String, Integer> param = pageService.getPageResult(page, "hospital_search");
-		
-		ArrayList<HospitalVo> hlist = pageService.getHsListPage(param.get("startCount"), param.get("endCount"));
-		model.addObject("list", hlist);
-		model.addObject("totals", param.get("dbCount"));
-		model.addObject("pageSize",param.get("pageSize"));
-		model.addObject("maxSize", param.get("maxSize"));
-		model.addObject("page", param.get("page"));
-		
-		model.setViewName("/admin/hospital/admin_hospital_list");
-		
-		JsonObject jlist = new JsonObject();
-		JsonArray jarray = new JsonArray();
-
-		for (HospitalVo hospitalVo : list) {
-			JsonObject jobj = new JsonObject(); 
-			jobj.addProperty("hid", hospitalVo.getHid());
-			jobj.addProperty("hname", hospitalVo.getHname());
-			jobj.addProperty("ntime", hospitalVo.getNtime());
-			jobj.addProperty("animal", hospitalVo.getAnimal());
-			jobj.addProperty("holiday", hospitalVo.getHoliday());
-
-			jarray.add(jobj);
-		}
-		jlist.add("jlist", jarray);
-
-		return new Gson().toJson(jlist);
-	}
-	
 
 }

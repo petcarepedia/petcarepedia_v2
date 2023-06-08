@@ -197,7 +197,8 @@ $(document).ready(function(){
 			$("#search_bar").focus();
 			return false;
 		}else{	
-				$.ajax({
+			location.href = "http://localhost:9000/petcarepedia/admin_hospital_list.do?page=1&hname="+$("#search_bar").val();
+				/*$.ajax({
 					url:"http://localhost:9000/petcarepedia/hospital_list_data.do?hname="+$("#search_bar").val(), 
 					success:function(result){
 					let jdata = JSON.parse(result);
@@ -224,7 +225,7 @@ $(document).ready(function(){
 						
 					}//success
 					
-				});//ajax
+				});//ajax*/
 		}//else
   	});//function
   	
