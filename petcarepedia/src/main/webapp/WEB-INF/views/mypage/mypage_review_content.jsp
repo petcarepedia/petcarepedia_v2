@@ -67,7 +67,7 @@
 					<a href = "mypage_review_delete.do?rid=${reviewVo.rid}">
 						<button type = "button" id = "btnReview_delete">삭제하기</button>
 					</a>
-					<a href = "mypage_my_review.do?mid=${sessionScope.svo.mid}">
+					<a href = "mypage_my_review.do">
 						<button type = "button" id = "cancle">리뷰목록</button>
 					</a>
 				</div>

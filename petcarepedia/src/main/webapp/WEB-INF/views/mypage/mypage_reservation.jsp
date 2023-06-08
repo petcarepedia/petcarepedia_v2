@@ -22,10 +22,10 @@
 			<div id = "btn_box">
 				<h1 id = "title">예약 내역</h1>
 				<div id = "btn_reservation">
-					<a href = "mypage_reservation.do?mid=${sessionScope.svo.mid}">
+					<a href = "mypage_reservation.do">
 						<button type = "button" id = "btn1">예약중</button>
 					</a>
-					<a href = "mypage_reservation2.do?mid=${sessionScope.svo.mid}">
+					<a href = "mypage_reservation2.do">
 						<button type = "button" id = "btn2">진료 완료</button>
 					</a>
 				</div>
@@ -36,11 +36,11 @@
 					<nav>
 						<ul>
 							<li>마이페이지</li>
-							<li><a href = "mypage_member_information.do?mid=${sessionScope.svo.mid}">회원 정보</a></li>
-							<li><a href = "mypage_reservation.do?mid=${sessionScope.svo.mid}">예약 내역</a></li>
-							<li><a href = "mypage_my_review.do?mid=${sessionScope.svo.mid}">내가 쓴 리뷰</a></li>
-							<li><a href = "mypage_bookmark.do?mid=${sessionScope.svo.mid}">즐겨찾기</a></li>
-							<li><a href = "mypage_signout.do?mid=${sessionScope.svo.mid}">회원 탈퇴</a></li>
+							<li><a href = "mypage_member_information.do">회원 정보</a></li>
+							<li><a href = "mypage_reservation.do">예약 내역</a></li>
+							<li><a href = "mypage_my_review.do">내가 쓴 리뷰</a></li>
+							<li><a href = "mypage_bookmark.do">즐겨찾기</a></li>
+							<li><a href = "mypage_signout.do">회원 탈퇴</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -68,7 +68,7 @@
 								</div>
 							</div>
 						</div>
-						<a href = "mypage_reservation_delete.do?bid=${bookingVo.bid}&mid=${sessionScope.svo.mid}">
+						<a href = "mypage_reservation_delete.do?bid=${bookingVo.bid}">
 						<button type = "button" id = "btn_cancle1">예약취소</button></a>
 					</c:forEach>
 					<c:forEach var = "bookingVo" items = "${list2}">
@@ -92,7 +92,7 @@
 								</div>
 							</div>
 						</div>
-						<a href = "mypage_reservation_delete.do?bid=${bookingVo.bid}&mid=${sessionScope.svo.mid}">
+						<a href = "mypage_reservation_delete.do?bid=${bookingVo.bid}">
 						<button type = "button" id = "btn_cancle1">예약취소</button></a>
 					</c:forEach>
 				</section>

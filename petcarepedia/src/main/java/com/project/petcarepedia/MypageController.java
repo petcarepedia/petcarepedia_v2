@@ -40,7 +40,6 @@ public class MypageController {
 	public ModelAndView information(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		SessionVo svo = (SessionVo)session.getAttribute("svo");
-		System.out.println(svo.getMid());
 		ModelAndView model = new ModelAndView();
 		//MemberDao memberDao = new MemberDao();
 		MemberVo memberVo = memberService.getSelect(svo.getMid());
@@ -53,10 +52,12 @@ public class MypageController {
 	 * revise.do - 회원정보 수정하기 폼
 	 */
 	@RequestMapping(value = "/mypage_member_revise.do", method = RequestMethod.GET)
-	public ModelAndView revise(String mid) {
+	public ModelAndView revise(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
 		//MemberDao memberDao = new MemberDao();
-		MemberVo memberVo = memberService.getSelect(mid);
+		MemberVo memberVo = memberService.getSelect(svo.getMid());
 		model.addObject("memberVo", memberVo);
 		model.setViewName("/mypage/mypage_member_revise");
 		return model;
@@ -71,7 +72,7 @@ public class MypageController {
 		//MemberDao memberDao = new MemberDao();
 		int result = memberService.getUpdate(memberVo);
 		if(result == 1) {
-			viewName = "redirect:/mypage_member_information.do?mid=" + memberVo.getMid();
+			viewName = "redirect:/mypage_member_information.do";
 		} else {
 			//오류페이지 호출
 		}
@@ -82,11 +83,13 @@ public class MypageController {
 	 * reservation.do - 예약내역(예약중) 폼
 	 */
 	@RequestMapping(value = "/mypage_reservation.do", method = RequestMethod.GET)
-	public ModelAndView reservation(String mid) {
+	public ModelAndView reservation(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
 		//BookingDao bookingDao = new BookingDao();
-		ArrayList<BookingVo> list = bookingService.getSearch2(mid);
-		ArrayList<BookingVo> list2 = bookingService.getSearch4(mid);
+		ArrayList<BookingVo> list = bookingService.getSearch2(svo.getMid());
+		ArrayList<BookingVo> list2 = bookingService.getSearch4(svo.getMid());
 		model.setViewName("/mypage/mypage_reservation");
 		model.addObject("list", list);
 		model.addObject("list2", list2);
@@ -98,12 +101,12 @@ public class MypageController {
 	 * reservation.do - 예약내역 삭제하기 폼
 	 */
 	@RequestMapping(value = "/mypage_reservation_delete.do", method = RequestMethod.GET)
-	public ModelAndView reservation_delete(String bid, String mid) {
+	public ModelAndView reservation_delete(String bid, HttpServletRequest request) {
 		ModelAndView model = new ModelAndView();
 		//BookingDao bookingDao = new BookingDao();
 		BookingVo bookingVo = bookingService.getSelect2(bid);
 		model.addObject("bid", bid);
-		model.addObject("mid", mid);
+		//model.addObject("mid", mid);
 		model.addObject("bookingVo", bookingVo);
 		model.setViewName("/mypage/mypage_reservation_delete");
 		return model;
@@ -121,7 +124,7 @@ public class MypageController {
 		//BookingDao bookingDao = new BookingDao();
 		int result = bookingService.getDelete(bid);
 		if(result == 1) {
-			viewName = "redirect:/mypage_reservation.do?mid=hong";
+			viewName = "redirect:/mypage_reservation.do";
 		}
 		return viewName;
 	}
@@ -133,11 +136,13 @@ public class MypageController {
 	 * reservation2.do - 예약내역(진료완료) 폼
 	 */
 	@RequestMapping(value = "/mypage_reservation2.do", method = RequestMethod.GET)
-	public ModelAndView reservation2(String mid) {
+	public ModelAndView reservation2(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
 		//BookingDao bookingDao = new BookingDao();
-		ArrayList<BookingVo> list = bookingService.getSearch1(mid);
-		ArrayList<BookingReviewVo> list2 = bookingService.getSearch3(mid);
+		ArrayList<BookingVo> list = bookingService.getSearch1(svo.getMid());
+		ArrayList<BookingReviewVo> list2 = bookingService.getSearch3(svo.getMid());
 		model.setViewName("/mypage/mypage_reservation2");
 		model.addObject("list", list);
 		model.addObject("list2", list2);
@@ -149,10 +154,12 @@ public class MypageController {
 	 * bookmark.do - 즐겨찾기 폼
 	 */
 	@RequestMapping(value = "/mypage_bookmark.do", method = RequestMethod.GET)
-	public ModelAndView bookmark(String mid) {
+	public ModelAndView bookmark(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
 		//BookmarkDao bookmarkDao = new BookmarkDao();
-		ArrayList<BookmarkVo> list = bookmarkService.getSelect(mid);
+		ArrayList<BookmarkVo> list = bookmarkService.getSelect(svo.getMid());
 		model.setViewName("/mypage/mypage_bookmark");
 		model.addObject("list", list);
 		return model;
@@ -178,7 +185,7 @@ public class MypageController {
 		//BookmarkDao bookmarkDao = new BookmarkDao();
 		int result = bookmarkService.getDelete(bmid);
 		if(result == 1) {
-			viewName = "redirect:/mypage_bookmark.do?mid=hong";
+			viewName = "redirect:/mypage_bookmark.do";
 		}
 		return viewName;
 	}
@@ -188,10 +195,12 @@ public class MypageController {
 	 * my_review.do - 내가 쓴 리뷰 폼
 	 */
 	@RequestMapping(value = "/mypage_my_review.do", method = RequestMethod.GET)
-	public ModelAndView my_review(String mid) {
+	public ModelAndView my_review(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
 		//ReviewDao reviewDao = new ReviewDao();
-		ArrayList<ReviewVo> list = reviewService.getMy_select(mid);
+		ArrayList<ReviewVo> list = reviewService.getMy_select(svo.getMid());
 		
 		model.addObject("list", list);
 		model.setViewName("/mypage/mypage_my_review");
@@ -238,7 +247,7 @@ public class MypageController {
 		//ReviewDao reviewDao = new ReviewDao();
 		int result = reviewService.getUpdate(reviewVo);
 		if(result == 1) {
-			viewName = "redirect:/mypage_my_review.do?mid=hong";
+			viewName = "redirect:/mypage_review_content.do?rid=" + reviewVo.getRid();
 		} else {
 			//오류페이지 호출
 		}
@@ -267,7 +276,7 @@ public class MypageController {
 		//ReviewDao reviewDao = new ReviewDao();
 		int result = reviewService.getDelete(rid);
 		if(result == 1) {
-			viewName = "redirect:/mypage_my_review.do?mid=hong";
+			viewName = "redirect:/mypage_my_review.do";
 		}
 		return viewName;
 	}
@@ -279,10 +288,12 @@ public class MypageController {
 	 * review_write.do - 리뷰 쓰기폼
 	 */
 	@RequestMapping(value = "/mypage_review_write.do", method = RequestMethod.GET)
-	public ModelAndView review_write(String mid, String hid, String bid) {
+	public ModelAndView review_write(HttpServletRequest request, String hid, String bid) {
+		HttpSession session = request.getSession();
+		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
 		//MemberDao memberDao = new MemberDao();
-		MemberVo memberVo = memberService.getSelect(mid);
+		MemberVo memberVo = memberService.getSelect(svo.getMid());
 		model.addObject("memberVo", memberVo);
 		model.addObject("hid", hid);
 		model.addObject("bid", bid);
@@ -299,7 +310,7 @@ public class MypageController {
 		//ReviewDao reviewDao = new ReviewDao();
 		int result = reviewService.getInsert(reviewVo);
 		if(result == 1) {
-			viewName = "redirect:/mypage_my_review.do?mid=hong";
+			viewName = "redirect:/mypage_my_review.do";
 		} else {
 			
 		}
@@ -310,9 +321,11 @@ public class MypageController {
 	 * signout.do - 회원탈퇴폼
 	 */
 	@RequestMapping(value = "/mypage_signout.do", method = RequestMethod.GET)
-	public ModelAndView signout(String mid) {
+	public ModelAndView signout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
-		model.addObject("mid", mid);
+		model.addObject("mid", svo.getMid());
 		model.setViewName("/mypage/mypage_signout");
 		return model;
 	}
@@ -321,11 +334,14 @@ public class MypageController {
 	 * member_delete_proc - 회원탈퇴 처리
 	 */
 	@RequestMapping(value = "/member_delete_proc.do", method = RequestMethod.POST ,produces="application/x-www-form-urlencoded;charset=UTF-8")
-	public String member_delete_proc(String mid, String pass) {
+	public String member_delete_proc(HttpServletRequest request, String pass) {
 		String viewName = "";
+		HttpSession session = request.getSession();
+		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		//MemberDao memberDao = new MemberDao();
-		int result = memberService.getDelete(mid, pass);
+		int result = memberService.getDelete(svo.getMid(), pass);
 		if(result == 1) {
+			session.invalidate();
 			viewName = "redirect:/login.do";
 		} else {
 			//오류페이지 호출

@@ -24,11 +24,11 @@
 						<nav>
 							<ul>
 								<li>마이페이지</li>
-								<li><a href = "mypage_member_information.do?mid=${sessionScope.svo.mid}">회원 정보</a></li>
-								<li><a href = "mypage_reservation.do?mid=${sessionScope.svo.mid}">예약 내역</a></li>
-								<li><a href = "mypage_my_review.do?mid=${sessionScope.svo.mid}">내가 쓴 리뷰</a></li>
-								<li><a href = "mypage_bookmark.do?mid=${sessionScope.svo.mid}">즐겨찾기</a></li>
-								<li><a href = "mypage_signout.do?mid=${sessionScope.svo.mid}">회원 탈퇴</a></li>
+								<li><a href = "mypage_member_information.do">회원 정보</a></li>
+								<li><a href = "mypage_reservation.do">예약 내역</a></li>
+								<li><a href = "mypage_my_review.do">내가 쓴 리뷰</a></li>
+								<li><a href = "mypage_bookmark.do">즐겨찾기</a></li>
+								<li><a href = "mypage_signout.do">회원 탈퇴</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -41,7 +41,7 @@
 				</section>
 				<section id = "section3">
 					<span>비밀번호를 입력해주세요</span>
-					<input type = "hidden" name = "mid" id = "mid" value = "${sessionScope.svo.mid}">
+					<%-- <input type = "hidden" name = "mid" id = "mid" value = "${sessionScope.svo.mid}"> --%>
 					<input type = "password" name = "pass" id = "pass" placeholder = "  비밀번호 입력">
 					<button type = "button" id = "btnMemberDelete">회원탈퇴</button>
 				</section>

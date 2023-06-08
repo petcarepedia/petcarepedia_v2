@@ -185,8 +185,7 @@ $("#btnReservationDelete").click(function(){
 		    }).then((result) => {
 		        if (result.isConfirmed) {
 		            Swal.fire(
-		                '탈퇴가 완료되었습니다.',
-		                'success'
+		                '탈퇴가 완료되었습니다.'
 		            ).then(() => {
 		                deleteForm.submit();
 		            });

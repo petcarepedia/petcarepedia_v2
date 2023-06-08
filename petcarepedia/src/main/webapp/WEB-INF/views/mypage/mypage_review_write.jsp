@@ -27,9 +27,9 @@
 						<nav>
 							<ul>
 								<li>마이페이지</li>
-								<li><a href = "mypage_member_information.do?mid=${sessionScope.svo.mid}">회원 정보</a></li>
-								<li><a href = "mypage_reservation.do?mid=${sessionScope.svo.mid}">예약 내역</a></li>
-								<li><a href = "mypage_my_review.do?mid=${sessionScope.svo.mid}">내가 쓴 리뷰</a></li>
+								<li><a href = "mypage_member_information.do">회원 정보</a></li>
+								<li><a href = "mypage_reservation.do">예약 내역</a></li>
+								<li><a href = "mypage_my_review.do">내가 쓴 리뷰</a></li>
 								<li><a href = "mypage_bookmark.do?mid=${sessionScope.svo.mid}">즐겨찾기</a></li>
 								<li><a href = "mypage_signout.do?mid=${sessionScope.svo.mid}">회원 탈퇴</a></li>
 							</ul>
@@ -70,7 +70,7 @@
 					</section>
 					<textarea name="rcontent" id = "rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~200자내)" maxlength="200"></textarea>
 						<div id="test_cnt">(0 / 200)</div>
-					<a href = "mypage_reservation2.do?mid=${sessionScope.svo.mid}">
+					<a href = "mypage_reservation2.do">
 						<button type = "button" id = "cancle">취소</button>
 					</a>
 					<button type = "button" id = "btnReviewWrite">작성완료</button>
