@@ -19,7 +19,7 @@
 			<h1 id = "title">리뷰쓰기</h1>
 			<hr>
 			<form name="writeForm" action="review_write_proc.do" method="post">
-			<input type = "hidden" name = "mid" value = "${memberVo.mid}">
+			<input type = "hidden" name = "mid" value = "${sessionScope.svo.mid}">
 			<input type = "hidden" name = "hid" value = "${hid}">
 			<input type = "hidden" name = "bid" value = "${bid}">
 				<section id = "section1">
@@ -70,7 +70,9 @@
 					</section>
 					<textarea name="rcontent" id = "rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~200자내)" maxlength="200"></textarea>
 						<div id="test_cnt">(0 / 200)</div>
-					<button type = "button" id = "cancle">취소</button>
+					<a href = "mypage_reservation2.do?mid=${sessionScope.svo.mid}">
+						<button type = "button" id = "cancle">취소</button>
+					</a>
 					<button type = "button" id = "btnReviewWrite">작성완료</button>
 				</div>
 			</form>

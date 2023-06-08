@@ -22,10 +22,10 @@
 			<div id = "btn_box">
 				<h1 id = "title">예약 내역</h1>
 				<div id = "btn_reservation">
-					<a href = "mypage_reservation.do?mid=hong">
+					<a href = "mypage_reservation.do?mid=${sessionScope.svo.mid}">
 						<button type = "button" id = "btn1">예약중</button>
 					</a>
-					<a href = "mypage_reservation2.do?mid=hong">
+					<a href = "mypage_reservation2.do?mid=${sessionScope.svo.mid}">
 						<button type = "button" id = "btn2">진료 완료</button>
 					</a>
 				</div>
@@ -68,7 +68,7 @@
 								</div>
 							</div>
 						</div>
-						<a href = "mypage_reservation_delete.do?bid=${bookingVo.bid}&mid=${bookingVo.mid}">
+						<a href = "mypage_reservation_delete.do?bid=${bookingVo.bid}&mid=${sessionScope.svo.mid}">
 						<button type = "button" id = "btn_cancle1">예약취소</button></a>
 					</c:forEach>
 					<c:forEach var = "bookingVo" items = "${list2}">
@@ -92,7 +92,7 @@
 								</div>
 							</div>
 						</div>
-						<a href = "mypage_reservation_delete.do?bid=${bookingVo.bid}&mid=${bookingVo.mid}">
+						<a href = "mypage_reservation_delete.do?bid=${bookingVo.bid}&mid=${sessionScope.svo.mid}">
 						<button type = "button" id = "btn_cancle1">예약취소</button></a>
 					</c:forEach>
 				</section>

@@ -81,8 +81,7 @@ $("#btnReservationDelete").click(function(){
 	    }).then((result) => {
 	        if (result.isConfirmed) {
 	            Swal.fire(
-	                '취소가 완료되었습니다.',
-	                'success'
+	                '취소가 완료되었습니다.'
 	            ).then(() => {
 	                deleteForm.submit();
 	            });
@@ -104,7 +103,8 @@ $("#btnReservationDelete").click(function(){
 			Swal.fire({
 	            icon: 'success',
 	            title: '작성 완료',
-	            showConfirmButton: true // 확인 버튼 표시
+	            confirmButtonColor:'#98dfff',
+	  			confirmButtonText:'확인'
 	        }).then(function() {
 				writeForm.submit();
         	});
@@ -113,9 +113,7 @@ $("#btnReservationDelete").click(function(){
 /*******************************************************************************
 		예약내역페이지 - 리뷰쓰기 취소버튼
 ******************************************************************************/
-	$("#cancle").click(function(){
-		location.href = "http://localhost:9000/petcarepedia/reservation2.do?mid=hong";
-	})
+
 	
 
 /*******************************************************************************
@@ -130,7 +128,8 @@ $("#btnReservationDelete").click(function(){
 			Swal.fire({
 	            icon: 'success',
 	            title: '수정 완료',
-	            showConfirmButton: true // 확인 버튼 표시
+	            confirmButtonColor:'#98dfff',
+	 			 confirmButtonText:'확인'
 	        }).then(function() {
 				updateForm.submit();
         	});
@@ -145,15 +144,14 @@ $("#btnReservationDelete").click(function(){
 	        title: '정말로 삭제하시겠습니까?',
 	        icon: 'warning',
 	        showCancelButton: true,
-	        confirmButtonColor: '#3085d6',
-	        cancelButtonColor: '#d33',
+	        confirmButtonColor: '#FFB3BD',
+	        cancelButtonColor: '#98DFFF',
 	        confirmButtonText: '승인',
 	        cancelButtonText: '취소'
 	    }).then((result) => {
 	        if (result.isConfirmed) {
 	            Swal.fire(
-	                '삭제가 완료되었습니다.',
-	                'success'
+	                '삭제가 완료되었습니다.'
 	            ).then(() => {
 	                deleteForm.submit();
 	            });
@@ -180,8 +178,8 @@ $("#btnReservationDelete").click(function(){
 		        title: '정말로 탈퇴하시겠습니까?',
 		        icon: 'warning',
 		        showCancelButton: true,
-		        confirmButtonColor: '#3085d6',
-		        cancelButtonColor: '#d33',
+		        confirmButtonColor: '#FFB3BD',
+	        	cancelButtonColor: '#98DFFF',
 		        confirmButtonText: '승인',
 		        cancelButtonText: '취소'
 		    }).then((result) => {

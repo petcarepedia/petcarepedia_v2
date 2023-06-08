@@ -21,10 +21,10 @@
 			<div id = "btn_box">
 				<h1 id = "title">예약 내역</h1>
 				<div id = "btn_reservation">
-					<a href = "mypage_reservation.do?mid=hong"> 
+					<a href = "mypage_reservation.do?mid=${sessionScope.svo.mid}"> 
 						<button type = "button" id = "btn3">예약중</button>
 					</a>
-					<a href = "mypage_reservation2.do?mid=hong">
+					<a href = "mypage_reservation2.do?mid=${sessionScope.svo.mid}">
 						<button type = "button" id = "btn4">진료 완료</button>
 					 </a> 
 				</div>
@@ -75,7 +75,7 @@
 							<c:when test = "${today-vdate <= 3}">
 								<div id = "btn_review">
 									<span id = "review_span">*리뷰작성기한은 3일입니다</span>
-									<a href = "mypage_review_write.do?mid=${bookingVo.mid}&hid=${bookingVo.hid}&bid=${bookingVo.bid}">
+									<a href = "mypage_review_write.do?mid=${sessionScope.svo.mid}&hid=${bookingVo.hid}&bid=${bookingVo.bid}">
 										<button type = "button" id = "btn_write_review">리뷰쓰기</button>
 									</a>
 								</div>

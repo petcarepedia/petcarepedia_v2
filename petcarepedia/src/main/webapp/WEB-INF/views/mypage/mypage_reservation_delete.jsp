@@ -48,7 +48,7 @@
 				<div class = "box">
 					<p>예약을 취소하시겠습니까?</p>
 					<button type="button" class="btn_style" id = "btnReservationDelete">취소완료</button>
-					<a href="reservation.do?mid=${mid}">
+					<a href="mypage_reservation.do?mid=${sessionScope.svo.mid}">
 						<button type="button" class="btn_style">이전페이지</button>
 					</a>
 				</div>

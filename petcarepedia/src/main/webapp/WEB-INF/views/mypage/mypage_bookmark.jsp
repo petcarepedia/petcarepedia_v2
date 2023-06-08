@@ -18,15 +18,14 @@ function bookmark(bmid) {
         title: '즐겨찾기를 해제하시겠습니까?',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#FFB3BD',
+    	cancelButtonColor: '#98DFFF',
         confirmButtonText: '승인',
         cancelButtonText: '취소'
 	}).then((result) => {
         if (result.isConfirmed) {
             Swal.fire(
-                '해제가 완료되었습니다.',
-                'success'
+                '해제가 완료되었습니다.'
             ).then(() => {
                 location.href = "bookmark_delete_proc.do?bmid=" + bmid;
             });

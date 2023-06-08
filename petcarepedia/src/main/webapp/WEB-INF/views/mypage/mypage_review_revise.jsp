@@ -61,7 +61,7 @@
 					<a href = "mypage_review_content.do?rid=${reviewVo.rid} ">
 						<button type = "button" id = "cancle">취소</button>
 					</a>
-					<button type = "button" id = "btnReviewUpdate">작성완료</button>
+					<button type = "button" id = "btnReviewUpdate">수정완료</button>
 				</div>
 			</form>
 		</section>

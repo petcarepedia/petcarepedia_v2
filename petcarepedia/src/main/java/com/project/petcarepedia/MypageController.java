@@ -2,15 +2,15 @@ package com.project.petcarepedia;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.dao.BookingDao;
-import com.project.dao.MemberDao;
-import com.project.dao.ReviewDao;
 import com.project.service.BookingService;
 import com.project.service.BookmarkService;
 import com.project.service.MemberService;
@@ -20,6 +20,7 @@ import com.project.vo.BookingVo;
 import com.project.vo.BookmarkVo;
 import com.project.vo.MemberVo;
 import com.project.vo.ReviewVo;
+import com.project.vo.SessionVo;
 
 @Controller
 public class MypageController {
@@ -36,10 +37,13 @@ public class MypageController {
 	 * information.do - 나의 회원정보 폼
 	 */
 	@RequestMapping(value = "/mypage_member_information.do", method = RequestMethod.GET)
-	public ModelAndView information(String mid) {
+	public ModelAndView information(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		SessionVo svo = (SessionVo)session.getAttribute("svo");
+		System.out.println(svo.getMid());
 		ModelAndView model = new ModelAndView();
 		//MemberDao memberDao = new MemberDao();
-		MemberVo memberVo = memberService.getSelect(mid);
+		MemberVo memberVo = memberService.getSelect(svo.getMid());
 		model.addObject("memberVo", memberVo);
 		model.setViewName("/mypage/mypage_member_information");
 		return model;

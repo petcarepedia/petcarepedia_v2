@@ -38,7 +38,7 @@
 					</tr>
 					<tr>
 						<th>작성자</th>
-						<td>${reviewVo.mid}</td>
+						<td>${sessionScope.svo.nickname}</td>
 					</tr>
 				</table>
 				<div class = "box">
