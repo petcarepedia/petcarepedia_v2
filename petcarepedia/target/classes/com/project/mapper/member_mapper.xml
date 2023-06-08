@@ -13,10 +13,10 @@
 	</insert>
 	
 	<select id="login" parameterType="com.project.vo.MemberVo" resultType="com.project.vo.SessionVo">
-		select count(*) loginResult, mid, nickname
+		select count(*) loginResult, mid, name
 		from pcp_member 
 		where mid=#{mid} and pass=#{pass}
-		group by mid, nickname
+		group by mid, name
 	</select>
 	
 	<delete id="delete" parameterType="map">

@@ -47,12 +47,6 @@
 		                        <li>
 		                            <a href="http://localhost:9000/petcarepedia/join.do">회원가입</a>
 		                        </li>
-		                        <!-- <li>
-		                            <a href="http://localhost:9000/petcarepedia/mypage_member_information.do?mid=hong">마이페이지</a>
-		                        </li>
-		                        <li>
-		                            <a href="#">로그아웃</a>
-		                        </li> -->
 		                        <li>
 		                            <a href="http://localhost:9000/petcarepedia/notice.do">공지사항</a>
 		                        </li>
@@ -66,14 +60,8 @@
 		                        <li>
 		                            <a href="http://localhost:9000/petcarepedia/review_main.do">리뷰사전</a>
 		                        </li>
-		                        <!-- <li>
-		                            <a href="http://localhost:9000/petcarepedia/login.do">로그인</a>
-		                        </li>
 		                        <li>
-		                            <a href="http://localhost:9000/petcarepedia/join.do">회원가입</a>
-		                        </li> -->
-		                        <li>
-		                            <a href="http://localhost:9000/petcarepedia/mypage_member_information.do?mid=${sessionScope.svo.mid}">마이페이지</a>
+		                            <a href="http://localhost:9000/petcarepedia/mypage_member_information.do">마이페이지</a>
 		                        </li>
 		                        <li>
 		                            <a id="logout">로그아웃</a>

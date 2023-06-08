@@ -59,7 +59,7 @@ $(document).ready(function(){
 	//비밀번호 정규식 체크
 	$("#pass").keyup(function(){
 		if(!reg_pw.test($("#pass").val())){
-			$("#pwcheck_msg").text("8~16자의 영문, 숫자, 특수문자를 포함하여 입력하세요.").css("color","red")
+			$("#pwcheck_msg").text("8~16자의 영문, 숫자, 특수문자로 입력하세요.").css("color","red")
 			.css("font-size","12px").css("display","block").css("clear","both")
 			.css("padding-top","5px")
 			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
@@ -72,23 +72,16 @@ $(document).ready(function(){
 	});
 	//비밀번호 확인 유효성 체크
 	$("#cpass").keyup(function(){
-		if(!reg_pw.test($("#cpass").val())){
-			$("#cpwcheck_msg").text("8~16자의 영문, 숫자, 특수문자를 포함하여 입력하세요.").css("color","red")
+		if($("#cpass").val() == $("#pass").val()){
+			$("#cpwcheck_msg").text("비밀번호가 일치합니다.").css("color","#7AB2CC")
+			.css("font-size","12px").css("display","block").css("clear","both")
+			.css("padding-top","5px")
+			.prepend("<img src='http://localhost:9000/petcarepedia/images/check.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+		} else {
+			$("#cpwcheck_msg").text("비밀번호가 일치하지 않습니다.").css("color","red")
 			.css("font-size","12px").css("display","block").css("clear","both")
 			.css("padding-top","5px")
 			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
-		} else {
-			if($("#cpass").val() == $("#pass").val()){
-				$("#cpwcheck_msg").text("비밀번호가 일치합니다.").css("color","#7AB2CC")
-				.css("font-size","12px").css("display","block").css("clear","both")
-				.css("padding-top","5px")
-				.prepend("<img src='http://localhost:9000/petcarepedia/images/check.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
-			} else {
-				$("#cpwcheck_msg").text("비밀번호가 일치하지 않습니다.").css("color","red")
-				.css("font-size","12px").css("display","block").css("clear","both")
-				.css("padding-top","5px")
-				.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
-			}
 		}
 	});
 	//성명 유효성 체크
@@ -203,7 +196,13 @@ $(document).ready(function(){
 		}
 	}
 	//회원가입 버튼 abled
-	$("form[name='joinForm'] input").blur(function(){
+	$("form[name='joinForm'] input").on({
+		blur: function(){$.joinValidationCheck();},
+		focus: function(){$.joinValidationCheck();},
+		click: function(){$.joinValidationCheck();},
+		keyup: function(){$.joinValidationCheck();}
+	});
+	/*$("form[name='joinForm'] input").blur(function(){
 		$.joinValidationCheck();
 	});
 	$("form[name='joinForm'] input").focus(function(){
@@ -214,7 +213,7 @@ $(document).ready(function(){
 	});
 	$("form[name='joinForm'] input").keyup(function(){
 		$.joinValidationCheck();
-	});
+	});*/
 	$(".term-modal").click(function(){
 		$.joinValidationCheck();
 	});

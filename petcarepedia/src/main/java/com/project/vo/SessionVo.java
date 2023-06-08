@@ -2,7 +2,7 @@ package com.project.vo;
 
 public class SessionVo {
 	int LoginResult;
-	String mid, nickname;
+	String mid, name;
 	
 	public int getLoginResult() {
 		return LoginResult;
@@ -16,10 +16,10 @@ public class SessionVo {
 	public void setMid(String mid) {
 		this.mid = mid;
 	}
-	public String getNickname() {
-		return nickname;
+	public String getName() {
+		return name;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setName(String name) {
+		this.name = name;
 	}
 }

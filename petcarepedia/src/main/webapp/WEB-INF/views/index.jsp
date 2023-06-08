@@ -49,7 +49,7 @@
 			Swal.fire({
 	            icon: 'success',                         
 	            title: '로그인 성공',         
-	            text: '${sessionScope.svo.nickname}님, 환영합니다!',  
+	            text: '${sessionScope.svo.name}님, 환영합니다!',  
 	            confirmButtonColor:'#98dfff',
 	            confirmButtonText:'확인'
 	        });
