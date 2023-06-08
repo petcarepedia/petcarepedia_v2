@@ -165,16 +165,6 @@ public class MypageController {
 		return model;
 	}
 	
-	/*
-	 * bookmark_delete.do - 즐겨찾기 삭제하기 폼
-	 */
-//	@RequestMapping(value = "/bookmark_delete.do", method = RequestMethod.GET)
-//	public ModelAndView bookmark_delete(String bmid) {
-//		ModelAndView model = new ModelAndView();
-//		model.setViewName("/mypage/bookmark_delete");
-//		model.addObject("bmid", bmid);
-//		return model;
-//	}
 	
 	/*
 	 * bookmark_delete_proc.do - 즐겨찾기 삭제하기 처리

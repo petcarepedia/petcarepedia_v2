@@ -58,20 +58,31 @@ function bookmark(bmid) {
 				</div>
 			</section>
 			<section id = "section2">
-				<c:forEach var = "bookmarkVo" items = "${list}">
-						<%-- <input type = "hidden" name = "bmid" id = "bmid" value = "${bookmarkVo.bmid}"> --%>
-						<div id = "aside1">
-							<span>${bookmarkVo.hname}</span>
-							<span>${bookmarkVo.gloc}</span>
-							<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookmarkVo.hid}">병원 상세보기 ></a>
-							<button type = "button" id = "btnBookmarkDelete" onclick = "bookmark('${bookmarkVo.bmid}')">
-								<img src = "http://localhost:9000/petcarepedia/images/bookmark_yellow.png">
-							</button>
-	<%-- 						<a href = "bookmark_delete.do?bmid=${bookmarkVo.bmid}">
-								<img src = "http://localhost:9000/petcarepedia/images/bookmark2.png">
-							</a> --%>
+				<c:choose>
+					<c:when test = "${list.size() == 0}">
+						<div class="review_card_no">
+							<img id="review_img"
+								src="http://localhost:9000/petcarepedia/images/review.png">
+							<span>즐겨찾기 내역이 존재하지 않습니다.</span>
 						</div>
-				</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var = "bookmarkVo" items = "${list}">
+								<%-- <input type = "hidden" name = "bmid" id = "bmid" value = "${bookmarkVo.bmid}"> --%>
+								<div id = "aside1">
+									<span>${bookmarkVo.hname}</span>
+									<span>${bookmarkVo.gloc}</span>
+									<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookmarkVo.hid}">병원 상세보기 ></a>
+									<button type = "button" id = "btnBookmarkDelete" onclick = "bookmark('${bookmarkVo.bmid}')">
+										<img src = "http://localhost:9000/petcarepedia/images/bookmark_yellow.png">
+									</button>
+			<%-- 						<a href = "bookmark_delete.do?bmid=${bookmarkVo.bmid}">
+										<img src = "http://localhost:9000/petcarepedia/images/bookmark2.png">
+									</a> --%>
+								</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</section>
 		</section>
 	</div>
