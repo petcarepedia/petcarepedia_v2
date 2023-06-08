@@ -1,116 +1,82 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
-/*******************************************
-	지역구 체크박스 값 받기
-********************************************/
-  // 폼이 제출되었을 때의 처리
-  $('form[name="search_area"]').submit(function(e) {
-    e.preventDefault(); // 폼의 기본 제출 동작을 막습니다.
-
-    var selected = "";
-    $('.gloc:checked').each(function() {
-      selected = $(this).val();
-    });
-
-    // 선택된 체크박스 값을 보여줄 요소 선택
-    var showFilter = $('#showFilter');
-    showFilter.val(selected); // 선택된 체크박스 값을 보여줄 요소에 설정
-
-    // 폼 제출
-    this.submit();
-  });
-  
-
-
-
+	/** 검색 필터링 **/
+	function applyFilters() {
+		var filters = []; // 필터링 배열
+		var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked'); // 체크박스 배열
+		
+		checkboxes.forEach(function(checkbox) { // 체크박스 배열 저장하기
+			filters.push(checkbox.value);
+		});
+		
+		var items = document.querySelectorAll('#dataList li'); // 병원 리스트 배열
+		
+		items.forEach(function(item) {
+			var itemFilters = item.getAttribute('data-filter').split(' ');
+			
+			if (filters.every(function(filter) {
+				return itemFilters.includes(filter);
+			})) {item.style.display = 'block';
+			} else {
+				item.style.display = 'none';
+			}
+		});
+	}
 	
-/*******************************************
-	체크박스 하나만 선택
-********************************************/
+	var checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-	
-	$('input[type="checkbox"][name="time"]').click(function(){
-		  if($(this).prop('checked')){
-		     $('input[type="checkbox"][name="time"]').prop('checked',false);
-		     $(this).prop('checked',true);
-		    }
-	});
-	
-	$('input[type="checkbox"][name="animal"]').click(function(){
-		  if($(this).prop('checked')){
-		     $('input[type="checkbox"][name="animal"]').prop('checked',false);
-		     $(this).prop('checked',true);
-		    }
+	checkboxes.forEach(function(checkbox) {
+		checkbox.addEventListener('change', applyFilters);
 	});
 	
 	
-/*******************************************
-	체크박스 값 받기
-********************************************/	
-	 /**/
-	 
-	 /*  */
-	 
-	 
-	 $('input[type="checkbox"][name="time"]').click(function() {
-		    
-		    // 변수로 다이렉트로 담을 경우에는 가장 위에 체크한 항목이 들어감
-			var time = $("input[name='time']:checked").val();
-		    
-			alert(time);
-		  });
-	 
-	 $('input[type="checkbox"][name="animal"]').click(function() {
-		    
-		    // 변수로 다이렉트로 담을 경우에는 가장 위에 체크한 항목이 들어감
-			var animal = $("input[name='animal']:checked").val();
-		    
-			alert(animal);
-		  });
+	/** 지역 하나만 선택 **/
+	$('input[type="checkbox"][name="gloc"]').click(function(){
+		if($(this).prop('checked')){
+			$('input[type="checkbox"][name="gloc"]').prop('checked',false);
+			$(this).prop('checked',true);
+		}
+	});
 	
 	
- $('input[type="checkbox"]').click(function() {
-    $('form[name="search_area"]').submit();
-  });	
+	/** 진료 중 표시 **/
+	// 시간 변수
+	var today = new Date();
+	var hours = ('0' + today.getHours()).slice(-2);
+	var minutes = ('0' + today.getMinutes()).slice(-2);
+	var nowTime = hours + minutes;
+	var isWeekend = isSaturdayOrSunday(today);
 	
+	function isSaturdayOrSunday(date) { // 토요일, 일요일 확인
+		var dayOfWeek = date.getDay();
+		return {
+			isWeekend: dayOfWeek === 6 || dayOfWeek === 0,
+			dayOfWeek: dayOfWeek
+		};
+	}
 	
+	// 시간 표시
+	$('ul#dataList li').each(function() {
+		var $this = $(this);
+		var startTime = $this.find('input#startTime').val().replace(':', '');
+		var endTime = $this.find('input#endTime').val().replace(':', '');
+		var holiday = $this.find('input#holiday').val();
+			
+			if (holiday == '휴일: X') { // 휴일영업X
+				if (parseInt(nowTime) > parseInt(endTime) || parseInt(nowTime) < parseInt(startTime) || (isWeekend.isWeekend && (isWeekend.dayOfWeek === 6 || isWeekend.dayOfWeek === 0))) {
+					$this.find('span#htime').hide();
+					var dataFilter = $this.attr('data-filter');
+					dataFilter = dataFilter.replace('time', '');
+					$this.attr('data-filter', dataFilter);
+				}
+			 } else if (holiday == '휴일: O') { // 휴일영업O
+			 	if (parseInt(nowTime) > parseInt(endTime) || parseInt(nowTime) < parseInt(startTime)) {
+			 		$this.find('span#htime').hide();
+			 		var dataFilter = $this.attr('data-filter');
+			 		dataFilter = dataFilter.replace('time', '');
+			 		$this.attr('data-filter', dataFilter);
+		 		 }
+	 		 }
+ 		 });
 	
-	
-	
-	
-	
-	
-	
-/*******************************************
-	예약 버튼
-********************************************/
-
-	/* $("#hservation").click(function() {
-		 $("#hmodal").css("display", "block");
-		 
-	  });*/
-	  
-	  
-	  
-	  
-	  // 모달 닫기
-	  $(".close").click(function() {
-	    $("#hmodal").css("display", "none");
-	  });
-
-
-
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-}); //ready
+}); //document 

@@ -282,7 +282,7 @@ public class SearchController {
 	}
 	
 	
-	/** search_mian_map.do **/
+	/** search_main_map.do **/
 	@RequestMapping(value="/search_main_map.do", method=RequestMethod.GET)
 	public String search_main_map() {
 		return "/search/search_main_map";

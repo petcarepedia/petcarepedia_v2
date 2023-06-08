@@ -191,6 +191,7 @@ $(document).ready(function() {
 					</div>
 
 					<span class="name">${hospital.hname}</span>
+					<input type="text" name="loginId" value="${sessionScope.svo.mid}"> 
 
 					<div class="buttons">
 						<%-- 						<form name="reviewForm" action="reviewCheckProc.do" method="post">
