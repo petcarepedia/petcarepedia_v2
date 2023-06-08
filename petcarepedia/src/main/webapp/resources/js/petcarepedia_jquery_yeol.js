@@ -53,7 +53,8 @@ $(document).ready(function(){
 			 Swal.fire({
 	            icon: 'success',
 	            title: '수정 완료',
-	            showConfirmButton: true // 확인 버튼 표시
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
 	        }).then(function() {
 				updateForm.submit();
         	});
@@ -73,8 +74,8 @@ $("#btnReservationDelete").click(function(){
 	        title: '정말로 취소하시겠습니까?',
 	        icon: 'warning',
 	        showCancelButton: true,
-	        confirmButtonColor: '#3085d6',
-	        cancelButtonColor: '#d33',
+	        confirmButtonColor: '#FFB3BD',
+	        cancelButtonColor: '#98DFFF',
 	        confirmButtonText: '승인',
 	        cancelButtonText: '취소'
 	    }).then((result) => {

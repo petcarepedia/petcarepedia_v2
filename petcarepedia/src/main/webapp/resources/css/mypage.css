@@ -192,14 +192,14 @@ hr {
 #email {
 	width: 520px;
 	height: 53px;
-	border : none;
-	border-bottom: 1px solid #8A8A8A;
+	border: 1px solid #8A8A8A;
+	border-radius : 5px;
 }
 #address {
 	height: 53px;
-	border : none;
-	border-bottom: 1px solid #8A8A8A;
+	border: 1px solid #8A8A8A;
 	width : 435px;
+	border-radius : 5px;
 }
 #phone1, #phone2, #phone3 {
 	width: 77px;
@@ -219,13 +219,13 @@ hr {
 }
 #section2 ul li:nth-child(6) div{
 	display : inline-block;
-	border-bottom : 1px solid #8A8A8A;
+	/* border-bottom : 1px solid #8A8A8A; */
 	width : 520px;
 	height: 50px;
 }
 #section2 ul li:nth-child(4) div {
 	display : inline-block;
-	border-bottom : 1px solid #8A8A8A;
+	/* border-bottom : 1px solid #8A8A8A; */
 	width : 520px;
 	height: 50px;
 }
