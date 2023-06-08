@@ -48,7 +48,7 @@
 		<section id="filter">	
 		<div id="filter_page" class="review">
 		<input type="hidden" id="count" value="${count }">
-			<p>상세검색${sessionScope.svo.mid }</p>
+			<p>상세검색</p>
 			<form name="ReviewSearchForm" action="review_main_search.do" method="get">
 				<table id="filter_lo" class="filter">
 					<tr>
