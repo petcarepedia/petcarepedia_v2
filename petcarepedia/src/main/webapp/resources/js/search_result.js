@@ -139,52 +139,63 @@ $(document).ready(function(){
 		var rid = $("input[name='rid']").val();
 		var hid = $("input[name='hid']").val();
 		
-		Swal.fire({
-			title: '정말로 신고 하시겠습니까?',
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#FFB3BD',
-			cancelButtonColor: '#98DFFF',
-			confirmButtonText: '신고',
-			cancelButtonText: '취소',
-			reverseButtons: true,
-		}).then((result) => {
-			if (result.isConfirmed) {
-				$.ajax({
-					url: "rstateProc.do",
-					type: "POST",
-					data: {	
-						rid: rid,
-						hid: hid
-					},
-					success: function(rstate_result) {
-						if (rstate_result === "fail") {
-							Swal.fire({
-								icon: 'error',
-								title: '신고 접수된 리뷰입니다',
-								text: '관리자 확인중 입니다. 잠시만 기다려 주세요.',
-								showConfirmButton: true,
-								confirmButtonText: '확인',
-								confirmButtonColor:'#98dfff'
-							}).then(function() {
-								location.reload();
-							});
-						} else if (rstate_result === "success") {
-							Swal.fire({
-								icon: 'success',
-								title: '신고되었습니다',
-								text: '관리자 확인 중입니다.',
-								showConfirmButton: true,
-								confirmButtonText:'확인',
-								confirmButtonColor:'#98dfff'
-							}).then(function() {
-								location.reload();
-							});
+		if(mid == "") { // 미로그인시
+			 Swal.fire({
+				 icon: 'warning',
+				 title: '로그인 확인',
+				 text: '로그인을 먼저 해주세요.',
+				 showConfirmButton: true, // 확인 버튼 표시
+				 confirmButtonColor:'#98dfff',
+				 confirmButtonText: '확인'
+			 });
+		 } else { // 로그인시
+			Swal.fire({
+				title: '정말로 신고 하시겠습니까?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#FFB3BD',
+				cancelButtonColor: '#98DFFF',
+				confirmButtonText: '신고',
+				cancelButtonText: '취소',
+				reverseButtons: true,
+			}).then((result) => {
+				if (result.isConfirmed) {
+					$.ajax({
+						url: "rstateProc.do",
+						type: "POST",
+						data: {	
+							rid: rid,
+							hid: hid
+						},
+						success: function(rstate_result) {
+							if (rstate_result === "fail") {
+								Swal.fire({
+									icon: 'error',
+									title: '신고 접수된 리뷰입니다',
+									text: '관리자 확인중 입니다. 잠시만 기다려 주세요.',
+									showConfirmButton: true,
+									confirmButtonText: '확인',
+									confirmButtonColor:'#98dfff'
+								}).then(function() {
+									location.reload();
+								});
+							} else if (rstate_result === "success") {
+								Swal.fire({
+									icon: 'success',
+									title: '신고되었습니다',
+									text: '관리자 확인 중입니다.',
+									showConfirmButton: true,
+									confirmButtonText:'확인',
+									confirmButtonColor:'#98dfff'
+								}).then(function() {
+									location.reload();
+								});
+							}
 						}
-					}
-				});
-			}
-		});
+					});
+				}
+			});
+		}
 	});
 
 	
