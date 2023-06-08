@@ -202,18 +202,6 @@ $(document).ready(function(){
 		click: function(){$.joinValidationCheck();},
 		keyup: function(){$.joinValidationCheck();}
 	});
-	/*$("form[name='joinForm'] input").blur(function(){
-		$.joinValidationCheck();
-	});
-	$("form[name='joinForm'] input").focus(function(){
-		$.joinValidationCheck();
-	});
-	$("form[name='joinForm'] input").click(function(){
-		$.joinValidationCheck();
-	});
-	$("form[name='joinForm'] input").keyup(function(){
-		$.joinValidationCheck();
-	});*/
 	$(".term-modal").click(function(){
 		$.joinValidationCheck();
 	});
@@ -231,11 +219,9 @@ $(document).ready(function(){
 		}
 	}
 	//재설정 버튼 abled
-	$("form[name='pwUpdateForm'] input").blur(function(){
-		$.pwUpdateValidationCheck();
-	});
-	$("form[name='pwUpdateForm'] input").keyup(function(){
-		$.pwUpdateValidationCheck();
+	$("form[name='pwUpdateForm'] input").on({
+		blur: function(){$.pwUpdateValidationCheck();},
+		keyup: function(){$.pwUpdateValidationCheck();}
 	});
 	
 	/**************
@@ -252,17 +238,11 @@ $(document).ready(function(){
 		}
 	}
 	//찾기 버튼 abled
-	$("form[name='idFindForm'] input").blur(function(){
-		$.idFindValidationCheck();
-	});
-	$("form[name='idFindForm'] input").keyup(function(){
-		$.idFindValidationCheck();
-	});
-	$("form[name='idFindForm'] input").click(function(){
-		$.idFindValidationCheck();
-	});
-	$("form[name='idFindForm'] input").focus(function(){
-		$.idFindValidationCheck();
+	$("form[name='idFindForm'] input").on({
+		blur: function(){$.idFindValidationCheck();},
+		focus: function(){$.idFindValidationCheck();},
+		click: function(){$.idFindValidationCheck();},
+		keyup: function(){$.idFindValidationCheck();}
 	});
 	
 	/**************
@@ -280,17 +260,11 @@ $(document).ready(function(){
 		}
 	}
 	//찾기 버튼 abled
-	$("form[name='pwFindForm'] input").blur(function(){
-		$.pwFindValidationCheck();
-	});
-	$("form[name='pwFindForm'] input").keyup(function(){
-		$.pwFindValidationCheck();
-	});
-	$("form[name='pwFindForm'] input").click(function(){
-		$.pwFindValidationCheck();
-	});
-	$("form[name='pwFindForm'] input").focus(function(){
-		$.pwFindValidationCheck();
+	$("form[name='pwFindForm'] input").on({
+		blur: function(){$.pwFindValidationCheck();},
+		focus: function(){$.pwFindValidationCheck();},
+		click: function(){$.pwFindValidationCheck();},
+		keyup: function(){$.pwFindValidationCheck();}
 	});
 	
 	/**************
@@ -305,17 +279,11 @@ $(document).ready(function(){
 		}
 	}
 	//로그인 버튼 abled
-	$("form[name='loginForm'] input").blur(function(){
-		$.loginValidationCheck();
-	});
-	$("form[name='loginForm'] input").keyup(function(){
-		$.loginValidationCheck();
-	});
-	$("form[name='loginForm'] input").click(function(){
-		$.loginValidationCheck();
-	});
-	$("form[name='loginForm'] input").focus(function(){
-		$.loginValidationCheck();
+	$("form[name='loginForm'] input").on({
+		blur: function(){$.loginValidationCheck();},
+		focus: function(){$.loginValidationCheck();},
+		click: function(){$.loginValidationCheck();},
+		keyup: function(){$.loginValidationCheck();}
 	});
 	
 	/**************
