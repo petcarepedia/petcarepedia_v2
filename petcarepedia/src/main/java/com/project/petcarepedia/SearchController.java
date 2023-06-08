@@ -115,8 +115,8 @@ public class SearchController {
 	    for (ReviewVo review : RM_select) {
 	    	String targetRid = review.getRid();
 	    	 reviewLikeVo.setRid(targetRid);
-    	 	int likeResult = reviewLikeService.getIdCheck(reviewLikeVo);
-    	 	review.setLikeResult(likeResult);
+    	 	int likeresult = reviewLikeService.getIdCheck(reviewLikeVo);
+    	 	review.setLikeresult(likeresult);
 		    }
 	    model.addObject("RM_select", RM_select);
 	    
