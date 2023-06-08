@@ -49,19 +49,17 @@
 						<nav>
 							<ul>
 								<li>공지사항 관리</li>
-								<li><a href = "hospital_list.do">병원 관리</a></li>
-								<li><a href = "member_list.do">회원 관리</a></li>
-								<li><a href = "reserve_list.do">예약 관리</a></li>
-								<li><a href = "review_list.do">신고 리뷰 관리</a></li>
+								<li><a href = "admin_hospital_list.do">병원 관리</a></li>
+								<li><a href = "admin_member_list.do">회원 관리</a></li>
+								<li><a href = "admin_reserve_list.do">예약 관리</a></li>
+								<li><a href = "admin_review_list.do">신고 리뷰 관리</a></li>
 								<li><a href = "admin_notice.do">공지사항 관리</a></li>
-								<li><a href = "#">나가기</a></li>
 							</ul>
 						</nav>
 					</div>
 				</section>
 		<section id="section2">
 			<div class="d2">
-				<input type="text" class="search_bar" placeholder="병원명 입력" hidden>
 				<button class="button1"><img src="http://localhost:9000/petcarepedia/images/foot_sky.png" hidden></button>
 			</div>
 			

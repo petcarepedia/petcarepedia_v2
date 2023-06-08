@@ -17,6 +17,7 @@ import com.project.service.ReviewLikeService;
 import com.project.service.ReviewService;
 import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
+import com.project.vo.SessionVo;
 
 @Controller
 public class ReviewController {
@@ -94,17 +95,24 @@ public class ReviewController {
 		ModelAndView model = new ModelAndView();
 		ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
 		ReviewVo reviewVo = reviewService.getEnter_select(rid);		
+		String mid;
 		
+		if(session.getAttribute("svo") == null) {
+			mid = "";
+		}
+		else {
+			SessionVo sessionVo = (SessionVo) session.getAttribute("svo");
+			mid = sessionVo.getMid();
+		}
 		reviewVo.setRcontent(reviewVo.getRcontent().replace("\n", "<br>"));
-		reviewLikeVo.setRid(reviewVo.getRid());
-		reviewLikeVo.setMid(String.valueOf(session.getAttribute("mid")));
+		reviewLikeVo.setRid(rid);
+		reviewLikeVo.setMid(mid);
 		
 		int likeCheck = reviewLikeService.getIdCheck(reviewLikeVo);
 		
 		model.addObject("page", page);
 		model.addObject("filter_location", filter_location);
 		model.addObject("likeCheck", likeCheck);
-		model.addObject("reviewLikeVo", reviewLikeVo);
 		model.addObject("reviewVo", reviewVo);
 		model.setViewName("/review/review_content");
 		
@@ -143,12 +151,11 @@ public class ReviewController {
 	
 	//review_report.do 리뷰 신고 페이지
 	@RequestMapping(value="/review_report.do", method=RequestMethod.GET)
-	public ModelAndView review_report(String rid, String page, String filter_location, String mid) {
+	public ModelAndView review_report(String rid, String page, String filter_location) {
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("page", page);
 		model.addObject("filter_location", filter_location);
-		model.addObject("mid", mid);
 		model.addObject("rid", rid);
 		model.setViewName("/review/review_report");
 		
@@ -178,10 +185,9 @@ public class ReviewController {
 	
 	//리뷰 좋아요 처리
 	@RequestMapping(value="/review_like_Proc.do", method=RequestMethod.POST)
-	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo, String page, String filter_location, HttpSession session) {
+	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo, String page, String filter_location) {
 		ModelAndView model = new ModelAndView();
 		
-		reviewLikeVo.setMid(String.valueOf(session.getAttribute("mid")));
 		
 		if(reviewLikeService.getIdCheck(reviewLikeVo) == 1) {
 			reviewLikeService.getLikesDownID(reviewLikeVo);
