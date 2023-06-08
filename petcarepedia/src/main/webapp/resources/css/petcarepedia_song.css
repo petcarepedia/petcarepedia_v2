@@ -328,6 +328,9 @@
 		float:left;
 		color:#3D3D3D; display:block;
 		width:80%; height: 21px; overflow:hidden;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
 	}
 	.main-review > div.slide > div.review-list > .review-card > div:first-child > p {
 		font-size:14px; font-weight:bold;
@@ -354,6 +357,9 @@
 		font-size:14px;
 		overflow:hidden;
 		line-height:20px;
+		display: -webkit-box;
+		-webkit-line-clamp: 7;
+		-webkit-box-orient: vertical;
 	}
 	
 	.main-review > div.slide > div.review-list > .review-card > div:last-child {
