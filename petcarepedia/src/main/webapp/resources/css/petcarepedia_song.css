@@ -119,6 +119,7 @@
 		color:white;
 		/* font-size:10px; */
 		font-size:14px;
+		cursor:pointer;
 	}
 	.header-nav > ul > li > a:hover {
 		font-weight:bold;
@@ -362,6 +363,7 @@
 		display: -webkit-box;
 		-webkit-line-clamp: 7;
 		-webkit-box-orient: vertical;
+		word-break:break-all;
 	}
 	
 	.main-review > div.slide > div.review-list > .review-card > div:last-child {
