@@ -15,12 +15,39 @@
 				 where rno between #{start} AND #{end}
 	</select>
 	
+	<select id = "Bslist" parameterType="map" resultType="com.project.vo.BookingVo">	
+		SELECT RNO, HNAME, MID, VDATE, BSTATE, VTIME, BID, BDATE
+			FROM (
+			    SELECT ROWNUM RNO, HNAME, MID, to_char(BDATE, 'yyyy-mm-dd') VDATE, BSTATE, VTIME, BID, BDATE
+				    FROM (
+				        SELECT H.HNAME, M.MID, VDATE, B.BSTATE, VTIME, BID, BDATE
+				        FROM PCP_BOOKING B
+				        JOIN PCP_HOSPITAL H ON B.HID = H.HID
+				        JOIN PCP_MEMBER M ON M.MID = B.MID
+				        WHERE M.MID LIKE '%' || #{mid} || '%'
+				        ORDER BY BDATE DESC
+				    )
+			)
+			WHERE RNO BETWEEN #{start} AND #{end}
+	</select>
+	
 	<select id = "Blist" parameterType="map" resultType="com.project.vo.BookingVo">	
 		SELECT RNO, HNAME, MID, VDATE,  BSTATE, VTIME, BID, BDATE
 						FROM (SELECT ROWNUM RNO, HNAME,  MID,   to_char(BDATE, 'yyyy-mm-dd') VDATE ,BSTATE, VTIME,  BID, BDATE
 								FROM (SELECT H.HNAME, M.MID ,  VDATE ,B.BSTATE,VTIME , BID, BDATE
 				                            FROM PCP_BOOKING B, PCP_HOSPITAL H,  PCP_MEMBER M where b.hid = h.hid AND M.MID = B.MID ORDER BY BDATE DESC)) 
 						WHERE RNO BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id = "Mslist" parameterType="map" resultType="com.project.vo.MemberVo">	
+		select rno,mid,pass,name,nickname,phone,birth,email,addr,mdate 
+		from (select rownum rno,mid,pass,name,nickname,phone,
+				to_char(to_date(birth),'yyyy-mm-dd') birth,email,addr,
+				to_char(mdate,'yyyy-mm-dd') mdate 
+				from (select mid,pass,name,nickname,phone,birth,email,addr,mdate 
+						from pcp_member where mid like '%'||#{mid}||'%'
+						order by mdate))
+		where rno between #{start} and #{end}
 	</select>
 	
 	<select id = "Mlist" parameterType="map" resultType="com.project.vo.MemberVo">	
@@ -55,8 +82,16 @@
 		select count(*) from pcp_review
 	</select>
 	
+	<select id="Bscount" resultType="int">
+		select count(*) from pcp_booking where mid like '%'||#{mid}||'%'
+	</select>
+	
 	<select id="Bcount" resultType="int">
 		select count(*) from pcp_booking
+	</select>
+	
+	<select id="Mscount" resultType="int">
+		select count(*) from pcp_member where mid like '%'||#{mid}||'%'
 	</select>
 	
 	<select id="Mcount" resultType="int">

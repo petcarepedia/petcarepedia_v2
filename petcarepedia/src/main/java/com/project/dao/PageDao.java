@@ -22,6 +22,14 @@ public class PageDao {
 		
 		return sqlSession.selectList("mapper.page.Rlist", param);
 	}
+	public List<Object> Bsselect(int startCount, int endCount, String mid) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("start", startCount);
+		param.put("end", endCount);	
+		param.put("mid", mid);	
+		
+		return sqlSession.selectList("mapper.page.Bslist", param);
+	}
 	
 	public List<Object> Bselect(int startCount, int endCount) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
@@ -31,6 +39,14 @@ public class PageDao {
 		return sqlSession.selectList("mapper.page.Blist", param);
 	}
 	
+	public List<Object> Msselect(int startCount, int endCount, String mid) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("start", startCount);
+		param.put("end", endCount);		
+		param.put("mid", mid);		
+		
+		return sqlSession.selectList("mapper.page.Mslist", param);
+	}
 	public List<Object> Mselect(int startCount, int endCount) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
 		param.put("start", startCount);
@@ -60,8 +76,14 @@ public class PageDao {
 	public int RtotalRowCount() {
 		return sqlSession.selectOne("mapper.page.Rcount");
 	}
+	public int BstotalRowCount(String mid) {
+		return sqlSession.selectOne("mapper.page.Bscount", mid);
+	}
 	public int BtotalRowCount() {
 		return sqlSession.selectOne("mapper.page.Bcount");
+	}
+	public int MstotalRowCount(String mid) {
+		return sqlSession.selectOne("mapper.page.Mscount", mid);
 	}
 	public int MtotalRowCount() {
 		return sqlSession.selectOne("mapper.page.Mcount");

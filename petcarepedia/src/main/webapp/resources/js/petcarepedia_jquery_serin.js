@@ -110,11 +110,19 @@ $(document).ready(function(){
 	 **************************/
   $("#reserve_btn").click(function(){
   	if($("#reserve_bar").val() ==""){
-			alert("회원 아이디를 입력해주세요"); 
+			Swal.fire({
+		        icon: 'warning',                         // Alert 타입
+		        /* title: 'Alert가 실행되었습니다.',*/       // Alert 제목
+		        text: '회원아이디를 입력해주세요',  		// Alert 내용
+		        
+		        confirmButtonColor:'#7ab2cc',
+		  	  	confirmButtonText:'확인'
+			});
 			$("#reserve_bar").focus();
 			return false;
 		}else{	
-				$.ajax({
+			location.href = "http://localhost:9000/petcarepedia/admin_reserve_list.do?page=1&mid="+$("#reserve_bar").val();
+				/*$.ajax({
 					url:"http://localhost:9000/petcarepedia/reserve_list_data.do?mid="+$("#reserve_bar").val(), 
 					success:function(result){
 					let jdata = JSON.parse(result);
@@ -139,7 +147,7 @@ $(document).ready(function(){
 						
 					}//success
 					
-				});//ajax
+				});//ajax*/
 		}//else
 					
   	});//function
@@ -148,11 +156,19 @@ $(document).ready(function(){
 	 **************************/
   $("#member_search_btn").click(function(){
   	if($("#member_search_bar").val() ==""){
-			alert("회원 아이디를 입력해주세요"); 
+			Swal.fire({
+		        icon: 'warning',                         // Alert 타입
+		        /* title: 'Alert가 실행되었습니다.',*/       // Alert 제목
+		        text: '회원아이디를 입력해주세요',  		// Alert 내용
+		        
+		        confirmButtonColor:'#7ab2cc',
+		  	  	confirmButtonText:'확인'
+			});
 			$("#member_search_bar").focus();
 			return false;
 		}else{	
-				$.ajax({
+			location.href = "http://localhost:9000/petcarepedia/admin_member_list.do?page=1&mid="+$("#member_search_bar").val();
+				/*$.ajax({
 					url:"http://localhost:9000/petcarepedia/member_list_data.do?mid="+$("#member_search_bar").val(), 
 					success:function(result){
 					let jdata = JSON.parse(result);
@@ -177,7 +193,7 @@ $(document).ready(function(){
 						
 					}//success
 					
-				});//ajax
+				});//ajax*/
 		}//else
 					
   	});//function
@@ -191,7 +207,7 @@ $(document).ready(function(){
 		        /* title: 'Alert가 실행되었습니다.',*/       // Alert 제목
 		        text: '병원명을 입력해주세요',  		// Alert 내용
 		        
-		        confirmButtonColor:'#98dfff',
+		        confirmButtonColor:'#7ab2cc',
 		  	  	confirmButtonText:'확인'
 			});
 			$("#search_bar").focus();
