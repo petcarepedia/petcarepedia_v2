@@ -48,15 +48,15 @@
 					<p><span class="ess">*</span> 표시는 필수 입력 항목입니다.</p>
 						<ul>
 							<li>
-								<label >*아이디</label>
-								<label>${memberVo.mid}</label>
+								<label ><span>*</span>아이디</label>
+								<label>${sessionScope.svo.mid}</label>
 							</li>
 							<li>
-								<label>*성명</label>
+								<label><span>*</span>성명</label>
 								<label>${memberVo.name}</label>
 							</li>
 							<li>
-								<label>*별명</label>
+								<label><span>*</span>별명</label>
 								<input type = "text" name = "nickname" id = "nickname" placeholder = "  변경하실  별명을 입력해주세요" value = "${memberVo.nickname}">
 							</li>
 							<li>
@@ -72,8 +72,8 @@
 								<input type = "text" name = "email" id = "email" placeholder = "  변경하실 이메일 주소를 입력해주세요" value = "${memberVo.email}">
 							</li>
 							<li>
-								<label>*휴대폰</label>
-								<div>
+								<label><span>*</span>휴대폰</label>
+								<div id = "phone_box">
 									<select name="phone1" id="phone1">
 										<option value="default">선택</option>
 										<option value="011">011</option>
