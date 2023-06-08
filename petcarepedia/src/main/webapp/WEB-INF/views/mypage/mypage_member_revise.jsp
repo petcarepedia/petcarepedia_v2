@@ -34,11 +34,11 @@
 					<nav>
 						<ul>
 							<li>마이페이지</li>
-							<li><a href = "http://localhost:9000/petcarepedia/mypage_member_information.do?mid=${memberVo.mid}">회원 정보</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/mypage_reservation.do?mid=${memberVo.mid}">예약 내역</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/mypage_my_review.do?mid=${memberVo.mid}">내가 쓴 리뷰</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/mypage_bookmark.do?mid=${memberVo.mid}">즐겨찾기</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/mypage_signout.do?mid=${memberVo.mid}">회원 탈퇴</a></li>
+							<li><a href = "mypage_member_information.do?mid=${sessionScope.svo.mid}">회원 정보</a></li>
+							<li><a href = "mypage_reservation.do?mid=${sessionScope.svo.mid}">예약 내역</a></li>
+							<li><a href = "mypage_my_review.do?mid=${sessionScope.svo.mid}">내가 쓴 리뷰</a></li>
+							<li><a href = "mypage_bookmark.do?mid=${sessionScope.svo.mid}">즐겨찾기</a></li>
+							<li><a href = "mypage_signout.do?mid=${sessionScope.svo.mid}">회원 탈퇴</a></li>
 						</ul>
 					</nav>
 				</div>

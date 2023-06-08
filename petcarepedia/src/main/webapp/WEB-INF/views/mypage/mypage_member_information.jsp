@@ -24,11 +24,11 @@
 					<nav>
 						<ul>
 							<li>마이페이지</li>
-							<li><a href = "http://localhost:9000/petcarepedia/mypage_member_information.do?mid=${memberVo.mid}">회원 정보</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/mypage_reservation.do?mid=${memberVo.mid}">예약 내역</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/mypage_my_review.do?mid=${memberVo.mid}">내가 쓴 리뷰</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/mypage_bookmark.do?mid=${memberVo.mid}">즐겨찾기</a></li>
-							<li><a href = "http://localhost:9000/petcarepedia/mypage_signout.do?mid=${memberVo.mid}">회원 탈퇴</a></li>
+							<li><a href = "mypage_member_information.do?mid=${sessionScope.svo.mid}">회원 정보</a></li>
+							<li><a href = "mypage_reservation.do?mid=${sessionScope.svo.mid}">예약 내역</a></li>
+							<li><a href = "mypage_my_review.do?mid=${sessionScope.svo.mid}">내가 쓴 리뷰</a></li>
+							<li><a href = "mypage_bookmark.do?mid=${sessionScope.svo.mid}">즐겨찾기</a></li>
+							<li><a href = "mypage_signout.do?mid=${sessionScope.svo.mid}">회원 탈퇴</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -38,7 +38,7 @@
 					<ul>
 						<li>
 							<label >아이디</label>
-							<label>${memberVo.mid}</label>
+							<label>${sessionScope.svo.mid}</label>
 						</li>
 						<li>
 							<label>성명</label>
@@ -67,7 +67,7 @@
 					</ul>
 				</section>
 				<section id = "section3">
-					<a href = "mypage_member_revise.do?mid=${memberVo.mid}">
+					<a href = "mypage_member_revise.do?mid=${sessionScope.svo.mid}">
 						<button type = "button" id = "btn_style1">수정하기</button>
 					</a>
 				</section>
