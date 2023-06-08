@@ -33,35 +33,45 @@
 				</div>
 			</section>
 			<div id = "aside">
-				<c:forEach var = "reviewVo" items = "${list}">
-					<section id = "section2">
-						<div id = "aside1">
-							<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${reviewVo.hid}">
-								<span>${reviewVo.hname}</span>
-							</a>
-							<span>${reviewVo.tel}</span>
-							<span>
-								<span>${reviewVo.gloc}</span>
-							</span>
-							<img src = "http://localhost:9000/petcarepedia/images/cat.png">
-							<span>${reviewVo.nickname}</span>
-						</div>
-						<div id = "aside2">
-							<img src = "${reviewVo.img}">
-						</div>
-						<div id = "aside3">
-							<span>리뷰 내용</span>
-							<span> ${reviewVo.rcontent}</span>
-							<span><!-- 진료 일자 : 2023-04-26 --></span>
-						</div>
-						<div id = "aside4">
-						<a href = "mypage_review_content.do?rid=${reviewVo.rid}">
-							<button type = "button" id = "btnReview_content">상세보기</button>
-						</a>
-
-						</div>
-					</section>
-				</c:forEach>
+				<section id = "section2">
+					<c:choose>
+						<c:when test = "${list.size() == 0}">
+							<div class="review_card_no">
+								<img id="review_img"
+									src="http://localhost:9000/petcarepedia/images/review.png">
+								<span>작성된 리뷰가 존재하지 않습니다.</span>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var = "reviewVo" items = "${list}">
+								<div id = "aside1">
+									<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${reviewVo.hid}">
+										<span>${reviewVo.hname}</span>
+									</a>
+									<span>${reviewVo.tel}</span>
+									<span>
+										<span>${reviewVo.gloc}</span>
+									</span>
+									<img src = "http://localhost:9000/petcarepedia/images/cat.png">
+									<span>${reviewVo.nickname}</span>
+								</div>
+								<div id = "aside2">
+									<img src = "${reviewVo.img}">
+								</div>
+								<div id = "aside3">
+									<span>리뷰 내용</span>
+									<span> ${reviewVo.rcontent}</span>
+									<span><!-- 진료 일자 : 2023-04-26 --></span>
+								</div>
+								<div id = "aside4">
+									<a href = "mypage_review_content.do?rid=${reviewVo.rid}">
+										<button type = "button" id = "btnReview_content">상세보기</button>
+									</a>
+								</div>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</section>
 			</div>
 		</section>
 	</div>	

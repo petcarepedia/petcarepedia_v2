@@ -47,54 +47,65 @@
 			</section>
 			<div id = "aside">
 				<section id = "section2">
-					<c:forEach var = "bookingVo" items = "${list}">
-						<div id = "aside1">
-							<img src = "${bookingVo.img}">
-							<div>
-								<span>서울시 > ${bookingVo.gloc}</span>
-								<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookingVo.hid}"><span>${bookingVo.hname}</span></a>
-								<span></span>
-								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
-								<span>${bookingVo.loc}</span>
-								<c:if test = "${bookingVo.hrink ne 'X'}">
-									<img src = "http://localhost:9000/petcarepedia/images/홈.png">
-									<a href = "${bookingVo.hrink}">병원 홈페이지 가기</a>
-								</c:if>
-								<div class = "box">
-									<img src = "http://localhost:9000/petcarepedia/images/전화.png">
-									<span>${bookingVo.tel}</span>
-									<span>예약 날짜 : ${bookingVo.vdate}</span>
-									<span>예약 시간 : ${bookingVo.vtime}</span>
-								</div>
+					<c:choose>
+						<c:when test = "${list.size() == 0 && list2.size() == 0}">
+							<div class="review_card_no">
+								<img id="review_img"
+									src="http://localhost:9000/petcarepedia/images/review.png">
+								<span>예약 내역이 존재하지 않습니다.</span>
 							</div>
-						</div>
-						<a href = "mypage_reservation_delete.do?bid=${bookingVo.bid}">
-						<button type = "button" id = "btn_cancle1">예약취소</button></a>
-					</c:forEach>
-					<c:forEach var = "bookingVo" items = "${list2}">
-						<div id = "aside1">
-							<img src = "${bookingVo.img}">
-							<div>
-								<span>서울시 > ${bookingVo.gloc}</span>
-								<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookingVo.hid}"><span>${bookingVo.hname}</span></a>
-								<span></span>
-								<img src = "http://localhost:9000/petcarepedia/images/위치.png">
-								<span>${bookingVo.loc}</span>
-								<c:if test = "${bookingVo.hrink ne 'X'}">
-									<img src = "http://localhost:9000/petcarepedia/images/홈.png">
-									<a href = "${bookingVo.hrink}">병원 홈페이지 가기</a>
-								</c:if>
-								<div class = "box">
-									<img src = "http://localhost:9000/petcarepedia/images/전화.png">
-									<span>${bookingVo.tel}</span>
-									<span>예약 날짜 : ${bookingVo.vdate}</span>
-									<span>예약 시간 : ${bookingVo.vtime}</span>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var = "bookingVo" items = "${list}">
+								<div id = "aside1">
+									<img src = "${bookingVo.img}">
+									<div>
+										<span>서울시 > ${bookingVo.gloc}</span>
+										<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookingVo.hid}"><span>${bookingVo.hname}</span></a>
+										<span></span>
+										<img src = "http://localhost:9000/petcarepedia/images/위치.png">
+										<span>${bookingVo.loc}</span>
+										<c:if test = "${bookingVo.hrink ne 'X'}">
+											<img src = "http://localhost:9000/petcarepedia/images/홈.png">
+											<a href = "${bookingVo.hrink}">병원 홈페이지 가기</a>
+										</c:if>
+										<div class = "box">
+											<img src = "http://localhost:9000/petcarepedia/images/전화.png">
+											<span>${bookingVo.tel}</span>
+											<span>예약 날짜 : ${bookingVo.vdate}</span>
+											<span>예약 시간 : ${bookingVo.vtime}</span>
+										</div>
+									</div>
 								</div>
-							</div>
-						</div>
-						<a href = "mypage_reservation_delete.do?bid=${bookingVo.bid}">
-						<button type = "button" id = "btn_cancle1">예약취소</button></a>
-					</c:forEach>
+								<a href = "mypage_reservation_delete.do?bid=${bookingVo.bid}">
+								<button type = "button" id = "btn_cancle1">예약취소</button></a>
+							</c:forEach>
+							<c:forEach var = "bookingVo" items = "${list2}">
+								<div id = "aside1">
+									<img src = "${bookingVo.img}">
+									<div>
+										<span>서울시 > ${bookingVo.gloc}</span>
+										<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookingVo.hid}"><span>${bookingVo.hname}</span></a>
+										<span></span>
+										<img src = "http://localhost:9000/petcarepedia/images/위치.png">
+										<span>${bookingVo.loc}</span>
+										<c:if test = "${bookingVo.hrink ne 'X'}">
+											<img src = "http://localhost:9000/petcarepedia/images/홈.png">
+											<a href = "${bookingVo.hrink}">병원 홈페이지 가기</a>
+										</c:if>
+										<div class = "box">
+											<img src = "http://localhost:9000/petcarepedia/images/전화.png">
+											<span>${bookingVo.tel}</span>
+											<span>예약 날짜 : ${bookingVo.vdate}</span>
+											<span>예약 시간 : ${bookingVo.vtime}</span>
+										</div>
+									</div>
+								</div>
+								<a href = "mypage_reservation_delete.do?bid=${bookingVo.bid}">
+								<button type = "button" id = "btn_cancle1">예약취소</button></a>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 				</section>
 			</div>
 		</section>
