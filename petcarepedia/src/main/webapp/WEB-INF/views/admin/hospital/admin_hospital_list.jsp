@@ -16,6 +16,7 @@
 	
 	<script>
 	$(document).ready(function(){
+		var hname = "${hname}";
 		var pager = jQuery('#ampaginationsm').pagination({
 		
 		    maxSize: '${maxSize}',	    		// max page size
@@ -34,7 +35,12 @@
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/petcarepedia/admin_hospital_list.do?page="+e.page);         
+			   if(hname!=null && hname!=""){
+				   $(location).attr('href', "http://localhost:9000/petcarepedia/admin_hospital_list.do?page="+e.page+"&hname="+hname);
+			   } else {
+				   $(location).attr('href', "http://localhost:9000/petcarepedia/admin_hospital_list.do?page="+e.page);
+			   }
+	                    
 	    });
 		
  	});
@@ -63,7 +69,7 @@
 			</section>
 			<section id="section2">
 				<div class="d2" id = "d2">
-					<input type="text"  class="search_bar" id ="search_bar"placeholder="병원명 입력">
+					<input type="text"  class="search_bar" id ="search_bar"placeholder="병원명 입력" value="${hname}">
 					<button type="submit" class="button1" id="search_btn">
 						<img src="http://localhost:9000/petcarepedia/images/foot_sky.png">
 					</button>

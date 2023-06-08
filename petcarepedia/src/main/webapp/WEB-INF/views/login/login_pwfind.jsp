@@ -42,7 +42,14 @@
 					<ul>
 						<li>
 							<label>아이디</label>
-							<input type="text" name="mid" id="id" placeholder="아이디 입력">
+							<c:choose>
+								<c:when test="${sessionScope.svo == null}">
+									<input type="text" name="mid" id="id" placeholder="아이디 입력">
+								</c:when>
+								<c:otherwise>
+									<input type="text" name="mid" id="id" placeholder="아이디 입력" value="${sessionScope.svo.mid}" disabled>
+								</c:otherwise>
+							</c:choose>
 						</li>
 						<li>
 							<label>성명</label>

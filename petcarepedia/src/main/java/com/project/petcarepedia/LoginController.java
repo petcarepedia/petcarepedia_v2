@@ -86,7 +86,7 @@ public class LoginController {
 		
 		String mid = memberService.getFindId(memberVo);
 		
-		if(mid!="") {
+		if(mid!="" && mid!=null) {
 			model.addObject("mid", mid);
 			model.setViewName("/login/login_idfind_success");
 		} else {
@@ -131,7 +131,7 @@ public class LoginController {
 		
 		String mid = memberService.getFindPass(memberVo);
 		
-		if(mid!="") {
+		if(mid!="" && mid!=null) {
 			model.addObject("mid", mid);
 			model.setViewName("/login/login_pwupdate");
 		} else {

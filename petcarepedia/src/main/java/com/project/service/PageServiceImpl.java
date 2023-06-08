@@ -28,9 +28,9 @@ public class PageServiceImpl {
 	private PageDao pageDao;
 
 
-	public ArrayList<HospitalVo> getHsListPage(int startCount, int endCount) {
+	public ArrayList<HospitalVo> getHsListPage(int startCount, int endCount, String hname) {
 		ArrayList<HospitalVo> rlist = new ArrayList<HospitalVo>();
-		List<Object> list = pageDao.Hselect(startCount, endCount);
+		List<Object> list = pageDao.Hsselect(startCount, endCount, hname);
 		for(Object obj : list) {
 			HospitalVo hospitalVo = (HospitalVo)obj;
 			rlist.add(hospitalVo);
@@ -118,21 +118,20 @@ public class PageServiceImpl {
 			dbCount = pageDao.RtotalRowCount();
 			pageSize = 7;
 		}
-		else if (serviceName.equals("hospital_search")) {
-			dbCount = pageDao.HstotalRowCount();
-			pageSize = 7;
-		}
-		if(serviceName.equals("review") || serviceName.equals("reviewSearch")) {
+		else if(serviceName.equals("review") || serviceName.equals("reviewSearch")) {
 			pageCount = 7;
 		}
 		else {
-			// 총 페이지 수 계산
-			if (dbCount % pageSize == 0) {
-				pageCount = dbCount / pageSize;
-			} else {
-				pageCount = dbCount / pageSize + 1;
-			}
+			dbCount = pageDao.HstotalRowCount(serviceName);
+			pageSize = 7;
 		}
+		
+		if (dbCount % pageSize == 0) {
+			pageCount = dbCount / pageSize;
+		} else {
+			pageCount = dbCount / pageSize + 1;
+		}
+		
 
 		// 요청 페이지 계산
 		if (page != null) {
