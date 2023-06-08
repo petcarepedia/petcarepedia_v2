@@ -2,6 +2,8 @@ package com.project.petcarepedia;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,7 @@ import com.project.vo.BookmarkVo;
 import com.project.vo.HospitalVo;
 import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
+import com.project.vo.SessionVo;
 
 
 @Controller
@@ -75,33 +78,51 @@ public class SearchController {
 	
 	/** search_result.do - 병원 상세정보 **/
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
-	public ModelAndView search_result(String hid, String mid) {
-		ModelAndView model = new ModelAndView();
-		HospitalVo hospital = hospitalService.select(hid);
-		HospitalVo star = hospitalService.selectStar(hid);
-		BookingVo bookingVo = bookingService.getSelectTime(hid);
-		ArrayList<ReviewVo> RM_select = reviewService.getRM_select(hid);
-		
-		model.addObject("hospital", hospital);
-		model.addObject("star", star);
-		model.addObject("time", bookingVo);
-		model.addObject("RM_select", RM_select);
-		/* System.out.println(RM_select.size()); */
-		
-		// Check bookmark
+	public ModelAndView search_result(String hid, HttpSession session, String rid) {
+	    ModelAndView model = new ModelAndView();
+	    
+	    // session
+	    SessionVo svo = (SessionVo)session.getAttribute("svo");
+	    String mid;
+	    if(svo == null) {
+	    	mid = ""; 
+	    } else {
+	    	mid = svo.getMid();
+	    }
+	    
+	    HospitalVo hospital = hospitalService.select(hid);
+	    HospitalVo star = hospitalService.selectStar(hid);
+	    BookingVo bookingVo = bookingService.getSelectTime(hid);
+	    ArrayList<ReviewVo> RM_select = reviewService.getRM_select(hid);
+	    
+	    model.addObject("hospital", hospital);
+	    model.addObject("star", star);
+	    model.addObject("time", bookingVo);
+	    model.addObject("RM_select", RM_select);
+	    
+	    // Check bookmark
 	    BookmarkVo bookmarkVo = new BookmarkVo();
+	   
 	    bookmarkVo.setHid(hid);
-	    bookmarkVo.setMid(mid); // 이 부분을 세션 정보 또는 다른 값을 가져와 설정해야합니다.
+	    bookmarkVo.setMid(mid);
 	    int bookmarkResult = bookmarkService.getCheckBookmark(bookmarkVo);
 	    model.addObject("bookmarkResult", bookmarkResult);
 	    
-	    // reveiw chech
-//	    BookingVo blist = bookingService.getReviewCheck(hid, mid);
-//	    model.addObject("blist", blist);
+	    // Check like
+	    ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
+	    reviewLikeVo.setMid(mid);
+	    
+	    for (ReviewVo review : RM_select) {
+	    	String targetRid = review.getRid();
+	    	 reviewLikeVo.setRid(targetRid);
+    	 	int likeResult = reviewLikeService.getIdCheck(reviewLikeVo);
+    	 	review.setLikeResult(likeResult);
+		    }
+	    model.addObject("RM_select", RM_select);
 	    
 	    model.setViewName("/search/search_result");
-		
-		return model;
+	    
+	    return model;
 	}
 	
 	
@@ -250,7 +271,6 @@ public class SearchController {
         } else { // 기록 있음
         	reviewLikeService.getLikesDownID(reviewLikeVo);
         	reviewLikeService.getLikesDown(reviewLikeVo);
-			/* System.out.println(like_result); */
             return "fail";
         }
     }
@@ -282,7 +302,7 @@ public class SearchController {
 	}
 	
 	
-	/** search_mian_map.do **/
+	/** search_main_map.do **/
 	@RequestMapping(value="/search_main_map.do", method=RequestMethod.GET)
 	public String search_main_map() {
 		return "/search/search_main_map";

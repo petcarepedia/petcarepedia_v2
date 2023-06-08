@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	
+	/** 지역구 배열 **/
 	var areaArr = new Array();
 	areaArr.push(
 		{location:'강남구', lat:'37.507323', lng:'127.033903'},
@@ -29,10 +30,12 @@ $(document).ready(function(){
 		{location:'중랑구', lat:'37.591034', lng:'127.087569'}
 	);
 	
+	/** default **/
 	$(function() {
 		initGlocMap('강남구');
 	});
 	
+	/** 지역구 선택시 이동 **/
 	function initGlocMap(gloc) {
 		$.ajax({
 			url : "main_map_data.do?gloc="+gloc,
@@ -61,6 +64,7 @@ $(document).ready(function(){
 							position: new naver.maps.LatLng(obj.x, obj.y)
 						});
 						
+						/** 클릭시 병원 정보 **/
 						var contentString = [
 					        '<div class="iw_inner" style="padding:10px;">',
 					        '   <div style="clear:both;margin-bottom:5px;">',
@@ -105,12 +109,8 @@ $(document).ready(function(){
 		});
 	}
 	
-	
-	
-	
 	$(document).on("click", ".gloc", function() {
 		initGlocMap($(this).val());
 	});
 
-
-}); //ready
+});

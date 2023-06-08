@@ -7,7 +7,14 @@
 	padding: 0px;
 	color: #3d3d3d;
 	font-family: 'Nanum Gothic', sans-serif;
-	
+}
+
+div.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
 }
 
 div.result_main {
@@ -20,18 +27,15 @@ div.result_main {
 	/* text-align: center; */
 }
 
-div.header-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
+div.result_main hr {
+	border: 1px solid #828282;
 }
 
 
 /***************************************
-	section_info_info
+	section_info
 ***************************************/
+/* 병원 사진 */
 div.result_main div.images_d {
 	/* border: 1px solid gray; */
 	height: 220px;
@@ -41,7 +45,6 @@ div.result_main div.images_d {
 	display: flex;
     justify-content: center;
     align-items: center;
-	
 }
 
 div.result_main div.images_d img {
@@ -53,13 +56,13 @@ div.result_main div.images_d img {
 	object-fit: contain;
 }
 
+/* 병원 정보 */
 div.result_main div.name_d {
 	/* border: 1px solid red; */
 	/* background: red; */
 	margin-left: 5px;
 	padding-bottom: 20px;
 	height: auto;
-	
 }
 
 div.result_main div.area_d {
@@ -77,6 +80,42 @@ div.result_main span.name {
 	float:left;
 }
 
+/* 버튼 공통 */
+div.result_main div.buttons {
+	/*  */
+	display: flex;
+	align-items: center;
+	clean: both;
+	padding-left: 10px;	
+}
+
+div.result_main div.name_d button:hover {
+	cursor: pointer;
+}
+
+div.name_d div.buttons img {
+	/* border: 1px solid red; */
+	width: 35px;
+	/* margin: 0px 10px; */
+}
+
+/* 북마크버튼 */
+div.name_d button#bookmark  {
+	background: #FFFFFF;
+	/* border: 1px solid #8A8A8A; */
+	border: none;
+	border-radius: 5px;
+	/* font-size: 15px; */
+	margin-top: 10px;
+	width: 35px;
+	height: 35px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	/* margin-right: 30px; */
+}
+
+/* 별점 */
 div.result_main span.grade {
 	/* border: 1px solid red; */
 	font-size: 14px;
@@ -84,6 +123,7 @@ div.result_main span.grade {
 	display: block;
 }
 
+/* 예약 버튼 */
 div.result_main div.name_d button#reservation {
 	background: #98DFFF;
 	color: white;
@@ -99,7 +139,6 @@ div.result_main div.name_d button#reservation {
 	text-align: left;
 	display: flex;
 	align-items: center;
-		
 }
 
 div.result_main div.name_d button#reservation: hover {
@@ -112,60 +151,42 @@ div.result_main div.name_d button#reservation img {
 	margin: 0px 10px;
 }
 
-div.result_main div.buttons {
-	/* border: 1px solid red; */
-	display: flex;
-	align-items: center;
-	clean: both;
-	padding-left: 10px;	
+
+/***************************************
+	modal
+***************************************/
+div.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
-div.name_d div.buttons a {
-	text-decoration: none;
-	}
-
-div.result_main div.name_d button#review {
-	background: #FFB3BD;
-	border-style: none;
-	border-radius: 5px;
-	font-size: 15px;
-	margin-top: 10px;
-	width: 193px;
-	height: 40px;
-	text-align: left;
-	display: flex;
-	align-items: center;
-	margin-right: 10px;
+div.modal-content {
+	border: 1px solid red;
+	background-color: #fefefe;
+	margin: 10% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 500px;
+	weight: 500px;
 }
 
-div.result_main div.name_d button#share, div.name_d button#bookmark  {
-	background: #FFFFFF;
-	/* border: 1px solid #8A8A8A; */
-	border: none;
-	border-radius: 5px;
-	/* font-size: 15px; */
-	margin-top: 10px;
-	width: 35px;
-	height: 35px;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	/* margin-right: 30px; */
+div.modal-content span.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
 }
 
-
-div.name_d div.buttons img {
-	/* border: 1px solid red; */
-	width: 35px;
-	/* margin: 0px 10px; */
-}
-
-div.result_main div.name_d button:hover {
+div.modal-content span.close:hover {
 	cursor: pointer;
-}
-
-div.result_main hr {
-	border: 1px solid #828282;
 }
 
 
@@ -226,7 +247,6 @@ div.api_info {
 	margin-left: 5px;
 	padding-bottom: 20px;
 	display: flex;
-	
 }
 
 div.api {
@@ -272,7 +292,6 @@ div.map {
 }
 
 
-
 /***************************************
 	section_info_api_time
 ***************************************/
@@ -291,10 +310,6 @@ div.time ul:first-child {
 	margin-left: 100px;
 }
 
-div.time ul li:nth-child(6), div.time ul li:nth-child(7), div.time ul li:nth-child(8) {
-	color: red;
-}
-
 div.time ul li {
 	margin-bottom: 10px;
 	margin-right: 50px;
@@ -310,6 +325,7 @@ div.list {
 	padding-bottom: 15px;
 }
 
+/* 리뷰 정보 */
 div.grade {
 	/* border: 2px solid green; */
 	width: 150px;
@@ -324,12 +340,12 @@ div.grade > span {
 	display: inline-block;
 }
 
+/* 점수 */
 div.total {
 	border: 1px solid #8A8A8A;
 	border-radius:5px;
 	text-align: center;
 	padding: 20px 0px;
-	
 }
 
 div.total span:first-child {
@@ -347,6 +363,7 @@ div.filter {
 	float: right;
 }
 
+/* 리뷰 리스트 */
 div.review_card_no {
 	/* border: 1px solid #98DFFF; */
 	background: #F7FCFE;
@@ -431,12 +448,7 @@ div.review_card div.write {
 	flex: 1;
 }
 
-div.review_card div.write > h3 {
-	font-size: 14px;
-	padding: 30px 0px 10px 0px;
-}
-
-div.review_card div.write >p {
+div.review_card div.write > p {
 	/* border: 1px solid red; */
 	font-size: 14px;
 }
@@ -455,24 +467,23 @@ div.review_card div.date span {
 	display:inline-block;
 }
 
-div.review_card div.date button#like-log {
-	border: 1px solid #98DFFF;
-	border-radius: 5px;
-/* 	background: white; */
-	background: #333;
-	font-size: 14px;
-	width: 165px;
-	height: 35px;
-	margin-top: 15px; 
-	padding-bottom: 7px;
-	pointer-events: none;
-	cursor: no-drop;
-	display: flex;
-  align-items: center;
-  justify-content: center;
+/* 좋아요 */
+/* 공통 */
+a.icon {
+  text-decoration:none; color:inherit; cursor: pointer;
 }
 
-div.review_card div.date button#like {
+.icon.heart img{
+	padding-bottom: 1px;
+    width: 15px;
+    height: 15px;
+}
+
+.heart{
+    transform-origin: center;
+}
+
+button#like {
 	border: 1px solid #98DFFF;
 	border-radius: 5px;
 	background: white;
@@ -482,9 +493,9 @@ div.review_card div.date button#like {
 	margin-top: 15px; 
 	margin-left: 20px;
 	/* padding-bottom: 7px; */
-	 display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 div.review_card div.date button#like span.like-count {
@@ -498,9 +509,34 @@ div.review_card div.date button#like span.heart {
 	color: red;
 }
 
+.icon.heart.fas{
+  color:red
+}
+
+.heart.active img{
+    animation: animateHeart .3s linear forwards;
+}
+
+@keyframes animateHeart{
+    0%{transform:scale(.2);}
+    40%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+  }
+  
+/* 조작O */
+button.like, button.active {
+	cursor:pointer;
+}
+  
+
+/* 조작X */
+button.disabled, button.non {
+	cursor:not-allowed; // 커서금지
+}
+
 div.review_card div.date span:last-child {
 	margin-top: 7px;
-	/* border: 1px solid #98DFFF;	 */
+	/* border: 1px solid #98DFFF; */	
 }
 
 div.review_card div.date a {
@@ -508,10 +544,7 @@ div.review_card div.date a {
 	color: red;
 }
 
-div.review_card div.date button#like:hover {
-	cursor: pointer;
-}
-
+/* 신고버튼 */
 div.review_card div.date a#rstateBtn {
 	/* border: 1px solid #98DFFF; */
 }
@@ -528,73 +561,3 @@ div.review_card div.date button.rstate:hover {
 	cursor: pointer;
 }
 
-
-/***************************************
-	modal
-***************************************/
-div.modal {
-	display: none;
-  position: fixed;
-  z-index: 1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-div.modal-content {
-	border: 1px solid red;
-  background-color: #fefefe;
-  margin: 10% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 500px;
-  weight:  500px;
-}
-
-div.modal-content span.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-div.modal-content span.close:hover
-{
-	cursor: pointer;
-}
-
-
-
-/** 하트 **/
-a.icon {
-
-  text-decoration:none; color:inherit; cursor: pointer;
-}
-
-.icon.heart img{
-	/* padding-top: 10px; */
-    width: 15px;
-    height: 15px;
-}
-
-.icon.heart.fas{
-  color:red
-}
-.heart{
-    transform-origin: center;
-}
-.heart.active img{
-    animation: animateHeart .3s linear forwards;
-}
-
-@keyframes animateHeart{
-    0%{transform:scale(.2);}
-    40%{transform:scale(1.2);}
-    100%{transform:scale(1);}
-  }
-  
-  
