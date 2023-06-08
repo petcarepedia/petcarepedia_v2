@@ -6,7 +6,7 @@ $(document).ready(function(){
 	$("#bookmark").click(function(event) { // 북마크
 		event.preventDefault(); // 페이지 바로넘어감 방지
 		
-		var hid = "${hospital.hid}";
+		var hid = $("input[name='hid']").val();
 		
 		 if(mid == "") { // 미로그인시
 			 Swal.fire({
@@ -269,4 +269,4 @@ $(document).ready(function(){
 	});
 
 
-}); //ready
+});

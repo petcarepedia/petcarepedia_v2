@@ -2,6 +2,8 @@ package com.project.petcarepedia;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,7 @@ import com.project.vo.BookmarkVo;
 import com.project.vo.HospitalVo;
 import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
+import com.project.vo.SessionVo;
 
 
 @Controller
@@ -75,8 +78,18 @@ public class SearchController {
 	
 	/** search_result.do - 병원 상세정보 **/
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
-	public ModelAndView search_result(String hid, String mid, String rid) {
+	public ModelAndView search_result(String hid, HttpSession session, String rid) {
 	    ModelAndView model = new ModelAndView();
+	    
+	    // session
+	    SessionVo svo = (SessionVo)session.getAttribute("svo");
+	    String mid;
+	    if(svo == null) {
+	    	mid = ""; 
+	    } else {
+	    	mid = svo.getMid();
+	    }
+	    
 	    HospitalVo hospital = hospitalService.select(hid);
 	    HospitalVo star = hospitalService.selectStar(hid);
 	    BookingVo bookingVo = bookingService.getSelectTime(hid);
