@@ -37,8 +37,8 @@ public class MypageController {
 	 * information.do - ³ªÀÇ È¸¿øÁ¤º¸ Æû
 	 */
 	@RequestMapping(value = "/mypage_member_information.do", method = RequestMethod.GET)
-	public ModelAndView information(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public ModelAndView information(HttpSession session) {
+		//HttpSession session = request.getSession();
 		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
 		//MemberDao memberDao = new MemberDao();
@@ -52,8 +52,8 @@ public class MypageController {
 	 * revise.do - È¸¿øÁ¤º¸ ¼öÁ¤ÇÏ±â Æû
 	 */
 	@RequestMapping(value = "/mypage_member_revise.do", method = RequestMethod.GET)
-	public ModelAndView revise(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public ModelAndView revise(HttpSession session) {
+		//HttpSession session = request.getSession();
 		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
 		//MemberDao memberDao = new MemberDao();
@@ -83,8 +83,8 @@ public class MypageController {
 	 * reservation.do - ¿¹¾à³»¿ª(¿¹¾àÁß) Æû
 	 */
 	@RequestMapping(value = "/mypage_reservation.do", method = RequestMethod.GET)
-	public ModelAndView reservation(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public ModelAndView reservation(HttpSession session) {
+		//HttpSession session = request.getSession();
 		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
 		//BookingDao bookingDao = new BookingDao();
@@ -101,7 +101,7 @@ public class MypageController {
 	 * reservation.do - ¿¹¾à³»¿ª »èÁ¦ÇÏ±â Æû
 	 */
 	@RequestMapping(value = "/mypage_reservation_delete.do", method = RequestMethod.GET)
-	public ModelAndView reservation_delete(String bid, HttpServletRequest request) {
+	public ModelAndView reservation_delete(String bid, HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		//BookingDao bookingDao = new BookingDao();
 		BookingVo bookingVo = bookingService.getSelect2(bid);
@@ -136,8 +136,8 @@ public class MypageController {
 	 * reservation2.do - ¿¹¾à³»¿ª(Áø·á¿Ï·á) Æû
 	 */
 	@RequestMapping(value = "/mypage_reservation2.do", method = RequestMethod.GET)
-	public ModelAndView reservation2(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public ModelAndView reservation2(HttpSession session) {
+		//HttpSession session = request.getSession();
 		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
 		//BookingDao bookingDao = new BookingDao();
@@ -154,8 +154,8 @@ public class MypageController {
 	 * bookmark.do - Áñ°ÜÃ£±â Æû
 	 */
 	@RequestMapping(value = "/mypage_bookmark.do", method = RequestMethod.GET)
-	public ModelAndView bookmark(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public ModelAndView bookmark(HttpSession session) {
+		//HttpSession session = request.getSession();
 		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
 		//BookmarkDao bookmarkDao = new BookmarkDao();
@@ -185,8 +185,8 @@ public class MypageController {
 	 * my_review.do - ³»°¡ ¾´ ¸®ºä Æû
 	 */
 	@RequestMapping(value = "/mypage_my_review.do", method = RequestMethod.GET)
-	public ModelAndView my_review(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public ModelAndView my_review(HttpSession session) {
+		//HttpSession session = request.getSession();
 		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
 		//ReviewDao reviewDao = new ReviewDao();
@@ -278,8 +278,8 @@ public class MypageController {
 	 * review_write.do - ¸®ºä ¾²±âÆû
 	 */
 	@RequestMapping(value = "/mypage_review_write.do", method = RequestMethod.GET)
-	public ModelAndView review_write(HttpServletRequest request, String hid, String bid) {
-		HttpSession session = request.getSession();
+	public ModelAndView review_write(HttpSession session, String hid, String bid) {
+		//HttpSession session = request.getSession();
 		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
 		//MemberDao memberDao = new MemberDao();
@@ -311,8 +311,8 @@ public class MypageController {
 	 * signout.do - È¸¿øÅ»ÅðÆû
 	 */
 	@RequestMapping(value = "/mypage_signout.do", method = RequestMethod.GET)
-	public ModelAndView signout(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public ModelAndView signout(HttpSession session) {
+		//HttpSession session = request.getSession();
 		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
 		model.addObject("mid", svo.getMid());
@@ -324,9 +324,9 @@ public class MypageController {
 	 * member_delete_proc - È¸¿øÅ»Åð Ã³¸®
 	 */
 	@RequestMapping(value = "/member_delete_proc.do", method = RequestMethod.POST ,produces="application/x-www-form-urlencoded;charset=UTF-8")
-	public String member_delete_proc(HttpServletRequest request, String pass) {
+	public String member_delete_proc(HttpSession session, String pass) {
 		String viewName = "";
-		HttpSession session = request.getSession();
+		//HttpSession session = request.getSession();
 		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		//MemberDao memberDao = new MemberDao();
 		int result = memberService.getDelete(svo.getMid(), pass);
