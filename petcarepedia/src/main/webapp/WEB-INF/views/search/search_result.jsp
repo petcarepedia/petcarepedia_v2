@@ -283,17 +283,17 @@
 									
 									<!-- 좋아요 -->
 									<form name="likeForm" action="likeProc.do" method="post">
-										<input type="hidden" name="hid" value="${hospital.hid}">
-										<input type=hidden name="rid" value="${RM_select.rid}">
-										<input type="hidden" name="mid" value="${sessionScope.svo.mid}">
-										<input type="hidden" name="like Result" value="${likeResult}">
+										<input type="text" name="hid" value="${hospital.hid}">
+										<input type=text name="rid" value="${RM_select.rid}">
+										<input type="text" name="mid" value="${sessionScope.svo.mid}">
+										<input type="text" name="likeResult" value="${RM_select.likeResult}">
 
 										<!-- session 체크 이후 -->
 										<c:choose>
 											<c:when test="${sessionScope.svo.mid != null}">
 												<c:choose>
 													<c:when test="${sessionScope.svo.mid == RM_select.mid}">
-														<c:if test="${likeResult==0}">
+														<c:if test="${RM_select.likeResult==0}">
 															<a href="javascript:;" class="icon heart">
 																<button type="submit" id="like" class="disabled" data-rid="${RM_select.rid}" disabled>
 																	좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -304,7 +304,7 @@
 															</a>
 														</c:if>
 														
-														<c:if test="${likeResult!=0}">
+														<c:if test="${RM_select.likeResult!=0}">
 															<a href="javascript:;" class="icon heart">
 																<button type="submit" id="like" class="active disabled" data-rid="${RM_select.rid}" disabled>
 																	좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -317,7 +317,7 @@
 													</c:when>
 														
 													 <c:otherwise>
-													 	<c:if test="${likeResult==0}">
+													 	<c:if test="${RM_select.likeResult==0}">
 															<a href="javascript:;" class="icon heart">
 																<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">
 																	좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -328,7 +328,7 @@
 															</a>
 														</c:if>
 														
-														<c:if test="${likeResult!=0}">
+														<c:if test="${RM_select.likeResult!=0}">
 															<a href="javascript:;" class="icon heart">
 																<button type="submit" id="like" class="active" data-rid="${RM_select.rid}">
 																	좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

@@ -146,21 +146,19 @@ $(document).ready(function(){
 						rid: rid,
 						mid: mid
 					},
-					success: function(response) {
-						if (response == "success") { // 좋아요 처리
+					success: function(like_result) {
+						if (like_result === "success") { // 좋아요 처리
 							var count = parseInt(button.find('.like-count').text());
 							count++;
 							button.find('.like-count').text(count);
 							$('html, body').scrollTop(scrollPositions[rid]);
-						} else if (response == "fail") { // 좋아요 있을 때
+						} else if (like_result === "fail") { // 좋아요 있을 때
 							var count = parseInt(button.find('.like-count').text());
 							count--;
 							button.find('.like-count').text(count);
 							$('html, body').scrollTop(scrollPositions[rid]);
 						}
 						
-						// 페이지 로드 시 스크롤 위치 복원
-						$('html, body').scrollTop(scrollPositions[rid]);
 					}
 				});
 			}

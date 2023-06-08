@@ -102,25 +102,23 @@ public class SearchController {
 	    
 	    // Check bookmark
 	    BookmarkVo bookmarkVo = new BookmarkVo();
+	   
 	    bookmarkVo.setHid(hid);
-	    bookmarkVo.setMid(mid); // 이 부분을 세션 정보 또는 다른 값을 가져와 설정해야합니다.
+	    bookmarkVo.setMid(mid);
 	    int bookmarkResult = bookmarkService.getCheckBookmark(bookmarkVo);
 	    model.addObject("bookmarkResult", bookmarkResult);
 	    
 	    // Check like
 	    ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
 	    reviewLikeVo.setMid(mid);
-	    String targetRid = null;
 	    
 	    for (ReviewVo review : RM_select) {
-	        targetRid = review.getRid();
-	        break;
-	    }
-	    if (targetRid != null) {
-	        reviewLikeVo.setRid(targetRid);
-	        int likeResult = reviewLikeService.getIdCheck(reviewLikeVo);
-	        model.addObject("likeResult", likeResult);
-	    }
+	    	String targetRid = review.getRid();
+	    	 reviewLikeVo.setRid(targetRid);
+    	 	int likeResult = reviewLikeService.getIdCheck(reviewLikeVo);
+    	 	review.setLikeResult(likeResult);
+		    }
+	    model.addObject("RM_select", RM_select);
 	    
 	    model.setViewName("/search/search_result");
 	    
@@ -273,7 +271,6 @@ public class SearchController {
         } else { // 기록 있음
         	reviewLikeService.getLikesDownID(reviewLikeVo);
         	reviewLikeService.getLikesDown(reviewLikeVo);
-			/* System.out.println(like_result); */
             return "fail";
         }
     }
