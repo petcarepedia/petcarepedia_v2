@@ -75,33 +75,43 @@ public class SearchController {
 	
 	/** search_result.do - 병원 상세정보 **/
 	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
-	public ModelAndView search_result(String hid, String mid) {
-		ModelAndView model = new ModelAndView();
-		HospitalVo hospital = hospitalService.select(hid);
-		HospitalVo star = hospitalService.selectStar(hid);
-		BookingVo bookingVo = bookingService.getSelectTime(hid);
-		ArrayList<ReviewVo> RM_select = reviewService.getRM_select(hid);
-		
-		model.addObject("hospital", hospital);
-		model.addObject("star", star);
-		model.addObject("time", bookingVo);
-		model.addObject("RM_select", RM_select);
-		/* System.out.println(RM_select.size()); */
-		
-		// Check bookmark
+	public ModelAndView search_result(String hid, String mid, String rid) {
+	    ModelAndView model = new ModelAndView();
+	    HospitalVo hospital = hospitalService.select(hid);
+	    HospitalVo star = hospitalService.selectStar(hid);
+	    BookingVo bookingVo = bookingService.getSelectTime(hid);
+	    ArrayList<ReviewVo> RM_select = reviewService.getRM_select(hid);
+	    
+	    model.addObject("hospital", hospital);
+	    model.addObject("star", star);
+	    model.addObject("time", bookingVo);
+	    model.addObject("RM_select", RM_select);
+	    
+	    // Check bookmark
 	    BookmarkVo bookmarkVo = new BookmarkVo();
 	    bookmarkVo.setHid(hid);
 	    bookmarkVo.setMid(mid); // 이 부분을 세션 정보 또는 다른 값을 가져와 설정해야합니다.
 	    int bookmarkResult = bookmarkService.getCheckBookmark(bookmarkVo);
 	    model.addObject("bookmarkResult", bookmarkResult);
 	    
-	    // reveiw chech
-//	    BookingVo blist = bookingService.getReviewCheck(hid, mid);
-//	    model.addObject("blist", blist);
+	    // Check like
+	    ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
+	    reviewLikeVo.setMid(mid);
+	    String targetRid = null;
+	    
+	    for (ReviewVo review : RM_select) {
+	        targetRid = review.getRid();
+	        break;
+	    }
+	    if (targetRid != null) {
+	        reviewLikeVo.setRid(targetRid);
+	        int likeResult = reviewLikeService.getIdCheck(reviewLikeVo);
+	        model.addObject("likeResult", likeResult);
+	    }
 	    
 	    model.setViewName("/search/search_result");
-		
-		return model;
+	    
+	    return model;
 	}
 	
 	

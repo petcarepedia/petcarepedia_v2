@@ -458,18 +458,16 @@ div.review_card div.date span {
 div.review_card div.date button#like-log {
 	border: 1px solid #98DFFF;
 	border-radius: 5px;
-/* 	background: white; */
-	background: #333;
+	background: white;
 	font-size: 14px;
 	width: 165px;
 	height: 35px;
 	margin-top: 15px; 
-	padding-bottom: 7px;
-	pointer-events: none;
-	cursor: no-drop;
+	margin-left: 20px;
+	/* padding-bottom: 7px; */
 	display: flex;
-  align-items: center;
-  justify-content: center;
+	align-items: center;
+	justify-content: center;
 }
 
 div.review_card div.date button#like {
@@ -482,15 +480,27 @@ div.review_card div.date button#like {
 	margin-top: 15px; 
 	margin-left: 20px;
 	/* padding-bottom: 7px; */
-	 display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div.review_card div.date button#like-log span.like-count {
+	font-size: 14px;
+	margin-bottom: 7px; 
+	padding-left: 5px;
 }
 
 div.review_card div.date button#like span.like-count {
 	font-size: 14px;
 	margin-bottom: 7px; 
 	padding-left: 5px;
+}
+
+
+div.review_card div.date button#like-log span.heart {
+	font-size: 15px;
+	color: red;
 }
 
 div.review_card div.date button#like span.heart {
@@ -587,6 +597,7 @@ a.icon {
 .heart{
     transform-origin: center;
 }
+
 .heart.active img{
     animation: animateHeart .3s linear forwards;
 }
