@@ -162,16 +162,18 @@ public class LoginController {
 	 * login_pwupdate_proc.do - 비밀번호 재설정 - 재설정 처리
 	 */
 	@RequestMapping(value="/login_pwupdate_proc.do",method=RequestMethod.POST)
-	public String login_pwupdate_proc(MemberVo memberVo) {
-		String viewName = "";
+	public ModelAndView login_pwupdate_proc(MemberVo memberVo,HttpSession session) {
+		ModelAndView model = new ModelAndView();
 		
 		if(memberService.getUpdatePass(memberVo)==1) {
-			viewName = "/login/login_pwupdate_success";
+			session.invalidate();
+			model.addObject("pwupdate_result", "success");
+			model.setViewName("/login/login");
 		} else {
 			//에러페이지
 		}
 		
-		return viewName;
+		return model;
 	}
 	
 	/**
