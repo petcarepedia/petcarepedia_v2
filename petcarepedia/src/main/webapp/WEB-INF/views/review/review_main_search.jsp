@@ -95,7 +95,7 @@
 		<section id="review">
 		<div id="review" class="review">
 			<div id="title">
-				<span>리뷰${sessionScope.svo.mid }</span>
+				<span>리뷰</span>
 				<c:choose>
 					<c:when test="${sessionScope.svo.mid == null }">
 						<span><a href="login.do">리뷰쓰기 ></a></span>

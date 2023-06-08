@@ -129,10 +129,6 @@ $(document).ready(function(){
 	});
 
 	
-
-	
-
-	
 }); //ready
 
 

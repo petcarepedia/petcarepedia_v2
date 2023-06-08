@@ -3,14 +3,16 @@ package com.project.vo;
 public class ReviewLikeVo {
 
 
-	String mid, rid, like_state;
+	String mid, rid, rlid;
+	
 
-	public String getLike_state() {
-		return like_state;
+
+	public String getRlid() {
+		return rlid;
 	}
 
-	public void setLike_state(String like_state) {
-		this.like_state = like_state;
+	public void setRlid(String rlid) {
+		this.rlid = rlid;
 	}
 
 	public String getMid() {

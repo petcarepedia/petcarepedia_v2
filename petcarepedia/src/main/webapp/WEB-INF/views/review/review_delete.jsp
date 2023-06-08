@@ -29,13 +29,13 @@
 							<button type="submit" class="rp_button">삭제</button>
 							<c:choose>
 								<c:when test="${page eq null || page eq ''}">
-									<a href="review_content.do?rid=${rid }&&mid=${mid}"><button type="button" class="button">취소</button></a>
+									<a href="review_content.do?rid=${rid }"><button type="button" class="button">취소</button></a>
 								</c:when>
 								<c:when test="${filter_location eq null || filter_location eq ''}">
-									<a href="review_content.do?rid=${rid }&&page=${page }&&mid=${mid}"><button type="button" class="button">취소</button></a>
+									<a href="review_content.do?rid=${rid }&&page=${page }"><button type="button" class="button">취소</button></a>
 								</c:when>
 								<c:otherwise>
-									<a href="review_content.do?rid=${rid }&&page=${page }&&filter_location=${filter_location}&&mid=${mid}"><button type="button" class="button">취소</button></a>
+									<a href="review_content.do?rid=${rid }&&page=${page }&&filter_location=${filter_location}"><button type="button" class="button">취소</button></a>
 								</c:otherwise>
 							</c:choose>
 							<a href="review_main.do"><button type="button" class="rp_button">목록</button></a>							

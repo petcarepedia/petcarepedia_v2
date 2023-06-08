@@ -142,7 +142,7 @@ public class PageServiceImpl {
 				count++;
 			}
 		} else {
-			if(serviceName.equals("review"))  {
+			if(serviceName.equals("notice"))  {
 				startCount = 1;
 				endCount = 10;
 			}

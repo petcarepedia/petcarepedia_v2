@@ -7,7 +7,7 @@ package com.project.vo;
 public class ReviewVo {
 	// 리뷰에서 필요한 Vo
 	String rid, rcontent, rdate, rstate, hid, mid, hname, animal, gloc;
-	int rlike, rno;
+	int rlike, rno, likeresult;
 	float rstar;
 	//병원과 조인 Vo
 	String loc, tel, htime, ntime, holiday, intro, img, hrink;
@@ -16,6 +16,13 @@ public class ReviewVo {
 	
 	
 	
+
+	public int getLikeresult() {
+		return likeresult;
+	}
+	public void setLikeresult(int likeresult) {
+		this.likeresult = likeresult;
+	}
 	public float getRstar() {
 		return rstar;
 	}

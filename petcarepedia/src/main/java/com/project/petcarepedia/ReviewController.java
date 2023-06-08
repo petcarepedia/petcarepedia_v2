@@ -17,6 +17,7 @@ import com.project.service.ReviewLikeService;
 import com.project.service.ReviewService;
 import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
+import com.project.vo.SessionVo;
 
 @Controller
 public class ReviewController {
@@ -36,6 +37,7 @@ public class ReviewController {
 		ModelAndView model = new ModelAndView();	
 		//임시 아이디
 		//mid="test";
+		
 		Map<String, Integer> param = pageService.getPageResult(page, "review");
 		/*
 		//페이징 처리 - startCount, endCount 구하기
@@ -94,17 +96,24 @@ public class ReviewController {
 		ModelAndView model = new ModelAndView();
 		ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
 		ReviewVo reviewVo = reviewService.getEnter_select(rid);		
+		String mid;
 		
+		if(session.getAttribute("svo") == null) {
+			mid = "";
+		}
+		else {
+			SessionVo sessionVo = (SessionVo) session.getAttribute("svo");
+			mid = sessionVo.getMid();
+		}
 		reviewVo.setRcontent(reviewVo.getRcontent().replace("\n", "<br>"));
-		reviewLikeVo.setRid(reviewVo.getRid());
-		reviewLikeVo.setMid(String.valueOf(session.getAttribute("mid")));
+		reviewLikeVo.setRid(rid);
+		reviewLikeVo.setMid(mid);
 		
 		int likeCheck = reviewLikeService.getIdCheck(reviewLikeVo);
 		
 		model.addObject("page", page);
 		model.addObject("filter_location", filter_location);
 		model.addObject("likeCheck", likeCheck);
-		model.addObject("reviewLikeVo", reviewLikeVo);
 		model.addObject("reviewVo", reviewVo);
 		model.setViewName("/review/review_content");
 		
@@ -115,12 +124,11 @@ public class ReviewController {
 	
 	//review_delete.do 리뷰 삭제 페이지
 	@RequestMapping(value="/review_delete.do", method=RequestMethod.GET)
-	public ModelAndView admin_notice_delete(String rid, String page, String filter_location, String mid) {
+	public ModelAndView admin_notice_delete(String rid, String page, String filter_location) {
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("page", page);
 		model.addObject("filter_location", filter_location);
-		model.addObject("mid", mid);
 		model.addObject("rid", rid);
 		model.setViewName("/review/review_delete");
 		
@@ -143,12 +151,11 @@ public class ReviewController {
 	
 	//review_report.do 리뷰 신고 페이지
 	@RequestMapping(value="/review_report.do", method=RequestMethod.GET)
-	public ModelAndView review_report(String rid, String page, String filter_location, String mid) {
+	public ModelAndView review_report(String rid, String page, String filter_location) {
 		ModelAndView model = new ModelAndView();
 		
 		model.addObject("page", page);
 		model.addObject("filter_location", filter_location);
-		model.addObject("mid", mid);
 		model.addObject("rid", rid);
 		model.setViewName("/review/review_report");
 		
@@ -181,7 +188,8 @@ public class ReviewController {
 	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo, String page, String filter_location, HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		
-		reviewLikeVo.setMid(String.valueOf(session.getAttribute("mid")));
+		SessionVo sessionVo = (SessionVo) session.getAttribute("svo");
+		reviewLikeVo.setMid(sessionVo.getMid());
 		
 		if(reviewLikeService.getIdCheck(reviewLikeVo) == 1) {
 			reviewLikeService.getLikesDownID(reviewLikeVo);
@@ -201,6 +209,7 @@ public class ReviewController {
 		
 		return model;
 	}	
+	
 	
 	
 	//리뷰 검색 페이징
