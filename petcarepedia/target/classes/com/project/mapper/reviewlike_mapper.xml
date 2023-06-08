@@ -14,7 +14,7 @@
 	</update>
 	
 	<insert id="likesUpID" parameterType="com.project.vo.ReviewLikeVo">
-		insert into pcp_review_like(rlid, rid, mid) values('H_'||LTRIM(TO_CHAR(SEQU_PCP_HOSPITAL_HID.NEXTVAL,'0000')),#{rid},#{mid})
+		insert into pcp_review_like(rlid, rid, mid) values('RL_'||LTRIM(TO_CHAR(SEQU_PCP_HOSPITAL_HID.NEXTVAL,'0000')),#{rid},#{mid})
 	</insert>
 	
 	<update id="likesUp" parameterType="com.project.vo.ReviewLikeVo">

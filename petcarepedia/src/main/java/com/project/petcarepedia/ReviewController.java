@@ -210,6 +210,7 @@ public class ReviewController {
 	}	
 	
 	
+	
 	//¸®ºä °Ë»ö ÆäÀÌÂ¡
 	@RequestMapping(value="/review_main_search.do", method=RequestMethod.GET)
 	public ModelAndView review_search_Proc(String page, String filter_location, HttpSession session) {
