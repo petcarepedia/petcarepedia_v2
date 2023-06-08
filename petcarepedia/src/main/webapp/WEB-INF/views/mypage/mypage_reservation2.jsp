@@ -21,10 +21,10 @@
 			<div id = "btn_box">
 				<h1 id = "title">예약 내역</h1>
 				<div id = "btn_reservation">
-					<a href = "mypage_reservation.do?mid=${sessionScope.svo.mid}"> 
+					<a href = "mypage_reservation.do"> 
 						<button type = "button" id = "btn3">예약중</button>
 					</a>
-					<a href = "mypage_reservation2.do?mid=${sessionScope.svo.mid}">
+					<a href = "mypage_reservation2.do">
 						<button type = "button" id = "btn4">진료 완료</button>
 					 </a> 
 				</div>
@@ -35,11 +35,11 @@
 					<nav>
 						<ul>
 							<li>마이페이지</li>
-							<li><a href = "mypage_member_information.do?mid=${sessionScope.svo.mid}">회원 정보</a></li>
-							<li><a href = "mypage_reservation.do?mid=${sessionScope.svo.mid}">예약 내역</a></li>
-							<li><a href = "mypage_my_review.do?mid=${sessionScope.svo.mid}">내가 쓴 리뷰</a></li>
-							<li><a href = "mypage_bookmark.do?mid=${sessionScope.svo.mid}">즐겨찾기</a></li>
-							<li><a href = "mypage_signout.do?mid=${sessionScope.svo.mid}">회원 탈퇴</a></li>
+							<li><a href = "mypage_member_information.do">회원 정보</a></li>
+							<li><a href = "mypage_reservation.do">예약 내역</a></li>
+							<li><a href = "mypage_my_review.do">내가 쓴 리뷰</a></li>
+							<li><a href = "mypage_bookmark.do">즐겨찾기</a></li>
+							<li><a href = "mypage_signout.do">회원 탈퇴</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -75,7 +75,7 @@
 							<c:when test = "${today-vdate <= 3}">
 								<div id = "btn_review">
 									<span id = "review_span">*리뷰작성기한은 3일입니다</span>
-									<a href = "mypage_review_write.do?mid=${sessionScope.svo.mid}&hid=${bookingVo.hid}&bid=${bookingVo.bid}">
+									<a href = "mypage_review_write.do?hid=${bookingVo.hid}&bid=${bookingVo.bid}">
 										<button type = "button" id = "btn_write_review">리뷰쓰기</button>
 									</a>
 								</div>
