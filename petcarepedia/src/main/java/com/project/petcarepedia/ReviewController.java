@@ -185,9 +185,11 @@ public class ReviewController {
 	
 	//리뷰 좋아요 처리
 	@RequestMapping(value="/review_like_Proc.do", method=RequestMethod.POST)
-	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo, String page, String filter_location) {
+	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo, String page, String filter_location, HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		
+		SessionVo sessionVo = (SessionVo) session.getAttribute("svo");
+		reviewLikeVo.setMid(sessionVo.getMid());
 		
 		if(reviewLikeService.getIdCheck(reviewLikeVo) == 1) {
 			reviewLikeService.getLikesDownID(reviewLikeVo);

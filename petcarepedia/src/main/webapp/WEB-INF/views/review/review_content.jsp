@@ -55,7 +55,6 @@
 							<c:otherwise>
 								<form name="reviewLikeForm" action="review_like_Proc.do" method="post">
 									<input type="hidden" id="rid" name="rid" value="${reviewVo.rid }">
-									<input type="hidden" id="mid" name="mid" value="${sessionScope.svo.mid }">
 									<input type="hidden" id="page" name="page" value="${page }">
 									<input type="hidden" id="filter_location" name="filter_location" value="${filter_location }">
 									<button type="submit" id="btnLikeProc">
