@@ -16,7 +16,7 @@
 	</select>
 	
 	<select id="enter_content" parameterType="String" resultType="com.project.vo.NoticeVo">
-		select nid, title, ndate, nhits, ncontent from pcp_notice where nid = #{nid}
+		select nid, title, to_char(ndate, 'yyyy-mm-dd hh24:mi') ndate, nhits, ncontent from pcp_notice where nid = #{nid}
 	</select>
 	
 	<insert id="insert" parameterType="com.project.vo.NoticeVo">
@@ -42,7 +42,7 @@
 	
 	<select id="listPage" parameterType="map" resultType="com.project.vo.NoticeVo">
 		select rno, nid, title, ndate, nhits, ncontent
-		from(select rownum rno, nid, title, ndate, nhits, ncontent 
+		from(select rownum rno, nid, title, to_char(ndate, 'yyyy-mm-dd hh24:mi') ndate, nhits, ncontent 
 		from(select nid, title, ndate, nhits, ncontent from pcp_notice order by ndate desc))
 		where rno between #{start} and #{end}
 	</select>
