@@ -49,6 +49,7 @@
 					<div id="d3">
 						<form name="updateForm" action="hospital_update_proc.do" method="post" enctype="multipart/form-data">
 						<input type = "hidden" name = "hid" value = "${hospitalVo.hid}">
+						<input type = "hidden" name = "hsfile" value = "${hospitalVo.hsfile}">
 							<table class="table">
 								<tr>
 									<th>병원명</th>
@@ -111,7 +112,9 @@
 								<tr>
 									<td colspan="5"> 
 										<button type="button" class="button5" id="btn_update">수정완료</button>
-										<button type="button" class="button5" id="btn_delete"><a href="admin_hospital_list.do">이전으로</a></button>
+										<button type="button" class="button5" >
+											<a href="admin_hospital_content.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">이전으로</a>
+										</button>
 									</td>
 								</tr>
 							</table>

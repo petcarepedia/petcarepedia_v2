@@ -28,8 +28,8 @@
 	</select>	
 	
 	<select id="search" parameterType="String" resultType="com.project.vo.HospitalVo">
-		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y 
-		FROM PCP_HOSPITAL WHERE HNAME LIKE '%'||#{hname}||'%'
+		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y , HFILE, HSFILE
+		FROM PCP_HOSPITAL WHERE HNAME LIKE '%'|| #{hname}||'%'
 	</select>
 	
 	<delete id="delete" parameterType="com.project.vo.HospitalVo">

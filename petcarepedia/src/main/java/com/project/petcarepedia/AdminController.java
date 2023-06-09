@@ -55,6 +55,7 @@ public class AdminController {
 		Map<String, Integer> param = pageService.getPageResult(page, "review2");
 		
 		ArrayList<ReviewVo> list = pageService.getRListPage(param.get("startCount"), param.get("endCount"));
+		
 		model.addObject("list", list);
 		model.addObject("totals", param.get("dbCount"));
 		model.addObject("pageSize",param.get("pageSize"));
