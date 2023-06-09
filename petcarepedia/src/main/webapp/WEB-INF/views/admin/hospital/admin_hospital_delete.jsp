@@ -70,7 +70,9 @@
 								<tr>
 									<td colspan="5"> 
 										<button type="submit" class="button5" id="btn_update">삭제완료</a></button>
-										<button type="button" class="button5" id="btn_delete"><a href="admin_hospital_delete.do?hid=${hospitalVo.hid}">이전으로</a></button>
+										<button type="button" class="button5" id="btn_delete">
+											<a href="admin_hospital_content.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">이전으로</a>
+										</button>
 									</td>
 								</tr>
 							</table>

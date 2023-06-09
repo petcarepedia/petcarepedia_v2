@@ -35,61 +35,73 @@
 					<div id="d3">
 						<form name="updateForm" action="hospital_update_proc.do" method="post">
 						<input type = "hidden" name = "hid" value = "${hospitalVo.hid}">
+						<input type = "hidden" name = "hsfile" value = "${hospitalVo.hsfile}">
 							<table class="table">
 								<tr>
 									<th>병원명</th>
-									<td><input type="text" name="hname" id = "hname" value="${hospitalVo.hname}"></td>
+									<td><input type="text" name="hname" id = "hname" value="${hospitalVo.hname}" disabled></td>
 								</tr>
 								<tr>
 									<th>주소</th>
-									<td><input type="text" name="gloc" id="gloc" value="${hospitalVo.gloc}"></td>
+									<td><input type="text" name="gloc" id="gloc" value="${hospitalVo.gloc}" disabled></td>
 								</tr>
 								<tr>
 									<th>지역 구</th>
-									<td><input type="text" name="loc" id="loc" value="${hospitalVo.loc}"></td>
+									<td><input type="text" name="loc" id="loc" value="${hospitalVo.loc}" disabled></td>
 								</tr>
 								<tr>
 									<th>전화번호</th>
-									<td><input type="text" name="tel" id="tel" value="${hospitalVo.tel}"></td>
+									<td><input type="text" name="tel" id="tel" value="${hospitalVo.tel}" disabled></td>
 								</tr>
 								<tr>
 									<th>영업시간</th>
 									<td>
-										<input type="text" name="htime" id="htime" placeholder="영업시간 : 00:00 ~ 00:00" value="${hospitalVo.htime}">
+										<input type="text" name="htime" id="htime" placeholder="영업시간 : 00:00 ~ 00:00" value="${hospitalVo.htime}" disabled>
 									</td>
 								</tr>
 								<tr>
 									<th>특수동물 진료 여부</th>
-									<td><input type="text" name="animal" id="animal" placeholder="O / X " value="${hospitalVo.animal}"> </td>
+									<td><input type="text" name="animal" id="animal" placeholder="O / X " value="${hospitalVo.animal}" disabled> </td>
 								</tr>
 								<tr>
 									<th>야간 근무 여부</th>
-									<td><input type="text" name="ntime" id="ntime" placeholder="O / X " value="${hospitalVo.ntime}"> </td>
+									<td><input type="text" name="ntime" id="ntime" placeholder="O / X " value="${hospitalVo.ntime}" disabled> </td>
 								</tr>
 								<tr>
 									<th>공휴일 진료 여부</th>
-									<td><input type="text" name="holiday" id="holiday" placeholder="O / X " value="${hospitalVo.holiday}"> </td>
+									<td><input type="text" name="holiday" id="holiday" placeholder="O / X " value="${hospitalVo.holiday}" disabled> </td>
 								</tr>
 								<tr>
 									<th>홈페이지 링크</th>
-									<td><input type="text" name="hrink" id="hrink" placeholder="O / X " value="${hospitalVo.hrink}"> </td>
+									<td><input type="text" name="hrink" id="hrink" placeholder="O / X " value="${hospitalVo.hrink}" disabled> </td>
 								</tr>
 								<tr>
 									<th>강조사항(선택)</th>
-									<td><textarea name="intro" id="intro" >${hospitalVo.intro}</textarea></td>
+									<td><textarea name="intro" id="intro"  disabled>${hospitalVo.intro}</textarea></td>
 								</tr>
 								<tr>
 									<th>파일 업로드</th>
 									<td>
-										<c:if test="${hospitalVo.hsfile != null}">
-											<img src="http://localhost:9000/petcarepedia/upload/${hospitalVo.hsfile}" width="400px" height="200px">
-										</c:if>
+										<th>파일 업로드</th>
+									<td>
+										<input type="hidden" name="hfile" value="${hospitalVo.hfile}">
+										<input type="hidden" name="hsfile" value="${hospitalVo.hsfile}">
+										<input type="file" name="file1" id ="file1">
+										<c:choose>
+											<c:when test="${hospitalVo.hfile != null}">
+												<span id="update_file">${hospitalVo.hfile}</span>
+											</c:when>
+											<c:otherwise>
+												<span id="update_file">선택된 파일 없음</span>
+											</c:otherwise>
+										</c:choose>
+									</td>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="5"> 
 										<button type="button" class="button5" id="btn_update">
-											<a href="admin_hospital_update.do?hid=${hospitalVo.hid}">수정하기</a>
+											<a href="admin_hospital_update.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">수정하기</a>
 										</button>
 										<button type="button" class="button5" id="btn_delete">
 											<a href="admin_hospital_delete.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">삭제하기</a>
