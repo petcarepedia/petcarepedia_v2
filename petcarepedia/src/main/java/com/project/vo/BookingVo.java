@@ -16,6 +16,12 @@ public class BookingVo {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	public String getHsfile() {
+		return hsfile;
+	}
+	public void setHsfile(String hsfile) {
+		this.hsfile = hsfile;
+	}
 	public String getImg() {
 		return img;
 	}

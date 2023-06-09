@@ -142,9 +142,9 @@
 								<!-- 병원 이미지 -->
 								<div class="himg">
 									<c:choose>
-									    <c:when test="${list.img != null && list.img != 'X'}">	
+									    <c:when test="${list.hsfile != null}">	
 									        <%-- <img src="${list.img}" width="122px" height="122px"> --%>
-									        <img src="http://localhost:9000/petcarepedia/upload/${hospital.hsfile}" width="122px" height="122px">
+									        <img src="http://localhost:9000/petcarepedia/upload/${list.hsfile}" width="122px" height="122px">
 									    </c:when>
 									    <c:otherwise>
 									    </c:otherwise>
