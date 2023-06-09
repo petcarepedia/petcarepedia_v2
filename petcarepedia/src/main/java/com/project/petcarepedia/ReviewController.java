@@ -183,7 +183,8 @@ public class ReviewController {
 		return model;
 	}
 	
-	//리뷰 좋아요 처리
+
+	//리뷰 좋아요
 	@RequestMapping(value="/review_like_Proc.do", method=RequestMethod.POST)
 	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo, String page, String filter_location, HttpSession session) {
 		ModelAndView model = new ModelAndView();
