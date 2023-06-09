@@ -15,8 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.project.dao.BookingDao;
-import com.project.dao.HospitalDao;
 import com.project.service.BookingService;
 import com.project.service.BookmarkService;
 import com.project.service.HospitalService;
@@ -44,8 +42,6 @@ public class SearchController {
 	@Autowired
 	private BookmarkService bookmarkService;
 	
-	HospitalDao hospitalDao = new HospitalDao();
-	BookingDao bookingDao = new BookingDao();
 	
 	
 	/** search_main.do - 병원 리스트 출력하기 **/
@@ -142,13 +138,6 @@ public class SearchController {
 	}
 	
 	
-	/** search_reservation.do **/
-	/*
-	 * @RequestMapping(value="/search_reservation.do", method=RequestMethod.GET)
-	 * public String search_reservation() { return "/search/search_reservation"; }
-	 */
-	 
-	
 	/** search_reservation.do?hid=? **/
 	@RequestMapping(value="/search_reservation.do", method=RequestMethod.GET)
 	public ModelAndView search_reservation(String hid) {
@@ -170,7 +159,6 @@ public class SearchController {
 	@ResponseBody
 	public String reservationProc(BookingVo bookingVo) {
 		int check_result = bookingService.getCheckBooking(bookingVo);
-		System.out.println(check_result);
 			
 		if(check_result == 0) {
 			bookingService.getInsert(bookingVo);
@@ -191,6 +179,7 @@ public class SearchController {
 			} else {
 				result = "fail";
 		}
+		
 		return result;
 	}	
 	
@@ -211,51 +200,6 @@ public class SearchController {
 
 	    return "";
 	}
-	
-	/** bookmarkProc.do - 북마크 처리 **/
-//	@RequestMapping(value="bookmarkProc.do", method=RequestMethod.POST)
-//	public ModelAndView bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
-//		ModelAndView model = new ModelAndView();
-//		BookmarkDao bookmarkDao = new BookmarkDao();
-//		String viewName = "";
-//		int result = bookmarkDao.checkBookmark(bookmarkVo);
-//		System.out.println("result가져옴"+result);
-//		
-//		if(result == 0) {
-//			bookmarkDao.insert(bookmarkVo);
-//			model.addObject("bookmark_result", "success");
-//			model.setViewName("redirect:/search_result.do?hid=" + hid);
-//			System.out.println("성공");
-//		} else if(result == 1) {
-//			bookmarkDao.deleteBookmark(bookmarkVo);
-//			model.addObject("bookmark_result", "fail");
-//			model.setViewName("redirect:/search_result.do?hid=" + hid);
-//			System.out.println("실패");
-//		}
-//		return model;
-//	}
-	
-	
-//	/** rstateForm.do - 신고하기 처리 **/
-//	@RequestMapping(value="rstateForm.do", method=RequestMethod.POST)
-//	@ResponseBody
-//	public String rstateForm(String rid) {
-//	    ReviewDao reviewDao = new ReviewDao();
-//	    int rstate_result = reviewDao.getIdCheckResult(rid);
-//
-//	    if (rstate_result == 0) {
-//	        reviewDao.update(rid);
-////	        System.out.println(rstate_result);
-////	        System.out.println(rid);
-//	        return "success";
-//	    } else if (rstate_result == 1) {
-////	    	System.out.println(rstate_result);
-////	    	System.out.println(rid);
-//	        return "fail";
-//	    }
-//
-//	    return "";
-//	}
 	
 
 	/** likeProc.do - 좋아요 처리 **/
@@ -284,10 +228,8 @@ public class SearchController {
 
 	    if (rstate_result == 0) {
 	    	reviewService.getUpdateReport(rid);
-	    	System.out.println(rstate_result);
 	    	return "success";
 		} else if (rstate_result == 1) {
-			System.out.println(rstate_result);
 			return "fail";
 		}
 	    
@@ -341,4 +283,4 @@ public class SearchController {
 	}
 		
 	
-} // class
+}
