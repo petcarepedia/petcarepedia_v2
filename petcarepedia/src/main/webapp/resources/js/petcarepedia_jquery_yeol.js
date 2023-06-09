@@ -80,9 +80,10 @@ $("#btnReservationDelete").click(function(){
 	        cancelButtonText: '취소'
 	    }).then((result) => {
 	        if (result.isConfirmed) {
-	            Swal.fire(
-	                '취소가 완료되었습니다.'
-	            ).then(() => {
+	            Swal.fire({
+	            	icon: 'success',
+	            	text:'취소가 완료되었습니다.'
+	            }).then(() => {
 	                deleteForm.submit();
 	            });
 	        }
@@ -97,7 +98,20 @@ $("#btnReservationDelete").click(function(){
 	$("#btnReviewWrite").click(function(){
 		let content = $("#rcontent").val().length;
 		if(content < 30) {
-			alert("30글자 이상을 입력해주세요");
+			Swal.fire({
+			  icon: 'error',                         
+			  text: '30글자 이상을 입력해주세요.',  
+			  confirmButtonColor:'#98dfff',
+			  confirmButtonText:'확인'
+			});
+			return false;
+		} else if($('input:radio[name=rstar]').is(":checked") == false){
+			Swal.fire({
+			  icon: 'error',                         
+			  text: '별점을 선택해주세요.',  
+			  confirmButtonColor:'#98dfff',
+			  confirmButtonText:'확인'
+			});
 			return false;
 		} else {
 			Swal.fire({
@@ -122,7 +136,20 @@ $("#btnReservationDelete").click(function(){
 	$("#btnReviewUpdate").click(function(){
 	let content = $("#rcontent").val().length;
 		if(content < 30) {
-			alert("30글자 이상을 입력해주세요");
+			Swal.fire({
+			  icon: 'error',                         
+			  text: '30글자 이상을 입력해주세요.',  
+			  confirmButtonColor:'#98dfff',
+			  confirmButtonText:'확인'
+			});
+			return false;
+		} else if($('input:radio[name=rstar]').is(":checked") == false){
+			Swal.fire({
+			  icon: 'error',                         
+			  text: '별점을 선택해주세요.',  
+			  confirmButtonColor:'#98dfff',
+			  confirmButtonText:'확인'
+			});
 			return false;
 		} else {
 			Swal.fire({
@@ -150,9 +177,10 @@ $("#btnReservationDelete").click(function(){
 	        cancelButtonText: '취소'
 	    }).then((result) => {
 	        if (result.isConfirmed) {
-	            Swal.fire(
-	                '삭제가 완료되었습니다.'
-	            ).then(() => {
+	            Swal.fire({
+	            	icon: 'success',
+	                text:'삭제가 완료되었습니다.'
+	            }).then(() => {
 	                deleteForm.submit();
 	            });
 	        }
@@ -184,9 +212,10 @@ $("#btnReservationDelete").click(function(){
 		        cancelButtonText: '취소'
 		    }).then((result) => {
 		        if (result.isConfirmed) {
-		            Swal.fire(
-		                '탈퇴가 완료되었습니다.'
-		            ).then(() => {
+		            Swal.fire({
+		            	icon: 'success',
+		                text: '탈퇴가 완료되었습니다.'
+		            }).then(() => {
 		                deleteForm.submit();
 		            });
 		        }

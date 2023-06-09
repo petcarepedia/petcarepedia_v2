@@ -49,15 +49,15 @@
 						<img src = "http://localhost:9000/petcarepedia//images/star.png"> -->
 						<div id = "star">
 							<fieldset>
-								<input type="radio" name="rstar" value="5" id="rate1"><label
+								<input type="radio" name="rstar" value="5.0" id="rate1"><label
 									for="rate1">★</label>
-								<input type="radio" name="rstar" value="4" id="rate2"><label
+								<input type="radio" name="rstar" value="4.0" id="rate2"><label
 									for="rate2">★</label>
-								<input type="radio" name="rstar" value="3" id="rate3"><label
+								<input type="radio" name="rstar" value="3.0" id="rate3"><label
 									for="rate3">★</label>
-								<input type="radio" name="rstar" value="2" id="rate4"><label
+								<input type="radio" name="rstar" value="2.0" id="rate4"><label
 									for="rate4">★</label>
-								<input type="radio" name="rstar" value="1" id="rate5"><label
+								<input type="radio" name="rstar" value="1.0" id="rate5"><label
 									for="rate5">★</label>
 							</fieldset>
 						</div>

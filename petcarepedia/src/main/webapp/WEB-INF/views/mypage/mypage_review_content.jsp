@@ -51,7 +51,7 @@
 						평점
 					</div>
 					<div id="avg" class="score">
-						⭐ ${reviewVo.rstar } / 5.0
+						⭐ ${reviewVo.rstar} / 5.0
 					</div>
 				</div>
 				<table class = "rdate" id = "rdate">

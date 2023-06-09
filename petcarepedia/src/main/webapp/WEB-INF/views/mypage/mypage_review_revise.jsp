@@ -11,6 +11,16 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
+<script>
+	window.onload = function(){
+		var ele = document.getElementsByName('rstar');
+		var count = ${reviewVo.rstar};
+		for(var i = 0; i < count; i++) {
+			ele[4-i].checked = true;
+		}
+	}
+</script>
+
 </head>
 <body>
 		<!-- header -->
@@ -25,7 +35,7 @@
 					<div>
 						<nav>
 							<ul>
-								<li>마이페이지</li>
+							<li>마이페이지</li>
 							<li><a href = "mypage_member_information.do">회원 정보</a></li>
 							<li><a href = "mypage_reservation.do">예약 내역</a></li>
 							<li><a href = "mypage_my_review.do">내가 쓴 리뷰</a></li>

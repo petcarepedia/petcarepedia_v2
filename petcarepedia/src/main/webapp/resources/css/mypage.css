@@ -288,7 +288,7 @@ hr {
 	width : 80px;
 	height : 40px;
 	color : white;
-	background: #98DFFF;
+	/* background: #98DFFF; */
 	border : 1px solid white;
 	border-radius: 5px;
 	font-weight: 700;
@@ -1382,7 +1382,7 @@ section.review_content table.rv_detail_menu tr td span {
 }
 div.review_card_no {
 	/* border: 1px solid #98DFFF; */
-	background: #F7FCFE;
+	/* background: #F7FCFE; */
 	border-radius: 5px;
 	width: 777px;
 	padding-bottom: 10px;
@@ -1403,5 +1403,5 @@ div.review_card_no span {
 }
 
 #bookmark #section2 div.review_card_no {
-	margin-left : -65px;
+	margin-left : -70px;
 }
