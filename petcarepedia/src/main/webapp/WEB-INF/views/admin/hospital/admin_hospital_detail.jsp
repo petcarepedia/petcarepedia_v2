@@ -80,8 +80,8 @@
 								</tr>
 								<tr>
 									<th>파일 업로드</th>
-									<td>
-										<input type="file" name="file1">
+									<td >
+										<input type="file" name="file1" id="file1">
 									</td>
 								</tr>
 								<tr>

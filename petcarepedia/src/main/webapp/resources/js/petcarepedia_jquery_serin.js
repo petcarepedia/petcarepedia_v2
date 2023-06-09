@@ -23,6 +23,18 @@ $(document).ready(function(){
 	});
  	 
 	/*************************
+	 * 병원 - 파일 수정
+	 **************************/
+		$("#file1").change(function(){
+			//alert("1111");
+			if(window. FileReader) { //window객체 사용 ->  window가 가지고 있는 fileReader을 사용 
+				let fname = $(this)[0].files[0].name;
+				//alert(fname);
+				$("#update_file").text(fname);
+			}
+		});
+	 
+	/*************************
 	 * 병원 - 수정
 	 **************************/
 	$("#btn_update").click(function(){

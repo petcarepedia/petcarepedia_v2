@@ -47,6 +47,7 @@
 					<div id="d3">
 						<form name="deleteForm" action="hospital_delete_proc.do" method="post">
 						<input type = "hidden" name = "hid" value = "${hospitalVo.hid}">
+						<input type = "hidden" name = "hsfile" value = "${hospitalVo.hsfile}">
 							<table class="table">
 								<tr>
 									<th>병원명</th>

@@ -11,6 +11,20 @@
 	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_serin.js"></script>
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
+	<style>
+	#update_file {
+		border:1px solid white;
+		position:relative;
+		right:110px;
+		top:-50px;
+		padding:2px;
+		/* backgruond:white;/* 글자가 겹치기 때문/ 파일 선택 버튼 옆에 생성 */
+		background:white;
+		display:inline-block;
+		width:100px; height:20px;
+		font-size:10pt;
+	}
+	</style>
 </head>
 <body>
 <!-- header -->
@@ -33,7 +47,7 @@
 				</section>
 				<section id="section2">
 					<div id="d3">
-						<form name="updateForm" action="hospital_update_proc.do" method="post">
+						<form name="updateForm" action="hospital_update_proc.do" method="post" enctype="multipart/form-data">
 						<input type = "hidden" name = "hid" value = "${hospitalVo.hid}">
 							<table class="table">
 								<tr>
@@ -81,9 +95,17 @@
 								<tr>
 									<th>파일 업로드</th>
 									<td>
-										<c:if test="${hospitalVo.hsfile != null}">
-											<img src="http://localhost:9000/petcarepedia/upload/${bvo.hsfile}">
-										</c:if>
+										<input type="hidden" name="hfile" value="${hospitalVo.hfile}">
+										<input type="hidden" name="hsfile" value="${hospitalVo.hsfile}">
+										<input type="file" name="file1" id ="file1">
+										<c:choose>
+											<c:when test="${hospitalVo.hfile != null}">
+												<span id="update_file">${hospitalVo.hfile}</span>
+											</c:when>
+											<c:otherwise>
+												<span id="update_file">선택된 파일 없음</span>
+											</c:otherwise>
+										</c:choose>
 									</td>
 								</tr>
 								<tr>
