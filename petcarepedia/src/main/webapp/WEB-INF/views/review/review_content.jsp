@@ -122,7 +122,7 @@
 						</c:choose>
 						<c:choose>
 							<c:when test="${page eq null || page eq '' }">
-								<a href="review_main.do"><button type="button" class="button">목록</button></a>
+								<button type="button" class="button" id="BTNmenu">목록</button>
 							</c:when>
 							<c:when test="${filter_location eq null || filter_location eq '' }">
 								<a href="review_main.do?page=${page }"><button type="button" class="button">목록</button></a>
@@ -137,7 +137,7 @@
 					<div class="rc_button_r">
 						<c:choose>
 							<c:when test="${page eq null }">
-								<a href="review_main.do"><button type="button" class="button">목록</button></a>
+								<button type="button" class="button" id="BTNmenu">목록</button>
 							</c:when>
 							<c:when test="${filter_location eq null }">
 								<a href="review_main.do?page=${page }"><button type="button" class="button">목록</button></a>

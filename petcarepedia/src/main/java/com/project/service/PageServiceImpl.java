@@ -140,7 +140,14 @@ public class PageServiceImpl {
 		
 		if (dbCount % pageSize == 0) {
 			pageCount = dbCount / pageSize;
-		} else {
+		}
+		else if(serviceName.equals("review") || serviceName.equals("reviewSearch")) {
+			pageCount = 7;
+		}
+		else if(serviceName.equals("notice")) {
+			pageCount = 10;
+		}		
+		else {
 			pageCount = dbCount / pageSize + 1;
 		}
 		
@@ -150,7 +157,7 @@ public class PageServiceImpl {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
 			endCount = reqPage * pageSize;
-			if(serviceName.equals("notice")) {
+			if(serviceName.equals("review")) {
 				count++;
 			}
 		} else {
@@ -160,7 +167,7 @@ public class PageServiceImpl {
 			}
 			else if(serviceName.equals("review") || serviceName.equals("reviewSearch")) {
 				startCount = 1;
-				endCount = 7;				
+				endCount = 7;	
 			}
 			else if(serviceName.equals("booking")) {
 				startCount = 1;
