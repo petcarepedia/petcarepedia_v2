@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.JsonObject;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.project.service.MailSendService;
 import com.project.service.MemberService;
 import com.project.vo.MemberVo;
 
@@ -16,6 +17,8 @@ import com.project.vo.MemberVo;
 public class JoinController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private MailSendService mailService;
 	
 	/**
 	 * join.do - 회원가입
@@ -49,6 +52,15 @@ public class JoinController {
 	@ResponseBody
 	public String id_check(String mid) {
 		return memberService.getCheckId(mid);
+	}
+	
+	//이메일 인증
+	@RequestMapping(value="/mail_check.do",method=RequestMethod.GET,produces="text/plain;charset=UTF-8") //쿼리스트링방식이므로 -> GET
+	@ResponseBody
+	public String mail_check(String email) {
+		System.out.println("이메일 인증 요청이 들어옴!");
+		System.out.println("이메일 인증 이메일 : " + email);
+		return mailService.joinEmail(email);
 	}
 	
 	/**
