@@ -85,12 +85,15 @@
 						<input type="text" name="birth3" id="birth3" placeholder="일" class="input-short2">
 					</li>
 					<li>
-						<label>이메일</label>
+						<label>이메일 <span class="ess">*</span></label>
 						<input type="text" name="email" id="email" placeholder="이메일 입력" class="input-short">
-						<button type="button" class="btn-short" id="btnAuthEmail">인증번호 전송</button>
+						<button type="button" class="btn-short" id="btnAuthEmail" disabled>인증번호 전송</button>
 						<span id="emailcheck_msg"></span>
-						<input type="text" name="cemail" id="cemail" placeholder="인증번호 입력" class="input-short">
-						<button type="button" class="btn-short" id="btnCheckEmail">인증번호 확인</button>
+						
+						<input type="hidden" id="data">
+						
+						<input type="text" name="cemail" id="cemail" placeholder="인증번호 입력" class="input-short" style="display:none">
+						<button type="button" class="btn-short" id="btnCheckEmail" style="display:none">인증번호 확인</button>
 						<span id="emailauthcheck_msg"></span>
 					</li>
 					<li>

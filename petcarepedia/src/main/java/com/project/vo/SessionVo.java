@@ -1,14 +1,14 @@
 package com.project.vo;
 
 public class SessionVo {
-	int LoginResult;
+	int loginResult;
 	String mid, name;
 	
 	public int getLoginResult() {
-		return LoginResult;
+		return loginResult;
 	}
 	public void setLoginResult(int loginResult) {
-		LoginResult = loginResult;
+		this.loginResult = loginResult;
 	}
 	public String getMid() {
 		return mid;

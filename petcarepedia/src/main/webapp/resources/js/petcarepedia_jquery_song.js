@@ -39,36 +39,63 @@ $(document).ready(function(){
 	 $('#btnAuthEmail').click(function() {
 		const email = $('#email').val(); // 이메일 주소값 얻어오기!
 		console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
-		const checkInput = $('#cemail') // 인증번호 입력하는곳 
 		
 		$.ajax({
 			type : 'get',
 			url : "mail_check.do?email="+email,
 			success : function (data) {
 				console.log("data : " +  data);
-				checkInput.attr('disabled',false);
-				code =data;
-				alert('인증번호가 전송되었습니다.');
+				$('#cemail').show();
+				$('#btnCheckEmail').show();
+				$("#data").val(data);
+				$('#btnAuthEmail').text("인증번호 재전송").css("background","#FFB3BD");
+				
+				Swal.fire({
+		            icon: 'success',                         
+		            title: '인증번호가 전송되었습니다.',         
+		            confirmButtonColor:'#98dfff',
+		            confirmButtonText:'확인'
+		        });
 			}			
 		}); // end ajax
-		
-		// 인증번호 비교 
-		// blur -> focus가 벗어나는 경우 발생
-		$('#cemail').blur(function () {
-			const inputCode = $(this).val();
-			const $resultMsg = $('#emailauthcheck_msg');
-			
-			if(inputCode === code){
-				$resultMsg.html('인증번호가 일치합니다.');
-				$resultMsg.css('color','green');
-				$('#btnAuthEmail').attr('disabled',true);
-				$('#email').attr('readonly',true);
-			}else{
-				$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
-				$resultMsg.css('color','red');
-			}
-		});
 	}); // end send eamil
+	
+	// 인증번호 비교 
+	// blur -> focus가 벗어나는 경우 발생
+	$('#btnCheckEmail').click(function () {
+		const inputCode = $("#cemail").val();
+		const resultMsg = $('#emailauthcheck_msg');
+		const code = $("#data").val();
+		
+		if(inputCode == code){
+			Swal.fire({
+	            icon: 'success',                         
+	            title: '인증번호가 일치합니다.',         
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
+	        });
+	        
+			$('#cemail').hide();
+			$('#btnCheckEmail').hide();
+			
+			$("#emailauthcheck_msg").text("이메일 인증 완료").css("color","#7AB2CC")
+			.css("font-size","12px").css("display","block").css("clear","both")
+			.css("padding-top","5px")
+			.prepend("<img src='http://localhost:9000/petcarepedia/images/check.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+			
+			$("#btnAuthEmail").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed");
+			$("#email").attr("disabled",true)
+		}else{
+			Swal.fire({
+	            icon: 'error',                         
+	            title: '인증번호가 일치하지 않습니다.',         
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
+	        });
+	        
+			$("#emailauthcheck_msg").text("").css("display","none");
+		}
+	});
 	
 	/**************
 	 * 회원가입 - 유효성 체크
@@ -92,6 +119,27 @@ $(document).ready(function(){
 			$("#idcheck_msg").text("").css("display","none");
 			
 			$("#btnCheckId").attr("disabled",false).css("background","#98dfff").css("cursor","pointer");
+		}
+	});
+	//이메일 정규식 체크
+	$("form[name='joinForm'] #email").keyup(function(){
+		if(!reg_email.test($("form[name='joinForm'] #email").val())){
+			$("#emailcheck_msg").text("올바른 이메일 형식이 아닙니다.").css("color","red")
+			.css("font-size","12px").css("display","block").css("clear","both")
+			.css("padding-top","5px")
+			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+			
+			$("#btnAuthEmail").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed").text("인증번호 전송");
+			$('#cemail').hide();
+			$('#btnCheckEmail').hide();
+			$("#emailauthcheck_msg").text("").css("display","none");
+		} else {
+			$("#emailcheck_msg").text("").css("display","none");
+			
+			$("#btnAuthEmail").attr("disabled",false).css("background","#98dfff").css("cursor","pointer").text("인증번호 전송");
+			$('#cemail').hide();
+			$('#btnCheckEmail').hide();
+			$("#emailauthcheck_msg").text("").css("display","none");
 		}
 	});
 	//비밀번호 정규식 체크
@@ -220,10 +268,12 @@ $(document).ready(function(){
 		if($("#idcheck_msg").text() == "사용 가능한 아이디입니다."
 			&& $("#pwcheck_msg").text() == "안전한 비밀번호입니다."
 			&& $("#cpwcheck_msg").text() == "비밀번호가 일치합니다."
+			&& $("#emailauthcheck_msg").text() == "이메일 인증 완료"
 			&& $("form[name='joinForm'] #name").val() != ""
 			&& $("form[name='joinForm'] #phone1").val() != "default"
 			&& $("form[name='joinForm'] #phone2").val() != ""
 			&& $("form[name='joinForm'] #phone3").val() != ""
+			&& $("form[name='joinForm'] #email").val() != ""
 			&& $("#phonecheck_msg").text() != "올바른 휴대폰 번호를 입력하세요."
 			&& $("form[name='joinForm'] #nickname").val() != ""
 			&& $("#nickcheck_msg").text() != "특수문자와 초성 및 모음 제외 2~16자로 입력하세요."
