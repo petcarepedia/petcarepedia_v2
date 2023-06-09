@@ -82,14 +82,18 @@
 									<th>파일 업로드</th>
 									<td>
 										<c:if test="${hospitalVo.hsfile != null}">
-											<img src="http://localhost:9000/petcarepedia/upload/${hospitalVo.hsfile}">
+											<img src="http://localhost:9000/petcarepedia/upload/${hospitalVo.hsfile}" width="400px" height="200px">
 										</c:if>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="5"> 
-										<button type="button" class="button5" id="btn_update"><a href="admin_hospital_update.do?hid=${hospitalVo.hid}">수정하기</a></button>
-										<button type="button" class="button5" id="btn_delete"><a href="admin_hospital_delete.do?hid=${hospitalVo.hid}">삭제하기</a></button>
+										<button type="button" class="button5" id="btn_update">
+											<a href="admin_hospital_update.do?hid=${hospitalVo.hid}">수정하기</a>
+										</button>
+										<button type="button" class="button5" id="btn_delete">
+											<a href="admin_hospital_delete.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">삭제하기</a>
+										</button>
 									</td>
 								</tr>
 							</table>

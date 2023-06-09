@@ -20,6 +20,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.project.dao.BookingDao;
 import com.project.service.BookingService;
+import com.project.service.FileServiceImpl;
 import com.project.service.HospitalService;
 import com.project.service.MemberService;
 import com.project.service.PageServiceImpl;
@@ -34,19 +35,16 @@ public class AdminController {
 
 	@Autowired
 	private HospitalService hospitalService;
-	
 	@Autowired
 	private MemberService memberService;
-	
 	@Autowired
 	private ReviewService reviewService;
-	
 	@Autowired
 	private BookingService bookingService;
-	
 	@Autowired
 	private PageServiceImpl pageService;
-	
+	@Autowired
+	private FileServiceImpl fileService;
 	
 	/**
 	 * �뵳�됰윮 占쎈읂占쎌뵠筌욑옙
@@ -172,44 +170,6 @@ public class AdminController {
 		
 		return model;
 	}
-	
-	/**
-	 * 癰귣쵐�뜚 - 野껓옙占쎄퉳 筌ｌ꼶�봺
-	 */
-//	@RequestMapping(value = "/hospital_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-//	@ResponseBody
-//	public String hospital_list_data(String hname, String page) {
-//		ArrayList<HospitalVo> list = hospitalService.search(hname);
-//		
-//		ModelAndView model = new ModelAndView();		
-//		Map<String, Integer> param = pageService.getPageResult(page, "hospital_search");
-//		
-//		ArrayList<HospitalVo> hlist = pageService.getHsListPage(param.get("startCount"), param.get("endCount"));
-//		model.addObject("list", hlist);
-//		model.addObject("totals", param.get("dbCount"));
-//		model.addObject("pageSize",param.get("pageSize"));
-//		model.addObject("maxSize", param.get("maxSize"));
-//		model.addObject("page", param.get("page"));
-//		
-//		model.setViewName("/admin/hospital/admin_hospital_list");
-//		
-//		JsonObject jlist = new JsonObject();
-//		JsonArray jarray = new JsonArray();
-//
-//		for (HospitalVo hospitalVo : list) {
-//			JsonObject jobj = new JsonObject(); 
-//			jobj.addProperty("hid", hospitalVo.getHid());
-//			jobj.addProperty("hname", hospitalVo.getHname());
-//			jobj.addProperty("ntime", hospitalVo.getNtime());
-//			jobj.addProperty("animal", hospitalVo.getAnimal());
-//			jobj.addProperty("holiday", hospitalVo.getHoliday());
-//
-//			jarray.add(jobj);
-//		}
-//		jlist.add("jlist", jarray);
-//
-//		return new Gson().toJson(jlist);
-//	}
 	
 	/**
 	 * 占쎌굙占쎈튋 - 占쎄맒占쎄묶 癰귨옙野껓옙 筌ｌ꼶�봺
@@ -357,13 +317,15 @@ public class AdminController {
 	}
 
 	/**
-	 * 癰귣쵐�뜚 - 占쎄텣占쎌젫 筌ｌ꼶�봺
+	 * 병원 삭제 처리
 	 */
 	@RequestMapping(value = "/hospital_delete_proc.do", method = RequestMethod.POST)
-	public String hospital_delete_proc(String hid) {
+	public String hospital_delete_proc(String hid, String hsfile, HttpServletRequest request)
+																			throws Exception{
 		String viewName = "";
 		int result = hospitalService.delete(hid);
 		if (result == 1) {
+			fileService.fileDelete(request, hsfile);
 			viewName = "redirect:/admin_hospital_list.do";
 		} else {
 
@@ -373,10 +335,10 @@ public class AdminController {
 	}
 
 	/**
-	 * 癰귣쵐�뜚 - 占쎄텣占쎌젫 占쎈읂占쎌뵠筌욑옙
+	 * 병원 - 삭제
 	 */
 	@RequestMapping(value = "/admin_hospital_delete.do", method = RequestMethod.GET)
-	public ModelAndView hostpital_delete(String hid) {
+	public ModelAndView hostpital_delete(String hid, String hsfile ) {
 
 		ModelAndView model = new ModelAndView();
 		HospitalVo hospitalVo = hospitalService.select(hid);
@@ -388,16 +350,24 @@ public class AdminController {
 	}
 
 	/**
-	 * 癰귣쵐�뜚 - 占쎈땾占쎌젟 筌ｌ꼶�봺
+	 * 병원 - 수정 처리
 	 */
 	@RequestMapping(value = "/hospital_update_proc.do", method = RequestMethod.POST)
-	public String hospital_update_proc(HospitalVo hospitalVo) {
+	public String hospital_update_proc(HospitalVo hospitalVo, HttpServletRequest request) 
+																	throws Exception{
 		String viewName = "";
-		int result = hospitalService.update(hospitalVo);
+		
+		String oldFileName = hospitalVo.getHsfile();
+		
+		int result = hospitalService.update(fileService.fileCheck(hospitalVo));
 		if (result == 1) {
+			if(hospitalVo.getHfile() !=null && !hospitalVo.getHfile().equals("")) {
+				fileService.fileSave(hospitalVo, request);
+				fileService.fileDelete(hospitalVo, request, oldFileName);
+			}
 			viewName = "redirect:/admin_hospital_list.do";
 		} else {
-			// 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎌깈占쎈쐻占쎈짗占쎌굲
+			
 		}
 
 		return viewName;
