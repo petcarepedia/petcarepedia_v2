@@ -704,7 +704,7 @@
 		position:fixed;
 		top: 50%; left: 50%;
 	    transform: translate(-50%, -50%); 
-	    width:460px; height:650px;
+	    width:460px; height:70%;
 	    background:white;
 	    border-radius:5px;
 	    z-index: 3;

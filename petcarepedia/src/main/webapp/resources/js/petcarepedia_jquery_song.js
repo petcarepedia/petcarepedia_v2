@@ -84,7 +84,7 @@ $(document).ready(function(){
 			.prepend("<img src='http://localhost:9000/petcarepedia/images/check.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
 			
 			$("#btnAuthEmail").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed");
-			$("#email").attr("disabled",true)
+			$("#email").attr('readonly',true);
 		}else{
 			Swal.fire({
 	            icon: 'error',                         
