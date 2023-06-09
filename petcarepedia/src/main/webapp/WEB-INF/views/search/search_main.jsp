@@ -143,7 +143,8 @@
 								<div class="himg">
 									<c:choose>
 									    <c:when test="${list.img != null && list.img != 'X'}">	
-									        <img src="${list.img}" width="122px" height="122px">
+									        <%-- <img src="${list.img}" width="122px" height="122px"> --%>
+									        <img src="http://localhost:9000/petcarepedia/upload/${hospital.hsfile}" width="122px" height="122px">
 									    </c:when>
 									    <c:otherwise>
 									    </c:otherwise>
