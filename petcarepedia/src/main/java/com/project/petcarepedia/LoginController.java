@@ -36,13 +36,8 @@ public class LoginController {
 		if(svo != null) {
 			if(svo.getLoginResult()==1) {
 				session.setAttribute("svo",svo);
-				if(svo.getMid().equals("admin")) {
-					model.addObject("login_result", "success");
-					model.setViewName("redirect:/admin_hospital_list.do");
-				} else {
-					model.addObject("login_result", "success");
-					model.setViewName("redirect:/index.do");
-				}
+				model.addObject("login_result", "success");
+				model.setViewName("redirect:/index.do");
 			}
 		} else {
 			model.addObject("login_result", "fail");

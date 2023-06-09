@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -26,9 +27,12 @@
 						<li>
 							<a href="#">위치기반서비스 이용약관</a>
 						</li>
-						<!-- <li>
-							<a id="btnAdminModal">관리자</a>
-						</li> -->
+						<c:if test="${sessionScope.svo.mid == 'admin'}">
+							<li>
+								<a href="http://localhost:9000/petcarepedia/admin_hospital_list.do"
+								style="color:#7AB2CC; font-weight:bold">관리자</a>
+							</li>
+						</c:if>
 					</ul>
 				</div>
 				
