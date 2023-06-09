@@ -280,7 +280,14 @@ $(document).ready(function() {
 	/** 날짜 먼저 선택하기 **/
 	$(".rtime").on("click", ".stime", function() {
 		if($("#vdate").val() == ""){
-			alert("날짜를 먼저 선택해 주세요");
+			Swal.fire({
+				 icon: 'warning',
+				 title: '날짜를 먼저 선택해 주세요',
+				 showConfirmButton: true, // 확인 버튼 표시
+				 confirmButtonColor:'#98dfff',
+				 confirmButtonText: '확인'
+			 });
+			// alert("날짜를 먼저 선택해 주세요");
 			$("#vtime").val("");
 			$(".stime").removeClass("selected");
 			return false;
@@ -291,10 +298,24 @@ $(document).ready(function() {
 	/** form submit 순서 **/
 	$("#check").click(function(){
 		if($("#vdate").val() == ""){
-			alert("날짜를 선택해 주세요");
+			Swal.fire({
+				 icon: 'warning',
+				 title: '날짜를 선택해주세요',
+				 showConfirmButton: true, // 확인 버튼 표시
+				 confirmButtonColor:'#98dfff',
+				 confirmButtonText: '확인'
+			 });
+			// alert("날짜를 선택해 주세요");
 			return false;
 		} else if($("#vtime").val()=="") {
-			alert("시간을 선택해 주세요");
+			Swal.fire({
+				 icon: 'warning',
+				 title: '시간을 선택해주세요',
+				 showConfirmButton: true, // 확인 버튼 표시
+				 confirmButtonColor:'#98dfff',
+				 confirmButtonText: '확인'
+			 });
+			// alert("시간을 선택해 주세요");
 			return false;
 		}
 	});
