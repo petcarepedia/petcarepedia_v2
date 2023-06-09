@@ -85,85 +85,71 @@ $(document).ready(function(){
 
 	/** 좋아요 버튼 **/
 	var scrollPositions = {}; // 버튼의 위치 정보를 저장할 객체
-	
-	$('.non').click(function(e) {
-		e.preventDefault();
-		
-		var button = $(this);
-		var rid = button.data('rid');
-		
-		// 스크롤 위치 저장
-		scrollPositions[rid] = $(window).scrollTop();
-		
-		 if (button.hasClass('non')) {
-			Swal.fire({
-				 icon: 'warning',
-				 title: '로그인 확인',
-				 text: '로그인을 먼저 해주세요.',
-				 showConfirmButton: true, // 확인 버튼 표시
-				 confirmButtonColor:'#98dfff',
-				 confirmButtonText: '확인'
-			 });
-		}
-	});
-	
-	$('.like').click(function(e) {
-		e.preventDefault();
-		
-		var button = $(this);
-		var rid = button.data('rid');
-		
-		// 스크롤 위치 저장
-		scrollPositions[rid] = $(window).scrollTop();
-		
-		 if (button.hasClass('non')) {
-			Swal.fire({
-				 icon: 'warning',
-				 title: '로그인 확인',
-				 text: '로그인을 먼저 해주세요.',
-				 showConfirmButton: true, // 확인 버튼 표시
-				 confirmButtonColor:'#98dfff',
-				 confirmButtonText: '확인'
-			 });
-		} else {
-			
-			// 좋아요 처리 Ajax 호출
-			if(mid == "") { // 미로그인시
-				 Swal.fire({
-					 icon: 'warning',
-					 title: '로그인 확인',
-					 text: '로그인을 먼저 해주세요.',
-					 showConfirmButton: true, // 확인 버튼 표시
-					 confirmButtonColor:'#98dfff',
-					 confirmButtonText: '확인'
-				 });
-			 } else { // 로그인시
-				$.ajax({
-					url: 'likeProc.do',
-					method: 'POST',
-					data: {
-						hid: $('input[name="hid"]').val(),
-						rid: rid,
-						mid: mid
-					},
-					success: function(like_result) {
-						if (like_result === "success") { // 좋아요 처리
-							var count = parseInt(button.find('.like-count').text());
-							count++;
-							button.find('.like-count').text(count);
-							$('html, body').scrollTop(scrollPositions[rid]);
-						} else if (like_result === "fail") { // 좋아요 있을 때
-							var count = parseInt(button.find('.like-count').text());
-							count--;
-							button.find('.like-count').text(count);
-							$('html, body').scrollTop(scrollPositions[rid]);
-						}
-						
-					}
-				});
+
+$('.non').click(function(e) {
+	e.preventDefault();
+
+	var button = $(this);
+	var rid = button.data('rid');
+
+	// 스크롤 위치 저장
+	scrollPositions[rid] = $(window).scrollTop();
+
+	if (button.hasClass('non')) {
+		Swal.fire({
+			icon: 'warning',
+			title: '로그인 확인',
+			text: '로그인을 먼저 해주세요.',
+			showConfirmButton: true, // 확인 버튼 표시
+			confirmButtonColor: '#98dfff',
+			confirmButtonText: '확인'
+		});
+	}
+});
+
+$('.like').click(function(e) {
+	e.preventDefault();
+
+	var button = $(this);
+	var rid = button.data('rid');
+
+	// 좋아요 처리 Ajax 호출
+	if (mid == "") { // 미로그인시
+		Swal.fire({
+			icon: 'warning',
+			title: '로그인 확인',
+			text: '로그인을 먼저 해주세요.',
+			showConfirmButton: true, // 확인 버튼 표시
+			confirmButtonColor: '#98dfff',
+			confirmButtonText: '확인'
+		});
+	} else { // 로그인시
+		$.ajax({
+			url: 'likeProc.do',
+			method: 'POST',
+			data: {
+				hid: $('input[name="hid"]').val(),
+				rid: rid,
+				mid: mid
+			},
+			success: function(like_result) {
+				if (like_result === "success") { // 좋아요 처리
+					var count = parseInt(button.find('.like-count').text());
+					count++;
+					button.find('.like-count').text(count);
+				} else { // 좋아요 취소
+					var count = parseInt(button.find('.like-count').text());
+					count--;
+					button.find('.like-count').text(count);
+				}
+				
+				// 스크롤 위치 복원
+				$('html, body').scrollTop(scrollPositions[rid]);
 			}
-		}
-	});
+		});
+	}
+	
+});
 	
 	
 	/** 신고하기 버튼 **/

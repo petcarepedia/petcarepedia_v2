@@ -68,7 +68,7 @@ $(document).ready(function() {
 						if (convertedNowTime > convertedTimeSlot) {
 							$(".stime").eq(i).css("background", "#D9D9D9"); // 해당 인덱스의 요소에 css
 							$(".stime").eq(i).css("pointer-events", "none"); // 해당 인덱스의 요소에 css
-							$(".stime").eq(i).css("cursor", "no-drop"); // 해당 인덱스의 요소에 css
+							$(".stime").eq(i).css("cursor", "not-allowed"); // 해당 인덱스의 요소에 css
 						}
 					}
 				} else {
