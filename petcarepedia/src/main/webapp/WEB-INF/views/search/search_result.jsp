@@ -283,10 +283,10 @@
 									
 									<!-- 좋아요 -->
 									<form name="likeForm" action="likeProc.do" method="post">
-										<input type="text" name="hid" value="${hospital.hid}">
-										<input type=text name="rid" value="${RM_select.rid}">
-										<input type="text" name="mid" value="${sessionScope.svo.mid}">
-										<input type="text" name="likeresult" value="${RM_select.likeresult}">
+										<input type="hidden" name="hid" value="${hospital.hid}">
+										<input type=hidden name="rid" value="${RM_select.rid}">
+										<input type="hidden" name="mid" value="${sessionScope.svo.mid}">
+										<input type="hidden" name="likeresult" value="${RM_select.likeresult}">
 
 										<!-- session 체크 이후 -->
 										<c:choose>

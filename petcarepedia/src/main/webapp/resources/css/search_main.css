@@ -31,6 +31,10 @@ div.search_main {
 	list-style-type:  none;
 }
 
+.swal2-icon.swal2-warning .swal2-icon-content {
+  color: #F9C89D;
+}
+
 
 /***************************************
 	section_filter

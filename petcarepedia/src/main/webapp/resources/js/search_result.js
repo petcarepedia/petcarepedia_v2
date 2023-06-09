@@ -150,7 +150,6 @@ $('.like').click(function(e) {
 	}
 	
 });
-console.log("4");
 	
 	
 	/** 신고하기 버튼 **/

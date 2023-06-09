@@ -29,6 +29,10 @@ div.reservation a:active {
 	font-size: bold;
 }
 
+.swal2-icon.swal2-warning .swal2-icon-content {
+  color: #F9C89D;
+}
+
 
 /***************************************
 	title
