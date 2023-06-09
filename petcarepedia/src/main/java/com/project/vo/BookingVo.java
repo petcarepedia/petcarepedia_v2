@@ -7,7 +7,7 @@ public class BookingVo {
 	/** Ãß°¡ **/
 	String hname, loc, gloc, tel, hrink;
 	String start, end;
-	String img;
+	String img, hsfile;
 	int count;
 	
 	public int getCount() {

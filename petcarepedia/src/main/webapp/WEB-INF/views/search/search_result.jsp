@@ -32,7 +32,8 @@
 			<div class="info_d">
 				<!-- 병원 사진 표시 -->
 				<div class="images_d">
-					<img src="${hospital.img}">
+					<%-- <img src="${hospital.img}"> --%>
+					<img src="http://localhost:9000/petcarepedia/upload/${hospital.hsfile}">
 				</div>
 				
 				<!-- 병원 정보 표시 -->	
