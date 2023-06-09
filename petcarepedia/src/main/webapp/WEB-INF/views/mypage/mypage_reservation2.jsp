@@ -57,7 +57,7 @@
 						<c:otherwise>
 							<c:forEach var = "bookingVo" items = "${list}">
 								<div id = "aside1">
-									<img src = "${bookingVo.img}">
+									<img src = "http://localhost:9000/petcarepedia/upload/${bookingVo.hsfile}">
 									<div>
 										<span>서울시 > ${bookingVo.gloc}</span>
 										<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookingVo.hid}"><span>${bookingVo.hname}</span></a>
@@ -101,7 +101,7 @@
 							</c:forEach>
 							<c:forEach var = "bookingReview" items = "${list2}">
 								<div id = "aside1">
-									<img src = "${bookingReview.img}">
+									<img src = "http://localhost:9000/petcarepedia/upload/${bookingReview.hsfile}">
 									<div>
 										<span>서울시 > ${bookingReview.gloc}</span>
 										<a href = "http://localhost:9000/petcarepedia/search_result.do?hid=${bookingReview.hid}"><span>${bookingReview.hname}</span></a>
