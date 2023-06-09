@@ -81,25 +81,22 @@
 								</tr>
 								<tr>
 									<th>파일 업로드</th>
-									<td>
-										<th>파일 업로드</th>
-									<td>
+									<td colspan ="2">
 										<input type="hidden" name="hfile" value="${hospitalVo.hfile}">
 										<input type="hidden" name="hsfile" value="${hospitalVo.hsfile}">
-										<input type="file" name="file1" id ="file1">
+										<input type="file" name="file1" id ="file1" disabled>
 										<c:choose>
 											<c:when test="${hospitalVo.hfile != null}">
 												<span id="update_file">${hospitalVo.hfile}</span>
 											</c:when>
 											<c:otherwise>
-												<span id="update_file">선택된 파일 없음</span>
+												<span id="update_file"></span>
 											</c:otherwise>
 										</c:choose>
 									</td>
-									</td>
 								</tr>
 								<tr>
-									<td colspan="5"> 
+									<td colspan="2"> 
 										<button type="button" class="button5" id="btn_update">
 											<a href="admin_hospital_update.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">수정하기</a>
 										</button>

@@ -13,13 +13,15 @@
 	<title>펫캐어피디아 | 관리자</title>
 	<script>
 		$().ready(function () {
-	        Swal.fire({
-	            icon: 'warning',                         // Alert 타입
-	            /* title: 'Alert가 실행되었습니다.',   */       // Alert 제목
-	            text: '삭제할 병원이 맞는 지 확인해주세요',  // Alert 내용
-	            
-	            confirmButtonColor:'#98dfff',
-	      	  	confirmButtonText:'확인'
+			$("#btn_update").click(function(){
+		        Swal.fire({
+		            icon: 'warning',                         // Alert 타입
+		            /* title: 'Alert가 실행되었습니다.',   */       // Alert 제목
+		            text: '삭제할 병원이 맞는 지 확인해주세요',  // Alert 내용
+		            
+		            confirmButtonColor:'#7ab2cc',
+		      	  	confirmButtonText:'확인'
+			        });
 	        });
 		});
 	</script>
