@@ -13,10 +13,18 @@ public class ReviewVo {
 	String loc, tel, htime, ntime, holiday, intro, img, hrink;
 	// ³»°¡ ¾´ ¸®ºä
 	String bid, nickname;
+	String hsfile;
+	
 	
 	
 	
 
+	public String getHsfile() {
+		return hsfile;
+	}
+	public void setHsfile(String hsfile) {
+		this.hsfile = hsfile;
+	}
 	public int getLikeresult() {
 		return likeresult;
 	}
