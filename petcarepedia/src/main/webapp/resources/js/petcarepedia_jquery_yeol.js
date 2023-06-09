@@ -199,8 +199,15 @@ $("#btnReservationDelete").click(function(){
 ********************************************/
 	$("#btnMemberDelete").click(function(){
 	if($("#pass").val() == "") {
-		alert("비밀번호를 입력해주세요");
-		$("#pass").focus();
+		Swal.fire({
+			  icon: 'error',                         
+			  text: '비밀번호를 입력해주세요.',  
+			  confirmButtonColor:'#98dfff',
+			  confirmButtonText:'확인'
+			}).then((result) => {
+				$("#pass").focus();
+				return false;
+			});
 	} else {
 				Swal.fire({
 		        title: '정말로 탈퇴하시겠습니까?',
