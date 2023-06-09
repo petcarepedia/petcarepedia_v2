@@ -295,7 +295,7 @@
 													<c:when test="${sessionScope.svo.mid == RM_select.mid}">
 														<c:if test="${RM_select.likeresult==0}">
 															<a href="javascript:;" class="icon heart">
-																<button type="submit" id="like" class="like disabled" data-rid="${RM_select.rid}" disabled>
+																<button type="submit" id="like" class="like disabled check" data-rid="${RM_select.rid}" disabled>
 																	좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 																	<!-- <span class="heart">♥</span>  -->
 																	<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">
@@ -306,7 +306,7 @@
 														
 														<c:if test="${RM_select.likeresult!=0}">
 															<a href="javascript:;" class="icon heart">
-																<button type="submit" id="like" class="like active disabled" data-rid="${RM_select.rid}" disabled>
+																<button type="submit" id="like" class="like active disabled check" data-rid="${RM_select.rid}" disabled>
 																	좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 																	<!-- <span class="heart">♥</span>  -->
 																	<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기">
@@ -319,7 +319,7 @@
 													 <c:otherwise>
 													 	<c:if test="${RM_select.likeresult==0}">
 															<a href="javascript:;" class="icon heart">
-																<button type="submit" id="like" class="like" data-rid="${RM_select.rid}">
+																<button type="submit" id="like" class="like check" data-rid="${RM_select.rid}">
 																	좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 																	<!-- <span class="heart">♥</span>  -->
 																	<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기">
@@ -330,7 +330,7 @@
 														
 														<c:if test="${RM_select.likeresult!=0}">
 															<a href="javascript:;" class="icon heart">
-																<button type="submit" id="like" class="like active" data-rid="${RM_select.rid}">
+																<button type="submit" id="like" class="like active check" data-rid="${RM_select.rid}">
 																	좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 																	<!-- <span class="heart">♥</span>  -->
 																	<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기">
@@ -343,7 +343,7 @@
 											</c:when>
 										
 											<c:otherwise>
-												<a href="javascript:;" class="icon heart">										
+												<a href="javascript:;" class="icon">										
 													<button type="submit" id="like" class="like non" data-rid="${RM_select.rid}">								
 														좋아요&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp								
 														<!-- <span class="heart">♥</span>  -->								

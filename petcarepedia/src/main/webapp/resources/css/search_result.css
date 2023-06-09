@@ -477,13 +477,19 @@ a.icon {
   text-decoration:none; color:inherit; cursor: pointer;
 }
 
+.icon img{
+	padding-bottom: 1px;
+    width: 15px;
+    height: 15px;
+}
+
 .icon.heart img{
 	padding-bottom: 1px;
     width: 15px;
     height: 15px;
 }
 
-.heart{
+.icon {
     transform-origin: center;
 }
 
@@ -513,7 +519,7 @@ div.review_card div.date button#like span.heart {
 	color: red;
 }
 
-.icon.heart.fas{
+.icon.fas{
   color:red
 }
 
@@ -528,11 +534,10 @@ div.review_card div.date button#like span.heart {
   }
   
 /* 조작O */
-button.like, button.active {
+button.check, button.active {
 	cursor:pointer;
 }
   
-
 /* 조작X */
 button.disabled, button.non {
 	cursor:not-allowed; // 커서금지

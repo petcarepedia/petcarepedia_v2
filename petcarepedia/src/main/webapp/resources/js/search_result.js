@@ -235,7 +235,7 @@ $('.like').click(function(e) {
 	
 	/** 하트효과**/
 	$(function() {
-		$('.like').click(function() {
+		$('.check').click(function() {
 			$(this).toggleClass('active');
 			
 			if ($(this).hasClass('active')) {
