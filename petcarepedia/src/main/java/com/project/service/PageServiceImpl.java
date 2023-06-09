@@ -201,7 +201,7 @@ public class PageServiceImpl {
 		int endCount = 0;
 		int pageSize = 10; // 한페이지당 게시물 수
 		int reqPage = 1; // 요청페이지
-		int pageCount = 1; // 전체 페이지 수
+		int pageCount = 10; // 전체 페이지 수
 		int dbCount = 0; // DB에서 가져온 전체 행수
 		
 		if (serviceName.equals("hospital")) {
@@ -251,7 +251,7 @@ public class PageServiceImpl {
 		int endCount = 0;
 		int pageSize = 10; // 한페이지당 게시물 수
 		int reqPage = 1; // 요청페이지
-		int pageCount = 1; // 전체 페이지 수
+		int pageCount = 5; // 전체 페이지 수
 		int dbCount = 0; // DB에서 가져온 전체 행수
 		
 		if (serviceName.equals("member")) {
@@ -297,7 +297,7 @@ public class PageServiceImpl {
 		int endCount = 0;
 		int pageSize = 10; // 한페이지당 게시물 수
 		int reqPage = 1; // 요청페이지
-		int pageCount = 1; // 전체 페이지 수
+		int pageCount = 5; // 전체 페이지 수
 		int dbCount = 0; // DB에서 가져온 전체 행수
 		
 		if (serviceName.equals("booking")) {
