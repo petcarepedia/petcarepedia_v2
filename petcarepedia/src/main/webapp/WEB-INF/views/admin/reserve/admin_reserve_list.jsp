@@ -82,7 +82,7 @@
 					<c:forEach var="bookingVo" items="${list}">
 						<tr>
 					      <td>${bookingVo.rno}</td>
-					      <td><a href="admin_reserve_detail.do?bid=${bookingVo.bid}">${bookingVo.hname}</a></td>
+					      <td>${bookingVo.hname}</td>
 					      <td>${bookingVo.mid}</td>
 					      <td class="date">${bookingVo.vdate}</td>
 					      <td class="state">${bookingVo.bstate}</td>
