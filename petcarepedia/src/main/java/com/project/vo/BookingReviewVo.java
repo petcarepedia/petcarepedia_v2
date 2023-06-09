@@ -1,9 +1,17 @@
 package com.project.vo;
 
 public class BookingReviewVo {
-	String bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img, rid;
+	String bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img, rid, hsfile;
 
 	
+	public String getHsfile() {
+		return hsfile;
+	}
+
+	public void setHsfile(String hsfile) {
+		this.hsfile = hsfile;
+	}
+
 	public String getRid() {
 		return rid;
 	}

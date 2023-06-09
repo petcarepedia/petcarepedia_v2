@@ -56,7 +56,7 @@
 									<span>${reviewVo.nickname}</span>
 								</div>
 								<div id = "aside2">
-									<img src = "${reviewVo.img}">
+									<img src = "http://localhost:9000/petcarepedia/upload/${reviewVo.hsfile}">
 								</div>
 								<div id = "aside3">
 									<span>리뷰 내용</span>
