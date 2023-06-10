@@ -35,6 +35,10 @@ div.result_main hr {
   color: #F9C89D;
 }
 
+.swal2-icon.swal2-info .swal2-icon-content {
+   color: #45C5EE;
+}
+
 
 /***************************************
 	section_info
