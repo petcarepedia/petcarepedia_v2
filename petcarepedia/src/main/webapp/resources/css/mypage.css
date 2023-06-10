@@ -286,7 +286,7 @@ hr {
 
 #btnSearchAddr {
 	width : 80px;
-	height : 40px;
+	height : 56px;
 	color : white;
 	/* background: #98DFFF; */
 	border : 1px solid white;
@@ -954,6 +954,7 @@ textarea[name='rcontent'] {
 }
 #my_review #aside #section2 #aside4 {
 	margin-left : 615px;
+	margin-bottom : 10px;
 }
 #my_review #aside #section2 #aside4 button {
 	margin-top : 10px;

@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
+
 </head>
 <body>
 		<!-- header -->
@@ -41,7 +42,7 @@
 				</section>
 				<section id = "section3">
 					<span>비밀번호를 입력해주세요</span>
-					<%-- <input type = "hidden" name = "mid" id = "mid" value = "${sessionScope.svo.mid}"> --%>
+					<input type = "hidden" name = "mid" id = "mid" value = "${sessionScope.svo.mid}">
 					<input type = "password" name = "pass" id = "pass" placeholder = "  비밀번호 입력">
 					<button type = "button" id = "btnMemberDelete">회원탈퇴</button>
 				</section>

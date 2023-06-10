@@ -24,9 +24,12 @@ function bookmark(bmid) {
         cancelButtonText: '취소'
 	}).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire(
-                '해제가 완료되었습니다.'
-            ).then(() => {
+        	Swal.fire({
+  			  icon: 'success',                         
+  			  text: '해제가 완료되었습니다.',  
+  			  confirmButtonColor:'#98dfff',
+  			  confirmButtonText:'확인'
+  			}).then(() => {
                 location.href = "bookmark_delete_proc.do?bmid=" + bmid;
             });
         }
