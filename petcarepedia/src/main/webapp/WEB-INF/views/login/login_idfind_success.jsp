@@ -28,13 +28,22 @@
 					<div id="btnMenuPwFind">비밀번호 재설정</div>
 				</div>
 				
-				<ul>
+				<!-- <ul>
 					<li class="find-success">
 						<p>회원가입 시 사용한 아이디는</p>
 						<p id="id_sec"></p>
 						<p>입니다.</p>
 					</li>
 					<li><button type="button" id="btnBackLogin" class="btn-submit">로그인 화면으로 돌아가기</button></li>
+				</ul> -->
+				<ul class="update-success">
+					<li class="update-success">
+						<img src="http://localhost:9000/petcarepedia/images/check.png" width="100px">
+						<p>아이디 찾기 결과가 이메일로 발송되었습니다.</p>
+					</li>
+					<li>
+						<button type="button" id="btnBackLogin" class="btn-submit">로그인 화면으로 돌아가기</button>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -43,7 +52,7 @@
 	<!-- footer -->
 	<jsp:include page="../footer.jsp"></jsp:include>
 	
-	<script>
+	<!-- <script>
 		let id = "${mid}";
 		let id_sec = "";
 		if(id.length%2==0){
@@ -53,6 +62,6 @@
 		}
 		
 		document.getElementById("id_sec").innerHTML=id_sec;
-	</script>
+	</script> -->
 </body>
 </html>

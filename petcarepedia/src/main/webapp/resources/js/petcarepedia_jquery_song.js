@@ -122,8 +122,8 @@ $(document).ready(function(){
 		}
 	});
 	//이메일 정규식 체크
-	$("form[name='joinForm'] #email").keyup(function(){
-		if(!reg_email.test($("form[name='joinForm'] #email").val())){
+	$("#email").keyup(function(){
+		if(!reg_email.test($("#email").val())){
 			$("#emailcheck_msg").text("올바른 이메일 형식이 아닙니다.").css("color","red")
 			.css("font-size","12px").css("display","block").css("clear","both")
 			.css("padding-top","5px")
@@ -317,9 +317,8 @@ $(document).ready(function(){
 	 */
 	$.idFindValidationCheck = function() {
 		if($("#name").val() != "" 
-			&& $('#phone1').val() != "default"
-			&& $('#phone2').val() != ""
-			&& $('#phone3').val() != ""){
+			&& $('#email').val() != ""
+			&& $("#emailcheck_msg").text() != "올바른 이메일 형식이 아닙니다."){
 			$("#btnIdFind").attr("disabled",false);
 		} else {
 			$("#btnIdFind").attr("disabled",true);
@@ -339,9 +338,8 @@ $(document).ready(function(){
 	$.pwFindValidationCheck = function() {
 		if($("#id").val() != "" 
 			&& $('#name').val() != ""
-			&& $('#phone1').val() != "default"
-			&& $('#phone2').val() != ""
-			&& $('#phone3').val() != ""){
+			&& $('#email').val() != ""
+			&& $("#emailcheck_msg").text() != "올바른 이메일 형식이 아닙니다."){
 			$("#btnPwFind").attr("disabled",false);
 		} else {
 			$("#btnPwFind").attr("disabled",true);

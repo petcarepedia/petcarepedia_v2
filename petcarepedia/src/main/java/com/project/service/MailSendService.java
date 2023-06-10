@@ -10,6 +10,8 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
+import com.project.vo.MemberVo;
+
 @Component
 public class MailSendService {
 	@Autowired
@@ -57,9 +59,9 @@ public class MailSendService {
 			return Integer.toString(authNumber);
 		}
 		
-		public String idFindEmail(String email, String name, String id) {
+		public String idFindEmail(MemberVo memberVo, String mid) {
 			String setFrom = ".com"; // email-config에 설정한 자신의 이메일 주소를 입력 
-			String toMail = email;
+			String toMail = memberVo.getEmail();
 			String title = "펫케어피디아 아이디 확인 이메일 입니다."; // 이메일 제목 
 			String content = 
 					"<div style='width:410px; margin:0 auto; padding:30px 0;  text-align: center; '>" + 
@@ -69,9 +71,9 @@ public class MailSendService {
 					"            <h2 style='color:#7AB2CC'>아이디 찾기 결과</h2>" + 
 					"            <p style='font-size:13px; margin-bottom: 20px;'>" + 
 					"                우리 동네 동물병원 리뷰 사전 <strong style='color:#7AB2CC'>펫캐어피디아</strong>에 오신 것을 환영합니다.<br>" + 
-					name+"님께서 회원 가입 시 사용한 아이디는 아래와 같습니다." + 
+					memberVo.getName()+"님께서 회원 가입 시 사용한 아이디는 아래와 같습니다." + 
 					"            </p>" + 
-					"            <h2 style='text-align: center; width:100%; background-color: #7AB2CC; margin: auto; padding: 10px 0; color:white; margin-bottom: 30px;'>"+id+"</h2>" + 
+					"            <h2 style='text-align: center; width:100%; background-color: #7AB2CC; margin: auto; padding: 10px 0; color:white; margin-bottom: 30px;'>"+mid+"</h2>" + 
 					"        </div>" + 
 					"        <div style='width:100%; margin:20px auto; text-align: left;'>" + 
 					"            <p style='font-size:10px; color:gray; line-height: 16px;'>" + 

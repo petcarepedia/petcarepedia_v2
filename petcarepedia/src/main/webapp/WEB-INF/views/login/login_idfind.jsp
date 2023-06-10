@@ -34,7 +34,7 @@
 							<label>성명</label>
 							<input type="text" name="name" id="name" placeholder="성명 입력">
 						</li>
-						<li>
+						<!-- <li>
 							<label>휴대폰</label>
 							<select name="phone1" id="phone1">
 								<option value="default">선택</option>
@@ -44,6 +44,11 @@
 							</select>
 							<input type="text" name="phone2" id="phone2" placeholder="1234" class="input-short2">
 							<input type="text" name="phone3" id="phone3" placeholder="5678" class="input-short2">
+						</li> -->
+						<li>
+							<label>이메일</label>
+							<input type="text" name="email" id="email" placeholder="이메일 입력">
+							<span id="emailcheck_msg"></span>
 						</li>
 						<li><button type="submit" id="btnIdFind" class="btn-submit" disabled>아이디 찾기</button></li>
 					</ul>
