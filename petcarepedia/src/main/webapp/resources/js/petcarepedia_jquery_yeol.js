@@ -218,7 +218,7 @@ $("#btnReservationDelete").click(function(){
 			            	if(result == 0) {
 			            		Swal.fire({
 								icon: 'error',                         
-								text: '비밀번호가 틀렸습니다.',  
+								text: '비밀번호 오류',  
 								confirmButtonColor:'#98dfff',
 								confirmButtonText:'확인'
 								})
