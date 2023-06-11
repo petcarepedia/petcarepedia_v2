@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.service.MailSendService;
 import com.project.service.MemberService;
 import com.project.vo.MemberVo;
 import com.project.vo.SessionVo;
@@ -16,6 +17,8 @@ import com.project.vo.SessionVo;
 public class LoginController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private MailSendService mailService;
 	
 	/**
 	 * login.do - ·Î±×ÀÎ
@@ -82,7 +85,7 @@ public class LoginController {
 		String mid = memberService.getFindId(memberVo);
 		
 		if(mid!="" && mid!=null) {
-			model.addObject("mid", mid);
+			mailService.idFindEmail(memberVo, mid);
 			model.setViewName("/login/login_idfind_success");
 		} else {
 			model.setViewName("/login/login_idfind_fail");
@@ -178,4 +181,5 @@ public class LoginController {
 	public String login_pwupdate_success() {
 		return "/login/login_pwupdate_success";
 	}
+	
 }

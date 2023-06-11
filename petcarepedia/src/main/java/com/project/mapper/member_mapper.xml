@@ -64,7 +64,7 @@
 		select mid 
 		from pcp_member 
 		where name=#{name} 
-			and phone=#{phone}
+			and email=#{email}
 		<if test='mid != null'>
 			and mid=#{mid}
 		</if>

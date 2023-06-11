@@ -58,8 +58,6 @@ public class JoinController {
 	@RequestMapping(value="/mail_check.do",method=RequestMethod.GET,produces="text/plain;charset=UTF-8") //쿼리스트링방식이므로 -> GET
 	@ResponseBody
 	public String mail_check(String email) {
-		System.out.println("이메일 인증 요청이 들어옴!");
-		System.out.println("이메일 인증 이메일 : " + email);
 		return mailService.joinEmail(email);
 	}
 	
