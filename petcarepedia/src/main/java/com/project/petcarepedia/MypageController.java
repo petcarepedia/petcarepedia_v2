@@ -2,13 +2,13 @@ package com.project.petcarepedia;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.service.BookingService;
@@ -334,9 +334,18 @@ public class MypageController {
 			session.invalidate();
 			viewName = "redirect:/login.do";
 		} else {
-			//오류페이지 호출
+			viewName = "redirect:/mypage_member_information.do";
 		}
 		return viewName;
 	}
-
+	
+	/*
+	 * pass_check.do - 패스워드 체크
+	 */
+	@RequestMapping(value = "/pass_check.do", method = RequestMethod.GET, produces="application/x-www-form-urlencoded;charset=UTF-8") 
+	@ResponseBody
+	public String pass_check(String mid, String pass){
+		int result = memberService.getCheckPass(mid,pass);
+		return String.valueOf(result);
+	}
 }
