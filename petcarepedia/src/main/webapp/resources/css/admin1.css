@@ -58,15 +58,17 @@ div.d2 .search_bar{
 	margin-top:1px;
 	margin-left:-3px;
 } 
-	tr td #update_file {
+#update_file {
 		border:1px solid white;
 		position:relative;
-		right:92px;
-		bottom:50px;
+		right:110px;
+		top:-50px;
+		padding:2px;
+		/* backgruond:white;/* 글자가 겹치기 때문/ 파일 선택 버튼 옆에 생성 */
 		background:white;
 		display:inline-block;
-		width:140px; height:20px;
-		font-size:11pt;
+		width:100px; height:20px;
+		font-size:10pt;
 	}
 button{
 	background:#D9D9D9;
@@ -119,8 +121,8 @@ button.button5{
 }
 
 
-section.reserve tr td:nth-child(5),section.review tr td:nth-child(5),
-section.hospital_detail tr td:nth-child(4),section.hospital_detail tr td:nth-child(5){
+section.reserve tr td:nth-child(5),section.hospital_detail tr td:nth-child(4),
+section.hospital_detail tr td:nth-child(5){
 	width:90px;
 }
 section.reserve tr:last-child td,section.review tr:nth-child(12) td,
@@ -148,54 +150,54 @@ section.review #section1 div nav ul li:nth-child(5) a
 	header style
 *************************/
 	
-	.header-menu1 {
-		height:100px; width:100%;
-		background:#7AB2CC;
-		position:fixed; left:0; top:0;
-		z-index:1;
-	}
-	.header-content {
-		width:1000px; height:100px;
-		margin:auto;
-	}
-	
-	.header-logo {
-		float:left;
-		height:70px;
-		padding-top:30px;
-		margin-right:20px;
-	}
-	.header-logo > span {
-		color:white;
-		font-size:24px;
-		font-weight:bold;
-		display:inline-block;
-		margin-bottom:10px;
-		vertical-align:bottom;
-	}
-	
-	.header-nav {
-		float:right;
-		height:70px;
-		padding-top:30px;
-	}
-	.header-nav > ul {
-		list-style-type:none;
-		float:right;
-		padding-top:30px;
-	}
-	.header-nav > ul > li {
-		float:left;
-		padding-left:25px;
-	}
-	.header-nav > ul > li > a {
-		text-decoration:none;
-		color:white;
-		font-size:14px;
-	}
-	.header-nav > ul > li > a:hover {
-		font-weight:bold;
-	}
+.header-menu1 {
+	height:100px; width:100%;
+	background:#7AB2CC;
+	position:fixed; left:0; top:0;
+	z-index:1;
+}
+.header-content {
+	width:1000px; height:100px;
+	margin:auto;
+}
+
+.header-logo {
+	float:left;
+	height:70px;
+	padding-top:30px;
+	margin-right:20px;
+}
+.header-logo > span {
+	color:white;
+	font-size:24px;
+	font-weight:bold;
+	display:inline-block;
+	margin-bottom:10px;
+	vertical-align:bottom;
+}
+
+.header-nav {
+	float:right;
+	height:70px;
+	padding-top:30px;
+}
+.header-nav > ul {
+	list-style-type:none;
+	float:right;
+	padding-top:30px;
+}
+.header-nav > ul > li {
+	float:left;
+	padding-left:25px;
+}
+.header-nav > ul > li > a {
+	text-decoration:none;
+	color:white;
+	font-size:14px;
+}
+.header-nav > ul > li > a:hover {
+	font-weight:bold;
+}
 /****************************
 section1 style sheet - 카테고리
 *****************************/
@@ -280,7 +282,7 @@ section.member tr td:nth-child(2){
 
 section.member .table{
 	width:750px;
-	height:20px;
+	height:10px;
 	margin:auto; 
 	border-collapse:collapse;
 	border-radius:5px;
@@ -288,7 +290,14 @@ section.member .table{
 }
 section.reserve .table{
 	width:750px;
-	height:20px;
+	height:10px;
+	margin:auto; 
+	border-collapse:collapse;
+	border-radius:5px;
+}
+section.review .table{
+	width:750px;
+	height:10px;
 	margin:auto; 
 	border-collapse:collapse;
 	border-radius:5px;
@@ -297,7 +306,9 @@ section.reserve .table{
 /****************************
 reserve_list style sheet
 *****************************/
-
+/* section.reserve section#section2{
+	margin-top:100px;
+} */
 section.reserve tr td:last-child{
 	cursor:pointer;
 }
@@ -305,7 +316,7 @@ section.reserve tr td:nth-child(2) {
 	width:250px;
 }
 
-.d1 section.reserve div.d2, .d1 section.review div.d2{
+.d1 section.reserve div.d2{
 	margin-bottom:80px; 
 }
 section.reserve tr:last-child td {
@@ -315,18 +326,22 @@ section.reserve tr:last-child td {
 /****************************
 review_list style sheet
 *****************************/
-section.review section#section2 .d2 button{
-	margin-left:510px; 
-	margin-bottom:-50px;
+
+section.review tr th:nth-child(1){
+	width:40px;
 }
-section.review tr td:nth-child(2){
-	width:50px;
+section.review tr th:nth-child(2){
+	width:60px;
 }
-section.review tr td:nth-child(3){
+section.review tr th:nth-child(3){
+	width:130px;
+}
+section.review tr th:nth-child(5){
 	width:100px;
-}
-section.review section#section2 {
-	margin-top:220px;
+} 
+ 
+section.review section#section2 .table {
+	margin-top:180px;
 }
 
 

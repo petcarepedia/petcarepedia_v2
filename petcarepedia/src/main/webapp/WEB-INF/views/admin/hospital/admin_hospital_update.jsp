@@ -9,22 +9,30 @@
 	<link rel="stylesheet" href="http://localhost:9000/mycgv_jsp/css/am-pagination.css">
 	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 	<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_serin.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
-	<style>
-	#update_file {
-		border:1px solid white;
-		position:relative;
-		right:110px;
-		top:-50px;
-		padding:2px;
-		/* backgruond:white;/* 글자가 겹치기 때문/ 파일 선택 버튼 옆에 생성 */
-		background:white;
-		display:inline-block;
-		width:100px; height:20px;
-		font-size:10pt;
-	}
-	</style>
+<!-- <script>
+    $(document).ready(function(){
+        $("#btn_update").click(function(event){
+            event.preventDefault(); // 폼 전송을 막음
+            // 수정 완료 버튼 클릭 시 실행되는 함수
+            Swal.fire({
+                icon: 'success',
+                text: '수정이 완료되었습니다.',
+                confirmButtonColor: '#7ab2cc',
+                confirmButtonText: '확인'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // 확인 버튼을 눌렀을 경우 수정 처리
+                    document.updateForm.submit(); // 폼 전송
+                    // 수정 처리를 위한 코드 작성
+                }
+            });
+        });
+    });
+</script> -->
+
 </head>
 <body>
 <!-- header -->
@@ -112,7 +120,7 @@
 								<tr>
 									<td colspan="5"> 
 										<button type="button" class="button5" id="btn_update">수정완료</button>
-										<button type="button" class="button5" id="btn_delete">
+										<button type="button" class="button5" id="btn_before">
 											<a href="admin_hospital_content.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">이전으로</a>
 										</button>
 									</td>

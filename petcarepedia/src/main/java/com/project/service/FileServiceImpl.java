@@ -40,10 +40,10 @@ public class FileServiceImpl {
 		String attach_path = "\\resources\\upload\\";
 		
 		//파일이 존재하면 서버에 저장
-		if(hospitalVo.getFile1().getOriginalFilename().equals("")) {
+		if(!hospitalVo.getFile1().getOriginalFilename().equals("")) {
 			File deleteFile = new File(root_path + attach_path+ oldFileName);
-			System.out.println(root_path + attach_path+ oldFileName);
-			if(deleteFile.exists()) {
+			//boardVo.getFile1().transferTo(deleteFile); //upload 폴더    ->  JVM과 파일이 연결되는 객체를 생성하여 연결해준다. 연결해주는 객체 deleteFile
+			if(deleteFile.exists()) { // 기존파일 존재 시 .delete();로 삭제
 				deleteFile.delete();
 			}
 		}
@@ -77,15 +77,12 @@ public class FileServiceImpl {
 			String hfile = hospitalVo.getFile1().getOriginalFilename();
 			String hsfile = uuid + "_" + hfile;
 			
-			System.out.println("hfile-->"+hfile);
-			System.out.println("hsfile-->"+hsfile);	
-			
 			hospitalVo.setHfile(hfile);
 			hospitalVo.setHsfile(hsfile);
 		}else {
 			System.out.println("파일 없음");
-			//boardVo.setBfile("");
-			//boardVo.setBsfile("");
+//			hospitalVo.setHfile("");
+//			hospitalVo.setHsfile("");
 		}	
 		
 		return hospitalVo;
