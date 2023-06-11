@@ -12,19 +12,29 @@
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
 	<script>
-		$().ready(function () {
-			$("#btn_update").click(function(){
+		$(document).ready(function(){
+			$("#btn_delete").click(function(){
+				event.preventDefault(); // 폼 전송을 막음
+		        // 삭제 완료 버튼 클릭 시 실행되는 함수
 		        Swal.fire({
-		            icon: 'warning',                         // Alert 타입
-		            /* title: 'Alert가 실행되었습니다.',   */       // Alert 제목
-		            text: '삭제할 병원이 맞는 지 확인해주세요',  // Alert 내용
-		            
-		            confirmButtonColor:'#7ab2cc',
-		      	  	confirmButtonText:'확인'
-			        });
-	        });
+		            icon: 'warning',
+		            text: '정말로 삭제하시겠습니까?',
+		            confirmButtonColor: '#7ab2cc',
+		            confirmButtonText: '확인'
+		        }).then((result) => {
+		            if (result.isConfirmed) {
+		                // 확인 버튼을 눌렀을 경우 삭제 처리
+		                document.deleteForm.submit(); // 폼 전송
+		                // 삭제 처리를 위한 코드 작성
+		            } 
+		       	 });
+		    });
 		});
 	</script>
+
+
+
+
 </head>
 <body>
 <!-- header -->
@@ -71,8 +81,8 @@
 								</tr>
 								<tr>
 									<td colspan="5"> 
-										<button type="submit" class="button5" id="btn_update">삭제완료</a></button>
-										<button type="button" class="button5" id="btn_delete">
+										<button type="submit" class="button5" id="btn_delete">삭제완료</button>
+										<button type="button" class="button5" id="btn_before">
 											<a href="admin_hospital_content.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">이전으로</a>
 										</button>
 									</td>

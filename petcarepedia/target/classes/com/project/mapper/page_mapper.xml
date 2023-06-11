@@ -11,7 +11,7 @@
 		select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname
 				 from (select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
 				 	from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m 
-				 where r.hid=h.hid and r.mid = m.mid order and rstate='O'  by r.rdate desc))
+				 where r.hid=h.hid and r.mid = m.mid and rstate='O' order by r.rdate desc))
 				 where rno between #{start} AND #{end}
 	</select>
 	
@@ -73,7 +73,7 @@
 	<select id = "Hlist" parameterType="map" resultType="com.project.vo.HospitalVo">	
 		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
 					  FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
-						 FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL ORDER BY HID)) 
+						 FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL ORDER BY HID desc)) 
 					WHERE RNO BETWEEN #{start} AND #{end}
 	</select>
 	
