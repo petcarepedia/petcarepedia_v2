@@ -111,6 +111,13 @@ public class MemberDao extends DBConn{
 		List<MemberVo> list = sqlSession.selectList("mapper.member.search",mid);
 		return (ArrayList<MemberVo>)list;
 	}
+	
+	public int checkPass(String mid, String pass) {
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("mid", mid);
+		param.put("pass", pass);
+		return sqlSession.selectOne("mapper.member.checkPass", param);
+	}
 }
 
 

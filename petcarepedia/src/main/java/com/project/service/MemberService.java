@@ -18,4 +18,5 @@ public interface MemberService {
 	public String getFindPass(MemberVo memberVo);
 	public int getUpdatePass(MemberVo memberVo);
 	public ArrayList<MemberVo> getSearch(String mid);
+	public int getCheckPass(String mid, String pass);
 }

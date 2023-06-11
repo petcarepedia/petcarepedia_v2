@@ -74,4 +74,9 @@ public class MemberServiceImpl implements MemberService{
 	public ArrayList<MemberVo> getSearch(String mid){
 		return memberDao.search(mid);
 	};
+	
+	@Override
+	public int getCheckPass(String mid, String pass) {
+		return memberDao.checkPass(mid, pass);
+	}
 }

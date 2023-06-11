@@ -81,4 +81,8 @@
 		FROM PCP_MEMBER 
 		WHERE MID LIKE '%'||#{mid}||'%'
 	</select>
+	
+	<select id="checkPass" parameterType="map" resultType="int">
+		select count(*) from pcp_member where mid = #{mid} and pass = #{pass}
+	</select>
 </mapper>
