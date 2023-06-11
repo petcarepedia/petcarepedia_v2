@@ -13,7 +13,7 @@
 	<select id="list" parameterType="map" resultType="com.project.vo.HospitalVo">
 		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
 					  FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
-						 FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL ORDER BY HID)) 
+						 FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL ORDER BY HID  desc )) 
 					WHERE RNO BETWEEN #{start} AND #{end}
 	</select>
 	
@@ -57,7 +57,7 @@
 								LEFT JOIN PCP_REVIEW R ON H.HID = R.HID 
 								 GROUP BY H.HID, H.HNAME, H.GLOC, H.LOC, H.TEL, H.HTIME, SUBSTR(H.HTIME, 0, 5), SUBSTR(H.HTIME, 7, 6), 
 								 H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y , H.HSFILE
-								 ORDER BY H.HID
+								 ORDER BY H.HID 
 	</select>
 	
 	<select id="selectTime" parameterType="String" resultType="com.project.vo.HospitalVo">
