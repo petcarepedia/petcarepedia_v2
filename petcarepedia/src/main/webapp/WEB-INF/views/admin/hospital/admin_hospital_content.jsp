@@ -97,7 +97,7 @@
 								</tr>
 								<tr>
 									<td colspan="2"> 
-										<button type="button" class="button5" id="btn_update">
+										<button type="button" class="button5" id="btn_content">
 											<a href="admin_hospital_update.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">수정하기</a>
 										</button>
 										<button type="button" class="button5" id="btn_delete">
