@@ -24,12 +24,12 @@
 				<table class="notice_content">
 					<tr>
 						<td>
-							<input type="text" name="title" id="title">
+							<input type="text" name="title" id="title" placeholder="제목을 입력해주세요">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<textarea name="ncontent" class="ncontent" id="ncontent"></textarea>
+							<textarea name="ncontent" class="ncontent" id="ncontent" placeholder="내용을 입력해주세요"></textarea>
 						</td>
 					</tr>					
 				</table>
