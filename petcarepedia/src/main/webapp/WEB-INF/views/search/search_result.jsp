@@ -32,8 +32,10 @@
 			<div class="info_d">
 				<!-- 병원 사진 표시 -->
 				<div class="images_d">
-					<%-- <img src="${hospital.img}"> --%>
-					<img src="http://localhost:9000/petcarepedia/upload/${hospital.hsfile}">
+					<c:if test="${hospital.hsfile != null}">
+						<%-- <img src="${hospital.img}"> --%>
+						<img src="http://localhost:9000/petcarepedia/upload/${hospital.hsfile}">
+					</c:if>
 				</div>
 				
 				<!-- 병원 정보 표시 -->	
@@ -369,9 +371,17 @@
 								
 								<!-- 신고하기 -->
 								<form name="rstateForm" action="rstateProc.do" method="post">
-									<input type="hidden" name="rid" value="${RM_select.rid}">
-									<input type="hidden" name="hid" value="${hospital.hid}">
-									<button type="button" class="rstate" name="rstate">신고하기</button>
+									<c:choose>
+									<c:when test="${sessionScope.svo.mid != RM_select.mid}">
+										<input type="hidden" name="rid" value="${RM_select.rid}">
+										<input type="hidden" name="hid" value="${hospital.hid}">
+										<button type="button" class="rstate" name="rstate">신고하기</button>
+									</c:when>
+									
+									<c:otherwise>
+										<button type="button" class="rstate" name="rstate" hidden></button>
+									</c:otherwise>
+									</c:choose>
 								</form>
 							</div>
 						</div>
