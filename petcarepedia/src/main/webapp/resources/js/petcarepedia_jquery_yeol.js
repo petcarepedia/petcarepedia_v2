@@ -212,34 +212,31 @@ $("#btnReservationDelete").click(function(){
 		        confirmButtonText: '승인',
 		        cancelButtonText: '취소'
 			    }).then((result) => {
-			    	$.ajax({
-			            url: "pass_check.do?mid=" + $("#mid").val() + "&pass=" + $("#pass").val(),
-			            success: function(result) {
-			            	if(result == 0) {
-			            		Swal.fire({
-								icon: 'error',                         
-								text: '비밀번호 오류',  
-								confirmButtonColor:'#98dfff',
-								confirmButtonText:'확인'
-								})
-			            	} else {
-			            		Swal.fire({
-								icon: 'success',                         
-								text: '탈퇴가 완료되었습니다.',  
-								confirmButtonColor:'#98dfff',
-								confirmButtonText:'확인'
-								}).then(() => {
-				                	deleteForm.submit();
-				           		});
-			            	}
-			            	
-			            } //success
-			        }); //ajax
-			    
-			    
+			    	 if (result.isConfirmed) {
+				    	$.ajax({
+				            url: "pass_check.do?mid=" + $("#mid").val() + "&pass=" + $("#pass").val(),
+				            success: function(result) {
+				            	if(result == 0) {
+				            		Swal.fire({
+									icon: 'error',                         
+									text: '비밀번호 오류',  
+									confirmButtonColor:'#98dfff',
+									confirmButtonText:'확인'
+									})
+				            	} else {
+				            		Swal.fire({
+									icon: 'success',                         
+									text: '탈퇴가 완료되었습니다.',  
+									confirmButtonColor:'#98dfff',
+									confirmButtonText:'확인'
+									}).then(() => {
+					                	deleteForm.submit();
+					           		});
+				            	}
+				            } //success
+				        }); //ajax
+			        }
 			    })
-			
-		        
 	        } // else
 	        
 		})
