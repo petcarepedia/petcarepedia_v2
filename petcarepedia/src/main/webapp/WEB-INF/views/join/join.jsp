@@ -10,6 +10,17 @@
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+$(document).ready(function(){
+	$('#loading').hide(); //첫 시작시 로딩바를 숨겨준다.
+})
+.ajaxStart(function(){
+	$('#loading').show(); //ajax실행시 로딩바를 보여준다.
+})
+.ajaxStop(function(){
+	$('#loading').hide(); //ajax종료시 로딩바를 숨겨준다.
+});
+</script>
 </head>
 <body>
 	<div class="back"></div>
@@ -25,6 +36,7 @@
 			</div>
 		</div>
 	</div>
+	<img src="http://localhost:9000/petcarepedia/images/loading.gif" id="loading">
 	
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>

@@ -9,8 +9,18 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
+<script>
+$(document).ready(function(){
+	$('#loading').hide(); //첫 시작시 로딩바를 숨겨준다.
+	
+	$('#btnIdFind').click(function(){
+		$('#loading').show();
+	});
+})
+</script>
 </head>
 <body>
+	<img src="http://localhost:9000/petcarepedia/images/loading.gif" id="loading">
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
