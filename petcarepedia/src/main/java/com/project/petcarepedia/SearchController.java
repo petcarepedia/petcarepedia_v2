@@ -92,19 +92,6 @@ public class SearchController {
 	    HospitalVo star = hospitalService.selectStar(hid);
 	    BookingVo bookingVo = bookingService.getSelectTime(hid);
 		ArrayList<ReviewVo> RM_select = reviewService.getRM_select(hid);
-//	    ArrayList<ReviewVo> RM_select = null;
-	    
-	    
-	    // filter
-//	    if (filter.equals("basic")) {
-//	    	RM_select = reviewService.getRM_select(hid);
-//	    } else if (filter.equals("like")) {
-//	    	RM_select = reviewService.getRM_select2(hid);
-//	    } else if (filter.equals("totalUp")) {
-//	    	RM_select = reviewService.getRM_select3(hid);
-//	    } else if (filter.equals("totalDown")) {
-//	    	RM_select = reviewService.getRM_select(hid);
-//	    }
 	    
 	    model.addObject("hospital", hospital);
 	    model.addObject("star", star);
