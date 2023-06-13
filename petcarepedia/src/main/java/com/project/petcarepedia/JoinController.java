@@ -54,6 +54,15 @@ public class JoinController {
 		return memberService.getCheckId(mid);
 	}
 	
+	/**
+	 * mail_mulcheck - 이메일 중복체크
+	 */
+	@RequestMapping(value="/mail_mulcheck.do",method=RequestMethod.GET) //쿼리스트링방식이므로 -> GET
+	@ResponseBody
+	public String mail_mulcheck(String email) {
+		return memberService.getCheckMail(email);
+	}
+	
 	//이메일 인증
 	@RequestMapping(value="/mail_check.do",method=RequestMethod.GET,produces="text/plain;charset=UTF-8") //쿼리스트링방식이므로 -> GET
 	@ResponseBody

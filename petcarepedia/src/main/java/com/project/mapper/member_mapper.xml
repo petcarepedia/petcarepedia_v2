@@ -54,6 +54,10 @@
 		select count(*) from pcp_member where mid=#{mid}
 	</select>
 	
+	<select id="checkMail" parameterType="string" resultType="int">
+		select count(*) from pcp_member where email=#{email}
+	</select>
+	
 	<update id="update" parameterType="com.project.vo.MemberVo">
 		update pcp_member
 		set nickname=#{nickname},phone=#{phone},birth=#{birth, jdbcType=VARCHAR},email=#{email, jdbcType=VARCHAR},addr=#{addr, jdbcType=VARCHAR} 

@@ -13,6 +13,7 @@ public interface MemberService {
 	public ArrayList<MemberVo> getList(int startCount, int endCount);
 	public MemberVo getSelect(String mid);
 	public String getCheckId(String mid);
+	public String getCheckMail(String email);
 	public int getUpdate(MemberVo memberVo);
 	public String getFindId(MemberVo memberVo);
 	public String getFindPass(MemberVo memberVo);

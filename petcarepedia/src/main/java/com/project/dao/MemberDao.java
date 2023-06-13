@@ -77,6 +77,13 @@ public class MemberDao extends DBConn{
 	}
 	
 	/**
+	 * checkMail - 회원가입 아이디 중복체크
+	 */
+	public int checkMail(String email) {
+		return sqlSession.selectOne("mapper.member.checkMail",email);
+	}
+	
+	/**
 	 * update - 회원정보 수정(마이페이지)
 	 */
 	public int update(MemberVo memberVo) {

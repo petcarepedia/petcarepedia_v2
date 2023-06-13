@@ -51,6 +51,11 @@ public class MemberServiceImpl implements MemberService{
 	};
 	
 	@Override
+	public String getCheckMail(String email) {
+		return String.valueOf(memberDao.checkMail(email));
+	};
+	
+	@Override
 	public int getUpdate(MemberVo memberVo) {
 		return memberDao.update(memberVo);
 	};
