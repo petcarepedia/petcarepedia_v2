@@ -8,6 +8,9 @@
 <title>펫캐어피디아 | 관리자 공지사항</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_style.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
+<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jsp_jquery_kang.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.all.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 <body>
 	<!-- header -->
@@ -30,7 +33,10 @@
 			<div id="date">${noticeVo.ndate }</div>
 			<div class="nc_button_r">
 				<a href="admin_notice_update.do?nid=${noticeVo.nid }"><button type="button" class="ad_button">수정</button></a>
-				<a href="admin_notice_delete.do?nid=${noticeVo.nid }"><button type="button" class="ad_button">삭제</button></a>
+					<form name="deleteForm" action="admin_notice_delete_proc.do" method="post">
+						<input type="hidden" name="nid" value="${noticeVo.nid }">
+						<button type="button" class="ad_button" id="noticeDelBtn">삭제</button>
+					</form>
 				<a href="admin_notice.do"><button type="button" class="ad_button">목록</button></a>
 			</div>
 		</section>
