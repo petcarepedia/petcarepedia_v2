@@ -365,10 +365,18 @@ div.total span:last-child {
 	font-size: 14px;
 }
 
-div.filter {
-	/* border: 1px solid green; */
-	width: 400px;
+select.filter {
+	border: 1px solid #98DFFF;
+	border-radius: 5px;
+	width: 150px;
+	height: 28px;
 	float: right;
+	margin:125px 78px 0 0;
+	padding-left: 5px;
+}
+select.filter option {
+	/* color: red; */
+	padding-left: 5px;
 }
 
 /* ¸®ºä ¸®½ºÆ® */

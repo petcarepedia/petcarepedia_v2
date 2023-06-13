@@ -1,6 +1,8 @@
 package com.project.petcarepedia;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.servlet.http.HttpSession;
 
@@ -89,7 +91,7 @@ public class SearchController {
 	    HospitalVo hospital = hospitalService.select(hid);
 	    HospitalVo star = hospitalService.selectStar(hid);
 	    BookingVo bookingVo = bookingService.getSelectTime(hid);
-	    ArrayList<ReviewVo> RM_select = reviewService.getRM_select(hid);
+		ArrayList<ReviewVo> RM_select = reviewService.getRM_select(hid);
 	    
 	    model.addObject("hospital", hospital);
 	    model.addObject("star", star);
