@@ -26,6 +26,15 @@ public class SessionAuthInterceptor extends HandlerInterceptorAdapter{
 			//로그인하지 않은 상태 -> 로그인폼으로 전송
 			response.sendRedirect("/petcarepedia/login.do");
 			return false;
+		} else {
+			if(!svo.getMid().equals("admin")) {
+				String requestURI = request.getRequestURI();
+				 if (requestURI.startsWith("/petcarepedia/admin_")) {
+					response.sendRedirect("/petcarepedia/index.do");
+					return false;
+				}
+			}
+			
 		}
 		
 		return true;
