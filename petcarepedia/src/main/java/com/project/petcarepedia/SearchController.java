@@ -1,6 +1,8 @@
 package com.project.petcarepedia;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.servlet.http.HttpSession;
 
@@ -89,7 +91,20 @@ public class SearchController {
 	    HospitalVo hospital = hospitalService.select(hid);
 	    HospitalVo star = hospitalService.selectStar(hid);
 	    BookingVo bookingVo = bookingService.getSelectTime(hid);
-	    ArrayList<ReviewVo> RM_select = reviewService.getRM_select(hid);
+		ArrayList<ReviewVo> RM_select = reviewService.getRM_select(hid);
+//	    ArrayList<ReviewVo> RM_select = null;
+	    
+	    
+	    // filter
+//	    if (filter.equals("basic")) {
+//	    	RM_select = reviewService.getRM_select(hid);
+//	    } else if (filter.equals("like")) {
+//	    	RM_select = reviewService.getRM_select2(hid);
+//	    } else if (filter.equals("totalUp")) {
+//	    	RM_select = reviewService.getRM_select3(hid);
+//	    } else if (filter.equals("totalDown")) {
+//	    	RM_select = reviewService.getRM_select(hid);
+//	    }
 	    
 	    model.addObject("hospital", hospital);
 	    model.addObject("star", star);
@@ -223,8 +238,11 @@ public class SearchController {
 	/** rstateForm.do - 신고하기 처리 **/
 	@RequestMapping(value="rstateProc.do", method=RequestMethod.POST)
 	@ResponseBody
-	public String rstateProc(String rid, @RequestParam("hid") String hid) {
+	public String rstateProc( @RequestParam("rid")String rid, @RequestParam("hid") String hid) {
 	    int rstate_result = reviewService.reviewCheckResult(rid);
+	    System.out.println(rstate_result);
+	    System.out.println("rid:" + rid);
+	    System.out.println("hid: " + hid);
 
 	    if (rstate_result == 0) {
 	    	reviewService.getUpdateReport(rid);

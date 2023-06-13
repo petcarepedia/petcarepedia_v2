@@ -153,7 +153,9 @@ $(document).ready(function(){
 	
 	/** 신고하기 버튼 **/
 	$(".rstate").click(function() { // 신고하기
-		var rid = $("input[name='rid']").val();
+	  	var button = $(this);
+  		var rid = button.data('rid');
+		// var rid = $("input[name='rid']").val();
 		var hid = $("input[name='hid']").val();
 		
 		if(mid == "") { // 미로그인시

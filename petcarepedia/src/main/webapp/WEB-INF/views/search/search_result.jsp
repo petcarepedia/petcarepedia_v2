@@ -209,16 +209,7 @@
 					</div>
 				</div>
 
-				<!-- <div class="filter">
-					<span>동물종류</span>
-					<div class="dropdown-content">
-						<p>기본정렬</p>
-						<p>강아지</p>
-						<p>고양이</p>
-						<p>파충류</p>
-						<p>기타</p> 
-					</div>
-					
+ 				<!-- <div class="filter">
 					<span>기본정렬</span>
 					<div class="dropdown-content">
 						 <p>기본정렬</p>
@@ -227,6 +218,13 @@
 						 <p>평점 낮은 순서</p>
 					</div>
 				</div> -->
+				
+				<select name="filter" id="filter" class="filter" onchange="changeSorting()">
+				  <option value="basic" selected>기본 정렬</option>
+				  <option value="like">좋아요 많은 순서</option>
+				  <option value="totalUp">평점 높은 순서</option>
+				  <option value="totalDown">평점 낮은 순서</option>
+				</select>
 
 				<!-- 리뷰 리스트 -->
 				<c:choose>
@@ -373,9 +371,9 @@
 								<form name="rstateForm" action="rstateProc.do" method="post">
 									<c:choose>
 									<c:when test="${sessionScope.svo.mid != RM_select.mid}">
-										<input type="hidden" name="rid" value="${RM_select.rid}">
-										<input type="hidden" name="hid" value="${hospital.hid}">
-										<button type="button" class="rstate" name="rstate">신고하기</button>
+										<input type="text" name="rid" value="${RM_select.rid}">
+										<input type="text" name="hid" value="${hospital.hid}">
+										<button type="button" class="rstate" name="rstate" data-rid="${RM_select.rid}">신고하기</button>
 									</c:when>
 									
 									<c:otherwise>
