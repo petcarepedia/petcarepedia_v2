@@ -85,7 +85,7 @@
 						<td colspan="5" >
 							<select>
 								<option name="table" id="new"> 최신 순</option>
-								<option name="table"  id="old"> 오래된 순</option>
+								<option name="table"  id="old"> 오래된 순</option>		
 							</select>
 						</td>
 					</tr>
