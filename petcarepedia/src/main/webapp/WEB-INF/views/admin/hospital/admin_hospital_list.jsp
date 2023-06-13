@@ -82,6 +82,14 @@
 						</td>
 					</tr>
 					<tr>
+						<td colspan="5" >
+							<select>
+								<option name="table" id="new"> 최신 순</option>
+								<option name="table"  id="old"> 오래된 순</option>		
+							</select>
+						</td>
+					</tr>
+					<tr>
 						<th>번호</th>
 						<th>병원명</th>
 						<th>기타 동물 여부</th>

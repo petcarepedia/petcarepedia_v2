@@ -12,27 +12,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
-<!-- <script>
-    $(document).ready(function(){
-        $("#btn_update").click(function(event){
-            event.preventDefault(); // 폼 전송을 막음
-            // 수정 완료 버튼 클릭 시 실행되는 함수
-            Swal.fire({
-                icon: 'success',
-                text: '수정이 완료되었습니다.',
-                confirmButtonColor: '#7ab2cc',
-                confirmButtonText: '확인'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // 확인 버튼을 눌렀을 경우 수정 처리
-                    document.updateForm.submit(); // 폼 전송
-                    // 수정 처리를 위한 코드 작성
-                }
-            });
-        });
-    });
-</script> -->
-
 </head>
 <body>
 <!-- header -->
