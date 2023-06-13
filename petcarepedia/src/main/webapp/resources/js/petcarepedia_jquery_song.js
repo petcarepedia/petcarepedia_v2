@@ -134,12 +134,29 @@ $(document).ready(function(){
 			$('#btnCheckEmail').hide();
 			$("#emailauthcheck_msg").text("").css("display","none");
 		} else {
-			$("#emailcheck_msg").text("").css("display","none");
+			$.ajax({
+				url : "mail_mulcheck.do?email="+$("#email").val(),
+				success : function(result){
+					if(result == 1){
+						$("#emailcheck_msg").text("중복된 이메일입니다.").css("color","red")
+						.css("font-size","12px").css("display","block").css("clear","both")
+						.css("padding-top","5px")
+						.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+						
+						$("#btnAuthEmail").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed").text("인증번호 전송");
+						$('#cemail').hide();
+						$('#btnCheckEmail').hide();
+						$("#emailauthcheck_msg").text("").css("display","none");
+					}else if(result == 0){
+						$("#emailcheck_msg").text("").css("display","none");
 			
-			$("#btnAuthEmail").attr("disabled",false).css("background","#98dfff").css("cursor","pointer").text("인증번호 전송");
-			$('#cemail').hide();
-			$('#btnCheckEmail').hide();
-			$("#emailauthcheck_msg").text("").css("display","none");
+						$("#btnAuthEmail").attr("disabled",false).css("background","#98dfff").css("cursor","pointer").text("인증번호 전송");
+						$('#cemail').hide();
+						$('#btnCheckEmail').hide();
+						$("#emailauthcheck_msg").text("").css("display","none");
+					}
+				}
+			});
 		}
 	});
 	//비밀번호 정규식 체크
