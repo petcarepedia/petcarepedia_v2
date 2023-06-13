@@ -186,6 +186,22 @@ public class ReviewController {
 
 	//리뷰 좋아요
 	@RequestMapping(value="/review_like_Proc.do", method=RequestMethod.POST)
+	public String review_like_Proc(String rid, HttpSession session) {
+		ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
+		SessionVo sessionVo = (SessionVo) session.getAttribute("svo");
+		reviewLikeVo.setRid(rid);
+		reviewLikeVo.setMid(sessionVo.getMid());
+		
+		int result = reviewLikeService.getIdCheck(reviewLikeVo);
+		//누르면 1 아니면 0
+		return String.valueOf(result);
+	}	
+	
+	
+	
+	/*
+	//리뷰 좋아요
+	@RequestMapping(value="/review_like_Proc.do", method=RequestMethod.POST)
 	public ModelAndView review_like_Proc(ReviewLikeVo reviewLikeVo, String page, String filter_location, HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		
@@ -210,7 +226,7 @@ public class ReviewController {
 		
 		return model;
 	}	
-	
+	*/
 	
 	
 	//리뷰 검색 페이징

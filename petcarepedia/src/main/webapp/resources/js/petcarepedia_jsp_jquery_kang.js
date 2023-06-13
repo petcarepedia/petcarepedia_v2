@@ -193,6 +193,23 @@ $(document).ready(function(){
         });
 	});	
 	
+	
+	/*******************************************
+		좋아요 처리
+	 ********************************************/	
+	$("#btnLikeProc").click(function() {
+		$.ajax({
+			url : "review_like_Proc.do?rid="+$("#rid").val(),
+			success : function(result) {
+				if(result == 1) {
+					//리뷰 좋아요 눌렀음
+	            }
+				else if(result == 0){
+					//리뷰 좋아요 안누름
+				}
+			}
+        });	//ajax
+	}); //btnLikeProc
 }); //ready
 
 
