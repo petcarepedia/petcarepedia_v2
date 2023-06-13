@@ -209,13 +209,16 @@
 					</div>
 				</div>
 
-				<!-- <select name="filter" id="filter" class="filter" onchange="changeSorting()">
-				  <option value="basic" selected>기본 정렬</option>
-				  <option value="like">좋아요 많은 순서</option>
-				  <option value="totalUp">평점 높은 순서</option>
-				  <option value="totalDown">평점 낮은 순서</option>
-				</select> -->
-
+				<form action="/search_result.do" method="GET">
+				    <select name="filter" id="filter" class="filter" onchange="this.form.submit()">
+				        <option value="basic">기본 정렬</option>
+				        <option value="like">좋아요 많은 순서</option>
+				        <option value="totalUp">별점 높은 순서</option>
+				        <option value="totalDown">별점 낮은 순서</option>
+				    </select>
+				    	<%-- <input type="text" name="hid" value="${hospital.hid}"> --%>
+				</form>
+				
 				<!-- 리뷰 리스트 -->
 				<c:choose>
 					<c:when test="${fn:length(RM_select) == 0}">
