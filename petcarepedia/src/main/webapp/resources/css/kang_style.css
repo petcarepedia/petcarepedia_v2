@@ -671,3 +671,6 @@ input#title {
 	font-weight: 100;
 	line-height:normal;
 }
+section.notice .nc_button_r form {
+	display:inline;
+}
