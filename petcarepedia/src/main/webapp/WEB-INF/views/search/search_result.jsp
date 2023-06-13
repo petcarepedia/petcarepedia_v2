@@ -371,8 +371,8 @@
 								<form name="rstateForm" action="rstateProc.do" method="post">
 									<c:choose>
 									<c:when test="${sessionScope.svo.mid != RM_select.mid}">
-										<input type="text" name="rid" value="${RM_select.rid}">
-										<input type="text" name="hid" value="${hospital.hid}">
+										<input type="hidden" name="rid" value="${RM_select.rid}">
+										<input type="hidden" name="hid" value="${hospital.hid}">
 										<button type="button" class="rstate" name="rstate" data-rid="${RM_select.rid}">신고하기</button>
 									</c:when>
 									

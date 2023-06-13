@@ -238,11 +238,8 @@ public class SearchController {
 	/** rstateForm.do - 신고하기 처리 **/
 	@RequestMapping(value="rstateProc.do", method=RequestMethod.POST)
 	@ResponseBody
-	public String rstateProc( @RequestParam("rid")String rid, @RequestParam("hid") String hid) {
+	public String rstateProc(String rid, @RequestParam("hid") String hid) {
 	    int rstate_result = reviewService.reviewCheckResult(rid);
-	    System.out.println(rstate_result);
-	    System.out.println("rid:" + rid);
-	    System.out.println("hid: " + hid);
 
 	    if (rstate_result == 0) {
 	    	reviewService.getUpdateReport(rid);
