@@ -1,5 +1,10 @@
 	
 $(document).ready(function(){
+	/*************************
+	 * 병원 - 정렬
+	 **************************/
+	
+	
 	
 	/*************************
 	 * 예약 - 상태 변경
@@ -71,7 +76,18 @@ $(document).ready(function(){
 				$("#holiday").focus();
 				return false;
 			}else{
-				updateForm.submit();
+			    // 수정 완료 버튼 클릭 시 실행되는 함수
+			    Swal.fire({
+			        icon: 'success',
+			        text: '수정이 완료되었습니다.',
+			        confirmButtonColor: '#7ab2cc',
+			        confirmButtonText: '확인'
+			    }).then((result) => {
+			        if (result.isConfirmed) {
+			           
+			            updateForm.submit(); 
+			        }
+			    });
 			}
 		});
 	
