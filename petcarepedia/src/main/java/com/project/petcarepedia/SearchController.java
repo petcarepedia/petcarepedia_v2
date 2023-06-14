@@ -100,10 +100,9 @@ public class SearchController {
 	    
 	 /// filter
 	    if (filter == null) {
-	        filter = "basic"; // 기본값 설정
-	    } 
-
-	    if (filter.equals("basic")) {
+//	        filter = "basic"; // 기본값 설정
+	    	RM_select = reviewService.getRM_select(hid);
+	    } else if (filter.equals("basic")) {
 	        RM_select = reviewService.getRM_select(hid);
 	    } else if (filter.equals("like")) {
 	        RM_select = reviewService.getRM_select2(hid);

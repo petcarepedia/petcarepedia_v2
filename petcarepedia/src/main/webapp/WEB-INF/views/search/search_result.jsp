@@ -208,11 +208,11 @@
 						</c:if>
 					</div>
 				</div>
-				<form action="/petcarepedia/search_result.do" method="GET">
+				<form name="filterForm" action="/petcarepedia/search_result.do" method="GET">
 					<input type="hidden" name="hid" value="${hospital.hid}">
 					<input type="hidden" id="filterCheck" value="${filter}">
 				    <select name="filter" id="filter" class="filter" onchange="this.form.submit()">
-				    	<option value="" checked>리뷰 정렬</option>
+				    	<option value="" selected>리뷰 정렬</option>
 					    <option value="basic">기본 정렬</option>
 					    <option value="like">좋아요 많은 순서</option>
 					    <option value="totalUp">별점 높은 순서</option>

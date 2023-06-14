@@ -255,14 +255,16 @@ $(document).ready(function(){
 	
 	
 	/** 정렬 스크롤 **/
-	 // 옵션 선택 이벤트 처리
-	 
-	if ($("#filterCheck").val() != 'basic') {
-	  var offsetTop = $(".list").offset().top - 100;
+    if ($("#filterCheck").val() != "") {
+	  offsetTop = $(".list").offset().top - 100;
 	  $('html, body').animate({
 	    scrollTop: offsetTop
 	  }, 500);
 	}
+	 
+	
+	
+	
 
 
 
