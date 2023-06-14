@@ -56,7 +56,11 @@ public interface ReviewService {
 	//신고된 리뷰 체크
 	public int reviewCheckResult(String rid);
 
+	public ArrayList<ReviewVo> getRM_select2(String hid);
 	
+	public ArrayList<ReviewVo> getRM_select3(String hid);
+	
+	public ArrayList<ReviewVo> getRM_select4(String hid);
 
 	
 	
