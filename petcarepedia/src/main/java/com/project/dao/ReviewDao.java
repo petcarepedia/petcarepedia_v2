@@ -580,4 +580,23 @@ public class ReviewDao extends DBConn {
 	}
 	
 	
+	// 리뷰 병원 조인
+	public ArrayList<ReviewVo> RM_select2(String hid) {
+		List<ReviewVo> list = sqlSession.selectList("mapper.review.RM_select2", hid);
+		return (ArrayList<ReviewVo>)list;
+	}
+	
+	// 리뷰 병원 조인
+	public ArrayList<ReviewVo> RM_select3(String hid) {
+		List<ReviewVo> list = sqlSession.selectList("mapper.review.RM_select3", hid);
+		return (ArrayList<ReviewVo>)list;
+	}
+	
+	// 리뷰 병원 조인
+	public ArrayList<ReviewVo> RM_select4(String hid) {
+		List<ReviewVo> list = sqlSession.selectList("mapper.review.RM_select4", hid);
+		return (ArrayList<ReviewVo>)list;
+	}
+
+	
 }
