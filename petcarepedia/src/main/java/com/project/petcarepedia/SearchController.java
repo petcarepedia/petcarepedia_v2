@@ -1,8 +1,6 @@
 package com.project.petcarepedia;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 import javax.servlet.http.HttpSession;
 
@@ -75,9 +73,10 @@ public class SearchController {
 	
 	
 	/** search_result.do - 병원 상세정보 **/
-	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
-	public ModelAndView search_result(String hid, HttpSession session, String rid) {
-	    ModelAndView model = new ModelAndView();
+    @RequestMapping(value = "/search_result.do", method = RequestMethod.GET)
+    public ModelAndView search_result(String hid, HttpSession session, String rid, String filter) {
+    	
+        ModelAndView model = new ModelAndView();
 	    
 	    // session
 	    SessionVo svo = (SessionVo)session.getAttribute("svo");
@@ -91,12 +90,29 @@ public class SearchController {
 	    HospitalVo hospital = hospitalService.select(hid);
 	    HospitalVo star = hospitalService.selectStar(hid);
 	    BookingVo bookingVo = bookingService.getSelectTime(hid);
-		ArrayList<ReviewVo> RM_select = reviewService.getRM_select(hid);
+//		ArrayList<ReviewVo> RM_select = reviewService.getRM_select(hid);
+	    ArrayList<ReviewVo> RM_select = new ArrayList<ReviewVo>();
 	    
 	    model.addObject("hospital", hospital);
 	    model.addObject("star", star);
 	    model.addObject("time", bookingVo);
-	    model.addObject("RM_select", RM_select);
+//	    model.addObject("RM_select", RM_select);
+	    
+	 /// filter
+	    if (filter == null) {
+	        filter = "basic"; // 기본값 설정
+	    } 
+
+	    if (filter.equals("basic")) {
+	        RM_select = reviewService.getRM_select(hid);
+	    } else if (filter.equals("like")) {
+	        RM_select = reviewService.getRM_select2(hid);
+	    } else if (filter.equals("totalUp")) {
+	        RM_select = reviewService.getRM_select3(hid);
+	    } else if (filter.equals("totalDown")) {
+	        RM_select = reviewService.getRM_select4(hid);
+	    }
+	    model.addObject("filter", filter);
 	    
 	    // Check bookmark
 	    BookmarkVo bookmarkVo = new BookmarkVo();
@@ -115,7 +131,7 @@ public class SearchController {
 	    	 reviewLikeVo.setRid(targetRid);
     	 	int likeresult = reviewLikeService.getIdCheck(reviewLikeVo);
     	 	review.setLikeresult(likeresult);
-		    }
+	    }
 	    model.addObject("RM_select", RM_select);
 	    
 	    model.setViewName("/search/search_result");
@@ -123,6 +139,7 @@ public class SearchController {
 	    return model;
 	}
 	
+
 	
 	/** search_result_map.do - 병원 상세 지도 정보 **/
 	@RequestMapping(value="/search_result_map.do", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
