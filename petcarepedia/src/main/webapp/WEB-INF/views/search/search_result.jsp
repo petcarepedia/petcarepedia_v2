@@ -61,7 +61,7 @@
 								<c:when test="${bookmarkResult == 1}">
 									<button type="submit" id="bookmark">
 										<img
-											src="http://localhost:9000/petcarepedia/images/bookmark_yellow.png">
+											src="http://localhost:9000/images/bookmark_yellow.png">
 									</button>
 								</c:when>
 								
@@ -208,15 +208,16 @@
 						</c:if>
 					</div>
 				</div>
-
-				<form action="/search_result.do" method="GET">
+				<form action="/petcarepedia/search_result.do" method="GET">
+					<input type="hidden" name="hid" value="${hospital.hid}">
+					<input type="hidden" id="filterCheck" value="${filter}">
 				    <select name="filter" id="filter" class="filter" onchange="this.form.submit()">
-				        <option value="basic">기본 정렬</option>
-				        <option value="like">좋아요 많은 순서</option>
-				        <option value="totalUp">별점 높은 순서</option>
-				        <option value="totalDown">별점 낮은 순서</option>
-				    </select>
-				    	<%-- <input type="text" name="hid" value="${hospital.hid}"> --%>
+				    	<option value="" checked>리뷰 정렬</option>
+					    <option value="basic">기본 정렬</option>
+					    <option value="like">좋아요 많은 순서</option>
+					    <option value="totalUp">별점 높은 순서</option>
+					    <option value="totalDown">별점 낮은 순서</option>
+					</select>
 				</form>
 				
 				<!-- 리뷰 리스트 -->

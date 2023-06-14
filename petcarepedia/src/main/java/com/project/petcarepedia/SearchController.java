@@ -74,10 +74,7 @@ public class SearchController {
 	
 	/** search_result.do - 병원 상세정보 **/
     @RequestMapping(value = "/search_result.do", method = RequestMethod.GET)
-    public ModelAndView search_result(@RequestParam("hid") String hid,
-            HttpSession session,
-            @RequestParam(value = "rid", required = false) String rid,
-            @RequestParam(value = "filter", required = false) String filter) {
+    public ModelAndView search_result(String hid, HttpSession session, String rid, String filter) {
     	
         ModelAndView model = new ModelAndView();
 	    
@@ -115,8 +112,7 @@ public class SearchController {
 	    } else if (filter.equals("totalDown")) {
 	        RM_select = reviewService.getRM_select4(hid);
 	    }
-	    System.out.println(filter);
-	    model.addObject("RM_select", RM_select);
+	    model.addObject("filter", filter);
 	    
 	    // Check bookmark
 	    BookmarkVo bookmarkVo = new BookmarkVo();
@@ -136,6 +132,7 @@ public class SearchController {
     	 	int likeresult = reviewLikeService.getIdCheck(reviewLikeVo);
     	 	review.setLikeresult(likeresult);
 	    }
+	    model.addObject("RM_select", RM_select);
 	    
 	    model.setViewName("/search/search_result");
 	    
