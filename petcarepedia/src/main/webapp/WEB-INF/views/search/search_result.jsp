@@ -210,7 +210,7 @@
 				</div>
 				<form name="filterForm" action="/petcarepedia/search_result.do" method="GET">
 					<input type="hidden" name="hid" value="${hospital.hid}">
-					<input type="text" id="filterCheck" value="${filter}">
+					<input type="hidden" id="filterCheck" value="${filter}">
 				    <select name="filter" id="filter" class="filter" onchange="this.form.submit()">
 				    	<option value="" selected>리뷰 정렬</option>
 					    <option value="basic">기본 정렬</option>
