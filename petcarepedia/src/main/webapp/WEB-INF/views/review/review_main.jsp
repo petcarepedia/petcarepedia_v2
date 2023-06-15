@@ -55,6 +55,7 @@
 						<th rowspan='3'>지역구분</th>
 						<td><input type="checkbox" name="filter_location" checked="checked"> 서울전체</td>
 						<td><input type="checkbox" name="filter_location" value="강남구"> 강남구</td>
+						<td><input type="checkbox" name="filter_location" value="강동구"> 강동구</td>
 						<td><input type="checkbox" name="filter_location" value="강북구"> 강북구</td>
 						<td><input type="checkbox" name="filter_location" value="강서구"> 강서구</td>
 						<td><input type="checkbox" name="filter_location" value="관악구"> 관악구</td>
@@ -62,9 +63,9 @@
 						<td><input type="checkbox" name="filter_location" value="구로구"> 구로구</td>
 						<td><input type="checkbox" name="filter_location" value="금천구"> 금천구</td>
 						<td><input type="checkbox" name="filter_location" value="노원구"> 노원구</td>
-						<td><input type="checkbox" name="filter_location" value="도봉구"> 도봉구</td>
 					</tr>
 					<tr>
+						<td><input type="checkbox" name="filter_location" value="도봉구"> 도봉구</td>
 						<td><input type="checkbox" name="filter_location" value="동대문구"> 동대문구</td>
 						<td><input type="checkbox" name="filter_location" value="동작구"> 동작구</td>
 						<td><input type="checkbox" name="filter_location" value="마포구"> 마포구</td>
@@ -74,15 +75,14 @@
 						<td><input type="checkbox" name="filter_location" value="성북구"> 성북구</td>
 						<td><input type="checkbox" name="filter_location" value="송파구"> 송파구</td>
 						<td><input type="checkbox" name="filter_location" value="양천구"> 양천구</td>
-						<td><input type="checkbox" name="filter_location" value="영등포구"> 영등포구</td>
 					</tr>
 					<tr>
+						<td><input type="checkbox" name="filter_location" value="영등포구"> 영등포구</td>
 						<td><input type="checkbox" name="filter_location" value="용산구"> 용산구</td>
 						<td><input type="checkbox" name="filter_location" value="은평구"> 은평구</td>
 						<td><input type="checkbox" name="filter_location" value="종로구"> 종로구</td>
 						<td><input type="checkbox" name="filter_location" value="중구"> 중구</td>
 						<td><input type="checkbox" name="filter_location" value="중랑구"> 중랑구</td>
-						<td> </td>
 						<td> </td>
 						<td> </td>
 						<td> </td>

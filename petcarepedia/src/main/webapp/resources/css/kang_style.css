@@ -218,7 +218,7 @@ div#filter_page table.filter tr th {
 	font-weight: 700;
 	font-size: 14px;
 	line-height: 17px;
-	width:100px;
+	width:140px;
 }
 div#filter_page table.filter tr td {
 	background:#F5F5F5;
@@ -228,6 +228,24 @@ div#filter_page table.filter tr td {
 	font-size: 12px;
 	line-height: 15px;
 	width:70px;
+	color:#3d3d3d;
+}
+div#filter_page table.filter tr:first-child td {
+	padding-top:10px;
+	height:20px;
+}
+div#filter_page table.filter tr:nth-child(2) td {
+	height:15px;
+}
+div#filter_page table.filter tr:last-child td {
+	padding-bottom:10px;
+	height:20px;
+}
+div#filter_page table.filter tr td:first-child, div#filter_page table.filter tr:first-child td:nth-child(2) {
+	padding-left:15px;
+}
+div#filter_page table.filter tr td:last-child {
+	padding-right:20px;
 }
 div#filter_page table#filter_lo {
 	margin-bottom:10px;
