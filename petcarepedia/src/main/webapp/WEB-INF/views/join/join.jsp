@@ -61,14 +61,14 @@ $(document).ready(function(){
 					<li>
 						<label>비밀번호 <span class="ess">*</span></label>
 						<input type="password" name="pass" id="pass" placeholder="8~16자리 영문, 숫자, 특수문자 조합">
-						<span id="pwcheck_msg"></span>
 						<input type="checkbox" name="pass-see" id="psee"><p id="psee">비밀번호 보기</p>
+						<span id="pwcheck_msg"></span>
 					</li>
 					<li>
 						<label>비밀번호 확인 <span class="ess">*</span></label>
 						<input type="password" name="cpass" id="cpass" placeholder="비밀번호를 다시 입력해주세요">
-						<span id="cpwcheck_msg"></span>
 						<input type="checkbox" name="cpass-see" id="cpsee"><p id="psee">비밀번호 보기</p>
+						<span id="cpwcheck_msg"></span>
 					</li>
 					<li>
 						<label>성명 <span class="ess">*</span></label>
