@@ -14,9 +14,43 @@
 	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_result.css">
 
 	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<script src="http://localhost:9000/petcarepedia/js/search_result.js"></script>
 	<script src="http://localhost:9000/petcarepedia/js/search_result_map.js"></script>
+	
+	<script>
+		Kakao.init('8e977bf42a12bf9762111f31b4017078');
+		console.log(Kakao.isInitialized());
+		
+		/** 공유하기 - 카카오 **/
+		$(document).ready(function(){
+		$("#kakaoShare").click(
+			function sendLink() {
+			    Kakao.Link.sendDefault({
+			      objectType: 'feed',
+			      content: {
+			        title: '팻케어피디아',
+			        description: '${hospital.hname}',
+			        imageUrl:
+			          'https://cdn-icons-png.flaticon.com/512/2358/2358595.png',
+			        link: {
+			          webUrl: 'http://localhost:9000/petcarepedia/index.do',
+			        },
+			      },
+			      buttons: [
+			          {
+			            title: '사이트 이동',  //첫 번째 버튼 
+			            link: {
+			              webUrl: 'http://localhost:9000/petcarepedia/search_result.do?hid=${hospital.hid}',
+			            },
+			          },
+			        ],
+			    })
+			});
+			  });
+		
+	</script>
 </head>
 
 <body>
@@ -94,6 +128,22 @@
 							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp>
 					</button>
+					
+					<!-- 공유하기 -->
+					<button id="share">
+						<img src="http://localhost:9000/petcarepedia/images/share.png" id="shareB">
+					</button>
+					
+					<div id="shareLink">
+							<button id="kakaoShare"> 
+								<img src="http://localhost:9000/petcarepedia/images/kakao.png" id="kakao">
+							</button>
+							
+							<button id="linkCopy">
+								<img src="http://localhost:9000/petcarepedia/images/copy.png" id="copy">
+							</button>
+					</div>
+					
 					
 					<!-- 예약화면 모달 -->
 					<div id="hmodal" class="modal">
