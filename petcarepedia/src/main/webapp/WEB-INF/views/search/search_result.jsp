@@ -18,38 +18,11 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<script src="http://localhost:9000/petcarepedia/js/search_result.js"></script>
 	<script src="http://localhost:9000/petcarepedia/js/search_result_map.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
 	
 	<script>
 		Kakao.init('8e977bf42a12bf9762111f31b4017078');
 		console.log(Kakao.isInitialized());
-		
-		/** 공유하기 - 카카오 **/
-		$(document).ready(function(){
-		$("#kakaoShare").click(
-			function sendLink() {
-			    Kakao.Link.sendDefault({
-			      objectType: 'feed',
-			      content: {
-			        title: '팻케어피디아',
-			        description: '${hospital.hname}',
-			        imageUrl:
-			          'https://cdn-icons-png.flaticon.com/512/2358/2358595.png',
-			        link: {
-			          webUrl: 'http://localhost:9000/petcarepedia/index.do',
-			        },
-			      },
-			      buttons: [
-			          {
-			            title: '사이트 이동',  //첫 번째 버튼 
-			            link: {
-			              webUrl: 'http://localhost:9000/petcarepedia/search_result.do?hid=${hospital.hid}',
-			            },
-			          },
-			        ],
-			    })
-			});
-			  });
-		
 	</script>
 </head>
 
