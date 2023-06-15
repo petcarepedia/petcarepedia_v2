@@ -122,7 +122,7 @@ $(document).ready(function(){
 		}
 	});
 	//이메일 정규식 체크
-	$("#email").keyup(function(){
+	$("form[name='joinForm'] #email").keyup(function(){
 		if(!reg_email.test($("#email").val())){
 			$("#emailcheck_msg").text("올바른 이메일 형식이 아닙니다.").css("color","red")
 			.css("font-size","12px").css("display","block").css("clear","both")
@@ -332,6 +332,18 @@ $(document).ready(function(){
 	/**************
 	 * 아이디찾기 - 유효성 체크
 	 */
+	 //이메일 정규식 체크
+	$("form[name='idFindForm'] #email").keyup(function(){
+		if(!reg_email.test($("#email").val())){
+			$("#emailcheck_msg").text("올바른 이메일 형식이 아닙니다.").css("color","red")
+			.css("font-size","12px").css("display","block").css("clear","both")
+			.css("padding-top","5px")
+			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+		} else {
+			$("#emailcheck_msg").text("").css("display","none");
+		}
+	});
+	
 	$.idFindValidationCheck = function() {
 		if($("#name").val() != "" 
 			&& $('#email').val() != ""
