@@ -10,6 +10,8 @@
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://kit.fontawesome.com/4ed285928f.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
 <script>
 $(document).ready(function(){
 	$('#loading').hide(); //첫 시작시 로딩바를 숨겨준다.
@@ -26,7 +28,6 @@ $(document).ready(function(){
 	<div class="back"></div>
 	<div class="term-box">
 		<div class="term-modal">
-			<!-- <div class="term-modal-close" id="btnModalClose">X</div> -->
 			<div class="title">
 				
 			</div>
@@ -74,7 +75,7 @@ $(document).ready(function(){
 					</li>
 					<li>
 						<label>별명 <span class="ess">*</span></label>
-						<input type="text" name="nickname" id="nickname" placeholder="2자 이상 16자 이하 문자 또는 숫자">
+						<input type="text" name="nickname" id="nickname" placeholder="2~16자리 문자 또는 숫자">
 						<span id="nickcheck_msg"></span>
 					</li>
 					<li>
