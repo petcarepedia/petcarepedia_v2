@@ -164,7 +164,6 @@ div.result_main div.name_d button#reservation img {
 div.result_main button#share {
 	background: #ffffff;
 	color: white;
-	border: 1px solid red;
 	border-style: none;
 	clean: both;
 	margin-top: 15px;
@@ -172,19 +171,24 @@ div.result_main button#share {
 }
 
 div#shareLink {
-	display:inline-block;
+	display:none; 
+	
 }
 
 div#shareLink button {
 	background: #ffffff;
+	opacity: 1;
 	color: white;
-	border: 1px solid red;
 	border-style: none;
 }
 
 div.result_main button#share img, div#shareLink img {
 	width: 30px;
 	margin: 0px 10px;
+}
+
+div#shareLink img {
+	/* display: none; */
 }
 
 

@@ -263,6 +263,17 @@ $(document).ready(function(){
 	}
 	
 	
+	/** 공유 링크 클릭시 **/
+	$("#share").click(function() {
+	    if ($("#shareLink").css('display') === 'none') {
+	        $("#shareLink").css('display', 'inline-block');
+	    } else {
+	        $("#shareLink").css('display', 'none');
+	    }
+	});
+	
+	
+	
 	/** 공유하기 - 카카오 **/
 	$("#kakaoShare").click(function() {
 		Kakao.Link.sendDefault({
