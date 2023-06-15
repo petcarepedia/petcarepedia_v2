@@ -499,6 +499,17 @@
 		font-size:14px;
 	}
 	
+	input#psee, input#cpsee {
+		width:18px;
+		height:18px;
+		margin-right:10px;
+		float:left;
+	}
+	p#psee {
+		margin-top:10px;
+		padding-bottom:5px;
+	}
+	
 	.ess {
 		color:#FFB3BD;
 	}
