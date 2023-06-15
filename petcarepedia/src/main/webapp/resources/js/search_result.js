@@ -261,6 +261,61 @@ $(document).ready(function(){
 	    scrollTop: offsetTop
 	  }, 500);
 	}
+	
+	
+	/** 공유 링크 클릭시 **/
+	$("#share").click(function() {
+	    if ($("#shareLink").css('display') === 'none') {
+	        $("#shareLink").css('display', 'inline-block');
+	    } else {
+	        $("#shareLink").css('display', 'none');
+	    }
+	});
+	
+	
+	
+	/** 공유하기 - 카카오 **/
+	$("#kakaoShare").click(function() {
+		Kakao.Link.sendDefault({
+			objectType: 'feed',
+	    	content: {
+	      		title: '팻케어피디아',
+	     		description: $('.name').text(),
+	      		imageUrl: 
+	      			'https://cdn-icons-png.flaticon.com/512/2358/2358595.png',
+	     		link: {
+	       			webUrl: 'http://localhost:9000/petcarepedia/index.do',
+	      		},
+    		},
+			buttons: [
+	      		{
+		        title: '사이트 이동',
+		        link: {
+		          webUrl: 'http://localhost:9000/petcarepedia/search_result.do?hid=' + $("input[name='hid']").val(),
+		        },
+	      },
+	    ],
+	  });
+	});
+	
+	
+	/** 공유하기 - 링크 복사 **/
+	//현재 url 변수로 가져오기
+	let nowUrl = window.location.href;
+	
+	$("#linkCopy").click(function() {
+		window.navigator.clipboard.writeText(nowUrl).then(() => {
+		  	Swal.fire({
+				icon: 'success',
+				title: '링크가 복사되었습니다',
+				showConfirmButton: true,
+				confirmButtonText: '확인',
+				confirmButtonColor:'#98dfff'
+			});
+		});
+	});
+
+			 	 	
 	 
 	
 	

@@ -14,9 +14,16 @@
 	<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/search_result.css">
 
 	<script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<script src="http://localhost:9000/petcarepedia/js/search_result.js"></script>
 	<script src="http://localhost:9000/petcarepedia/js/search_result_map.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+	
+	<script>
+		Kakao.init('8e977bf42a12bf9762111f31b4017078');
+		console.log(Kakao.isInitialized());
+	</script>
 </head>
 
 <body>
@@ -94,6 +101,22 @@
 							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp>
 					</button>
+					
+					<!-- 공유하기 -->
+					<button id="share">
+						<img src="http://localhost:9000/petcarepedia/images/share.png" id="shareB">
+					</button>
+					
+					<div id="shareLink">
+							<button id="kakaoShare"> 
+								<img src="http://localhost:9000/petcarepedia/images/kakao.png" id="kakao">
+							</button>
+							
+							<button id="linkCopy">
+								<img src="http://localhost:9000/petcarepedia/images/copy.png" id="copy">
+							</button>
+					</div>
+					
 					
 					<!-- 예약화면 모달 -->
 					<div id="hmodal" class="modal">
