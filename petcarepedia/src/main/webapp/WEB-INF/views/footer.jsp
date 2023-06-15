@@ -19,13 +19,13 @@
 							<a href="https://forest-share-eb9.notion.site/PetCarePedia-1-0-b2139ee71cd042acbfe9b19e878a22fa" target="_blank">펫캐어피디아 소개</a>
 						</li>
 						<li>
-							<a href="#">이용약관</a>
+							<a href="http://localhost:9000/petcarepedia/notice.do">이용약관</a>
 						</li>
 						<li>
-							<a href="#">개인정보취급방침</a>
+							<a href="http://localhost:9000/petcarepedia/notice.do">개인정보취급방침</a>
 						</li>
 						<li>
-							<a href="#">위치기반서비스 이용약관</a>
+							<a href="http://localhost:9000/petcarepedia/notice.do">위치기반서비스 이용약관</a>
 						</li>
 						<c:if test="${sessionScope.svo.mid == 'admin'}">
 							<li>
@@ -39,12 +39,12 @@
 				<div class="footer-contact">
 					<ul>
 						<li>
-							<a href="#">
+							<a href="mailto:petcarepediaofficial@gmail.com">
 								<img src="http://localhost:9000/petcarepedia/images/footer_mail.png" width="25px" height="25px">
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="mailto:petcarepediaofficial@gmail.com">
 								<img src="http://localhost:9000/petcarepedia/images/footer_chat.png" width="24px" height="24px">
 							</a>
 						</li>

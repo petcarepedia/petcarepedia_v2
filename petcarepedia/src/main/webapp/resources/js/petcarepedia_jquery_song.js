@@ -38,13 +38,11 @@ $(document).ready(function(){
 	 */
 	 $('#btnAuthEmail').click(function() {
 		const email = $('#email').val(); // 이메일 주소값 얻어오기!
-		console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
 		
 		$.ajax({
 			type : 'get',
 			url : "mail_check.do?email="+email,
 			success : function (data) {
-				console.log("data : " +  data);
 				$('#cemail').show();
 				$('#btnCheckEmail').show();
 				$("#data").val(data);
