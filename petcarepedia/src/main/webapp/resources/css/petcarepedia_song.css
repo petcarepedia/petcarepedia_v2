@@ -201,14 +201,14 @@
 	.cchat-btn {
 		position:fixed;
 		right:7%;
-		bottom:10%;
+		bottom:36%;
 		z-index:100;
 	}
 	#btn-screenup {
 		color: lightgray;
 		position:fixed;
 		right:9%;
-		bottom:18.8%;
+		bottom:45%;
 		z-index:100;
 		cursor:pointer;
 	}
@@ -227,17 +227,19 @@
 	.spword-box {
 		position:fixed;
 		right:5%;
-		bottom:23%;
+		bottom:12%;
 		z-index:100;
 		width:180px;
 		background:white;
-		border-radius:5px; border:1px solid #98dfff;
+		border-radius:5px; border:1px solid #7AB2CC;
+		box-shadow: 3px 3px 5px 1px #dedede;
 	}
 	.spword-title {
 		text-align:center;
-		background:#98dfff;
+		background:#7AB2CC;
 		color:white; font-weight:bold; font-size:15px;
 		padding:10px 0;
+		display:block;
 	}
 	.spword-ul {
 		list-style-type:none;
@@ -256,13 +258,13 @@
 	.spword-li-label {
 		float:left;
 		padding:0 5px;
-		border:1px solid #98dfff;
-		color:#98dfff; font-weight:bold;
+		border:1px solid #7AB2CC;
+		color:#7AB2CC; font-weight:bold;
 		margin-right:10px;
 		background:white;
 	}
 	.spword-li:nth-child(-n+2) > .spword-li-label {
-		background:#98dfff; color:white
+		background:#7AB2CC; color:white
 	}
 	
 	/* main-style */

@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
+<script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
 <script src="https://kit.fontawesome.com/4ed285928f.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js"
@@ -87,6 +88,31 @@
 	<i class="fa-solid fa-circle-chevron-up fa-xl" id="btn-screenup"></i>
 	<div id="chat-channel-button" class="cchat-btn"></div>
 	<i class="fa-solid fa-circle-chevron-down fa-xl" id="btn-screendown"></i>
+	<div class="spword-box">
+		<a class="spword-title">인기 검색어</a>
+		<ul class="spword-ul">
+			<li class="spword-li">
+				<label class="spword-li-label">1</label>
+				<a class="spword-li-a">24시</a>
+			</li>
+			<li class="spword-li">
+				<label class="spword-li-label">1</label>
+				<a class="spword-li-a">24시</a>
+			</li>
+			<li class="spword-li">
+				<label class="spword-li-label">1</label>
+				<a class="spword-li-a">24시</a>
+			</li>
+			<li class="spword-li">
+				<label class="spword-li-label">1</label>
+				<a class="spword-li-a">24시</a>
+			</li>
+			<li class="spword-li">
+				<label class="spword-li-label">1</label>
+				<a class="spword-li-a">24시</a>
+			</li>
+		</ul>
+	</div>
 
 	<script>
 	  Kakao.Channel.createChatButton({
