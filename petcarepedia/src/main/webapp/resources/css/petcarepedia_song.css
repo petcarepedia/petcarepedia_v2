@@ -198,6 +198,13 @@
 		color:#636363;
 	}
 	
+	.cchat-btn {
+		position:fixed;
+		right:7%;
+		bottom:7%;
+		z-index:100;
+	}
+	
 	/* main-style */
 	.main-door {
 		margin:auto;
