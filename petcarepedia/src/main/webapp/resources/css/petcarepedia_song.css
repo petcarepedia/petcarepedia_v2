@@ -198,6 +198,73 @@
 		color:#636363;
 	}
 	
+	.cchat-btn {
+		position:fixed;
+		right:7%;
+		bottom:10%;
+		z-index:100;
+	}
+	#btn-screenup {
+		color: lightgray;
+		position:fixed;
+		right:9%;
+		bottom:18.8%;
+		z-index:100;
+		cursor:pointer;
+	}
+	#btn-screenup:hover, #btn-screendown:hover {
+		opacity:0.7;
+	}
+	#btn-screendown {
+		color: lightgray;
+		position:fixed;
+		right:9%;
+		bottom:7%;
+		z-index:100;
+		cursor:pointer;
+	}
+	
+	.spword-box {
+		position:fixed;
+		right:5%;
+		bottom:23%;
+		z-index:100;
+		width:180px;
+		background:white;
+		border-radius:5px; border:1px solid #98dfff;
+	}
+	.spword-title {
+		text-align:center;
+		background:#98dfff;
+		color:white; font-weight:bold; font-size:15px;
+		padding:10px 0;
+	}
+	.spword-ul {
+		list-style-type:none;
+		padding:10px;
+	}
+	.spword-li {
+		padding:8px;
+		clear:both;
+		font-size:14px;
+	}
+	.spword-li:hover {
+		cursor:pointer;
+		background:#ecfbfe;
+	}
+	
+	.spword-li-label {
+		float:left;
+		padding:0 5px;
+		border:1px solid #98dfff;
+		color:#98dfff; font-weight:bold;
+		margin-right:10px;
+		background:white;
+	}
+	.spword-li:nth-child(-n+2) > .spword-li-label {
+		background:#98dfff; color:white
+	}
+	
 	/* main-style */
 	.main-door {
 		margin:auto;
