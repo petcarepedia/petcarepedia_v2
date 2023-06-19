@@ -68,7 +68,7 @@
 								<c:when test="${bookmarkResult == 1}">
 									<button type="submit" id="bookmark">
 										<img
-											src="http://localhost:9000/images/bookmark_yellow.png">
+											src="http://localhost:9000/petcarepedia/images/bookmark_yellow.png">
 									</button>
 								</c:when>
 								
