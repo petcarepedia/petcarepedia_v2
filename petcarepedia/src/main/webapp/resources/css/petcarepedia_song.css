@@ -201,8 +201,27 @@
 	.cchat-btn {
 		position:fixed;
 		right:7%;
+		bottom:10%;
+		z-index:100;
+	}
+	#btn-screenup {
+		color: lightgray;
+		position:fixed;
+		right:9%;
+		bottom:19%;
+		z-index:100;
+		cursor:pointer;
+	}
+	#btn-screenup:hover, #btn-screendown:hover {
+		opacity:0.7;
+	}
+	#btn-screendown {
+		color: lightgray;
+		position:fixed;
+		right:9%;
 		bottom:7%;
 		z-index:100;
+		cursor:pointer;
 	}
 	
 	/* main-style */
