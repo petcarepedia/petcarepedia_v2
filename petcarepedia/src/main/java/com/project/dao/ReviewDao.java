@@ -498,8 +498,6 @@ public class ReviewDao extends DBConn {
 	}
 	
 	
-	
-	
 	/* 전체 카운트 가져오기*/
 	public int totalRowCount() {
 		return sqlSession.selectOne("mapper.review.count");
