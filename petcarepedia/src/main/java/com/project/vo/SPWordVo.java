@@ -1,22 +1,39 @@
 package com.project.vo;
 
 public class SPWordVo {
-	String spword, spdate;
+	String word, wdate;
+	int rno, wcnt;
 
-	public String getSpword() {
-		return spword;
+	public int getWcnt() {
+		return wcnt;
 	}
 
-	public void setSpword(String spword) {
-		this.spword = spword;
+	public void setWcnt(int wcnt) {
+		this.wcnt = wcnt;
 	}
 
-	public String getSpdate() {
-		return spdate;
+	public int getRno() {
+		return rno;
 	}
 
-	public void setSpdate(String spdate) {
-		this.spdate = spdate;
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
+
+	public String getWord() {
+		return word;
+	}
+
+	public void setWord(String word) {
+		this.word = word;
+	}
+
+	public String getWdate() {
+		return wdate;
+	}
+
+	public void setWdate(String wdate) {
+		this.wdate = wdate;
 	}
 	
 	

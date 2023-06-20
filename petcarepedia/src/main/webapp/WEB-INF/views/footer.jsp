@@ -14,7 +14,38 @@
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js"
   integrity="sha384-x+WG2i7pOR+oWb6O5GV5f1KN2Ko6N7PTGPS7UlasYWNxZMKQA63Cj/B2lbUmUfuC" crossorigin="anonymous"></script>
 <script>
-  Kakao.init('4351f19b17acd6bce964ba4b243a9a92'); // 사용하려는 앱의 JavaScript 키 입력
+	Kakao.init('4351f19b17acd6bce964ba4b243a9a92'); // 사용하려는 앱의 JavaScript 키 입력
+</script>
+<script>
+  $(document).ready(function(){
+	  $(function() {
+		  initSplist();
+		});
+	  function initSplist() {
+		  $.ajax({
+				url : "splist_data.do",
+				success : function(result){
+						let jdata = JSON.parse(result);
+						
+						let contentString = "";
+						
+						if(jdata.jlist != null) {
+							for(obj of jdata.jlist){
+								contentString += `<li class="spword-li" onclick="location.href='http://localhost:9000/petcarepedia/main_search_proc.do?hname=`+obj.word+`'">`;
+								contentString += '<label class="spword-li-label">'+obj.rno+'</label>';
+								contentString += '<a class="spword-li-a">'+obj.word+'</a></li></a>';
+							}
+						} else {
+							contentString += '<div style="width:100%;height:150px;text-align:center;vertical-align:middle;display: table-cell;">'
+							contentString += '<img src="http://localhost:9000/petcarepedia/images/info.png" width="30px">';
+							contentString += '<a class="spword-li-a" style="display:inline-block;width:100%;">검색어가 아직<br>존재하지 않습니다.</a></div>';
+						}
+						
+						$(".spword-ul").html(contentString);
+				}
+		  })
+  		}
+  })
 </script>
 </head>
 <body>
@@ -85,32 +116,19 @@
 		</div>
 	</footer>
 	
-	<i class="fa-solid fa-circle-chevron-up fa-xl" id="btn-screenup"></i>
+	<div class="scrdiv scrup" id="btn-screenup">
+		<i class="fa-solid fa-chevron-up fa-2xl"></i>
+	</div>
+	
 	<div id="chat-channel-button" class="cchat-btn"></div>
-	<i class="fa-solid fa-circle-chevron-down fa-xl" id="btn-screendown"></i>
+	
+	<div class="scrdiv scrdown" id="btn-screendown">
+		<i class="fa-solid fa-chevron-down fa-2xl"></i>
+	</div>
+	
 	<div class="spword-box">
-		<a class="spword-title">인기 검색어</a>
+		<a class="spword-title">실시간 인기 검색어</a>
 		<ul class="spword-ul">
-			<li class="spword-li">
-				<label class="spword-li-label">1</label>
-				<a class="spword-li-a">24시</a>
-			</li>
-			<li class="spword-li">
-				<label class="spword-li-label">1</label>
-				<a class="spword-li-a">24시</a>
-			</li>
-			<li class="spword-li">
-				<label class="spword-li-label">1</label>
-				<a class="spword-li-a">24시</a>
-			</li>
-			<li class="spword-li">
-				<label class="spword-li-label">1</label>
-				<a class="spword-li-a">24시</a>
-			</li>
-			<li class="spword-li">
-				<label class="spword-li-label">1</label>
-				<a class="spword-li-a">24시</a>
-			</li>
 		</ul>
 	</div>
 

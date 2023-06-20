@@ -244,6 +244,7 @@
 	.spword-ul {
 		list-style-type:none;
 		padding:10px;
+		height:160px;
 	}
 	.spword-li {
 		padding:8px;
