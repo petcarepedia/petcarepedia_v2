@@ -217,7 +217,7 @@ public class ReviewController {
 	@RequestMapping(value="/review_main_search.do", method=RequestMethod.GET)
 	public ModelAndView review_search_Proc(String page, String filter_location, HttpSession session) {
 		ModelAndView model = new ModelAndView();
-		Map<String, Integer> param = pageService.getPageResult(page, "reviewSearch");
+		Map<String, Integer> param = pageService.getPageResultRS(page, "reviewSearch", filter_location);
 		/*
 		//其捞隆 贸府 - startCount, endCount 备窍扁
 		int startCount = 0;
