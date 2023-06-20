@@ -17,35 +17,35 @@
 	Kakao.init('4351f19b17acd6bce964ba4b243a9a92'); // 사용하려는 앱의 JavaScript 키 입력
 </script>
 <script>
-  $(document).ready(function(){
-	  $(function() {
-		  initSplist();
-		});
-	  function initSplist() {
-		  $.ajax({
-				url : "splist_data.do",
-				success : function(result){
-						let jdata = JSON.parse(result);
-						
-						let contentString = "";
-						
-						if(jdata.jlist != null) {
-							for(obj of jdata.jlist){
-								contentString += `<li class="spword-li" onclick="location.href='http://localhost:9000/petcarepedia/main_search_proc.do?hname=`+obj.word+`'">`;
-								contentString += '<label class="spword-li-label">'+obj.rno+'</label>';
-								contentString += '<a class="spword-li-a">'+obj.word+'</a></li></a>';
+	$(document).ready(function(){
+		$(function() {
+			  initSplist();
+			});
+		  function initSplist() {
+			  $.ajax({
+					url : "splist_data.do",
+					success : function(result){
+							let jdata = JSON.parse(result);
+							
+							let contentString = "";
+							
+							if(jdata.jlist != null) {
+								for(obj of jdata.jlist){
+									contentString += `<li class="spword-li" onclick="location.href='http://localhost:9000/petcarepedia/main_search_proc.do?hname=`+obj.word+`'">`;
+									contentString += '<label class="spword-li-label">'+obj.rno+'</label>';
+									contentString += '<a class="spword-li-a">'+obj.word+'</a></li></a>';
+								}
+							} else {
+								contentString += '<div style="width:100%;height:150px;text-align:center;vertical-align:middle;display: table-cell;">'
+								contentString += '<img src="http://localhost:9000/petcarepedia/images/info.png" width="30px">';
+								contentString += '<a class="spword-li-a" style="display:inline-block;width:100%;">검색어가 아직<br>존재하지 않습니다.</a></div>';
 							}
-						} else {
-							contentString += '<div style="width:100%;height:150px;text-align:center;vertical-align:middle;display: table-cell;">'
-							contentString += '<img src="http://localhost:9000/petcarepedia/images/info.png" width="30px">';
-							contentString += '<a class="spword-li-a" style="display:inline-block;width:100%;">검색어가 아직<br>존재하지 않습니다.</a></div>';
-						}
-						
-						$(".spword-ul").html(contentString);
-				}
-		  })
-  		}
-  })
+							
+							$(".spword-ul").html(contentString);
+					}
+			  });
+	  		};
+	});
 </script>
 </head>
 <body>
@@ -136,7 +136,7 @@
 		<ul class="spword-ul">
 		</ul>
 	</div>
-
+	
 	<script>
 		function chatChannel() {
 		    Kakao.Channel.chat({
