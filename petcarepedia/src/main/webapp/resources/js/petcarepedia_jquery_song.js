@@ -466,11 +466,11 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('#btn-screenup').bind('click', function() {
-	    $('html, body').animate({scrollTop: '0'}, 680);
+	$('#btn-screenup').click(function() {
+	    $('html, body').animate({scrollTop: '0'}, 300);
 	});
-	$('#btn-screendown').bind('click', function() {
-	    $('html, body').animate({scrollTop: $(document).height()}, 1000);
+	$('#btn-screendown').click(function() {
+	    $('html, body').animate({scrollTop: $(document).height()}, 300);
 	});
 	
 }); //ready

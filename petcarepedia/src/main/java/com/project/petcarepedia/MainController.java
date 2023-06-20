@@ -14,8 +14,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.project.service.HospitalService;
 import com.project.service.ReviewService;
+import com.project.service.SPWordService;
 import com.project.vo.HospitalVo;
 import com.project.vo.ReviewVo;
+import com.project.vo.SPWordVo;
 
 @Controller
 public class MainController {
@@ -24,6 +26,9 @@ public class MainController {
 
 	@Autowired
 	private ReviewService reviewService;
+	
+	@Autowired
+	private SPWordService spwordService;
 	
 	/**
 	 * index.do
@@ -52,6 +57,7 @@ public class MainController {
 	public ModelAndView main_search_proc(String hname) {
 		ModelAndView model = new ModelAndView();
 		
+		spwordService.getInsert(hname);
 		ArrayList<HospitalVo> list = hospitalService.search(hname);
 		
 		model.addObject("list", list);
@@ -68,6 +74,37 @@ public class MainController {
 	@RequestMapping(value="/footer.do",method=RequestMethod.GET)
 	public String footer() {
 		return "footer";
+	}
+	
+	/**
+	 * splist_data.do
+	 */
+	@RequestMapping(value="/splist_data.do",method=RequestMethod.GET,produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String splist_data() {
+		ArrayList<SPWordVo> list = spwordService.getSelect();
+		
+		JsonObject jlist = new JsonObject();
+		JsonArray jarray = new JsonArray();
+		
+		if(list != null && list.size() != 0) {
+			for(SPWordVo spwordVo : list) {
+				JsonObject jobj = new JsonObject();
+				jobj.addProperty("rno", spwordVo.getRno());
+				jobj.addProperty("word", spwordVo.getWord());
+				jobj.addProperty("wcnt", spwordVo.getWcnt());
+				
+				jarray.add(jobj);
+			}
+			
+			jlist.add("jlist", jarray);
+		} else {
+			JsonObject jobj = new JsonObject();
+			jobj.addProperty("data", "null");
+			jlist.add("null", jobj);
+		}
+		
+		return new Gson().toJson(jlist);
 	}
 	
 	/**

@@ -102,30 +102,6 @@
 	<!-- footer -->
 	<jsp:include page="footer.jsp"></jsp:include>
 	
-	<!-- <div class="spword-box">
-		<p class="spword-title">인기 검색어</p>
-		<ul class="spword-ul">
-			<li class="spword-li">
-				<label class="spword-li-label">1</label>
-				<p class="spword-li-p">24시</p>
-			</li>
-			<li class="spword-li">
-				<label class="spword-li-label">1</label>
-				<p class="spword-li-p">24시</p>
-			</li>
-			<li class="spword-li">
-				<label class="spword-li-label">1</label>
-				<p class="spword-li-p">24시</p>
-			</li>
-			<li class="spword-li">
-				<label class="spword-li-label">1</label>
-				<p class="spword-li-p">24시</p>
-			</li>
-			<li class="spword-li">
-				<label class="spword-li-label">1</label>
-				<p class="spword-li-p">24시</p>
-			</li>
-		</ul>
-	</div> -->
+	
 </body>
 </html>
