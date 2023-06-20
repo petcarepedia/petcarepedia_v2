@@ -83,7 +83,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="mailto:petcarepediaofficial@gmail.com">
+							<a href="javascript:chatChannel()">
 								<img src="http://localhost:9000/petcarepedia/images/footer_chat.png" width="24px" height="24px">
 							</a>
 						</li>
@@ -116,15 +116,20 @@
 		</div>
 	</footer>
 	
-	<div class="scrdiv scrup" id="btn-screenup">
-		<i class="fa-solid fa-chevron-up fa-2xl"></i>
+	<div class="scrdiv">
+		<div id="btn-screenup">
+			<i class="fa-solid fa-chevron-up fa-2xl" style="color:lightgray"></i>
+		</div>
+		<div id="btn-screendown">
+			<i class="fa-solid fa-chevron-down fa-2xl" style="color:lightgray"></i>
+		</div>
 	</div>
 	
-	<div id="chat-channel-button" class="cchat-btn"></div>
-	
-	<div class="scrdiv scrdown" id="btn-screendown">
-		<i class="fa-solid fa-chevron-down fa-2xl"></i>
-	</div>
+	<a id="chat-channel-button" href="javascript:chatChannel()" class="cchat-btn">
+	  <img src="http://localhost:9000/petcarepedia/images/kakaologo.png"
+	    alt="카카오톡 채널 채팅하기 버튼" 
+	    width="54px"/>
+	</a>
 	
 	<div class="spword-box">
 		<a class="spword-title">실시간 인기 검색어</a>
@@ -133,10 +138,11 @@
 	</div>
 
 	<script>
-	  Kakao.Channel.createChatButton({
-	    container: '#chat-channel-button',
-	    channelPublicId: '_VxaVAG',
-	  });
+		function chatChannel() {
+		    Kakao.Channel.chat({
+		      channelPublicId: '_VxaVAG',
+		    });
+		  }
 	</script>
 </body>
 </html>

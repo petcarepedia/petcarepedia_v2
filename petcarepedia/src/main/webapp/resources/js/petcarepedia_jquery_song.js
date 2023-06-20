@@ -467,10 +467,10 @@ $(document).ready(function(){
 	});
 	
 	$('#btn-screenup').click(function() {
-	    $('html, body').animate({scrollTop: '0'}, 680);
+	    $('html, body').animate({scrollTop: '0'}, 300);
 	});
 	$('#btn-screendown').click(function() {
-	    $('html, body').animate({scrollTop: $(document).height()}, 1000);
+	    $('html, body').animate({scrollTop: $(document).height()}, 300);
 	});
 	
 }); //ready
