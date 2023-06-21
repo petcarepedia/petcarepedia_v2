@@ -135,7 +135,7 @@ $(document).ready(function(){
 			$.ajax({
 				url : "mail_mulcheck.do?email="+$("#email").val(),
 				success : function(result){
-					if(result == 1){
+					if(result >= 1){
 						$("#emailcheck_msg").text("중복된 이메일입니다.").css("color","red")
 						.css("font-size","12px").css("display","block").css("clear","both")
 						.css("padding-top","5px")
@@ -464,6 +464,13 @@ $(document).ready(function(){
 		} else {
 			$("#cpass").attr('type','password');
 		}
+	});
+	
+	$('#btn-screenup').click(function() {
+	    $('html, body').animate({scrollTop: '0'}, 300);
+	});
+	$('#btn-screendown').click(function() {
+	    $('html, body').animate({scrollTop: $(document).height()}, 300);
 	});
 	
 }); //ready

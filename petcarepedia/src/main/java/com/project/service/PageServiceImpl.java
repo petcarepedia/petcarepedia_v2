@@ -116,18 +116,17 @@ public class PageServiceImpl {
 		}
 		return rlist;
 	}
-	
-	
+
 	public Map<String, Integer> getPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// ÆäÀÌÂ¡ Ã³¸® - startCount, endCount ±¸ÇÏ±â
+		// í˜ì´ì§• ì²˜ë¦¬ - startCount, endCount êµ¬í•˜ê¸°
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 5; // ÇÑÆäÀÌÁö´ç °Ô½Ã¹° ¼ö
-		int reqPage = 1; // ¿äÃ»ÆäÀÌÁö
-		int pageCount = 1; // ÀüÃ¼ ÆäÀÌÁö ¼ö
-		int dbCount = 0; // DB¿¡¼­ °¡Á®¿Â ÀüÃ¼ Çà¼ö
+		int pageSize = 5; // í•œí˜ì´ì§€ë‹¹ ê²Œì‹œë¬¼ ìˆ˜
+		int reqPage = 1; // ìš”ì²­í˜ì´ì§€
+		int pageCount = 1; // ì „ì²´ í˜ì´ì§€ ìˆ˜
+		int dbCount = 0; // DBì—ì„œ ê°€ì ¸ì˜¨ ì „ì²´ í–‰ìˆ˜
 
 		
 		
@@ -173,7 +172,7 @@ public class PageServiceImpl {
 		}
 		
 
-		// ¿äÃ» ÆäÀÌÁö °è»ê
+		// ìš”ì²­ í˜ì´ì§€ ê³„ì‚°
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -209,7 +208,7 @@ public class PageServiceImpl {
 
 		}
 		
-		//param °´Ã¼¿¡ µ¥ÀÌÅÍ put
+		//param ê°ì²´ì— ë°ì´í„° put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -223,14 +222,14 @@ public class PageServiceImpl {
 	}
 	public Map<String, Integer> getHPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// ÆäÀÌÂ¡ Ã³¸® - startCount, endCount ±¸ÇÏ±â
+		// í˜ì´ì§• ì²˜ë¦¬ - startCount, endCount êµ¬í•˜ê¸°
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 10; // ÇÑÆäÀÌÁö´ç °Ô½Ã¹° ¼ö
-		int reqPage = 1; // ¿äÃ»ÆäÀÌÁö
-		int pageCount = 10; // ÀüÃ¼ ÆäÀÌÁö ¼ö
-		int dbCount = 0; // DB¿¡¼­ °¡Á®¿Â ÀüÃ¼ Çà¼ö
+		int pageSize = 10; // í•œí˜ì´ì§€ë‹¹ ê²Œì‹œë¬¼ ìˆ˜
+		int reqPage = 1; // ìš”ì²­í˜ì´ì§€
+		int pageCount = 10; // ì „ì²´ í˜ì´ì§€ ìˆ˜
+		int dbCount = 0; // DBì—ì„œ ê°€ì ¸ì˜¨ ì „ì²´ í–‰ìˆ˜
 		
 		if (serviceName.equals("hospital")) {
 			dbCount = pageDao.HtotalRowCount();
@@ -240,7 +239,7 @@ public class PageServiceImpl {
 			pageSize = 10;
 		}
 		
-		// ¿äÃ» ÆäÀÌÁö °è»ê
+		// ìš”ì²­ í˜ì´ì§€ ê³„ì‚°
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -258,7 +257,7 @@ public class PageServiceImpl {
 			}
 			
 		}
-		//param °´Ã¼¿¡ µ¥ÀÌÅÍ put
+		//param ê°ì²´ì— ë°ì´í„° put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -273,14 +272,14 @@ public class PageServiceImpl {
 	
 	public Map<String, Integer> getMPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// ÆäÀÌÂ¡ Ã³¸® - startCount, endCount ±¸ÇÏ±â
+		// í˜ì´ì§• ì²˜ë¦¬ - startCount, endCount êµ¬í•˜ê¸°
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 10; // ÇÑÆäÀÌÁö´ç °Ô½Ã¹° ¼ö
-		int reqPage = 1; // ¿äÃ»ÆäÀÌÁö
-		int pageCount = 5; // ÀüÃ¼ ÆäÀÌÁö ¼ö
-		int dbCount = 0; // DB¿¡¼­ °¡Á®¿Â ÀüÃ¼ Çà¼ö
+		int pageSize = 10; // í•œí˜ì´ì§€ë‹¹ ê²Œì‹œë¬¼ ìˆ˜
+		int reqPage = 1; // ìš”ì²­í˜ì´ì§€
+		int pageCount = 5; // ì „ì²´ í˜ì´ì§€ ìˆ˜
+		int dbCount = 0; // DBì—ì„œ ê°€ì ¸ì˜¨ ì „ì²´ í–‰ìˆ˜
 		
 		if (serviceName.equals("member")) {
 			dbCount = pageDao.MtotalRowCount();
@@ -290,7 +289,7 @@ public class PageServiceImpl {
 			pageSize = 10;
 		}
 		
-		// ¿äÃ» ÆäÀÌÁö °è»ê
+		// ìš”ì²­ í˜ì´ì§€ ê³„ì‚°
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -305,7 +304,7 @@ public class PageServiceImpl {
 			}
 			
 		}
-		//param °´Ã¼¿¡ µ¥ÀÌÅÍ put
+		//param ê°ì²´ì— ë°ì´í„° put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -319,14 +318,14 @@ public class PageServiceImpl {
 	
 	public Map<String, Integer> getBPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// ÆäÀÌÂ¡ Ã³¸® - startCount, endCount ±¸ÇÏ±â
+		// í˜ì´ì§• ì²˜ë¦¬ - startCount, endCount êµ¬í•˜ê¸°
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 10; // ÇÑÆäÀÌÁö´ç °Ô½Ã¹° ¼ö
-		int reqPage = 1; // ¿äÃ»ÆäÀÌÁö
-		int pageCount = 5; // ÀüÃ¼ ÆäÀÌÁö ¼ö
-		int dbCount = 0; // DB¿¡¼­ °¡Á®¿Â ÀüÃ¼ Çà¼ö
+		int pageSize = 10; // í•œí˜ì´ì§€ë‹¹ ê²Œì‹œë¬¼ ìˆ˜
+		int reqPage = 1; // ìš”ì²­í˜ì´ì§€
+		int pageCount = 5; // ì „ì²´ í˜ì´ì§€ ìˆ˜
+		int dbCount = 0; // DBì—ì„œ ê°€ì ¸ì˜¨ ì „ì²´ í–‰ìˆ˜
 		
 		if (serviceName.equals("booking")) {
 			dbCount = pageDao.BtotalRowCount();
@@ -336,7 +335,7 @@ public class PageServiceImpl {
 			pageSize = 10;
 		}
 		
-		// ¿äÃ» ÆäÀÌÁö °è»ê
+		// ìš”ì²­ í˜ì´ì§€ ê³„ì‚°
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -351,7 +350,7 @@ public class PageServiceImpl {
 			}
 			
 		}
-		//param °´Ã¼¿¡ µ¥ÀÌÅÍ put
+		//param ê°ì²´ì— ë°ì´í„° put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -365,16 +364,16 @@ public class PageServiceImpl {
 	
 	public Map<String, Integer> getMyPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// ÆäÀÌÂ¡ Ã³¸® - startCount, endCount ±¸ÇÏ±â
+		// í˜ì´ì§• ì²˜ë¦¬ - startCount, endCount êµ¬í•˜ê¸°
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 5; // ÇÑÆäÀÌÁö´ç °Ô½Ã¹° ¼ö
-		int reqPage = 1; // ¿äÃ»ÆäÀÌÁö
-		int pageCount = 5; // ÀüÃ¼ ÆäÀÌÁö ¼ö
-		int dbCount = 0; // DB¿¡¼­ °¡Á®¿Â ÀüÃ¼ Çà¼ö
+		int pageSize = 5; // í•œí˜ì´ì§€ë‹¹ ê²Œì‹œë¬¼ ìˆ˜
+		int reqPage = 1; // ìš”ì²­í˜ì´ì§€
+		int pageCount = 5; // ì „ì²´ í˜ì´ì§€ ìˆ˜
+		int dbCount = 0; // DBì—ì„œ ê°€ì ¸ì˜¨ ì „ì²´ í–‰ìˆ˜
 		dbCount = pageDao.MystotalRowCount(serviceName);
-		// ¿äÃ» ÆäÀÌÁö °è»ê
+		// ìš”ì²­ í˜ì´ì§€ ê³„ì‚°
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -391,7 +390,7 @@ public class PageServiceImpl {
 		}
 		System.out.println(startCount);
 		System.out.println(endCount);
-		//param °´Ã¼¿¡ µ¥ÀÌÅÍ put
+		//param ê°ì²´ì— ë°ì´í„° put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);

@@ -198,6 +198,76 @@
 		color:#636363;
 	}
 	
+	.cchat-btn {
+		position:fixed;
+		right:51px;
+		bottom:200px;
+		z-index:100;
+	}
+	.scrdiv {
+		color: lightgray;
+		width:30px;
+		position:fixed;
+		z-index:100;
+		cursor:pointer;
+		right:70px;
+		bottom:100px;
+	}
+	#btn-screenup, #btn-screendown {
+		width:20px; height:20px;
+		padding:10px;
+		border:2px solid lightgray;
+		display:flex; justify-content:center; align-items:center;
+		background:white;
+	}
+	#btn-screenup:hover, #btn-screendown:hover {
+		opacity:0.7;
+	}
+	
+	.spword-box {
+		position:fixed;
+		right:120px;
+		bottom:100px;
+		z-index:100;
+		width:180px;
+		background:white;
+		border-radius:5px; border:1px solid #7AB2CC;
+		box-shadow: 3px 3px 5px 1px #dedede;
+	}
+	.spword-title {
+		text-align:center;
+		background:#7AB2CC;
+		color:white; font-weight:bold; font-size:15px;
+		padding:10px 0;
+		display:block;
+	}
+	.spword-ul {
+		list-style-type:none;
+		padding:10px;
+		height:160px;
+	}
+	.spword-li {
+		padding:8px;
+		clear:both;
+		font-size:14px;
+	}
+	.spword-li:hover {
+		cursor:pointer;
+		background:#ecfbfe;
+	}
+	
+	.spword-li-label {
+		float:left;
+		padding:0 5px;
+		border:1px solid #7AB2CC;
+		color:#7AB2CC; font-weight:bold;
+		margin-right:10px;
+		background:white;
+	}
+	.spword-li:nth-child(-n+2) > .spword-li-label {
+		background:#7AB2CC; color:white
+	}
+	
 	/* main-style */
 	.main-door {
 		margin:auto;
