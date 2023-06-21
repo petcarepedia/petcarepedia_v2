@@ -9,6 +9,11 @@
 /* 	font-family: 'Inter'; */
 	font-style: normal;
 }
+div#ampaginationsm ul li.active a {
+	background-color:#98DFFF;
+	border-color:#98DFFF;
+	margin-bottom : 100px;
+}
 #content {
 	width : 1000px;
 	height : 700px;

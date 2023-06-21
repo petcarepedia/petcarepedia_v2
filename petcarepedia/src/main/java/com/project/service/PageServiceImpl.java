@@ -27,7 +27,26 @@ public class PageServiceImpl {
 	@Autowired
 	private PageDao pageDao;
 
+	public ArrayList<ReviewVo> getMyListPage(int startCount, int endCount, String mid) {
+		ArrayList<ReviewVo> rlist = new ArrayList<ReviewVo>();
+		List<Object> list = pageDao.Myselect(startCount, endCount, mid);
+		for(Object obj : list) {
+			ReviewVo reviewVo = (ReviewVo)obj;
+			rlist.add(reviewVo);
+		}
+		return rlist;
+	}
 
+	public ArrayList<ReviewVo> getMysListPage(int startCount, int endCount) {
+		ArrayList<ReviewVo> rlist = new ArrayList<ReviewVo>();
+		List<Object> list = pageDao.Rselect(startCount, endCount);
+		for(Object obj : list) {
+			ReviewVo reviewVo = (ReviewVo)obj;
+			rlist.add(reviewVo);
+		}
+		return rlist;
+	}
+	
 	public ArrayList<BookingVo> getBsListPage(int startCount, int endCount, String mid) {
 		ArrayList<BookingVo> rlist = new ArrayList<BookingVo>();
 		List<Object> list = pageDao.Bsselect(startCount, endCount, mid);
@@ -97,6 +116,8 @@ public class PageServiceImpl {
 		}
 		return rlist;
 	}
+	
+	
 	public Map<String, Integer> getPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
 		// 페이징 처리 - startCount, endCount 구하기
@@ -330,6 +351,46 @@ public class PageServiceImpl {
 			}
 			
 		}
+		//param 객체에 데이터 put
+		param.put("count", count);
+		param.put("startCount", startCount);
+		param.put("endCount", endCount);
+		param.put("dbCount", dbCount);
+		param.put("pageSize", pageSize);
+		param.put("maxSize", pageCount);
+		param.put("page", reqPage);
+		
+		return param;
+	}
+	
+	public Map<String, Integer> getMyPageResult(String page, String serviceName) {
+		Map<String, Integer> param = new HashMap<String, Integer>();
+		// 페이징 처리 - startCount, endCount 구하기
+		int count = 0;
+		int startCount = 0;
+		int endCount = 0;
+		int pageSize = 5; // 한페이지당 게시물 수
+		int reqPage = 1; // 요청페이지
+		int pageCount = 5; // 전체 페이지 수
+		int dbCount = 0; // DB에서 가져온 전체 행수
+		dbCount = pageDao.MystotalRowCount(serviceName);
+		// 요청 페이지 계산
+		if (page != null) {
+			reqPage = Integer.parseInt(page);
+			startCount = (reqPage - 1) * pageSize + 1;
+			endCount = reqPage * pageSize;
+			if(serviceName.equals("notice")) {
+				count++;
+			}
+		} else {
+			if(serviceName.equals("review")) {
+				startCount = 1;
+				endCount = 5;				
+			}
+			
+		}
+		System.out.println(startCount);
+		System.out.println(endCount);
 		//param 객체에 데이터 put
 		param.put("count", count);
 		param.put("startCount", startCount);

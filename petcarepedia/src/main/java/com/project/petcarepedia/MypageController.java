@@ -1,6 +1,8 @@
 package com.project.petcarepedia;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.project.service.BookingService;
 import com.project.service.BookmarkService;
 import com.project.service.MemberService;
+import com.project.service.PageServiceImpl;
 import com.project.service.ReviewService;
 import com.project.vo.BookingReviewVo;
 import com.project.vo.BookingVo;
@@ -32,7 +35,8 @@ public class MypageController {
 	private BookingService bookingService;
 	@Autowired
 	private ReviewService reviewService;
-	
+	@Autowired
+	private PageServiceImpl pageService;
 	/*
 	 * information.do - ³ªÀÇ È¸¿øÁ¤º¸ Æû
 	 */
@@ -185,14 +189,35 @@ public class MypageController {
 	 * my_review.do - ³»°¡ ¾´ ¸®ºä Æû
 	 */
 	@RequestMapping(value = "/mypage_my_review.do", method = RequestMethod.GET)
-	public ModelAndView my_review(HttpSession session) {
+	public ModelAndView my_review(String page, HttpSession session) {
 		//HttpSession session = request.getSession();
-		SessionVo svo = (SessionVo)session.getAttribute("svo");
 		ModelAndView model = new ModelAndView();
+		SessionVo svo = (SessionVo)session.getAttribute("svo");
+		Map<String, Integer> param = new HashMap<String,Integer>();
 		//ReviewDao reviewDao = new ReviewDao();
-		ArrayList<ReviewVo> list = reviewService.getMy_select(svo.getMid());
+//		ArrayList<ReviewVo> list = reviewService.getMy_select(mid);
+		ArrayList<ReviewVo> list = new ArrayList<ReviewVo>();
+		param = pageService.getMyPageResult(page, svo.getMid());
+		if (page == null) {
+	        page = "1";
+	    }
+		list = pageService.getMyListPage(param.get("startCount"), param.get("endCount"), svo.getMid());
+		
+		if(svo.getMid()!=null && svo.getMid()!="") {
+			param = pageService.getMyPageResult(page, svo.getMid());
+			list = pageService.getMyListPage(param.get("startCount"), param.get("endCount"), svo.getMid());
+		} else {
+			param = pageService.getMyPageResult(page, "review");
+			list = pageService.getMysListPage(param.get("startCount"), param.get("endCount"));
+		}
+		
 		
 		model.addObject("list", list);
+		model.addObject("totals", param.get("dbCount"));
+		model.addObject("pageSize",param.get("pageSize"));
+		model.addObject("maxSize", param.get("maxSize"));
+		model.addObject("page", param.get("page"));
+		model.addObject("mid", svo.getMid());
 		model.setViewName("/mypage/mypage_my_review");
 		return model;
 	}
