@@ -107,7 +107,9 @@
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
+					<c:if test = "${list.size() != 0}">
 					<div id="ampaginationsm" style = "margin-left : 250px;"></div>
+					</c:if>
 				</section>
 			</div>
 		</section>
