@@ -110,7 +110,7 @@
 					<li class="review_list">
 						<ul>
 							<li id="list_left" class="list">
-								<p><img src="http://localhost:9000/petcarepedia/images/cat.png">${list.nickname }</p>
+								<p><img src="http://localhost:9000/petcarepedia/images/cat.png"><span>${list.nickname }</span></p>
 								<div id="star">
 									<div id="avg">
 										⭐ ${list.rstar } / 5.0
