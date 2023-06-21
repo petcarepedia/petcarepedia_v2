@@ -44,11 +44,11 @@
 								</tr>
 								<tr>
 									<th>주소</th>
-									<td><input type="text" name="gloc" id="gloc" value="${hospitalVo.gloc}"></td>
+									<td><input type="text" name="loc" id="loc" value="${hospitalVo.loc}"></td>
 								</tr>
 								<tr>
 									<th>지역 구</th>
-									<td><input type="text" name="loc" id="loc" value="${hospitalVo.loc}"></td>
+									<td><input type="text" name="gloc" id="gloc" value="${hospitalVo.gloc}"></td>
 								</tr>
 								<tr>
 									<th>전화번호</th>
