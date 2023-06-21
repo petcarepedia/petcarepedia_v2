@@ -43,11 +43,11 @@
 								</tr>
 								<tr>
 									<th>주소</th>
-									<td><input type="text" name="gloc" id="gloc" value="${hospitalVo.gloc}" disabled></td>
+									<td><input type="text" name="loc" id="loc" value="${hospitalVo.loc}" disabled></td>
 								</tr>
 								<tr>
 									<th>지역 구</th>
-									<td><input type="text" name="loc" id="loc" value="${hospitalVo.loc}" disabled></td>
+									<td><input type="text" name="gloc" id="gloc" value="${hospitalVo.gloc}" disabled></td>
 								</tr>
 								<tr>
 									<th>전화번호</th>

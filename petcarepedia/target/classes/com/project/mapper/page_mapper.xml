@@ -77,6 +77,13 @@
 					WHERE RNO BETWEEN #{start} AND #{end}
 	</select>
 	
+	<select id = "Hlist2" parameterType="map" resultType="com.project.vo.HospitalVo">	
+		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
+					  FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
+						 FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL ORDER BY HID))
+					WHERE RNO BETWEEN #{start} AND #{end}
+	</select>
+	
 	
 	<select id="Rcount" resultType="int">
 		select count(*) from pcp_review

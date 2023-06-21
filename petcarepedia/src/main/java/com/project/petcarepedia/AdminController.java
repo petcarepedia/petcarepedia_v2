@@ -47,7 +47,7 @@ public class AdminController {
 	private FileServiceImpl fileService;
 	
 	/**
-	 * �뵳�됰윮 占쎈읂占쎌뵠筌욑옙
+	 * 리뷰 - 목록 조회
 	 */
 	@RequestMapping(value="/admin_review_list.do", method=RequestMethod.GET)
 	public ModelAndView review_list(String page) {
@@ -67,26 +67,8 @@ public class AdminController {
 	}
 	
 	/**
-	 * 占쎌굙占쎈튋 占쎈읂占쎌뵠筌욑옙
+	 * 예약 - 목록 조회
 	 */
-//	@RequestMapping(value="/admin_reserve_list.do", method=RequestMethod.GET)
-//	public ModelAndView reserve_list(String page) {
-//		ModelAndView model = new ModelAndView();		
-//		Map<String, Integer> param = pageService.getPageResult(page, "booking");
-//		
-//		ArrayList<BookingVo> list = pageService.getBListPage(param.get("startCount"), param.get("endCount"));
-//		
-//		model.addObject("list", list);
-//		model.addObject("totals", param.get("dbCount"));
-//		model.addObject("pageSize",param.get("pageSize"));
-//		model.addObject("maxSize", param.get("maxSize"));
-//		model.addObject("page", param.get("page"));
-//		
-//		model.setViewName("/admin/reserve/admin_reserve_list");
-//		
-//		return model;
-//	}
-	
 	@RequestMapping(value="/admin_reserve_list.do", method=RequestMethod.GET)
 	public ModelAndView reserve_list(String page, String mid) {
 		ModelAndView model = new ModelAndView();
@@ -114,7 +96,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 占쎌돳占쎌뜚 占쎈읂占쎌뵠筌욑옙
+	 * 회원 - 목록 조회
 	 */
 	@RequestMapping(value="/admin_member_list.do", method=RequestMethod.GET)
 	public ModelAndView member_list(String page, String mid) {
@@ -143,10 +125,10 @@ public class AdminController {
 	}
 	
 	/**
-	 * 癰귣쵐�뜚 占쎈읂占쎌뵠筌욑옙
+	 * 병원 - 목록 조회
 	 */
 	@RequestMapping(value="/admin_hospital_list.do", method=RequestMethod.GET)
-	public ModelAndView hospital_list(String page, String hname) {
+	public ModelAndView hospital_list(String page, String hname, String filter) {
 		ModelAndView model = new ModelAndView();
 		Map<String, Integer> param = new HashMap<String,Integer>();
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
@@ -157,6 +139,11 @@ public class AdminController {
 		} else {
 			param = pageService.getHPageResult(page, "hospital");
 			list = pageService.getHListPage(param.get("startCount"), param.get("endCount"));
+//			if(filter.equals("new")) {
+//				list = pageService.getHListPage(param.get("startCount"), param.get("endCount"));
+//			}else if(filter.equals("old")) {
+//				list = pageService.getHListPage2(param.get("startCount"), param.get("endCount"));
+//			}
 		}
 		
 		model.addObject("list", list);
@@ -172,7 +159,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 占쎌굙占쎈튋 - 占쎄맒占쎄묶 癰귨옙野껓옙 筌ｌ꼶�봺
+	 * 에약하기 
 	 */
 	
 	@RequestMapping(value = "/reserve_state_data.do", method = RequestMethod.POST)
@@ -206,7 +193,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 占쎌굙占쎈튋 - 野껓옙占쎄퉳 筌ｌ꼶�봺
+	 * 예약 - 
 	 */
 	@RequestMapping(value = "/reserve_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -232,7 +219,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 占쎈뻿�⑥쥓�봺�뀎占� - 占쎄텣占쎌젫 占쎈읂占쎌뵠筌욑옙
+	 * 신고 리뷰 - 삭제 처리
 	 */
 	@RequestMapping(value = "/review_delete_proc2.do", method = RequestMethod.POST)
 	public String review_delete_proc2(String rid) {
@@ -247,7 +234,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 占쎈뻿�⑥쥓�봺�뀎占� - 占쎄텣占쎌젫 占쎈읂占쎌뵠筌욑옙
+	 * 신고 리뷰 - 삭제
 	 */
 	@RequestMapping(value="/admin_review_delete2.do", method=RequestMethod.GET)
 	public ModelAndView review_delete2(String rid) {
@@ -261,7 +248,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 占쎈뻿�⑥쥓�봺�뀎占� - 占쎄맒占쎄쉭 占쎈읂占쎌뵠筌욑옙
+	 * 리뷰 - 검색
 	 */
 	@RequestMapping(value = "/admin_review_detail.do", method = RequestMethod.GET)
 	public ModelAndView review_detail(String rid) {
@@ -276,7 +263,7 @@ public class AdminController {
 	
 
 	/**
-	 * 占쎌돳占쎌뜚 - 野껓옙占쎄퉳筌∽옙
+	 * 회원 - 검색
 	 * */
 	@RequestMapping(value = "/member_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -302,7 +289,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 占쎌돳占쎌뜚 - 占쎄맒占쎄쉭占쎈읂占쎌뵠筌욑옙
+	 * 회원 - 검색
 	 */
 	@RequestMapping(value = "/admin_member_detail.do", method = RequestMethod.GET)
 	public ModelAndView member_detail(String mid) {
@@ -374,7 +361,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 癰귣쵐�뜚 - 占쎈땾占쎌젟
+	 * 병원 - 수정
 	 */
 	@RequestMapping(value = "/admin_hospital_update.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_update(String hid) {
@@ -389,7 +376,7 @@ public class AdminController {
 	}
 
 	/**
-	 * �솻洹ｌ탳占쎈쐸 - �뜝�럡留믣뜝�럡�돪�뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
+	 * 병원 - 상세보기
 	 */
 	@RequestMapping(value = "/admin_hospital_content.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_content(String hid) {
@@ -404,7 +391,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 癰귣쵐�뜚 - 占쎄맒占쎄쉭
+	 * 병원 - 등록
 	 */
 	@RequestMapping(value = "/hospital_detail_proc.do", method = RequestMethod.POST)
 	public String hostpital_detail_proc(HospitalVo hospitalVo, HttpServletRequest request) throws Exception {
@@ -422,7 +409,7 @@ public class AdminController {
 			hospitalVo.setHfile(hfile);
 			hospitalVo.setHsfile(hsfile);
 		} else {
-			System.out.println("占쎈솁占쎌뵬 X");
+			System.out.println("파일 없음 X");
 		}
 
 		int result = hospitalService.insert(hospitalVo);
@@ -446,7 +433,7 @@ public class AdminController {
 	}
 
 	/**
-	 * �솻洹ｌ탳占쎈쐸 - �뇦猿볦삕�뜝�럡�돰 �뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
+	 * 병원 - 검색
 	 */
 	@RequestMapping(value = "/admin_hospital_list_detail.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_detail(String hname) {

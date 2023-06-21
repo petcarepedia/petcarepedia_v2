@@ -81,14 +81,17 @@
 							<button type="button" class="button4"><a href="http://localhost:9000/petcarepedia/admin_hospital_detail.do">등록하기</a></button>
 						</td>
 					</tr>
-					<tr>
+					<%-- <tr>
 						<td colspan="5" >
-							<select>
-								<option name="table" id="new"> 최신 순</option>
-								<option name="table"  id="old"> 오래된 순</option>		
-							</select>
+							<form name ="hospital_filter" action="hospital_list_proc.do" method ="get">
+							<input type="hidden" name="hid" value="${hospitalVo.hid}">
+								<select name="filter" id="filter" onchange="this.form.submit()">
+									<option name="table" id="new" value = "new" selected> 최신 순</option>
+									<option name="table"  id="old" value = "old"> 오래된 순</option>		
+								</select>
+							</form>
 						</td>
-					</tr>
+					</tr> --%>
 					<tr>
 						<th>번호</th>
 						<th>병원명</th>

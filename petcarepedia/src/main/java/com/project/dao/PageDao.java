@@ -64,6 +64,14 @@ public class PageDao {
 		return sqlSession.selectList("mapper.page.Hslist", param);
 	}
 	
+	public List<Object> Hselect2(int startCount, int endCount) {
+		Map<String, Integer> param = new HashMap<String, Integer>();
+		param.put("start", startCount);
+		param.put("end", endCount);		
+		
+		return sqlSession.selectList("mapper.page.Hlist2", param);
+	}
+	
 	public List<Object> Hselect(int startCount, int endCount) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
 		param.put("start", startCount);

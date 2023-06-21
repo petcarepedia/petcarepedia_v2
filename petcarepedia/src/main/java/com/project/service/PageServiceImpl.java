@@ -88,6 +88,16 @@ public class PageServiceImpl {
 		return rlist;
 	}
 	
+	public ArrayList<HospitalVo> getHListPage2(int startCount, int endCount) {
+		ArrayList<HospitalVo> rlist = new ArrayList<HospitalVo>();
+		List<Object> list = pageDao.Hselect2(startCount, endCount);
+		for(Object obj : list) {
+			HospitalVo hospitalVo = (HospitalVo)obj;
+			rlist.add(hospitalVo);
+		}
+		return rlist;
+	}
+	
 	public ArrayList<HospitalVo> getHListPage(int startCount, int endCount) {
 		ArrayList<HospitalVo> rlist = new ArrayList<HospitalVo>();
 		List<Object> list = pageDao.Hselect(startCount, endCount);
@@ -97,6 +107,7 @@ public class PageServiceImpl {
 		}
 		return rlist;
 	}
+	
 	public Map<String, Integer> getPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
 		// 其捞隆 贸府 - startCount, endCount 备窍扁
