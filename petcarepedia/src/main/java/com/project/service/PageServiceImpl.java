@@ -119,14 +119,14 @@ public class PageServiceImpl {
 
 	public Map<String, Integer> getPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// 페이징 처리 - startCount, endCount 구하기
+		// �럹�씠吏� 泥섎━ - startCount, endCount 援ы븯湲�
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 5; // 한페이지당 게시물 수
-		int reqPage = 1; // 요청페이지
-		int pageCount = 1; // 전체 페이지 수
-		int dbCount = 0; // DB에서 가져온 전체 행수
+		int pageSize = 5; // �븳�럹�씠吏��떦 寃뚯떆臾� �닔
+		int reqPage = 1; // �슂泥��럹�씠吏�
+		int pageCount = 1; // �쟾泥� �럹�씠吏� �닔
+		int dbCount = 0; // DB�뿉�꽌 媛��졇�삩 �쟾泥� �뻾�닔
 
 		
 		
@@ -172,7 +172,7 @@ public class PageServiceImpl {
 		}
 		
 
-		// 요청 페이지 계산
+		// �슂泥� �럹�씠吏� 怨꾩궛
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -208,7 +208,7 @@ public class PageServiceImpl {
 
 		}
 		
-		//param 객체에 데이터 put
+		//param 媛앹껜�뿉 �뜲�씠�꽣 put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -222,14 +222,14 @@ public class PageServiceImpl {
 	}
 	public Map<String, Integer> getHPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// 페이징 처리 - startCount, endCount 구하기
+		// �럹�씠吏� 泥섎━ - startCount, endCount 援ы븯湲�
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 10; // 한페이지당 게시물 수
-		int reqPage = 1; // 요청페이지
-		int pageCount = 10; // 전체 페이지 수
-		int dbCount = 0; // DB에서 가져온 전체 행수
+		int pageSize = 10; // �븳�럹�씠吏��떦 寃뚯떆臾� �닔
+		int reqPage = 1; // �슂泥��럹�씠吏�
+		int pageCount = 10; // �쟾泥� �럹�씠吏� �닔
+		int dbCount = 0; // DB�뿉�꽌 媛��졇�삩 �쟾泥� �뻾�닔
 		
 		if (serviceName.equals("hospital")) {
 			dbCount = pageDao.HtotalRowCount();
@@ -239,7 +239,7 @@ public class PageServiceImpl {
 			pageSize = 10;
 		}
 		
-		// 요청 페이지 계산
+		// �슂泥� �럹�씠吏� 怨꾩궛
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -257,7 +257,7 @@ public class PageServiceImpl {
 			}
 			
 		}
-		//param 객체에 데이터 put
+		//param 媛앹껜�뿉 �뜲�씠�꽣 put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -272,14 +272,14 @@ public class PageServiceImpl {
 	
 	public Map<String, Integer> getMPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// 페이징 처리 - startCount, endCount 구하기
+		// �럹�씠吏� 泥섎━ - startCount, endCount 援ы븯湲�
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 10; // 한페이지당 게시물 수
-		int reqPage = 1; // 요청페이지
-		int pageCount = 5; // 전체 페이지 수
-		int dbCount = 0; // DB에서 가져온 전체 행수
+		int pageSize = 10; // �븳�럹�씠吏��떦 寃뚯떆臾� �닔
+		int reqPage = 1; // �슂泥��럹�씠吏�
+		int pageCount = 5; // �쟾泥� �럹�씠吏� �닔
+		int dbCount = 0; // DB�뿉�꽌 媛��졇�삩 �쟾泥� �뻾�닔
 		
 		if (serviceName.equals("member")) {
 			dbCount = pageDao.MtotalRowCount();
@@ -289,7 +289,7 @@ public class PageServiceImpl {
 			pageSize = 10;
 		}
 		
-		// 요청 페이지 계산
+		// �슂泥� �럹�씠吏� 怨꾩궛
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -304,7 +304,7 @@ public class PageServiceImpl {
 			}
 			
 		}
-		//param 객체에 데이터 put
+		//param 媛앹껜�뿉 �뜲�씠�꽣 put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -318,14 +318,14 @@ public class PageServiceImpl {
 	
 	public Map<String, Integer> getBPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// 페이징 처리 - startCount, endCount 구하기
+		// �럹�씠吏� 泥섎━ - startCount, endCount 援ы븯湲�
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 10; // 한페이지당 게시물 수
-		int reqPage = 1; // 요청페이지
-		int pageCount = 5; // 전체 페이지 수
-		int dbCount = 0; // DB에서 가져온 전체 행수
+		int pageSize = 10; // �븳�럹�씠吏��떦 寃뚯떆臾� �닔
+		int reqPage = 1; // �슂泥��럹�씠吏�
+		int pageCount = 5; // �쟾泥� �럹�씠吏� �닔
+		int dbCount = 0; // DB�뿉�꽌 媛��졇�삩 �쟾泥� �뻾�닔
 		
 		if (serviceName.equals("booking")) {
 			dbCount = pageDao.BtotalRowCount();
@@ -335,7 +335,7 @@ public class PageServiceImpl {
 			pageSize = 10;
 		}
 		
-		// 요청 페이지 계산
+		// �슂泥� �럹�씠吏� 怨꾩궛
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -350,7 +350,7 @@ public class PageServiceImpl {
 			}
 			
 		}
-		//param 객체에 데이터 put
+		//param 媛앹껜�뿉 �뜲�씠�꽣 put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -364,16 +364,16 @@ public class PageServiceImpl {
 	
 	public Map<String, Integer> getMyPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// 페이징 처리 - startCount, endCount 구하기
+		// �럹�씠吏� 泥섎━ - startCount, endCount 援ы븯湲�
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 5; // 한페이지당 게시물 수
-		int reqPage = 1; // 요청페이지
-		int pageCount = 5; // 전체 페이지 수
-		int dbCount = 0; // DB에서 가져온 전체 행수
+		int pageSize = 5; // �븳�럹�씠吏��떦 寃뚯떆臾� �닔
+		int reqPage = 1; // �슂泥��럹�씠吏�
+		int pageCount = 5; // �쟾泥� �럹�씠吏� �닔
+		int dbCount = 0; // DB�뿉�꽌 媛��졇�삩 �쟾泥� �뻾�닔
 		dbCount = pageDao.MystotalRowCount(serviceName);
-		// 요청 페이지 계산
+		// �슂泥� �럹�씠吏� 怨꾩궛
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -388,9 +388,7 @@ public class PageServiceImpl {
 			}
 			
 		}
-		System.out.println(startCount);
-		System.out.println(endCount);
-		//param 객체에 데이터 put
+		//param 媛앹껜�뿉 �뜲�씠�꽣 put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
