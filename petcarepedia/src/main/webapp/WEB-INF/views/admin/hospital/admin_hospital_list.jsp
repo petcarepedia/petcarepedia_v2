@@ -81,14 +81,14 @@
 							<button type="button" class="button4"><a href="http://localhost:9000/petcarepedia/admin_hospital_detail.do">등록하기</a></button>
 						</td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td colspan="5" >
 							<select>
 								<option name="table" id="new"> 최신 순</option>
 								<option name="table"  id="old"> 오래된 순</option>		
 							</select>
 						</td>
-					</tr>
+					</tr> -->
 					<tr>
 						<th>번호</th>
 						<th>병원명</th>
