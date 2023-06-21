@@ -11,6 +11,42 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
+<link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/am-pagination.css">
+<script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
+<script>
+	$(document).ready(function(){
+		var mid = "${sessionScope.svo.mid}";
+		var page = "${page}";
+		
+		var pager = jQuery('#ampaginationsm').pagination({
+		
+			 maxSize: '${maxSize}',	    		// max page size
+			    totals: '${totals}',	// total pages	
+			    page: '${page}',		// initial page		
+			    pageSize: '${pageSize}',			// max number items per page
+			
+			    // custom labels		
+			    lastText: '&raquo;&raquo;', 		
+			    firstText: '&laquo;&laquo;',		
+			    prevText: '&laquo;',		
+			    nextText: '&raquo;',
+					     
+			    btnSize:'sm'	// 'sm'  or 'lg'		
+		});
+		
+		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+			   if(mid!=null && mid!=""){
+				   $(location).attr('href', "http://localhost:9000/petcarepedia/mypage_my_review.do?page="+e.page+"&mid="+mid);
+			   } else {
+				   $(location).attr('href', "http://localhost:9000/petcarepedia/mypage_my_review.do?page="+e.page);
+			   }  
+	           
+	           
+	    });
+		
+ 	});
+</script> 
 </head>
 <body>
 	 <jsp:include page="../header.jsp"></jsp:include>
@@ -71,6 +107,7 @@
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
+					<div id="ampaginationsm" style = "margin-left : 250px;"></div>
 				</section>
 			</div>
 		</section>

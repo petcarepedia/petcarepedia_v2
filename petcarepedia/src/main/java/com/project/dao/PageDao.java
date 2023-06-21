@@ -14,6 +14,23 @@ public class PageDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	public List<Object> Myselect(int startCount, int endCount, String mid) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("mid", mid);	
+		
+		return sqlSession.selectList("mapper.page.Mylist", param);
+	}
+	public List<Object> Mysselect(int startCount, int endCount) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("start", startCount);
+		param.put("end", endCount);	
+		
+		return sqlSession.selectList("mapper.page.Myslist", param);
+	}
+	
+	
 	
 	public List<Object> Rselect(int startCount, int endCount) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
@@ -93,5 +110,11 @@ public class PageDao {
 	}
 	public int HtotalRowCount() {
 		return sqlSession.selectOne("mapper.page.Hcount");
+	}
+	public int MytotalRowCount() {
+		return sqlSession.selectOne("mapper.page.Mycount");
+	}
+	public int MystotalRowCount(String mid) {
+		return sqlSession.selectOne("mapper.page.Myscount", mid);
 	}
 }

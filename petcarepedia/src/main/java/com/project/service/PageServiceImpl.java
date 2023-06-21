@@ -27,7 +27,26 @@ public class PageServiceImpl {
 	@Autowired
 	private PageDao pageDao;
 
+	public ArrayList<ReviewVo> getMyListPage(int startCount, int endCount, String mid) {
+		ArrayList<ReviewVo> rlist = new ArrayList<ReviewVo>();
+		List<Object> list = pageDao.Myselect(startCount, endCount, mid);
+		for(Object obj : list) {
+			ReviewVo reviewVo = (ReviewVo)obj;
+			rlist.add(reviewVo);
+		}
+		return rlist;
+	}
 
+	public ArrayList<ReviewVo> getMysListPage(int startCount, int endCount) {
+		ArrayList<ReviewVo> rlist = new ArrayList<ReviewVo>();
+		List<Object> list = pageDao.Rselect(startCount, endCount);
+		for(Object obj : list) {
+			ReviewVo reviewVo = (ReviewVo)obj;
+			rlist.add(reviewVo);
+		}
+		return rlist;
+	}
+	
 	public ArrayList<BookingVo> getBsListPage(int startCount, int endCount, String mid) {
 		ArrayList<BookingVo> rlist = new ArrayList<BookingVo>();
 		List<Object> list = pageDao.Bsselect(startCount, endCount, mid);
@@ -97,67 +116,17 @@ public class PageServiceImpl {
 		}
 		return rlist;
 	}
-	public Map<String, Integer> getPageResultRS(String page, String serviceName, String filter_location) {
-		Map<String, Integer> param = new HashMap<String, Integer>();
-		// ÆäÀÌÂ¡ Ã³¸® - startCount, endCount ±¸ÇÏ±â
-		int count = 0;
-		int startCount = 0;
-		int endCount = 0;
-		int pageSize = 7; // ÇÑÆäÀÌÁö´ç °Ô½Ã¹° ¼ö
-		int reqPage = 1; // ¿äÃ»ÆäÀÌÁö
-		int pageCount = 1; // ÀüÃ¼ ÆäÀÌÁö ¼ö
-		int dbCount = 0; // DB¿¡¼­ °¡Á®¿Â ÀüÃ¼ Çà¼ö
 
-		dbCount = reviewDao.SearchRowCount(filter_location);
-		
-		if (dbCount % pageSize == 0) {
-			pageCount = dbCount / pageSize;
-		}
-		else if(serviceName.equals("review") || serviceName.equals("reviewSearch")) {
-			pageCount = 7;
-		}
-		else if(serviceName.equals("notice")) {
-			pageCount = 10;
-		}		
-		else {
-			pageCount = dbCount / pageSize + 1;
-		}
-		
-
-		// ¿äÃ» ÆäÀÌÁö °è»ê
-		if (page != null) {
-			reqPage = Integer.parseInt(page);
-			startCount = (reqPage - 1) * pageSize + 1;
-			endCount = reqPage * pageSize;
-		} else {
-			if(serviceName.equals("reviewSearch")) {
-				startCount = 1;
-				endCount = 7;	
-			}
-		}
-		
-		//param °´Ã¼¿¡ µ¥ÀÌÅÍ put
-		param.put("count", count);
-		param.put("startCount", startCount);
-		param.put("endCount", endCount);
-		param.put("dbCount", dbCount);
-		param.put("pageSize", pageSize);
-		param.put("maxSize", pageCount);
-		param.put("page", reqPage);
-		
-		
-		return param;
-	}
 	public Map<String, Integer> getPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// ÆäÀÌÂ¡ Ã³¸® - startCount, endCount ±¸ÇÏ±â
+		// í˜ì´ì§• ì²˜ë¦¬ - startCount, endCount êµ¬í•˜ê¸°
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 5; // ÇÑÆäÀÌÁö´ç °Ô½Ã¹° ¼ö
-		int reqPage = 1; // ¿äÃ»ÆäÀÌÁö
-		int pageCount = 1; // ÀüÃ¼ ÆäÀÌÁö ¼ö
-		int dbCount = 0; // DB¿¡¼­ °¡Á®¿Â ÀüÃ¼ Çà¼ö
+		int pageSize = 5; // í•œí˜ì´ì§€ë‹¹ ê²Œì‹œë¬¼ ìˆ˜
+		int reqPage = 1; // ìš”ì²­í˜ì´ì§€
+		int pageCount = 1; // ì „ì²´ í˜ì´ì§€ ìˆ˜
+		int dbCount = 0; // DBì—ì„œ ê°€ì ¸ì˜¨ ì „ì²´ í–‰ìˆ˜
 
 		
 		
@@ -203,7 +172,7 @@ public class PageServiceImpl {
 		}
 		
 
-		// ¿äÃ» ÆäÀÌÁö °è»ê
+		// ìš”ì²­ í˜ì´ì§€ ê³„ì‚°
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -239,7 +208,7 @@ public class PageServiceImpl {
 
 		}
 		
-		//param °´Ã¼¿¡ µ¥ÀÌÅÍ put
+		//param ê°ì²´ì— ë°ì´í„° put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -253,14 +222,14 @@ public class PageServiceImpl {
 	}
 	public Map<String, Integer> getHPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// ÆäÀÌÂ¡ Ã³¸® - startCount, endCount ±¸ÇÏ±â
+		// í˜ì´ì§• ì²˜ë¦¬ - startCount, endCount êµ¬í•˜ê¸°
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 10; // ÇÑÆäÀÌÁö´ç °Ô½Ã¹° ¼ö
-		int reqPage = 1; // ¿äÃ»ÆäÀÌÁö
-		int pageCount = 10; // ÀüÃ¼ ÆäÀÌÁö ¼ö
-		int dbCount = 0; // DB¿¡¼­ °¡Á®¿Â ÀüÃ¼ Çà¼ö
+		int pageSize = 10; // í•œí˜ì´ì§€ë‹¹ ê²Œì‹œë¬¼ ìˆ˜
+		int reqPage = 1; // ìš”ì²­í˜ì´ì§€
+		int pageCount = 10; // ì „ì²´ í˜ì´ì§€ ìˆ˜
+		int dbCount = 0; // DBì—ì„œ ê°€ì ¸ì˜¨ ì „ì²´ í–‰ìˆ˜
 		
 		if (serviceName.equals("hospital")) {
 			dbCount = pageDao.HtotalRowCount();
@@ -270,7 +239,7 @@ public class PageServiceImpl {
 			pageSize = 10;
 		}
 		
-		// ¿äÃ» ÆäÀÌÁö °è»ê
+		// ìš”ì²­ í˜ì´ì§€ ê³„ì‚°
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -288,7 +257,7 @@ public class PageServiceImpl {
 			}
 			
 		}
-		//param °´Ã¼¿¡ µ¥ÀÌÅÍ put
+		//param ê°ì²´ì— ë°ì´í„° put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -303,14 +272,14 @@ public class PageServiceImpl {
 	
 	public Map<String, Integer> getMPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// ÆäÀÌÂ¡ Ã³¸® - startCount, endCount ±¸ÇÏ±â
+		// í˜ì´ì§• ì²˜ë¦¬ - startCount, endCount êµ¬í•˜ê¸°
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 10; // ÇÑÆäÀÌÁö´ç °Ô½Ã¹° ¼ö
-		int reqPage = 1; // ¿äÃ»ÆäÀÌÁö
-		int pageCount = 5; // ÀüÃ¼ ÆäÀÌÁö ¼ö
-		int dbCount = 0; // DB¿¡¼­ °¡Á®¿Â ÀüÃ¼ Çà¼ö
+		int pageSize = 10; // í•œí˜ì´ì§€ë‹¹ ê²Œì‹œë¬¼ ìˆ˜
+		int reqPage = 1; // ìš”ì²­í˜ì´ì§€
+		int pageCount = 5; // ì „ì²´ í˜ì´ì§€ ìˆ˜
+		int dbCount = 0; // DBì—ì„œ ê°€ì ¸ì˜¨ ì „ì²´ í–‰ìˆ˜
 		
 		if (serviceName.equals("member")) {
 			dbCount = pageDao.MtotalRowCount();
@@ -320,7 +289,7 @@ public class PageServiceImpl {
 			pageSize = 10;
 		}
 		
-		// ¿äÃ» ÆäÀÌÁö °è»ê
+		// ìš”ì²­ í˜ì´ì§€ ê³„ì‚°
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -335,7 +304,7 @@ public class PageServiceImpl {
 			}
 			
 		}
-		//param °´Ã¼¿¡ µ¥ÀÌÅÍ put
+		//param ê°ì²´ì— ë°ì´í„° put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -349,14 +318,14 @@ public class PageServiceImpl {
 	
 	public Map<String, Integer> getBPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// ÆäÀÌÂ¡ Ã³¸® - startCount, endCount ±¸ÇÏ±â
+		// í˜ì´ì§• ì²˜ë¦¬ - startCount, endCount êµ¬í•˜ê¸°
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 10; // ÇÑÆäÀÌÁö´ç °Ô½Ã¹° ¼ö
-		int reqPage = 1; // ¿äÃ»ÆäÀÌÁö
-		int pageCount = 5; // ÀüÃ¼ ÆäÀÌÁö ¼ö
-		int dbCount = 0; // DB¿¡¼­ °¡Á®¿Â ÀüÃ¼ Çà¼ö
+		int pageSize = 10; // í•œí˜ì´ì§€ë‹¹ ê²Œì‹œë¬¼ ìˆ˜
+		int reqPage = 1; // ìš”ì²­í˜ì´ì§€
+		int pageCount = 5; // ì „ì²´ í˜ì´ì§€ ìˆ˜
+		int dbCount = 0; // DBì—ì„œ ê°€ì ¸ì˜¨ ì „ì²´ í–‰ìˆ˜
 		
 		if (serviceName.equals("booking")) {
 			dbCount = pageDao.BtotalRowCount();
@@ -366,7 +335,7 @@ public class PageServiceImpl {
 			pageSize = 10;
 		}
 		
-		// ¿äÃ» ÆäÀÌÁö °è»ê
+		// ìš”ì²­ í˜ì´ì§€ ê³„ì‚°
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -381,7 +350,47 @@ public class PageServiceImpl {
 			}
 			
 		}
-		//param °´Ã¼¿¡ µ¥ÀÌÅÍ put
+		//param ê°ì²´ì— ë°ì´í„° put
+		param.put("count", count);
+		param.put("startCount", startCount);
+		param.put("endCount", endCount);
+		param.put("dbCount", dbCount);
+		param.put("pageSize", pageSize);
+		param.put("maxSize", pageCount);
+		param.put("page", reqPage);
+		
+		return param;
+	}
+	
+	public Map<String, Integer> getMyPageResult(String page, String serviceName) {
+		Map<String, Integer> param = new HashMap<String, Integer>();
+		// í˜ì´ì§• ì²˜ë¦¬ - startCount, endCount êµ¬í•˜ê¸°
+		int count = 0;
+		int startCount = 0;
+		int endCount = 0;
+		int pageSize = 5; // í•œí˜ì´ì§€ë‹¹ ê²Œì‹œë¬¼ ìˆ˜
+		int reqPage = 1; // ìš”ì²­í˜ì´ì§€
+		int pageCount = 5; // ì „ì²´ í˜ì´ì§€ ìˆ˜
+		int dbCount = 0; // DBì—ì„œ ê°€ì ¸ì˜¨ ì „ì²´ í–‰ìˆ˜
+		dbCount = pageDao.MystotalRowCount(serviceName);
+		// ìš”ì²­ í˜ì´ì§€ ê³„ì‚°
+		if (page != null) {
+			reqPage = Integer.parseInt(page);
+			startCount = (reqPage - 1) * pageSize + 1;
+			endCount = reqPage * pageSize;
+			if(serviceName.equals("notice")) {
+				count++;
+			}
+		} else {
+			if(serviceName.equals("review")) {
+				startCount = 1;
+				endCount = 5;				
+			}
+			
+		}
+		System.out.println(startCount);
+		System.out.println(endCount);
+		//param ê°ì²´ì— ë°ì´í„° put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
