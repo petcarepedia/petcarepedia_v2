@@ -507,6 +507,7 @@ div.review_card div.write {
 div.review_card div.write > p {
 	/* border: 1px solid red; */
 	font-size: 14px;
+	word-break: break-all;
 }
 
 div.review_card div.date {
