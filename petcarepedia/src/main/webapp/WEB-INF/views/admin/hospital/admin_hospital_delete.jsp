@@ -19,12 +19,21 @@
 		        Swal.fire({
 		            icon: 'warning',
 		            text: '정말로 삭제하시겠습니까?',
-		            confirmButtonColor: '#7ab2cc',
-		            confirmButtonText: '확인'
+		            showCancelButton: true,
+		            confirmButtonColor: '#FFB3BD',
+		            cancelButtonColor: '#98DFFF',
+		            confirmButtonText: '확인',
+		            cancelButtonText: '취소'
 		        }).then((result) => {
 		            if (result.isConfirmed) {
 		                // 확인 버튼을 눌렀을 경우 삭제 처리
-		                document.deleteForm.submit(); // 폼 전송
+		                Swal.fire({
+		            	icon: 'success',
+		            	text:'취소가 완료되었습니다.'
+		            }).then(() => {
+		            	document.deleteForm.submit();
+		            });
+		                 // 폼 전송
 		                // 삭제 처리를 위한 코드 작성
 		            } 
 		       	 });
