@@ -24,6 +24,7 @@ public class FileServiceImpl {
 		//파일이 존재하면 서버에 저장
 		if(oldFileName != null && !oldFileName.equals("")) {
 			File deleteFile = new File(root_path + attach_path+ oldFileName);
+			
 			if(deleteFile.exists()) {
 				deleteFile.delete();
 			}
@@ -33,7 +34,7 @@ public class FileServiceImpl {
 	/**
 	 * fileDelete-  수정할 때 기존 파일 삭제 기능
 	 */
-	public void fileDelete(HospitalVo hospitalVo, HttpServletRequest request, String oldFileName)
+	public void fileDelete2(HospitalVo hospitalVo, HttpServletRequest request, String oldFileName)
 																				throws Exception{
 		
 		String root_path = request.getSession().getServletContext().getRealPath("/");
@@ -43,7 +44,8 @@ public class FileServiceImpl {
 		if(!hospitalVo.getFile1().getOriginalFilename().equals("")) {
 			File deleteFile = new File(root_path + attach_path+ oldFileName);
 			//boardVo.getFile1().transferTo(deleteFile); //upload 폴더    ->  JVM과 파일이 연결되는 객체를 생성하여 연결해준다. 연결해주는 객체 deleteFile
-			if(deleteFile.exists()) { // 기존파일 존재 시 .delete();로 삭제
+			System.out.println(root_path + attach_path+ oldFileName);
+			if(deleteFile.exists()) {
 				deleteFile.delete();
 			}
 		}
@@ -59,7 +61,7 @@ public class FileServiceImpl {
 		
 		//파일이 존재하면 서버에 저장
 		if(hospitalVo.getHfile() != null && !hospitalVo.getHfile().equals("")) {
-			System.out.println("save file--->" + hospitalVo.getHfile());			
+			//System.out.println("save file--->" + hospitalVo.getHfile());			
 			File saveFile = new File(root_path + attach_path+ hospitalVo.getHsfile());
 			hospitalVo.getFile1().transferTo(saveFile);
 		}
