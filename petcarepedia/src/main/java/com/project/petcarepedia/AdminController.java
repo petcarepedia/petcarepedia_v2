@@ -361,9 +361,9 @@ public class AdminController {
 		
 		int result = hospitalService.update(fileService.fileCheck(hospitalVo));
 		if (result == 1) {
-			if(hospitalVo.getHfile() !=null && !hospitalVo.getHfile().equals("")) {
+			if(hospitalVo.getHsfile() !=null && !hospitalVo.getHsfile().equals("")) {
 				fileService.fileSave(hospitalVo, request);
-				fileService.fileDelete(hospitalVo, request, oldFileName);
+				fileService.fileDelete2(hospitalVo, request, oldFileName);
 			}
 			viewName = "redirect:/admin_hospital_list.do";
 		} else {
