@@ -229,12 +229,12 @@ $(document).ready(function(){
 	//약관동의 전체체크
 	$("#termAll").click(function(){
 		if($("#termAll").is(':checked')){
-			$("form[name='joinForm'] input:checkbox").prop('checked',true);
+			$("form[name='joinForm'] input:checkbox[name='term']").prop('checked',true);
 		} else {
-			$("form[name='joinForm'] input:checkbox").prop('checked',false);
+			$("form[name='joinForm'] input:checkbox[name='term']").prop('checked',false);
 		}
 	});
-	$("form[name='joinForm'] input:checkbox,.term-modal").click(function(){
+	$("form[name='joinForm'] input:checkbox[name='term'],.term-modal").click(function(){
 		if($("#term1").is(':checked')&&$("#term2").is(':checked')&&$("#term3").is(':checked')&&$("#term4").is(':checked')){
 			$("#termAll").prop('checked',true);
 		} else {
