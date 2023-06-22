@@ -63,6 +63,7 @@ public class FileServiceImpl {
 		if(hospitalVo.getHfile() != null && !hospitalVo.getHfile().equals("")) {
 			//System.out.println("save file--->" + hospitalVo.getHfile());			
 			File saveFile = new File(root_path + attach_path+ hospitalVo.getHsfile());
+			
 			hospitalVo.getFile1().transferTo(saveFile);
 		}
 	}
@@ -72,13 +73,12 @@ public class FileServiceImpl {
 	 */
 	public HospitalVo fileCheck(HospitalVo hospitalVo) {
 		if(hospitalVo.getFile1().getOriginalFilename() != null
-				&& !hospitalVo.getFile1().getOriginalFilename().equals("")) {  //파일이 존재하면
+				&& !hospitalVo.getFile1().getOriginalFilename().contentEquals("")) {  //파일이 존재하면
 			
 			//BSFILE 파일 중복 처리
 			UUID uuid = UUID.randomUUID();
 			String hfile = hospitalVo.getFile1().getOriginalFilename();
 			String hsfile = uuid + "_" + hfile;
-			
 			hospitalVo.setHfile(hfile);
 			hospitalVo.setHsfile(hsfile);
 		}else {

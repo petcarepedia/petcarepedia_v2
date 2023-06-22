@@ -47,7 +47,7 @@ public class AdminController {
 	private FileServiceImpl fileService;
 	
 	/**
-	 * �뵳�됰윮 占쎈읂占쎌뵠筌욑옙
+	 * 占쎈뎨占쎈맧�쑏 �뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
 	 */
 	@RequestMapping(value="/admin_review_list.do", method=RequestMethod.GET)
 	public ModelAndView review_list(String page) {
@@ -67,7 +67,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 占쎌굙占쎈튋 占쎈읂占쎌뵠筌욑옙
+	 * �뜝�럩援쇿뜝�럥�뒎 �뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
 	 */
 //	@RequestMapping(value="/admin_reserve_list.do", method=RequestMethod.GET)
 //	public ModelAndView reserve_list(String page) {
@@ -114,7 +114,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 占쎌돳占쎌뜚 占쎈읂占쎌뵠筌욑옙
+	 * �뜝�럩�뤂�뜝�럩�쐸 �뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
 	 */
 	@RequestMapping(value="/admin_member_list.do", method=RequestMethod.GET)
 	public ModelAndView member_list(String page, String mid) {
@@ -143,7 +143,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 癰귣쵐�뜚 占쎈읂占쎌뵠筌욑옙
+	 * �솻洹ｌ탳占쎈쐸 �뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
 	 */
 	@RequestMapping(value="/admin_hospital_list.do", method=RequestMethod.GET)
 	public ModelAndView hospital_list(String page, String hname) {
@@ -172,7 +172,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 占쎌굙占쎈튋 - 占쎄맒占쎄묶 癰귨옙野껓옙 筌ｌ꼶�봺
+	 * �뜝�럩援쇿뜝�럥�뒎 - �뜝�럡留믣뜝�럡臾� �솻洹⑥삕�뇦猿볦삕 嶺뚳퐣瑗띰옙遊�
 	 */
 	
 	@RequestMapping(value = "/reserve_state_data.do", method = RequestMethod.POST)
@@ -191,7 +191,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 占쎌굙占쎈튋 - 野껓옙占쎄퉳
+	 * �뜝�럩援쇿뜝�럥�뒎 - �뇦猿볦삕�뜝�럡�돰
 	 */
 	@RequestMapping(value = "/admin_reserve_list_detail.do", method = RequestMethod.GET)
 	public ModelAndView reserve_list_detail(String mid) {
@@ -206,7 +206,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 占쎌굙占쎈튋 - 野껓옙占쎄퉳 筌ｌ꼶�봺
+	 * �뜝�럩援쇿뜝�럥�뒎 - �뇦猿볦삕�뜝�럡�돰 嶺뚳퐣瑗띰옙遊�
 	 */
 	@RequestMapping(value = "/reserve_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -232,7 +232,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 占쎈뻿�⑥쥓�봺�뀎占� - 占쎄텣占쎌젫 占쎈읂占쎌뵠筌욑옙
+	 * �뜝�럥六울옙�뫁伊볩옙遊븝옙�롥뜝占� - �뜝�럡�뀭�뜝�럩�젷 �뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
 	 */
 	@RequestMapping(value = "/review_delete_proc2.do", method = RequestMethod.POST)
 	public String review_delete_proc2(String rid) {
@@ -247,7 +247,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 占쎈뻿�⑥쥓�봺�뀎占� - 占쎄텣占쎌젫 占쎈읂占쎌뵠筌욑옙
+	 * �뜝�럥六울옙�뫁伊볩옙遊븝옙�롥뜝占� - �뜝�럡�뀭�뜝�럩�젷 �뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
 	 */
 	@RequestMapping(value="/admin_review_delete2.do", method=RequestMethod.GET)
 	public ModelAndView review_delete2(String rid) {
@@ -261,7 +261,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 占쎈뻿�⑥쥓�봺�뀎占� - 占쎄맒占쎄쉭 占쎈읂占쎌뵠筌욑옙
+	 * �뜝�럥六울옙�뫁伊볩옙遊븝옙�롥뜝占� - �뜝�럡留믣뜝�럡�돪 �뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
 	 */
 	@RequestMapping(value = "/admin_review_detail.do", method = RequestMethod.GET)
 	public ModelAndView review_detail(String rid) {
@@ -276,7 +276,7 @@ public class AdminController {
 	
 
 	/**
-	 * 占쎌돳占쎌뜚 - 野껓옙占쎄퉳筌∽옙
+	 * �뜝�럩�뤂�뜝�럩�쐸 - �뇦猿볦삕�뜝�럡�돰嶺뚢댙�삕
 	 * */
 	@RequestMapping(value = "/member_list_data.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -302,7 +302,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 占쎌돳占쎌뜚 - 占쎄맒占쎄쉭占쎈읂占쎌뵠筌욑옙
+	 * �뜝�럩�뤂�뜝�럩�쐸 - �뜝�럡留믣뜝�럡�돪�뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
 	 */
 	@RequestMapping(value = "/admin_member_detail.do", method = RequestMethod.GET)
 	public ModelAndView member_detail(String mid) {
@@ -317,7 +317,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 병원 삭제 처리
+	 * 蹂묒썝 �궘�젣 泥섎━
 	 */
 	@RequestMapping(value = "/hospital_delete_proc.do", method = RequestMethod.POST)
 	public String hospital_delete_proc(String hid, String hsfile, HttpServletRequest request)
@@ -335,7 +335,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 병원 - 삭제
+	 * 蹂묒썝 - �궘�젣
 	 */
 	@RequestMapping(value = "/admin_hospital_delete.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_delete(String hid, String hsfile ) {
@@ -350,7 +350,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 병원 - 수정 처리
+	 * 蹂묒썝 - �닔�젙 泥섎━
 	 */
 	@RequestMapping(value = "/hospital_update_proc.do", method = RequestMethod.POST)
 	public String hospital_update_proc(HospitalVo hospitalVo, HttpServletRequest request) 
@@ -358,12 +358,13 @@ public class AdminController {
 		String viewName = "";
 		
 		String oldFileName = hospitalVo.getHsfile();
-		
 		int result = hospitalService.update(fileService.fileCheck(hospitalVo));
 		if (result == 1) {
-			if(hospitalVo.getHsfile() !=null && !hospitalVo.getHsfile().equals("")) {
-				fileService.fileSave(hospitalVo, request);
+			if(hospitalVo.getFile1().getOriginalFilename().equals("")) {
 				fileService.fileDelete2(hospitalVo, request, oldFileName);
+				fileService.fileSave(hospitalVo, request);
+			} else {
+				
 			}
 			viewName = "redirect:/admin_hospital_list.do";
 		} else {
@@ -374,10 +375,10 @@ public class AdminController {
 	}
 
 	/**
-	 * 癰귣쵐�뜚 - 占쎈땾占쎌젟
+	 * �솻洹ｌ탳占쎈쐸 - �뜝�럥�빢�뜝�럩�젧
 	 */
 	@RequestMapping(value = "/admin_hospital_update.do", method = RequestMethod.GET)
-	public ModelAndView hostpital_update(String hid) {
+	public ModelAndView hostpital_update(String hid, String hsfile) {
 
 		ModelAndView model = new ModelAndView();
 		HospitalVo hospitalVo = hospitalService.select(hid);
@@ -389,7 +390,7 @@ public class AdminController {
 	}
 
 	/**
-	 * �솻洹ｌ탳占쎈쐸 - �뜝�럡留믣뜝�럡�돪�뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
+	 * 占쎌녃域뱄퐣�꺍�뜝�럥�맱 - 占쎈쐻占쎈윞筌띾�ｋ쐻占쎈윞占쎈룵占쎈쐻占쎈윥占쎌뱻占쎈쐻占쎈윪�얠쥉異�占쎌돸占쎌굲
 	 */
 	@RequestMapping(value = "/admin_hospital_content.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_content(String hid) {
@@ -404,7 +405,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 癰귣쵐�뜚 - 占쎄맒占쎄쉭
+	 * �솻洹ｌ탳占쎈쐸 - �뜝�럡留믣뜝�럡�돪
 	 */
 	@RequestMapping(value = "/hospital_detail_proc.do", method = RequestMethod.POST)
 	public String hostpital_detail_proc(HospitalVo hospitalVo, HttpServletRequest request) throws Exception {
@@ -422,7 +423,7 @@ public class AdminController {
 			hospitalVo.setHfile(hfile);
 			hospitalVo.setHsfile(hsfile);
 		} else {
-			System.out.println("占쎈솁占쎌뵬 X");
+			System.out.println("�뜝�럥�냱�뜝�럩逾� X");
 		}
 
 		int result = hospitalService.insert(hospitalVo);
@@ -438,7 +439,7 @@ public class AdminController {
 	}
 
 	/**
-	 * �솻洹ｌ탳占쎈쐸 - �뇦猿볦삕�뜝�럡�돰
+	 * 占쎌녃域뱄퐣�꺍�뜝�럥�맱 - 占쎈눇�뙼蹂��굲占쎈쐻占쎈윞占쎈룿
 	 */
 	@RequestMapping(value = "/admin_hospital_detail.do", method = RequestMethod.GET)
 	public String hostpital_list_detail() {
@@ -446,7 +447,7 @@ public class AdminController {
 	}
 
 	/**
-	 * �솻洹ｌ탳占쎈쐸 - �뇦猿볦삕�뜝�럡�돰 �뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
+	 * 占쎌녃域뱄퐣�꺍�뜝�럥�맱 - 占쎈눇�뙼蹂��굲占쎈쐻占쎈윞占쎈룿 占쎈쐻占쎈윥占쎌뱻占쎈쐻占쎈윪�얠쥉異�占쎌돸占쎌굲
 	 */
 	@RequestMapping(value = "/admin_hospital_list_detail.do", method = RequestMethod.GET)
 	public ModelAndView hostpital_detail(String hname) {

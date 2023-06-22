@@ -12,6 +12,16 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link href="http://localhost:9000/petcarepedia/images/foot_98DFFF.png" rel="shortcut icon" type="image/x-icon">
 	<title>펫캐어피디아 | 관리자</title>
+	<script>
+	$(document).ready(function(){
+		$("#file1").change(function(){
+			if(window.FileReader){
+				let fname = $(this)[0].files[0].name;
+				$("#update_file").text(fname);
+			}
+		});
+	})
+	</script>
 </head>
 <body>
 <!-- header -->
@@ -35,8 +45,8 @@
 				<section id="section2">
 					<div id="d3">
 						<form name="updateForm" action="hospital_update_proc.do" method="post" enctype="multipart/form-data">
-						<input type = "hidden" name = "hid" value = "${hospitalVo.hid}">
-						<input type = "hidden" name = "hsfile" value = "${hospitalVo.hsfile}">
+						<input type = "text" name = "hid" value = "${hospitalVo.hid}">
+						<%-- <input type = "text" name = "hsfile" value = "${hospitalVo.hsfile}"> --%>
 							<table class="table">
 								<tr>
 									<th>병원명</th>
