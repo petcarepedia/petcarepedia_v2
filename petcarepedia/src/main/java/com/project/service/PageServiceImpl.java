@@ -117,16 +117,80 @@ public class PageServiceImpl {
 		return rlist;
 	}
 
-	public Map<String, Integer> getPageResult(String page, String serviceName) {
+	public Map<String, Integer> getPageResultRS(String page, String serviceName, String filter_location) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// �럹�씠吏� 泥섎━ - startCount, endCount 援ы븯湲�
+		// 占쎈읂占쎌뵠筌욑옙 筌ｌ꼶�봺 - startCount, endCount �뤃�뗫릭疫뀐옙
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 5; // �븳�럹�씠吏��떦 寃뚯떆臾� �닔
-		int reqPage = 1; // �슂泥��럹�씠吏�
-		int pageCount = 1; // �쟾泥� �럹�씠吏� �닔
-		int dbCount = 0; // DB�뿉�꽌 媛��졇�삩 �쟾泥� �뻾�닔
+		int pageSize = 7; // 占쎈립占쎈읂占쎌뵠筌욑옙占쎈뼣 野껊슣�뻻�눧占� 占쎈땾
+		int reqPage = 1; // 占쎌뒄筌ｏ옙占쎈읂占쎌뵠筌욑옙
+		int pageCount = 7; // 占쎌읈筌ｏ옙 占쎈읂占쎌뵠筌욑옙 占쎈땾
+		int dbCount = 0; // DB占쎈퓠占쎄퐣 揶쏉옙占쎌죬占쎌궔 占쎌읈筌ｏ옙 占쎈뻬占쎈땾
+
+		
+		dbCount = reviewDao.SearchRowCount(filter_location);
+		
+		if (dbCount % pageSize == 0) {
+			pageCount = dbCount / pageSize;
+		}
+		else if(serviceName.equals("review") || serviceName.equals("reviewSearch")) {
+			pageCount = 7;
+		}
+		else if(serviceName.equals("notice")) {
+			pageCount = 10;
+		}		
+		else {
+			pageCount = dbCount / pageSize + 1;
+		}
+		
+
+		// 占쎌뒄筌ｏ옙 占쎈읂占쎌뵠筌욑옙 �④쑴沅�
+		if (page != null) {
+			reqPage = Integer.parseInt(page);
+			startCount = (reqPage - 1) * pageSize + 1;
+			endCount = reqPage * pageSize;
+			if(serviceName.equals("review")) {
+				count++;
+			}
+		} else {
+
+			if(serviceName.equals("review") || serviceName.equals("reviewSearch")) {
+				startCount = 1;
+				endCount = 7;	
+			}
+			else {
+				startCount = 1;
+				endCount = 5;
+			}
+
+		}
+		
+		//param 揶쏆빘猿쒙옙肉� 占쎈쑓占쎌뵠占쎄숲 put
+		param.put("count", count);
+		param.put("startCount", startCount);
+		param.put("endCount", endCount);
+		param.put("dbCount", dbCount);
+		param.put("pageSize", pageSize);
+		param.put("maxSize", pageCount);
+		param.put("page", reqPage);
+		
+		
+		return param;
+	}
+	
+	
+	
+	public Map<String, Integer> getPageResult(String page, String serviceName) {
+		Map<String, Integer> param = new HashMap<String, Integer>();
+		// 占쎈읂占쎌뵠筌욑옙 筌ｌ꼶�봺 - startCount, endCount �뤃�뗫릭疫뀐옙
+		int count = 0;
+		int startCount = 0;
+		int endCount = 0;
+		int pageSize = 5; // 占쎈립占쎈읂占쎌뵠筌욑옙占쎈뼣 野껊슣�뻻�눧占� 占쎈땾
+		int reqPage = 1; // 占쎌뒄筌ｏ옙占쎈읂占쎌뵠筌욑옙
+		int pageCount = 1; // 占쎌읈筌ｏ옙 占쎈읂占쎌뵠筌욑옙 占쎈땾
+		int dbCount = 0; // DB占쎈퓠占쎄퐣 揶쏉옙占쎌죬占쎌궔 占쎌읈筌ｏ옙 占쎈뻬占쎈땾
 
 		
 		
@@ -172,7 +236,7 @@ public class PageServiceImpl {
 		}
 		
 
-		// �슂泥� �럹�씠吏� 怨꾩궛
+		// 占쎌뒄筌ｏ옙 占쎈읂占쎌뵠筌욑옙 �④쑴沅�
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -208,7 +272,7 @@ public class PageServiceImpl {
 
 		}
 		
-		//param 媛앹껜�뿉 �뜲�씠�꽣 put
+		//param 揶쏆빘猿쒙옙肉� 占쎈쑓占쎌뵠占쎄숲 put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -222,14 +286,14 @@ public class PageServiceImpl {
 	}
 	public Map<String, Integer> getHPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// �럹�씠吏� 泥섎━ - startCount, endCount 援ы븯湲�
+		// 占쎈읂占쎌뵠筌욑옙 筌ｌ꼶�봺 - startCount, endCount �뤃�뗫릭疫뀐옙
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 10; // �븳�럹�씠吏��떦 寃뚯떆臾� �닔
-		int reqPage = 1; // �슂泥��럹�씠吏�
-		int pageCount = 10; // �쟾泥� �럹�씠吏� �닔
-		int dbCount = 0; // DB�뿉�꽌 媛��졇�삩 �쟾泥� �뻾�닔
+		int pageSize = 10; // 占쎈립占쎈읂占쎌뵠筌욑옙占쎈뼣 野껊슣�뻻�눧占� 占쎈땾
+		int reqPage = 1; // 占쎌뒄筌ｏ옙占쎈읂占쎌뵠筌욑옙
+		int pageCount = 10; // 占쎌읈筌ｏ옙 占쎈읂占쎌뵠筌욑옙 占쎈땾
+		int dbCount = 0; // DB占쎈퓠占쎄퐣 揶쏉옙占쎌죬占쎌궔 占쎌읈筌ｏ옙 占쎈뻬占쎈땾
 		
 		if (serviceName.equals("hospital")) {
 			dbCount = pageDao.HtotalRowCount();
@@ -239,7 +303,7 @@ public class PageServiceImpl {
 			pageSize = 10;
 		}
 		
-		// �슂泥� �럹�씠吏� 怨꾩궛
+		// 占쎌뒄筌ｏ옙 占쎈읂占쎌뵠筌욑옙 �④쑴沅�
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -257,7 +321,7 @@ public class PageServiceImpl {
 			}
 			
 		}
-		//param 媛앹껜�뿉 �뜲�씠�꽣 put
+		//param 揶쏆빘猿쒙옙肉� 占쎈쑓占쎌뵠占쎄숲 put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -272,14 +336,14 @@ public class PageServiceImpl {
 	
 	public Map<String, Integer> getMPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// �럹�씠吏� 泥섎━ - startCount, endCount 援ы븯湲�
+		// 占쎈읂占쎌뵠筌욑옙 筌ｌ꼶�봺 - startCount, endCount �뤃�뗫릭疫뀐옙
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 10; // �븳�럹�씠吏��떦 寃뚯떆臾� �닔
-		int reqPage = 1; // �슂泥��럹�씠吏�
-		int pageCount = 5; // �쟾泥� �럹�씠吏� �닔
-		int dbCount = 0; // DB�뿉�꽌 媛��졇�삩 �쟾泥� �뻾�닔
+		int pageSize = 10; // 占쎈립占쎈읂占쎌뵠筌욑옙占쎈뼣 野껊슣�뻻�눧占� 占쎈땾
+		int reqPage = 1; // 占쎌뒄筌ｏ옙占쎈읂占쎌뵠筌욑옙
+		int pageCount = 5; // 占쎌읈筌ｏ옙 占쎈읂占쎌뵠筌욑옙 占쎈땾
+		int dbCount = 0; // DB占쎈퓠占쎄퐣 揶쏉옙占쎌죬占쎌궔 占쎌읈筌ｏ옙 占쎈뻬占쎈땾
 		
 		if (serviceName.equals("member")) {
 			dbCount = pageDao.MtotalRowCount();
@@ -289,7 +353,7 @@ public class PageServiceImpl {
 			pageSize = 10;
 		}
 		
-		// �슂泥� �럹�씠吏� 怨꾩궛
+		// 占쎌뒄筌ｏ옙 占쎈읂占쎌뵠筌욑옙 �④쑴沅�
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -304,7 +368,7 @@ public class PageServiceImpl {
 			}
 			
 		}
-		//param 媛앹껜�뿉 �뜲�씠�꽣 put
+		//param 揶쏆빘猿쒙옙肉� 占쎈쑓占쎌뵠占쎄숲 put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -318,14 +382,14 @@ public class PageServiceImpl {
 	
 	public Map<String, Integer> getBPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// �럹�씠吏� 泥섎━ - startCount, endCount 援ы븯湲�
+		// 占쎈읂占쎌뵠筌욑옙 筌ｌ꼶�봺 - startCount, endCount �뤃�뗫릭疫뀐옙
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 10; // �븳�럹�씠吏��떦 寃뚯떆臾� �닔
-		int reqPage = 1; // �슂泥��럹�씠吏�
-		int pageCount = 5; // �쟾泥� �럹�씠吏� �닔
-		int dbCount = 0; // DB�뿉�꽌 媛��졇�삩 �쟾泥� �뻾�닔
+		int pageSize = 10; // 占쎈립占쎈읂占쎌뵠筌욑옙占쎈뼣 野껊슣�뻻�눧占� 占쎈땾
+		int reqPage = 1; // 占쎌뒄筌ｏ옙占쎈읂占쎌뵠筌욑옙
+		int pageCount = 5; // 占쎌읈筌ｏ옙 占쎈읂占쎌뵠筌욑옙 占쎈땾
+		int dbCount = 0; // DB占쎈퓠占쎄퐣 揶쏉옙占쎌죬占쎌궔 占쎌읈筌ｏ옙 占쎈뻬占쎈땾
 		
 		if (serviceName.equals("booking")) {
 			dbCount = pageDao.BtotalRowCount();
@@ -335,7 +399,7 @@ public class PageServiceImpl {
 			pageSize = 10;
 		}
 		
-		// �슂泥� �럹�씠吏� 怨꾩궛
+		// 占쎌뒄筌ｏ옙 占쎈읂占쎌뵠筌욑옙 �④쑴沅�
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -350,7 +414,7 @@ public class PageServiceImpl {
 			}
 			
 		}
-		//param 媛앹껜�뿉 �뜲�씠�꽣 put
+		//param 揶쏆빘猿쒙옙肉� 占쎈쑓占쎌뵠占쎄숲 put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
@@ -364,16 +428,16 @@ public class PageServiceImpl {
 	
 	public Map<String, Integer> getMyPageResult(String page, String serviceName) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
-		// �럹�씠吏� 泥섎━ - startCount, endCount 援ы븯湲�
+		// 占쎈읂占쎌뵠筌욑옙 筌ｌ꼶�봺 - startCount, endCount �뤃�뗫릭疫뀐옙
 		int count = 0;
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 5; // �븳�럹�씠吏��떦 寃뚯떆臾� �닔
-		int reqPage = 1; // �슂泥��럹�씠吏�
-		int pageCount = 5; // �쟾泥� �럹�씠吏� �닔
-		int dbCount = 0; // DB�뿉�꽌 媛��졇�삩 �쟾泥� �뻾�닔
+		int pageSize = 5; // 占쎈립占쎈읂占쎌뵠筌욑옙占쎈뼣 野껊슣�뻻�눧占� 占쎈땾
+		int reqPage = 1; // 占쎌뒄筌ｏ옙占쎈읂占쎌뵠筌욑옙
+		int pageCount = 5; // 占쎌읈筌ｏ옙 占쎈읂占쎌뵠筌욑옙 占쎈땾
+		int dbCount = 0; // DB占쎈퓠占쎄퐣 揶쏉옙占쎌죬占쎌궔 占쎌읈筌ｏ옙 占쎈뻬占쎈땾
 		dbCount = pageDao.MystotalRowCount(serviceName);
-		// �슂泥� �럹�씠吏� 怨꾩궛
+		// 占쎌뒄筌ｏ옙 占쎈읂占쎌뵠筌욑옙 �④쑴沅�
 		if (page != null) {
 			reqPage = Integer.parseInt(page);
 			startCount = (reqPage - 1) * pageSize + 1;
@@ -388,7 +452,7 @@ public class PageServiceImpl {
 			}
 			
 		}
-		//param 媛앹껜�뿉 �뜲�씠�꽣 put
+		//param 揶쏆빘猿쒙옙肉� 占쎈쑓占쎌뵠占쎄숲 put
 		param.put("count", count);
 		param.put("startCount", startCount);
 		param.put("endCount", endCount);
