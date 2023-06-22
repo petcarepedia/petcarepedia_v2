@@ -21,7 +21,7 @@
 				<div class="header-nav">
 					<ul>
 						<li>
-							<a href="http://localhost:9000/petcarepedia/login.do">로그아웃</a>
+							<a href="http://localhost:9000/petcarepedia/logout.do">로그아웃</a>
 						</li>
 					</ul>
 				</div>
