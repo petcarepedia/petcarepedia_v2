@@ -18,7 +18,7 @@
 		        // 삭제 완료 버튼 클릭 시 실행되는 함수
 		        Swal.fire({
 		            icon: 'warning',
-		            text: '정말로 삭제하시겠습니까?',
+		            title: '정말로 삭제하시겠습니까?',
 		            showCancelButton: true,
 		            confirmButtonColor: '#FFB3BD',
 		            cancelButtonColor: '#98DFFF',
@@ -29,7 +29,7 @@
 		                // 확인 버튼을 눌렀을 경우 삭제 처리
 		                Swal.fire({
 		            	icon: 'success',
-		            	text:'취소가 완료되었습니다.'
+		            	title:'삭제가 완료되었습니다.'
 		            }).then(() => {
 		            	document.deleteForm.submit();
 		            });
@@ -40,8 +40,6 @@
 		    });
 		});
 	</script>
-
-
 
 
 </head>

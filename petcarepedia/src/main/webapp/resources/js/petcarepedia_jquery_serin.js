@@ -79,7 +79,7 @@ $(document).ready(function(){
 			    // 수정 완료 버튼 클릭 시 실행되는 함수
 			    Swal.fire({
 			        icon: 'success',
-			        text: '수정이 완료되었습니다.',
+			        title: '수정이 완료되었습니다.',
 			        confirmButtonColor: '#7ab2cc',
 			        confirmButtonText: '확인'
 			    }).then((result) => {
@@ -141,7 +141,7 @@ $(document).ready(function(){
 			Swal.fire({
 		        icon: 'warning',                         // Alert 타입
 		        /* title: 'Alert가 실행되었습니다.',*/       // Alert 제목
-		        text: '회원아이디를 입력해주세요',  		// Alert 내용
+		        title: '회원아이디를 입력해주세요',  		// Alert 내용
 		        
 		        confirmButtonColor:'#7ab2cc',
 		  	  	confirmButtonText:'확인'
@@ -187,7 +187,7 @@ $(document).ready(function(){
 			Swal.fire({
 		        icon: 'warning',                         // Alert 타입
 		        /* title: 'Alert가 실행되었습니다.',*/       // Alert 제목
-		        text: '회원아이디를 입력해주세요',  		// Alert 내용
+		        title: '회원아이디를 입력해주세요',  		// Alert 내용
 		        
 		        confirmButtonColor:'#7ab2cc',
 		  	  	confirmButtonText:'확인'
@@ -233,7 +233,7 @@ $(document).ready(function(){
 			Swal.fire({
 		        icon: 'warning',                         // Alert 타입
 		        /* title: 'Alert가 실행되었습니다.',*/       // Alert 제목
-		        text: '병원명을 입력해주세요',  		// Alert 내용
+		        title: '병원명을 입력해주세요',  		// Alert 내용
 		        
 		        confirmButtonColor:'#7ab2cc',
 		  	  	confirmButtonText:'확인'
