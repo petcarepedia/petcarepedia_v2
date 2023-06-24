@@ -95,7 +95,7 @@
 				</div>
 				<form name="reportForm" action="review_report_proc.do" method="post">
 					<c:choose>
-						<c:when test="${reviewVo.mid eq sessionScope.svo.mid }">
+						<c:when test="${reviewVo.mid eq sessionScope.svo.mid || sessionScope.svo.mid eq '' || sessionScope.svo.mid eq null}">
 						</c:when>
 						<c:otherwise>
 							<button type="button" class="report" id="btnReviewReport">신고하기</button>

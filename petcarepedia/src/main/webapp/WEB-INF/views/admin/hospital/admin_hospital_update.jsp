@@ -45,7 +45,7 @@
 				<section id="section2">
 					<div id="d3">
 						<form name="updateForm" action="hospital_update_proc.do" method="post" enctype="multipart/form-data">
-						<input type = "text" name = "hid" value = "${hospitalVo.hid}">
+						<input type = "hidden" name = "hid" value = "${hospitalVo.hid}">
 						<%-- <input type = "text" name = "hsfile" value = "${hospitalVo.hsfile}"> --%>
 							<table class="table">
 								<tr>
