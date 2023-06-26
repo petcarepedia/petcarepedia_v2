@@ -34,12 +34,75 @@ $(document).ready(function(){
 	});
 	
 	/**************
+	 * 회원가입 - 이메일 체크
+	 */
+	 $('#btnAuthEmail').click(function() {
+		const email = $('#email').val(); // 이메일 주소값 얻어오기!
+		
+		$.ajax({
+			type : 'get',
+			url : "mail_check.do?email="+email,
+			success : function (data) {
+				$('#cemail').show();
+				$('#btnCheckEmail').show();
+				$("#data").val(data);
+				$('#btnAuthEmail').text("인증번호 재전송").css("background","#FFB3BD");
+				
+				Swal.fire({
+		            icon: 'success',                         
+		            title: '인증번호가 전송되었습니다.',         
+		            confirmButtonColor:'#98dfff',
+		            confirmButtonText:'확인'
+		        });
+			}			
+		}); // end ajax
+	}); // end send eamil
+	
+	// 인증번호 비교 
+	// blur -> focus가 벗어나는 경우 발생
+	$('#btnCheckEmail').click(function () {
+		const inputCode = $("#cemail").val();
+		const resultMsg = $('#emailauthcheck_msg');
+		const code = $("#data").val();
+		
+		if(inputCode == code){
+			Swal.fire({
+	            icon: 'success',                         
+	            title: '인증번호가 일치합니다.',         
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
+	        });
+	        
+			$('#cemail').hide();
+			$('#btnCheckEmail').hide();
+			
+			$("#emailauthcheck_msg").text("이메일 인증 완료").css("color","#7AB2CC")
+			.css("font-size","12px").css("display","block").css("clear","both")
+			.css("padding-top","5px")
+			.prepend("<img src='http://localhost:9000/petcarepedia/images/check.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+			
+			$("#btnAuthEmail").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed");
+			$("#email").attr('readonly',true);
+		}else{
+			Swal.fire({
+	            icon: 'error',                         
+	            title: '인증번호가 일치하지 않습니다.',         
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
+	        });
+	        
+			$("#emailauthcheck_msg").text("").css("display","none");
+		}
+	});
+	
+	/**************
 	 * 회원가입 - 유효성 체크
 	 */
 	let reg_id = /^(?=.*?[a-z])(?=.*?[0-9]).{4,20}$/;
 	let reg_pw = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$/;
 	let reg_phone = /^\d{4}$/;
 	let reg_nick = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
+	let reg_email = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	
 	//아이디 정규식 체크
 	$("form[name='joinForm'] #id").keyup(function(){
@@ -56,10 +119,48 @@ $(document).ready(function(){
 			$("#btnCheckId").attr("disabled",false).css("background","#98dfff").css("cursor","pointer");
 		}
 	});
+	//이메일 정규식 체크
+	$("form[name='joinForm'] #email").keyup(function(){
+		if(!reg_email.test($("#email").val())){
+			$("#emailcheck_msg").text("올바른 이메일 형식이 아닙니다.").css("color","red")
+			.css("font-size","12px").css("display","block").css("clear","both")
+			.css("padding-top","5px")
+			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+			
+			$("#btnAuthEmail").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed").text("인증번호 전송");
+			$('#cemail').hide();
+			$('#btnCheckEmail').hide();
+			$("#emailauthcheck_msg").text("").css("display","none");
+		} else {
+			$.ajax({
+				url : "mail_mulcheck.do?email="+$("#email").val(),
+				success : function(result){
+					if(result >= 1){
+						$("#emailcheck_msg").text("중복된 이메일입니다.").css("color","red")
+						.css("font-size","12px").css("display","block").css("clear","both")
+						.css("padding-top","5px")
+						.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+						
+						$("#btnAuthEmail").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed").text("인증번호 전송");
+						$('#cemail').hide();
+						$('#btnCheckEmail').hide();
+						$("#emailauthcheck_msg").text("").css("display","none");
+					}else if(result == 0){
+						$("#emailcheck_msg").text("").css("display","none");
+			
+						$("#btnAuthEmail").attr("disabled",false).css("background","#98dfff").css("cursor","pointer").text("인증번호 전송");
+						$('#cemail').hide();
+						$('#btnCheckEmail').hide();
+						$("#emailauthcheck_msg").text("").css("display","none");
+					}
+				}
+			});
+		}
+	});
 	//비밀번호 정규식 체크
 	$("#pass").keyup(function(){
 		if(!reg_pw.test($("#pass").val())){
-			$("#pwcheck_msg").text("8~16자의 영문, 숫자, 특수문자를 포함하여 입력하세요.").css("color","red")
+			$("#pwcheck_msg").text("8~16자의 영문, 숫자, 특수문자로 입력하세요.").css("color","red")
 			.css("font-size","12px").css("display","block").css("clear","both")
 			.css("padding-top","5px")
 			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
@@ -72,23 +173,23 @@ $(document).ready(function(){
 	});
 	//비밀번호 확인 유효성 체크
 	$("#cpass").keyup(function(){
-		if(!reg_pw.test($("#cpass").val())){
-			$("#cpwcheck_msg").text("8~16자의 영문, 숫자, 특수문자를 포함하여 입력하세요.").css("color","red")
-			.css("font-size","12px").css("display","block").css("clear","both")
-			.css("padding-top","5px")
-			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
-		} else {
-			if($("#cpass").val() == $("#pass").val()){
+		if($("#cpass").val() == $("#pass").val()){
+			if(!reg_pw.test($("#cpass").val())){
+				$("#cpwcheck_msg").text("8~16자의 영문, 숫자, 특수문자로 입력하세요.").css("color","red")
+				.css("font-size","12px").css("display","block").css("clear","both")
+				.css("padding-top","5px")
+				.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+			} else{
 				$("#cpwcheck_msg").text("비밀번호가 일치합니다.").css("color","#7AB2CC")
 				.css("font-size","12px").css("display","block").css("clear","both")
 				.css("padding-top","5px")
 				.prepend("<img src='http://localhost:9000/petcarepedia/images/check.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
-			} else {
-				$("#cpwcheck_msg").text("비밀번호가 일치하지 않습니다.").css("color","red")
-				.css("font-size","12px").css("display","block").css("clear","both")
-				.css("padding-top","5px")
-				.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
 			}
+		} else {
+			$("#cpwcheck_msg").text("비밀번호가 일치하지 않습니다.").css("color","red")
+			.css("font-size","12px").css("display","block").css("clear","both")
+			.css("padding-top","5px")
+			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
 		}
 	});
 	//성명 유효성 체크
@@ -128,12 +229,12 @@ $(document).ready(function(){
 	//약관동의 전체체크
 	$("#termAll").click(function(){
 		if($("#termAll").is(':checked')){
-			$("form[name='joinForm'] input:checkbox").prop('checked',true);
+			$("form[name='joinForm'] input:checkbox[name='term']").prop('checked',true);
 		} else {
-			$("form[name='joinForm'] input:checkbox").prop('checked',false);
+			$("form[name='joinForm'] input:checkbox[name='term']").prop('checked',false);
 		}
 	});
-	$("form[name='joinForm'] input:checkbox,.term-modal").click(function(){
+	$("form[name='joinForm'] input:checkbox[name='term'],.term-modal").click(function(){
 		if($("#term1").is(':checked')&&$("#term2").is(':checked')&&$("#term3").is(':checked')&&$("#term4").is(':checked')){
 			$("#termAll").prop('checked',true);
 		} else {
@@ -189,10 +290,12 @@ $(document).ready(function(){
 		if($("#idcheck_msg").text() == "사용 가능한 아이디입니다."
 			&& $("#pwcheck_msg").text() == "안전한 비밀번호입니다."
 			&& $("#cpwcheck_msg").text() == "비밀번호가 일치합니다."
+			&& $("#emailauthcheck_msg").text() == "이메일 인증 완료"
 			&& $("form[name='joinForm'] #name").val() != ""
 			&& $("form[name='joinForm'] #phone1").val() != "default"
 			&& $("form[name='joinForm'] #phone2").val() != ""
 			&& $("form[name='joinForm'] #phone3").val() != ""
+			&& $("form[name='joinForm'] #email").val() != ""
 			&& $("#phonecheck_msg").text() != "올바른 휴대폰 번호를 입력하세요."
 			&& $("form[name='joinForm'] #nickname").val() != ""
 			&& $("#nickcheck_msg").text() != "특수문자와 초성 및 모음 제외 2~16자로 입력하세요."
@@ -203,17 +306,11 @@ $(document).ready(function(){
 		}
 	}
 	//회원가입 버튼 abled
-	$("form[name='joinForm'] input").blur(function(){
-		$.joinValidationCheck();
-	});
-	$("form[name='joinForm'] input").focus(function(){
-		$.joinValidationCheck();
-	});
-	$("form[name='joinForm'] input").click(function(){
-		$.joinValidationCheck();
-	});
-	$("form[name='joinForm'] input").keyup(function(){
-		$.joinValidationCheck();
+	$("form[name='joinForm'] input").on({
+		blur: function(){$.joinValidationCheck();},
+		focus: function(){$.joinValidationCheck();},
+		click: function(){$.joinValidationCheck();},
+		keyup: function(){$.joinValidationCheck();}
 	});
 	$(".term-modal").click(function(){
 		$.joinValidationCheck();
@@ -232,38 +329,41 @@ $(document).ready(function(){
 		}
 	}
 	//재설정 버튼 abled
-	$("form[name='pwUpdateForm'] input").blur(function(){
-		$.pwUpdateValidationCheck();
-	});
-	$("form[name='pwUpdateForm'] input").keyup(function(){
-		$.pwUpdateValidationCheck();
+	$("form[name='pwUpdateForm'] input").on({
+		blur: function(){$.pwUpdateValidationCheck();},
+		keyup: function(){$.pwUpdateValidationCheck();}
 	});
 	
 	/**************
 	 * 아이디찾기 - 유효성 체크
 	 */
+	 //이메일 정규식 체크
+	$("form[name='idFindForm'] #email").keyup(function(){
+		if(!reg_email.test($("#email").val())){
+			$("#emailcheck_msg").text("올바른 이메일 형식이 아닙니다.").css("color","red")
+			.css("font-size","12px").css("display","block").css("clear","both")
+			.css("padding-top","5px")
+			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+		} else {
+			$("#emailcheck_msg").text("").css("display","none");
+		}
+	});
+	
 	$.idFindValidationCheck = function() {
 		if($("#name").val() != "" 
-			&& $('#phone1').val() != "default"
-			&& $('#phone2').val() != ""
-			&& $('#phone3').val() != ""){
+			&& $('#email').val() != ""
+			&& $("#emailcheck_msg").text() != "올바른 이메일 형식이 아닙니다."){
 			$("#btnIdFind").attr("disabled",false);
 		} else {
 			$("#btnIdFind").attr("disabled",true);
 		}
 	}
 	//찾기 버튼 abled
-	$("form[name='idFindForm'] input").blur(function(){
-		$.idFindValidationCheck();
-	});
-	$("form[name='idFindForm'] input").keyup(function(){
-		$.idFindValidationCheck();
-	});
-	$("form[name='idFindForm'] input").click(function(){
-		$.idFindValidationCheck();
-	});
-	$("form[name='idFindForm'] input").focus(function(){
-		$.idFindValidationCheck();
+	$("form[name='idFindForm'] input").on({
+		blur: function(){$.idFindValidationCheck();},
+		focus: function(){$.idFindValidationCheck();},
+		click: function(){$.idFindValidationCheck();},
+		keyup: function(){$.idFindValidationCheck();}
 	});
 	
 	/**************
@@ -272,26 +372,19 @@ $(document).ready(function(){
 	$.pwFindValidationCheck = function() {
 		if($("#id").val() != "" 
 			&& $('#name').val() != ""
-			&& $('#phone1').val() != "default"
-			&& $('#phone2').val() != ""
-			&& $('#phone3').val() != ""){
+			&& $('#email').val() != ""
+			&& $("#emailcheck_msg").text() != "올바른 이메일 형식이 아닙니다."){
 			$("#btnPwFind").attr("disabled",false);
 		} else {
 			$("#btnPwFind").attr("disabled",true);
 		}
 	}
 	//찾기 버튼 abled
-	$("form[name='pwFindForm'] input").blur(function(){
-		$.pwFindValidationCheck();
-	});
-	$("form[name='pwFindForm'] input").keyup(function(){
-		$.pwFindValidationCheck();
-	});
-	$("form[name='pwFindForm'] input").click(function(){
-		$.pwFindValidationCheck();
-	});
-	$("form[name='pwFindForm'] input").focus(function(){
-		$.pwFindValidationCheck();
+	$("form[name='pwFindForm'] input").on({
+		blur: function(){$.pwFindValidationCheck();},
+		focus: function(){$.pwFindValidationCheck();},
+		click: function(){$.pwFindValidationCheck();},
+		keyup: function(){$.pwFindValidationCheck();}
 	});
 	
 	/**************
@@ -306,17 +399,11 @@ $(document).ready(function(){
 		}
 	}
 	//로그인 버튼 abled
-	$("form[name='loginForm'] input").blur(function(){
-		$.loginValidationCheck();
-	});
-	$("form[name='loginForm'] input").keyup(function(){
-		$.loginValidationCheck();
-	});
-	$("form[name='loginForm'] input").click(function(){
-		$.loginValidationCheck();
-	});
-	$("form[name='loginForm'] input").focus(function(){
-		$.loginValidationCheck();
+	$("form[name='loginForm'] input").on({
+		blur: function(){$.loginValidationCheck();},
+		focus: function(){$.loginValidationCheck();},
+		click: function(){$.loginValidationCheck();},
+		keyup: function(){$.loginValidationCheck();}
 	});
 	
 	/**************
@@ -355,11 +442,35 @@ $(document).ready(function(){
 			Swal.fire({
 	            icon: 'info',                         
 	            title: '검색어 미입력',         
-	            text: '찾고싶은 동물병원의 이름을 입력해주세요',  
+	            text: '찾고싶은 동물병원의 이름을 입력해주세요', 
+	            confirmButtonColor:'#98dfff',
+	  			confirmButtonText:'확인' 
 	        });
 		} else {
 			indexSearchForm.submit();
 		}
+	});
+	
+	$("#psee").click(function(){
+		if($("#psee").is(':checked')){
+			$("#pass").attr('type','text');
+		} else {
+			$("#pass").attr('type','password');
+		}
+	});
+	$("#cpsee").click(function(){
+		if($("#cpsee").is(':checked')){
+			$("#cpass").attr('type','text');
+		} else {
+			$("#cpass").attr('type','password');
+		}
+	});
+	
+	$('#btn-screenup').click(function() {
+	    $('html, body').animate({scrollTop: '0'}, 300);
+	});
+	$('#btn-screendown').click(function() {
+	    $('html, body').animate({scrollTop: $(document).height()}, 300);
 	});
 	
 }); //ready

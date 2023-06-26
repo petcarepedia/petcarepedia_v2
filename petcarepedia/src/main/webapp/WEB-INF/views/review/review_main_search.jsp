@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/am-pagination.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jsp_jquery_kang.js"></script>
+<script src="http://localhost:9000/petcarepedia/js/kang_review.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
 <script>
 	$(document).ready(function(){
@@ -49,12 +50,12 @@
 		<div id="filter_page" class="review">
 			<p>상세검색</p>
 			<form name="ReviewSearchForm" action="review_main_search.do" method="get">
-				<input type="hidden" id="mid" name="mid" value="${mid }">
 				<table id="filter_lo" class="filter">
 					<tr>
 						<th rowspan='3'>지역구분</th>
 						<td><input type="checkbox" name="filter_location"> 서울전체</td>
 						<td><input type="checkbox" name="filter_location" value="강남구"> 강남구</td>
+						<td><input type="checkbox" name="filter_location" value="강동구"> 강동구</td>
 						<td><input type="checkbox" name="filter_location" value="강북구"> 강북구</td>
 						<td><input type="checkbox" name="filter_location" value="강서구"> 강서구</td>
 						<td><input type="checkbox" name="filter_location" value="관악구"> 관악구</td>
@@ -62,9 +63,9 @@
 						<td><input type="checkbox" name="filter_location" value="구로구"> 구로구</td>
 						<td><input type="checkbox" name="filter_location" value="금천구"> 금천구</td>
 						<td><input type="checkbox" name="filter_location" value="노원구"> 노원구</td>
-						<td><input type="checkbox" name="filter_location" value="도봉구"> 도봉구</td>
 					</tr>
 					<tr>
+						<td><input type="checkbox" name="filter_location" value="도봉구"> 도봉구</td>
 						<td><input type="checkbox" name="filter_location" value="동대문구"> 동대문구</td>
 						<td><input type="checkbox" name="filter_location" value="동작구"> 동작구</td>
 						<td><input type="checkbox" name="filter_location" value="마포구"> 마포구</td>
@@ -74,15 +75,14 @@
 						<td><input type="checkbox" name="filter_location" value="성북구"> 성북구</td>
 						<td><input type="checkbox" name="filter_location" value="송파구"> 송파구</td>
 						<td><input type="checkbox" name="filter_location" value="양천구"> 양천구</td>
-						<td><input type="checkbox" name="filter_location" value="영등포구"> 영등포구</td>
 					</tr>
 					<tr>
+						<td><input type="checkbox" name="filter_location" value="영등포구"> 영등포구</td>
 						<td><input type="checkbox" name="filter_location" value="용산구"> 용산구</td>
 						<td><input type="checkbox" name="filter_location" value="은평구"> 은평구</td>
 						<td><input type="checkbox" name="filter_location" value="종로구"> 종로구</td>
 						<td><input type="checkbox" name="filter_location" value="중구"> 중구</td>
 						<td><input type="checkbox" name="filter_location" value="중랑구"> 중랑구</td>
-						<td> </td>
 						<td> </td>
 						<td> </td>
 						<td> </td>
@@ -97,11 +97,11 @@
 			<div id="title">
 				<span>리뷰</span>
 				<c:choose>
-					<c:when test="${mid == null }">
+					<c:when test="${sessionScope.svo.mid == null }">
 						<span><a href="login.do">리뷰쓰기 ></a></span>
 					</c:when>
 					<c:otherwise>
-						<span><a href="reservation2.do?mid=${mid }">리뷰쓰기 ></a></span>
+						<span><a href="mypage_reservation2.do">리뷰쓰기 ></a></span>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -110,7 +110,7 @@
 					<li class="review_list">
 						<ul>
 							<li id="list_left" class="list">
-								<p><img src="http://localhost:9000/petcarepedia/images/cat.png">${list.nickname }</p>
+								<p><img src="http://localhost:9000/petcarepedia/images/cat.png"><span>${list.nickname }</span></p>
 								<div id="star">
 									<div id="avg">
 										⭐ ${list.rstar } / 5.0
@@ -118,7 +118,7 @@
 								</div>
 							</li>
 								<li id="list_middle" class="list">
-									<a href="review_content.do?rid=${list.rid }&&page=${page}&&mid=${mid }&&filter_location=${filter_location}">
+									<a href="review_content.do?rid=${list.rid }&&page=${page}&&filter_location=${filter_location}">
 										<div id="review_hname">${list.hname }</div>
 										<div class="rvc">
 											${list.rcontent }

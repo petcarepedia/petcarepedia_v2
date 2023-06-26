@@ -11,8 +11,8 @@
 .d1{
 	width:1000px;
 	margin:auto;
-	margin-top:140px;
-	margin-bottom:100px;
+	margin-top:100px;
+	margin-bottom:41px;
 }
 .table{
 	width:750px;
@@ -155,7 +155,7 @@ section1 style sheet - 카테고리
 	padding-left:7px;
 }
 #section1 div nav ul li a {
-	font-size : 16px;
+	font-size : 15px;
 	font-weight : 500;
 	color : #3D3D3D;
 	text-decoration : none;

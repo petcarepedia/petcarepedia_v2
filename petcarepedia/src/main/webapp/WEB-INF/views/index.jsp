@@ -14,12 +14,54 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 	$(document).ready(function (){
-		let login_result = "${login_result}";
-		if(login_result=="success"){
+
+		$(".inner > img").css("width",document.documentElement.clientWidth);
+		$(".main-door").css("width",document.documentElement.clientWidth).css("height",$(".inner > img").height());
+
+		//메인페이지 베너슬라이드
+		/*
+		  div사이즈 동적으로 구하기
+		*/
+		const outer = document.querySelector('.main-door');
+		const innerList = document.querySelector('.inner-list');
+		const inners = document.querySelectorAll('.inner');
+		let currentIndex = 0; // 현재 슬라이드 화면 인덱스
+		
+		inners.forEach((inner) => {
+		  inner.style.width = outer.clientWidth+'px'; // inner의 width를 모두 outer의 width로 만들기
+		})
+		
+		innerList.style.width = (outer.clientWidth * inners.length)+'px'; // innerList의 width를 inner의 width * inner의 개수로 만들기
+		/*
+		  주기적으로 화면 넘기기
+		*/
+		const getInterval = () => {
+		  return setInterval(() => {
+		    currentIndex++;
+		    currentIndex = currentIndex >= inners.length ? 0 : currentIndex;
+		    innerList.style.marginLeft = (-outer.clientWidth * currentIndex)+'px';
+		  }, 3500);
+		}
+		
+		let interval = getInterval(); // interval 등록
+		
+		if("${login_result}"=="success"){
 			Swal.fire({
 	            icon: 'success',                         
 	            title: '로그인 성공',         
-	            text: '환영합니다!',  
+	            text: '${sessionScope.svo.name}님, 환영합니다!',  
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
+	        });
+		} 
+		
+		if("${logout_result}"=="success"){
+			Swal.fire({
+	            icon: 'success',                         
+	            title: '로그아웃 성공',         
+	            text: '다음에 다시 만나요!',  
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
 	        });
 		}
 	});
@@ -59,37 +101,5 @@
 	
 	<!-- footer -->
 	<jsp:include page="footer.jsp"></jsp:include>
-
-	<script>
-		$(".inner > img").css("width",document.documentElement.clientWidth);
-		$(".main-door").css("width",document.documentElement.clientWidth).css("height",$(".inner > img").height());
-
-		//메인페이지 베너슬라이드
-		/*
-		  div사이즈 동적으로 구하기
-		*/
-		const outer = document.querySelector('.main-door');
-		const innerList = document.querySelector('.inner-list');
-		const inners = document.querySelectorAll('.inner');
-		let currentIndex = 0; // 현재 슬라이드 화면 인덱스
-		
-		inners.forEach((inner) => {
-		  inner.style.width = outer.clientWidth+'px'; // inner의 width를 모두 outer의 width로 만들기
-		})
-		
-		innerList.style.width = (outer.clientWidth * inners.length)+'px'; // innerList의 width를 inner의 width * inner의 개수로 만들기
-		/*
-		  주기적으로 화면 넘기기
-		*/
-		const getInterval = () => {
-		  return setInterval(() => {
-		    currentIndex++;
-		    currentIndex = currentIndex >= inners.length ? 0 : currentIndex;
-		    innerList.style.marginLeft = (-outer.clientWidth * currentIndex)+'px';
-		  }, 3500);
-		}
-		
-		let interval = getInterval(); // interval 등록
-	</script>
 </body>
 </html>

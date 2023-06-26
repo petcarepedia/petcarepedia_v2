@@ -9,8 +9,18 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/petcarepedia_song.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
+<script>
+$(document).ready(function(){
+	$('#loading').hide(); //첫 시작시 로딩바를 숨겨준다.
+	
+	$('#btnIdFind').click(function(){
+		$('#loading').show();
+	});
+})
+</script>
 </head>
 <body>
+	<img src="http://localhost:9000/petcarepedia/images/loading.gif" id="loading">
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
@@ -35,15 +45,9 @@
 							<input type="text" name="name" id="name" placeholder="성명 입력">
 						</li>
 						<li>
-							<label>휴대폰</label>
-							<select name="phone1" id="phone1">
-								<option value="default">선택</option>
-								<option value="010">010</option>
-								<option value="011">011</option>
-								<option value="017">017</option>
-							</select>
-							<input type="text" name="phone2" id="phone2" placeholder="1234" class="input-short2">
-							<input type="text" name="phone3" id="phone3" placeholder="5678" class="input-short2">
+							<label>이메일</label>
+							<input type="text" name="email" id="email" placeholder="이메일 입력">
+							<span id="emailcheck_msg"></span>
 						</li>
 						<li><button type="submit" id="btnIdFind" class="btn-submit" disabled>아이디 찾기</button></li>
 					</ul>

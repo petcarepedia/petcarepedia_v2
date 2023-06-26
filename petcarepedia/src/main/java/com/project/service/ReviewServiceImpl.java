@@ -16,6 +16,11 @@ public class ReviewServiceImpl implements ReviewService{
 	private ReviewDao reviewDao;
 	
 	@Override
+	public ArrayList<ReviewVo> getReportList() {
+		return reviewDao.reportList();
+	}
+	
+	@Override
 	public ArrayList<ReviewVo> getRH_select(String hid) {
 		return reviewDao.RH_select(hid);
 	}
@@ -111,6 +116,21 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public int reviewCheckResult(String rid) {
 		return reviewDao.reviewCheckResult(rid);
+	}
+
+	@Override
+	public ArrayList<ReviewVo> getRM_select2(String hid) {
+		return reviewDao.RM_select2(hid);
+	}
+	
+	@Override
+	public ArrayList<ReviewVo> getRM_select3(String hid) {
+		return reviewDao.RM_select3(hid);
+	}
+	
+	@Override
+	public ArrayList<ReviewVo> getRM_select4(String hid) {
+		return reviewDao.RM_select4(hid);
 	}
 
 }

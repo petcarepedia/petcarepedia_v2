@@ -18,35 +18,45 @@
 			<a href="http://localhost:9000/petcarepedia/review_main.do">더 많은 리뷰 보러가기 ></a>
 		</div>
 		<div class="slide">
-			<div class="btnPrev">
-				<button type="button" id="btnPrev"><img src="http://localhost:9000/petcarepedia/images/prev.png" width="30" height="30"></button>
-			</div>
-			<div class="review-list">
-				<input type="hidden" value="${rpage}" id="rpage">
-				<input type="hidden" value="${maxSize}" id="maxSize">
-				<c:forEach var="reviewVo" items="${list}">
-					<div id="brcontent" onclick="location.href='http://localhost:9000/petcarepedia/review_content.do?rid=${reviewVo.rid}&mid=hong'" class="review-card">
-							<div>
-								<a>${reviewVo.hname}</a>
-								<p>⭐ ${reviewVo.rstar}</p>
-							</div>
-							<div>
-								<div>${reviewVo.gloc}</div>
-							</div>
-							<div>
-								${reviewVo.rcontent}
-							</div>
-							<div>
-								<p><span style="color:red;">♥</span> ${reviewVo.rlike}</p>
-								<p>${reviewVo.rdate}</p>
-							</div>
-						
+			<c:choose>
+				<c:when test="${totals==0}">
+					<div class="review_card_no">
+						<img id="review_img" src="http://localhost:9000/petcarepedia/images/review.png">
+						<p>등록된 리뷰가 아직 없습니다.</p>
 					</div>
-				</c:forEach>
-			</div>
-			<div class="btnNext">
-				<button type="button" id="btnNext"><img src="http://localhost:9000/petcarepedia/images/next.png" width="30" height="30"></button>
-			</div>
+				</c:when>
+				<c:otherwise>
+					<div class="btnPrev">
+						<button type="button" id="btnPrev"><img src="http://localhost:9000/petcarepedia/images/prev.png" width="30" height="30"></button>
+					</div>
+					<div class="review-list">
+						<input type="hidden" value="${rpage}" id="rpage">
+						<input type="hidden" value="${maxSize}" id="maxSize">
+						<c:forEach var="reviewVo" items="${list}">
+							<div id="brcontent" onclick="location.href='http://localhost:9000/petcarepedia/review_content.do?rid=${reviewVo.rid}'" class="review-card">
+									<div>
+										<a>${reviewVo.hname}</a>
+										<p>⭐ ${reviewVo.rstar}</p>
+									</div>
+									<div>
+										<div>${reviewVo.gloc}</div>
+									</div>
+									<div>
+										${reviewVo.rcontent}
+									</div>
+									<div>
+										<p><span style="color:red;">♥</span> ${reviewVo.rlike}</p>
+										<p>${reviewVo.rdate}</p>
+									</div>
+								
+							</div>
+						</c:forEach>
+					</div>
+					<div class="btnNext">
+						<button type="button" id="btnNext"><img src="http://localhost:9000/petcarepedia/images/next.png" width="30" height="30"></button>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </body>

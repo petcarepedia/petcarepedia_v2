@@ -14,17 +14,35 @@
 	$().ready(function (){
 		let login_result = "${login_result}";
 		let join_result = "${join_result}";
+		let pwupdate_result = "${pwupdate_result}";
+		
 		if(login_result=="fail"){
 			Swal.fire({
 	            icon: 'error',                         
 	            title: '로그인 실패',         
 	            text: '아이디와 비밀번호를 다시 확인해주세요.',  
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
 	        });
-		} else if(join_result=="success"){
+		}
+		
+		if(join_result=="success"){
 			Swal.fire({
 	            icon: 'success',                         
-	            title: '회원가입 성공',         
-	            text: '회원가입에 성공했습니다. 로그인해주세요.',  
+	            title: '회원가입 완료',         
+	            text: '회원가입이 완료되었습니다. 로그인해주세요.',  
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
+	        });
+		}
+		
+		if(pwupdate_result=="success"){
+			Swal.fire({
+	            icon: 'success',                         
+	            title: '비밀번호 재설정 완료',         
+	            text: '다시 로그인해주세요.',  
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
 	        });
 		}
 	});

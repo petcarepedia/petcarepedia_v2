@@ -7,7 +7,7 @@ public class BookingVo {
 	/** Ãß°¡ **/
 	String hname, loc, gloc, tel, hrink;
 	String start, end;
-	String img;
+	String img, hsfile;
 	int count;
 	
 	public int getCount() {
@@ -15,6 +15,12 @@ public class BookingVo {
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}
+	public String getHsfile() {
+		return hsfile;
+	}
+	public void setHsfile(String hsfile) {
+		this.hsfile = hsfile;
 	}
 	public String getImg() {
 		return img;

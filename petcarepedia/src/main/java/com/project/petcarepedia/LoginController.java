@@ -1,18 +1,24 @@
 package com.project.petcarepedia;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.service.MailSendService;
 import com.project.service.MemberService;
 import com.project.vo.MemberVo;
+import com.project.vo.SessionVo;
 
 @Controller
 public class LoginController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private MailSendService mailService;
 	
 	/**
 	 * login.do - 로그인
@@ -26,14 +32,13 @@ public class LoginController {
 	 * login_proc.do - 로그인 처리
 	 */
 	@RequestMapping(value="/login_proc.do",method=RequestMethod.POST)
-	public ModelAndView login_proc(MemberVo memberVo) {
+	public ModelAndView login_proc(MemberVo memberVo, HttpSession session) {
 		ModelAndView model = new ModelAndView();
+		SessionVo svo = memberService.getLogin(memberVo);
 		
-		if(memberService.getLogin(memberVo)==1) {
-			if(memberVo.getMid().equals("admin")) {
-				model.addObject("login_result", "success");
-				model.setViewName("redirect:/hospital_list.do");
-			} else {
+		if(svo != null) {
+			if(svo.getLoginResult()==1) {
+				session.setAttribute("svo",svo);
 				model.addObject("login_result", "success");
 				model.setViewName("redirect:/index.do");
 			}
@@ -41,6 +46,23 @@ public class LoginController {
 			model.addObject("login_result", "fail");
 			model.setViewName("/login/login");
 		}
+		
+		return model;
+	}
+	
+	/**
+	 * logout.do - 로그아웃
+	 */
+	@RequestMapping(value="/logout.do",method=RequestMethod.GET)
+	public ModelAndView logout(HttpSession session) {
+		ModelAndView model = new ModelAndView();
+		SessionVo svo = (SessionVo)session.getAttribute("svo");
+		if(svo != null) {
+			session.invalidate();
+			model.addObject("logout_result","success");
+		}
+		
+		model.setViewName("redirect:/index.do");
 		
 		return model;
 	}
@@ -62,8 +84,8 @@ public class LoginController {
 		
 		String mid = memberService.getFindId(memberVo);
 		
-		if(mid!="") {
-			model.addObject("mid", mid);
+		if(mid!="" && mid!=null) {
+			mailService.idFindEmail(memberVo, mid);
 			model.setViewName("/login/login_idfind_success");
 		} else {
 			model.setViewName("/login/login_idfind_fail");
@@ -107,7 +129,7 @@ public class LoginController {
 		
 		String mid = memberService.getFindPass(memberVo);
 		
-		if(mid!="") {
+		if(mid!="" && mid!=null) {
 			model.addObject("mid", mid);
 			model.setViewName("/login/login_pwupdate");
 		} else {
@@ -138,16 +160,18 @@ public class LoginController {
 	 * login_pwupdate_proc.do - 비밀번호 재설정 - 재설정 처리
 	 */
 	@RequestMapping(value="/login_pwupdate_proc.do",method=RequestMethod.POST)
-	public String login_pwupdate_proc(MemberVo memberVo) {
-		String viewName = "";
+	public ModelAndView login_pwupdate_proc(MemberVo memberVo,HttpSession session) {
+		ModelAndView model = new ModelAndView();
 		
 		if(memberService.getUpdatePass(memberVo)==1) {
-			viewName = "/login/login_pwupdate_success";
+			session.invalidate();
+			model.addObject("pwupdate_result", "success");
+			model.setViewName("/login/login");
 		} else {
 			//에러페이지
 		}
 		
-		return viewName;
+		return model;
 	}
 	
 	/**
@@ -157,4 +181,5 @@ public class LoginController {
 	public String login_pwupdate_success() {
 		return "/login/login_pwupdate_success";
 	}
+	
 }

@@ -13,7 +13,7 @@
 	<select id="list" parameterType="map" resultType="com.project.vo.HospitalVo">
 		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
 					  FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
-						 FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL ORDER BY HID)) 
+						 FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL ORDER BY HID  desc )) 
 					WHERE RNO BETWEEN #{start} AND #{end}
 	</select>
 	
@@ -23,13 +23,13 @@
 	</select>
 	
 	<select id="searchGloc" parameterType="String" resultType="com.project.vo.HospitalVo">
-		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y
+		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK,X,Y, HSFILE
 				 FROM PCP_HOSPITAL where gloc= #{gloc}
 	</select>	
 	
 	<select id="search" parameterType="String" resultType="com.project.vo.HospitalVo">
-		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y 
-		FROM PCP_HOSPITAL WHERE HNAME LIKE '%'||#{hname}||'%'
+		SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y , HFILE, HSFILE
+		FROM PCP_HOSPITAL WHERE HNAME LIKE '%'|| #{hname}||'%'
 	</select>
 	
 	<delete id="delete" parameterType="com.project.vo.HospitalVo">
@@ -38,7 +38,9 @@
 	
 	<update id="update" parameterType="com.project.vo.HospitalVo">
 		UPDATE PCP_HOSPITAL SET HNAME=#{hname} , GLOC=#{gloc}, LOC =#{loc} , TEL=#{tel}, 
-					  HTIME=#{htime} , NTIME=#{ntime} , HOLIDAY=#{holiday}, ANIMAL=#{animal}, INTRO=#{intro} ,HRINK= #{hrink} WHERE HID = #{hid}
+					  HTIME=#{htime} , NTIME=#{ntime} , HOLIDAY=#{holiday}, ANIMAL=#{animal}, 
+					  INTRO=#{intro} ,HRINK= #{hrink} , hfile=#{hfile} , hsfile=#{hsfile}
+					   WHERE HID = #{hid}
 	</update>
 	
 	<select id="content" parameterType="String" resultType="com.project.vo.HospitalVo">
@@ -48,14 +50,14 @@
 	
 	<select id="list2" resultType="com.project.vo.HospitalVo">
 		SELECT  H.HID, H.HNAME, H.GLOC, H.LOC, H.TEL, H.HTIME, SUBSTR(H.HTIME, 0, 5) AS STARTTIME, 
-				SUBSTR(H.HTIME, 7, 6) AS ENDTIME, H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y, ROUND(AVG(RSTAR),1) AS RSTAR
+				SUBSTR(H.HTIME, 7, 6) AS ENDTIME, H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y, ROUND(AVG(RSTAR),1) AS RSTAR, H.HSFILE
 								 FROM (SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, SUBSTR(HTIME, 0, 5) STARTTIME, SUBSTR(HTIME, 7, 6) ENDTIME, 
-								 		NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK, X, Y FROM PCP_HOSPITAL 
+								 		NTIME, HOLIDAY, ANIMAL, INTRO, IMG, HRINK, X, Y , HSFILE FROM PCP_HOSPITAL 
 				            		 	ORDER BY HID DESC) H 
 								LEFT JOIN PCP_REVIEW R ON H.HID = R.HID 
 								 GROUP BY H.HID, H.HNAME, H.GLOC, H.LOC, H.TEL, H.HTIME, SUBSTR(H.HTIME, 0, 5), SUBSTR(H.HTIME, 7, 6), 
-								 H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y 
-								 ORDER BY H.HID
+								 H.NTIME, H.HOLIDAY, H.ANIMAL, H.INTRO, H.IMG, H.HRINK, H.X, H.Y , H.HSFILE
+								 ORDER BY H.HID 
 	</select>
 	
 	<select id="selectTime" parameterType="String" resultType="com.project.vo.HospitalVo">

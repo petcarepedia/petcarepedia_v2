@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.dao.MemberDao;
 import com.project.vo.MemberVo;
+import com.project.vo.SessionVo;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -20,7 +21,7 @@ public class MemberServiceImpl implements MemberService{
 	};
 	
 	@Override
-	public int getLogin(MemberVo memberVo) {
+	public SessionVo getLogin(MemberVo memberVo) {
 		return memberDao.checkLogin(memberVo);
 	};
 	
@@ -50,6 +51,11 @@ public class MemberServiceImpl implements MemberService{
 	};
 	
 	@Override
+	public String getCheckMail(String email) {
+		return String.valueOf(memberDao.checkMail(email));
+	};
+	
+	@Override
 	public int getUpdate(MemberVo memberVo) {
 		return memberDao.update(memberVo);
 	};
@@ -73,4 +79,9 @@ public class MemberServiceImpl implements MemberService{
 	public ArrayList<MemberVo> getSearch(String mid){
 		return memberDao.search(mid);
 	};
+	
+	@Override
+	public int getCheckPass(String mid, String pass) {
+		return memberDao.checkPass(mid, pass);
+	}
 }

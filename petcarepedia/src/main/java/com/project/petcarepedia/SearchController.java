@@ -2,6 +2,8 @@ package com.project.petcarepedia;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.project.dao.BookingDao;
-import com.project.dao.HospitalDao;
 import com.project.service.BookingService;
 import com.project.service.BookmarkService;
 import com.project.service.HospitalService;
@@ -25,6 +25,7 @@ import com.project.vo.BookmarkVo;
 import com.project.vo.HospitalVo;
 import com.project.vo.ReviewLikeVo;
 import com.project.vo.ReviewVo;
+import com.project.vo.SessionVo;
 
 
 @Controller
@@ -41,8 +42,6 @@ public class SearchController {
 	@Autowired
 	private BookmarkService bookmarkService;
 	
-	HospitalDao hospitalDao = new HospitalDao();
-	BookingDao bookingDao = new BookingDao();
 	
 	
 	/** search_main.do - 병원 리스트 출력하기 **/
@@ -74,36 +73,72 @@ public class SearchController {
 	
 	
 	/** search_result.do - 병원 상세정보 **/
-	@RequestMapping(value="/search_result.do", method=RequestMethod.GET)
-	public ModelAndView search_result(String hid, String mid) {
-		ModelAndView model = new ModelAndView();
-		HospitalVo hospital = hospitalService.select(hid);
-		HospitalVo star = hospitalService.selectStar(hid);
-		BookingVo bookingVo = bookingService.getSelectTime(hid);
-		ArrayList<ReviewVo> RM_select = reviewService.getRM_select(hid);
-		
-		model.addObject("hospital", hospital);
-		model.addObject("star", star);
-		model.addObject("time", bookingVo);
-		model.addObject("RM_select", RM_select);
-		/* System.out.println(RM_select.size()); */
-		
-		// Check bookmark
+    @RequestMapping(value = "/search_result.do", method = RequestMethod.GET)
+    public ModelAndView search_result(String hid, HttpSession session, String rid, String filter) {
+    	
+        ModelAndView model = new ModelAndView();
+	    
+	    // session
+	    SessionVo svo = (SessionVo)session.getAttribute("svo");
+	    String mid;
+	    if(svo == null) {
+	    	mid = ""; 
+	    } else {
+	    	mid = svo.getMid();
+	    }
+	    
+	    HospitalVo hospital = hospitalService.select(hid);
+	    HospitalVo star = hospitalService.selectStar(hid);
+	    BookingVo bookingVo = bookingService.getSelectTime(hid);
+//		ArrayList<ReviewVo> RM_select = reviewService.getRM_select(hid);
+	    ArrayList<ReviewVo> RM_select = new ArrayList<ReviewVo>();
+	    
+	    model.addObject("hospital", hospital);
+	    model.addObject("star", star);
+	    model.addObject("time", bookingVo);
+//	    model.addObject("RM_select", RM_select);
+	    
+	 /// filter
+	    if (filter == null) {
+//	        filter = "basic"; // 기본값 설정
+	    	RM_select = reviewService.getRM_select(hid);
+	    } else if (filter.equals("basic")) {
+	        RM_select = reviewService.getRM_select(hid);
+	    } else if (filter.equals("like")) {
+	        RM_select = reviewService.getRM_select2(hid);
+	    } else if (filter.equals("totalUp")) {
+	        RM_select = reviewService.getRM_select3(hid);
+	    } else if (filter.equals("totalDown")) {
+	        RM_select = reviewService.getRM_select4(hid);
+	    }
+	    model.addObject("filter", filter);
+	    
+	    // Check bookmark
 	    BookmarkVo bookmarkVo = new BookmarkVo();
+	   
 	    bookmarkVo.setHid(hid);
-	    bookmarkVo.setMid("hong"); // 이 부분을 세션 정보 또는 다른 값을 가져와 설정해야합니다.
+	    bookmarkVo.setMid(mid);
 	    int bookmarkResult = bookmarkService.getCheckBookmark(bookmarkVo);
 	    model.addObject("bookmarkResult", bookmarkResult);
 	    
-	    // reveiw chech
-//	    BookingVo blist = bookingService.getReviewCheck(hid, mid);
-//	    model.addObject("blist", blist);
+	    // Check like
+	    ReviewLikeVo reviewLikeVo = new ReviewLikeVo();
+	    reviewLikeVo.setMid(mid);
+	    
+	    for (ReviewVo review : RM_select) {
+	    	String targetRid = review.getRid();
+	    	 reviewLikeVo.setRid(targetRid);
+    	 	int likeresult = reviewLikeService.getIdCheck(reviewLikeVo);
+    	 	review.setLikeresult(likeresult);
+	    }
+	    model.addObject("RM_select", RM_select);
 	    
 	    model.setViewName("/search/search_result");
-		
-		return model;
+	    
+	    return model;
 	}
 	
+
 	
 	/** search_result_map.do - 병원 상세 지도 정보 **/
 	@RequestMapping(value="/search_result_map.do", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
@@ -120,13 +155,6 @@ public class SearchController {
 	    return new Gson().toJson(jobj);
 	}
 	
-	
-	/** search_reservation.do **/
-	/*
-	 * @RequestMapping(value="/search_reservation.do", method=RequestMethod.GET)
-	 * public String search_reservation() { return "/search/search_reservation"; }
-	 */
-	 
 	
 	/** search_reservation.do?hid=? **/
 	@RequestMapping(value="/search_reservation.do", method=RequestMethod.GET)
@@ -149,7 +177,6 @@ public class SearchController {
 	@ResponseBody
 	public String reservationProc(BookingVo bookingVo) {
 		int check_result = bookingService.getCheckBooking(bookingVo);
-		System.out.println(check_result);
 			
 		if(check_result == 0) {
 			bookingService.getInsert(bookingVo);
@@ -170,6 +197,7 @@ public class SearchController {
 			} else {
 				result = "fail";
 		}
+		
 		return result;
 	}	
 	
@@ -191,51 +219,6 @@ public class SearchController {
 	    return "";
 	}
 	
-	/** bookmarkProc.do - 북마크 처리 **/
-//	@RequestMapping(value="bookmarkProc.do", method=RequestMethod.POST)
-//	public ModelAndView bookmarkProc(BookmarkVo bookmarkVo, @RequestParam("hid") String hid) {
-//		ModelAndView model = new ModelAndView();
-//		BookmarkDao bookmarkDao = new BookmarkDao();
-//		String viewName = "";
-//		int result = bookmarkDao.checkBookmark(bookmarkVo);
-//		System.out.println("result가져옴"+result);
-//		
-//		if(result == 0) {
-//			bookmarkDao.insert(bookmarkVo);
-//			model.addObject("bookmark_result", "success");
-//			model.setViewName("redirect:/search_result.do?hid=" + hid);
-//			System.out.println("성공");
-//		} else if(result == 1) {
-//			bookmarkDao.deleteBookmark(bookmarkVo);
-//			model.addObject("bookmark_result", "fail");
-//			model.setViewName("redirect:/search_result.do?hid=" + hid);
-//			System.out.println("실패");
-//		}
-//		return model;
-//	}
-	
-	
-//	/** rstateForm.do - 신고하기 처리 **/
-//	@RequestMapping(value="rstateForm.do", method=RequestMethod.POST)
-//	@ResponseBody
-//	public String rstateForm(String rid) {
-//	    ReviewDao reviewDao = new ReviewDao();
-//	    int rstate_result = reviewDao.getIdCheckResult(rid);
-//
-//	    if (rstate_result == 0) {
-//	        reviewDao.update(rid);
-////	        System.out.println(rstate_result);
-////	        System.out.println(rid);
-//	        return "success";
-//	    } else if (rstate_result == 1) {
-////	    	System.out.println(rstate_result);
-////	    	System.out.println(rid);
-//	        return "fail";
-//	    }
-//
-//	    return "";
-//	}
-	
 
 	/** likeProc.do - 좋아요 처리 **/
 	@RequestMapping(value="likeProc.do", method=RequestMethod.POST)
@@ -250,7 +233,6 @@ public class SearchController {
         } else { // 기록 있음
         	reviewLikeService.getLikesDownID(reviewLikeVo);
         	reviewLikeService.getLikesDown(reviewLikeVo);
-			/* System.out.println(like_result); */
             return "fail";
         }
     }
@@ -264,10 +246,8 @@ public class SearchController {
 
 	    if (rstate_result == 0) {
 	    	reviewService.getUpdateReport(rid);
-	    	System.out.println(rstate_result);
 	    	return "success";
 		} else if (rstate_result == 1) {
-			System.out.println(rstate_result);
 			return "fail";
 		}
 	    
@@ -282,7 +262,7 @@ public class SearchController {
 	}
 	
 	
-	/** search_mian_map.do **/
+	/** search_main_map.do **/
 	@RequestMapping(value="/search_main_map.do", method=RequestMethod.GET)
 	public String search_main_map() {
 		return "/search/search_main_map";
@@ -321,4 +301,4 @@ public class SearchController {
 	}
 		
 	
-} // class
+}

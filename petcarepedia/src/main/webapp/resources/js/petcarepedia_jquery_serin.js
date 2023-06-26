@@ -1,10 +1,43 @@
 	
 $(document).ready(function(){
+	/*************************
+	 * 병원 - 정렬
+	 **************************/
+	
+	
 	
 	/*************************
 	 * 예약 - 상태 변경
 	 **************************/
+  	var currentDate = new Date();
+	var Year = currentDate.getFullYear();
+	var Month = currentDate.getMonth() + 1;
+	var Day = currentDate.getDate();
 	
+	var current = new Date(Year, Month - 1, Day); // Date 객체로 변환
+	
+	$(".date").each(function() {
+	  var currentTd = $(this).text();
+	  var dateTd = new Date(currentTd); // Date 객체로 변환
+	
+	  if (dateTd < current) {
+	    $(this).next(".state").text("진료완료");
+	  } else {
+	    $(this).next(".state").text("예약중");
+	  }
+	});
+ 	 
+	/*************************
+	 * 병원 - 파일 수정
+	 **************************/
+		$("#file1").change(function(){
+			//alert("1111");
+			if(window. FileReader) { //window객체 사용 ->  window가 가지고 있는 fileReader을 사용 
+				let fname = $(this)[0].files[0].name;
+				//alert(fname);
+				$("#update_file").text(fname);
+			}
+		});
 	 
 	/*************************
 	 * 병원 - 수정
@@ -43,7 +76,18 @@ $(document).ready(function(){
 				$("#holiday").focus();
 				return false;
 			}else{
-				updateForm.submit();
+			    // 수정 완료 버튼 클릭 시 실행되는 함수
+			    Swal.fire({
+			        icon: 'success',
+			        title: '수정이 완료되었습니다.',
+			        confirmButtonColor: '#7ab2cc',
+			        confirmButtonText: '확인'
+			    }).then((result) => {
+			        if (result.isConfirmed) {
+			           
+			            updateForm.submit(); 
+			        }
+			    });
 			}
 		});
 	
@@ -94,11 +138,19 @@ $(document).ready(function(){
 	 **************************/
   $("#reserve_btn").click(function(){
   	if($("#reserve_bar").val() ==""){
-			alert("회원 아이디를 입력해주세요"); 
+			Swal.fire({
+		        icon: 'warning',                         // Alert 타입
+		        /* title: 'Alert가 실행되었습니다.',*/       // Alert 제목
+		        title: '회원아이디를 입력해주세요',  		// Alert 내용
+		        
+		        confirmButtonColor:'#7ab2cc',
+		  	  	confirmButtonText:'확인'
+			});
 			$("#reserve_bar").focus();
 			return false;
 		}else{	
-				$.ajax({
+			location.href = "http://localhost:9000/petcarepedia/admin_reserve_list.do?page=1&mid="+$("#reserve_bar").val();
+				/*$.ajax({
 					url:"http://localhost:9000/petcarepedia/reserve_list_data.do?mid="+$("#reserve_bar").val(), 
 					success:function(result){
 					let jdata = JSON.parse(result);
@@ -123,7 +175,7 @@ $(document).ready(function(){
 						
 					}//success
 					
-				});//ajax
+				});//ajax*/
 		}//else
 					
   	});//function
@@ -132,11 +184,19 @@ $(document).ready(function(){
 	 **************************/
   $("#member_search_btn").click(function(){
   	if($("#member_search_bar").val() ==""){
-			alert("회원 아이디를 입력해주세요"); 
+			Swal.fire({
+		        icon: 'warning',                         // Alert 타입
+		        /* title: 'Alert가 실행되었습니다.',*/       // Alert 제목
+		        title: '회원아이디를 입력해주세요',  		// Alert 내용
+		        
+		        confirmButtonColor:'#7ab2cc',
+		  	  	confirmButtonText:'확인'
+			});
 			$("#member_search_bar").focus();
 			return false;
 		}else{	
-				$.ajax({
+			location.href = "http://localhost:9000/petcarepedia/admin_member_list.do?page=1&mid="+$("#member_search_bar").val();
+				/*$.ajax({
 					url:"http://localhost:9000/petcarepedia/member_list_data.do?mid="+$("#member_search_bar").val(), 
 					success:function(result){
 					let jdata = JSON.parse(result);
@@ -161,7 +221,7 @@ $(document).ready(function(){
 						
 					}//success
 					
-				});//ajax
+				});//ajax*/
 		}//else
 					
   	});//function
@@ -169,34 +229,20 @@ $(document).ready(function(){
 	 * 병원 - 검색창
 	 **************************/
   $("#search_btn").click(function(){
-  
-  	var pager = jQuery('#ampaginationsm').pagination({
-		
-		    maxSize: '${maxSize}',	// max page size
-		    totals:  '${totals}',	// total pages	
-		    page: 	 '${page}',		// initial page		
-		    pageSize:'${pageSize}',	// max number items per page
-		
-		    // custom labels		
-		    lastText: '&raquo;&raquo;', 		
-		    firstText:'&laquo;&laquo;',		
-		    prevText: '&laquo;',		
-		    nextText: '&raquo;',
-				     
-		    btnSize:'sm'	// 'sm'  or 'lg'		
-		});
-		
-		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
-			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/mycgv_jsp/board_list_json.do?page="+e.page);         
-	    });
-  
-  	if($("#search_bar").val() ==""){
-			alert("병원명을 입력해주세요"); 
+		if($("#search_bar").val() ==""){
+			Swal.fire({
+		        icon: 'warning',                         // Alert 타입
+		        /* title: 'Alert가 실행되었습니다.',*/       // Alert 제목
+		        title: '병원명을 입력해주세요',  		// Alert 내용
+		        
+		        confirmButtonColor:'#7ab2cc',
+		  	  	confirmButtonText:'확인'
+			});
 			$("#search_bar").focus();
 			return false;
 		}else{	
-				$.ajax({
+			location.href = "http://localhost:9000/petcarepedia/admin_hospital_list.do?page=1&hname="+$("#search_bar").val();
+				/*$.ajax({
 					url:"http://localhost:9000/petcarepedia/hospital_list_data.do?hname="+$("#search_bar").val(), 
 					success:function(result){
 					let jdata = JSON.parse(result);
@@ -223,7 +269,7 @@ $(document).ready(function(){
 						
 					}//success
 					
-				});//ajax
+				});//ajax*/
 		}//else
   	});//function
   	

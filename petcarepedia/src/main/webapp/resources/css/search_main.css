@@ -31,6 +31,13 @@ div.search_main {
 	list-style-type:  none;
 }
 
+.swal2-icon.swal2-warning .swal2-icon-content {
+  color: #F9C89D;
+}
+
+.swal2-icon.swal2-info .swal2-icon-content {
+   color: #45C5EE;
+}
 
 /***************************************
 	section_filter

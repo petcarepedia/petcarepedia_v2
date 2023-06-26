@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.vo.MemberVo;
+import com.project.vo.SessionVo;
 
 @Repository
 public class MemberDao extends DBConn{
@@ -27,7 +28,7 @@ public class MemberDao extends DBConn{
 	/**
 	 * checkLogin - 로그인 체크
 	 */
-	public int checkLogin(MemberVo memberVo) {
+	public SessionVo checkLogin(MemberVo memberVo) {
 		return sqlSession.selectOne("mapper.member.login",memberVo);
 	}
 	
@@ -76,6 +77,13 @@ public class MemberDao extends DBConn{
 	}
 	
 	/**
+	 * checkMail - 회원가입 아이디 중복체크
+	 */
+	public int checkMail(String email) {
+		return sqlSession.selectOne("mapper.member.checkMail",email);
+	}
+	
+	/**
 	 * update - 회원정보 수정(마이페이지)
 	 */
 	public int update(MemberVo memberVo) {
@@ -109,6 +117,13 @@ public class MemberDao extends DBConn{
 	public ArrayList<MemberVo> search(String mid) {
 		List<MemberVo> list = sqlSession.selectList("mapper.member.search",mid);
 		return (ArrayList<MemberVo>)list;
+	}
+	
+	public int checkPass(String mid, String pass) {
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("mid", mid);
+		param.put("pass", pass);
+		return sqlSession.selectOne("mapper.member.checkPass", param);
 	}
 }
 

@@ -30,8 +30,8 @@
 	</select>
 	
 	<select id="search1" parameterType="String" resultType="com.project.vo.BookingVo">
-		select bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img
-		from(select b.bid bid, b.bdate bdate, b.vdate vdate, b.vtime vtime, b.bstate bstate, b.mid mid, b.hid hid, h.hname hname, 
+		select bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img, HSFILE
+		from(select b.bid bid, b.bdate bdate, b.vdate vdate, b.vtime vtime, b.bstate bstate, b.mid mid, b.hid hid, h.hname hname,H.HSFILE HSFILE,
 				h.loc loc, h.gloc gloc, h.tel tel, h.hrink hrink, h.img img 
 				from pcp_review r, pcp_booking b, pcp_hospital h, pcp_member m 
 				where r.bid(+) = b.bid 
@@ -42,16 +42,16 @@
 	</select>
 	
 	<select id="search2" parameterType="String" resultType="com.project.vo.BookingVo">
-		SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, HID, HNAME, LOC, GLOC, TEL,HRINK, IMG
-		FROM (SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, B.HID HID, H.HNAME HNAME, H.LOC LOC, H.GLOC GLOC, H.TEL TEL, H.HRINK HRINK, H.IMG IMG
+		SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, HID, HNAME, LOC, GLOC, TEL,HRINK, IMG, HSFILE
+		FROM (SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, B.HID HID, H.HNAME HNAME, H.LOC LOC, H.GLOC GLOC, H.TEL TEL, H.HRINK HRINK, H.IMG IMG, H.HSFILE HSFILE
 				FROM PCP_BOOKING B, PCP_HOSPITAL H
 				WHERE B.HID = H.HID AND MID = #{mid} AND VDATE = TO_CHAR(SYSDATE,'YYYY-MM-DD'))
 		WHERE VTIME >= TO_CHAR(SYSDATE,'HH24:MI') order by bid desc
 	</select>
 	
 	<select id="search3" parameterType="String" resultType="com.project.vo.BookingReviewVo">
-		select bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img, rid
-		from(select b.bid bid, b.bdate bdate, b.vdate vdate, b.vtime vtime, b.bstate bstate, b.mid mid, b.hid hid, h.hname hname, 
+		select bid, bdate, vdate, vtime, bstate, mid, hid, hname, loc, gloc, tel, hrink, img, rid, HSFILE
+		from(select b.bid bid, b.bdate bdate, b.vdate vdate, b.vtime vtime, b.bstate bstate, b.mid mid, b.hid hid, h.hname hname,H.HSFILE HSFILE,
 				h.loc loc, h.gloc gloc, h.tel tel, h.hrink hrink, h.img img, r.rid rid
 				from pcp_review r, pcp_booking b, pcp_hospital h, pcp_member m 
 				where b.hid = h.hid and b.mid = m.mid and b.mid = #{mid} and b.bid = r.bid) 
@@ -60,8 +60,8 @@
 	</select>
 
 	<select id="search4" parameterType="String" resultType="com.project.vo.BookingVo">
-		SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, HID, HNAME, LOC, GLOC, TEL,HRINK, IMG
-		FROM (SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, B.HID HID, H.HNAME HNAME, H.LOC LOC, H.GLOC GLOC, H.TEL TEL, H.HRINK HRINK, H.IMG IMG
+		SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, HID, HNAME, LOC, GLOC, TEL,HRINK, IMG, HSFILE
+		FROM (SELECT BID, BDATE, VDATE, VTIME, BSTATE, MID, B.HID HID, H.HNAME HNAME, H.LOC LOC, H.GLOC GLOC, H.TEL TEL, H.HRINK HRINK, H.IMG IMG, H.HSFILE HSFILE
 				FROM PCP_BOOKING B, PCP_HOSPITAL H
 				WHERE B.HID = H.HID AND MID = #{mid} AND VDATE > TO_CHAR(SYSDATE,'YYYY-MM-DD')) order by bid desc
 	</select>
@@ -69,7 +69,7 @@
 	<select id="search5" parameterType="String" resultType="com.project.vo.BookingVo">
 		select bid, hname, mid, to_char(BDATE, 'yyyy-mm-dd') VDATE, bstate
 		from  pcp_booking b, pcp_hospital h 
-		where b.hid = h.hid and mid like %#{mid}%	
+		where b.hid = h.hid and mid like '%'|| #{mid} ||'%'	
 	</select>
 	
 	<select id="select2" parameterType="String" resultType="com.project.vo.BookingVo">

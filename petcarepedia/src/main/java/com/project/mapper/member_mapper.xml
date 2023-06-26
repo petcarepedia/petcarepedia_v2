@@ -9,11 +9,14 @@
 	<insert id="join" parameterType="com.project.vo.MemberVo">
 		INSERT 
 			INTO PCP_MEMBER(mid,pass,name,nickname,phone,birth,email,addr,mdate) 
-			VALUES(#{mid},#{pass},#{name},#{nickname},#{phone},#{birth},#{email},#{addr},SYSDATE)
+			VALUES(#{mid},#{pass},#{name},#{nickname},#{phone},#{birth, jdbcType=VARCHAR},#{email, jdbcType=VARCHAR},#{addr, jdbcType=VARCHAR},SYSDATE)
 	</insert>
 	
-	<select id="login" parameterType="com.project.vo.MemberVo" resultType="int">
-		select count(*) from pcp_member where mid=#{mid} and pass=#{pass}
+	<select id="login" parameterType="com.project.vo.MemberVo" resultType="com.project.vo.SessionVo">
+		select count(*) loginResult, mid, name
+		from pcp_member 
+		where mid=#{mid} and pass=#{pass}
+		group by mid, name
 	</select>
 	
 	<delete id="delete" parameterType="map">
@@ -51,9 +54,13 @@
 		select count(*) from pcp_member where mid=#{mid}
 	</select>
 	
+	<select id="checkMail" parameterType="string" resultType="int">
+		select count(*) from pcp_member where email=#{email}
+	</select>
+	
 	<update id="update" parameterType="com.project.vo.MemberVo">
 		update pcp_member
-		set nickname=#{nickname},phone=#{phone},birth=#{birth},email=#{email},addr=#{addr} 
+		set nickname=#{nickname},phone=#{phone},birth=#{birth, jdbcType=VARCHAR},email=#{email, jdbcType=VARCHAR},addr=#{addr, jdbcType=VARCHAR} 
 		where mid=#{mid}
 	</update>
 	
@@ -61,7 +68,7 @@
 		select mid 
 		from pcp_member 
 		where name=#{name} 
-			and phone=#{phone}
+			and email=#{email}
 		<if test='mid != null'>
 			and mid=#{mid}
 		</if>
@@ -77,5 +84,9 @@
 		SELECT MID, NAME, PHONE, EMAIL, MDATE 
 		FROM PCP_MEMBER 
 		WHERE MID LIKE '%'||#{mid}||'%'
+	</select>
+	
+	<select id="checkPass" parameterType="map" resultType="int">
+		select count(*) from pcp_member where mid = #{mid} and pass = #{pass}
 	</select>
 </mapper>

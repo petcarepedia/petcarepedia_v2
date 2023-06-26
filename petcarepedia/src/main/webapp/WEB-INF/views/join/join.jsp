@@ -10,12 +10,24 @@
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_song.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://kit.fontawesome.com/4ed285928f.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+<script>
+$(document).ready(function(){
+	$('#loading').hide(); //첫 시작시 로딩바를 숨겨준다.
+})
+.ajaxStart(function(){
+	$('#loading').show(); //ajax실행시 로딩바를 보여준다.
+})
+.ajaxStop(function(){
+	$('#loading').hide(); //ajax종료시 로딩바를 숨겨준다.
+});
+</script>
 </head>
 <body>
 	<div class="back"></div>
 	<div class="term-box">
 		<div class="term-modal">
-			<!-- <div class="term-modal-close" id="btnModalClose">X</div> -->
 			<div class="title">
 				
 			</div>
@@ -25,6 +37,7 @@
 			</div>
 		</div>
 	</div>
+	<img src="http://localhost:9000/petcarepedia/images/loading.gif" id="loading">
 	
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -48,11 +61,13 @@
 					<li>
 						<label>비밀번호 <span class="ess">*</span></label>
 						<input type="password" name="pass" id="pass" placeholder="8~16자리 영문, 숫자, 특수문자 조합">
+						<input type="checkbox" name="pass-see" id="psee"><p id="psee">비밀번호 보기</p>
 						<span id="pwcheck_msg"></span>
 					</li>
 					<li>
 						<label>비밀번호 확인 <span class="ess">*</span></label>
 						<input type="password" name="cpass" id="cpass" placeholder="비밀번호를 다시 입력해주세요">
+						<input type="checkbox" name="cpass-see" id="cpsee"><p id="psee">비밀번호 보기</p>
 						<span id="cpwcheck_msg"></span>
 					</li>
 					<li>
@@ -62,7 +77,7 @@
 					</li>
 					<li>
 						<label>별명 <span class="ess">*</span></label>
-						<input type="text" name="nickname" id="nickname" placeholder="2자 이상 16자 이하 문자 또는 숫자">
+						<input type="text" name="nickname" id="nickname" placeholder="2~16자리 문자 또는 숫자">
 						<span id="nickcheck_msg"></span>
 					</li>
 					<li>
@@ -85,8 +100,16 @@
 						<input type="text" name="birth3" id="birth3" placeholder="일" class="input-short2">
 					</li>
 					<li>
-						<label>이메일</label>
-						<input type="text" name="email" id="email" placeholder="이메일 입력">
+						<label>이메일 <span class="ess">*</span></label>
+						<input type="text" name="email" id="email" placeholder="이메일 입력" class="input-short">
+						<button type="button" class="btn-short" id="btnAuthEmail" disabled>인증번호 전송</button>
+						<span id="emailcheck_msg"></span>
+						
+						<input type="hidden" id="data">
+						
+						<input type="text" name="cemail" id="cemail" placeholder="인증번호 입력" class="input-short" style="display:none">
+						<button type="button" class="btn-short" id="btnCheckEmail" style="display:none">인증번호 확인</button>
+						<span id="emailauthcheck_msg"></span>
 					</li>
 					<li>
 						<label>주소</label>
@@ -123,6 +146,6 @@
 	</div>
 	
 	<!-- footer -->
-	<jsp:include page="../footer.jsp"></jsp:include>
+	<%-- <jsp:include page="../footer.jsp"></jsp:include> --%>
 </body>
 </html>

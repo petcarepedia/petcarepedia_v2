@@ -18,6 +18,12 @@ public class ReviewDao extends DBConn {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//신고된 리뷰 조회
+	public ArrayList<ReviewVo> reportList() {
+		List<ReviewVo> list = sqlSession.selectList("mapper.review.reportList");
+		return (ArrayList<ReviewVo>)list;
+	}
+	
 	// 리뷰와 병원 조인
 	public ArrayList<ReviewVo> RH_select(String hid) {
 		return sqlSession.selectOne("mapper.review.RH_select", hid);
@@ -492,8 +498,6 @@ public class ReviewDao extends DBConn {
 	}
 	
 	
-	
-	
 	/* 전체 카운트 가져오기*/
 	public int totalRowCount() {
 		return sqlSession.selectOne("mapper.review.count");
@@ -573,5 +577,24 @@ public class ReviewDao extends DBConn {
 		*/
 	}
 	
+	
+	// 리뷰 병원 조인
+	public ArrayList<ReviewVo> RM_select2(String hid) {
+		List<ReviewVo> list = sqlSession.selectList("mapper.review.RM_select2", hid);
+		return (ArrayList<ReviewVo>)list;
+	}
+	
+	// 리뷰 병원 조인
+	public ArrayList<ReviewVo> RM_select3(String hid) {
+		List<ReviewVo> list = sqlSession.selectList("mapper.review.RM_select3", hid);
+		return (ArrayList<ReviewVo>)list;
+	}
+	
+	// 리뷰 병원 조인
+	public ArrayList<ReviewVo> RM_select4(String hid) {
+		List<ReviewVo> list = sqlSession.selectList("mapper.review.RM_select4", hid);
+		return (ArrayList<ReviewVo>)list;
+	}
+
 	
 }

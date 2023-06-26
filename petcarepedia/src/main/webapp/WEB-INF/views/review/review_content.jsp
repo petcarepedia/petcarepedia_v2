@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/kang_style.css">
 <script src="http://localhost:9000/petcarepedia/js/jquery-3.6.4.min.js"></script>
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jsp_jquery_kang.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.all.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 <body>
 	<!-- header -->
@@ -44,7 +46,7 @@
 				<div class="table_right">
 					<div id="right_top">
 						<c:choose>
-							<c:when test="${reviewVo.mid eq mid || mid eq '' || mid eq null}">
+							<c:when test="${reviewVo.mid eq sessionScope.svo.mid || sessionScope.svo.mid eq '' || sessionScope.svo.mid eq null}">
 								<button type="button" id="btnLike" disabled>
 									<span class="review_like">
 										♥️
@@ -54,8 +56,7 @@
 							</c:when>
 							<c:otherwise>
 								<form name="reviewLikeForm" action="review_like_Proc.do" method="post">
-									<input type="hidden" id="rid" name="rid" value="${reviewLikeVo.rid }">
-									<input type="hidden" id="mid" name="mid" value="${mid }">
+									<input type="hidden" id="rid" name="rid" value="${reviewVo.rid }">
 									<input type="hidden" id="page" name="page" value="${page }">
 									<input type="hidden" id="filter_location" name="filter_location" value="${filter_location }">
 									<button type="submit" id="btnLikeProc">
@@ -92,48 +93,54 @@
 						</tr>
 					</table>
 				</div>
+				<form name="reportForm" action="review_report_proc.do" method="post">
+					<c:choose>
+						<c:when test="${reviewVo.mid eq sessionScope.svo.mid || sessionScope.svo.mid eq '' || sessionScope.svo.mid eq null}">
+						</c:when>
+						<c:otherwise>
+							<button type="button" class="report" id="btnReviewReport">신고하기</button>
+							<input type="hidden" name="rid" id="rid" value="${reviewVo.rid }">
+						</c:otherwise>
+					</c:choose>
+				</form>	
+			</div>
+			<form name="deleteForm" action="review_delete_proc.do" method="post">
 				<c:choose>
-					<c:when test="${reviewVo.mid eq mid }">
+					<c:when test="${reviewVo.mid eq sessionScope.svo.mid }">
+						<div class="rc_button_r">
+							<a href="mypage_review_revise.do?rid=${reviewVo.rid }"><button type="button" class="button">수정</button></a>
+							<button type="button" class="button" id="reviewDelBtn">삭제</button>
+							<input type="hidden" name="rid" value="${reviewVo.rid }">
+							<c:choose>
+								<c:when test="${page eq null || page eq '' }">
+									<a href="review_main.do"><button type="button" class="button">목록</button></a>
+								</c:when>
+								<c:when test="${filter_location eq null || filter_location eq '' }">
+									<a href="review_main.do?page=${page }"><button type="button" class="button">목록</button></a>
+								</c:when>
+								<c:otherwise>
+									<a href="review_main_search.do?page=${page }&&filter_location=${filter_location}"><button type="button" class="button">목록</button></a>
+								</c:otherwise>
+							</c:choose>
+						</div>
 					</c:when>
 					<c:otherwise>
-						<a href="review_report.do?rid=${reviewVo.rid }&&page=${page }&&filter_location=${filter_location}&&mid=${mid}"><button type="button" class="report">신고하기</button></a>
+						<div class="rc_button_r">
+							<c:choose>
+								<c:when test="${page eq null }">
+									<a href="review_main.do"><button type="button" class="button">목록</button></a>
+								</c:when>
+								<c:when test="${filter_location eq null }">
+									<a href="review_main.do?page=${page }"><button type="button" class="button">목록</button></a>
+								</c:when>
+								<c:otherwise>
+									<a href="review_main_search.do?page=${page }&&filter_location=${filter_location}"><button type="button" class="button">목록</button></a>
+								</c:otherwise>
+							</c:choose>
+						</div>
 					</c:otherwise>
 				</c:choose>
-			</div>
-			<c:choose>
-				<c:when test="${reviewVo.mid eq mid }">
-					<div class="rc_button_r">
-						<a href="review_revise.do?rid=${reviewVo.rid }"><button type="button" class="button">수정</button></a>
-						<a href="review_delete.do?rid=${reviewVo.rid }&&page=${page }&&filter_location=${filter_location}&&mid=${mid}"><button type="button" class="button">삭제</button></a>
-						<c:choose>
-							<c:when test="${page eq null }">
-								<a href="review_main.do?mid=${mid}"><button type="button" class="button">목록</button></a>
-							</c:when>
-							<c:when test="${filter_location eq null }">
-								<a href="review_main.do?page=${page }&&mid=${mid}"><button type="button" class="button">목록</button></a>
-							</c:when>
-							<c:otherwise>
-								<a href="review_main_search.do?page=${page }&&filter_location=${filter_location}&&mid=${mid}"><button type="button" class="button">목록</button></a>
-							</c:otherwise>
-						</c:choose>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="rc_button_r">
-						<c:choose>
-							<c:when test="${page eq null }">
-								<a href="review_main.do?mid=${mid}"><button type="button" class="button">목록</button></a>
-							</c:when>
-							<c:when test="${filter_location eq null }">
-								<a href="review_main.do?page=${page }&&mid=${mid}"><button type="button" class="button">목록</button></a>
-							</c:when>
-							<c:otherwise>
-								<a href="review_main_search.do?page=${page }&&filter_location=${filter_location}&&mid=${mid}"><button type="button" class="button">목록</button></a>
-							</c:otherwise>
-						</c:choose>
-					</div>
-				</c:otherwise>
-			</c:choose>
+			</form>
 		</section>
 	</div>
 	<!-- footer -->

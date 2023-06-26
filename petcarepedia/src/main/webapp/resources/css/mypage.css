@@ -9,6 +9,11 @@
 /* 	font-family: 'Inter'; */
 	font-style: normal;
 }
+div#ampaginationsm ul li.active a {
+	background-color:#98DFFF;
+	border-color:#98DFFF;
+	margin-bottom : 100px;
+}
 #content {
 	width : 1000px;
 	height : 700px;
@@ -58,6 +63,9 @@ hr {
 	float : left;
 	margin-left : 50px;
 }
+#information #aside, #revise #aside {
+	margin-left : 130px;
+}
 #section1 div nav ul{
 	list-style-type:none;
 
@@ -102,12 +110,15 @@ hr {
 	padding:20px 0 0 0;
 	border-radius: 5px;
 }
+#section2 ul li label:first-child span {
+	color : #FFD8D8;
+}
 #section2 ul li label:last-child{
 	display : inline-block;
 	width : 520px;
 	height: 35px;
 	border-bottom: 1px solid #8A8A8A;
-	padding: 2px 0 0 0;
+	padding: 2px 0 0 5px;
 	font-weight : 700;
 	font-size: 14px;
   	vertical-align: bottom;
@@ -188,28 +199,38 @@ hr {
 	border-radius : 5px;
 	border: 1px solid #8A8A8A;
 	margin-right : 10px;
+	padding-left : 5px;
 }
 #email {
 	width: 520px;
 	height: 53px;
-	border : none;
-	border-bottom: 1px solid #8A8A8A;
+	border: 1px solid #8A8A8A;
+	border-radius : 5px;
+	padding-left : 5px;
 }
 #address {
 	height: 53px;
-	border : none;
-	border-bottom: 1px solid #8A8A8A;
+	border: 1px solid #8A8A8A;
 	width : 435px;
+	border-radius : 5px;
+	padding-left : 5px;
+}
+#phone_box {
+	margin-left : -5px;
 }
 #phone1, #phone2, #phone3 {
-	width: 77px;
-	height: 41px;
+	width: 120px;
+	height: 45px;
 	margin : 0 5px 0 5px;
 	border-radius : 5px;
 	border : 1px solid #8A8A8A;
+	padding-left : 5px;
 	
 }
 
+#nickname {
+	padding-left : 5px;
+}
 #section2 ul li:nth-child(3) input {
 	display : inline-block;
 	width : 520px;
@@ -219,15 +240,19 @@ hr {
 }
 #section2 ul li:nth-child(6) div{
 	display : inline-block;
-	border-bottom : 1px solid #8A8A8A;
+	/* border-bottom : 1px solid #8A8A8A; */
 	width : 520px;
 	height: 50px;
 }
 #section2 ul li:nth-child(4) div {
 	display : inline-block;
-	border-bottom : 1px solid #8A8A8A;
+	/* border-bottom : 1px solid #8A8A8A; */
 	width : 520px;
 	height: 50px;
+}
+#revise form[name=updateForm] #aside #section2 ul li:nth-child(1) label:nth-child(2),
+#revise form[name=updateForm] #aside #section2 ul li:nth-child(2) label:nth-child(2) {
+	padding-left : 5px;
 }
 #pass_revise li {
 /* 	position : absolute;
@@ -266,9 +291,9 @@ hr {
 
 #btnSearchAddr {
 	width : 80px;
-	height : 40px;
+	height : 56px;
 	color : white;
-	background: #98DFFF;
+	/* background: #98DFFF; */
 	border : 1px solid white;
 	border-radius: 5px;
 	font-weight: 700;
@@ -934,6 +959,7 @@ textarea[name='rcontent'] {
 }
 #my_review #aside #section2 #aside4 {
 	margin-left : 615px;
+	margin-bottom : 10px;
 }
 #my_review #aside #section2 #aside4 button {
 	margin-top : 10px;
@@ -1244,7 +1270,7 @@ textarea[name='review'] {
 	background: #7AB2CC;
 	border: none;
 	border-radius: 5px;
-	margin-left : 70px;
+	margin-left : 85px;
 	margin-top : 40px;
 	width: 263px;
 	height: 65px;
@@ -1359,4 +1385,29 @@ section.review_content table.rv_detail_menu tr td span {
 	vertical-align: bottom;
 	height : 25px;
 	margin-top : 12px;
+}
+div.review_card_no {
+	/* border: 1px solid #98DFFF; */
+	/* background: #F7FCFE; */
+	border-radius: 5px;
+	width: 777px;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+div.review_card_no span {
+	/* border: 1px solid #98DFFF; */
+	display : inline-block;
+	font-size: 18px;
+	padding: 20px 0px;
+}
+#review_img {
+	width: 15%;
+	margin: auto;
+	display: block;
+	padding: 40px 0px 10px 0px;
+}
+
+#bookmark #section2 div.review_card_no {
+	margin-left : -70px;
 }

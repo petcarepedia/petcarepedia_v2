@@ -1,25 +1,25 @@
 package com.project.vo;
 
 public class SessionVo {
-	int LoginResult;
-	String id, nickname;
+	int loginResult;
+	String mid, name;
 	
 	public int getLoginResult() {
-		return LoginResult;
+		return loginResult;
 	}
 	public void setLoginResult(int loginResult) {
-		LoginResult = loginResult;
+		this.loginResult = loginResult;
 	}
-	public String getId() {
-		return id;
+	public String getMid() {
+		return mid;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setMid(String mid) {
+		this.mid = mid;
 	}
-	public String getNickname() {
-		return nickname;
+	public String getName() {
+		return name;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setName(String name) {
+		this.name = name;
 	}
 }

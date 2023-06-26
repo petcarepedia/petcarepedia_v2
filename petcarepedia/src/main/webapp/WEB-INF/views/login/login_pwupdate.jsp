@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,8 +25,15 @@
 			<form name="pwUpdateForm" action="login_pwupdate_proc.do" method="post">
 				<div class="find-box">
 					<div class="find-pw">
-						<div id="btnMenuIdFind">아이디 찾기</div>
-						<div id="btnMenuPwFind">비밀번호 재설정</div>
+						<c:choose>
+							<c:when test="${sessionScope.svo == null}">
+								<div id="btnMenuIdFind">아이디 찾기</div>
+								<div id="btnMenuPwFind">비밀번호 재설정</div>
+							</c:when>
+							<c:otherwise>
+								<div id="btnMenuPwFind" style="width:100%; border:none; border-bottom:1px solid #98dfff">비밀번호 재설정</div>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					
 					<p><span id="id_sec"></span> 계정의 비밀번호를 재설정해주세요.</p>
@@ -35,11 +43,13 @@
 						<li>
 							<label>새 비밀번호</label>
 							<input type="password" name="pass" id="pass" placeholder="8~16자리 영문, 숫자, 특수문자 조합">
+							<input type="checkbox" name="pass-see" id="psee"><p id="psee">비밀번호 보기</p>
 							<span id="pwcheck_msg"></span>
 						</li>
 						<li>
 							<label>새 비밀번호 확인</label>
 							<input type="password" name="cpass" id="cpass" placeholder="비밀번호를 다시 입력해주세요">
+							<input type="checkbox" name="cpass-see" id="cpsee"><p id="psee">비밀번호 보기</p>
 							<span id="cpwcheck_msg"></span>
 						</li>
 						<li><button type="submit" id="btnPwUpdate" class="btn-submit" disabled>비밀번호 재설정</button></li>
