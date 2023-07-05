@@ -25,62 +25,119 @@ $(document).ready(function() {
 	var firstFormattedDate = ""; // 첫 번째 날짜 함수 변수
 	
 	
-	/** 초기 날짜 표시 **/
-	function generateDates() {
-		for (var i = 0; i < dateElements.length; i++) {
-			var formattedDate = startDate.format("MM.DD(ddd)");
-			if (i === 0) {
-				firstFormattedDate = formattedDate; // 첫 번째 formattedDate 저장
-			}
-			
-			var inputElement = dateElements.eq(i).find("input");
-			inputElement.val(formattedDate);
-			
-			/** 날짜 클릭 이벤트 추가 **/
-			inputElement.on("click", function() {
-				var clickedDate = $(this).val();
-				var clickedDate2 = $(this).val();
-				
-				/* 선택된 날짜를 yyyy-mm-dd 형식으로 변환 */
-				var parsedDate = moment(clickedDate2, "MM.DD(ddd)");
-				var formattedDate2 = parsedDate.format("YYYY-MM-DD");
-				
-				/* input 값에 출력 */
-				$("#vdate").val(formattedDate2);
-				
-				/* 선택된 날짜 스타일 변경 */
-				dateElements.find("input").removeClass("selected-date");
-				$(this).addClass("selected-date");
-				
-				/* 다른 날짜 선택 시 시간 초기화 */
-				$("#vtime").val("");
-				$(".stime").removeClass("selected");
-				
-				/* 선택된 날짜 전역 변수에 저장 */
-				selectedDate = clickedDate;
-				
-				/* 오늘 날짜 선택 시 */
-				if(currentDate2 === selectedDate) {
-					for (var i = 0; i < timeSlots3.length; i++) {
-						var convertedNowTime = parseInt(nowTime);
-						var convertedTimeSlot = parseInt(timeSlots3[i]);
-						
-						if (convertedNowTime > convertedTimeSlot) {
-							$(".stime").eq(i).css("background", "#D9D9D9"); // 해당 인덱스의 요소에 css
-							$(".stime").eq(i).css("pointer-events", "none"); // 해당 인덱스의 요소에 css
-							$(".stime").eq(i).css("cursor", "not-allowed"); // 해당 인덱스의 요소에 css
-						}
-					}
-				} else {
-				$(".stime").css("background", ""); // 모든 요소의 배경색 초기화
-				$(".stime").css("pointer-events", ""); // 모든 요소의 pointer-events 초기화
-				$(".stime").css("cursor", ""); // 모든 요소의 cursor 초기화
-				}
-			});
-		
-			startDate.add(1, "days");
-		}
-	}
+	/** 초기 날짜 표시 **/										
+	function generateDates() {										
+		for (var i = 0; i < dateElements.length; i++) {									
+			var formattedDate = startDate.format("MM.DD(ddd)");								
+			if (i === 0) {								
+				firstFormattedDate = formattedDate; // 첫 번째 formattedDate 저장							
+			}								
+											
+			var inputElement = dateElements.eq(i).find("input");								
+			inputElement.val(formattedDate);								
+											
+			/** 날짜 클릭 이벤트 추가 **/								
+			inputElement.on("click", function() {								
+				/* 휴일 진료 시 */							
+				if ($("#rholiday").val() === 'O') {							
+					var clickedDate = $(this).val();						
+					var clickedDate2 = $(this).val();						
+											
+					/* 선택된 날짜를 yyyy-mm-dd 형식으로 변환 */						
+					var parsedDate = moment(clickedDate2, "MM.DD(ddd)");						
+					var formattedDate2 = parsedDate.format("YYYY-MM-DD");						
+											
+					/* input 값에 출력 */						
+					$("#vdate").val(formattedDate2);						
+											
+					/* 선택된 날짜 스타일 변경 */						
+					dateElements.find("input").removeClass("selected-date");						
+					$(this).addClass("selected-date");						
+											
+					/* 다른 날짜 선택 시 시간 초기화 */						
+					$("#vtime").val("");						
+					$(".stime").removeClass("selected");						
+											
+					/* 선택된 날짜 전역 변수에 저장 */						
+					selectedDate = clickedDate;						
+											
+					/* 오늘 날짜 선택 시 */						
+					if (currentDate2 === selectedDate) {						
+						for (var j = 0; j < timeSlots3.length; j++) {					
+							var convertedNowTime = parseInt(nowTime);				
+							var convertedTimeSlot = parseInt(timeSlots3[j]);				
+											
+							if (convertedNowTime > convertedTimeSlot) {				
+								$(".stime").eq(j).css("background", "#D9D9D9"); // 해당 인덱스의 요소에 css			
+								$(".stime").eq(j).css("pointer-events", "none"); // 해당 인덱스의 요소에 css			
+								$(".stime").eq(j).css("cursor", "not-allowed"); // 해당 인덱스의 요소에 css			
+							}				
+						}					
+					} else {						
+						$(".stime").css("background", ""); // 모든 요소의 배경색 초기화					
+						$(".stime").css("pointer-events", ""); // 모든 요소의 pointer-events 초기화					
+						$(".stime").css("cursor", ""); // 모든 요소의 cursor 초기화					
+					}						
+											
+				} else {							
+					// 휴일 진료 안할 시						
+					var clickedDate = $(this).val();						
+					var clickedDate2 = $(this).val();						
+											
+											
+					/* 선택된 날짜를 yyyy-mm-dd 형식으로 변환 */						
+					var parsedDate = moment(clickedDate2, "MM.DD(ddd)");						
+					var formattedDate2 = parsedDate.format("YYYY-MM-DD");						
+											
+					/* input 값에 출력 */						
+					$("#vdate").val(formattedDate2);						
+											
+					/* 선택된 날짜 스타일 변경 */						
+					dateElements.find("input").removeClass("selected-date");						
+					$(this).addClass("selected-date");						
+											
+					/* 다른 날짜 선택 시 시간 초기화 */						
+					$("#vtime").val("");						
+					$(".stime").removeClass("selected");						
+											
+					/* 선택된 날짜 전역 변수에 저장 */						
+					selectedDate = clickedDate;						
+											
+					/* 오늘 날짜 선택 시 */						
+					if (currentDate2 === selectedDate) {						
+											
+						for (var j = 0; j < timeSlots3.length; j++) {					
+							var convertedNowTime = parseInt(nowTime);				
+							var convertedTimeSlot = parseInt(timeSlots3[j]);				
+											
+							if (convertedNowTime > convertedTimeSlot) { // 현재시간 > 슬롯 시간				
+								$(".stime").eq(j).css("background", "#D9D9D9"); // 해당 인덱스의 요소에 css			
+								$(".stime").eq(j).css("pointer-events", "none"); // 해당 인덱스의 요소에 css			
+								$(".stime").eq(j).css("cursor", "not-allowed"); // 해당 인덱스의 요소에 css			
+							}				
+											
+						}					
+					} else { // 다른 날짜 선택 시						
+											
+						// 선택한 날짜가 토요일 또는 일요일인 경우 효과 주기					
+						if (selectedDate.endsWith('(토)') || selectedDate.endsWith('(일)')) {					
+							$(".stime").css("background", "#D9D9D9"); // 해당 인덱스의 요소에 css				
+							$(".stime").css("pointer-events", "none"); // 해당 인덱스의 요소에 css				
+							$(".stime").css("cursor", "not-allowed"); // 해당 인덱스의 요소에 css				
+						} else {					
+							$(".stime").css("background", ""); // 모든 요소의 배경색 초기화				
+							$(".stime").css("pointer-events", ""); // 모든 요소의 pointer-events 초기화				
+							$(".stime").css("cursor", ""); // 모든 요소의 cursor 초기화				
+						}					
+					}						
+											
+				}							
+			});								
+			startDate.add(1, "days");								
+											
+		}									
+	}										
+
 	
 	/* 이전 버튼 클릭 이벤트 */
 	prevButton.on("click", function() {
