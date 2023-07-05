@@ -63,6 +63,7 @@
 				<ul>
 					<li><input type="text" name="mid" id="id" placeholder="아이디"></li>
 					<li><input type="password" name="pass" id="pass" placeholder="비밀번호"></li>
+					<li><input type="checkbox" name="rememberId" id="rememberId"><span class="rememberId">아이디 기억하기</span></li>
 					<li><button type="submit" id="btnLogin" class="btn-submit" disabled>로그인</button></li>
 					<li>
 						<a href="http://localhost:9000/petcarepedia/join.do">회원가입</a>
