@@ -19,11 +19,13 @@ import com.project.service.BookingService;
 import com.project.service.BookmarkService;
 import com.project.service.HospitalService;
 import com.project.service.ReviewLikeService;
+import com.project.service.ReviewReportService;
 import com.project.service.ReviewService;
 import com.project.vo.BookingVo;
 import com.project.vo.BookmarkVo;
 import com.project.vo.HospitalVo;
 import com.project.vo.ReviewLikeVo;
+import com.project.vo.ReviewReportVo;
 import com.project.vo.ReviewVo;
 import com.project.vo.SessionVo;
 
@@ -41,6 +43,8 @@ public class SearchController {
 	private ReviewLikeService reviewLikeService;
 	@Autowired
 	private BookmarkService bookmarkService;
+	@Autowired
+	private ReviewReportService reviewReportService;
 	
 	
 	
@@ -238,21 +242,32 @@ public class SearchController {
     }
 	
 	
-	/** rstateForm.do - 신고하기 처리 **/
+	/** rstateForm.do - 신고하기 처리 -> 신고테이블 처리 **/
 	@RequestMapping(value="rstateProc.do", method=RequestMethod.POST)
 	@ResponseBody
-	public String rstateProc(String rid, @RequestParam("hid") String hid) {
-	    int rstate_result = reviewService.reviewCheckResult(rid);
+	//public String rstateProc(String rid, @RequestParam("hid") String hid, String rreson) {
+	public String rstateProc(ReviewReportVo reviewReportVo) {
+	    //int rstate_result = reviewService.reviewCheckResult(rid);
+//		int rstate_result = reviewReportService.getReviewReport(reviewReportVo);
+		reviewReportService.getReviewReport(reviewReportVo);
+//		System.out.println(reviewReportVo.getHid());
+//		System.out.println(reviewReportVo.getRid());
+//		System.out.println(reviewReportVo.getRreson());
+		
 
-	    if (rstate_result == 0) {
-	    	reviewService.getUpdateReport(rid);
-	    	return "success";
-		} else if (rstate_result == 1) {
-			return "fail";
-		}
+//	    if (rstate_result == 0) {
+//	    	//reviewService.getUpdateReport(rid);
+//	    	return "success";
+//		} else if (rstate_result == 1) {
+//			return "";
+//		}
+//	    
+//	    return "";
+		
+		return "success";
 	    
-	    return "";
 	}
+	
 	
 	
 	/** search_map.do **/
