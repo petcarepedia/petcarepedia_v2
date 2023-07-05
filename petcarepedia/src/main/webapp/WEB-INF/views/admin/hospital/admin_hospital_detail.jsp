@@ -88,7 +88,9 @@
 									<td colspan="5"> 
 										<button type="button" class="button5" id="btn_save">저장하기</button>
 										<button type="reset" class="button5">다시쓰기</button>
-										<button type="button" class="button5"><a href="http://localhost:9000/petcarepedia/admin_hospital_list.do"> 이전으로</a></button>
+										<a href="http://localhost:9000/petcarepedia/admin_hospital_list.do">
+											<button type="button" class="button5"> 이전으로</button>
+										</a>
 									</td>
 								</tr>
 							</table>

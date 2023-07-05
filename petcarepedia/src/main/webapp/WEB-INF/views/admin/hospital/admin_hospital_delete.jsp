@@ -89,9 +89,9 @@
 								<tr>
 									<td colspan="5"> 
 										<button type="submit" class="button5" id="btn_delete">삭제완료</button>
-										<button type="button" class="button5" id="btn_before">
-											<a href="admin_hospital_content.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">이전으로</a>
-										</button>
+										<a href="admin_hospital_content.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">
+											<button type="button" class="button5" id="btn_before">이전으로</button>
+										</a>
 									</td>
 								</tr>
 							</table>

@@ -78,7 +78,9 @@
 				<table class="table">
 					<tr>
 						<td colspan="5" >
-							<button type="button" class="button4"><a href="http://localhost:9000/petcarepedia/admin_hospital_detail.do">등록하기</a></button>
+							<a href="http://localhost:9000/petcarepedia/admin_hospital_detail.do">
+								<button type="button" class="button4">등록하기</button>
+							</a>
 						</td>
 					</tr>
 					<!-- <tr>

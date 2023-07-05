@@ -97,12 +97,12 @@
 								</tr>
 								<tr>
 									<td colspan="2"> 
-										<button type="button" class="button5" id="btn_content">
-											<a href="admin_hospital_update.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">수정하기</a>
-										</button>
-										<button type="button" class="button5" id="btn_delete">
-											<a href="admin_hospital_delete.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">삭제하기</a>
-										</button>
+										<a href="admin_hospital_update.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">
+											<button type="button" class="button5" id="btn_content">수정하기</button>
+										</a>
+										<a href="admin_hospital_delete.do?hid=${hospitalVo.hid}&hsfile=${hospitalVo.hsfile}">
+											<button type="button" class="button5" id="btn_delete">삭제하기</button>
+										</a>
 									</td>
 								</tr>
 							</table>
