@@ -51,6 +51,7 @@
 	    <input type="hidden" id="now" name="now" value="">
 	    <input type="hidden" id="startTime" name="startTime" value="${time.start}">
 	    <input type="hidden" id="endTime" name="endTime" value="${time.end}">
+	    <input type="hidden" id="rholiday" value="${hospital.holiday}">
 
 	    <form name="reservationForm" action="reservationProc.do" method="post">
 			<input type="hidden" name="hid" value="${hospital.hid}">
