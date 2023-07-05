@@ -390,6 +390,7 @@
 									<c:when test="${sessionScope.svo.mid != RM_select.mid}">
 										<input type="hidden" name="rid" value="${RM_select.rid}">
 										<input type="hidden" name="hid" value="${hospital.hid}">
+										<!-- <input type="text" name="rreson" value=""> -->
 										<button type="button" class="rstate" name="rstate" data-rid="${RM_select.rid}">신고하기</button>
 									</c:when>
 									
