@@ -290,6 +290,7 @@ $(document).ready(function(){
 		if($("#idcheck_msg").text() == "사용 가능한 아이디입니다."
 			&& $("#pwcheck_msg").text() == "안전한 비밀번호입니다."
 			&& $("#cpwcheck_msg").text() == "비밀번호가 일치합니다."
+			&& $("#pass").val() == $("#cpass").val()
 			&& $("#emailauthcheck_msg").text() == "이메일 인증 완료"
 			&& $("form[name='joinForm'] #name").val() != ""
 			&& $("form[name='joinForm'] #phone1").val() != "default"
@@ -320,9 +321,81 @@ $(document).ready(function(){
 	/**************
 	 * 비밀번호 재설정 - 유효성 체크
 	 */
+	 $.pwUpdatePassCheck = function(){
+		if(!reg_pw.test($("#pass").val())){
+			$("#pwcheck_msg").text("8~16자의 영문, 숫자, 특수문자로 입력하세요.").css("color","red")
+			.css("font-size","12px").css("display","block").css("clear","both")
+			.css("padding-top","5px")
+			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+		} else {
+			$.ajax({
+					url : "pass_mulcheck.do?mid="+$("form[name='pwUpdateForm'] #mid").val()+"&pass="+$("form[name='pwUpdateForm'] #pass").val(),
+					success : function(result){
+						if(result >= 1){
+							$("#pwcheck_msg").text("기존과 동일한 비밀번호로는 변경할 수 없습니다.").css("color","red")
+							.css("font-size","12px").css("display","block").css("clear","both")
+							.css("padding-top","5px")
+							.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+						}else if(result == 0){
+							$("#pwcheck_msg").text("안전한 비밀번호입니다.").css("color","#7AB2CC")
+							.css("font-size","12px").css("display","block").css("clear","both")
+							.css("padding-top","5px")
+							.prepend("<img src='http://localhost:9000/petcarepedia/images/check.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+						}
+					}
+				});
+		}
+	};
+	//비밀번호 정규식 체크
+	$("form[name='pwUpdateForm'] #pass").on({
+		keyup:function(){$.pwUpdatePassCheck();},
+		focus:function(){$.pwUpdatePassCheck();},
+		blur:function(){$.pwUpdatePassCheck();}
+	});
+	
+	$.pwUpdateCpassCheck = function(){
+		if($("#cpass").val() == $("#pass").val()){
+			if(!reg_pw.test($("#cpass").val())){
+				$("#cpwcheck_msg").text("8~16자의 영문, 숫자, 특수문자로 입력하세요.").css("color","red")
+				.css("font-size","12px").css("display","block").css("clear","both")
+				.css("padding-top","5px")
+				.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+			} else{
+				$.ajax({
+					url : "pass_mulcheck.do?mid="+$("form[name='pwUpdateForm'] #mid").val()+"&pass="+$("form[name='pwUpdateForm'] #cpass").val(),
+					success : function(result){
+						if(result >= 1){
+							$("#cpwcheck_msg").text("기존과 동일한 비밀번호로는 변경할 수 없습니다.").css("color","red")
+							.css("font-size","12px").css("display","block").css("clear","both")
+							.css("padding-top","5px")
+							.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+						}else if(result == 0){
+							$("#cpwcheck_msg").text("비밀번호가 일치합니다.").css("color","#7AB2CC")
+							.css("font-size","12px").css("display","block").css("clear","both")
+							.css("padding-top","5px")
+							.prepend("<img src='http://localhost:9000/petcarepedia/images/check.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+						}
+					}
+				});
+			}
+		} else {
+			$("#cpwcheck_msg").text("비밀번호가 일치하지 않습니다.").css("color","red")
+			.css("font-size","12px").css("display","block").css("clear","both")
+			.css("padding-top","5px")
+			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+		}
+	}
+	//비밀번호 확인 유효성 체크
+	$("form[name='pwUpdateForm'] #cpass").on({
+		keyup:function(){$.pwUpdateCpassCheck();},
+		focus:function(){$.pwUpdateCpassCheck();},
+		blur:function(){$.pwUpdateCpassCheck();}
+	});
+	
 	$.pwUpdateValidationCheck = function() {
 		if($("#pwcheck_msg").text() == "안전한 비밀번호입니다."
-			&& $("#cpwcheck_msg").text() == "비밀번호가 일치합니다."){
+			&& $("#cpwcheck_msg").text() == "비밀번호가 일치합니다."
+			&& $("#pass").val() == $("#cpass").val()){
 			$("#btnPwUpdate").attr("disabled",false);
 		} else {
 			$("#btnPwUpdate").attr("disabled",true);
@@ -338,7 +411,7 @@ $(document).ready(function(){
 	 * 아이디찾기 - 유효성 체크
 	 */
 	 //이메일 정규식 체크
-	$("form[name='idFindForm'] #email").keyup(function(){
+	$("form[name='idFindForm'] #email, form[name='pwFindForm'] #email").keyup(function(){
 		if(!reg_email.test($("#email").val())){
 			$("#emailcheck_msg").text("올바른 이메일 형식이 아닙니다.").css("color","red")
 			.css("font-size","12px").css("display","block").css("clear","both")

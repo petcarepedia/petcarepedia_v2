@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.service.MailSendService;
@@ -180,6 +181,15 @@ public class LoginController {
 	@RequestMapping(value="/login_pwupdate_success.do",method=RequestMethod.GET)
 	public String login_pwupdate_success() {
 		return "/login/login_pwupdate_success";
+	}
+	
+	/**
+	 * pass_mulcheck - 비밀번호 중복체크
+	 */
+	@RequestMapping(value="/pass_mulcheck.do",method=RequestMethod.GET,produces="text/plain;charset=UTF-8") //쿼리스트링방식이므로 -> GET
+	@ResponseBody
+	public String pass_mulcheck(String mid, String pass) {
+		return String.valueOf(memberService.getCheckPass(mid, pass));
 	}
 	
 }

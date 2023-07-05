@@ -37,7 +37,7 @@
 					</div>
 					
 					<p><span id="id_sec"></span> 계정의 비밀번호를 재설정해주세요.</p>
-					<input type="hidden" name="mid" value="${mid}">
+					<input type="hidden" name="mid" value="${mid}" id="mid">
 					
 					<ul>
 						<li>
@@ -60,7 +60,7 @@
 	</div>
 	
 	<!-- footer -->
-	<jsp:include page="../footer.jsp"></jsp:include>
+	<%-- <jsp:include page="../footer.jsp"></jsp:include> --%>
 	
 	<script>
 		let id = "${mid}";
