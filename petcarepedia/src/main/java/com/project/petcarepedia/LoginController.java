@@ -1,5 +1,7 @@
 package com.project.petcarepedia;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +35,22 @@ public class LoginController {
 	 * login_proc.do - 로그인 처리
 	 */
 	@RequestMapping(value="/login_proc.do",method=RequestMethod.POST)
-	public ModelAndView login_proc(MemberVo memberVo, HttpSession session) {
+	public ModelAndView login_proc(MemberVo memberVo, String rememberMid, HttpSession session, HttpServletResponse response) {
 		ModelAndView model = new ModelAndView();
 		SessionVo svo = memberService.getLogin(memberVo);
 		
 		if(svo != null) {
 			if(svo.getLoginResult()==1) {
 				session.setAttribute("svo",svo);
+				
+				Cookie cookie = new Cookie("user_check", svo.getMid());
+				if(rememberMid.equals("true")) {
+					response.addCookie(cookie);
+				} else {
+					cookie.setMaxAge(0);
+					response.addCookie(cookie);
+				}
+				
 				model.addObject("login_result", "success");
 				model.setViewName("redirect:/index.do");
 			}

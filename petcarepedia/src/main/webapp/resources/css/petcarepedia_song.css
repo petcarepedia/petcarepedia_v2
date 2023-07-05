@@ -526,11 +526,11 @@
 		margin:100px auto;
 	}
 	
-	#rememberId {
+	#remember_mid {
 		width:15px; height:15px;
 		margin-right:8px;
 	}
-	.rememberId {
+	#remember_mid+span {
 		font-size:14px;
 		vertical-align:top;
 		display:inline-block;
