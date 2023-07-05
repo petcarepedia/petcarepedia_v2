@@ -71,7 +71,9 @@
 		          </li>
 		        </ul>
 		        <div id="d4">
-	       	 	 <button type="button" class="button5"><a href="http://localhost:9000/petcarepedia/admin_member_list.do">이전으로</a></button>
+		       	 <a href="http://localhost:9000/petcarepedia/admin_member_list.do">
+	       	 	 	<button type="button" class="button5">이전으로</button>
+	       	 	 </a>
 		        </div>
 	      	  </form>
 	      </div>
