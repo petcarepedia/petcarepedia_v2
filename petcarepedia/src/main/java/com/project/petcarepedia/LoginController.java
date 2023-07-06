@@ -1,11 +1,14 @@
 package com.project.petcarepedia;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.service.MailSendService;
@@ -32,13 +35,22 @@ public class LoginController {
 	 * login_proc.do - 로그인 처리
 	 */
 	@RequestMapping(value="/login_proc.do",method=RequestMethod.POST)
-	public ModelAndView login_proc(MemberVo memberVo, HttpSession session) {
+	public ModelAndView login_proc(MemberVo memberVo, String rememberMid, HttpSession session, HttpServletResponse response) {
 		ModelAndView model = new ModelAndView();
 		SessionVo svo = memberService.getLogin(memberVo);
 		
 		if(svo != null) {
 			if(svo.getLoginResult()==1) {
 				session.setAttribute("svo",svo);
+				
+				Cookie cookie = new Cookie("user_check", svo.getMid());
+				if(rememberMid.equals("true")) {
+					response.addCookie(cookie);
+				} else {
+					cookie.setMaxAge(0);
+					response.addCookie(cookie);
+				}
+				
 				model.addObject("login_result", "success");
 				model.setViewName("redirect:/index.do");
 			}
@@ -180,6 +192,15 @@ public class LoginController {
 	@RequestMapping(value="/login_pwupdate_success.do",method=RequestMethod.GET)
 	public String login_pwupdate_success() {
 		return "/login/login_pwupdate_success";
+	}
+	
+	/**
+	 * pass_mulcheck - 비밀번호 중복체크
+	 */
+	@RequestMapping(value="/pass_mulcheck.do",method=RequestMethod.GET,produces="text/plain;charset=UTF-8") //쿼리스트링방식이므로 -> GET
+	@ResponseBody
+	public String pass_mulcheck(String mid, String pass) {
+		return String.valueOf(memberService.getCheckPass(mid, pass));
 	}
 	
 }

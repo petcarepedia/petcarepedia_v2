@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,6 +50,10 @@
 </script>
 </head>
 <body>
+	<c:if test="${not empty cookie.user_check}">
+		<c:set value="checked" var="checked"/>
+	</c:if>
+	
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
@@ -60,9 +65,11 @@
 			</div>
 			
 			<form name="loginForm" action="login_proc.do" method="post">
+				<input type="hidden" name="rememberMid" id="rememberMid">
 				<ul>
-					<li><input type="text" name="mid" id="id" placeholder="아이디"></li>
+					<li><input type="text" name="mid" id="id" placeholder="아이디" value="${cookie.user_check.value}"></li>
 					<li><input type="password" name="pass" id="pass" placeholder="비밀번호"></li>
+					<li><input type="checkbox" name="remember_mid" id="remember_mid" ${checked}><span>아이디 기억하기</span></li>
 					<li><button type="submit" id="btnLogin" class="btn-submit" disabled>로그인</button></li>
 					<li>
 						<a href="http://localhost:9000/petcarepedia/join.do">회원가입</a>
@@ -75,5 +82,12 @@
 	
 	<!-- footer -->
 	<jsp:include page="../footer.jsp"></jsp:include>
+	
+	<script>
+		$("#rememberMid").val($("#remember_mid").is(':checked'));
+		$("#remember_mid").click(function(){
+			$("#rememberMid").val($("#remember_mid").is(':checked'));
+		});
+	</script>
 </body>
 </html>
