@@ -35,36 +35,59 @@
 			</section>
 			<div id = "aside">
 				<section id = "section2">
-					<ul>
-						<li>
-							<label >아이디</label>
-							<label>${sessionScope.svo.mid}</label>
-						</li>
-						<li>
-							<label>성명</label>
-							<label>${memberVo.name}</label>
-						</li>
-						<li>
-							<label>별명</label>
-							<label>${memberVo.nickname}</label>
-						</li>
-						<li>
-							<label>생년월일</label>
-							<label>${memberVo.birth}</label>
-						</li>
-						<li>
-							<label>이메일</label>
-							<label>${memberVo.email}</label>
-						</li>
-						<li>
-							<label>휴대폰</label>
-							<label>${memberVo.phone}</label>
-						</li>
-						<li>
-							<label>주소</label>
-							<label>${memberVo.addr}</label>
-						</li>
-					</ul>
+					<div id = "update_info">
+						<label>프로필</label>
+					</div>
+					<div id = "profileBoxOut">
+						<div id = profileBox>
+							<img src = "http://localhost:9000/petcarepedia/images/cat.png" id = "profile">
+							<button><img src = "http://localhost:9000/petcarepedia/images/수정.png" id = "update_profile"></button>
+						</div>
+						<br>
+						<label id = "lb_id">${sessionScope.svo.mid}</label>
+						<br>
+						<label id = "lb_name">${memberVo.name}</label>
+					</div>
+					<div id = "update_info">
+						<label>선택정보</label>
+					</div>
+						<ul>
+							<%-- <li>
+								<label>아이디</label>
+								<input type = "text" value = "${sessionScope.svo.mid}" name = "mid" disabled>
+								<button><img src = "http://localhost:9000/petcarepedia/images/수정.png"></button>
+							</li>
+							<li>
+								<label>성명</label>
+								<input type = "text" value = "${memberVo.name}" name = "name" disabled>
+								<button><img src = "http://localhost:9000/petcarepedia/images/수정.png"></button>
+							</li> --%>
+							<li>
+								<label>별명</label>
+								<input type = "text" value = "${memberVo.nickname}" name = "nickname"  id = "nickname" disabled>
+								<button type = "button" id = "update_nickname"><img src = "http://localhost:9000/petcarepedia/images/편집2.png"></button>
+							</li>
+							<li>
+								<label>생년월일</label>
+								<input type = "text" value = "${memberVo.birth}" name = "birth" id = "birth" disabled>
+								<button type = "button" id = "update_birth"><img src = "http://localhost:9000/petcarepedia/images/편집2.png"></button>
+							</li>
+							<li>
+								<label>이메일</label>
+								<input type = "text" value = "${memberVo.email}" name = "eamil" id = "email" disabled>
+								<button type = "button" id = "update_email"><img src = "http://localhost:9000/petcarepedia/images/편집2.png"></button>
+							</li>
+							<li>
+								<label>휴대폰</label>
+								<input type = "text" value = "${memberVo.phone}" name = "phone" id = "phone" disabled>
+								<button type = "button" id = "update_phone"><img src = "http://localhost:9000/petcarepedia/images/편집2.png"></button>
+							</li>
+							<li>
+								<label>주소</label>
+								<input type = "text" value = "${memberVo.addr}" name = "addr" id = "addr" disabled>
+								<button type = "button" id = "update_addr"><img src = "http://localhost:9000/petcarepedia/images/편집2.png"></button>
+							</li>
+						</ul>
 				</section>
 				<section id = "section3">
 					<a href = "mypage_member_revise.do">
