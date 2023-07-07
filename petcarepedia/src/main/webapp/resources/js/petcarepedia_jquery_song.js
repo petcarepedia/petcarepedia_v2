@@ -540,10 +540,10 @@ $(document).ready(function(){
 	});
 	
 	$('#btn-screenup').click(function() {
-	    $('html, body').animate({scrollTop: '0'}, 300);
+	    window.scrollTo({top: 0, behavior:'smooth'});
 	});
 	$('#btn-screendown').click(function() {
-	    $('html, body').animate({scrollTop: $(document).height()}, 300);
+	    window.scrollTo({top: $(document).height(), behavior:'smooth'});
 	});
 	
 }); //ready
