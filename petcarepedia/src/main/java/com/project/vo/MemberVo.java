@@ -4,9 +4,27 @@ public class MemberVo {
 
 	String phone1, phone2, phone3, birth1, birth2, birth3;
 	int rno;
-	String mid, pass, name, nickname, phone, birth, email, addr, mdate;
+	String mid, pass, name, nickname, phone, birth, email, addr, mdate, grade, mfile, msfile;
 	
 	
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	public String getMfile() {
+		return mfile;
+	}
+	public void setMfile(String mfile) {
+		this.mfile = mfile;
+	}
+	public String getMsfile() {
+		return msfile;
+	}
+	public void setMsfile(String msfile) {
+		this.msfile = msfile;
+	}
 	public String getBirth1() {
 		return birth1;
 	}
