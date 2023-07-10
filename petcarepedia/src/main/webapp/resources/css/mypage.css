@@ -179,7 +179,7 @@ hr {
 #section2 ul li label:first-child span {
 	color : #FFD8D8;
 }
-#section2 ul li input:disabled{
+#section2 ul li input{
 	position : relative;
 	display : inline-block;
 	width : 513px;
