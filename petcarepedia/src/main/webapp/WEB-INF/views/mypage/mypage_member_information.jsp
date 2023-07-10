@@ -17,7 +17,6 @@
  	var count2 = 1;
  	var count3 = 1;
  	var count4 = 1;
- 	var count5 = 1;
 	function toggleImg1() {
 	 	var img1 = document.getElementById("img1");
 	 	const nickname = document.getElementById("nickname");
@@ -71,6 +70,23 @@
 	 	count4++;
 	}
 </script>
+<script>
+const autoHyphen = (target) => {
+	 target.value = target.value
+	   .replace(/[^0-9]/g, '')
+	   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+	}
+</script>
+<script>
+	$(document).ready(function(){
+		$("#file1").change(function(){
+			if(window.FileReader){
+				let fname = $(this)[0].files[0].name;
+				$("#update_file").text(fname);
+			}
+		});
+	})
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -100,6 +116,12 @@
 							<label>프로필</label>
 						</div>
 						<div id = "profileBoxOut">
+						 <input type = "hidden" name = "mfile" value = "${memberVo.mfile}">
+						<input type = "hidden" name = "msfile" value = "${memberVo.msfile}"> 
+						<input type="file" name="file1" id = "file1">
+						<%-- <c:when test = "${memberVo.mfile != null}">
+							<span id = "update_file">${bvo.bfile}</span>
+						</c:when> --%>
 							<div id = profileBox>
 								<img src = "http://localhost:9000/petcarepedia/images/cat.png" id = "profile">
 								<button type = "button"><img src = "http://localhost:9000/petcarepedia/images/수정.png" id = "update_profile"></button>
@@ -130,17 +152,23 @@
 								</li>
 								<li>
 									<label>생년월일</label>
-									<input type = "text" value = "${memberVo.birth}" name = "birth" id = "birth" disabled>
-									<button type = "button" id = "update_birth" onclick = "toggleImg2()"><img id = "img2" src = "http://localhost:9000/petcarepedia/images/편집2.png"></button>
+									<%-- <input type = "text" value = "${memberVo.birth}" name = "birth" id = "birth" disabled>  --%>
+									 <input type="date" name = "birth"
+								         id="birth"
+								         max="2023-06-20"
+								         min="1950-06-05"
+								         value="${memberVo.birth}" disabled> 
+									 <button type = "button" id = "update_birth" onclick = "toggleImg2()"><img id = "img2" src = "http://localhost:9000/petcarepedia/images/편집2.png"></button> 
 								</li>
 								<li>
 									<label>이메일</label>
-									<input type = "text" value = "${memberVo.email}" name = "eamil" id = "email" disabled>
+									<input type = "text" value = "${memberVo.email}" name = "email" id = "email" disabled>
 									<button type = "button" id = "update_email" onclick = "toggleImg3()"><img id = "img3" src = "http://localhost:9000/petcarepedia/images/편집2.png"></button>
 								</li>
 								<li>
 									<label>휴대폰</label>
-									<input type = "text" value = "${memberVo.phone}" name = "phone" id = "phone" disabled>
+									<%-- <input type = "text" value = "${memberVo.phone}" name = "phone" id = "phone" disabled>  --%>
+									<input type="text" value = "${memberVo.phone}" name = "phone" id = "phone" oninput="autoHyphen(this)" maxlength="13" placeholder="전화번호를 입력해보세요!" disabled>
 									<button type = "button" id = "update_phone" onclick = "toggleImg4()"><img id = "img4" src = "http://localhost:9000/petcarepedia/images/편집2.png"></button>
 								</li>
 								<li>

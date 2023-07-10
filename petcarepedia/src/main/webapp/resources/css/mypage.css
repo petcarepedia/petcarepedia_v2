@@ -258,6 +258,17 @@ hr {
 	top: 693px; */
 }
 
+input[type='date'] {
+	position : relative;
+}
+input[type='date']::-webkit-calendar-picker-indicator {
+	position : absolute;
+	left:100px;
+	width: 30%;
+  	height: 30%;
+	cursor: pointer;
+}
+
 /**************************************
 	mypage - revise
 **************************************/

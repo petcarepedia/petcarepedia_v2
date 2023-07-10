@@ -1,9 +1,11 @@
 package com.project.petcarepedia;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.service.BookingService;
 import com.project.service.BookmarkService;
+import com.project.service.FileServiceImpl;
 import com.project.service.MemberService;
 import com.project.service.PageServiceImpl;
 import com.project.service.ReviewService;
@@ -37,6 +40,8 @@ public class MypageController {
 	private ReviewService reviewService;
 	@Autowired
 	private PageServiceImpl pageService;
+	@Autowired
+	private FileServiceImpl fileService;
 	/*
 	 * information.do - 나의 회원정보 폼
 	 */
@@ -71,11 +76,17 @@ public class MypageController {
 	 * informatin_update_proc - 정보 수정하기 처리
 	 */
 	@RequestMapping(value = "/member_update_proc.do", method = RequestMethod.POST)
-	public String member_update_proc(MemberVo memberVo) {
+	public String member_update_proc(MemberVo memberVo, HttpServletRequest request) throws Exception{
 		String viewName = "";
+		String oldFileName = memberVo.getMsfile();
 		//MemberDao memberDao = new MemberDao();
 		int result = memberService.getUpdate(memberVo);
 		if(result == 1) {
+			if(memberVo.getMfile() != null && !memberVo.getMsfile().equals("")) {
+				 fileService.mfileSave(memberVo, request); // 새로운 파일 저장
+				 // 기존파일 삭제
+				 fileService.mfileDelete(memberVo, request, oldFileName);
+			 }
 			viewName = "redirect:/mypage_member_information.do";
 		} else {
 			//오류페이지 호출
