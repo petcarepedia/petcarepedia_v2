@@ -45,7 +45,7 @@
 										${reviewVo.rcontent}
 									</div>
 									<div>
-										<p><span style="color:red;">♥</span> ${reviewVo.rlike}</p>
+										<p><img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기" style="height:14px; display: inline-block; vertical-align: -2px;"> ${reviewVo.rlike}</p>
 										<p>${reviewVo.rdate}</p>
 									</div>
 								
