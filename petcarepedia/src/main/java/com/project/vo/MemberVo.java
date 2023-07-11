@@ -1,12 +1,20 @@
 package com.project.vo;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 public class MemberVo {
 
 	String phone1, phone2, phone3, birth1, birth2, birth3;
 	int rno;
 	String mid, pass, name, nickname, phone, birth, email, addr, mdate, grade, mfile, msfile;
+	CommonsMultipartFile file1;
 	
-	
+	public CommonsMultipartFile getFile1() {
+		return file1;
+	}
+	public void setFile1(CommonsMultipartFile file1) {
+		this.file1 = file1;
+	}
 	public String getGrade() {
 		return grade;
 	}
