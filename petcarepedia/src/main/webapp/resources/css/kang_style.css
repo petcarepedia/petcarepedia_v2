@@ -603,7 +603,7 @@ section.review_content div.review_detail div.table_right div#star {
 section.review_content div.review_detail div.table_right table {
 	font-size:15px;
 	margin-left:80px;
-	margin-top:195px;
+	margin-top:55px;
 	width:200px;
 	color:#3d3d3d;
 }
@@ -624,6 +624,14 @@ section.review_content div.review_detail div.table_right div#star div#score_l {
 }
 div#star {
 	font-size:12px;
+}
+section.review_content div.review_detail div.table_right div#imgArea {
+	margin-top:30px;
+	margin-left: 30px;
+}
+section.review_content div.review_detail div.table_right div#imgArea a img{
+	width:100px;
+	height:100px;
 }
 section.review_content div.review_detail div.table_right table td.td{
 	vertical-align:bottom;

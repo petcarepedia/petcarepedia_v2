@@ -77,15 +77,16 @@
 	</select>
 	
 	<select id="content" parameterType="String" resultType="com.project.vo.ReviewVo">
-		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
+		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname, rfile1, rsfile1, rfile2, rsfile2
 		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2
 		from pcp_review r, pcp_hospital h, pcp_member m 
 		where r.hid=h.hid and r.mid = m.mid) where rid = #{rid}
 	</select>
 	
 	<select id="enter_content" parameterType="String" resultType="com.project.vo.ReviewVo">
-		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
-		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m 
+		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname, rfile1, rsfile1, rfile2, rsfile2
+		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2
+		from pcp_review r, pcp_hospital h, pcp_member m 
 		where r.hid=h.hid and r.mid = m.mid) where rid = #{rid}
 	</select>
 	

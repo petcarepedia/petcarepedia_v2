@@ -75,14 +75,21 @@ public class MypageController {
 	 * informatin_update_proc - 정보 수정하기 처리
 	 */
 	@RequestMapping(value = "/member_update_proc.do", method = RequestMethod.POST)
-	public String member_update_proc(MemberVo memberVo) {
+	public String member_update_proc(MemberVo memberVo, HttpServletRequest request) throws Exception{
 		String viewName = "";
+		String oldFileName = memberVo.getMsfile();
 		//MemberDao memberDao = new MemberDao();
 		int result = memberService.getUpdate(memberVo);
 		if(result == 1) {
+			if(memberVo.getMfile() != null && !memberVo.getMsfile().equals("")) {
+				fileService.mfileSave(memberVo, request); // 새로운 파일 저장
+				// 기존파일 삭제
+				fileService.mfileDelete(memberVo, request, oldFileName);
+			}
 			viewName = "redirect:/mypage_member_information.do";
-		} else {
-			//오류페이지 호출
+		} 
+		else {
+		//오류페이지 호출
 		}
 		return viewName;
 	}
@@ -261,11 +268,15 @@ public class MypageController {
 	 * review_update_proc.do - 리뷰 수정하기 처리
 	 */
 	@RequestMapping(value = "/review_update_proc.do", method = RequestMethod.POST)
-	public String review_update_proc(ReviewVo reviewVo) {
+	public String review_update_proc(ReviewVo reviewVo, HttpServletRequest request) throws Exception {
+		String[] oldFileName = {reviewVo.getRsfile1(), reviewVo.getRsfile2() };	
 		String viewName = "";
+		
 		//ReviewDao reviewDao = new ReviewDao();
-		int result = reviewService.getUpdate(reviewVo);
+		int result = reviewService.getUpdate(fileService.multiFileCheck(reviewVo));
 		if(result == 1) {
+			fileService.multiFileSave(reviewVo, request);
+			fileService.multiFileDelete(reviewVo, request, oldFileName);
 			viewName = "redirect:/mypage_review_content.do?rid=" + reviewVo.getRid();
 		} else {
 			//오류페이지 호출
