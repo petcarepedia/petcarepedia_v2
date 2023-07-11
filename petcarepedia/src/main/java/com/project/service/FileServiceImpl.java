@@ -42,9 +42,9 @@ public class FileServiceImpl {
 		String attach_path = "\\resources\\upload\\";
 		
 		//파일이 존재하면 서버에 저장
-		if(memberVo.getMfile() != null && !memberVo.getMfile().equals("")) {
+		if(memberVo.getFile1().getOriginalFilename() != null && !memberVo.getFile1().getOriginalFilename().equals("")) {
 			//System.out.println("save file--->" + hospitalVo.getHfile());			
-			File saveFile = new File(root_path + attach_path+ memberVo.getMsfile());
+			File saveFile = new File(root_path + attach_path + memberVo.getMsfile());
 			
 			memberVo.getFile1().transferTo(saveFile);
 		}

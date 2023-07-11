@@ -2,9 +2,11 @@ $(document).ready(function(){
 
 
 /*******************************************************************************
-		리뷰쓰기 - 회원 정보 수정 버튼
+		리뷰쓰기 - 프로필 사진 선택
 ******************************************************************************/
-
+$("#update_profile").click(function(){
+	$("input[name='file1']").click();
+})
 
 
 
@@ -93,7 +95,17 @@ $(document).ready(function(){
 		
 	})
 
-
+	$("#nickname").keyup(function(){
+		if(!reg_nick.test($("#nickname").val())){
+			$("#nickcheck_msg").text("특수문자와 초성 및 모음 제외 2~16자로 입력하세요.").css("color","red")
+			.css("font-size","12px").css("display","block").css("clear","both")
+			.css("padding-top","5px")
+			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+			return false;
+		} else {
+			$("#nickcheck_msg").text("").css("display","none");
+		}
+	});
 
 
 /*******************************************

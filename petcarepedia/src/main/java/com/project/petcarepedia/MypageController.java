@@ -80,12 +80,12 @@ public class MypageController {
 		String viewName = "";
 		String oldFileName = memberVo.getMsfile();
 		//MemberDao memberDao = new MemberDao();
-		int result = memberService.getUpdate(memberVo);
+		int result = memberService.getUpdate(fileService.mfileCheck(memberVo));
 		if(result == 1) {
-			if(memberVo.getMfile() != null && !memberVo.getMsfile().equals("")) {
-				 fileService.mfileSave(memberVo, request); // 货肺款 颇老 历厘
+			if(memberVo.getMfile() != null) {
 				 // 扁粮颇老 昏力
 				 fileService.mfileDelete(memberVo, request, oldFileName);
+				 fileService.mfileSave(memberVo, request); // 货肺款 颇老 历厘
 			 }
 			viewName = "redirect:/mypage_member_information.do";
 		} else {
