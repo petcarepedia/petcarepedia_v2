@@ -66,7 +66,7 @@
 						<li>
 							<a href="http://localhost:9000/petcarepedia/notice.do">위치기반서비스 이용약관</a>
 						</li>
-						<c:if test="${sessionScope.svo.mid == 'admin'}">
+						<c:if test="${sessionScope.svo.grade == 'admin'}">
 							<li>
 								<a href="http://localhost:9000/petcarepedia/admin_hospital_list.do"
 								style="color:#7AB2CC; font-weight:bold">관리자</a>

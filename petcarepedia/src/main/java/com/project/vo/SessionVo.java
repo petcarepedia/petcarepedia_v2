@@ -2,8 +2,15 @@ package com.project.vo;
 
 public class SessionVo {
 	int loginResult;
-	String mid, name;
+	String mid, name, grade;
 	
+	
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
 	public int getLoginResult() {
 		return loginResult;
 	}

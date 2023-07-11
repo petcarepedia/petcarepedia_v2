@@ -51,7 +51,8 @@
 							<c:when test="${reviewVo.mid eq sessionScope.svo.mid || sessionScope.svo.mid eq '' || sessionScope.svo.mid eq null}">
 								<button type="button" id="btnLike" disabled>
 									<span class="review_like">
-										♥️
+										<!-- ♥️ -->
+										<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기" style="height:14px; display: inline-block; vertical-align: -2px;">
 									</span>
 									${reviewVo.rlike }
 								</button>
@@ -65,12 +66,14 @@
 										<c:choose>
 											<c:when test="${likeCheck eq 1 }">
 												<span class="review_like">
-													♥️
+													<!-- ♥️ -->
+													<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기" style="height:14px; display: inline-block; vertical-align: -2px;">
 												</span>
 											</c:when>
 											<c:otherwise>
 												<span class="review_like">
-													♡
+													<!-- ♡ -->
+													<img src="https://cdn-icons-png.flaticon.com/512/812/812327.png" alt="찜하기" style="height:14px; display: inline-block; vertical-align: -2px;">
 												</span>
 											</c:otherwise>
 										</c:choose>

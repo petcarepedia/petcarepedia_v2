@@ -1,5 +1,6 @@
 package com.project.petcarepedia;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,17 +60,17 @@ public class MypageController {
 	/*
 	 * revise.do - 회원정보 수정하기 폼
 	 */
-	@RequestMapping(value = "/mypage_member_revise.do", method = RequestMethod.GET)
-	public ModelAndView revise(HttpSession session) {
-		//HttpSession session = request.getSession();
-		SessionVo svo = (SessionVo)session.getAttribute("svo");
-		ModelAndView model = new ModelAndView();
-		//MemberDao memberDao = new MemberDao();
-		MemberVo memberVo = memberService.getSelect(svo.getMid());
-		model.addObject("memberVo", memberVo);
-		model.setViewName("/mypage/mypage_member_revise");
-		return model;
-	}
+//	@RequestMapping(value = "/mypage_member_revise.do", method = RequestMethod.GET)
+//	public ModelAndView revise(HttpSession session) {
+//		//HttpSession session = request.getSession();
+//		SessionVo svo = (SessionVo)session.getAttribute("svo");
+//		ModelAndView model = new ModelAndView();
+//		//MemberDao memberDao = new MemberDao();
+//		MemberVo memberVo = memberService.getSelect(svo.getMid());
+//		model.addObject("memberVo", memberVo);
+//		model.setViewName("/mypage/mypage_member_revise");
+//		return model;
+//	}
 	
 	/*
 	 * informatin_update_proc - 정보 수정하기 처리

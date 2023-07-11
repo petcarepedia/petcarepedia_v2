@@ -129,7 +129,8 @@
 								<div>
 									도움이 되었어요
 									<span>
-										♥️
+										<!-- ♥️ -->
+										<img src="https://cdn-icons-png.flaticon.com/512/803/803087.png" alt="찜하기" style="height:14px; display: inline-block; vertical-align: -2px;"> 
 									</span>
 									${list.rlike }
 								</div>
