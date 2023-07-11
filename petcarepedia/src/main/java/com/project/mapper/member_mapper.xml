@@ -8,15 +8,16 @@
 
 	<insert id="join" parameterType="com.project.vo.MemberVo">
 		INSERT 
-			INTO PCP_MEMBER(mid,pass,name,nickname,phone,birth,email,addr,mdate) 
-			VALUES(#{mid},#{pass},#{name},#{nickname},#{phone},#{birth, jdbcType=VARCHAR},#{email, jdbcType=VARCHAR},#{addr, jdbcType=VARCHAR},SYSDATE)
+			INTO PCP_MEMBER(mid,pass,name,nickname,phone,birth,email,addr,mdate,grade) 
+			VALUES(#{mid},#{pass},#{name},#{nickname},#{phone},#{birth, jdbcType=VARCHAR},
+			#{email, jdbcType=VARCHAR},#{addr, jdbcType=VARCHAR},SYSDATE,#{grade})
 	</insert>
 	
 	<select id="login" parameterType="com.project.vo.MemberVo" resultType="com.project.vo.SessionVo">
-		select count(*) loginResult, mid, name
+		select count(*) loginResult, mid, name, grade
 		from pcp_member 
 		where mid=#{mid} and pass=#{pass}
-		group by mid, name
+		group by mid, name, grade
 	</select>
 	
 	<delete id="delete" parameterType="map">
@@ -26,8 +27,8 @@
 	<select id="list" resultType="com.project.vo.MemberVo">
 		select rownum rno,mid,pass,name,nickname,phone,
 				to_char(to_date(birth),'yyyy-mm-dd') birth,email,addr,
-				to_char(mdate,'yyyy-mm-dd') mdate 
-		from (select mid,pass,name,nickname,phone,birth,email,addr,mdate 
+				to_char(mdate,'yyyy-mm-dd') mdate,grade 
+		from (select mid,pass,name,nickname,phone,birth,email,addr,mdate,grade 
 				from pcp_member 
 				order by mdate)
 	</select>
@@ -36,8 +37,8 @@
 		select rno,mid,pass,name,nickname,phone,birth,email,addr,mdate 
 		from (select rownum rno,mid,pass,name,nickname,phone,
 				to_char(to_date(birth),'yyyy-mm-dd') birth,email,addr,
-				to_char(mdate,'yyyy-mm-dd') mdate 
-				from (select mid,pass,name,nickname,phone,birth,email,addr,mdate 
+				to_char(mdate,'yyyy-mm-dd') mdate,grade
+				from (select mid,pass,name,nickname,phone,birth,email,addr,mdate,grade
 						from pcp_member 
 						order by mdate))
 		where rno between #{start} and #{end}
@@ -45,7 +46,7 @@
 	
 	<select id="content" parameterType="string" resultType="com.project.vo.MemberVo">
 		select mid,pass,name,nickname,phone,to_char(to_date(birth),'yyyy-mm-dd') birth,
-				email,addr,to_char(mdate,'yyyy-mm-dd') mdate, mfile, msfile  
+				email,addr,to_char(mdate,'yyyy-mm-dd') mdate,grade,mfile,msfile
 		from pcp_member
 		where mid=#{mid}
 	</select>
@@ -60,7 +61,9 @@
 	
 	<update id="update" parameterType="com.project.vo.MemberVo">
 		update pcp_member
-		set nickname=#{nickname},phone=#{phone},birth=#{birth, jdbcType=VARCHAR},email=#{email, jdbcType=VARCHAR},addr=#{addr, jdbcType=VARCHAR}
+		set nickname=#{nickname},phone=#{phone},birth=#{birth, jdbcType=VARCHAR},
+			email=#{email, jdbcType=VARCHAR},addr=#{addr, jdbcType=VARCHAR},
+			grade=#{grade},mfile=#{mfile, jdbcType=VARCHAR},msfile=#{msfile, jdbcType=VARCHAR}
 		where mid=#{mid}
 	</update>
 	

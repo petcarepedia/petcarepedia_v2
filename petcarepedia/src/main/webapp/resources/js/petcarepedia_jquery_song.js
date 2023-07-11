@@ -540,11 +540,78 @@ $(document).ready(function(){
 	});
 	
 	$('#btn-screenup').click(function() {
-	    $('html, body').animate({scrollTop: '0'}, 300);
+	    window.scrollTo({top: 0, behavior:'smooth'});
 	});
 	$('#btn-screendown').click(function() {
-	    $('html, body').animate({scrollTop: $(document).height()}, 300);
+	    window.scrollTo({top: $(document).height(), behavior:'smooth'});
 	});
+	
+	
+	/**
+	*회원가입 step1
+	*/
+	//mouseover
+	$("#user").mouseover(function(){
+		$("#user").css({
+			"background":"#98dfff",
+			"margin": "-20px 20px 0 0",
+			"transition": "background 1s, margin 1s"
+		})
+		$("#user > i,#user >h1,#user >p").css({
+			"color":"white",
+			"transition": "color 1s"
+		})
+	});
+	$("#user").mouseleave(function(){
+		$("#user").css({
+			"background":"white",
+			"margin": "0",
+			"transition": "background 1s, margin 1s"
+		})
+		$("#user > i").css({
+			"color":"#98dfff",
+			"transition": "color 1s"
+		})
+		$("#user >h1,#user >p").css({
+			"color":"#636363",
+			"transition": "color 1s"
+		})
+	});
+	
+	$("#manager").mouseover(function(){
+		$("#manager").css({
+			"background":"#FFB3BD",
+			"margin": "60px 0 0 20px",
+			"transition": "background 1s, margin 1s"
+		})
+		$("#manager > i,#manager >h1,#manager >p").css({
+			"color":"white",
+			"transition": "color 1s"
+		})
+	});
+	$("#manager").mouseleave(function(){
+		$("#manager").css({
+			"background":"white",
+			"margin": "40px 0 0 0",
+			"transition": "background 1s, margin 1s"
+		})
+		$("#manager > i").css({
+			"color":"#FFB3BD",
+			"transition": "color 1s"
+		})
+		$("#manager >h1,#manager >p").css({
+			"color":"#636363",
+			"transition": "color 1s"
+		})
+	});
+	
+	//click이벤트
+	$("#user").click(function(){
+		location.href = "join_step2.do?grade=user";
+	})
+	$("#manager").click(function(){
+		location.href = "join_step2.do?grade=manager";
+	})
 	
 }); //ready
 
