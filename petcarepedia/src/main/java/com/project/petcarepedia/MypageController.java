@@ -76,17 +76,11 @@ public class MypageController {
 	 * informatin_update_proc - 정보 수정하기 처리
 	 */
 	@RequestMapping(value = "/member_update_proc.do", method = RequestMethod.POST)
-	public String member_update_proc(MemberVo memberVo, HttpServletRequest request) throws Exception{
+	public String member_update_proc(MemberVo memberVo) {
 		String viewName = "";
-		String oldFileName = memberVo.getMsfile();
 		//MemberDao memberDao = new MemberDao();
-		int result = memberService.getUpdate(fileService.mfileCheck(memberVo));
+		int result = memberService.getUpdate(memberVo);
 		if(result == 1) {
-			if(memberVo.getMfile() != null) {
-				 // 기존파일 삭제
-				 fileService.mfileDelete(memberVo, request, oldFileName);
-				 fileService.mfileSave(memberVo, request); // 새로운 파일 저장
-			 }
 			viewName = "redirect:/mypage_member_information.do";
 		} else {
 			//오류페이지 호출

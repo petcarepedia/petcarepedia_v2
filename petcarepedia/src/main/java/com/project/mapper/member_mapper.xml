@@ -60,8 +60,7 @@
 	
 	<update id="update" parameterType="com.project.vo.MemberVo">
 		update pcp_member
-		set nickname=#{nickname},phone=#{phone},birth=#{birth, jdbcType=VARCHAR},email=#{email, jdbcType=VARCHAR},addr=#{addr, jdbcType=VARCHAR},
-		mfile=#{mfile, jdbcType=VARCHAR}, msfile=#{msfile,jdbcType=VARCHAR} 
+		set nickname=#{nickname},phone=#{phone},birth=#{birth, jdbcType=VARCHAR},email=#{email, jdbcType=VARCHAR},addr=#{addr, jdbcType=VARCHAR}
 		where mid=#{mid}
 	</update>
 	
