@@ -6,6 +6,14 @@
     
 <mapper namespace="mapper.page">
 	
+	<select id = "Mylist" parameterType = "map" resultType = "com.project.vo.ReviewVo">
+			select rno, hid, hname, nickname, tel, gloc, rcontent, rid, bid, img, hsfile
+				 from (select rownum rno, hid, hname, nickname, tel, gloc, rcontent, rid, bid, img, hsfile
+				 	from (select h.hid, h.hname, m.nickname, h.tel, h.gloc, r.rcontent, rid, r.bid, h.img, h.hsfile from pcp_review r, pcp_member m, pcp_hospital h, pcp_booking b
+				 where r.mid = m.mid and h.hid = r.hid and b.bid = r.bid and r.mid = #{mid} order by r.rid desc))
+				 where rno between #{start} AND #{end}
+	
+	</select>
 	
 	<select id = "Rlist" parameterType="map" resultType="com.project.vo.ReviewVo">	
 		select rno, rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname
@@ -104,5 +112,13 @@
 	
 	<select id="Hcount" resultType="int">
 		select count(*) from pcp_hospital
+	</select>
+	
+	<select id = "Myscount" parameterType = "String" resultType = "int">
+		select count(*) from pcp_review where mid = #{mid}
+	</select>
+	
+	<select id = "Mycount" resultType = "int">
+		select count(*) from pcp_review
 	</select>
 </mapper>
