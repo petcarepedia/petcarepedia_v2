@@ -788,15 +788,15 @@ textarea[name='rcontent'] {
 #review_write #aside input[type=radio]{
     display: none;
 }
-#review_write #aside label{
+#review_write #aside label.slabel{
     font-size: 3em;
     color: transparent;
     text-shadow: 0 0 0 #f0f0f0;
 }
-#review_write #aside label:hover{
+#review_write #aside label.slabel:hover{
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
-#review_write #aside label:hover ~ label{
+#review_write #aside label.slabel:hover ~ label.slabel{
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
 #review_write #aside input[type=radio]:checked ~ label{
@@ -1411,3 +1411,4 @@ div.review_card_no span {
 #bookmark #section2 div.review_card_no {
 	margin-left : -70px;
 }
+

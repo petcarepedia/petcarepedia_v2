@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.service.BookingService;
 import com.project.service.BookmarkService;
+import com.project.service.FileServiceImpl;
 import com.project.service.MemberService;
 import com.project.service.PageServiceImpl;
 import com.project.service.ReviewService;
@@ -37,6 +39,8 @@ public class MypageController {
 	private ReviewService reviewService;
 	@Autowired
 	private PageServiceImpl pageService;
+	@Autowired
+	private FileServiceImpl fileService;
 	/*
 	 * information.do - 나의 회원정보 폼
 	 */
@@ -286,11 +290,13 @@ public class MypageController {
 	 * my_review_delete_proc.do.do - 내가 쓴 리뷰 삭제하기 처리
 	 */
 	@RequestMapping(value = "/my_review_delete_proc.do", method = RequestMethod.POST)
-	public String my_review_delete_proc(String rid) {
+	public String my_review_delete_proc(ReviewVo reviewVo, HttpServletRequest request) throws Exception {
 		String viewName = "";
 		//ReviewDao reviewDao = new ReviewDao();
-		int result = reviewService.getDelete(rid);
+		int result = reviewService.getDelete(reviewVo.getRid());
+		String[] oldFileName = {reviewVo.getRsfile1(),reviewVo.getRsfile2()};
 		if(result == 1) {
+			fileService.multiFileDelete(request, oldFileName);
 			viewName = "redirect:/mypage_my_review.do";
 		}
 		return viewName;
@@ -320,11 +326,14 @@ public class MypageController {
 	 *  review_write_proc.do - 리뷰 쓰기처리
 	 */
 	@RequestMapping(value = "/review_write_proc.do", method = RequestMethod.POST)
-	public String review_write_proc(ReviewVo reviewVo) {
+	public String review_write_proc(ReviewVo reviewVo, HttpServletRequest request) throws Exception {
 		String viewName = "";
 		//ReviewDao reviewDao = new ReviewDao();
-		int result = reviewService.getInsert(reviewVo);
+		int result = reviewService.getInsert(fileService.multiFileCheck(reviewVo));
 		if(result == 1) {
+			if(!reviewVo.getFiles()[0].getOriginalFilename().equals("")) {
+				fileService.multiFileSave(reviewVo, request);
+			}
 			viewName = "redirect:/mypage_my_review.do";
 		} else {
 			

@@ -1,14 +1,22 @@
 package com.project.vo;
 
+import java.util.ArrayList;
+
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 /**
  * @author tj
  *
  */
 public class ReviewVo {
 	// 리뷰에서 필요한 Vo
-	String rid, rcontent, rdate, rstate, hid, mid, hname, animal, gloc;
+	String rid, rcontent, rdate, rstate, hid, mid, hname, animal, gloc, rfile1, rsfile1, rfile2, rsfile2;
 	int rlike, rno, likeresult;
 	float rstar;
+	CommonsMultipartFile[] files;
+	ArrayList<String> rfiles = new ArrayList<String>();
+	ArrayList<String> rsfiles = new ArrayList<String>();
+	
 	//병원과 조인 Vo
 	String loc, tel, htime, ntime, holiday, intro, img, hrink;
 	// 내가 쓴 리뷰
@@ -19,6 +27,50 @@ public class ReviewVo {
 	
 	
 
+	public String getRfile1() {
+		return rfile1;
+	}
+	public void setRfile1(String rfile1) {
+		this.rfile1 = rfile1;
+	}
+	public String getRsfile1() {
+		return rsfile1;
+	}
+	public void setRsfile1(String rsfile1) {
+		this.rsfile1 = rsfile1;
+	}
+	public String getRfile2() {
+		return rfile2;
+	}
+	public void setRfile2(String rfile2) {
+		this.rfile2 = rfile2;
+	}
+	public String getRsfile2() {
+		return rsfile2;
+	}
+	public void setRsfile2(String rsfile2) {
+		this.rsfile2 = rsfile2;
+	}
+	public CommonsMultipartFile[] getFiles() {
+		return files;
+	}
+	public void setFiles(CommonsMultipartFile[] files) {
+		this.files = files;
+	}
+	public ArrayList<String> getRfiles() {
+		return rfiles;
+	}
+	public void setRfiles(ArrayList<String> rfiles) {
+		this.rfiles = rfiles;
+	}
+	public ArrayList<String> getRsfiles() {
+		return rsfiles;
+	}
+	public void setRsfiles(ArrayList<String> rsfiles) {
+		this.rsfiles = rsfiles;
+	}
+	
+	
 	public String getHsfile() {
 		return hsfile;
 	}

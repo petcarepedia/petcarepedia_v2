@@ -6,11 +6,109 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.project.vo.HospitalVo;
+import com.project.vo.ReviewVo;
 
 @Service("fileService")
 public class FileServiceImpl {
+	
+	/*
+	 * multiFileDelete - 리뷰 삭제시 파일 삭제
+	 */
+	public void multiFileDelete(HttpServletRequest request, String[] oldFileName) throws Exception{
+	//파일의 삭제위치
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+		String attach_path = "\\resources\\upload\\";
+	
+		int count = 0;
+		for(String list : oldFileName) {
+			if(!list.equals("")) {
+				File deleteFile = new File(root_path + attach_path+ oldFileName[count]);
+				System.out.println(root_path + attach_path+ oldFileName[count]);			
+				if(deleteFile.exists()) {
+					deleteFile.delete();
+				}
+			}
+			count++;
+		}
+	}	
+	
+	/*
+	 * multiFileDelete - 리뷰 수정시 삭제
+	 */
+	public void multiFileDelete(ReviewVo reviewVo, HttpServletRequest request, String[] oldFileName) throws Exception{
+	//파일의 삭제위치
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+		String attach_path = "\\resources\\upload\\";
+		
+		int count = 0;
+		for(CommonsMultipartFile file : reviewVo.getFiles()) {
+			if(!file.getOriginalFilename().equals("")) { //새로운 파일 선택
+				File deleteFile = new File(root_path + attach_path+ oldFileName[count]);
+				System.out.println(root_path + attach_path+ oldFileName[count]);			
+				if(deleteFile.exists()) {
+					deleteFile.delete();
+				}
+			}
+			count++;
+		}
+	}
+	
+	/*
+	 * multiFileSave - 리뷰 저장
+	 */
+	public void multiFileSave(ReviewVo reviewVo, HttpServletRequest request) throws Exception {
+		
+		//파일의 저장위치
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+		String attach_path = "\\resources\\upload\\";
+		int count = 0;
+		System.out.println(root_path + attach_path);
+		for(CommonsMultipartFile file : reviewVo.getFiles()) {
+			//파일이 존재하면 서버에 저장
+			if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
+				File saveFile = new File(root_path + attach_path+ reviewVo.getRsfiles().get(count));
+				file.transferTo(saveFile);
+			}
+			count++;
+		}
+	}
+	/*
+	 * multiFileCheck - 파일 체크
+	 */
+	public ReviewVo multiFileCheck(ReviewVo reviewVo) {
+		String[] nfile = {reviewVo.getRfile1(), reviewVo.getRfile2()};
+		String[] nsfile = {reviewVo.getRsfile1(), reviewVo.getRsfile2()};
+		int count = 0;
+		for(CommonsMultipartFile file : reviewVo.getFiles()) {
+			if(!file.getOriginalFilename().equals("")) {
+				//파일이 있음
+				UUID uuid = UUID.randomUUID();
+				reviewVo.getRfiles().add(file.getOriginalFilename());
+				reviewVo.getRsfiles().add(uuid+"_"+file.getOriginalFilename());
+			}
+			else {
+				//파일이 없음
+				reviewVo.getRfiles().add(nfile[count]);
+				reviewVo.getRsfiles().add(nsfile[count]);
+			}
+			count++;
+		}
+		reviewVo.setRfile1(reviewVo.getRfiles().get(0));
+		reviewVo.setRsfile1(reviewVo.getRsfiles().get(0));
+		reviewVo.setRfile2(reviewVo.getRfiles().get(1));
+		reviewVo.setRsfile2(reviewVo.getRsfiles().get(1));
+		
+		
+		return reviewVo;
+	}	
+
+	
+	
+	
+	
 	
 	/**
 	 * fileDelete- 파일 삭제 기능

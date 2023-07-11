@@ -78,7 +78,8 @@
 	
 	<select id="content" parameterType="String" resultType="com.project.vo.ReviewVo">
 		select rownum rno, rid, rcontent, to_char(rdate,'yyyy-mm-dd') rdate, rlike, rstar, rstate, mid, hid, hname, animal, gloc, nickname 
-		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname from pcp_review r, pcp_hospital h, pcp_member m 
+		from (select r.rid, r.rcontent, r.rdate, r.rlike, r.rstar, r.rstate, r.mid, r.hid, h.hname, h.animal, h.gloc, m.nickname, r.rfile1, r.rsfile1, r.rfile2, r.rsfile2
+		from pcp_review r, pcp_hospital h, pcp_member m 
 		where r.hid=h.hid and r.mid = m.mid) where rid = #{rid}
 	</select>
 	
@@ -89,12 +90,12 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.project.vo.ReviewVo">
-		insert into pcp_review(rid, rcontent, rdate, rlike, rstar, rstate, mid, hid,bid )
-		values('R_'||ltrim(to_char(sequ_pcp_review_rid.nextval,'0000')),#{rcontent},sysdate,0,#{rstar},'X',#{mid},#{hid},#{bid})
+		insert into pcp_review(rid, rcontent, rdate, rlike, rstar, rstate, mid, hid, bid, rfile1, rsfile1, rfile2, rsfile2 )
+		values('R_'||ltrim(to_char(sequ_pcp_review_rid.nextval,'0000')),#{rcontent},sysdate,0,#{rstar},'X',#{mid},#{hid},#{bid},#{rfile1},#{rsfile1},#{rfile2},#{rsfile2})
 	</insert>
 	
 	<update id="update" parameterType="com.project.vo.ReviewVo">
-		update pcp_review set rcontent=#{rcontent}, rstar=#{rstar} where rid=#{rid}
+		update pcp_review set rcontent=#{rcontent}, rstar=#{rstar}, rfile1=#{rfile1}, rfile2=#{rfile2}, rsfile1=#{rsfile1}, rsfile2=#{rsfile2}  where rid=#{rid}
 	</update>
 	
 	<update id="report" parameterType="String">
