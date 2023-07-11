@@ -12,33 +12,8 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://kit.fontawesome.com/4ed285928f.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
-<script>
-$(document).ready(function(){
-	$('#loading').hide(); //첫 시작시 로딩바를 숨겨준다.
-})
-.ajaxStart(function(){
-	$('#loading').show(); //ajax실행시 로딩바를 보여준다.
-})
-.ajaxStop(function(){
-	$('#loading').hide(); //ajax종료시 로딩바를 숨겨준다.
-});
-</script>
 </head>
 <body>
-	<div class="back"></div>
-	<div class="term-box">
-		<div class="term-modal">
-			<div class="title">
-				
-			</div>
-			<div class="term-btn">
-				<button class="btn-yes" id="btnModalAgree">동의</button>
-				<button class="btn-no" id="btnModalClose">닫기</button>
-			</div>
-		</div>
-	</div>
-	<img src="http://localhost:9000/petcarepedia/images/loading.gif" id="loading">
-	
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
