@@ -118,6 +118,9 @@ hr {
 	margin-bottom : 5px;
 	background : #EFF5FB;
 }
+#file1 {
+	 display : none;
+}
 #update_profile {
 	position : absolute;
 	width : 30px;
@@ -254,8 +257,20 @@ hr {
 	line-height: 18px;
 	margin-top : 35px;
 	margin-left : 202px;
+	margin-bottom : 100px;
 /* 	left: 782px;
 	top: 693px; */
+}
+
+input[type='date'] {
+	position : relative;
+}
+input[type='date']::-webkit-calendar-picker-indicator {
+	position : absolute;
+	left:100px;
+	width: 30%;
+  	height: 30%;
+	cursor: pointer;
 }
 
 /**************************************

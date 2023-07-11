@@ -45,7 +45,7 @@
 	
 	<select id="content" parameterType="string" resultType="com.project.vo.MemberVo">
 		select mid,pass,name,nickname,phone,to_char(to_date(birth),'yyyy-mm-dd') birth,
-				email,addr,to_char(mdate,'yyyy-mm-dd') mdate 
+				email,addr,to_char(mdate,'yyyy-mm-dd') mdate, mfile, msfile  
 		from pcp_member
 		where mid=#{mid}
 	</select>
@@ -60,7 +60,7 @@
 	
 	<update id="update" parameterType="com.project.vo.MemberVo">
 		update pcp_member
-		set nickname=#{nickname},phone=#{phone},birth=#{birth, jdbcType=VARCHAR},email=#{email, jdbcType=VARCHAR},addr=#{addr, jdbcType=VARCHAR} 
+		set nickname=#{nickname},phone=#{phone},birth=#{birth, jdbcType=VARCHAR},email=#{email, jdbcType=VARCHAR},addr=#{addr, jdbcType=VARCHAR}
 		where mid=#{mid}
 	</update>
 	

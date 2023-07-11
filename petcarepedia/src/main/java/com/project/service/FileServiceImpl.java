@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
 import com.project.vo.HospitalVo;
+import com.project.vo.MemberVo;
 
 @Service("fileService")
 public class FileServiceImpl {
+	
 	
 	/**
 	 * fileDelete- 파일 삭제 기능

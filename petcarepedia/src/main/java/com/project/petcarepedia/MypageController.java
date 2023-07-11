@@ -1,9 +1,11 @@
 package com.project.petcarepedia;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.service.BookingService;
 import com.project.service.BookmarkService;
+import com.project.service.FileServiceImpl;
 import com.project.service.MemberService;
 import com.project.service.PageServiceImpl;
 import com.project.service.ReviewService;
@@ -37,6 +40,8 @@ public class MypageController {
 	private ReviewService reviewService;
 	@Autowired
 	private PageServiceImpl pageService;
+	@Autowired
+	private FileServiceImpl fileService;
 	/*
 	 * information.do - 나의 회원정보 폼
 	 */
