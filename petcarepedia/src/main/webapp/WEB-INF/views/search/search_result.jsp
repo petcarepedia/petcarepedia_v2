@@ -22,7 +22,7 @@
 	
 	<script>
 		Kakao.init('8e977bf42a12bf9762111f31b4017078');
-		console.log(Kakao.isInitialized());
+		/* console.log(Kakao.isInitialized()); */
 	</script>
 </head>
 
@@ -257,6 +257,7 @@
 							<div class="review_card">
 								<div class="member">
 									<div class="name">
+										<!-- if문으로 등록된 이미지 없을 시 해당 이미지로 출력되게 하기 -->
 										<img src="http://localhost:9000/petcarepedia/images/cat.png">
 										<span>${RM_select.nickname}</span>
 									</div>
