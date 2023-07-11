@@ -6,16 +6,118 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.project.vo.HospitalVo;
 import com.project.vo.MemberVo;
 
+import com.project.vo.ReviewVo;
+
+
 @Service("fileService")
 public class FileServiceImpl {
+	////////////////////////////Review///////////////////////////////////////
+	
+
+	/*
+	 * multiFileDelete - ë¦¬ë·° ì‚­ì œì‹œ íŒŒì¼ ì‚­ì œ
+	 */
+	public void multiFileDelete(HttpServletRequest request, String[] oldFileName) throws Exception{
+	//íŒŒì¼ì˜ ì‚­ì œìœ„ì¹˜
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+		String attach_path = "\\resources\\upload\\";
+	
+		int count = 0;
+		for(String list : oldFileName) {
+			if(!list.equals("")) {
+				File deleteFile = new File(root_path + attach_path+ oldFileName[count]);
+				System.out.println(root_path + attach_path+ oldFileName[count]);			
+				if(deleteFile.exists()) {
+					deleteFile.delete();
+				}
+			}
+			count++;
+		}
+	}	
+	
+	/*
+	 * multiFileDelete - ë¦¬ë·° ìˆ˜ì •ì‹œ ì‚­ì œ
+	 */
+	public void multiFileDelete(ReviewVo reviewVo, HttpServletRequest request, String[] oldFileName) throws Exception{
+	//íŒŒì¼ì˜ ì‚­ì œìœ„ì¹˜
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+		String attach_path = "\\resources\\upload\\";
+		
+		int count = 0;
+		for(CommonsMultipartFile file : reviewVo.getFiles()) {
+			if(!file.getOriginalFilename().equals("")) { //ìƒˆë¡œìš´ íŒŒì¼ ì„ íƒ
+				File deleteFile = new File(root_path + attach_path+ oldFileName[count]);
+				System.out.println(root_path + attach_path+ oldFileName[count]);			
+				if(deleteFile.exists()) {
+					deleteFile.delete();
+				}
+			}
+			count++;
+		}
+	}
+	
+	/*
+	 * multiFileSave - ë¦¬ë·° ì €ì¥
+	 */
+	public void multiFileSave(ReviewVo reviewVo, HttpServletRequest request) throws Exception {
+		
+		//íŒŒì¼ì˜ ì €ì¥ìœ„ì¹˜
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+		String attach_path = "\\resources\\upload\\";
+		int count = 0;
+		System.out.println(root_path + attach_path);
+		for(CommonsMultipartFile file : reviewVo.getFiles()) {
+			//íŒŒì¼ì´ ì¡´ì¬í•˜ë©´ ì„œë²„ì— ì €ì¥
+			if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
+				File saveFile = new File(root_path + attach_path+ reviewVo.getRsfiles().get(count));
+				file.transferTo(saveFile);
+			}
+			count++;
+		}
+	}
+	/*
+	 * multiFileCheck - íŒŒì¼ ì²´í¬
+	 */
+	public ReviewVo multiFileCheck(ReviewVo reviewVo) {
+		String[] nfile = {reviewVo.getRfile1(), reviewVo.getRfile2()};
+		String[] nsfile = {reviewVo.getRsfile1(), reviewVo.getRsfile2()};
+		int count = 0;
+		for(CommonsMultipartFile file : reviewVo.getFiles()) {
+			if(!file.getOriginalFilename().equals("")) {
+				//íŒŒì¼ì´ ìˆìŒ
+				UUID uuid = UUID.randomUUID();
+				reviewVo.getRfiles().add(file.getOriginalFilename());
+				reviewVo.getRsfiles().add(uuid+"_"+file.getOriginalFilename());
+			}
+			else {
+				//íŒŒì¼ì´ ì—†ìŒ
+				reviewVo.getRfiles().add(nfile[count]);
+				reviewVo.getRsfiles().add(nsfile[count]);
+			}
+			count++;
+		}
+		reviewVo.setRfile1(reviewVo.getRfiles().get(0));
+		reviewVo.setRsfile1(reviewVo.getRsfiles().get(0));
+		reviewVo.setRfile2(reviewVo.getRfiles().get(1));
+		reviewVo.setRsfile2(reviewVo.getRsfiles().get(1));
+		
+		
+		return reviewVo;
+	}	
+
+	
+////////////////////////////////////////////////////////////////////////////////////////////////	
 	
 	
+///////////////////////////////////Hospital/////////////////////////////////////////////////////	
+
 	/**
-	 * fileDelete- ÆÄÀÏ »èÁ¦ ±â´É
+	 * fileDelete- íŒŒì¼ ì‚­ì œ ê¸°ëŠ¥
 	 */
 	public void fileDelete(HttpServletRequest request, String oldFileName)
 														throws Exception{
@@ -23,7 +125,7 @@ public class FileServiceImpl {
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 		
-		//ÆÄÀÏÀÌ Á¸ÀçÇÏ¸é ¼­¹ö¿¡ ÀúÀå
+		//íŒŒì¼ì´ ì¡´ì¬í•˜ë©´ ì„œë²„ì— ì €ì¥
 		if(oldFileName != null && !oldFileName.equals("")) {
 			File deleteFile = new File(root_path + attach_path+ oldFileName);
 			
@@ -34,7 +136,7 @@ public class FileServiceImpl {
 	}
 	
 	/**
-	 * fileDelete-  ¼öÁ¤ÇÒ ¶§ ±âÁ¸ ÆÄÀÏ »èÁ¦ ±â´É
+	 * fileDelete-  ìˆ˜ì •í•  ë•Œ ê¸°ì¡´ íŒŒì¼ ì‚­ì œ ê¸°ëŠ¥
 	 */
 	public void fileDelete2(HospitalVo hospitalVo, HttpServletRequest request, String oldFileName)
 																				throws Exception{
@@ -42,10 +144,10 @@ public class FileServiceImpl {
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 		
-		//ÆÄÀÏÀÌ Á¸ÀçÇÏ¸é ¼­¹ö¿¡ ÀúÀå
+		//íŒŒì¼ì´ ì¡´ì¬í•˜ë©´ ì„œë²„ì— ì €ì¥
 		if(!hospitalVo.getFile1().getOriginalFilename().equals("")) {
 			File deleteFile = new File(root_path + attach_path+ oldFileName);
-			//boardVo.getFile1().transferTo(deleteFile); //upload Æú´õ    ->  JVM°ú ÆÄÀÏÀÌ ¿¬°áµÇ´Â °´Ã¼¸¦ »ı¼ºÇÏ¿© ¿¬°áÇØÁØ´Ù. ¿¬°áÇØÁÖ´Â °´Ã¼ deleteFile
+			//boardVo.getFile1().transferTo(deleteFile); //upload í´ë”    ->  JVMê³¼ íŒŒì¼ì´ ì—°ê²°ë˜ëŠ” ê°ì²´ë¥¼ ìƒì„±í•˜ì—¬ ì—°ê²°í•´ì¤€ë‹¤. ì—°ê²°í•´ì£¼ëŠ” ê°ì²´ deleteFile
 			System.out.println(root_path + attach_path+ oldFileName);
 			if(deleteFile.exists()) {
 				deleteFile.delete();
@@ -54,14 +156,14 @@ public class FileServiceImpl {
 	}
 	
 	/**
-	 * fileSave ±â´É
+	 * fileSave ê¸°ëŠ¥
 	 */
 	public void fileSave(HospitalVo hospitalVo, HttpServletRequest request) throws Exception{
 		
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 		
-		//ÆÄÀÏÀÌ Á¸ÀçÇÏ¸é ¼­¹ö¿¡ ÀúÀå
+		//íŒŒì¼ì´ ì¡´ì¬í•˜ë©´ ì„œë²„ì— ì €ì¥
 		if(hospitalVo.getHfile() != null && !hospitalVo.getHfile().equals("")) {
 			//System.out.println("save file--->" + hospitalVo.getHfile());			
 			File saveFile = new File(root_path + attach_path+ hospitalVo.getHsfile());
@@ -71,24 +173,89 @@ public class FileServiceImpl {
 	}
 	
 	/**
-	 * fileCheck ±â´É
+	 * fileCheck ê¸°ëŠ¥
 	 */
 	public HospitalVo fileCheck(HospitalVo hospitalVo) {
 		if(hospitalVo.getFile1().getOriginalFilename() != null
-				&& !hospitalVo.getFile1().getOriginalFilename().contentEquals("")) {  //ÆÄÀÏÀÌ Á¸ÀçÇÏ¸é
+				&& !hospitalVo.getFile1().getOriginalFilename().contentEquals("")) {  //íŒŒì¼ì´ ì¡´ì¬í•˜ë©´
 			
-			//BSFILE ÆÄÀÏ Áßº¹ Ã³¸®
+			//BSFILE íŒŒì¼ ì¤‘ë³µ ì²˜ë¦¬
 			UUID uuid = UUID.randomUUID();
 			String hfile = hospitalVo.getFile1().getOriginalFilename();
 			String hsfile = uuid + "_" + hfile;
 			hospitalVo.setHfile(hfile);
 			hospitalVo.setHsfile(hsfile);
 		}else {
-			System.out.println("ÆÄÀÏ ¾øÀ½");
+			System.out.println("íŒŒì¼ ì—†ìŒ");
 //			hospitalVo.setHfile("");
 //			hospitalVo.setHsfile("");
 		}	
 		
 		return hospitalVo;
 	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+//////////////////////////////////////////////Mypage/////////////////////////////////////////////////////////////////////////
+	
+	/*
+	* file delete - í”„ë¡œí•„ì‚¬ì§„ ìˆ˜ì •í•  ë•Œ ê¸°ì¡´ ì‚¬ì§„ ì‚­ì œê¸°ëŠ¥
+	*/
+	
+	public void mfileDelete(MemberVo membmerVo, HttpServletRequest request, String oldFileName) throws Exception{
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+		String attach_path = "\\resources\\upload\\";
+
+		//íŒŒì¼ì´ ì¡´ì¬í•˜ë©´ ì„œë²„ì— ì €ì¥
+		if(!membmerVo.getFile1().getOriginalFilename().equals("")) {
+			File deleteFile = new File(root_path + attach_path+ oldFileName);
+			//boardVo.getFile1().transferTo(deleteFile); //upload í´ë”    ->  JVMê³¼ íŒŒì¼ì´ ì—°ê²°ë˜ëŠ” ê°ì²´ë¥¼ ìƒì„±í•˜ì—¬ ì—°ê²°í•´ì¤€ë‹¤. ì—°ê²°í•´ì£¼ëŠ” ê°ì²´ deleteFile
+			System.out.println(root_path + attach_path+ oldFileName);
+			if(deleteFile.exists()) {
+				deleteFile.delete();
+			}
+		}
+	}
+	
+	
+	/*
+	* fileSaveê¸°ëŠ¥ - íšŒì›í”„ë¡œí•„ì‚¬ì§„ ì €ì¥ê¸°ëŠ¥
+	*/
+	
+	public void mfileSave(MemberVo memberVo, HttpServletRequest request) throws Exception{
+
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+		String attach_path = "\\resources\\upload\\";
+
+		//íŒŒì¼ì´ ì¡´ì¬í•˜ë©´ ì„œë²„ì— ì €ì¥
+		if(memberVo.getMfile() != null && !memberVo.getMfile().equals("")) {
+			//System.out.println("save file--->" + hospitalVo.getHfile());			
+			File saveFile = new File(root_path + attach_path+ memberVo.getMsfile());
+
+			memberVo.getFile1().transferTo(saveFile);
+		}
+	}
+	
+	
+	/*
+	 * fileCheck - íšŒì› í”„ë¡œí•„ ì‚¬ì§„ ì²´í¬
+	 */
+	
+	public MemberVo mfileCheck(MemberVo memberVo) {
+		if(memberVo.getFile1().getOriginalFilename() != null
+				&& !memberVo.getFile1().getOriginalFilename().contentEquals("")) {  //íŒŒì¼ì´ ì¡´ì¬í•˜ë©´
+
+			//BSFILE íŒŒì¼ ì¤‘ë³µ ì²˜ë¦¬
+			UUID uuid = UUID.randomUUID();
+			String mfile = memberVo.getFile1().getOriginalFilename();
+			String msfile = uuid + "_" + mfile;
+			memberVo.setMfile(mfile);
+			memberVo.setMsfile(msfile);
+		}else {
+			System.out.println("íŒŒì¼ ì—†ìŒ");
+		}	
+
+		return memberVo;
+	}
+	
 }

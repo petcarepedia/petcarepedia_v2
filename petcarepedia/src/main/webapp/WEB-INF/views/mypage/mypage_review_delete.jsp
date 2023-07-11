@@ -27,6 +27,8 @@
 			<hr>
 			<form name="deleteForm" action="my_review_delete_proc.do" method="post">
 			<input type = "hidden" name = "rid" value = "${rid}">
+			<input type = "hidden" name = "rsfile1" value = "${reviewVo.rsfile1}">
+			<input type = "hidden" name = "rsfile2" value = "${reviewVo.rsfile2}">
 				<table id = "table">
 					<tr>
 						<th>병원명</th>
