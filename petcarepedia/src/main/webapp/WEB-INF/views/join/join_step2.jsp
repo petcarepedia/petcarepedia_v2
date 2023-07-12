@@ -93,6 +93,14 @@ $(document).ready(function(){
 			</div>
 			
 			<input type="hidden" value="${grade}" id="grade">
+			<c:choose>
+				<c:when test="${grade == 'user'}">
+					<p class="explain"><span>펫캐어피디아</span>는 원활한 동물병원 정보 제공 및 예약, 리뷰 작성 서비스 이용을 위해 <span>홈페이지 이용약관 동의</span>를 진행하고 있습니다.</p>
+				</c:when>
+				<c:otherwise>
+					<p class="explain"><span>펫캐어피디아</span>는 원활한 동물병원 정보 수집 및 관리를 위한 <span>홈페이지 이용약관 동의</span>를 진행하고 있습니다.</p>
+				</c:otherwise>
+			</c:choose>
 			
 			<div class="join-content">
 				<form name="termForm" action="#" method="post">

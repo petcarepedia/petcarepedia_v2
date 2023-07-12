@@ -25,123 +25,86 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<div class="back"></div>
-	<div class="term-box">
-		<div class="term-modal">
-			<div class="title">
-				
-			</div>
-			<div class="term-btn">
-				<button class="btn-yes" id="btnModalAgree">동의</button>
-				<button class="btn-no" id="btnModalClose">닫기</button>
-			</div>
-		</div>
-	</div>
-	<img src="http://localhost:9000/petcarepedia/images/loading.gif" id="loading">
-	
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
+	<img src="http://localhost:9000/petcarepedia/images/loading.gif" id="loading">
+	
 	<!-- content -->
 	<div class="content">
-		<div class="join-content">
+		<div class="join-container">
 			<div class="content-logo">
 				<img src="http://localhost:9000/petcarepedia/images/contentlogo.png" width="300px">
 			</div>
 			
-			<form name="joinForm" action="join_proc.do" method="post">
-				<ul>
-					<li>
-						<label>아이디 <span class="ess">*</span></label>
-						<p><span class="ess">*</span> 표시는 필수 입력 항목입니다.</p>
-						<input type="text" name="mid" id="id" placeholder="4~20자의 영문, 숫자 조합" class="input-short">
-						<button type="button" id="btnCheckId" class="btn-short" disabled>중복확인</button>
-						<span id="idcheck_msg"></span>
-					</li>
-					<li>
-						<label>비밀번호 <span class="ess">*</span></label>
-						<input type="password" name="pass" id="pass" placeholder="8~16자리 영문, 숫자, 특수문자 조합">
-						<input type="checkbox" name="pass-see" id="psee"><p id="psee">비밀번호 보기</p>
-						<span id="pwcheck_msg"></span>
-					</li>
-					<li>
-						<label>비밀번호 확인 <span class="ess">*</span></label>
-						<input type="password" name="cpass" id="cpass" placeholder="비밀번호를 다시 입력해주세요">
-						<input type="checkbox" name="cpass-see" id="cpsee"><p id="psee">비밀번호 보기</p>
-						<span id="cpwcheck_msg"></span>
-					</li>
-					<li>
-						<label>성명 <span class="ess">*</span></label>
-						<input type="text" name="name" id="name" placeholder="성명 입력">
-						<span id="namecheck_msg"></span>
-					</li>
-					<li>
-						<label>별명 <span class="ess">*</span></label>
-						<input type="text" name="nickname" id="nickname" placeholder="2~16자리 문자 또는 숫자">
-						<span id="nickcheck_msg"></span>
-					</li>
-					<li>
-						<label>휴대폰 <span class="ess">*</span></label>
-						<select name="phone1" id="phone1">
-							<option value="default">선택</option>
-							<option value="010">010</option>
-							<option value="011">011</option>
-							<option value="017">017</option>
-						</select>
-						<input type="text" name="phone2" id="phone2" placeholder="1234" class="input-short2">
-						<input type="text" name="phone3" id="phone3" placeholder="5678" class="input-short2">
-					</li>
-					<span id="phonecheck_msg"></span>
-					
-					<li>
-						<label>생년월일</label>
-						<input type="text" name="birth1" id="birth1" placeholder="년(4자리)" class="input-short2">
-						<input type="text" name="birth2" id="birth2" placeholder="월" class="input-short2">
-						<input type="text" name="birth3" id="birth3" placeholder="일" class="input-short2">
-					</li>
-					<li>
-						<label>이메일 <span class="ess">*</span></label>
-						<input type="text" name="email" id="email" placeholder="이메일 입력" class="input-short">
-						<button type="button" class="btn-short" id="btnAuthEmail" disabled>인증번호 전송</button>
-						<span id="emailcheck_msg"></span>
+			<div class="step-box">
+				<div class="step active pass">
+					<div>
+						<p>Step 1</p>
+						<div></div>
+						<p>회원 유형 선택</p>
+					</div>
+				</div>	
+				<i class="fa-solid fa-chevron-right fa-2xl" style="color:#d8d8d8"></i>
+				<div class="step active pass">
+					<div>
+						<p>Step 2</p>
+						<div></div>
+						<p>약관 동의</p>
+					</div>
+				</div>
+				<i class="fa-solid fa-chevron-right fa-2xl" style="color:#d8d8d8"></i>
+				<div class="step active">
+					<div>
+						<p>Step 3</p>
+						<div></div>
+						<p>본인 인증</p>
+					</div>
+				</div>
+				<i class="fa-solid fa-chevron-right fa-2xl" style="color:#d8d8d8"></i>
+				<div class="step">
+					<div>
+						<p>Step 4</p>
+						<div></div>
+						<p>정보 입력</p>
+					</div>
+				</div>
+				<i class="fa-solid fa-chevron-right fa-2xl" style="color:#d8d8d8"></i>
+				<div class="step">
+					<div>
+						<p>Step 5</p>
+						<div></div>
+						<p>가입 완료</p>
+					</div>
+				</div>
+			</div>
+			
+			<input type="hidden" value="${grade}" id="grade">
+			<p class="explain"><span>펫캐어피디아</span>는 안전한 인터넷 서비스를 위해 <span>이메일 본인인증</span>을 진행하고 있습니다.</p>
+			
+			<div class="join-content">
+				<form name="joinForm" action="#" method="post">
+					<ul>
+						<li>
+							<label>이메일</label>
+							<input type="text" name="email" id="email" placeholder="이메일 입력" class="input-short">
+							<button type="button" class="btn-short" id="btnAuthEmail" disabled>인증번호 전송</button>
+							<span id="emailcheck_msg"></span>
+							
+							<input type="hidden" id="data">
+							
+							<input type="text" name="cemail" id="cemail" placeholder="인증번호 입력" class="input-short einput" style="display:none">
+							<button type="button" class="btn-short" id="btnCheckEmail" style="display:none">인증번호 확인</button>
+							<span id="emailauthcheck_msg"></span>
+						</li>
 						
-						<input type="hidden" id="data">
-						
-						<input type="text" name="cemail" id="cemail" placeholder="인증번호 입력" class="input-short" style="display:none">
-						<button type="button" class="btn-short" id="btnCheckEmail" style="display:none">인증번호 확인</button>
-						<span id="emailauthcheck_msg"></span>
-					</li>
-					<li>
-						<label>주소</label>
-						<input type="text" name="addr" id="addr" placeholder="주소 입력" class="input-short">
-						<button type="button" class="btn-short" id="btnSearchAddr">주소찾기</button>
-					</li>
-					<li class="terms">
-						<label>이용약관</label>
-						<ul>
-							<li>
-								<input type="checkbox" name="term" id="termAll" value="all"><span>전체 동의</span>
-							</li>
-							<li>
-								<input type="checkbox" name="term" id="term1" value="1"><span><a id="1" class="btnModalOpen">이용약관</a> 동의 <span class="ess">*</span></span>
-							</li>
-							<li>
-								<input type="checkbox" name="term" id="term2" value="2"><span><a id="2" class="btnModalOpen">개인정보 수집 및 이용</a> 동의 <span class="ess">*</span></span>
-							</li>
-							<li>
-								<input type="checkbox" name="term" id="term3" value="3"><span>[선택] <a id="3" class="btnModalOpen">위치기반서비스 이용약관</a> 동의</span>
-							</li>
-							<li>
-								<input type="checkbox" name="term" id="term4" value="4"><span>[선택] <a id="4" class="btnModalOpen">마케팅 정보 활용 및 수신</a> 동의</span>
-							</li>
-						</ul>
-					</li>
-					<span id="termcheck_msg"></span>
-					<li>
-						<button type="submit" id="btnJoin" class="btn-submit" disabled>회원가입</button>
-					</li>
-				</ul>
-			</form>
+						<li>
+							<button type="button" id="btn2step" class="btn-submit pstep">이전 단계</button>
+							<button type="button" id="btn4step" class="btn-submit nstep">다음 단계</button>
+						</li>
+					</ul>
+				</form>
+			</div>
 		</div>
 	</div>
 	

@@ -27,6 +27,7 @@ public class JoinController {
 	public String join() {
 		return "/join/join_step1";
 	}
+	
 	@RequestMapping(value="/join_step2.do",method=RequestMethod.GET)
 	public ModelAndView join_step2(String grade) {
 		ModelAndView model = new ModelAndView();
@@ -35,6 +36,7 @@ public class JoinController {
 		
 		return model;
 	}
+	
 	@RequestMapping(value="/join_step3.do",method=RequestMethod.GET)
 	public ModelAndView join_step3(String grade) {
 		ModelAndView model = new ModelAndView();

@@ -633,6 +633,26 @@ $(document).ready(function(){
 		}
 	})
 	
+	/**
+	*회원가입 step3
+	*/
+	$("#btn2step").click(function(){
+		location.href = "join_step2.do";
+	})
+	$("#btn4step").click(function(){
+		if($("#emailauthcheck_msg").text() == "이메일 인증 완료"
+			&& $("form[name='joinForm'] #email").val() != ""){
+			location.href = "join_step4.do?grade="+$("#grade").val();
+		} else {
+			Swal.fire({
+	            icon: 'warning',                         
+	            title: '이메일 인증을 완료해주세요',         
+	            confirmButtonColor:'#98dfff',
+	  			confirmButtonText:'확인' 
+	        });
+		}
+	})
+	
 	
 }); //ready
 
