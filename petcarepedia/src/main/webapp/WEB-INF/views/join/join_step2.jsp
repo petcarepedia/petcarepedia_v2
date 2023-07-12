@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,8 +92,10 @@ $(document).ready(function(){
 				</div>
 			</div>
 			
+			<input type="hidden" value="${grade}" id="grade">
+			
 			<div class="join-content">
-				<form name="joinForm" action="join_proc.do" method="post">
+				<form name="termForm" action="#" method="post">
 					<ul>
 						<li class="terms">
 							<label>이용약관</label>
@@ -115,6 +118,11 @@ $(document).ready(function(){
 							</ul>
 						</li>
 						<span id="termcheck_msg"></span>
+						
+						<li>
+							<button type="button" id="btn1step" class="btn-submit pstep">이전 단계</button>
+							<button type="button" id="btn3step" class="btn-submit nstep">다음 단계</button>
+						</li>
 					</ul>
 				</form>
 			</div>

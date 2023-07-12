@@ -28,10 +28,20 @@ public class JoinController {
 		return "/join/join_step1";
 	}
 	@RequestMapping(value="/join_step2.do",method=RequestMethod.GET)
-	public String join_step2(String grade) {
+	public ModelAndView join_step2(String grade) {
 		ModelAndView model = new ModelAndView();
 		model.addObject("grade", grade);
-		return "/join/join_step2";
+		model.setViewName("/join/join_step2");
+		
+		return model;
+	}
+	@RequestMapping(value="/join_step3.do",method=RequestMethod.GET)
+	public ModelAndView join_step3(String grade) {
+		ModelAndView model = new ModelAndView();
+		model.addObject("grade", grade);
+		model.setViewName("/join/join_step3");
+		
+		return model;
 	}
 	
 	/**

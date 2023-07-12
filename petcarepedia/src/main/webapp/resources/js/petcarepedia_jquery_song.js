@@ -229,12 +229,12 @@ $(document).ready(function(){
 	//약관동의 전체체크
 	$("#termAll").click(function(){
 		if($("#termAll").is(':checked')){
-			$("form[name='joinForm'] input:checkbox[name='term']").prop('checked',true);
+			$("form[name='termForm'] input:checkbox[name='term']").prop('checked',true);
 		} else {
-			$("form[name='joinForm'] input:checkbox[name='term']").prop('checked',false);
+			$("form[name='termForm'] input:checkbox[name='term']").prop('checked',false);
 		}
 	});
-	$("form[name='joinForm'] input:checkbox[name='term'],.term-modal").click(function(){
+	$("form[name='termForm'] input:checkbox[name='term'],.term-modal").click(function(){
 		if($("#term1").is(':checked')&&$("#term2").is(':checked')&&$("#term3").is(':checked')&&$("#term4").is(':checked')){
 			$("#termAll").prop('checked',true);
 		} else {
@@ -306,6 +306,7 @@ $(document).ready(function(){
 			$("#btnJoin").attr("disabled",true);
 		}
 	}
+	
 	//회원가입 버튼 abled
 	$("form[name='joinForm'] input").on({
 		blur: function(){$.joinValidationCheck();},
@@ -313,9 +314,9 @@ $(document).ready(function(){
 		click: function(){$.joinValidationCheck();},
 		keyup: function(){$.joinValidationCheck();}
 	});
-	$(".term-modal").click(function(){
+	/*$(".term-modal").click(function(){
 		$.joinValidationCheck();
-	});
+	});*/
 	
 	
 	/**************
@@ -612,6 +613,26 @@ $(document).ready(function(){
 	$("#manager").click(function(){
 		location.href = "join_step2.do?grade=manager";
 	})
+	
+	/**
+	*회원가입 step2
+	*/
+	$("#btn1step").click(function(){
+		location.href = "join.do";
+	})
+	$("#btn3step").click(function(){
+		if($("#term1").is(':checked') && $("#term2").is(':checked')){
+			location.href = "join_step3.do?grade="+$("#grade").val();
+		} else {
+			Swal.fire({
+	            icon: 'warning',                         
+	            title: '필수 약관에 모두 동의해주세요',         
+	            confirmButtonColor:'#98dfff',
+	  			confirmButtonText:'확인' 
+	        });
+		}
+	})
+	
 	
 }); //ready
 
