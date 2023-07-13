@@ -24,6 +24,13 @@ $(document).ready(function(){
 	$('#loading').hide(); //ajax종료시 로딩바를 숨겨준다.
 });
 </script>
+<script>
+const autoHyphen = (target) => {
+	 target.value = target.value
+	   .replace(/[^0-9]/g, '')
+	   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+	}
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -124,14 +131,15 @@ $(document).ready(function(){
 					</li>	
 					<li>
 						<label>연락처 <span class="ess">*</span></label>
-						<select name="phone1" id="phone1">
+						<input type="text" name = "phone" id = "phone" oninput="autoHyphen(this)" maxlength="13" placeholder="연락처를 입력하세요">
+						<!-- <select name="phone1" id="phone1">
 							<option value="default">선택</option>
 							<option value="010">010</option>
 							<option value="011">011</option>
 							<option value="017">017</option>
 						</select>
 						<input type="text" name="phone2" id="phone2" placeholder="1234" class="input-short2">
-						<input type="text" name="phone3" id="phone3" placeholder="5678" class="input-short2">
+						<input type="text" name="phone3" id="phone3" placeholder="5678" class="input-short2"> -->
 					</li>
 					<span id="phonecheck_msg"></span>
 					
