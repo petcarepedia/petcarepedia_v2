@@ -194,4 +194,12 @@ public class MainController {
 		return new Gson().toJson(jlist);
 	}
 	
+	
+	/** 404 error **/
+	@RequestMapping(value="//error.do", method=RequestMethod.GET)
+	public String error() {
+		
+		return "error";
+	}
+	
 }
