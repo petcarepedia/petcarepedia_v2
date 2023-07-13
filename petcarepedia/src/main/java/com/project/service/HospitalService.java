@@ -1,6 +1,7 @@
 package com.project.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.project.vo.HospitalVo;
 
@@ -9,7 +10,7 @@ public interface HospitalService {
 		int totalRowCount();
 		HospitalVo selectStar(String hid);
 		ArrayList<HospitalVo> searchGloc(String gloc);
-		ArrayList<HospitalVo> search(String hname);
+		List<Object> search(String hname, String gloc);
 		int delete(String hid);
 		int update(HospitalVo hospitalVo);
 		HospitalVo select(String hid);

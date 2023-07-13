@@ -146,12 +146,22 @@ public class HospitalDao extends DBConn {
 //		return list;
 //	}
 
+//	public List<Object> select(int startCount, int endCount) {
+//		Map<String, Integer> param = new HashMap<String, Integer>();
+//		param.put("start", startCount);
+//		param.put("end", endCount);		
+//		
+//		return sqlSession.selectList("mapper.hospital.list", param);
+//	}
+	
 	/**
 	 * search - 병원 상세 검색
 	 */
-	public ArrayList<HospitalVo> search(String hname) {
-		List<HospitalVo> list = sqlSession.selectList("mapper.hospital.search", hname);
-		return (ArrayList<HospitalVo>)list;
+	public List<Object> search(String hname, String gloc) {
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("hname", hname);
+		param.put("gloc", gloc);
+		return sqlSession.selectList("mapper.hospital.search", param);
 	}
 //		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
 //		String sql = "SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y  " +

@@ -30,8 +30,8 @@ public class HospitalServiceImpl implements HospitalService{
 	}
 	
 	@Override
-	public ArrayList<HospitalVo> search(String hname){
-		return hospitalDao.search(hname);
+	public List<Object> search(String hname, String gloc){
+		return hospitalDao.search(hname, gloc);
 	}
 	
 	@Override
