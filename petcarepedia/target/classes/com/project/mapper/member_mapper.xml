@@ -10,7 +10,7 @@
 		INSERT 
 			INTO PCP_MEMBER(mid,pass,name,nickname,phone,birth,email,addr,mdate,grade) 
 			VALUES(#{mid},#{pass},#{name},#{nickname},#{phone},#{birth, jdbcType=VARCHAR},
-			#{email, jdbcType=VARCHAR},#{addr, jdbcType=VARCHAR},SYSDATE,#{grade})
+			#{email},#{addr, jdbcType=VARCHAR},SYSDATE,#{grade})
 	</insert>
 	
 	<select id="login" parameterType="com.project.vo.MemberVo" resultType="com.project.vo.SessionVo">

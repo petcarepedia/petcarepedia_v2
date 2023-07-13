@@ -291,16 +291,13 @@ $(document).ready(function(){
 			&& $("#pwcheck_msg").text() == "안전한 비밀번호입니다."
 			&& $("#cpwcheck_msg").text() == "비밀번호가 일치합니다."
 			&& $("#pass").val() == $("#cpass").val()
-			&& $("#emailauthcheck_msg").text() == "이메일 인증 완료"
 			&& $("form[name='joinForm'] #name").val() != ""
 			&& $("form[name='joinForm'] #phone1").val() != "default"
 			&& $("form[name='joinForm'] #phone2").val() != ""
 			&& $("form[name='joinForm'] #phone3").val() != ""
-			&& $("form[name='joinForm'] #email").val() != ""
 			&& $("#phonecheck_msg").text() != "올바른 휴대폰 번호를 입력하세요."
 			&& $("form[name='joinForm'] #nickname").val() != ""
-			&& $("#nickcheck_msg").text() != "특수문자와 초성 및 모음 제외 2~16자로 입력하세요."
-			&& $("#term1").is(':checked') && $("#term2").is(':checked')){
+			&& $("#nickcheck_msg").text() != "특수문자와 초성 및 모음 제외 2~16자로 입력하세요."){
 			$("#btnJoin").attr("disabled",false);
 		} else {
 			$("#btnJoin").attr("disabled",true);
@@ -637,12 +634,12 @@ $(document).ready(function(){
 	*회원가입 step3
 	*/
 	$("#btn2step").click(function(){
-		location.href = "join_step2.do";
+		location.href = "join_step2.do?grade="+$("#grade").val();
 	})
 	$("#btn4step").click(function(){
 		if($("#emailauthcheck_msg").text() == "이메일 인증 완료"
 			&& $("form[name='joinForm'] #email").val() != ""){
-			location.href = "join_step4.do?grade="+$("#grade").val();
+			location.href = "join_step4.do?grade="+$("#grade").val()+"&email="+$("#email").val();
 		} else {
 			Swal.fire({
 	            icon: 'warning',                         
@@ -651,6 +648,13 @@ $(document).ready(function(){
 	  			confirmButtonText:'확인' 
 	        });
 		}
+	})
+	
+	/**
+	*회원가입 step4
+	*/
+	$("#btnPstep").click(function(){
+		location.href = "join_step3.do?grade="+$("#grade").val();
 	})
 	
 	

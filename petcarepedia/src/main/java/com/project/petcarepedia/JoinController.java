@@ -46,6 +46,16 @@ public class JoinController {
 		return model;
 	}
 	
+	@RequestMapping(value="/join_step4.do",method=RequestMethod.GET)
+	public ModelAndView join_step4(String grade, String email) {
+		ModelAndView model = new ModelAndView();
+		model.addObject("grade", grade);
+		model.addObject("email", email);
+		model.setViewName("/join/join_step4");
+		
+		return model;
+	}
+	
 	/**
 	 * join_proc.do - 회원가입 처리
 	 */
