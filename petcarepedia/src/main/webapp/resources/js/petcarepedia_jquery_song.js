@@ -100,7 +100,6 @@ $(document).ready(function(){
 	 */
 	let reg_id = /^(?=.*?[a-z])(?=.*?[0-9]).{4,20}$/;
 	let reg_pw = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$/;
-	let reg_phone = /^\d{4}$/;
 	let regPhone= /^\d{2,3}-?\d{3,4}-?\d{4}$/;
 	let reg_nick = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
 	let reg_email = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
@@ -205,17 +204,6 @@ $(document).ready(function(){
 		}
 	});
 	//휴대폰 유효성 체크
-	/*$("form[name='joinForm'] #phone1,form[name='joinForm'] #phone2,form[name='joinForm'] #phone3").blur(function(){
-		if($("form[name='joinForm'] #phone1").val() == "default" || !reg_phone.test($("#phone2").val()) || !reg_phone.test($("#phone3").val())){
-			$("#phonecheck_msg").text("올바른 휴대폰 번호를 입력하세요.").css("color","red")
-			.css("font-size","12px").css("display","block").css("clear","both")
-			.css("padding-top","5px")
-			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
-		} else {
-			$("#phonecheck_msg").text("").css("display","none");
-		}
-	});*/
-	
 	$("form[name='joinForm'] #phone").keyup(function(){
 		if(!regPhone.test($("form[name='joinForm'] #phone").val())){
 			$("#phonecheck_msg").text("올바른 연락처를 입력하세요.").css("color","red")
@@ -322,9 +310,6 @@ $(document).ready(function(){
 		click: function(){$.joinValidationCheck();},
 		keyup: function(){$.joinValidationCheck();}
 	});
-	/*$(".term-modal").click(function(){
-		$.joinValidationCheck();
-	});*/
 	
 	
 	/**************
