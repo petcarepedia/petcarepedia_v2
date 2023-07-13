@@ -13,8 +13,13 @@ public class ReviewReportDao {
 	private SqlSession sqlSession;
 	
 	/* 리뷰 신고 입력	 */
-	public int ReviewReport(ReviewReportVo reviewReportVo) {
+	public int reviewReport(ReviewReportVo reviewReportVo) {
 		return sqlSession.insert("mapper.reviewReport.report", reviewReportVo);
+	}
+	
+	/* 중복 신고 확인 */
+	public int reviewReportCheck(ReviewReportVo reviewReportVo) {
+		return sqlSession.selectOne("mapper.reviewReport.check", reviewReportVo);
 	}
 
 }

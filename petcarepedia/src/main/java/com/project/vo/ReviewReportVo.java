@@ -1,7 +1,16 @@
 package com.project.vo;
 
 public class ReviewReportVo {
-	String rrid, rid, hid, rrdate, rreson;
+	String rrid, mid, rid, hid, rrdate, rreson;
+	
+
+	public String getMid() {
+		return mid;
+	}
+
+	public void setMid(String mid) {
+		this.mid = mid;
+	}
 
 	public String getRrid() {
 		return rrid;

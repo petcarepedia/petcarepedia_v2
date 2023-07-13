@@ -14,7 +14,12 @@ public class ReviewReportServiceImpl implements ReviewReportService {
 	
 	@Override
 	public int getReviewReport(ReviewReportVo reviewReportVo) {
-		return reviewReportDao.ReviewReport(reviewReportVo);
+		return reviewReportDao.reviewReport(reviewReportVo);
+	}
+	
+	@Override
+	public int getReiviewReportCheck(ReviewReportVo reviewReportVo) {
+		return reviewReportDao.reviewReportCheck(reviewReportVo);
 	}
 
 }

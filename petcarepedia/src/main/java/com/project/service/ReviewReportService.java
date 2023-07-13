@@ -6,4 +6,5 @@ public interface ReviewReportService {
 
 	//¸®ºä½Å°í
 	public int getReviewReport(ReviewReportVo reviewReportVo);
+	public int getReiviewReportCheck(ReviewReportVo reviewReportVo);
 }
