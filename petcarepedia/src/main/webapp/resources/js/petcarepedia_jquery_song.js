@@ -100,7 +100,7 @@ $(document).ready(function(){
 	 */
 	let reg_id = /^(?=.*?[a-z])(?=.*?[0-9]).{4,20}$/;
 	let reg_pw = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$/;
-	let reg_phone = /^\d{4}$/;
+	let regPhone= /^\d{2,3}-?\d{3,4}-?\d{4}$/;
 	let reg_nick = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
 	let reg_email = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	
@@ -204,9 +204,9 @@ $(document).ready(function(){
 		}
 	});
 	//휴대폰 유효성 체크
-	$("form[name='joinForm'] #phone1,form[name='joinForm'] #phone2,form[name='joinForm'] #phone3").blur(function(){
-		if($("form[name='joinForm'] #phone1").val() == "default" || !reg_phone.test($("#phone2").val()) || !reg_phone.test($("#phone3").val())){
-			$("#phonecheck_msg").text("올바른 휴대폰 번호를 입력하세요.").css("color","red")
+	$("form[name='joinForm'] #phone").keyup(function(){
+		if(!regPhone.test($("form[name='joinForm'] #phone").val())){
+			$("#phonecheck_msg").text("올바른 연락처를 입력하세요.").css("color","red")
 			.css("font-size","12px").css("display","block").css("clear","both")
 			.css("padding-top","5px")
 			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
@@ -214,6 +214,7 @@ $(document).ready(function(){
 			$("#phonecheck_msg").text("").css("display","none");
 		}
 	});
+	
 	//별명 유효성 체크
 	$("#nickname").keyup(function(){
 		if(!reg_nick.test($("#nickname").val())){
@@ -229,12 +230,12 @@ $(document).ready(function(){
 	//약관동의 전체체크
 	$("#termAll").click(function(){
 		if($("#termAll").is(':checked')){
-			$("form[name='joinForm'] input:checkbox[name='term']").prop('checked',true);
+			$("form[name='termForm'] input:checkbox[name='term']").prop('checked',true);
 		} else {
-			$("form[name='joinForm'] input:checkbox[name='term']").prop('checked',false);
+			$("form[name='termForm'] input:checkbox[name='term']").prop('checked',false);
 		}
 	});
-	$("form[name='joinForm'] input:checkbox[name='term'],.term-modal").click(function(){
+	$("form[name='termForm'] input:checkbox[name='term'],.term-modal").click(function(){
 		if($("#term1").is(':checked')&&$("#term2").is(':checked')&&$("#term3").is(':checked')&&$("#term4").is(':checked')){
 			$("#termAll").prop('checked',true);
 		} else {
@@ -291,30 +292,23 @@ $(document).ready(function(){
 			&& $("#pwcheck_msg").text() == "안전한 비밀번호입니다."
 			&& $("#cpwcheck_msg").text() == "비밀번호가 일치합니다."
 			&& $("#pass").val() == $("#cpass").val()
-			&& $("#emailauthcheck_msg").text() == "이메일 인증 완료"
 			&& $("form[name='joinForm'] #name").val() != ""
-			&& $("form[name='joinForm'] #phone1").val() != "default"
-			&& $("form[name='joinForm'] #phone2").val() != ""
-			&& $("form[name='joinForm'] #phone3").val() != ""
-			&& $("form[name='joinForm'] #email").val() != ""
-			&& $("#phonecheck_msg").text() != "올바른 휴대폰 번호를 입력하세요."
+			&& $("form[name='joinForm'] #phone").val() != ""
+			&& $("#phonecheck_msg").text() != "올바른 연락처를 입력하세요."
 			&& $("form[name='joinForm'] #nickname").val() != ""
-			&& $("#nickcheck_msg").text() != "특수문자와 초성 및 모음 제외 2~16자로 입력하세요."
-			&& $("#term1").is(':checked') && $("#term2").is(':checked')){
+			&& $("#nickcheck_msg").text() != "특수문자와 초성 및 모음 제외 2~16자로 입력하세요."){
 			$("#btnJoin").attr("disabled",false);
 		} else {
 			$("#btnJoin").attr("disabled",true);
 		}
 	}
+	
 	//회원가입 버튼 abled
 	$("form[name='joinForm'] input").on({
 		blur: function(){$.joinValidationCheck();},
 		focus: function(){$.joinValidationCheck();},
 		click: function(){$.joinValidationCheck();},
 		keyup: function(){$.joinValidationCheck();}
-	});
-	$(".term-modal").click(function(){
-		$.joinValidationCheck();
 	});
 	
 	
@@ -612,6 +606,53 @@ $(document).ready(function(){
 	$("#manager").click(function(){
 		location.href = "join_step2.do?grade=manager";
 	})
+	
+	/**
+	*회원가입 step2
+	*/
+	$("#btn1step").click(function(){
+		location.href = "join.do";
+	})
+	$("#btn3step").click(function(){
+		if($("#term1").is(':checked') && $("#term2").is(':checked')){
+			location.href = "join_step3.do?grade="+$("#grade").val();
+		} else {
+			Swal.fire({
+	            icon: 'warning',                         
+	            title: '필수 약관에 모두 동의해주세요',         
+	            confirmButtonColor:'#98dfff',
+	  			confirmButtonText:'확인' 
+	        });
+		}
+	})
+	
+	/**
+	*회원가입 step3
+	*/
+	$("#btn2step").click(function(){
+		location.href = "join_step2.do?grade="+$("#grade").val();
+	})
+	$("#btn4step").click(function(){
+		if($("#emailauthcheck_msg").text() == "이메일 인증 완료"
+			&& $("form[name='joinForm'] #email").val() != ""){
+			location.href = "join_step4.do?grade="+$("#grade").val()+"&email="+$("#email").val();
+		} else {
+			Swal.fire({
+	            icon: 'warning',                         
+	            title: '이메일 인증을 완료해주세요',         
+	            confirmButtonColor:'#98dfff',
+	  			confirmButtonText:'확인' 
+	        });
+		}
+	})
+	
+	/**
+	*회원가입 step4
+	*/
+	$("#btnPstep").click(function(){
+		location.href = "join_step3.do?grade="+$("#grade").val();
+	})
+	
 	
 }); //ready
 

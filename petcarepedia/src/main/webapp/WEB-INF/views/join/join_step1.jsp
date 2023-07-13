@@ -71,7 +71,7 @@
 					<div class="grade-box user" id="user">
 						<i class="fa-solid fa-hospital-user fa-7x" style="color: #98dfff;"></i>
 						<h1>개인회원</h1>
-						<p>개인회원 가입을 원하시면 선택해주세요</p>
+						<p>동물병원 예약 및 리뷰 작성 서비스를<br>이용할 수 있습니다.</p>
 					</div>
 				</div>
 				
@@ -79,7 +79,7 @@
 					<div class="grade-box manager" id="manager">
 						<i class="fa-solid fa-hospital fa-7x" style="color: #ffb3bd;"></i>
 						<h1>사업자회원</h1>
-						<p>사업자회원 가입을 원하시면 선택해주세요</p>
+						<p>동물병원 정보를 등록하고 <br>관리할 수 있습니다.</p>
 					</div>
 				</div>
 			</div>

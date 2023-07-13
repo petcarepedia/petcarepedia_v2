@@ -51,7 +51,7 @@ $(document).ready(function(){
 			
 			<form name="joinForm" action="join_proc.do" method="post">
 				<ul>
-					<li>
+					<li class="id">
 						<label>아이디 <span class="ess">*</span></label>
 						<p><span class="ess">*</span> 표시는 필수 입력 항목입니다.</p>
 						<input type="text" name="mid" id="id" placeholder="4~20자의 영문, 숫자 조합" class="input-short">
