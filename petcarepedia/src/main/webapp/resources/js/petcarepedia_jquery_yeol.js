@@ -1,5 +1,99 @@
 $(document).ready(function(){
 
+/***********************************************************
+			회원정보페이지 - 버튼 클릭 이미지 변경
+************************************************************/
+var count1 = 1;
+var count2 = 1;
+var count3 = 1;
+var count4 = 1;
+var count5 = 1;
+//닉네임
+$("#update_nickname").click(function(){
+	if(count1 % 2 == 1) {
+		$("#img1").attr("src", "http://localhost:9000/petcarepedia/images/finish.png");
+		$("#nickname").attr("disabled", false);
+	} else {
+		$("#img1").attr("src", "http://localhost:9000/petcarepedia/images/편집2.png");
+		$("#nickname").attr("disabled", true);
+	}
+	count1++;
+})
+//생년월일
+$("#update_birth").click(function(){
+	if(count2 % 2 == 1) {
+		$("#img2").attr("src", "http://localhost:9000/petcarepedia/images/finish.png");
+		$("#birth").attr("disabled", false);
+	} else {
+		$("#img2").attr("src", "http://localhost:9000/petcarepedia/images/편집2.png");
+		$("#birth").attr("disabled", true);
+	}
+	count2++;
+})
+
+//이메일
+$("#update_email").click(function(){
+	if(count3 % 2 == 1) {
+		$("#img3").attr("src", "http://localhost:9000/petcarepedia/images/finish.png");
+		$("#email").attr("disabled", false);
+		$("#btnAuthEmail").css("display", "block");
+		$("#btnAuthEmail").attr("disabled",true).css("background", "#D9D9D9").css("cursor", "not-allowed");
+		//$("#btnAuthEmail").attr("disabled", true);
+	} else {
+		$("#img3").attr("src", "http://localhost:9000/petcarepedia/images/편집2.png");
+		$("#email").attr("disabled", true);
+	}
+	count3++;
+})
+//휴대폰
+$("#update_phone").click(function(){
+	if(count4 % 2 == 1) {
+		$("#img4").attr("src", "http://localhost:9000/petcarepedia/images/finish.png");
+		$("#phone").attr("disabled", false);
+	} else {
+		$("#img4").attr("src", "http://localhost:9000/petcarepedia/images/편집2.png");
+		$("#phone").attr("disabled", true);
+	}
+	count4++;
+})
+//주소
+$("#update_addr").click(function(){
+	var img5 = $("#img5");
+	const address = $("#address");
+    if (count5 % 2 === 1) {
+        img5.attr("src", "http://localhost:9000/petcarepedia/images/finish.png");
+        address.prop("disabled", false);
+        new daum.Postcode({
+        oncomplete: function(data) {
+        	$("#address").val("(" + data.zonecode + ") " + data.address);
+        	$("#address").focus();
+        	//data = {zonecode:"12345", address:"서울시 강남구...,}
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+        }
+	}).open();	
+    } else {
+        img5.attr("src", "http://localhost:9000/petcarepedia/images/편집2.png");
+        address.prop("disabled", true);
+    }
+	count5++;
+});
+
+
+/*******************************************************************************
+		회원정보 수정하기버튼
+******************************************************************************/
+$("#information #aside form #section3 #btn_style1").click(function(){
+	 Swal.fire({
+        icon: 'success',
+        title: '수정 완료',
+        confirmButtonColor:'#98dfff',
+        confirmButtonText:'확인'
+    }).then(function() {
+    	$('input').prop('disabled', false);
+		updateForm.submit();
+	});
+})
 
 /*******************************************************************************
 		리뷰쓰기 - 프로필 사진 선택
@@ -8,12 +102,120 @@ $("#update_profile").click(function(){
 	$("input[name='file1']").click();
 })
 
+/******************************************************************************
+			회원정보 수정 정규식 체크
+*******************************************************************************/
+let reg_nick = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
+let reg_email = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
+//별명 정규식 체크
+$("#nickname").keyup(function(){
+		if(!reg_nick.test($("#nickname").val())){
+			$("#nickcheck_msg").text("특수문자와 초성 및 모음 제외 2~16자로 입력하세요.").css("color","red")
+			.css("font-size","12px").css("display","block").css("clear","both").css("margin-left", "75px")
+			.css("padding-top","5px")
+			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+			$("#update_nickname").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed");
+		} else {
+			$("#nickcheck_msg").text("").css("display","none");
+			$("#update_nickname").attr("disabled",false).css("background","#98dfff").css("cursor","pointer");
+		}
+});
 
+//이메일 정규식 체크
+$("#email").keyup(function(){
+	if(!reg_email.test($("#email").val())){
+		$("#emailcheck_msg").text("올바른 이메일 형식이 아닙니다.").css("color","red")
+		.css("font-size","12px").css("display","block").css("clear","both").css("margin-left", "75px")
+		.css("padding-top","5px")
+		.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+		$("#update_email").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed");
+		$("#btnAuthEmail").attr("disabled",true).css("background", "#D9D9D9").css("cursor", "not-allowed");
+	} else {
+		$("#emailcheck_msg").text("").css("display","none");
+		$("#update_email").attr("disabled",false).css("background","#98dfff").css("cursor","pointer");
+		$("#btnAuthEmail").attr("disabled",false).css("background", "#98dfff").css("cursor", "pointer");
+		
+	}
+});
 
+//정보 수정 버튼 활성화
+$.updateValidationCheck = function() {
+		if($("#nickcheck_msg").text() != "특수문자와 초성 및 모음 제외 2~16자로 입력하세요." 
+			&& $("#emailcheck_msg").text() != "올바른 이메일 형식이 아닙니다." ){
+			$("#btn_style1").attr("disabled",false).css("background","#7AB2CC").css("cursor","pointer");
+		} else {
+			$("#btn_style1").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed");
+		}
+	}
+$("form[name='updateForm'] input").on({
+		blur: function(){$.updateValidationCheck();},
+		focus: function(){$.updateValidationCheck();},
+		click: function(){$.updateValidationCheck();},
+		keyup: function(){$.updateValidationCheck();}
+	});
 
+/**************
+	 * 회원가입 - 이메일 체크
+	 */
+	 $('#btnAuthEmail').click(function() {
+		const email = $('#email').val(); // 이메일 주소값 얻어오기!
+		$.ajax({
+			type : 'get',
+			url : "mail_check.do?email="+email,
+			success : function (data) {
+				$('#cemail').show();
+				$('#btnCheckEmail').show();
+				$("#data").val(data);
+				$('#btnAuthEmail').text("인증번호 재전송").css("background","#FFB3BD");
+				
+				Swal.fire({
+		            icon: 'success',                         
+		            title: '인증번호가 전송되었습니다.',         
+		            confirmButtonColor:'#98dfff',
+		            confirmButtonText:'확인'
+		        });
+			}			
+		}); // end ajax
+	}); // end send eamil	
 
-
+// 인증번호 비교 
+	// blur -> focus가 벗어나는 경우 발생
+	$('#btnCheckEmail').click(function () {
+		const inputCode = $("#cemail").val();
+		const resultMsg = $('#emailauthcheck_msg');
+		const code = $("#data").val();
+		
+		if(inputCode == code){
+			Swal.fire({
+	            icon: 'success',                         
+	            title: '인증번호가 일치합니다.',         
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
+	        });
+	        
+			$('#cemail').hide();
+			$('#btnCheckEmail').hide();
+			$("#emailauthcheck_msg").text("이메일 인증 완료").css("color","#7AB2CC").css("margin-left", "75px")
+			.css("font-size","12px").css("display","block").css("clear","both")
+			.css("padding-top","5px")
+			.prepend("<img src='http://localhost:9000/petcarepedia/images/check.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+			//$("#btnAuthEmail").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed").css("display", none);
+			$("#btnAuthEmail").hide();
+			$("#email").attr('readonly',true);
+			//$("#email").attr("disabled", false);
+			
+		}else{
+			Swal.fire({
+	            icon: 'error',                         
+	            title: '인증번호가 일치하지 않습니다.',         
+	            confirmButtonColor:'#98dfff',
+	            confirmButtonText:'확인'
+	        });
+	        
+			$("#emailauthcheck_msg").text("").css("display","none");
+		}
+	});
 
 /*******************************************************************************
 		리뷰쓰기 - 글자수 카운팅
@@ -32,80 +234,13 @@ $("#update_profile").click(function(){
 /*******************************************************************************
 		수정하기  - 주소찾기 : daum API
 ******************************************************************************/
-	var count5 = 1;
-	$("#update_addr").click(function(){
-		var img5 = $("#img5");
-   		const address = $("#address");
-	    if (count5 % 2 === 1) {
-	        img5.attr("src", "http://localhost:9000/petcarepedia/images/finish.png");
-	        address.prop("disabled", false);
-	        new daum.Postcode({
-	        oncomplete: function(data) {
-	        	$("#address").val("(" + data.zonecode + ") " + data.address);
-	        	$("#address").focus();
-	        	//data = {zonecode:"12345", address:"서울시 강남구...,}
-	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-	            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-	        }
-		}).open();	
-	    } else {
-	        img5.attr("src", "http://localhost:9000/petcarepedia/images/편집2.png");
-	        address.prop("disabled", true);
-	    }
-		count5++;
-	});
-
-/*******************************************************************************
-		mypage - 수정하기페이지 버튼
-******************************************************************************/
-	$("#information #aside form #section3 #btn_style1").click(function(){
-		if($("#nickname").val() == "") {
-			alert("별명을 입력해주세요");
-			$("#nickname").focus();
-			return false;
-		} else if($("#phone1").val() == "") {
-			alert("휴대폰 번호를 선택해주세요");
-			$("#phone1").focus();
-			return false;
-		} else if($("#phone2").val() == "") {
-			alert("휴대폰 번호를 입력해주세요");
-			$("#phone2").focus();
-			return false;
-		} else if($("#phone3").val() == "") {
-			alert("휴대폰 번호를 입력해주세요");
-			$("#phone3").focus();
-			return false;
-		} else if($("#email").val() == "") {
-			alert("이메일을 입력해주세요.");
-			$("#email").focus();
-			return false;
-		} 
-		else {
-			 Swal.fire({
-	            icon: 'success',
-	            title: '수정 완료',
-	            confirmButtonColor:'#98dfff',
-	            confirmButtonText:'확인'
-	        }).then(function() {
-	        	$('input').prop('disabled', false);
-				updateForm.submit();
-        	});
-		}
 	
-		
-	})
 
-	$("#nickname").keyup(function(){
-		if(!reg_nick.test($("#nickname").val())){
-			$("#nickcheck_msg").text("특수문자와 초성 및 모음 제외 2~16자로 입력하세요.").css("color","red")
-			.css("font-size","12px").css("display","block").css("clear","both")
-			.css("padding-top","5px")
-			.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
-			return false;
-		} else {
-			$("#nickcheck_msg").text("").css("display","none");
-		}
-	});
+
+
+	
+
+	
 
 
 /*******************************************
@@ -132,6 +267,7 @@ $("#btnReservationDelete").click(function(){
 	    });
 	
 })
+
 
 
 /*******************************************************************************
@@ -166,10 +302,6 @@ $("#btnReservationDelete").click(function(){
         	});
 		}
 	})
-/*******************************************************************************
-		내가 쓴 리뷰 페이지
-******************************************************************************/
-	
 
 /*******************************************************************************
 	내가쓴리뷰 - 리뷰수정

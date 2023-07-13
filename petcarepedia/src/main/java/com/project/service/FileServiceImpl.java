@@ -20,10 +20,10 @@ public class FileServiceImpl {
 	
 
 	/*
-	 * multiFileDelete - 리뷰 삭제시 파일 삭제
+	 * multiFileDelete - 由щ럭 �궘�젣�떆 �뙆�씪 �궘�젣
 	 */
 	public void multiFileDelete(HttpServletRequest request, String[] oldFileName) throws Exception{
-	//파일의 삭제위치
+	//�뙆�씪�쓽 �궘�젣�쐞移�
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 	
@@ -41,16 +41,16 @@ public class FileServiceImpl {
 	}	
 	
 	/*
-	 * multiFileDelete - 리뷰 수정시 삭제
+	 * multiFileDelete - 由щ럭 �닔�젙�떆 �궘�젣
 	 */
 	public void multiFileDelete(ReviewVo reviewVo, HttpServletRequest request, String[] oldFileName) throws Exception{
-	//파일의 삭제위치
+	//�뙆�씪�쓽 �궘�젣�쐞移�
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 		
 		int count = 0;
 		for(CommonsMultipartFile file : reviewVo.getFiles()) {
-			if(!file.getOriginalFilename().equals("")) { //새로운 파일 선택
+			if(!file.getOriginalFilename().equals("")) { //�깉濡쒖슫 �뙆�씪 �꽑�깮
 				File deleteFile = new File(root_path + attach_path+ oldFileName[count]);
 				System.out.println(root_path + attach_path+ oldFileName[count]);			
 				if(deleteFile.exists()) {
@@ -62,17 +62,17 @@ public class FileServiceImpl {
 	}
 	
 	/*
-	 * multiFileSave - 리뷰 저장
+	 * multiFileSave - 由щ럭 ���옣
 	 */
 	public void multiFileSave(ReviewVo reviewVo, HttpServletRequest request) throws Exception {
 		
-		//파일의 저장위치
+		//�뙆�씪�쓽 ���옣�쐞移�
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 		int count = 0;
 		System.out.println(root_path + attach_path);
 		for(CommonsMultipartFile file : reviewVo.getFiles()) {
-			//파일이 존재하면 서버에 저장
+			//�뙆�씪�씠 議댁옱�븯硫� �꽌踰꾩뿉 ���옣
 			if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
 				File saveFile = new File(root_path + attach_path+ reviewVo.getRsfiles().get(count));
 				file.transferTo(saveFile);
@@ -81,7 +81,7 @@ public class FileServiceImpl {
 		}
 	}
 	/*
-	 * multiFileCheck - 파일 체크
+	 * multiFileCheck - �뙆�씪 泥댄겕
 	 */
 	public ReviewVo multiFileCheck(ReviewVo reviewVo) {
 		String[] nfile = {reviewVo.getRfile1(), reviewVo.getRfile2()};
@@ -89,13 +89,13 @@ public class FileServiceImpl {
 		int count = 0;
 		for(CommonsMultipartFile file : reviewVo.getFiles()) {
 			if(!file.getOriginalFilename().equals("")) {
-				//파일이 있음
+				//�뙆�씪�씠 �엳�쓬
 				UUID uuid = UUID.randomUUID();
 				reviewVo.getRfiles().add(file.getOriginalFilename());
 				reviewVo.getRsfiles().add(uuid+"_"+file.getOriginalFilename());
 			}
 			else {
-				//파일이 없음
+				//�뙆�씪�씠 �뾾�쓬
 				reviewVo.getRfiles().add(nfile[count]);
 				reviewVo.getRsfiles().add(nsfile[count]);
 			}
@@ -117,7 +117,7 @@ public class FileServiceImpl {
 ///////////////////////////////////Hospital/////////////////////////////////////////////////////	
 
 	/**
-	 * fileDelete- 파일 삭제 기능
+	 * fileDelete- �뙆�씪 �궘�젣 湲곕뒫
 	 */
 	public void fileDelete(HttpServletRequest request, String oldFileName)
 														throws Exception{
@@ -125,7 +125,7 @@ public class FileServiceImpl {
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 		
-		//파일이 존재하면 서버에 저장
+		//�뙆�씪�씠 議댁옱�븯硫� �꽌踰꾩뿉 ���옣
 		if(oldFileName != null && !oldFileName.equals("")) {
 			File deleteFile = new File(root_path + attach_path+ oldFileName);
 			
@@ -136,7 +136,7 @@ public class FileServiceImpl {
 	}
 	
 	/**
-	 * fileDelete-  수정할 때 기존 파일 삭제 기능
+	 * fileDelete-  �닔�젙�븷 �븣 湲곗〈 �뙆�씪 �궘�젣 湲곕뒫
 	 */
 	public void fileDelete2(HospitalVo hospitalVo, HttpServletRequest request, String oldFileName)
 																				throws Exception{
@@ -144,10 +144,10 @@ public class FileServiceImpl {
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 		
-		//파일이 존재하면 서버에 저장
+		//�뙆�씪�씠 議댁옱�븯硫� �꽌踰꾩뿉 ���옣
 		if(!hospitalVo.getFile1().getOriginalFilename().equals("")) {
 			File deleteFile = new File(root_path + attach_path+ oldFileName);
-			//boardVo.getFile1().transferTo(deleteFile); //upload 폴더    ->  JVM과 파일이 연결되는 객체를 생성하여 연결해준다. 연결해주는 객체 deleteFile
+			//boardVo.getFile1().transferTo(deleteFile); //upload �뤃�뜑    ->  JVM怨� �뙆�씪�씠 �뿰寃곕릺�뒗 媛앹껜瑜� �깮�꽦�븯�뿬 �뿰寃고빐以��떎. �뿰寃고빐二쇰뒗 媛앹껜 deleteFile
 			System.out.println(root_path + attach_path+ oldFileName);
 			if(deleteFile.exists()) {
 				deleteFile.delete();
@@ -156,14 +156,14 @@ public class FileServiceImpl {
 	}
 	
 	/**
-	 * fileSave 기능
+	 * fileSave 湲곕뒫
 	 */
 	public void fileSave(HospitalVo hospitalVo, HttpServletRequest request) throws Exception{
 		
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 		
-		//파일이 존재하면 서버에 저장
+		//�뙆�씪�씠 議댁옱�븯硫� �꽌踰꾩뿉 ���옣
 		if(hospitalVo.getHfile() != null && !hospitalVo.getHfile().equals("")) {
 			//System.out.println("save file--->" + hospitalVo.getHfile());			
 			File saveFile = new File(root_path + attach_path+ hospitalVo.getHsfile());
@@ -173,20 +173,20 @@ public class FileServiceImpl {
 	}
 	
 	/**
-	 * fileCheck 기능
+	 * fileCheck 湲곕뒫
 	 */
 	public HospitalVo fileCheck(HospitalVo hospitalVo) {
 		if(hospitalVo.getFile1().getOriginalFilename() != null
-				&& !hospitalVo.getFile1().getOriginalFilename().contentEquals("")) {  //파일이 존재하면
+				&& !hospitalVo.getFile1().getOriginalFilename().contentEquals("")) {  //�뙆�씪�씠 議댁옱�븯硫�
 			
-			//BSFILE 파일 중복 처리
+			//BSFILE �뙆�씪 以묐났 泥섎━
 			UUID uuid = UUID.randomUUID();
 			String hfile = hospitalVo.getFile1().getOriginalFilename();
 			String hsfile = uuid + "_" + hfile;
 			hospitalVo.setHfile(hfile);
 			hospitalVo.setHsfile(hsfile);
 		}else {
-			System.out.println("파일 없음");
+			System.out.println("�뙆�씪 �뾾�쓬");
 //			hospitalVo.setHfile("");
 //			hospitalVo.setHsfile("");
 		}	
@@ -199,18 +199,17 @@ public class FileServiceImpl {
 //////////////////////////////////////////////Mypage/////////////////////////////////////////////////////////////////////////
 	
 	/*
-	* file delete - 프로필사진 수정할 때 기존 사진 삭제기능
+	* file delete - �봽濡쒗븘�궗吏� �닔�젙�븷 �븣 湲곗〈 �궗吏� �궘�젣湲곕뒫
 	*/
 	
 	public void mfileDelete(MemberVo membmerVo, HttpServletRequest request, String oldFileName) throws Exception{
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 
-		//파일이 존재하면 서버에 저장
+		//�뙆�씪�씠 議댁옱�븯硫� �꽌踰꾩뿉 ���옣
 		if(!membmerVo.getFile1().getOriginalFilename().equals("")) {
 			File deleteFile = new File(root_path + attach_path+ oldFileName);
-			//boardVo.getFile1().transferTo(deleteFile); //upload 폴더    ->  JVM과 파일이 연결되는 객체를 생성하여 연결해준다. 연결해주는 객체 deleteFile
-			System.out.println(root_path + attach_path+ oldFileName);
+			//boardVo.getFile1().transferTo(deleteFile); //upload �뤃�뜑    ->  JVM怨� �뙆�씪�씠 �뿰寃곕릺�뒗 媛앹껜瑜� �깮�꽦�븯�뿬 �뿰寃고빐以��떎. �뿰寃고빐二쇰뒗 媛앹껜 deleteFile
 			if(deleteFile.exists()) {
 				deleteFile.delete();
 			}
@@ -219,15 +218,14 @@ public class FileServiceImpl {
 	
 	
 	/*
-	* fileSave기능 - 회원프로필사진 저장기능
+	* fileSave湲곕뒫 - �쉶�썝�봽濡쒗븘�궗吏� ���옣湲곕뒫
 	*/
 	
 	public void mfileSave(MemberVo memberVo, HttpServletRequest request) throws Exception{
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
-
-		//파일이 존재하면 서버에 저장
+		//�뙆�씪�씠 議댁옱�븯硫� �꽌踰꾩뿉 ���옣
 		if(memberVo.getMfile() != null && !memberVo.getMfile().equals("")) {
 			//System.out.println("save file--->" + hospitalVo.getHfile());			
 			File saveFile = new File(root_path + attach_path+ memberVo.getMsfile());
@@ -238,14 +236,14 @@ public class FileServiceImpl {
 	
 	
 	/*
-	 * fileCheck - 회원 프로필 사진 체크
+	 * fileCheck - �쉶�썝 �봽濡쒗븘 �궗吏� 泥댄겕
 	 */
 	
 	public MemberVo mfileCheck(MemberVo memberVo) {
 		if(memberVo.getFile1().getOriginalFilename() != null
-				&& !memberVo.getFile1().getOriginalFilename().contentEquals("")) {  //파일이 존재하면
+				&& !memberVo.getFile1().getOriginalFilename().contentEquals("")) {  //�뙆�씪�씠 議댁옱�븯硫�
 
-			//BSFILE 파일 중복 처리
+			//BSFILE �뙆�씪 以묐났 泥섎━
 			UUID uuid = UUID.randomUUID();
 			String mfile = memberVo.getFile1().getOriginalFilename();
 			String msfile = uuid + "_" + mfile;
