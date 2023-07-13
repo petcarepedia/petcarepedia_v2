@@ -15,7 +15,7 @@
 	
 	<select id = "select" parameterType = "String" resultType = "com.project.vo.BookmarkVo">
 		select bmid, b.mid, b.hid, h.hname, h.gloc, h.hrink
-			from pcp_bookmark b, pcp_hospital h where b.hid = h.hid and mid = #{mid}
+			from pcp_bookmark b, pcp_hospital h where b.hid = h.hid and b.mid = #{mid}
 	</select> 
 	
 	<select id = "checkBookmark" parameterType = "com.project.vo.BookmarkVo" resultType = "int">
