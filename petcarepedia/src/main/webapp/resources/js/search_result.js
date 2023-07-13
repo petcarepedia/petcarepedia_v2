@@ -156,6 +156,7 @@ $(document).ready(function(){
 	  var button = $(this);
 	  var rid = button.data('rid');
 	  var hid = $("input[name='hid']").val();
+	  var mid = $("input[name='mid']").val();
 	
 	  if (mid == "") { // 미로그인시
 	    Swal.fire({
@@ -199,15 +200,16 @@ $(document).ready(function(){
 	            url: "rstateProc.do",
 	            type: "POST",
 	            data: {
+	              mid: mid,
 	              rid: rid,
 	              hid: hid,
 	              rreson: rreson
 	            },
-	            success: function(rstate_result) {
-	              if (rstate_result === "fail") {
+	            success: function(result) {
+	              if (result === "fail") {
 	                Swal.fire({
 	                  icon: 'error',
-	                  title: '신고 접수된 리뷰입니다',
+	                  title: '이미 신고하셨습니다',
 	                  text: '관리자 확인중 입니다. 잠시만 기다려 주세요.',
 	                  showConfirmButton: true,
 	                  confirmButtonText: '확인',
@@ -215,7 +217,7 @@ $(document).ready(function(){
 	                }).then(function() {
 	                  location.reload();
 	                });
-	              } else if (rstate_result === "success") {
+	              } else if (result === "success") {
 	                Swal.fire({
 	                  icon: 'success',
 	                  title: '신고되었습니다',
