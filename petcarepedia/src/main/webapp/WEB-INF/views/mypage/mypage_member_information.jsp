@@ -31,6 +31,25 @@ const autoHyphen = (target) => {
 </script>
 </head>
 <body>
+<div id="pageOverlay" class="page-overlay"></div>
+	<div id="emailModal" class="modal">
+	  <div class="modal-content">
+	    <h2 class = "title">이메일 인증</h2>
+	    <p><span>*</span>이메일 인증 후 확인버튼을 눌러주세요</p>
+	    <input type = "text" placeholder = "변경하실 이메일을 입력해주세요!" name = "email" id = "confirm_email" class = "email">
+		<button type="button" class="btn-short" id="btnAuthEmail">인증번호 전송</button>
+	    <span id="emailcheck_msg"></span>
+		
+		<input type="hidden" id="data">
+		
+		<input type="text" name="cemail" id="cemail" placeholder="인증번호 입력" class="input-short" style = "display:none">
+		<button type="button" class="btn-short" id="btnCheckEmail" style = "display:none">인증번호 확인</button>
+		<span id="emailauthcheck_msg"></span>
+		<button type = "button" class = "btnModalClose" id = "btnConfirm" disabled>확인</button>
+		<button type = "button" class = "btnModalClose" id = "btnModalClose">닫기</button>
+	  </div>
+	</div>
+
 	<!-- header -->
 	 <jsp:include page="../header.jsp"></jsp:include>
 	<div id = "content">
@@ -93,7 +112,7 @@ const autoHyphen = (target) => {
 								</li>
 								<li>
 									<label>생년월일</label>
-									 <input type="date" name = "birth"
+								 	<input type="date" name = "birth"
 								         id="birth"
 								         max="2023-06-20"
 								         min="1950-06-05"
@@ -104,7 +123,7 @@ const autoHyphen = (target) => {
 									<label>이메일</label>
 									<input type = "text" value = "${memberVo.email}" name = "email" id = "email" disabled>
 									<button type = "button" id = "update_email"><img id = "img3" src = "http://localhost:9000/petcarepedia/images/편집2.png"></button>
-									<span id="emailcheck_msg"></span>
+									<!-- <span id="emailcheck_msg"></span>
 									
 									<button type="button" class="btn-short" id="btnAuthEmail" style = "display:none" disabled>인증번호 전송</button>
 									<span id="emailcheck_msg"></span>
@@ -113,7 +132,7 @@ const autoHyphen = (target) => {
 									
 									<input type="text" name="cemail" id="cemail" placeholder="인증번호 입력" class="input-short" style = "display:none">
 									<button type="button" class="btn-short" id="btnCheckEmail" style = "display:none">인증번호 확인</button>
-									<span id="emailauthcheck_msg"></span>
+									<span id="emailauthcheck_msg"></span> -->
 								</li>
 								<li>
 									<label>휴대폰</label>

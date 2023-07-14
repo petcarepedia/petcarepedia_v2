@@ -32,7 +32,7 @@ $("#update_birth").click(function(){
 })
 
 //이메일
-$("#update_email").click(function(){
+/* $("#update_email").click(function(){
 	if(count3 % 2 == 1) {
 		$("#img3").attr("src", "http://localhost:9000/petcarepedia/images/finish.png");
 		$("#email").attr("disabled", false);
@@ -44,7 +44,27 @@ $("#update_email").click(function(){
 		$("#email").attr("disabled", true);
 	}
 	count3++;
+}) */
+/***************************************************************************
+				이메일 인증 모달
+***************************************************************************/
+$("#update_email").click(function(){
+    $("#emailModal").show();
+    $("#pageOverlay").show();
+    $("#btnConfirm").css("background", "#D9D9D9").css("cursor", "not-allowed");
+});
+$("#btnConfirm").click(function(){
+	$("#email").attr("disabled",false);
+	$("#email").val($(".email").val());
+	$("#emailModal").hide();
+	$("#pageOverlay").hide();
+	$("#email").attr("disabled",true);
 })
+$("#btnModalClose").click(function(){
+	$("#emailModal").hide();
+	$("#pageOverlay").hide();
+});   
+   
 //휴대폰
 $("#update_phone").click(function(){
 	if(count4 % 2 == 1) {
@@ -95,16 +115,8 @@ $("#information #aside form #section3 #btn_style1").click(function(){
 	});
 })
 
-/***************************************************************************
-				이메일 인증 모달
-***************************************************************************/
-$("#update_email").click(function(){
-		
-		
-		
-		
-}); //click
-	
+
+
 /*******************************************************************************
 		리뷰쓰기 - 프로필 사진 선택
 ******************************************************************************/
@@ -133,11 +145,11 @@ $("#nickname").keyup(function(){
 });
 
 //이메일 정규식 체크
-$("#email").keyup(function(){
-	if(!reg_email.test($("#email").val())){
+$("#confirm_email").keyup(function(){
+	if(!reg_email.test($("#confirm_email").val())){
 		$("#emailcheck_msg").text("올바른 이메일 형식이 아닙니다.").css("color","red")
-		.css("font-size","12px").css("display","block").css("clear","both").css("margin-left", "75px")
-		.css("padding-top","5px")
+		.css("font-size","12px").css("display","block").css("clear","both")
+		.css("padding-top","5px").css("float", "left")
 		.prepend("<img src='http://localhost:9000/petcarepedia/images/info_red.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
 		$("#update_email").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed");
 		$("#btnAuthEmail").attr("disabled",true).css("background", "#D9D9D9").css("cursor", "not-allowed");
@@ -169,7 +181,7 @@ $("form[name='updateForm'] input").on({
 	 * 회원가입 - 이메일 체크
 	 */
 	 $('#btnAuthEmail').click(function() {
-		const email = $('#email').val(); // 이메일 주소값 얻어오기!
+		const email = $('#confirm_email').val(); // 이메일 주소값 얻어오기!
 		$.ajax({
 			type : 'get',
 			url : "mail_check.do?email="+email,
@@ -202,19 +214,18 @@ $("form[name='updateForm'] input").on({
 	            title: '인증번호가 일치합니다.',         
 	            confirmButtonColor:'#98dfff',
 	            confirmButtonText:'확인'
-	        });
-	        
-			$('#cemail').hide();
-			$('#btnCheckEmail').hide();
-			$("#emailauthcheck_msg").text("이메일 인증 완료").css("color","#7AB2CC").css("margin-left", "75px")
-			.css("font-size","12px").css("display","block").css("clear","both")
-			.css("padding-top","5px")
-			.prepend("<img src='http://localhost:9000/petcarepedia/images/check.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
-			//$("#btnAuthEmail").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed").css("display", none);
-			$("#btnAuthEmail").hide();
-			$("#email").attr('readonly',true);
-			//$("#email").attr("disabled", false);
-			
+	        }).then((result) => {
+				$('#cemail').hide();
+				$('#btnCheckEmail').hide();
+				$("#emailauthcheck_msg").text("이메일 인증 완료").css("color","#7AB2CC")
+				.css("font-size","12px").css("display","block").css("clear","both")
+				.css("padding-top","5px")
+				.prepend("<img src='http://localhost:9000/petcarepedia/images/check.png' width='13px' style='padding-right:5px; vertical-align:middle'>");
+				$("#btnAuthEmail").attr("disabled",true).css("background","#D9D9D9").css("cursor","not-allowed");
+				$("#btnModalClose").attr("disabled", true).css("background","#D9D9D9").css("cursor","not-allowed");
+				$("#btnConfirm").attr("disabled",false).css("background", "#98dfff").css("cursor", "pointer");
+				$("#email").attr('readonly',true);
+			});
 		}else{
 			Swal.fire({
 	            icon: 'error',                         
@@ -226,6 +237,8 @@ $("form[name='updateForm'] input").on({
 			$("#emailauthcheck_msg").text("").css("display","none");
 		}
 	});
+
+
 
 /*******************************************************************************
 		리뷰쓰기 - 글자수 카운팅
