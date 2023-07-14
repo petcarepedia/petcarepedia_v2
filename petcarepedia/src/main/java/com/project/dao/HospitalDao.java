@@ -17,7 +17,7 @@ public class HospitalDao extends DBConn {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	/* ÀüÃ¼ Ä«¿îÆ® °¡Á®¿À±â*/
+	/* ï¿½ï¿½Ã¼ Ä«ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	public int totalRowCount() {
 		return sqlSession.selectOne("mapper.hospital.count");
 	}
@@ -39,7 +39,7 @@ public class HospitalDao extends DBConn {
 //		}
 	
 	/**
-	 * º´¿ø ÆäÀÌÂ¡ Ã³¸®
+	 * 
 	 */
 	public List<Object> select(int startCount, int endCount) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
@@ -77,7 +77,7 @@ public class HospitalDao extends DBConn {
 //	}
 	
 	/**
-	 * selectStat - º´¿ø º°Á¡
+	 * selectStat - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	 */
 	public HospitalVo selectStar(String hid) {
 		return sqlSession.selectOne("mapper.hospital.selectStar", hid);
@@ -103,7 +103,7 @@ public class HospitalDao extends DBConn {
 
 
 	/**
-	 * searchGloc - ±¸º° º´¿ø °Ë»ö
+	 * searchGloc - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	 */
 	public ArrayList<HospitalVo> searchGloc(String gloc) {
 		List<HospitalVo> list = sqlSession.selectList("mapper.hospital.searchGloc", gloc);
@@ -155,52 +155,17 @@ public class HospitalDao extends DBConn {
 //	}
 	
 	/**
-	 * search - º´¿ø »ó¼¼ °Ë»ö
+	 * search - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ë»ï¿½
 	 */
-	public List<Object> search(String hname, String gloc) {
+	public List<Object> search(String hname) {
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("hname", hname);
-		param.put("gloc", gloc);
 		return sqlSession.selectList("mapper.hospital.search", param);
 	}
-//		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
-//		String sql = "SELECT HID, HNAME, GLOC, LOC, TEL, HTIME, NTIME, HOLIDAY, ANIMAL,INTRO, IMG, HRINK, X, Y  " +
-//					 "	FROM PCP_HOSPITAL WHERE HNAME LIKE ?";
-//		getPreparedStatement(sql);
-//
-//		try {
-//			pstmt.setString(1, "%"+ hname + "%");
-//
-//			rs = pstmt.executeQuery();
-//
-//			while (rs.next()) {
-//				HospitalVo hospital = new HospitalVo();
-//				hospital.setHid(rs.getString(1));
-//				hospital.setHname(rs.getString(2));
-//				hospital.setGloc(rs.getString(3));
-//				hospital.setLoc(rs.getString(4));
-//				hospital.setTel(rs.getString(5));
-//				hospital.setHtime(rs.getString(6));
-//				hospital.setNtime(rs.getString(7));
-//				hospital.setHoliday(rs.getString(8));
-//				hospital.setAnimal(rs.getString(9));
-//				hospital.setIntro(rs.getString(10));
-//				hospital.setImg(rs.getString(11));
-//				hospital.setHrink(rs.getString(12));
-//				hospital.setX(rs.getString(13));
-//				hospital.setY(rs.getString(14));
-//
-//				list.add(hospital);
-//			}
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return list;
-//	}		 
+		 
 
 	/**
-	 * delete - º´¿ø »èÁ¦
+	 * delete - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	 */
 	public int delete(String hid) {
 		return sqlSession.delete("mapper.hospital.delete", hid);
@@ -221,7 +186,7 @@ public class HospitalDao extends DBConn {
 //	}
 
 	/**
-	 * update - º´¿ø ¼öÁ¤
+	 * update - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	 */
 	public int update(HospitalVo hospitalVo) {
 		return sqlSession.update("mapper.hospital.update", hospitalVo);
@@ -254,7 +219,7 @@ public class HospitalDao extends DBConn {
 	}
 
 	/**
-	 * select - º´¿ø ÇÏ³ª¸¸ Á¶È¸
+	 * select - ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 	 */
 	public HospitalVo select(String hid) {
 		return sqlSession.selectOne("mapper.hospital.content", hid);
@@ -295,7 +260,7 @@ public class HospitalDao extends DBConn {
 //	}// 123
 
 	/**
-	 * select - º´¿ø Á¶È¸
+	 * select - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 	 */
 	public ArrayList<HospitalVo> select() {
 		List<HospitalVo> list = sqlSession.selectList("mapper.hospital.list2");
@@ -373,12 +338,12 @@ public class HospitalDao extends DBConn {
 //		
 //		return hospitalVo;
 //		
-//	} // selectTime - ¿µ¾÷½Ã°£
+//	} // selectTime - ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
 
 
 
 	/**
-	 * insert - º´¿ø µî·Ï
+	 * insert - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	 */
 	public int insert(HospitalVo hospitalVo) {
 		return sqlSession.insert("mapper.hospital.insert", hospitalVo);

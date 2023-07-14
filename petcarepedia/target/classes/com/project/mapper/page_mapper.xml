@@ -78,6 +78,15 @@
 					WHERE RNO BETWEEN #{start} AND #{end}
 	</select>
 	
+	<select id = "Hslist2" parameterType="map" resultType="com.project.vo.HospitalVo">	
+		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
+					  FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
+						 FROM( SELECT HID, HNAME,  ANIMAL, NTIME, HOLIDAY FROM PCP_HOSPITAL 
+						 		where gloc like '%'||#{gloc}||'%'
+						 		ORDER BY gloc)) 
+					WHERE RNO BETWEEN #{start} AND #{end}
+	</select>
+	
 	<select id = "Hlist" parameterType="map" resultType="com.project.vo.HospitalVo">	
 		SELECT RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
 					  FROM (SELECT ROWNUM RNO, HID, HNAME,  ANIMAL, NTIME, HOLIDAY 
@@ -108,6 +117,10 @@
 	
 	<select id="Hscount" parameterType="String" resultType="int">
 		select count(*) from pcp_hospital where hname like '%'||#{hname}||'%'
+	</select>
+	
+	<select id="Hscount2" parameterType="String" resultType="int">
+		select count(*) from pcp_hospital where gloc like '%'||#{gloc}||'%'
 	</select>
 	
 	<select id="Hcount" resultType="int">
