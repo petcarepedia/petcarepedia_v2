@@ -80,7 +80,8 @@ $(document).ready(function() {
 					}						
 											
 				} else {							
-					// 휴일 진료 안할 시						
+					// 휴일 진료 안할 시		
+									
 					var clickedDate = $(this).val();						
 					var clickedDate2 = $(this).val();						
 											
@@ -98,7 +99,12 @@ $(document).ready(function() {
 											
 					/* 다른 날짜 선택 시 시간 초기화 */						
 					$("#vtime").val("");						
-					$(".stime").removeClass("selected");						
+					$(".stime").removeClass("selected");
+					
+					/* 스타일 초기화 */
+					$(".stime").css("background", ""); // 모든 요소의 배경색 초기화					
+					$(".stime").css("pointer-events", ""); // 모든 요소의 pointer-events 초기화					
+					$(".stime").css("cursor", ""); // 모든 요소의 cursor 초기화				
 											
 					/* 선택된 날짜 전역 변수에 저장 */						
 					selectedDate = clickedDate;						
