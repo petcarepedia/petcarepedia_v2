@@ -1,20 +1,5 @@
 $(document).ready(function(){
-	/*******************************************
-		공지사항 - 파일 업로드
-	 ********************************************/	
-	$("#file1").change(function() {
-		if(window.FileReader) {
-			let fname = $(this)[0].files[0].name;
-			$("#update_file1").text(fname)
-		}
-	});
-	
-	$("#file2").change(function() {
-		if(window.FileReader) {
-			let fname = $(this)[0].files[0].name;
-			$("#update_file2").text(fname)
-		}
-	});
+
 	
 	
 	
@@ -33,5 +18,11 @@ $(document).ready(function(){
 	    $(this).siblings('.upload-name').val(filename);
   	});
 	
+	
+	
+	$("#DeleteFile").click(function() {
+		$("#file1").value("");
+		
+	});
 	
 }); //ready

@@ -70,46 +70,42 @@
 					</section>
 					<textarea name="rcontent" id = "rcontent" placeholder="진료에 대한 경험을 진솔하게 작성해주세요(30~50자내)" maxlength = "200">${reviewVo.rcontent}</textarea>
 					<div id="test_cnt">(0 / 200)</div>
-					<div class="filebox">
-						<c:choose>
-							<c:when test="${reviewVo.rfile1 != null}">
-								<div class="filebox">
-									<label class="fblabel" for="file1">업로드</label>
-									<input class="upload-name" value="${reviewVo.rfile1 }" disabled="disabled">
-									<input type="file" name="files" id="file1" class="upload-hidden">
-									<input type="hidden" name="rfile1" value="${reviewVo.rfile1} ">
-									<input type="hidden" name="rsfile1" value="${reviewVo.rsfile1} ">
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div class="filebox">
-									<label class="fblabel" for="file1">업로드</label>
-									<input class="upload-name" value="파일 없음" disabled="disabled">
-									<input type="file" name="files" id="file1" class="upload-hidden"> 
-								</div>
-							</c:otherwise>							
-						</c:choose>
-					</div>
-					<div class="filebox">
-						<c:choose>
-							<c:when test="${reviewVo.rfile2 != null}">
-								<div class="filebox">
-									<label class="fblabel" for="file2">업로드</label>
-									<input class="upload-name" value="${reviewVo.rfile2 }" disabled="disabled">
-									<input type="file" name="files" id="file2" class="upload-hidden">
-									<input type="hidden" name="rfile2" value="${reviewVo.rfile2} ">
-									<input type="hidden" name="rsfile2" value="${reviewVo.rsfile2} ">
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div class="filebox">
-									<label class="fblabel" for="file2">업로드</label>
-									<input class="upload-name" value="파일 없음" disabled="disabled">
-									<input type="file" name="files" id="file2" class="upload-hidden"> 
-								</div>
-							</c:otherwise>							
-						</c:choose>
-					</div>
+					<c:choose>
+						<c:when test="${reviewVo.rfile1 != null}">
+							<div class="filebox">
+								<label class="fblabel" for="file1">업로드</label>
+								<input class="upload-name" value="${reviewVo.rfile1 }" id="file1name" disabled="disabled">
+								<input type="file" name="files" id="file1" class="upload-hidden">
+								<input type="hidden" name="rfile1" value="${reviewVo.rfile1} ">
+								<input type="hidden" name="rsfile1" value="${reviewVo.rsfile1} ">
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="filebox">
+								<label class="fblabel" for="file1">업로드</label>
+								<input class="upload-name" value="파일 없음" disabled="disabled">
+								<input type="file" name="files" id="file1" class="upload-hidden"> 
+							</div>
+						</c:otherwise>							
+					</c:choose>
+					<c:choose>
+						<c:when test="${reviewVo.rfile2 != null}">
+							<div class="filebox">
+								<label class="fblabel" for="file2">업로드</label>
+								<input class="upload-name" value="${reviewVo.rfile2 }" id="file2name" disabled="disabled">
+								<input type="file" name="files" id="file2" class="upload-hidden">
+								<input type="hidden" name="rfile2" value="${reviewVo.rfile2} ">
+								<input type="hidden" name="rsfile2" value="${reviewVo.rsfile2} ">
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="filebox">
+								<label class="fblabel" for="file2">업로드</label>
+								<input class="upload-name" value="파일 없음" disabled="disabled">
+								<input type="file" name="files" id="file2" class="upload-hidden"> 
+							</div>
+						</c:otherwise>							
+					</c:choose>
 					<a href = "mypage_review_content.do?rid=${reviewVo.rid} ">
 						<button type = "button" id = "cancle">취소</button>
 					</a>
