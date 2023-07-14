@@ -1,8 +1,49 @@
-	
 $(document).ready(function(){
+	
+	
 	/*************************
-	 * 병원 - 정렬
+	 * 다음 api - 주소 찾기
 	 **************************/
+	$("#search_loc").click(function(){
+		new daum.Postcode({
+	        oncomplete: function(data) {
+	        	//alert(data.address);
+	        	$("#loc").val(data.address);
+	        	$("#loc").focus();
+	        	searchAddressToCoordinate(data.address); 
+	        }
+	    }).open();
+		
+	}); //search address
+	
+	/**위도 경도 - 주소찾기 api랑 연계했음 **/
+		function searchAddressToCoordinate(address) {
+			naver.maps.Service.geocode({
+				query: address
+			}, function(status, response) {
+				if (status === naver.maps.Service.Status.ERROR) {
+				return alert('Something Wrong!');
+			}
+			if (response.v2.meta.totalCount === 0) {
+				return alert('올바른 주소를 입력해주세요.');
+			}
+			var htmlAddresses = [],
+				item = response.v2.addresses[0];
+				
+			if (item.roadAddress) {
+				htmlAddresses.push('[도로명 주소] ' + item.roadAddress);
+			}
+			insertAddress(item.roadAddress, item.x, item.y);
+			})
+		
+		} // searchAddressToCoordinate
+		
+			
+		//input입력
+		function insertAddress(address, latitude, longitude) {
+			$('#x').val(latitude);	
+			$('#y').val(longitude);	
+		}
 	
 	
 	
@@ -225,11 +266,49 @@ $(document).ready(function(){
 		}//else
 					
   	});//function
+  	
 	/*************************
-	 * 병원 - 검색창
+	 * 병원 - 검색창 변환
 	 **************************/
-  $("#search_btn").click(function(){
-		if($("#search_bar").val() ==""){
+	 $("#search").change(function(){
+		var selectVal = $(this).val();
+		
+		if(selectVal == "hname"){
+			$("#d6").show();
+			$("#d7").hide();
+		}else{
+			$("#d7").show();
+			$("#d6").hide();
+		}
+	});
+	 
+	 
+	/*************************
+	 * 병원 - 검색창(지역구)
+	 **************************/
+  $("#btn_gloc").click(function(){
+		if($("#search_gloc").val() ==""){
+			Swal.fire({
+		        icon: 'warning',                         // Alert 타입
+		        /* title: 'Alert가 실행되었습니다.',*/       // Alert 제목
+		        title: '병원명을 입력해주세요',  		// Alert 내용
+		        
+		        confirmButtonColor:'#7ab2cc',
+		  	  	confirmButtonText:'확인'
+			});
+			$("#search_gloc").focus();
+			return false;
+		}else{	
+			location.href = "http://localhost:9000/petcarepedia/admin_hospital_list.do?page=1&gloc="+$("#search_gloc").val();
+			
+		}//else
+  	});//function
+  	
+	/*************************
+	 * 병원 - 검색창(병원)
+	 **************************/
+  $("#btn_hname").click(function(){
+		if($("#search_hname").val() ==""){
 			Swal.fire({
 		        icon: 'warning',                         // Alert 타입
 		        /* title: 'Alert가 실행되었습니다.',*/       // Alert 제목
@@ -241,35 +320,7 @@ $(document).ready(function(){
 			$("#search_bar").focus();
 			return false;
 		}else{	
-			location.href = "http://localhost:9000/petcarepedia/admin_hospital_list.do?page=1&hname="+$("#search_bar").val();
-				/*$.ajax({
-					url:"http://localhost:9000/petcarepedia/hospital_list_data.do?hname="+$("#search_bar").val(), 
-					success:function(result){
-					let jdata = JSON.parse(result);
-					//alert(result);
-						let output = "<table class='table'>";					
-						output += "<tr><th>병원 번호</th><th>병원명</th><th>기타 동물 여부</th><th>야간 진료 여부</th><th>공휴일 진료 여부</th></tr>";						
-						for(obj of jdata.jlist){
-							output += "<tr>";
-							output += "<td>"+ obj.hid +"</td>";
-							output += "<td>"+ obj.hname +"</td>";
-							output += "<td>"+ obj.animal +"</td>";
-							output += "<td>"+ obj.ntime +"</td>";
-							output += "<td>"+ obj.holiday +"</td>";
-							output += "</tr>";						
-							}//for
-							
-						output +="<tr><td colspan='5'><div id='ampaginationsm'></div></td></tr>";
-						output +="</table>";
-						
-						
-						$("table.table").remove();
-						$("#d2").after(output);
-						
-						
-					}//success
-					
-				});//ajax*/
+			location.href = "http://localhost:9000/petcarepedia/admin_hospital_list.do?page=1&hname="+$("#search_hname").val();
 		}//else
   	});//function
   	

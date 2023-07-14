@@ -66,26 +66,7 @@ public class AdminController {
 		return model;
 	}
 	
-	/**
-	 * �뜝�럩援쇿뜝�럥�뒎 �뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
-	 */
-//	@RequestMapping(value="/admin_reserve_list.do", method=RequestMethod.GET)
-//	public ModelAndView reserve_list(String page) {
-//		ModelAndView model = new ModelAndView();		
-//		Map<String, Integer> param = pageService.getPageResult(page, "booking");
-//		
-//		ArrayList<BookingVo> list = pageService.getBListPage(param.get("startCount"), param.get("endCount"));
-//		
-//		model.addObject("list", list);
-//		model.addObject("totals", param.get("dbCount"));
-//		model.addObject("pageSize",param.get("pageSize"));
-//		model.addObject("maxSize", param.get("maxSize"));
-//		model.addObject("page", param.get("page"));
-//		
-//		model.setViewName("/admin/reserve/admin_reserve_list");
-//		
-//		return model;
-//	}
+
 	
 	@RequestMapping(value="/admin_reserve_list.do", method=RequestMethod.GET)
 	public ModelAndView reserve_list(String page, String mid) {
@@ -143,18 +124,21 @@ public class AdminController {
 	}
 	
 	/**
-	 * �솻洹ｌ탳占쎈쐸 �뜝�럥�쓡�뜝�럩逾좂춯�쉻�삕
+	 * 병원 메인- 검색
 	 */
 	@RequestMapping(value="/admin_hospital_list.do", method=RequestMethod.GET)
-	public ModelAndView hospital_list(String page, String hname) {
+	public ModelAndView hospital_list(String page, HospitalVo hospitalVo) {
 		ModelAndView model = new ModelAndView();
 		Map<String, Integer> param = new HashMap<String,Integer>();
 		ArrayList<HospitalVo> list = new ArrayList<HospitalVo>();
 		
-		if(hname!=null && hname!="") {
-			param = pageService.getHPageResult(page, hname);
-			list = pageService.getHsListPage(param.get("startCount"), param.get("endCount"), hname);
-		} else {
+		if(hospitalVo.getHname()!=null && hospitalVo.getHname()!="") {
+			param = pageService.getHPageResult(page, hospitalVo.getHname());
+			list = pageService.getHsListPage(param.get("startCount"), param.get("endCount"), hospitalVo.getHname());
+		}else if(hospitalVo.getGloc()!=null && hospitalVo.getGloc()!="") {
+			param = pageService.getHPageResult(page, hospitalVo.getGloc());
+			list = pageService.getHsListPage2(param.get("startCount"), param.get("endCount"), hospitalVo.getGloc());
+		}else {
 			param = pageService.getHPageResult(page, "hospital");
 			list = pageService.getHListPage(param.get("startCount"), param.get("endCount"));
 		}
@@ -164,7 +148,8 @@ public class AdminController {
 		model.addObject("pageSize",param.get("pageSize"));
 		model.addObject("maxSize", param.get("maxSize"));
 		model.addObject("page", param.get("page"));
-		model.addObject("hname", hname);
+		model.addObject("hname", hospitalVo.getHname());
+		model.addObject("gloc", hospitalVo.getGloc());
 		
 		model.setViewName("/admin/hospital/admin_hospital_list");
 		
@@ -446,18 +431,6 @@ public class AdminController {
 		return "/admin/hospital/admin_hospital_detail";
 	}
 
-	/**
-	 * 占쎌녃域뱄퐣�꺍�뜝�럥�맱 - 占쎈눇�뙼蹂��굲占쎈쐻占쎈윞占쎈룿 占쎈쐻占쎈윥占쎌뱻占쎈쐻占쎈윪�얠쥉異�占쎌돸占쎌굲
-	 */
-	@RequestMapping(value = "/admin_hospital_list_detail.do", method = RequestMethod.GET)
-	public ModelAndView hostpital_detail(String hname) {
-		ModelAndView model = new ModelAndView();
-		ArrayList<HospitalVo> list = hospitalService.search(hname);
-
-		model.addObject("list", list);
-		model.setViewName("/admin/hospital/admin_hospital_list_detail");
-
-		return model;
-	}
+	
 
 }

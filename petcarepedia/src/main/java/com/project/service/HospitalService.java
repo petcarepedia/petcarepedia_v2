@@ -10,7 +10,7 @@ public interface HospitalService {
 		int totalRowCount();
 		HospitalVo selectStar(String hid);
 		ArrayList<HospitalVo> searchGloc(String gloc);
-		List<Object> search(String hname, String gloc);
+		List<Object> search(String hname);
 		int delete(String hid);
 		int update(HospitalVo hospitalVo);
 		HospitalVo select(String hid);
