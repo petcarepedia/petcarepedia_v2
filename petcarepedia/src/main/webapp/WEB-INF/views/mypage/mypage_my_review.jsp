@@ -13,6 +13,8 @@
 <script src="http://localhost:9000/petcarepedia/js/petcarepedia_jquery_yeol.js"></script>
 <link rel="stylesheet" href="http://localhost:9000/petcarepedia/css/am-pagination.css">
 <script src="http://localhost:9000/petcarepedia/js/am-pagination.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
 <script>
 	$(document).ready(function(){
 		var mid = "${sessionScope.svo.mid}";
@@ -92,7 +94,15 @@
 									<span>${reviewVo.nickname}</span>
 								</div>
 								<div id = "aside2">
-									<img src = "http://localhost:9000/petcarepedia/upload/${reviewVo.hsfile}">
+									<c:choose>
+										<c:when test="${reviewVo.rsfile1 != '' || reviewVo.rsfile2 != '' }">
+											<a href="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile1 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile1 }" alt=""></a>
+											<a style="display:none;" href="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile2 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile2 }" alt=""></a>
+										</c:when>
+										<c:otherwise>
+											<img src = "http://localhost:9000/petcarepedia/upload/${reviewVo.hsfile}">
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<div id = "aside3">
 									<span>리뷰 내용</span>

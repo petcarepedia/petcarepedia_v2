@@ -20,10 +20,10 @@ public class FileServiceImpl {
 	
 
 	/*
-	 * multiFileDelete - 由щ럭 �궘�젣�떆 �뙆�씪 �궘�젣
+	 * multiFileDelete - �뵳�됰윮 占쎄텣占쎌젫占쎈뻻 占쎈솁占쎌뵬 占쎄텣占쎌젫
 	 */
 	public void multiFileDelete(HttpServletRequest request, String[] oldFileName) throws Exception{
-	//�뙆�씪�쓽 �궘�젣�쐞移�
+	//占쎈솁占쎌뵬占쎌벥 占쎄텣占쎌젫占쎌맄燁삼옙
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 	
@@ -41,16 +41,16 @@ public class FileServiceImpl {
 	}	
 	
 	/*
-	 * multiFileDelete - 由щ럭 �닔�젙�떆 �궘�젣
+	 * multiFileDelete - �뵳�됰윮 占쎈땾占쎌젟占쎈뻻 占쎄텣占쎌젫
 	 */
 	public void multiFileDelete(ReviewVo reviewVo, HttpServletRequest request, String[] oldFileName) throws Exception{
-	//�뙆�씪�쓽 �궘�젣�쐞移�
+	//占쎈솁占쎌뵬占쎌벥 占쎄텣占쎌젫占쎌맄燁삼옙
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 		
 		int count = 0;
 		for(CommonsMultipartFile file : reviewVo.getFiles()) {
-			if(!file.getOriginalFilename().equals("")) { //�깉濡쒖슫 �뙆�씪 �꽑�깮
+			if(!file.getOriginalFilename().equals("")) { //占쎄퉱嚥≪뮇�뒲 占쎈솁占쎌뵬 占쎄퐨占쎄문
 				File deleteFile = new File(root_path + attach_path+ oldFileName[count]);
 				System.out.println(root_path + attach_path+ oldFileName[count]);			
 				if(deleteFile.exists()) {
@@ -62,17 +62,17 @@ public class FileServiceImpl {
 	}
 	
 	/*
-	 * multiFileSave - 由щ럭 ���옣
+	 * multiFileSave - �뵳�됰윮 占쏙옙占쎌삢
 	 */
 	public void multiFileSave(ReviewVo reviewVo, HttpServletRequest request) throws Exception {
 		
-		//�뙆�씪�쓽 ���옣�쐞移�
+		//占쎈솁占쎌뵬占쎌벥 占쏙옙占쎌삢占쎌맄燁삼옙
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 		int count = 0;
 		System.out.println(root_path + attach_path);
 		for(CommonsMultipartFile file : reviewVo.getFiles()) {
-			//�뙆�씪�씠 議댁옱�븯硫� �꽌踰꾩뿉 ���옣
+			//占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙 占쎄퐣甕곌쑴肉� 占쏙옙占쎌삢
 			if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
 				File saveFile = new File(root_path + attach_path+ reviewVo.getRsfiles().get(count));
 				file.transferTo(saveFile);
@@ -81,7 +81,7 @@ public class FileServiceImpl {
 		}
 	}
 	/*
-	 * multiFileCheck - �뙆�씪 泥댄겕
+	 * multiFileCheck - 占쎈솁占쎌뵬 筌ｋ똾寃�
 	 */
 	public ReviewVo multiFileCheck(ReviewVo reviewVo) {
 		String[] nfile = {reviewVo.getRfile1(), reviewVo.getRfile2()};
@@ -89,13 +89,13 @@ public class FileServiceImpl {
 		int count = 0;
 		for(CommonsMultipartFile file : reviewVo.getFiles()) {
 			if(!file.getOriginalFilename().equals("")) {
-				//�뙆�씪�씠 �엳�쓬
+				//占쎈솁占쎌뵬占쎌뵠 占쎌뿳占쎌벉
 				UUID uuid = UUID.randomUUID();
 				reviewVo.getRfiles().add(file.getOriginalFilename());
 				reviewVo.getRsfiles().add(uuid+"_"+file.getOriginalFilename());
 			}
 			else {
-				//�뙆�씪�씠 �뾾�쓬
+				//占쎈솁占쎌뵬占쎌뵠 占쎈씨占쎌벉
 				reviewVo.getRfiles().add(nfile[count]);
 				reviewVo.getRsfiles().add(nsfile[count]);
 			}
@@ -117,7 +117,7 @@ public class FileServiceImpl {
 ///////////////////////////////////Hospital/////////////////////////////////////////////////////	
 
 	/**
-	 * fileDelete- �뙆�씪 �궘�젣 湲곕뒫
+	 * fileDelete- 占쎈솁占쎌뵬 占쎄텣占쎌젫 疫꿸퀡�뮟
 	 */
 	public void fileDelete(HttpServletRequest request, String oldFileName)
 														throws Exception{
@@ -125,7 +125,7 @@ public class FileServiceImpl {
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 		
-		//�뙆�씪�씠 議댁옱�븯硫� �꽌踰꾩뿉 ���옣
+		//占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙 占쎄퐣甕곌쑴肉� 占쏙옙占쎌삢
 		if(oldFileName != null && !oldFileName.equals("")) {
 			File deleteFile = new File(root_path + attach_path+ oldFileName);
 			
@@ -136,7 +136,7 @@ public class FileServiceImpl {
 	}
 	
 	/**
-	 * fileDelete-  �닔�젙�븷 �븣 湲곗〈 �뙆�씪 �궘�젣 湲곕뒫
+	 * fileDelete-  占쎈땾占쎌젟占쎈막 占쎈르 疫꿸퀣�� 占쎈솁占쎌뵬 占쎄텣占쎌젫 疫꿸퀡�뮟
 	 */
 	public void fileDelete2(HospitalVo hospitalVo, HttpServletRequest request, String oldFileName)
 																				throws Exception{
@@ -144,10 +144,10 @@ public class FileServiceImpl {
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 		
-		//�뙆�씪�씠 議댁옱�븯硫� �꽌踰꾩뿉 ���옣
+		//占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙 占쎄퐣甕곌쑴肉� 占쏙옙占쎌삢
 		if(!hospitalVo.getFile1().getOriginalFilename().equals("")) {
 			File deleteFile = new File(root_path + attach_path+ oldFileName);
-			//boardVo.getFile1().transferTo(deleteFile); //upload �뤃�뜑    ->  JVM怨� �뙆�씪�씠 �뿰寃곕릺�뒗 媛앹껜瑜� �깮�꽦�븯�뿬 �뿰寃고빐以��떎. �뿰寃고빐二쇰뒗 媛앹껜 deleteFile
+			//boardVo.getFile1().transferTo(deleteFile); //upload 占쎈쨨占쎈쐭    ->  JVM�⑨옙 占쎈솁占쎌뵬占쎌뵠 占쎈염野껉퀡由븝옙�뮉 揶쏆빘猿쒐몴占� 占쎄문占쎄쉐占쎈릭占쎈연 占쎈염野껉퀬鍮먧빳占쏙옙�뼄. 占쎈염野껉퀬鍮먧틠�눖�뮉 揶쏆빘猿� deleteFile
 			System.out.println(root_path + attach_path+ oldFileName);
 			if(deleteFile.exists()) {
 				deleteFile.delete();
@@ -156,14 +156,14 @@ public class FileServiceImpl {
 	}
 	
 	/**
-	 * fileSave 湲곕뒫
+	 * fileSave 疫꿸퀡�뮟
 	 */
 	public void fileSave(HospitalVo hospitalVo, HttpServletRequest request) throws Exception{
 		
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 		
-		//�뙆�씪�씠 議댁옱�븯硫� �꽌踰꾩뿉 ���옣
+		//占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙 占쎄퐣甕곌쑴肉� 占쏙옙占쎌삢
 		if(hospitalVo.getHfile() != null && !hospitalVo.getHfile().equals("")) {
 			//System.out.println("save file--->" + hospitalVo.getHfile());			
 			File saveFile = new File(root_path + attach_path+ hospitalVo.getHsfile());
@@ -173,20 +173,20 @@ public class FileServiceImpl {
 	}
 	
 	/**
-	 * fileCheck 湲곕뒫
+	 * fileCheck 疫꿸퀡�뮟
 	 */
 	public HospitalVo fileCheck(HospitalVo hospitalVo) {
 		if(hospitalVo.getFile1().getOriginalFilename() != null
-				&& !hospitalVo.getFile1().getOriginalFilename().contentEquals("")) {  //�뙆�씪�씠 議댁옱�븯硫�
+				&& !hospitalVo.getFile1().getOriginalFilename().contentEquals("")) {  //占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙
 			
-			//BSFILE �뙆�씪 以묐났 泥섎━
+			//BSFILE 占쎈솁占쎌뵬 餓λ쵎�궗 筌ｌ꼶�봺
 			UUID uuid = UUID.randomUUID();
 			String hfile = hospitalVo.getFile1().getOriginalFilename();
 			String hsfile = uuid + "_" + hfile;
 			hospitalVo.setHfile(hfile);
 			hospitalVo.setHsfile(hsfile);
 		}else {
-			System.out.println("�뙆�씪 �뾾�쓬");
+			System.out.println("占쎈솁占쎌뵬 占쎈씨占쎌벉");
 //			hospitalVo.setHfile("");
 //			hospitalVo.setHsfile("");
 		}	
@@ -199,17 +199,17 @@ public class FileServiceImpl {
 //////////////////////////////////////////////Mypage/////////////////////////////////////////////////////////////////////////
 	
 	/*
-	* file delete - �봽濡쒗븘�궗吏� �닔�젙�븷 �븣 湲곗〈 �궗吏� �궘�젣湲곕뒫
+	* file delete - 占쎈늄嚥≪뮉釉섓옙沅쀯쭪占� 占쎈땾占쎌젟占쎈막 占쎈르 疫꿸퀣�� 占쎄텢筌욑옙 占쎄텣占쎌젫疫꿸퀡�뮟
 	*/
 	
 	public void mfileDelete(MemberVo membmerVo, HttpServletRequest request, String oldFileName) throws Exception{
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
 
-		//�뙆�씪�씠 議댁옱�븯硫� �꽌踰꾩뿉 ���옣
+		//占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙 占쎄퐣甕곌쑴肉� 占쏙옙占쎌삢
 		if(!membmerVo.getFile1().getOriginalFilename().equals("")) {
 			File deleteFile = new File(root_path + attach_path+ oldFileName);
-			//boardVo.getFile1().transferTo(deleteFile); //upload �뤃�뜑    ->  JVM怨� �뙆�씪�씠 �뿰寃곕릺�뒗 媛앹껜瑜� �깮�꽦�븯�뿬 �뿰寃고빐以��떎. �뿰寃고빐二쇰뒗 媛앹껜 deleteFile
+			//boardVo.getFile1().transferTo(deleteFile); //upload 占쎈쨨占쎈쐭    ->  JVM�⑨옙 占쎈솁占쎌뵬占쎌뵠 占쎈염野껉퀡由븝옙�뮉 揶쏆빘猿쒐몴占� 占쎄문占쎄쉐占쎈릭占쎈연 占쎈염野껉퀬鍮먧빳占쏙옙�뼄. 占쎈염野껉퀬鍮먧틠�눖�뮉 揶쏆빘猿� deleteFile
 			if(deleteFile.exists()) {
 				deleteFile.delete();
 			}
@@ -218,14 +218,14 @@ public class FileServiceImpl {
 	
 	
 	/*
-	* fileSave湲곕뒫 - �쉶�썝�봽濡쒗븘�궗吏� ���옣湲곕뒫
+	* fileSave疫꿸퀡�뮟 - 占쎌돳占쎌뜚占쎈늄嚥≪뮉釉섓옙沅쀯쭪占� 占쏙옙占쎌삢疫꿸퀡�뮟
 	*/
 	
 	public void mfileSave(MemberVo memberVo, HttpServletRequest request) throws Exception{
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String attach_path = "\\resources\\upload\\";
-		//�뙆�씪�씠 議댁옱�븯硫� �꽌踰꾩뿉 ���옣
+		//占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙 占쎄퐣甕곌쑴肉� 占쏙옙占쎌삢
 		if(memberVo.getMfile() != null && !memberVo.getMfile().equals("")) {
 			//System.out.println("save file--->" + hospitalVo.getHfile());			
 			File saveFile = new File(root_path + attach_path+ memberVo.getMsfile());
@@ -236,21 +236,21 @@ public class FileServiceImpl {
 	
 	
 	/*
-	 * fileCheck - �쉶�썝 �봽濡쒗븘 �궗吏� 泥댄겕
+	 * fileCheck - 占쎌돳占쎌뜚 占쎈늄嚥≪뮉釉� 占쎄텢筌욑옙 筌ｋ똾寃�
 	 */
 	
 	public MemberVo mfileCheck(MemberVo memberVo) {
 		if(memberVo.getFile1().getOriginalFilename() != null
-				&& !memberVo.getFile1().getOriginalFilename().contentEquals("")) {  //�뙆�씪�씠 議댁옱�븯硫�
+				&& !memberVo.getFile1().getOriginalFilename().contentEquals("")) {  //占쎈솁占쎌뵬占쎌뵠 鈺곕똻�삺占쎈릭筌롳옙
 
-			//BSFILE �뙆�씪 以묐났 泥섎━
+			//BSFILE 占쎈솁占쎌뵬 餓λ쵎�궗 筌ｌ꼶�봺
 			UUID uuid = UUID.randomUUID();
 			String mfile = memberVo.getFile1().getOriginalFilename();
 			String msfile = uuid + "_" + mfile;
 			memberVo.setMfile(mfile);
 			memberVo.setMsfile(msfile);
 		}else {
-			System.out.println("파일 없음");
+			System.out.println("�뙆�씪 �뾾�쓬");
 		}	
 
 		return memberVo;
