@@ -67,19 +67,29 @@ $(document).ready(function(){
 				 confirmButtonText: '확인'
 			 });
 		 } else { // 로그인시
-			 var hid = $(this).val();
-			var iframeSrc = "search_reservation.do?hid=" + hid;
+			//var hid = $(this).val();
+			//var iframeSrc = "search_reservation.do?hid=" + hid;
 			var modal = $("#hmodal");
-			var iframe = $("#reservation-iframe");
-			iframe.attr("src", iframeSrc);
+			//var iframe = $("#reservation-iframe");
+			//iframe.attr("src", iframeSrc);
 			modal.css("display", "block");
+			$(".scrdiv *").css("display", "none");
+			$(".cchat-btn *").css("display", "none");
+			$(".spword-box *").css("display", "none");
+			$(".spword-box").css("border", "none");
+			$(".spword-box").css("box-shadow", "none");
 		}
 	});
 	
 	
 	/* 모달 닫기 */
 	$(".close").click(function() {
-		$("#hmodal").css("display", "none");
+		$("#hmodal").css("display", "");
+		$(".scrdiv *").css("display", "");
+		$(".cchat-btn *").css("display", "");
+		$(".spword-box *").css("display", "");
+		$(".spword-box").css("border", "");
+		$(".spword-box").css("box-shadow", "");
 	});
 
 

@@ -10,11 +10,17 @@
 }
 
 div.header-wrapper {
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 9999;
+  z-index: 0;
+}
+
+div.footer-wrapper {
+  /* position: fixed; */
+  width: 100%;
+  z-index: 0;
 }
 
 div.result_main {
@@ -210,7 +216,7 @@ div.modal {
 }
 
 div.modal-content {
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	background-color: #fefefe;
 	margin: 10% auto;
 	padding: 20px;
