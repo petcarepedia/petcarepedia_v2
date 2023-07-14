@@ -138,6 +138,14 @@ const autoHyphen = (target) => {
 			</div>
 		</section>
 	</div>
+	<div class="back"></div>
+	<div class="term-box">
+		<div class="term-modal">
+			<div class="title">
+				이메일 인증
+			</div>
+		</div>
+	</div>
 	<%-- <jsp:include page="../footer.jsp"></jsp:include> --%>
 </body>
 </html>
