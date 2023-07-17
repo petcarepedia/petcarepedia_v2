@@ -62,8 +62,7 @@ public interface ReviewService {
 	
 	public ArrayList<ReviewVo> getRM_select4(String hid);
 
-	
-
+	public int getUpdateReport2(String rid);
 	
 	
 }

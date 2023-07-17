@@ -596,5 +596,10 @@ public class ReviewDao extends DBConn {
 		return (ArrayList<ReviewVo>)list;
 	}
 
+	public int update2(String rid) {
+		return sqlSession.update("mapper.review.report2", rid);
+	}
+		 
+
 	
 }
