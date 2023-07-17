@@ -100,7 +100,7 @@
 											<a style="display:none;" href="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile2 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile2 }" alt=""></a>
 										</c:when>
 										<c:otherwise>
-											<img src = "http://localhost:9000/petcarepedia/upload/${reviewVo.hsfile}">
+											<img src = "http://localhost:9000/petcarepedia/images/${reviewVo.hsfile}">
 										</c:otherwise>
 									</c:choose>
 								</div>
