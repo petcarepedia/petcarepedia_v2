@@ -26,6 +26,12 @@ public class ReviewVo {
 	
 	
 	
+	public String getMsfile() {
+		return msfile;
+	}
+	public void setMsfile(String msfile) {
+		this.msfile = msfile;
+	}
 	
 
 	public String getRfile1() {
