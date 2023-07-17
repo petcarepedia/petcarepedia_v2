@@ -4,6 +4,9 @@ $(document).ready(function(){
 	/*************************
 	 * 다음 api - 주소 찾기
 	 **************************/
+	/*************************
+	 * 다음 api - 주소 찾기
+	 **************************/
 	$("#search_loc").click(function(){
 		new daum.Postcode({
 	        oncomplete: function(data) {
