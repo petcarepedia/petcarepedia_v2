@@ -81,9 +81,9 @@ public class MypageController {
 		String viewName = "";
 		String oldFileName = memberVo.getMsfile();
 		//MemberDao memberDao = new MemberDao();
-		int result = memberService.getUpdate(memberVo);
+		int result = memberService.getUpdate(fileService.mfileCheck(memberVo));
 		if(result == 1) {
-			if(memberVo.getMfile() != null && !memberVo.getMsfile().equals("")) {
+			if(memberVo.getFile1().getOriginalFilename() != null && !memberVo.getFile1().getOriginalFilename().equals("")) {
 				fileService.mfileSave(memberVo, request); // 새로운 파일 저장
 				// 기존파일 삭제
 				fileService.mfileDelete(memberVo, request, oldFileName);
