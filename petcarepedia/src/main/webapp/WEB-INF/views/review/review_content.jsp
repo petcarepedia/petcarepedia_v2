@@ -99,13 +99,13 @@
 							<a href="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile2 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile2 }" alt=""></a>
 						</c:if>
 					</div>
-					<table>
-						<tr>
-							<td>작성일자</td>
-							<td>${reviewVo.rdate }</td>
-						</tr>
-					</table>
 				</div>
+				<table id="rdate_con">
+					<tr>
+						<td>작성일자</td>
+						<td>${reviewVo.rdate }</td>
+					</tr>
+				</table>
 				<form name="reportForm" action="review_report_proc.do" method="post">
 					<c:choose>
 						<c:when test="${reviewVo.mid eq sessionScope.svo.mid || sessionScope.svo.mid eq '' || sessionScope.svo.mid eq null}">
