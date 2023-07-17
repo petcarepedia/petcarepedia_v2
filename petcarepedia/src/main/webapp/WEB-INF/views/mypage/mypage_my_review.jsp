@@ -95,7 +95,7 @@
 								</div>
 								<div id = "aside2">
 									<c:choose>
-										<c:when test="${reviewVo.rsfile1 != '' || reviewVo.rsfile2 != '' }">
+										<c:when test="${reviewVo.rsfile1 != null || reviewVo.rsfile2 != null }">
 											<a href="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile1 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile1 }" alt=""></a>
 											<a style="display:none;" href="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile2 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile2 }" alt=""></a>
 										</c:when>

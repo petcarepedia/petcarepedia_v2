@@ -22,6 +22,7 @@ public class ReviewVo {
 	// ³»°¡ ¾´ ¸®ºä
 	String bid, nickname;
 	String hsfile;
+	String msfile;
 	
 	
 	

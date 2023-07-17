@@ -76,12 +76,12 @@
 						<div class="filebox">
 								<label class="fblabel" for="file1">업로드</label>
 								<input class="upload-name" value="파일 없음" disabled="disabled">
-								<input type="file" name="files" id="file1" class="upload-hidden"> 
+								<input type="file" name="files" id="file1" class="upload-hidden" accept = "image/*"> 
 						</div>
 						<div class="filebox">
 								<label class="fblabel" for="file2">업로드</label>
 								<input class="upload-name" value="파일 없음" disabled="disabled">
-								<input type="file" name="files" id="file2" class="upload-hidden"> 
+								<input type="file" name="files" id="file2" class="upload-hidden" accept = "image/*"> 
 						</div>
 					<a href = "mypage_reservation2.do">
 						<button type = "button" id = "cancle">취소</button>
