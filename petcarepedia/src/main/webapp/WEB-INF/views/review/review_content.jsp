@@ -92,8 +92,12 @@
 						</div>
 					</div>
 					<div id="imgArea">
-						<a href="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile1 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile1 }" alt=""></a>
-						<a href="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile2 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile2 }" alt=""></a>
+						<c:if test="${reviewVo.rsfile1 != ''}">
+							<a href="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile1 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile1 }" alt=""></a>
+						</c:if>
+						<c:if test="${reviewVo.rsfile2 != ''}">
+							<a href="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile2 }" data-title="사진" data-lightbox="example-set"><img src="http://localhost:9000/petcarepedia/upload/${reviewVo.rsfile2 }" alt=""></a>
+						</c:if>
 					</div>
 					<table>
 						<tr>
