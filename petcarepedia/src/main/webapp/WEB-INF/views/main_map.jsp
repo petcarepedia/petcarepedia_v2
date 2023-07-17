@@ -144,7 +144,7 @@ $(document).ready(function(){
 		<div class="map-content">
 			<div class="locsub">
 				<img src="http://localhost:9000/petcarepedia/images/map.png" width="30px">
-				<span>서울</span>
+				<span>서울특별시</span>
 			</div>
 			<div class="locbox">
 				<% for(int i=0; i<loclist.length; i++){ %>
