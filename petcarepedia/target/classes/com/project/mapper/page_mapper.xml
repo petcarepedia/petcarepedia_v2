@@ -134,4 +134,6 @@
 	<select id = "Mycount" resultType = "int">
 		select count(*) from pcp_review
 	</select>
+	
+	
 </mapper>

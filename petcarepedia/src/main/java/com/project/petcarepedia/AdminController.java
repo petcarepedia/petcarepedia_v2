@@ -126,6 +126,9 @@ public class AdminController {
 	/**
 	 * 병원 메인- 검색
 	 */
+	/**
+	 * 병원 메인- 검색
+	 */
 	@RequestMapping(value="/admin_hospital_list.do", method=RequestMethod.GET)
 	public ModelAndView hospital_list(String page, HospitalVo hospitalVo) {
 		ModelAndView model = new ModelAndView();

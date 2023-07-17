@@ -91,6 +91,7 @@
 							<img src="http://localhost:9000/petcarepedia/images/foot_sky.png">
 						</button>
 					</div>
+					<div></div>
 				<table class="table">
 					<tr>
 						<td colspan="5" >

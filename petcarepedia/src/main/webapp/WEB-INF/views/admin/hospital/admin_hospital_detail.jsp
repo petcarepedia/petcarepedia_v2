@@ -106,6 +106,7 @@
 				</section>
 		</section>
 	</div>
+	<div></div>
 	<!-- footer -->
 		<jsp:include page="../../footer.jsp"></jsp:include>
 </body>
