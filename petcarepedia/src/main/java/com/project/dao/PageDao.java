@@ -14,6 +14,22 @@ public class PageDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	
+	public int HstotalRowCount2(String gloc) {
+		return sqlSession.selectOne("mapper.page.Hscount2", gloc);
+	}
+
+
+	public List<Object> Hsselect2(int startCount, int endCount, String gloc) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("start", startCount);
+		param.put("end", endCount);	
+		param.put("gloc", gloc);	
+		
+		return sqlSession.selectList("mapper.page.Hslist2", param);
+	}
+
+	
 	public List<Object> Myselect(int startCount, int endCount, String mid) {
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("start", startCount);
