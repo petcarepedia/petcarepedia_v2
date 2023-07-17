@@ -1,6 +1,7 @@
 package com.project.petcarepedia;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,7 +59,7 @@ public class MainController {
 		ModelAndView model = new ModelAndView();
 		
 		spwordService.getInsert(hname);
-		ArrayList<HospitalVo> list = hospitalService.search(hname);
+		List<Object> list = hospitalService.search(hname);
 		
 		model.addObject("list", list);
 		model.addObject("size", list.size());
